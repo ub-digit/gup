@@ -1,1 +1,26 @@
-{{outlet}}
+{{#if hasErrors}}
+<h4 class="alert alert-danger">Publikationen kunde inte sparas.</h4>
+{{/if}}
+<form>
+<div {{bind-attr class=":form-group errors.title:has-error"}}>
+<label class="control-label">Titel:<br/>
+{{input type='text' classBinding=":form-control" value=model.title}}
+</label>
+</div>
+<div {{bind-attr class=":form-group errors.author:has-error"}}>
+<label class="control-label">Författare:<br/>
+{{input type='text' classBinding=":form-control" value=model.author}}
+</label>
+</div>
+<div {{bind-attr class=":form-group errors.pubyear:has-error"}}>
+<label class="control-label">Publiceringsår:<br/>
+{{input type='text' classBinding=":form-control" value=model.pubyear}}
+</label>
+</div>
+<div {{bind-attr class=":form-group errors.abstract:has-error"}}>
+<label class="control-label">Sammanfattning:<br/>
+{{textarea cols='80' rows='6' classBinding=":form-control" value=model.abstract}}
+</label>
+</div>
+<button {{action 'submit' model}}>Spara</button>
+</form>

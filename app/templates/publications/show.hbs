@@ -1,1 +1,10 @@
-{{outlet}}
+{{#if model.hasErrors}}
+<h4 class="alert alert-danger">{{model.errors}}</h4>
+{{else}}
+<h4>{{model.title}}</h4>
+<em>
+{{model.author}}
+[{{model.pubyear}}]
+</em>
+<p>{{model.abstract}}</p>
+{{/if}}
