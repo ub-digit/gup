@@ -1,0 +1,29 @@
+.nav {
+	&.navbar-nav {
+		li {
+			position: relative;
+			a {
+				text-transform: uppercase;
+				color: #393939;
+				.active-indicator {
+					visibility: hidden;
+					opacity: 0;
+					position: absolute;
+					bottom: 10px;
+					left: 50%;
+					margin-left: -10px;
+				}
+				&.active {
+					.active-indicator {
+						visibility: visible;
+						opacity: 1;
+					}
+				}
+				&.menu-bars {
+					font-size: 20px;
+				}
+			}	
+	
+		}
+	}
+}

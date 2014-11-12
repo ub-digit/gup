@@ -1,0 +1,45 @@
+body {
+	overflow-y:scroll;
+}
+
+header {
+	height: 155px;
+	.brand {
+		.logo {
+			float:left;
+			width: 127px;
+			height: 129px;
+			img {
+				width:100%;
+			}
+		}
+		.headers {
+			float: left;
+			margin-left: 20px;
+			margin-top: 35px;
+			.level1 {
+				color: #000;
+				float: left;
+				width: 100%;
+				display: block;
+				text-transform: uppercase;
+				font-size: 28px;
+				@media (min-width: @screen-sm-min) {
+					font-size: 20px;
+				};
+								/* Medium devices (desktops, 992px and up) */
+				@media (min-width: @screen-md-min) {
+					font-size: 28px;
+				}
+
+			}
+			.level2 {
+				float: left;
+				width: 100%;
+				display: block;
+				text-transform: uppercase;
+				font-size: 18px;
+			}
+		}
+}
+}

@@ -1,4 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+*~
+\#*#
+.#*
+.~*#
+*.sw*
+etc
+log
+tmp
 
 # compiled output
 /dist
