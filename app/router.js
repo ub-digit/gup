@@ -9,6 +9,7 @@ Router.map(function() {
   this.resource('publications', function() {
     this.route('show', {path: ":id"});
     this.route('new');
+    this.route('index');
   });
 });
 

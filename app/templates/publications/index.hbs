@@ -1,0 +1,8 @@
+{{#if model.hasErrors}}
+<h4 class="alert alert-danger">{{model.errors}}</h4>
+{{else}}
+{{#each publication in model}}
+<p>{{#link-to 'publications.show' publication.id}}{{publication.title}}{{/link-to}} {{publication.created_at}}</p>
+
+{{/each}}
+{{/if}}
