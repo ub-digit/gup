@@ -1,5 +1,5 @@
 <form>
-<table border=1>
+<table border='1'>
 	<tr>
 	<td {{bind-attr class=":form-group errors.title:has-error"}}>
 		<label class="control-label">Titel:<br/>
@@ -100,7 +100,7 @@
 	</td>
 </tr>
 <tr>
-	<td>
+	<tr colspan='3'>
 		<button {{action 'submit' model}}>Spara</button>
 	</td>
 </tr>
