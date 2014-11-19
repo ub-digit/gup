@@ -14,8 +14,8 @@
  </label>
  <label class="control-label">Innehållstyp:<br/>
   {{view Ember.Select content=selectedPublicationTypeAspects
-                      value=selectedForm
-                      optionValuePath="content.form_template"
+                      selection=selectedAspect
+                      optionValuePath="content.id"
                       optionLabelPath="content.content_type"
   }}
  </label>
@@ -37,6 +37,7 @@
   Abstract: {{model.abstract}}<br/>
   </p>
   <p>formPartial: {{formPartial}} </p>
+  <p>selectedA: {{model.publication_type_id}} </p>
   {{partial formPartial}}
 
 

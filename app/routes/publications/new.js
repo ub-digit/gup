@@ -5,13 +5,13 @@ export default Ember.Route.extend({
     return {};
   },
 
-
   setupController: function(controller, model) {
     controller.set('errors', null);
     controller.set('hasErrors', null);
+    controller.set('model', model);
   },
 
- actions: {
+  actions: {
     submit: function(model) {
       var that = this;
       var successHandler = function(model) {
