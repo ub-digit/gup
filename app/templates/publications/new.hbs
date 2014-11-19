@@ -22,23 +22,10 @@
 
 </div> 
 
+{{partial formPartial}}
 
-
-  <p>
-  Debuginfo:<br/>
-  Title: {{model.title}}<br/>
-  Author: {{model.author}}<br/>
-  Pubyear: {{model.pubyear}}<br/>
-  ISSN: {{model.issn}}<br/>
-  Journal Title: {{model.journaltitle}}<br/>
-  ISBN: {{model.isbn}}<br/>
-  </p>
-  <p>
-  Abstract: {{model.abstract}}<br/>
-  </p>
-  <p>formPartial: {{formPartial}} </p>
-  <p>selectedA: {{model.publication_type_id}} </p>
-  {{partial formPartial}}
-
-
-
+<br/>
+<br/>
+<p>Debuginfo:</p>
+<p>formPartial: {{formPartial}} </p>
+<p>selectedAspect: {{model.publication_type_id}} </p>
