@@ -2,11 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['publications'],
-  selectedName: 'book',
+  selectedPublicationType: 'book',
+  selectedForm: 'book',
   model: {},
+
   formPartial: function() {
-  	console.log('DEBUG', this.get('selectedName'));
-    return 'publications/publicationtypes/' + this.get('selectedName');
-  }.property('selectedName')
+    return 'publications/publicationtypes/' + this.get('selectedForm');
+  }.property('selectedForm'),
+  
+  selectedPublicationTypeAspects: function() {
+    var pubType = this.get('controllers.publications.model').findBy('publication_type_code', this.get('selectedPublicationType'));
+    if (!pubType)
+    {
+    	return null;
+    }
+    this.set('selectedForm', pubType.aspects[0].form_template);
+    return pubType.aspects;
+  }.property('selectedPublicationType')
 
 });
