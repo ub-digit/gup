@@ -3,12 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: 'book',
-  selectedForm: 'book',
-  model: {},
+  selectedAspect: 'book',
 
   formPartial: function() {
-    return 'publications/publicationtypes/' + this.get('selectedForm');
-  }.property('selectedForm'),
+  	this.set('model.publication_type_id', this.get('selectedAspect.id'));
+    return 'publications/publicationtypes/' + this.get('selectedAspect.form_template');
+  }.property('selectedAspect'),
   
   selectedPublicationTypeAspects: function() {
     var pubType = this.get('controllers.publications.model').findBy('publication_type_code', this.get('selectedPublicationType'));
@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
     {
     	return null;
     }
-    this.set('selectedForm', pubType.aspects[0].form_template);
+    this.set('selectedAspect', pubType.aspects[0]);
     return pubType.aspects;
   }.property('selectedPublicationType')
 
