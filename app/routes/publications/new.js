@@ -4,6 +4,13 @@ export default Ember.Route.extend({
   model: function(){
     return {};
   },
+
+
+  setupController: function(controller, model) {
+    controller.set('errors', null);
+    controller.set('hasErrors', null);
+  },
+
  actions: {
     submit: function(model) {
       var that = this;
