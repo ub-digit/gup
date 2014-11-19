@@ -60,18 +60,8 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Publicerad i:<br/>
+		<label class="control-label">Källa:<br/>
 			{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
-		</label>
-	</div>
-	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Volym:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcevolume}}
-		</label>
-	</div>
-	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Nr:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourceissue}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
@@ -80,13 +70,18 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">issn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.issn}}
+		<label class="control-label">ISBN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.isbn}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">eissn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		<label class="control-label">Förläggare:<br/>
+			{{input type='text' classBinding=":form-control" value=model.publisher}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Ort:<br/>
+			{{input type='text' classBinding=":form-control" value=model.place}}
 		</label>
 	</div>
 	<button {{action 'submit' model}}>Spara</button>

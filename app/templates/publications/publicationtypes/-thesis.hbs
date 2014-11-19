@@ -60,33 +60,48 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Publicerad i:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
+		<label class="control-label">Diss datum:<br/>
+			{{input type='text' classBinding=":form-control" value=model.dissdate}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Volym:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcevolume}}
+		<label class="control-label">Diss tidpunkt:<br/>
+			{{input type='text' classBinding=":form-control" value=model.disstime}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Nr:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourceissue}}
+		<label class="control-label">Diss ställe:<br/>
+			{{input type='text' classBinding=":form-control" value=model.disslocation}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Sidor:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcepages}}
+		<label class="control-label">Opponent:<br/>
+			{{input type='text' classBinding=":form-control" value=model.dissopponent}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">issn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.issn}}
+		<label class="control-label">ISBN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.isbn}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">eissn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		<label class="control-label">Omfång:<br/>
+			{{input type='text' classBinding=":form-control" value=model.extent}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Förläggare:<br/>
+			{{input type='text' classBinding=":form-control" value=model.publisher}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Ort:<br/>
+			{{input type='text' classBinding=":form-control" value=model.place}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Serie:<br/>
+			{{input type='text' classBinding=":form-control" value=model.series}}
 		</label>
 	</div>
 	<button {{action 'submit' model}}>Spara</button>

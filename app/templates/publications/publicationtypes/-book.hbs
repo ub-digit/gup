@@ -4,19 +4,34 @@
 			{{input type='text' classBinding=":form-control" value=model.title}}
 		</label>
 	</div>
-	<div {{bind-attr class=":form-group errors.author:has-error"}}>
-		<label class="control-label">Författare:<br/>
-			{{input type='text' classBinding=":form-control" value=model.author}}
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Alternativ titel:<br/>
+			{{input type='text' classBinding=":form-control" value=model.alt_title}}
 		</label>
 	</div>
-	<div {{bind-attr class=":form-group errors.pubyear:has-error"}}>
-		<label class="control-label">Publiceringsår:<br/>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Publikationsår:<br/>
 			{{input type='text' classBinding=":form-control" value=model.pubyear}}
 		</label>
-	</div>	
+	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">ISBN:<br/>
-			{{input type='text' classBinding=":form-control" value=model.isbn}}
+		<label class="control-label">Språk:<br/>
+			{{input type='text' classBinding=":form-control" value=model.publanguage}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Externa ID:<br/>
+			{{input type='text' classBinding=":form-control" value=model.extid}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Externa länkar:<br/>
+			{{input type='text' classBinding=":form-control" value=model.links}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Fulltextlänk:<br/>
+			{{input type='text' classBinding=":form-control" value=model.url}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.abstract:has-error"}}>
@@ -24,6 +39,50 @@
 			{{textarea cols='80' rows='6' classBinding=":form-control" value=model.abstract}}
 		</label>
 	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Ämne:<br/>
+			{{input type='text' classBinding=":form-control" value=model.category_hsv_local}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Nyckelord:<br/>
+			{{input type='text' classBinding=":form-control" value=model.keywords}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Kommentar:<br/>
+			{{input type='text' classBinding=":form-control" value=model.pub_notes}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Författare:<br/>
+			{{input type='text' classBinding=":form-control" value=model.author}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Omfång:<br/>
+			{{input type='text' classBinding=":form-control" value=model.extent}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Förlag:<br/>
+			{{input type='text' classBinding=":form-control" value=model.publisher}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Utgivningsort:<br/>
+			{{input type='text' classBinding=":form-control" value=model.place}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Serie:<br/>
+			{{input type='text' classBinding=":form-control" value=model.series}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">isbn:<br/>
+			{{input type='text' classBinding=":form-control" value=model.isbn}}
+		</label>
+	</div>
 	<button {{action 'submit' model}}>Spara</button>
 </form>
-	

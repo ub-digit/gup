@@ -80,13 +80,23 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">issn:<br/>
+		<label class="control-label">ISSN:<br/>
 			{{input type='text' classBinding=":form-control" value=model.issn}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">eissn:<br/>
+		<label class="control-label">eISSN:<br/>
 			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">ISBN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.isbn}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Projekt:<br/>
+			{{input type='text' classBinding=":form-control" value=model.project}}
 		</label>
 	</div>
 	<button {{action 'submit' model}}>Spara</button>

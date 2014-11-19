@@ -60,33 +60,28 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Publicerad i:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
+		<label class="control-label">Patentsökare:<br/>
+			{{input type='text' classBinding=":form-control" value=model.patent_applicant}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Volym:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcevolume}}
+		<label class="control-label">Ansökningsnummer:<br/>
+			{{input type='text' classBinding=":form-control" value=model.patent_application_number}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Nr:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourceissue}}
+		<label class="control-label">Ansökningsdatum:<br/>
+			{{input type='text' classBinding=":form-control" value=model.patent_application_date}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">Sidor:<br/>
-			{{input type='text' classBinding=":form-control" value=model.sourcepages}}
+		<label class="control-label">Patentnummer:<br/>
+			{{input type='text' classBinding=":form-control" value=model.patent_number}}
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">issn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.issn}}
-		</label>
-	</div>
-	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">eissn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		<label class="control-label">Patentdatum:<br/>
+			{{input type='text' classBinding=":form-control" value=model.patent_date}}
 		</label>
 	</div>
 	<button {{action 'submit' model}}>Spara</button>

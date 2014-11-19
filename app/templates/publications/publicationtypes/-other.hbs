@@ -60,6 +60,36 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">ISBN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.isbn}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">ISSN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.issn}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">eISSN:<br/>
+			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Omfång:<br/>
+			{{input type='text' classBinding=":form-control" value=model.extent}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Förläggare:<br/>
+			{{input type='text' classBinding=":form-control" value=model.publisher}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
+		<label class="control-label">Ort:<br/>
+			{{input type='text' classBinding=":form-control" value=model.place}}
+		</label>
+	</div>
+	<div {{bind-attr class=":form-group errors.title:has-error"}}>
 		<label class="control-label">Publicerad i:<br/>
 			{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
 		</label>
@@ -80,13 +110,8 @@
 		</label>
 	</div>
 	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">issn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.issn}}
-		</label>
-	</div>
-	<div {{bind-attr class=":form-group errors.title:has-error"}}>
-		<label class="control-label">eissn:<br/>
-			{{input type='text' classBinding=":form-control" value=model.eissn}}
+		<label class="control-label">Serie:<br/>
+			{{input type='text' classBinding=":form-control" value=model.series}}
 		</label>
 	</div>
 	<button {{action 'submit' model}}>Spara</button>
