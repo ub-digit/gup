@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['publications'],
-  selectedPublicationType: 'book',
-  selectedAspect: 'book',
+  selectedPublicationType: 'article',
+  selectedAspect: 'article-ref',
 
   formPartial: function() {
   	this.set('model.publication_type_id', this.get('selectedAspect.id'));
