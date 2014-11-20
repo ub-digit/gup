@@ -4,7 +4,7 @@
 
 
 
-<div {{bind-attr class=":form-group errors.title:has-error"}}>
+<div {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
  <label class="control-label">Publikationstyp:<br/>
   {{view Ember.Select content=controllers.publications.model 
                       value=selectedPublicationType
