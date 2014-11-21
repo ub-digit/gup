@@ -31,12 +31,14 @@
 			{{model.id}}
 		</p>
 	{{/if}}
+
 	{{#if model.publication_type_id}}
 		<p>
-			<b>Pubtypeid:</b><br />
-			{{model.publication_type_id}}
+			<b>Pubtype:</b><br />
+			{{publicationType}}
 		</p>
 	{{/if}}
+
 	{{#if model.abstract}}
 		<p>
 			<b>Sammanfattning:</b><br />
