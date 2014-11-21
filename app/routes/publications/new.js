@@ -8,6 +8,7 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('errors', null);
     controller.set('hasErrors', null);
+    controller.set('showErrorHeader', false);
     controller.set('model', model);
   },
 
@@ -20,10 +21,15 @@ export default Ember.Route.extend({
       var errorHandler = function(reason) {
         console.log(reason);
         that.controller.set('hasErrors', true);
+        that.controller.set('showErrorHeader', true);
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
       this.store.save('publication',model).then(successHandler, errorHandler);
+    },
+    hideErrorHeader: function() {
+      this.controller.set('showErrorHeader', false);
+
     }
   }
 });

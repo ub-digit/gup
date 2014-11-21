@@ -1,25 +1,27 @@
 {{#if hasErrors}}
-<h4 class="alert alert-danger">Publikationen kunde inte sparas.</h4>
+  {{#if showErrorHeader}}
+    <h4 class="alert alert-danger">Publikationen kunde inte sparas.
+      <a href="#" class="btn btn-default btn-sm" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+    </h4>
+  {{/if}}
 {{/if}}
 
 
-
 <div {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
- <label class="control-label">Publikationstyp:<br/>
-  {{view Ember.Select content=controllers.publications.model 
+  <label class="control-label">Publikationstyp:<br/>
+    {{view Ember.Select content=controllers.publications.model 
                       value=selectedPublicationType
                       optionValuePath="content.publication_type_code"
                       optionLabelPath="content.publication_type_code"
-  }}
- </label>
- <label class="control-label">Innehållstyp:<br/>
-  {{view Ember.Select content=selectedPublicationTypeAspects
+    }}
+  </label>
+  <label class="control-label">Innehållstyp:<br/>
+    {{view Ember.Select content=selectedPublicationTypeAspects
                       selection=selectedAspect
                       optionValuePath="content.id"
                       optionLabelPath="content.content_type"
-  }}
- </label>
-
+    }}
+  </label>
 </div> 
 
 {{partial formPartial}}
