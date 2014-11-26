@@ -113,6 +113,12 @@
 			{{input type='text' classBinding=":form-control" value=model.project}}
 		</label>
 	</td>
+	<td {{bind-attr class=":form-group errors.article_number:has-error"}}>
+		<label class="control-label">Artikelnummer:<br/>
+			{{input type='text' classBinding=":form-control" value=model.article_number}}
+		</label>
+	</td>
+
 	</tr>
 	<tr>
 	<td  colspan='3' >

@@ -103,7 +103,14 @@
 	</td>
 	</tr>
 	<tr>
-	<td  colspan='3' >
+	<td colspan='3' {{bind-attr class=":form-group errors.article_number:has-error"}}>
+		<label class="control-label">Artikelnummer:<br/>
+			{{input type='text' classBinding=":form-control" value=model.article_number}}
+		</label>
+	</td>
+	</tr>	
+	<tr>
+	<td colspan='3'>
 	<button {{action 'submit' model}}>Spara</button>
 	</td>
 	</tr>
