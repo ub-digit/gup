@@ -1,0 +1,9 @@
+<ul>
+  {{#each item in model}} 
+    <li>
+      {{link-to item.title 'publications.manage.show' item.id}}
+    </li>
+  {{/each}}
+</ul>
+
+{{outlet}}

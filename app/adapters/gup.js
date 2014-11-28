@@ -4,7 +4,8 @@ import ENV from '../config/environment';
 export default Ember.Object.extend({
     endpoints: {
 	publication:	  { path: 'publications'	  },
-	publication_type: { path: 'publication_types' }
+	publication_type: { path: 'publication_types' },
+	draft: { path: 'publications/drafts',plural: 'publications' }
     },
     findOne: function(name, id, params) {
 	var that = this;

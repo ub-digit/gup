@@ -10,7 +10,13 @@ Router.map(function() {
     this.route('show', {path: ":id"});
     this.route('new');
     this.route('index');
+    this.route('manage', function() {
+      this.route('show', {path: ':id'}, function() {
+        this.route('edit');
+      });      
+    });
   });
-});
+  });
 
 export default Router;
+
