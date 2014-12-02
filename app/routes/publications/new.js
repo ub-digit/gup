@@ -16,7 +16,8 @@ export default Ember.Route.extend({
     submit: function(model) {
       var that = this;
       var successHandler = function(model) {
-        that.transitionTo('publications.show', model.id);
+        //that.transitionTo('publications.show', model.id);
+        that.transitionTo('publications.show.edit', model.id);
       };
       var errorHandler = function(reason) {
         console.log(reason);

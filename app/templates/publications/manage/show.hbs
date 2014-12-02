@@ -1,8 +1,14 @@
 <div style="border:1px solid black;">
-<button>KOLLA</button>
+<h3>show.hbs</h3>
+<div style='border: black 2px solid;padding:2px;margin:2px'>
+  {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Redigera{{/link-to}}
+  <button {{action 'cancel' model}}  class='btn btn-default'>Avbryt</button>  
+  {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Radera{{/link-to}}
+</div>
 </div>
 <div style="border:1px solid black;background-color:moccasin;">
-{{model.title}}
+<h3>show innehåll</h3> 
+<h3>{{model.title}}</h3>
 </div>
 
 {{outlet}}
