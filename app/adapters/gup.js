@@ -111,9 +111,9 @@ export default Ember.Object.extend({
 		return that.extractOne(name, data);
 	    });
     },
-    saveCreate: function(name, data) {
+    saveCreate: function(name, data, params) {
 	var that = this;
-	var dataObject = {};
+	var dataObject = params || {};
 	dataObject[name] = data;
 	return this.send(this.urlMany(name), 'post', dataObject)
 	    .then(function(data) {

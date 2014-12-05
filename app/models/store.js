@@ -30,13 +30,13 @@ export default Ember.Object.extend({
 	    return this.adapter().findMany(name, this.params(id_or_params, maybe_params));
 	}
     },
-    save: function(name, model) {
+    save: function(name, model, params) {
 	if(model.pubid) {
     console.log('model.pubid:'+ model.pubid);
 	    return this.adapter().saveUpdate(name, model.pubid, model);
 	} else {
     console.log('no model.pubid');
-	    return this.adapter().saveCreate(name, model);
+	    return this.adapter().saveCreate(name, model, params);
 	}
     },
     destroy: function(name, id) {
