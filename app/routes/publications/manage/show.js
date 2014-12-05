@@ -6,12 +6,10 @@ export default Ember.Route.extend({
   },
   actions: {
     cancel: function(model) {
-      if(confirm('OK, alltså')) {
-        var that = this;
-        this.store.find('publication',model.id).then(function(model) {;
-          that.transitionTo('publications.manage', model);
-        });
-      };
+      var that = this;
+      this.store.find('publication',model.id).then(function(model) {;
+        that.transitionTo('publications.manage', model);
+      });
     }
   }
 });
