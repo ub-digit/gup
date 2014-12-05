@@ -1,54 +1,71 @@
-<div class="container">
+<div>
   <div class='row'>
-		<div class='col-xs-offset-8'></div>
-    <div class='col-xs-4'>
-      {{view Ember.TextField
-        type='file'
-        value='Höddö!'
-      }}
-    </div>
-  </div>
-  <div class='row'>
-    <div class='col-xs-4'>
-      <button {{action 'cancel' model}}  class='btn btn-default'>Skapa ny</button>  
-    </div>
-    <div class='col-xs-4'>
-      Importera från: 
-    </div>
-    <div class='col-xs-4'>
+    <div class='col-xs-3'>Importera från:</div>
+    <div class='col-xs-3'>
       {{view Ember.Select content=sources
                             value=sourceData.selectedSource
                   optionValuePath="content.value"
                   optionLabelPath="content.label"
       }}
-    </div>
-    <div class='col-xs-4'>
+		</div>
+    <div class='col-xs-3'>
       {{input value=sourceData.sourceId}}
+		</div>
+    <div class='col-xs-3'>
+      <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
     </div>
-    <div class='col-xs-4'>
-    <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
-    </p>
   </div>
-  <div>
-  <p>
-  Importera från publikationslista: 
-  </label>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    {{input value=sourceData.sourceId}}
-    <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
-  </p>
+	<hr />
+
+  <div class='row'>
+    <div class='col-xs-3'>Redigera:</div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'>
+      {{input value=sourceData.sourceId}}
+		</div>
+    <div class='col-xs-3'>
+      <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
+    </div>
   </div>
-  <div>
-  <p>
-  Redigera publikation:
-  </label>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;
-    {{input value=sourceData.sourceId}}
-    <button {{action 'import' sourceData}}  class='btn btn-default'>Redigera</button>  
-  </p>
+	<hr />
+  <div class='row'>
+    <div class='col-xs-3'>Skapa ny:</div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'>
+      <button {{action 'create' model}}  class='btn btn-default'>Skapa ny</button>  
+    </div>
   </div>
+		<hr />
+
+
+
+<!--	
+
+  <div class='row'>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'>
+      {{view Ember.TextField
+        type='file'
+      }}
+    </div>
+  </div>
+		<hr />
+
+  <div class='row'>
+    <div class='col-xs-3'>Importera från publikationslista:</div>
+    <div class='col-xs-6'>
+      {{view Ember.Select content=sources
+                            value=sourceData.selectedSource
+                  optionValuePath="content.value"
+                  optionLabelPath="content.label"
+      }}
+		</div>
+    <div class='col-xs-3'>
+      <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
+    </div>
+		<hr />
+	-->
 </div>
