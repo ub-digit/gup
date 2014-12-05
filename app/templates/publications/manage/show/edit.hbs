@@ -6,7 +6,7 @@
     <button {{action 'cancel' model}}  class='btn btn-default'>Avbryt</button>  
   </div>
 </div>
-<div style="border:1px solid black;background-color:moccasin;">
+<div style="border:1px solid black;">
 
 
 {{#if hasErrors}}
@@ -39,6 +39,11 @@
 
 
 
+	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
+	<span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
+	<span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
+	</div>
 </div>
 
 {{outlet}}

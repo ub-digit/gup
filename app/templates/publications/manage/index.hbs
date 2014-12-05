@@ -1,43 +1,31 @@
-<div>
-  <div>
-  <p>
- {{view Ember.TextField
- type='file'
- value='Höddö!'
- }}
- 
-  </p>
+<div class="container">
+  <div class='row'>
+		<div class='col-xs-offset-8'></div>
+    <div class='col-xs-4'>
+      {{view Ember.TextField
+        type='file'
+        value='Höddö!'
+      }}
+    </div>
   </div>
-
-  <div>
-  <p>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-    <button {{action 'cancel' model}}  class='btn btn-default'>Skapa ny</button>  
-  </p>
-  </div>
-  <div>
-  <p>
-  Importera från: 
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    {{view Ember.Select content=sources
-                      value=sourceData.selectedSource
-                      optionValuePath="content.value"
-                      optionLabelPath="content.label"
-    }}
-  </label>
-    {{input value=sourceData.sourceId}}
+  <div class='row'>
+    <div class='col-xs-4'>
+      <button {{action 'cancel' model}}  class='btn btn-default'>Skapa ny</button>  
+    </div>
+    <div class='col-xs-4'>
+      Importera från: 
+    </div>
+    <div class='col-xs-4'>
+      {{view Ember.Select content=sources
+                            value=sourceData.selectedSource
+                  optionValuePath="content.value"
+                  optionLabelPath="content.label"
+      }}
+    </div>
+    <div class='col-xs-4'>
+      {{input value=sourceData.sourceId}}
+    </div>
+    <div class='col-xs-4'>
     <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
     </p>
   </div>
