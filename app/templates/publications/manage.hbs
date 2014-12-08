@@ -1,7 +1,17 @@
 <div class="container">
 <div class='col-xs-4'>
-<ul>
-  {{#each item in model}} 
+<h4>Utkast</h4>
+<ul class="list-unstyled">
+  {{#each item in drafts}} 
+    <li>
+      {{link-to item.title 'publications.manage.show' item.pubid}}
+    </li>
+  {{/each}}
+</ul>
+<hr/>
+<h4>Publikationer</h4>
+<ul class="list-unstyled">
+  {{#each item in publications}} 
     <li>
       {{link-to item.title 'publications.manage.show' item.pubid}}
     </li>

@@ -20,11 +20,12 @@ export default Ember.Route.extend({
       });
     },
     save: function(model,is_draft) {
-      console.log(model);
       var that = this;
       var successHandler = function() {
-        that.store.find('draft').then(function(drafts) {
-          that.controllerFor('publications.manage').set('model',drafts);
+        var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
+        rsvp.then(function(model) {
+          that.controllerFor('publications.manage').set('drafts',model.drafts);
+          that.controllerFor('publications.manage').set('publications',model.publications);
           // här skall man kunna välja att gå till den första posten om listan är icke-tom
           that.transitionTo('publications.manage');
         });        
@@ -41,7 +42,7 @@ export default Ember.Route.extend({
       }else{
         model.is_draft = false;
       }
-      
+
       this.store.save('publication',model).then(successHandler, errorHandler);
     },
     hideErrorHeader: function() {

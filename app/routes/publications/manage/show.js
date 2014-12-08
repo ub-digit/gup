@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   actions: {
     cancel: function(model) {
       var that = this;
-      this.store.find('publication',model.id).then(function(model) {;
+      this.store.find('publication',model.id).then(function(model) {
         that.transitionTo('publications.manage', model);
       });
     }
