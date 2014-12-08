@@ -1,12 +1,12 @@
-<div style="border:1px solid black;">
-  <h3>edit.hbs</h3>
-  <div style='border: black 2px solid;padding:2px;margin:2px'>
+<div style="border:1px solid silver;border-top:0px;">
+<div style='padding:0.5em;'>
+  <div style='border:silver 1px solid;margin:0.5em;padding:0.5em'>
     {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Spara{{/link-to}}
     {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Spara utkast{{/link-to}}
     <button {{action 'cancel' model}}  class='btn btn-default'>Avbryt</button>  
   </div>
 </div>
-<div style="border:1px solid black;">
+<div style="border:1px solid silver;">
 
 
 {{#if hasErrors}}
@@ -18,7 +18,13 @@
 {{/if}}
 
 
-<div {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
+<div style='padding:0.5em;border:1px solid silver;'>
+<span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
+<span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
+<span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
+<span>edit.hbs</span>
+</div>
+<div style='padding:0.5em;' {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
   <label class="control-label">Publikationstyp:<br/>
     {{view Ember.Select content=publicationTypeCodes
                       value=selectedPublicationType
@@ -38,11 +44,7 @@
 {{partial formPartial}}
 
 
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
-	<span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
-	<span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
-	<span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
-	</div>
+
 </div>
 
 {{outlet}}

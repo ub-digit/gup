@@ -1,4 +1,4 @@
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<div style='padding:0.5em;border-bottom:1px solid black;'>
 	<span {{bind-attr class=":form-group errors.title:has-error"}}>
 		<label class="control-label">Titel:<br/>
 			{{input type='text' classBinding=":form-control" value=model.title}}
@@ -15,7 +15,7 @@
 		</label>
 	</span>
 	</div>
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<div style='padding:0.5em;border-bottom:1px solid black;'>
 	<span {{bind-attr class=":form-group errors.author:has-error"}}>
 		<label class="control-label">Författare:<br/>
 			{{input type='text' classBinding=":form-control" value=model.author}}
@@ -30,7 +30,7 @@
 			+ 
 	</span>
 	</div>
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<div style='padding:0.5em;border-bottom:1px solid black;'>
 	<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 		<label class="control-label">Tidskriftstitel:<br/>
 			{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
@@ -73,7 +73,7 @@
 	</span>
 	</div>
 	
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<div style='padding:0.5em;border-bottom:1px solid black;'>
 	<span {{bind-attr class=":form-group errors.links:has-error"}}>
 		<label class="control-label">Länk:<br/>
 			{{input type='text' classBinding=":form-control" value=model.links}}
@@ -81,7 +81,7 @@
 	</span>
 	<span>+</span>
 	</div>
-	<div style='margin:0.5em;padding:0.5em;border-bottom:1px solid black;background-color:aliceblue;'>
+	<div style='padding:0.5em;border-bottom:1px solid black;'>
 	<span {{bind-attr class=":form-group errors.abstract:has-error"}}>
 		<label class="control-label">Sammanfattning:<br/>
 			{{textarea cols='40' rows='6' classBinding=":form-control" value=model.abstract}}
