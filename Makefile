@@ -15,14 +15,14 @@ all:
 
 deploy-drift: 
 	./create-deploy-info.sh
-	ember build --environment=production
+	ember build --environment=production-live
 	mv deploy-info.txt dist
 	scp -r $(DISTDIR)/* $(DRIFTSERVER):$(DESTDIR)/
 
 
 deploy-test: 
 	./create-deploy-info.sh
-	ember build --environment=development
+	ember build --environment=production-test
 	mv deploy-info.txt dist
 	scp -r $(DISTDIR)/* app-user@$(TESTSERVER):$(DESTDIR)/
 
