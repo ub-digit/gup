@@ -4,9 +4,13 @@ DRIFTSERVER=gup3.ub.gu.se
 DESTDIR=/apps/gup
 APPENV=production
 
-all: deploy-test
 
-drift: deploy-drift
+all:
+	@echo -n "run like this:"
+	@echo    "'make deploy-test'"
+	@echo -n "           or:" 
+	@echo    "'make deploy-drift'"
+
 
 
 deploy-drift: 
