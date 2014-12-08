@@ -5,8 +5,10 @@ export default Ember.Route.extend({
     create: function() {
       var that = this;
       var successHandler = function(model) {
-        that.store.find('draft').then(function(drafts) {
-          that.controllerFor('publications.manage').set('model',drafts);
+        var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
+        rsvp.then(function(lists) {
+          that.controllerFor('publications.manage').set('drafts',lists.drafts);
+          that.controllerFor('publications.manage').set('publications',lists.publications);
           // här väljer man att gå till den första posten om listan är icke-tom
           that.transitionTo('publications.manage.show.edit', model.pubid);
         });        
@@ -25,8 +27,10 @@ export default Ember.Route.extend({
       console.log(sourceData);
       var that = this;
       var successHandler = function(model) {
-        that.store.find('draft').then(function(drafts) {
-          that.controllerFor('publications.manage').set('model',drafts);
+        var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
+        rsvp.then(function(lists) {
+          that.controllerFor('publications.manage').set('drafts',lists.drafts);
+          that.controllerFor('publications.manage').set('publications',lists.publications);
           // här ska man kunna välja att gå till den första posten om listan är icke-tom
           that.transitionTo('publications.manage.show.edit', model.pubid);
         });        

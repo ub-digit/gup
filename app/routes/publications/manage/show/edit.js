@@ -10,6 +10,11 @@ export default Ember.Route.extend({
     controller.set('hasErrors', null);
     controller.set('showErrorHeader', false);
     controller.set('model', model);
+    console.log(model);
+    var publicationType = this.controllerFor('publications').get('model').findBy('id', model.publication_type_id);
+    controller.set('selectedPublicationType', publicationType.publication_type_code);
+    controller.set('selectedContentType', model.publication_type_id);
+
   },
 
   actions: {
