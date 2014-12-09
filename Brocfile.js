@@ -19,6 +19,7 @@ var app = new EmberApp();
 
 app.import("bower_components/moment/min/moment.min.js");
 app.import('bower_components/ember-animate/ember-animate.js');
+app.import('bower_components/ember-uploader/dist/ember-uploader.js');
 app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/ember-i18n/lib/i18n.js');

@@ -20,6 +20,7 @@
     "ember-i18n": "~2.2.2",
     "ember-animate": "~0.3.6",
     "jquery.scrollTo": "~1.4.13",
-    "rsvp": "~3.0.13"
+    "rsvp": "~3.0.13",
+    "ember-uploader": "~0.2.8"
   }
 }
