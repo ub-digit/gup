@@ -36,4 +36,3 @@ export default Ember.Controller.extend({
     this.set('selectedContentType', contentType.id);
   }.observes('selectedPublicationType')
 });
-;
