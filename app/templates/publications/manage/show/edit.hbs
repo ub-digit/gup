@@ -10,31 +10,30 @@
 {{/if}}
 
 
-<div style='padding:0.5em;border:1px solid silver;'>
-<span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
-<span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
-<span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
-</div>
-<div style='padding:0.5em;' {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
-  <label class="control-label">Publikationstyp:<br/>
-    {{view Ember.Select content=publicationTypeCodes
-                      value=selectedPublicationType
-                      optionValuePath="content.publication_type_code"
-                      optionLabelPath="content.publication_type_code"
-    }}
-  </label>
-  <label class="control-label">Innehållstyp:<br/>
-    {{view Ember.Select content=contentTypes
-                      value=selectedContentType
-                      optionValuePath="content.id"
-                      optionLabelPath="content.content_type"
-    }}
-  </label>
+  <div style='padding:0.5em;border:1px solid silver;'>
+    <span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
+    <span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
+    <span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
+  </div>
+  <div style='padding:0.5em;' {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
+    <label class="control-label">Publikationstyp:<br/>
+      {{view Ember.Select 
+			    content=publicationTypeCodes
+          value=selectedPublicationType
+          optionValuePath="content.publication_type_code"
+          optionLabelPath="content.publication_type_code"
+      }}
+    </label>
+    <label class="control-label">Innehållstyp:<br/>
+      {{view Ember.Select content=contentTypes
+          value=selectedContentType
+          optionValuePath="content.id"
+          optionLabelPath="content.content_type"
+      }}
+    </label>
+    {{partial formPartial}}
 
-{{partial formPartial}}
-
-
-
+  </div>
 </div>
 
 {{outlet}}

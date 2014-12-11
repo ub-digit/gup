@@ -5,11 +5,28 @@ export default Ember.Route.extend({
     return this.store.find('publication',params.id);
   },
   actions: {
-    cancel: function(model) {
+    cancel: function() {
+      this.transitionTo('publications.manage');
+    },
+    delete: function(model) {
       var that = this;
-      this.store.find('publication',model.id).then(function(model) {
-        that.transitionTo('publications.manage', model);
-      });
+      var successHandler = function() {
+        var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
+        rsvp.then(function(model) {
+          that.controllerFor('publications.manage').set('drafts',model.drafts);
+          that.controllerFor('publications.manage').set('publications',model.publications);
+          // här skall man kunna välja att gå till den första posten om listan är icke-tom
+          that.transitionTo('publications.manage');
+        });        
+      };
+      var errorHandler = function(reason) {
+        console.log(reason);
+        that.controller.set('hasErrors', true);
+        that.controller.set('showErrorHeader', true);
+        that.controller.set('errors', reason.responseJSON.errors);
+        return false;
+      };
+      this.store.destroy('publication',model.pubid).then(successHandler, errorHandler);
     }
   }
 });
