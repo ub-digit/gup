@@ -1,4 +1,7 @@
 <div>
+  {{#if hasErrors}}
+  <h3>fel, nånting, bara ... {{errors}} </h3>
+  {{/if}}
   <div class='row'>
     <div class='col-xs-3'>Importera från:</div>
     <div class='col-xs-3'>
@@ -24,7 +27,7 @@
       {{input value=sourceData.pubid}}
 		</div>
     <div class='col-xs-3'>
-      <button {{action 'edit' sourceData}}  class='btn btn-default'>Redigera</button>  
+      <button {{action 'edit' sourceData }}  class='btn btn-default'>Redigera</button>  
     </div>
   </div> <!-- row -->
 	<hr />

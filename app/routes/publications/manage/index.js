@@ -2,6 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   actions:{
+    edit: function(sourceData) {
+      var that = this;
+      var successHandler = function() {
+      sourceData.pubid='';
+      };
+      var errorHandler = function(reason) {
+        console.log(reason);
+        that.controller.set('hasErrors', true);
+        that.controller.set('showErrorHeader', true);
+        that.controller.set('errors', reason.responseJSON.errors);
+        return false;
+      };
+      this.transitionTo('publications.manage.show.edit', sourceData.pubid).then(successHandler, errorHandler);
+    },
     create: function() {
       var that = this;
       var successHandler = function(model) {
@@ -27,6 +41,7 @@ export default Ember.Route.extend({
       console.log(sourceData);
       var that = this;
       var successHandler = function(model) {
+        sourceData.sourceId='';
         var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
         rsvp.then(function(lists) {
           that.controllerFor('publications.manage').set('drafts',lists.drafts);
