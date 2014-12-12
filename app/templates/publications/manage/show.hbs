@@ -1,12 +1,12 @@
-<div class="col-xs-8">
-<div style="border:1px solid silver;">
-  <div style='border:silver 1px solid;margin:0.5em;padding:0.5em'>
+<div class="showpub">
+<div>
+  <div class="showpubtoolbar">
   {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Redigera{{/link-to}}
   <button {{action 'cancel'       }}  class='btn btn-default'>Avbryt</button>  
   <button {{action 'delete' model }}  class='deletebtn btn btn-default'>Radera</button>  
 </div>
 </div>
-<div style="border:1px solid silver;padding: 1em;border-top:0px;">
+<div class="showpubpost">
 
 	{{#if model.title}}
 		<p>
