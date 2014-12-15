@@ -1,7 +1,11 @@
 <div>
-  {{#if hasErrors}}
-  <h3>fel, nånting, bara ... {{errors}} </h3>
+{{#if hasErrors}}
+  {{#if showErrorHeader}}
+  <h4 class="alert alert-danger">{{errors}}
+      <a href="#" class="btn btn-default btn-sm" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+    </h4>
   {{/if}}
+{{/if}}
   <div class='row'>
     <div class='col-xs-3'>Importera från:</div>
     <div class='col-xs-3'>
