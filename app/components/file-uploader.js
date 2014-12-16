@@ -2,7 +2,21 @@ import Ember from 'ember';
 import ENV from 'gup/config/environment';
 export default Ember.FileField.extend({
   filesDidChange: (function() {
-  console.log('HÄJ');
+    console.log('HÄJ');
+    var controller = this.get('targetObject');
+    var that=this;
+    var successHandler = function() {
+      that.triggerAction({action: 'refreshLists'});
+      that.set('value', '');
+      controller.transitionToRoute('publications.manage');
+      };
+      var errorHandler = function(reason) {
+        console.log(reason);
+        controller.set('hasErrors', true);
+        controller.set('showErrorHeader', true);
+        controller.set('errors', reason.responseJSON.errors);
+        return false;
+      };
     var files = this.get('files');
 
     var uploader = Ember.Uploader.create({
@@ -10,7 +24,7 @@ export default Ember.FileField.extend({
     });
 
     if (!Ember.isEmpty(files)) {
-      uploader.upload(files[0]);
+      uploader.upload(files[0]).then (successHandler, errorHandler);
     }
   }).observes('files')
 });

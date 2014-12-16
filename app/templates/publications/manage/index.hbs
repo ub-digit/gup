@@ -1,8 +1,13 @@
 <div>
+{{#unless hasErrors}}
+  <h4 class="alert neutral">
+      <a href="#" class="btn btn-default btn-sm btninvisible" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+  </h4>
+{{/unless}}
 {{#if hasErrors}}
   {{#if showErrorHeader}}
   <h4 class="alert alert-danger">{{errors}}
-      <a href="#" class="btn btn-default btn-sm" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+      <a href="#" class="btn btn-default btn-sm " {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
     </h4>
   {{/if}}
 {{/if}}
@@ -16,7 +21,7 @@
       }}
 		</div>
     <div class='col-xs-3'>
-      {{input value=sourceData.sourceId}}
+      {{input class='manageFields' value=sourceData.sourceId}}
 		</div>
     <div class='col-xs-3'>
       <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
@@ -28,7 +33,7 @@
     <div class='col-xs-3'>Redigera:</div>
     <div class='col-xs-3'></div>
     <div class='col-xs-3'>
-      {{input value=sourceData.pubid}}
+      {{input class='manageFields' value=sourceData.pubid}}
 		</div>
     <div class='col-xs-3'>
       <button {{action 'edit' sourceData }}  class='btn btn-default'>Redigera</button>  

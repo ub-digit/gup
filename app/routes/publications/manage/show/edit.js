@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 
   },
   renderTemplate: function() {
-    var controller = this.controllerFor('application');
+    //var controller = this.controllerFor('application');
     this.render('publications.manage.show.edit', {
       outlet: 'overlay',
 			into: 'application'
@@ -58,6 +58,8 @@ export default Ember.Route.extend({
     },
     hideErrorHeader: function() {
       this.controller.set('showErrorHeader', false);
+      this.controller.set('hasErrors', false);
+      this.controller.set('errors',''); 
     }
   }
 });

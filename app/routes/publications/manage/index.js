@@ -14,14 +14,14 @@ export default Ember.Route.extend({
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
-      console.log(sourceData.pubid);
+      //console.log(sourceData.pubid);
       if (!sourceData.pubid){
         that.controller.set('hasErrors', true);
         that.controller.set('showErrorHeader', true);
         that.controller.set('errors', 'Redigering misslyckades: inget pubid angivet');
       }else{
         this.transitionTo('publications.manage.show.edit', sourceData.pubid).then(successHandler, errorHandler);
-      };
+      }
     },
     create: function() {
       var that = this;
@@ -64,10 +64,18 @@ export default Ember.Route.extend({
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
-      this.store.save('publication', {}, {"datasource": sourceData.selectedSource, "sourceid": sourceData.sourceId}).then(successHandler, errorHandler);    
+      if (!sourceData.sourceId){
+        that.controller.set('hasErrors', true);
+        that.controller.set('showErrorHeader', true);
+        that.controller.set('errors', 'Import misslyckades: inget id angivet');
+      }else{
+        this.store.save('publication', {}, {"datasource": sourceData.selectedSource, "sourceid": sourceData.sourceId}).then(successHandler, errorHandler);    
+      }
     },
     hideErrorHeader: function() {
       this.controller.set('showErrorHeader', false);
+      this.controller.set('hasErrors', false);
+      this.controller.set('errors',''); 
     }
   }
 });
