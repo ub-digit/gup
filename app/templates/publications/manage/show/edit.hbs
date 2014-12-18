@@ -5,7 +5,7 @@
 
 {{#if hasErrors}}
   {{#if showMesgHeader}}
-  <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
+    <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
       <a href="#" class="btn btn-default btn-sm" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
     </h4>
   {{/if}}
@@ -17,22 +17,26 @@
     <span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
     <span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
   </div>
-  <div style='padding:0.5em;' {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
-    <label class="control-label">Publikationstyp:<br/>
-      {{view Ember.Select 
-			    content=publicationTypeCodes
-          value=selectedPublicationType
-          optionValuePath="content.publication_type_code"
-          optionLabelPath="content.publication_type_code"
-      }}
-    </label>
-    <label class="control-label">Innehållstyp:<br/>
-      {{view Ember.Select content=contentTypes
-          value=selectedContentType
-          optionValuePath="content.id"
-          optionLabelPath="content.content_type"
-      }}
-    </label>
+
+  <div style='padding:0.5em;'>
+    <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
+      <label class="control-label">Publikationstyp:<br/>
+        {{view Ember.Select
+            content=publicationTypeCodes
+            value=selectedPublicationType
+            optionValuePath="content.publication_type_code"
+            optionLabelPath="content.publication_type_code"
+        }}
+      </label>
+      <label class="control-label">Innehållstyp:<br/>
+        {{view Ember.Select content=contentTypes
+            value=selectedContentType
+            optionValuePath="content.id"
+            optionLabelPath="content.content_type"
+        }}
+      </label>
+    </span>
+    
     {{partial formPartial}}
 
   </div>

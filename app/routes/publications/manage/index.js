@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
+  setupController: function(controller) {
+    controller.set('errors', null);
+    controller.set('hasErrors', null);
+    controller.set('showErrorHeader', false);
+  },
+
   actions:{
     edit: function(sourceData) {
       var that = this;
