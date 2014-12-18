@@ -20,7 +20,7 @@
     </div>
   {{/if}}
 {{/unless}}
-  <div class='row'>
+  <div class='row myvalign'>
     <div class='col-xs-3'>Importera från:</div>
     <div class='col-xs-3'>
       {{view Ember.Select content=sources
@@ -33,38 +33,39 @@
       {{input class='manageFields' value=sourceData.sourceId}}
 		</div>
     <div class='col-xs-3'>
-      <button {{action 'import' sourceData}}  class='btn btn-default'>Import</button>  
+      <button {{action 'import' sourceData}}  class='btn btn-primary btn-lg btn-block'>Import</button>  
     </div>
   </div> <!-- row -->
 	<hr />
 
-  <div class='row'>
+  <div class='row myvalign'>
     <div class='col-xs-3'>Redigera:</div>
     <div class='col-xs-3'></div>
     <div class='col-xs-3'>
       {{input class='manageFields' value=sourceData.pubid}}
 		</div>
     <div class='col-xs-3'>
-      <button {{action 'edit' sourceData }}  class='btn btn-default'>Redigera</button>  
+      <button {{action 'edit' sourceData }}  class='btn btn-primary btn-lg btn-block'>Redigera</button>  
     </div>
   </div> <!-- row -->
 	<hr />
 
-  <div class='row'>
+  <div class='row myvalign'>
     <div class='col-xs-3'>Skapa ny:</div>
     <div class='col-xs-3'></div>
     <div class='col-xs-3'></div>
     <div class='col-xs-3'>
-      <button {{action 'create' model}}  class='btn btn-default'>Skapa ny</button>  
+      <button {{action 'create' model}}  class='btn btn-primary btn-lg btn-block'>Skapa ny</button>  
     </div>
   </div> <!-- row -->
 		<hr />
 
-  <div class='row'>
+  <div class='row myvalign'>
     <div class='col-xs-3'>Importera lista från fil:</div>
-    <div class='col-xs-3'></div>
-    <div class='col-xs-6'>
-      {{file-uploader}}
+    <div class='col-xs-6'></div>
+    <div class='col-xs-3'>
+	      <button type="button" {{action 'laddaupp'}} class="btn btn-primary btn-lg btn-block">Fin knapp</button>
+      {{file-uploader id='fulgrej' class="hide-element"}}
     </div>
   </div>
 		<hr />
