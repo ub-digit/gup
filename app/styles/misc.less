@@ -22,3 +22,20 @@ body {
 .btninvisible {
   visibility:hidden;
 }
+ul.manage-list li a{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ul.manage-list  li:first-of-type {
+  border-radius: 0.3em 0.3em 0 0;
+}
+ul.manage-list  li:last-of-type {
+  border-bottom: 1px solid silver;
+  border-radius: 0 0 0.3em 0.3em;
+}
+ul.manage-list li {
+  border: 1px solid silver;
+  border-bottom:none;
+}

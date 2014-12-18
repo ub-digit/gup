@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('errors', null);
     controller.set('hasErrors', null);
-    controller.set('showErrorHeader', false);
+    controller.set('showMesgHeader', false);
     controller.set('model', model);
     console.log(model);
     var publicationType = this.controllerFor('publications').get('model').findBy('id', model.publication_type_id);
@@ -44,7 +44,7 @@ export default Ember.Route.extend({
       var errorHandler = function(reason) {
         console.log(reason);
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
@@ -56,8 +56,8 @@ export default Ember.Route.extend({
 
       this.store.save('publication',model).then(successHandler, errorHandler);
     },
-    hideErrorHeader: function() {
-      this.controller.set('showErrorHeader', false);
+    hideMesgHeader: function() {
+      this.controller.set('showMesgHeader', false);
       this.controller.set('hasErrors', false);
       this.controller.set('errors',''); 
     }

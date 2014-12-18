@@ -1,22 +1,33 @@
 <div class="container">
   <div class='col-xs-4'>
-    <h4>Utkast</h4>
-    <ul class="list-unstyled">
-      {{#each item in drafts}} 
-        <li>
-          {{link-to item.title 'publications.manage.show' item.pubid}}
-        </li>
-      {{/each}}
-    </ul>
-    <hr/>
-    <h4>Publikationer</h4>
-    <ul class="list-unstyled">
-      {{#each item in publications}} 
-        <li>
-          {{link-to item.title 'publications.manage.show' item.pubid}}
-        </li>
-      {{/each}}
-    </ul>
+    <h3>Dina utkast</h3>
+    {{#if drafts.length}}
+      <ul  class="manage-list nav nav-pills nav-stacked  ">
+        {{#each item in drafts}} 
+          <li>
+            {{#if item.title }}
+              {{link-to item.title 'publications.manage.show' item.pubid}}
+            {{else}}
+              {{link-to '<i>Titel saknas</i>' 'publications.manage.show' item.pubid}}
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}    
+      Du har inga utkast.
+    {{/if}}
+    <h3>Dina publikationer</h3>
+    {{#if publications.length}}
+      <ul  class="manage-list nav nav-pills nav-stacked">
+        {{#each item in publications}} 
+          <li>
+            {{link-to item.title 'publications.manage.show' item.pubid}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}    
+      Du har inga publikationer.
+    {{/if}}
   </div>
   <div class='col-xs-8'>
     {{outlet}}

@@ -10,14 +10,14 @@ export default Ember.Route.extend({
       var errorHandler = function(reason) {
         console.log(reason);
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
       //console.log(sourceData.pubid);
       if (!sourceData.pubid){
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', 'Redigering misslyckades: inget pubid angivet');
       }else{
         this.transitionTo('publications.manage.show.edit', sourceData.pubid).then(successHandler, errorHandler);
@@ -37,7 +37,7 @@ export default Ember.Route.extend({
       var errorHandler = function(reason) {
         console.log(reason);
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
@@ -60,20 +60,20 @@ export default Ember.Route.extend({
       var errorHandler = function(reason) {
         console.log(reason);
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', reason.responseJSON.errors);
         return false;
       };
       if (!sourceData.sourceId){
         that.controller.set('hasErrors', true);
-        that.controller.set('showErrorHeader', true);
+        that.controller.set('showMesgHeader', true);
         that.controller.set('errors', 'Import misslyckades: inget id angivet');
       }else{
         this.store.save('publication', {}, {"datasource": sourceData.selectedSource, "sourceid": sourceData.sourceId}).then(successHandler, errorHandler);    
       }
     },
-    hideErrorHeader: function() {
-      this.controller.set('showErrorHeader', false);
+    hideMesgHeader: function() {
+      this.controller.set('showMesgHeader', false);
       this.controller.set('hasErrors', false);
       this.controller.set('errors',''); 
     }

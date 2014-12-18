@@ -1,16 +1,25 @@
 <div>
-{{#unless hasErrors}}
-  <h4 class="alert neutral">
-      <a href="#" class="btn btn-default btn-sm btninvisible" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+{{#unless showMesgHeader}}
+  <div class="alert neutral">
+  <h4>
+      <a href="#" class="btn btn-default btn-sm btninvisible" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
   </h4>
-{{/unless}}
-{{#if hasErrors}}
-  {{#if showErrorHeader}}
-  <h4 class="alert alert-danger">{{errors}}
-      <a href="#" class="btn btn-default btn-sm " {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
-    </h4>
+</div>
+{{else}}
+  {{#if hasErrors}}
+    <div class="alert alert-danger">
+      <h4>{{errors}}
+        <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+      </h4>
+    </div>
+  {{else}}
+    <div class="alert alert-success">
+      <h4>{{mesg}}
+        <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+      </h4>
+    </div>
   {{/if}}
-{{/if}}
+{{/unless}}
   <div class='row'>
     <div class='col-xs-3'>Importera från:</div>
     <div class='col-xs-3'>

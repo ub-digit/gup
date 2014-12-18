@@ -4,9 +4,9 @@
 
 
 {{#if hasErrors}}
-  {{#if showErrorHeader}}
+  {{#if showMesgHeader}}
   <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
-      <a href="#" class="btn btn-default btn-sm" {{action 'hideErrorHeader'}}><i class="fa fa-check last"></i>OK</a>
+      <a href="#" class="btn btn-default btn-sm" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
     </h4>
   {{/if}}
 {{/if}}
