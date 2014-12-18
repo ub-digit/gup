@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ResetScroll from 'gup/mixins/resetscroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScroll, {
   model: function(params){
     return this.store.find('publication',params.id);
   },
