@@ -2,8 +2,10 @@
 <div>
   <div class="showpubtoolbar">
   {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Redigera{{/link-to}}
-  <button {{action 'cancel'       }}  class='btn btn-default'>Avbryt</button>  
-  <button {{action 'delete' model }}  class='deletebtn btn btn-default'>Radera</button>  
+  <button {{action 'cancel'                 }}  class='btn btn-default'          >Avbryt</button>  
+	{{#if model.is_draft}}
+  <button {{action 'delete' model           }}  class='deletebtn btn btn-default'>Radera</button>  
+  {{/if}}
 </div>
 </div>
 <div class="showpubpost">
