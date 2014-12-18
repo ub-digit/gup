@@ -140,7 +140,7 @@
 	{{#if model.links}}
 		<p>
 			<b>Länkar:</b><br />
-			<a href="{{model.links}}">{{model.links}}</a>
+            <a target="_blank" href="{{unbound model.links}}">{{model.links}}</a>
 		</p>
 	{{/if}}
 	{{#if model.patent_applicant}}
@@ -242,7 +242,7 @@
 	{{#if model.url}}
 		<p>
 			<b>Fulltextlänk:</b><br />
-			<a href="{{model.url}}">{{model.url}}</a>
+            <a target="_blank" href="{{unbound model.url}}">{{model.url}}</a>
 		</p>
 	{{/if}}
 	{{#if model.artwork_essay}}
