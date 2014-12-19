@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   setupController: function(controller) {
     controller.set('errors', null);
     controller.set('hasErrors', null);
-    controller.set('showErrorHeader', false);
+    controller.set('showMesgHeader', false);
   },
 
   actions:{
