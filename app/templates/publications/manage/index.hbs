@@ -33,14 +33,37 @@
       {{input class='manageFields' value=sourceData.sourceId}}
 		</div>
     <div class='col-xs-3'>
-      <button {{action 'import' sourceData}}  class='btn btn-primary btn-lg btn-block'>Import</button>  
+      <button {{action 'import' sourceData}}  class='btn btn-primary btn-lg btn-block'>Importera</button>  
     </div>
   </div> <!-- row -->
-	<hr />
+	<br />
+	<br />
 
   <div class='row myvalign'>
-    <div class='col-xs-3'>Redigera:</div>
+    <div class='col-xs-3'>Ny registrering:</div>
     <div class='col-xs-3'></div>
+    <div class='col-xs-3'></div>
+    <div class='col-xs-3'>
+      <button {{action 'create' model}}  class='btn btn-primary btn-lg btn-block'>Registrera</button>  
+    </div>
+  </div> <!-- row -->
+		<br />
+	<br />
+
+  <div class='row myvalign'>
+    <div class='col-xs-3'>Importera lista från fil:</div>
+    <div class='col-xs-6'></div>
+    <div class='col-xs-3'>
+	      <button type="button" {{action 'uploadFile'}} class="btn btn-primary btn-lg btn-block">Ladda upp</button>
+      {{file-uploader id='fileUploader' class="hide-element"}}
+    </div>
+  </div>
+    <br />
+	  <br />
+		<hr />
+
+  <div class='row myvalign'>
+    <div class='col-xs-6'>Redigera befintlig registrering:</div>
     <div class='col-xs-3'>
       {{input class='manageFields' value=sourceData.pubid}}
 		</div>
@@ -48,25 +71,5 @@
       <button {{action 'edit' sourceData }}  class='btn btn-primary btn-lg btn-block'>Redigera</button>  
     </div>
   </div> <!-- row -->
-	<hr />
 
-  <div class='row myvalign'>
-    <div class='col-xs-3'>Skapa ny:</div>
-    <div class='col-xs-3'></div>
-    <div class='col-xs-3'></div>
-    <div class='col-xs-3'>
-      <button {{action 'create' model}}  class='btn btn-primary btn-lg btn-block'>Skapa ny</button>  
-    </div>
-  </div> <!-- row -->
-		<hr />
-
-  <div class='row myvalign'>
-    <div class='col-xs-3'>Importera lista från fil:</div>
-    <div class='col-xs-6'></div>
-    <div class='col-xs-3'>
-	      <button type="button" {{action 'laddaupp'}} class="btn btn-primary btn-lg btn-block">Fin knapp</button>
-      {{file-uploader id='fulgrej' class="hide-element"}}
-    </div>
-  </div>
-		<hr />
 </div>

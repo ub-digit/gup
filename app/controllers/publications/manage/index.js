@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    laddaupp: function() {
-      Ember.$('#fulgrej').click();
+    uploadFile: function() {
+      Ember.$('#fileUploader').click();
     }
   },
   needs: ['publications/manage'],
