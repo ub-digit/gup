@@ -1,45 +1,53 @@
-<div class="plate" >
-</div>
-<div class="overlay" >
+<div class="row">
+    <div class="col-xs-6">
+          {{#if hasErrors}}
+            {{#if showMesgHeader}}
+              <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
+                <a href="#" class="btn btn-default" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+              </h4>
+            {{/if}}
+          {{/if}}
+
+          <div class="row bottom-spacing-20">
+            <div class="col-xs-3">
+              <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>  </span>
+              <label class="control-label">Publikationstyp:</label>
+                {{view Ember.Select classNames="form-control"
+                    content=publicationTypeCodes
+                    value=selectedPublicationType
+                    optionValuePath="content.publication_type_code"
+                    optionLabelPath="content.publication_type_code"
+                }}
+            </div>
+            <div class="col-xs-3">
+              <label class="control-label">Innehållstyp:</label>
+              {{view Ember.Select classNames="form-control" content=contentTypes
+                  value=selectedContentType
+                  optionValuePath="content.id"
+                  optionLabelPath="content.content_type"
+              }}
+            </div>
+          </div><!-- end row --> 
+
+        {{partial formPartial}}
 
 
-{{#if hasErrors}}
-  {{#if showMesgHeader}}
-    <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
-      <a href="#" class="btn btn-default btn-sm" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
-    </h4>
-  {{/if}}
-{{/if}}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="btn-toolbar pull-right">
+              <button class='btn btn-default'  {{action 'cancel' model}}>Avbryt</button>
+              <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
+              <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
+            </div>
+          </div>
+        </div>
+
+    </div> <!-- col-xs-6 -->
+    <div class="col-xs-6">
+      <h2>Förhandsgranskning</h2>
+          {{display-publication publication=model}}
+    </div>
+</div> <!-- end row --> 
 
 
-  <div style='padding:0.5em;border:1px solid silver;'>
-    <span><button class='btn btn-default'  {{action 'cancel' model      }}>Avbryt</button></span>
-    <span><button class='btn btn-default'  {{action 'save' model 'draft'}}>Spara utkast</button></span>
-    <span><button class='btn btn-default'  {{action 'save' model        }}>Spara och publicera</button></span>
-  </div>
 
-  <div style='padding:0.5em;'>
-    <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>
-      <label class="control-label">Publikationstyp:<br/>
-        {{view Ember.Select
-            content=publicationTypeCodes
-            value=selectedPublicationType
-            optionValuePath="content.publication_type_code"
-            optionLabelPath="content.publication_type_code"
-        }}
-      </label>
-      <label class="control-label">Innehållstyp:<br/>
-        {{view Ember.Select content=contentTypes
-            value=selectedContentType
-            optionValuePath="content.id"
-            optionLabelPath="content.content_type"
-        }}
-      </label>
-    </span>
-    
-    {{partial formPartial}}
-
-  </div>
-</div>
-
-{{outlet}}

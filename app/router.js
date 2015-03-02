@@ -11,7 +11,7 @@ Router.map(function() {
     this.route('new');
     this.route('index');
     this.route('manage', function() {
-      this.route('show', {path: ':id'}, function() {
+      this.route('show', {path: 'show/:id'}, function() {
         this.route('edit');
       });      
     });

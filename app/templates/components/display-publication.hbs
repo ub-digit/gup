@@ -1,0 +1,267 @@
+	<div class="row">
+		<div class="col-xs-12">
+			<div>
+				{{#if publication.title}}
+					<p>
+						<h2>{{publication.title}}</h2>
+					</p>
+				{{/if}}
+				{{#if publication.alt_title}}
+					<p>
+						<b>Alternativ titel:</b><br />
+						{{publication.alt_title}}
+					</p>
+				{{/if}}
+				{{#if publication.author}}
+					<p>
+						<b>Författare och institution:</b><br />
+						{{publication.author}}
+					</p>
+				{{/if}}
+				{{#if publication.abstract}}
+					<p>
+						<h3>Abstract</h3>
+						{{publication.abstract}}
+					</p>
+				{{/if}}
+				{{#if publication.editor}}
+					<p>
+						<b>Redaktör:</b><br />
+						{{publication.editor}}
+					</p>
+				{{/if}}
+				{{#if publication.pubid}}
+					<p>
+						<b>Pubid:</b><br />
+						{{publication.pubid}}
+					</p>
+				{{/if}}
+
+				{{#if publication.publication_type_id}}
+					<p>
+						<b>Pubtype:</b><br />
+						{{publicationType}}
+					</p>
+				{{/if}}
+
+
+				{{#if publication.category_hsv_local}}
+					<p>
+						<b>Ämne:</b><br />
+						{{publication.category_hsv_local}}
+					</p>
+				{{/if}}
+				{{#if publication.dissdate}}
+					<p>
+						<b>Disputationsdatum:</b><br />
+						{{publication.dissdate}}
+					</p>
+				{{/if}}
+				{{#if publication.disslocation}}
+					<p>
+						<b>Disputationsplats:</b><br />
+						{{publication.disslocation}}
+					</p>
+				{{/if}}
+				{{#if publication.dissopponent}}
+					<p>
+						<b>Opponent:</b><br />
+						{{publication.dissopponent}}
+					</p>
+				{{/if}}
+				{{#if publication.disstime}}
+					<p>
+						<b>Disputationstidpunkt:</b><br />
+						{{publication.disstime}}
+					</p>
+				{{/if}}
+				{{#if publication.eissn}}
+					<p>
+						<b>eISSN:</b><br />
+						{{publication.eissn}}
+					</p>
+				{{/if}}
+				{{#if publication.article_number}}
+					<p>
+						<b>Artikelnummer:</b><br />
+						{{publication.article_number}}
+					</p>
+				{{/if}}	
+				{{#if publication.email_supplier}}
+					<p>
+						<b>E-postadress:</b><br />
+						{{publication.email_supplier}}
+					</p>
+				{{/if}}
+				{{#if publication.extent}}
+					<p>
+						<b>Omfång:</b><br />
+						{{publication.extent}}
+					</p>
+				{{/if}}
+				{{#if publication.extid}}
+					<p>
+						<b>Externa ID:</b><br />
+						{{publication.extid}}
+					</p>
+				{{/if}}
+				{{#if publication.isbn}}
+					<p>
+						<b>ISBN:</b><br />
+						{{publication.isbn}}
+					</p>
+				{{/if}}
+				{{#if publication.issn}}
+					<p>
+						<b>ISSN:</b><br />
+						{{publication.issn}}
+					</p>
+				{{/if}}
+				{{#if publication.journal}}
+					<p>
+						<b>Tidsskrift (journal):</b><br />
+						{{publication.journal}}
+					</p>
+				{{/if}}
+				{{#if publication.keywords}}
+					<p>
+						<b>Nyckelord:</b>
+						{{publication.keywords}}
+					</p>
+				{{/if}}
+				{{#if publication.links}}
+					<p>
+						<b>Länkar:</b><br />
+			            <a target="_blank" href="{{unbound publication.links}}">{{publication.links}}</a>
+					</p>
+				{{/if}}
+				{{#if publication.patent_applicant}}
+					<p>
+						<b>Patentansökare:</b><br />
+						{{publication.patent_applicant}}
+					</p>
+				{{/if}}
+				{{#if publication.patent_application_date}}
+					<p>
+						<b>Ansökningsdatum:</b><br />
+						{{publication.patent_application_date}}
+					</p>
+				{{/if}}
+				{{#if publication.patent_application_number}}
+					<p>
+						<b>Ansökningsnummer:</b><br />
+						{{publication.patent_application_number}}
+					</p>
+				{{/if}}
+				{{#if publication.patent_date}}
+					<p>
+						<b>Patenteringsdatum:</b><br />
+						{{publication.patent_date}}
+					</p>
+				{{/if}}
+				{{#if publication.patent_number}}
+					<p>
+						<b>Patenteringsnummer:</b><br />
+						{{publication.patent_number}}
+					</p>
+				{{/if}}
+				{{#if publication.place}}
+					<p>
+						<b>Ort:</b><br />
+						{{publication.place}}
+					</p>
+				{{/if}}
+				{{#if publication.project}}
+					<p>
+						<b>Projekt:</b><br />
+						{{publication.project}}
+					</p>
+				{{/if}}
+				{{#if publication.publanguage}}
+					<p>
+						<b>Språk:</b><br />
+						{{publication.publanguage}}
+					</p>
+				{{/if}}
+				{{#if publication.publisher}}
+					<p>
+						<b>Förläggare:</b><br />
+						{{publication.publisher}}
+					</p>
+				{{/if}}
+				{{#if publication.pub_notes}}
+					<p>
+						<b>Kommentar:</b><br />
+						{{publication.pub_notes}}
+					</p>
+				{{/if}}
+				{{#if publication.pubyear}}
+					<p>
+						<b>Publiceringsår:</b><br />
+						{{publication.pubyear}}
+					</p>
+				{{/if}}
+				{{#if publication.series}}
+					<p>
+						<b>Serie:</b><br />
+						{{publication.series}}
+					</p>
+				{{/if}}
+				{{#if publication.sourceissue}}
+					<p>
+						<b>Sourceissue:</b><br />
+						{{publication.sourceissue}}
+					</p>
+				{{/if}}
+				{{#if publication.sourcepages}}
+					<p>
+						<b>Sidor:</b><br />
+						{{publication.sourcepages}}
+					</p>
+				{{/if}}
+				{{#if publication.sourcetitle}}
+					<p>
+						<b>Sourcetitel:</b><br />
+						{{publication.sourcetitle}}
+					</p>
+				{{/if}}
+				{{#if publication.sourcevolume}}
+					<p>
+						<b>Volym:</b><br />
+						{{publication.sourcevolume}}
+					</p>
+				{{/if}}
+				{{#if publication.url}}
+					<p>
+						<b>Fulltextlänk:</b><br />
+			            <a target="_blank" href="{{unbound publication.url}}">{{publication.url}}</a>
+					</p>
+				{{/if}}
+				{{#if publication.artwork_essay}}
+					<p>
+						<b>Artwork essay:</b><br />
+						{{publication.artwork_essay}}
+					</p>
+				{{/if}}
+				{{#if publication.artworkincluded}}
+					<p>
+						<b>Artwork included:</b><br />
+						{{publication.artworkincluded}}
+					</p>
+				{{/if}}
+				{{#if publication.artwork_process}}
+					<p>
+						<b>Artwork process:</b><br />
+						{{publication.artwork_process}}
+					</p>
+				{{/if}}
+				{{#if publication.artwork_type}}
+					<p>
+						<b>Artwork type:</b><br />
+						{{publication.artwork_type}}
+					</p>
+				{{/if}}
+
+			</div>
+		</div>
+	</div>

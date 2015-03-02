@@ -16,13 +16,7 @@ export default Ember.Route.extend({
     controller.set('selectedContentType', model.publication_type_id);
 
   },
-  renderTemplate: function() {
-    //var controller = this.controllerFor('application');
-    this.render('publications.manage.show.edit', {
-      outlet: 'overlay',
-			into: 'application'
-    });
-  },
+
   actions: {
     cancel: function(model) {
       var that = this;
