@@ -13,7 +13,10 @@ Router.map(function() {
     this.route('new');
     this.route('index');
     this.route('manage', function() {
-      this.route('show', {path: 'show/:id'}, function() {
+        this.route('index', function() {
+          this.route('drafts');
+        });
+        this.route('show', {path: 'show/:id'}, function() {
         this.route('edit');
       });      
     });
