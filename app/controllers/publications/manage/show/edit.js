@@ -4,6 +4,20 @@ export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
   selectedContentType: null,
+  selectedAuthor: null,
+  selectedInstitution: null,
+  showRegisterNewAuthor: false,
+
+  generateUUID: function () {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c==='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+  },
+
 
   publicationTypeCodes: function(){
     
@@ -34,5 +48,23 @@ export default Ember.Controller.extend({
   setDefaultContentType: function() {
     var contentType = this.get('controllers.publications.model').findBy('publication_type_code', this.get('selectedPublicationType'));    
     this.set('selectedContentType', contentType.id);
-  }.observes('selectedPublicationType')
+  }.observes('selectedPublicationType'),
+
+  actions: {
+    addNewAuthorRow: function() {
+      this.get("authorArr").addObject(Ember.Object.create({id: this.generateUUID(), selectedAuthor: null, selectedInstitution: null}));
+    },
+    removeAuthorRow: function(id) {
+      var list = this.get("authorArr").toArray();
+      var that = this;
+      list.forEach(function(item) {
+        if (item.id === id) {
+          that.get("authorArr").removeObject(item);
+        }
+      });
+    },
+    closeRegisterNewAuthor: function() {
+      this.set("showRegisterNewAuthor", false);
+    }
+  }
 });

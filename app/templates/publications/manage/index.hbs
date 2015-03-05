@@ -1,16 +1,35 @@
 
   <div class='col-xs-8'>
     <div class="row">
-      <div class="col-xs-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Mina drafts</h3>
-          </div>
-          <div class="panel-body">
+      <div class="col-xs-12">
               {{#if drafts.length}}
+              <h3>Mina drafts</h3>
               <ul class="list-unstyled dashboard-list">
                 {{#each item in drafts}} 
                   <li>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        {{#if item.title}}
+                          <div class="row">
+                            <div class="col-xs-12"><h3>{{#link-to 'publications.manage.show' item.pubid }}{{item.title}}{{/link-to}}</h3></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12"><strong>Författare:</strong> {{item.author}}</div>
+                          </div>
+                          
+                        {{else}}
+                          <h3>{{#link-to 'publications.manage.show' item.pubid }}Titel ej angiven{{/link-to}}</h3>
+                        {{/if}}
+                      </div>
+                      <div class="col-xs-2">
+                        <div class="btn-toolbar pull-right">
+                            {{#link-to  'publications.manage.show' item.pubid classNames="btn btn-primary btn-sm"}}Visa{{/link-to}}
+                        </div>
+                      </div>
+                    </div>
+
+                  </li>
+                  <!--
                     <table class="table table-condensed">
                       <tbody>
                           <tr>
@@ -28,23 +47,19 @@
                           <tr>
                             <td colspan="2">
                               <div class="btn-toolbar pull-right">
-                                {{#link-to  'publications.manage.show' item.pubid classNames="btn btn-danger btn-sm"}}Ta bort{{/link-to}}
-                                {{#link-to  'publications.manage.show.edit' item.pubid classNames="btn btn-primary btn-sm"}}Redigera{{/link-to}}
+                                {{#link-to  'publications.manage.show' item.pubid classNames="btn btn-primary btn-sm"}}Visa{{/link-to}}
                               </div>
                             </td>
                           </tr>
                       </tbody>
                     </table>
-                  </li>
+                  </li>-->
                 {{/each}}
               </ul>
               {{else}}    
                 Du har inga utkast.
               {{/if}}
-          </div>
-        </div>
       </div>
-
       <div class="col-xs-6">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -91,105 +106,6 @@
 
 
   <div class='col-xs-4'>
-      <div id="toast">
-        {{#unless showMesgHeader}}
-          <div class="alert neutral">
-          <h4>
-              <a href="#" class="btn btn-default btn-sm btninvisible" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
-          </h4>
-        </div>
-        {{else}}
-          {{#if hasErrors}}
-            <div class="alert alert-danger">
-              <h4>{{errors}}
-                <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
-              </h4>
-            </div>
-          {{else}}
-            <div class="alert alert-success">
-              <h4>{{mesg}}
-                <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
-              </h4>
-            </div>
-          {{/if}}
-        {{/unless}}
-      </div>
-
-
-      <section class='row section-block'>
-        <div class="col-md-8 col-xs-12">
-          <h2>Importera publikation</h2>
-          <p>Om du har registrerat din publikation i något annat system så kan du göra en automatisk import. Detta sparar både tid och minskar risken för fel. </p>
-        </div>
-        <div class="col-md-4">
-        </div>
-        <div class='col-xs-6'>
-          {{view Ember.Select classNames="form-control" content=sources
-                                value=sourceData.selectedSource
-                      optionValuePath="content.value"
-                      optionLabelPath="content.label" prompt="Välj källa"
-          }}
-        </div>
-        <div class='col-xs-3'>
-          {{input class='form-control manageFields' value=sourceData.sourceId placeholder="id-nummer"}}
-        </div>
-        <div class='col-xs-3'>
-          <button {{action 'import' sourceData}}  class='btn btn-primary'>Importera</button>  
-        </div>
-      </section> <!-- row -->
-
-
-      <section class='row section-block'>
-        <div class="col-md-8 col-xs-12">
-          <h2>Registrera publikation manuellt</h2>
-          <p>Om din publikation inte finns registrerad i annat system kan du manuellt registrera den här.</p>
-          <button {{action 'create' model}}  class='btn btn-primary'>Registrera Manuellt</button> 
-        </div>
-        <div class="col-md-4">
-        </div>
-
-        <div class='col-xs-3'>
-          
-        </div>
-      </section> <!-- row -->
-
-      <section class='row section-block'>
-        <div class="col-md-8 col-xs-12">
-          <h2>Importera publikationer från fil</h2>
-          <p>Om du har en fil med alla publikationer som följer vårat rekomenderade mönster så kan du bulka!</p>
-        </div>
-        <div class='col-md-4'></div>
-        <div class="col-xs-12">
-            <button type="button" {{action 'uploadFile'}} class="btn btn-primary">Ladda upp</button>
-          {{file-uploader id='fileUploader' class="hide-element"}}
-        </div>
-      </section>
-
-
-      <section class='row section-block'>
-        <div class="col-md-8 col-xs-12">
-          <h2>Redigera befintlig publikation</h2>
-          <p>Arbeta vidare med din publikation för att få så bra synlighet som möjligt.</p>
-        </div>
-        <div class='col-md-4'></div>
-
-        <div class="col-xs-12">
-          <div class="row">
-            <div class="col-xs-3">
-              {{input class='manageFields form-control form-inline' value=sourceData.pubid placeholder="id-nummer"}}
-            </div>
-            <div class="col-xs-8">
-              <button {{action 'edit' sourceData }}  class='btn btn-primary'>Redigera publikation</button>  
-            </div>
-          </div>
-          
-        </div>
-
-
-
-      </section>
-
-    </div>
-
+   
   </div>
 

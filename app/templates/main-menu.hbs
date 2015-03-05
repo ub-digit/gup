@@ -8,15 +8,24 @@
         </a>
       </div>
       <ul class="nav navbar-nav">
-        <li>
-          {{#link-to 'publications.manage'}}Hantera
-          {{/link-to}}
-        </li>
-        <li>
-          {{#link-to 'publications.index'}}Publikationslista
-          {{/link-to}}
-        </li>
+        {{#if session.isAuthenticated}}
+          <li>
+            {{#link-to 'publications.manage'}}Hantera
+            {{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'publications.index'}}Publikationslista
+            {{/link-to}}
+          </li>
+        {{/if}}
       </ul>
+
+        <div class="user-auth pull-right">
+          {{#if session.isAuthenticated}}
+                <p><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logga ut</a></small>)</p>                
+            {{else}}
+             {{/if}}
+
     </div><!-- /.container -->    
   </nav>
 

@@ -25,6 +25,8 @@ app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/ember-i18n/lib/i18n.js');
 app.import('bower_components/rsvp/rsvp.min.js');
 
+app.import('vendor/select2-bootstrap.css');
+
 
 /*
   This example is more verbose than necessary for the sake of illustration.

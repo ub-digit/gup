@@ -1,25 +1,22 @@
-
-
-
-<!--<div class="showpub">
-		<div class="showpubtoolbar">
-		  {{#link-to 'publications.manage.show.edit' model class='btn btn-default'}}Redigera{{/link-to}}
-		  <button {{action 'cancel'}}  class='btn btn-default'          >Avbryt</button>  
-			{{#if model.is_draft}}
-		  <button {{action 'delete' model}}  class='deletebtn btn btn-default'>Radera</button>  
-		  {{/if}}
-		</div>
-</div> -->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12">
-			{{#link-to 'publications.manage' classNames="btn btn-default"}}<i class="fa fa-chevron-left"></i> Tillbaka{{/link-to}}
+			{{#link-to 'publications.manage.index' class="btn btn-default"}}<i class="fa fa-chevron-left"></i> Tillbaka{{/link-to}}
 		</div>
-	</div>
-
-	<div class="row">
 		<div class="col-xs-6">
-			{{display-publication publication=model}}
+			<div class="row">
+				<div class="col-xs-12">
+					{{display-publication publication=model}}
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-2">
+			<div id="publication-toolbar" class="col-xs-12">
+					{{#link-to  'publications.manage.show.edit' model class='btn btn-primary'}}Redigera{{/link-to}}
+					{{#if model.is_draft}}
+
+					{{/if}}
+			</div>
 		</div>
 	</div>
 </div>

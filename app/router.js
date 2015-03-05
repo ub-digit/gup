@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('login');
+  
   this.resource('publications', function() {
     this.route('show', {path: ":id"});
     this.route('new');
