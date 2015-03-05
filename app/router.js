@@ -13,8 +13,9 @@ Router.map(function() {
     this.route('new');
     this.route('index');
     this.route('manage', function() {
-        this.route('index', function() {
+        this.route('dashboard', function() {
           this.route('drafts');
+          this.route("published");
         });
         this.route('show', {path: 'show/:id'}, function() {
         this.route('edit');

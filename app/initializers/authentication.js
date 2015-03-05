@@ -21,7 +21,7 @@ var CustomAuthenticator = Base.extend({
 			type: 'POST',
 			url: ENV.APP.authenticationBaseURL,
 			data: JSON.stringify({
-			    xkonto: credentials.identification,
+			    username: credentials.identification,
 			    password: credentials.password
 			}),
 			contentType: 'application/json'
