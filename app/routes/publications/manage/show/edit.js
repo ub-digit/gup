@@ -459,7 +459,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.controller.set('showMesgHeader', false);
       this.controller.set('hasErrors', false);
       this.controller.set('errors',''); 
-    }
+    },
+
+
   }
 });
 
