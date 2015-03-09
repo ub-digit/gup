@@ -18,8 +18,8 @@ Router.map(function() {
           this.route("published");
         });
         this.route('show', {path: 'show/:id'}, function() {
-        this.route('edit');
-      });      
+          this.route('edit');
+        });      
     });
   });
   });

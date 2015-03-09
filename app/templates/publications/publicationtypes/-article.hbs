@@ -114,6 +114,7 @@
 					    placeholder="Välj författare"
 					    allowClear=true
 					    typeaheadNoMatchesText="Inga resultat"
+					    enabled=authorComponentDisabled
 					}}
 				</div>
 				<div class="col-xs-5">
@@ -123,52 +124,54 @@
 					    placeholder="Välj institutioner"
 					    allowClear=true
 					    multiple=true
+					    enabled=authorComponentDisabled
 					}}
 				</div>
 				<div class="col-xs-2">
-					<button class="btn btn-danger" {{action 'removeAuthorRow' item.id}}><i class="fa fa-minus"></i></button>
+					<button {{bind-attr class=":btn :btn-default isThisTheOnlyAuthorRow:disabled"}}class="btn btn-danger" {{action 'removeAuthorRow' item.id}}><i class="fa fa-trash-o"></i></button>
 				</div>
 			</div>
-			{{#if showRegisterNewAuthor}}
-				<section id="registerNewAuthor">
-					<div class="row bottom-spacing-20">
-						<div class="col-xs-12">
-							<h3>Registrera ny författare</h3>
-							<div class="row bottom-spacing-20">
-								<div class="col-xs-12">
-									<label>Förnamn:</label>
-									{{input type="text" class="form-control"}}
-								</div>
-							</div>
-							<div class="row bottom-spacing-20">
-								<div class="col-xs-12">
-									<label>Efternamn:</label>
-									{{input type="text" class="form-control"}}
-								</div>
-							</div>
-							<div class="row bottom-spacing-20">
-								<div class="col-xs-12">
-									<label>x-konto:</label>
-									{{input type="text" class="form-control"}}
-								</div>
-							</div>
-							<div class="row bottom-spacing-20">
-								<div class="col-xs-12">
-									<label>Orchid:</label>
-									{{input type="text" class="form-control"}}
-								</div>
-							</div>
-							<div class="btn-toolbar">
-								<button type="submit" class="btn btn-primary pull-right">Skicka</button>
-								<button {{action "closeRegisterNewAuthor"}}class="btn btn-danger pull-right">Stäng</button>
-							</div>
 
-						</div>
-					</div>
-				</section>
-			{{/if}}
 		{{/each}}
 
+		{{#if showRegisterNewAuthor}}
+			<section id="registerNewAuthor">
+				<div class="row bottom-spacing-20">
+					<div class="col-xs-12">
+						<h3>Registrera ny författare</h3>
+						<div class="row bottom-spacing-20">
+							<div class="col-xs-12">
+								<label>Förnamn:</label>
+								{{input type="text" class="form-control"}}
+							</div>
+						</div>
+						<div class="row bottom-spacing-20">
+							<div class="col-xs-12">
+								<label>Efternamn:</label>
+								{{input type="text" class="form-control"}}
+							</div>
+						</div>
+						<div class="row bottom-spacing-20">
+							<div class="col-xs-12">
+								<label>x-konto:</label>
+								{{input type="text" class="form-control"}}
+							</div>
+						</div>
+						<div class="row bottom-spacing-20">
+							<div class="col-xs-12">
+								<label>Orcid:</label>
+								{{input type="text" class="form-control"}}
+							</div>
+						</div>
+						<div class="btn-toolbar">
+							<button type="submit" class="btn btn-primary pull-right">Skicka</button>
+							<button {{action "closeRegisterNewAuthor"}}class="btn btn-danger pull-right">Stäng</button>
+						</div>
+
+					</div>
+				</div>
+			</section>
+		{{/if}}
 		<div class="row bottom-spacing-20">
 			<div class="col-xs-12">
 				<button class="btn btn-primary" {{action 'addNewAuthorRow'}}>Lägg till författare <i class="fa fa-plus"></i></button>

@@ -4,17 +4,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="navbar-header">
         <a class="navbar-brand" href="/">
-            GUP 3.0
+            GUP 3
         </a>
       </div>
       <ul class="nav navbar-nav">
         {{#if session.isAuthenticated}}
           <li>
-            {{#link-to 'publications.manage.dashboard.drafts'}}Hantera
-            {{/link-to}}
-          </li>
-          <li>
-            {{#link-to 'publications.index'}}Publikationslista
+            {{#link-to 'publications.manage'}}Publikationer
             {{/link-to}}
           </li>
         {{/if}}

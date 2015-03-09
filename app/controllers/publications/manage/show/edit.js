@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   selectedAuthor: null,
   selectedInstitution: null,
   showRegisterNewAuthor: false,
+  authorArr: [],
 
   generateUUID: function () {
     var d = new Date().getTime();
@@ -17,6 +18,25 @@ export default Ember.Controller.extend({
     });
     return uuid;
   },
+
+  isThisTheOnlyAuthorRow: function() {
+    if (this.get("authorArr").length === 1) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }.property('authorArr.@each'),
+
+
+  authorComponentDisabled: function() {
+    if (this.get('showRegisterNewAuthor')) {
+      return  false;
+    }
+    else {
+      return true;
+    }
+  }.property('showRegisterNewAuthor'),
 
 
   publicationTypeCodes: function(){

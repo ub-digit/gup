@@ -2,7 +2,10 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  model: function(){
+  beforeModel: function() {
+    this.transitionTo('publications.manage.dashboard.drafts');
+  },
+/*  model: function(){
     return Ember.RSVP.hash({
 	  drafts: this.store.find("draft"),
 	  publications: this.store.find("publication")
@@ -99,5 +102,5 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.controller.set('hasErrors', false);
       this.controller.set('errors',''); 
     }
-  }
+  }*/
 });
