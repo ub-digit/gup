@@ -106,7 +106,7 @@
 
 		{{#each item in authorArr}}
 			<div class="row bottom-spacing-20">
-				<div class="col-xs-5">
+				<div class="col-xs-3">
 					{{select2-adjusted
 					    placeholder="Välj författare"
 					    value=item.selectedAuthor
@@ -120,8 +120,8 @@
 					    enabled=authorComponentDisabled
 					}}
 				</div>
-				<div class="col-xs-5">
-					{{select-2
+				<div class="col-xs-7">
+					{{select2-adjusted-sortable
 					    content=institutions
 					    value=item.selectedInstitution
 					    placeholder="Välj institutioner"
@@ -133,8 +133,8 @@
 				<div class="col-xs-2">
 					<button {{bind-attr class=":btn :btn-default isThisTheOnlyAuthorRow:disabled"}}class="btn btn-danger" {{action 'removeAuthorRow' item.id}}><i class="fa fa-trash-o"></i></button>
 				</div>
-			</div>
 
+			</div>
 		{{/each}}
 
 		{{#if showRegisterNewAuthor}}

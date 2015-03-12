@@ -168,7 +168,6 @@ export default Select2.extend({
       if (text instanceof Ember.Handlebars.SafeString) {
         text = text.string;
       }
-      text= "<a href='#/publications/manage' class='btn btn-default'>test</a>";
       term = Ember.Handlebars.Utils.escapeExpression(term);
 
       
@@ -314,6 +313,17 @@ export default Select2.extend({
 
       // call our callback for further processing
       this.selectionChanged(data);
+      var that = this;
+      Ember.run.later(function() {
+        Ember.$('ul.select2-choices').sortable({
+          containment: 'parent',
+          cursor: "move",
+          update: function() {
+            that.selectionChanged(that._select.select2("data"));
+            //console.log("DEBUG data: ", that._select.select2("data"));
+          }
+        });
+      });
 
     }));
 
@@ -335,6 +345,17 @@ export default Select2.extend({
           ". Recovering from this is not (yet) implemented.");
       });
     }
+
+      Ember.run.later(function() {
+        Ember.$('ul.select2-choices').sortable({
+          containment: 'parent',
+          cursor: "move",
+          update: function() {
+            that.selectionChanged(that._select.select2("data"));
+            //console.log("DEBUG data: ", that._select.select2("data"));
+          }
+        });
+      });
     this.watchDisabled();
     
   },

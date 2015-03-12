@@ -15,9 +15,12 @@
 
 
 .bottom-spacing-20 {
-	margin-bottom: 20px;
+	margin-bottom: 20px !important;
 }
 
+.bottom-spacing-40 {
+	margin-bottom: 40px !important;
+}
 
 #toast {
 	position: fixed;
@@ -63,9 +66,8 @@
 
 .header {
 	h1	{
-		margin:30px 0;
+		margin:0;
 		padding:0;
-
 	}
 }
 
@@ -85,4 +87,25 @@
 		}
 	}
 }
+
+
+
+/* select 2 */ 
+
+.select2-container {
+	overflow: auto;
+	padding-right: 1px !important;
+	.select2-search-choice {
+		background: @gray-lighter !important;
+		//color: white !important;
+	}
+
+	a {
+		&.select2-search-choice-close {
+		
+		}
+	}
+}
+
+
 

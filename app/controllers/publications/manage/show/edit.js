@@ -4,10 +4,25 @@ export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
   selectedContentType: null,
-  selectedAuthor: null,
-  selectedInstitution: null,
+  /*selectedAuthor: null,
+  selectedInstitution: null,*/
   showRegisterNewAuthor: false,
   authorArr: [],
+
+  authorArrChanged: function() {
+    console.log("DEBUG state of author array", this.authorArr);
+    this.formatAuthorsForServer();
+  }.observes('authorArr.@each.first_name'),
+
+
+  formatAuthorsForServer: function() {
+    var arr = [];
+    this.get("authorArr").forEach(function(item) {
+      if (item.selectedAuthor) {
+        arr.addObject({id: item.selectedAuthor.id, departments: item.selectedInstitution});
+      }
+    });
+  },
 
   generateUUID: function () {
     var d = new Date().getTime();
@@ -91,7 +106,7 @@ export default Ember.Controller.extend({
     queryAuthors: function(query, deferred) {
       deferred.reject = function(reason) {
         console.log(reason);
-      }
+      };
       var fromStore = this.store.find("person", {search_term: query.term});
       fromStore.then(deferred.resolve, deferred.reject);
   

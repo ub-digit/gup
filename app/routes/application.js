@@ -8,7 +8,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	//	this.transitionTo('login');
 		if (this.get("session.authenticated")) {
 			//console.log("session", this.get("session"));
-			this.transitionTo('publications.manage');
+		//	this.transitionTo('publications.manage');
 		}
 		else {
 			this.transitionTo('login');
@@ -25,7 +25,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {
-			this.transitionTo("publications.manage");
+			this.transitionTo("publications.manage.dashboard.drafts");
 	    //	return this._super();	
 	    },
 		sessionAuthenticationFailed: function(error) {

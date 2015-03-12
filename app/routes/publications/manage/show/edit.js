@@ -16,21 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('selectedContentType', model.publication_type_id);
 
     var arr = [];
-    arr.push(Ember.Object.create({id: '1', text: 'Johan Larsson'}));
-    arr.push(Ember.Object.create({id: '2', text: 'Bo Rothstein'}));
-    arr.push(Ember.Object.create({id: '3', text: 'Gösta Cramby'}));
-    arr.push(Ember.Object.create({id: '4', text: 'Magnus Kull'}));
-    arr.push(Ember.Object.create({id: '5', text: 'Stefan Berndtsson'}));
-    arr.push(Ember.Object.create({id: '6', text: 'Johan Von Geijer'}));
-    arr.push(Ember.Object.create({id: '7', text: 'Erik den store'}));
-    arr.push(Ember.Object.create({id: '8', text: 'Per Rothstein'}));
-    arr.push(Ember.Object.create({id: '9', text: 'Goenkaji'}));
-    arr.push(Ember.Object.create({id: '10', text: 'Ann-Marie Mattsson'}));
-    arr.push(Ember.Object.create({id: '11', text: 'Jan Guilio'}));
-    arr.push(Ember.Object.create({id: '12', text: 'Kalle Anka'}));
-    arr.push(Ember.Object.create({id: '13', text: 'Joakim Von Anka'}));
-    arr.push(Ember.Object.create({id: '14', text: 'Arga Snickaren'}));
-    arr.push(Ember.Object.create({id: '15', text: 'Anders Bovin'}));
+
 
     controller.set('authors', arr);
 
@@ -414,10 +400,25 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     arr2.push(Ember.Object.create({id: '1232', text: 'Zoologiska institutionen, zoofysiologi  [1988-2011]  1232'}));
     arr2.push(Ember.Object.create({id: '1231', text: 'Zoologiska institutionen, zoomorfologi  [1988-2011]  1231'}));
     controller.set('institutions', arr2);
+    
 
+    var authors = model.authors;
     var tempAuthorArr = [];
-    var guid = controller.generateUUID();
-    tempAuthorArr.push(Ember.Object.create({id: guid, selectedAuthor: null, selectedInstitution: null}));
+    if (authors) {
+        authors.forEach(function(item) {
+            var departments = [];
+            item.departments.forEach(function(department) {
+                departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
+            })
+            tempAuthorArr.push(Ember.Object.create({id: item.id, selectedAuthor: {id: item.id, presentation_string: item.first_name}, selectedInstitution: departments}));
+        }) 
+    }
+    else {
+        var guid = controller.generateUUID();
+        tempAuthorArr.push(Ember.Object.create({id: guid, selectedAuthor: null, selectedInstitution: null}));
+    }
+    
+
     controller.set('authorArr', tempAuthorArr);
 
   },
@@ -432,13 +433,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     save: function(model,is_draft) {
       var that = this;
       var successHandler = function() {
-        var rsvp =  Ember.RSVP.hash({drafts: that.store.find("draft"), publications: that.store.find("publication")});
-        rsvp.then(function(model) {
-          that.controllerFor('publications.manage').set('drafts',model.drafts);
-          that.controllerFor('publications.manage').set('publications',model.publications);
-          // här skall man kunna välja att gå till den första posten om listan är icke-tom
-          that.transitionTo('publications.manage');
-        });        
+        that.transitionTo('publications.manage.show');      
       };
       var errorHandler = function(reason) {
         console.log(reason);
