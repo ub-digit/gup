@@ -9,3 +9,22 @@
 			<h1>Importera publikation</h1>
 		</div>
 	</div>
+
+
+      <div class='row'>
+        <div class="col-md-4">
+        </div>
+        <div class='col-xs-6'>
+          {{view Ember.Select classNames="form-control" content=sources
+                                value=sourceData.selectedSource
+                      optionValuePath="content.value"
+                      optionLabelPath="content.label" prompt="Välj källa"
+          }}
+        </div>
+        <div class='col-xs-3'>
+          {{input class='form-control manageFields' value=sourceData.sourceId placeholder="id-nummer"}}
+        </div>
+        <div class='col-xs-3'>
+          <button {{action 'import' sourceData}}  class='btn btn-primary'>Importera</button>  
+        </div>
+      </div>  

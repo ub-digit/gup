@@ -5,8 +5,6 @@ export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
   selectedContentType: null,
-  /*selectedAuthor: null,
-  selectedInstitution: null,*/
   showRegisterNewAuthor: false,
   authorArr: [],
 
@@ -85,8 +83,10 @@ export default Ember.Controller.extend({
       return "no-selection";
     }
     else {
-      var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
-      return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');;
+      console.log(this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0));
+      return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
+   //   var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
+   //   return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
     }
    }.property('selectedPublicationType', 'selectedContentType'),
   
@@ -96,7 +96,9 @@ export default Ember.Controller.extend({
  
   setDefaultContentType: function() {
     var contentType = this.get('publicationTypes').findBy('publication_type_code', this.get('selectedPublicationType'));    
-    this.set('selectedContentType', contentType.id);
+    if (contentType) {
+      this.set('selectedContentType', contentType.id);
+    }
   }.observes('selectedPublicationType'),
 
   actions: {

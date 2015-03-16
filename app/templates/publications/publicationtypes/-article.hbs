@@ -13,10 +13,11 @@
 		</div>
 		<div class="col-xs-6">
 		  <label class="control-label">Innehållstyp:</label>
-		  {{view Ember.Select classNames="form-control" content=contentTypes
-		      value=selectedContentType
-		      optionValuePath="content.id"
-		      optionLabelPath="content.content_type"
+		  {{view Ember.Select classNames="form-control" 
+				content=contentTypes
+				value=selectedContentType
+				optionValuePath="content.id"
+				optionLabelPath="content.content_type"
 		  }}
 		</div>
 	</div><!-- end row --> 

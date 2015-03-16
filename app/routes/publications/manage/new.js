@@ -2,21 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function(params) {
-    if (params) {
-      alert(params);
-    }
     return RSVP.hash({
       publication: {},
       publicationTypes: this.store.find('publication_type')
     });
   },
   setupController: function(controller, models) {
- //   controller.set('selectedPublicationType', publicationType.publication_type_code);
- //   controller.set('selectedContentType', model.publication_type_id);
-
     controller.set("model", models.publication);
     controller.set("publicationTypes", models.publicationTypes);
-
 
     var arr = [];
     controller.set('authors', arr);
@@ -403,17 +396,19 @@ export default Ember.Route.extend({
     controller.set('institutions', arr2);
     
     if (models.publication) {
-      if (models.publication.authors) {
-        var authors = models.publications.authors;
+      if (models.publication.people.length > 0) {
+        var authors = models.publication.people;
       }
     }
     var tempAuthorArr = [];
     if (authors) {
         authors.forEach(function(item) {
+
             var departments = [];
-            item.departments.forEach(function(department) {
+           /* item.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
-            })
+            })*/
+            departments.push(Ember.Object.create({id: 1, text: item.department_name}));
             tempAuthorArr.push(Ember.Object.create({id: item.id, selectedAuthor: {id: item.id, presentation_string: item.first_name}, selectedInstitution: departments}));
         }) 
     }
@@ -446,7 +441,7 @@ export default Ember.Route.extend({
       }else{
         model.is_draft = false;
       }
-
+      console.log('debug: model', model);
       this.store.save('publication',model).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
