@@ -14,15 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			this.transitionTo('login');
 		}
 	},
-	model: function() {
-		return Ember.RSVP.hash({
 
-		});
-	},
-	setupController: function(controller, models) {
-
-
-	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {
 			this.transitionTo("publications.manage.dashboard.drafts");

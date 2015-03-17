@@ -396,19 +396,21 @@ export default Ember.Route.extend({
     controller.set('institutions', arr2);
     
     if (models.publication) {
-      if (models.publication.people.length > 0) {
-        var authors = models.publication.people;
-      }
+        if (models.publication.people) {
+          if (models.publication.people.length > 0) {
+            var authors = models.publication.people;
+          }
+        }
     }
     var tempAuthorArr = [];
     if (authors) {
         authors.forEach(function(item) {
 
             var departments = [];
-           /* item.departments.forEach(function(department) {
+            item.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
-            })*/
-            departments.push(Ember.Object.create({id: 1, text: item.department_name}));
+            })
+            //departments.push(Ember.Object.create({id: 1, text: item.department_name}));
             tempAuthorArr.push(Ember.Object.create({id: item.id, selectedAuthor: {id: item.id, presentation_string: item.first_name}, selectedInstitution: departments}));
         }) 
     }
@@ -426,8 +428,11 @@ export default Ember.Route.extend({
 
     save: function(model,is_draft) {
       var that = this;
-      var successHandler = function() {
-        that.transitionTo('publications.manage.show', model);      
+      var successHandler = function(data) {
+      //  that.modelFor('publications.manage.show').reload().then(function() {alert("hello")});
+        that.send('refreshModel', model.id); // Refresh children of current model
+   //     that.get('publications.manage.show').send('refreshModel', model.id);
+        that.transitionTo('publications.manage.show', model.id);      
       };
       var errorHandler = function(reason) {
         console.log(reason);
@@ -442,6 +447,7 @@ export default Ember.Route.extend({
         model.is_draft = false;
       }
       console.log('debug: model', model);
+      this.get("controller").formatAuthorsForServer();
       this.store.save('publication',model).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {

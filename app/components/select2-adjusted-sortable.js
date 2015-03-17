@@ -170,15 +170,7 @@ export default Select2.extend({
       }
       term = Ember.Handlebars.Utils.escapeExpression(term);
 
-      
-      Ember.run.later(function() {
-        Ember.$("#toggleNewAuthorBtn").bind('click', function() {
-          self.set("zeroResult", true);
-          // close dropdown
-        });
-      });
-
-      return "Inga resultat.<a href='#' id='toggleNewAuthorBtn' class='btn btn-primary pull-right btn-xs'>Registrera ny</a>";
+      return text;
       //return (Ember.String.fmt(text, term));
 
     };

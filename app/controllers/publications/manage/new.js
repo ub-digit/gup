@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 
   authorArrChanged: function() {
     console.log("DEBUG state of author array", this.authorArr);
-    this.formatAuthorsForServer();
+  //  this.formatAuthorsForServer();
   }.observes('authorArr.@each.first_name'),
 
 
@@ -18,9 +18,18 @@ export default Ember.Controller.extend({
     var arr = [];
     this.get("authorArr").forEach(function(item) {
       if (item.selectedAuthor) {
-        arr.addObject({id: item.selectedAuthor.id, departments: item.selectedInstitution});
+        if (item.selectedInstitution) {
+          if (item.selectedInstitution.length > 0) {
+            var departments = [];
+            item.selectedInstitution.forEach(function(item) {
+              departments.push({id: item.id, name: item.text});
+            });
+          }
+        }
+        arr.addObject({id: item.selectedAuthor.id, departments: departments});
       }
     });
+    this.set("model.people", arr);
   },
 
   generateUUID: function () {
@@ -83,7 +92,6 @@ export default Ember.Controller.extend({
       return "no-selection";
     }
     else {
-      console.log(this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0));
       return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
    //   var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
    //   return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
@@ -131,5 +139,16 @@ export default Ember.Controller.extend({
         this.transitionTo('publications.manage.show', this.model);
     },
 
+
+    toggleAddNewAuthor: function(id) {
+      var obj = this.get("authorArr").findBy('id', id);
+      if (obj.get("transformedToNewAuthor") === true) {
+        obj.set("transformedToNewAuthor", false);
+      }
+      else {
+        obj.set("transformedToNewAuthor", true);
+      }
+      
+    },
   }
 });

@@ -1,4 +1,4 @@
-	
+
 
 	<div class="row bottom-spacing-20">
 		<div class="col-xs-6">
@@ -21,9 +21,6 @@
 		  }}
 		</div>
 	</div><!-- end row --> 
-
-
-	{{getClassNameForSelectedPublicationTypeAndContentType}}
 
 
 	<div id="title" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
@@ -130,38 +127,82 @@
 	</div> <!-- end row --> 
 	
 	<section id="author-component" {{bind-attr class="getClassNameForSelectedPublicationTypeAndContentType"}}>
-		<h3>Författare</h3>
-
 		{{#each item in authorArr}}
 			<div class="row bottom-spacing-20">
-				<div class="col-xs-3">
-					{{select2-adjusted
-					    placeholder="Välj författare"
-					    value=item.selectedAuthor
-					    optionLabelPath="presentation_string"
-					    typeaheadSearchingText="Söker författare"
-					   	typeaheadNoMatchesText="Hittade inga författare för '%@'"
-					   	minimumInputLength=3
-					    query="queryAuthors"
-					    allowClear=true
-					    zeroResult=showRegisterNewAuthor
-					    enabled=authorComponentDisabled
-					}}
+				<div class="col-xs-10">
+					{{#if item.transformedToNewAuthor}}
+						<div class="row bottom-spacing-20">
+							<div class="col-xs-12">
+								<div class="row bottom-spacing-20">
+									<div class="col-xs-6">
+										<label>Förnamn:</label>
+										{{input type="text" class="form-control"}}
+									</div>
+									<div class="col-xs-6">
+										<label>Efternamn:</label>
+										{{input type="text" class="form-control"}}
+									</div>
+								</div>
+								<div class="row bottom-spacing-20">
+									<div class="col-xs-3">
+										<label>Födelseår:</label>
+										{{input type="text" class="form-control"}}
+									</div>
+
+									<div class="col-xs-3">
+										<label>x-konto:</label>
+										{{input type="text" class="form-control"}}
+									</div>
+									<div class="col-xs-6">
+										<label>Orcid:</label>
+										{{input type="text" class="form-control"}}
+									</div>
+								</div>
+								<div class="btn-toolbar">
+									<button type="submit" class="btn btn-success">Spara</button>
+									<button {{action "toggleAddNewAuthor" item.id}}class="btn btn-danger">Avbryt</button>
+								</div>
+							</div>
+						</div>
+					{{else}}
+						<div class="row">
+							<div class="col-xs-4">
+								<label>Välj författare</label>
+								{{select2-adjusted
+								    placeholder="Välj författare"
+								    value=item.selectedAuthor
+								    optionLabelPath="presentation_string"
+								    typeaheadSearchingText="Söker författare"
+								   	typeaheadNoMatchesText="Hittade inga författare för '%@'"
+								   	minimumInputLength=3
+								    query="queryAuthors"
+								    allowClear=true
+								    zeroResult=item.transformedToNewAuthor
+								    enabled=authorComponentDisabled
+								    cssClass=item.id
+								}}
+							</div>
+							<div class="col-xs-7">
+								<label>Välj institutioner</label>
+								{{select2-adjusted-sortable
+								    content=institutions
+								    value=item.selectedInstitution
+								    placeholder="Välj institutioner"
+								    allowClear=true
+								    multiple=true
+								    enabled=authorComponentDisabled
+								}}
+							</div>
+							<div class="col-xs-1 compensate-for-label-on-top">
+								<button class="btn btn-default" {{action 'toggleAddNewAuthor' item.id}}>toggle</button>
+							</div>
+						</div>
+					{{/if}}
 				</div>
-				<div class="col-xs-7">
-					{{select2-adjusted-sortable
-					    content=institutions
-					    value=item.selectedInstitution
-					    placeholder="Välj institutioner"
-					    allowClear=true
-					    multiple=true
-					    enabled=authorComponentDisabled
-					}}
+				<div class="col-xs-1 compensate-for-label-on-top">
+					<button {{bind-attr class=":btn :btn-danger isThisTheOnlyAuthorRow:disabled"}} {{action 'removeAuthorRow' item.id}}><i class="fa fa-trash-o"></i></button>
 				</div>
-				<div class="col-xs-1">
-					<button {{bind-attr class=":btn :btn-default isThisTheOnlyAuthorRow:disabled"}}class="btn btn-danger" {{action 'removeAuthorRow' item.id}}><i class="fa fa-trash-o"></i></button>
-				</div>
-				<div class="col-xs-1">
+				<div class="col-xs-1 compensate-for-label-on-top">
 					<div class="sort-control">
 						<div class="sort-control-up">
 							<a href="javascript:void()" {{action 'moveUp' item.id}}><i class="fa fa-chevron-up"></i></a>
@@ -179,36 +220,35 @@
 			<section id="registerNewAuthor">
 				<div class="row bottom-spacing-20">
 					<div class="col-xs-12">
-						<h3>Registrera ny författare</h3>
 						<div class="row bottom-spacing-20">
-							<div class="col-xs-12">
+							<div class="col-xs-6">
 								<label>Förnamn:</label>
 								{{input type="text" class="form-control"}}
 							</div>
-						</div>
-						<div class="row bottom-spacing-20">
-							<div class="col-xs-12">
+							<div class="col-xs-6">
 								<label>Efternamn:</label>
 								{{input type="text" class="form-control"}}
 							</div>
 						</div>
 						<div class="row bottom-spacing-20">
-							<div class="col-xs-12">
+							<div class="col-xs-3">
+								<label>Födelseår:</label>
+								{{input type="text" class="form-control"}}
+							</div>
+
+							<div class="col-xs-3">
 								<label>x-konto:</label>
 								{{input type="text" class="form-control"}}
 							</div>
-						</div>
-						<div class="row bottom-spacing-20">
-							<div class="col-xs-12">
+							<div class="col-xs-6">
 								<label>Orcid:</label>
 								{{input type="text" class="form-control"}}
 							</div>
 						</div>
 						<div class="btn-toolbar">
-							<button type="submit" class="btn btn-primary pull-right">Skicka</button>
-							<button {{action "closeRegisterNewAuthor"}}class="btn btn-danger pull-right">Stäng</button>
+							<button {{action "closeRegisterNewAuthor"}}class="btn btn-danger">Avbryt</button>
+							<button type="submit" class="btn btn-primary">Spara</button>
 						</div>
-
 					</div>
 				</div>
 			</section>
@@ -219,7 +259,7 @@
 			</div>
 		</div>
 
-		<div class="row bottom-spacing-20">
+		<!--<div class="row bottom-spacing-20">
 			<div class="col-xs-12">
 				<span {{bind-attr class=":form-group errors.author:has-error"}}>
 					<label class="control-label">Författare:</label>
@@ -227,7 +267,7 @@
 					
 				</span>
 			</div>
-		</div>  
+		</div>  -->
 	</section>
 
 	<section id="magazine-details" {{bind-attr class="getClassNameForSelectedPublicationTypeAndContentType"}}>

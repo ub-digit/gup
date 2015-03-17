@@ -29,6 +29,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
         return false;
       };
       this.store.destroy('publication',model.pubid).then(successHandler, errorHandler);
+    },
+    refreshModel: function(modelId) {
+      this.refresh(modelId);
     }
   }
 });

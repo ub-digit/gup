@@ -168,7 +168,6 @@ export default Select2.extend({
       if (text instanceof Ember.Handlebars.SafeString) {
         text = text.string;
       }
-      text= "<a href='#/publications/manage' class='btn btn-default'>test</a>";
       term = Ember.Handlebars.Utils.escapeExpression(term);
 
       
@@ -308,6 +307,7 @@ export default Select2.extend({
 
     this._select = this.$().select2(options);
 
+
     this._select.on("change", run.bind(this, function() {
       // grab currently selected data from select plugin
       var data = this._select.select2("data");
@@ -335,6 +335,15 @@ export default Select2.extend({
           ". Recovering from this is not (yet) implemented.");
       });
     }
+    //var self = this;
+    Ember.run.later(function() {
+        Ember.$("." + self.get('cssClass')).find("#toggleBtn").bind('click', function() {
+          self.set("zeroResult", true);
+          // close dropdown
+        });
+
+    });
+Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>hittar du inte den du söker?</p><button id='toggleBtn' class='btn btn-primary'>Registrera ny</button></div>");
     this.watchDisabled();
     
   },
