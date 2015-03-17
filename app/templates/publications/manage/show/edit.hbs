@@ -1,57 +1,30 @@
 <div class="row bottom-spacing-20">
   <div class="col-xs-12">
-    <a  {{action 'cancel' model}}><i class="fa fa-close"></i> Stäng</a>
+    <a href="javascript:void();" {{action 'cancel'}}><i class="fa fa-close"></i> Stäng</a>
   </div>
 </div>
-<div class="row">
-    <div class="col-xs-10">
-          {{#if hasErrors}}
-            {{#if showMesgHeader}}
-              <h4 class="alert alert-danger">Publikationen kunde inte sparas: {{errors.flatten}}.
-                <a href="#" class="btn btn-default" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
-              </h4>
-            {{/if}}
-          {{/if}}
-        
 
-          <div class="row bottom-spacing-20">
-            <div class="col-xs-3">
-              <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}>  </span>
-              <label class="control-label">Publikationstyp:</label>
-                {{view Ember.Select classNames="form-control"
-                    content=publicationTypeCodes
-                    value=selectedPublicationType
-                    optionValuePath="content.publication_type_code"
-                    optionLabelPath="content.publication_type_code"
-                }}
-            </div>
-            <div class="col-xs-3">
-              <label class="control-label">Innehållstyp:</label>
-              {{view Ember.Select classNames="form-control" content=contentTypes
-                  value=selectedContentType
-                  optionValuePath="content.id"
-                  optionLabelPath="content.content_type"
-              }}
-            </div>
-          </div><!-- end row --> 
+  <div class="row bottom-spacing-20">
+    <div class="col-xs-12">
+      <h1>Redigera publikation</h1>
+    </div>
+  </div>
 
-        {{partial formPartial}}
+  <div class="row">
+      <div class="col-xs-10">
+          {{partial 'publications/publicationtypes/-article'}}
 
-
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="btn-toolbar pull-right">
-              <button class='btn btn-default'  {{action 'cancel' model}}>Avbryt</button>
-              <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
-              <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
+          <div class="row">
+            <div class="col-xs-12">
+              <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
+                <button class='btn btn-default'  {{action 'cancel'}}>Avbryt</button>
+                <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
+                <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
+              </div>
             </div>
           </div>
-        </div>
-
-    </div> <!-- col-xs-6 -->
-    <div class="col-xs-6">
-    </div>
-</div> <!-- end row --> 
-
-
+      </div>
+      <div class="col-xs-2">
+      </div>
+  </div> <!-- end row --> 
 

@@ -38,8 +38,9 @@ export default Ember.Object.extend({
 	    url: url,
 	    method: method,
 	    crossDomain: true,
-	    type: 'json',
-	    data: data,
+	    contentType: 'application/json',
+	    dataType: 'json',
+	    data: JSON.stringify(data),
 	    headers: headers
 	});
     },
@@ -120,6 +121,8 @@ export default Ember.Object.extend({
 	    .then(function(data) {
 		return that.extractOne(name, data);
 	    });
-    }
+    },
+
+
 });
 

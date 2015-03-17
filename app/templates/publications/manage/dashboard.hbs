@@ -5,15 +5,15 @@
     <div class="col-xs-6">
         <!-- Split button -->
         <div class="btn-group pull-right">
-          {{#link-to 'publications.manage.show' class="btn btn-primary"}}Registera ny{{/link-to}}
+          {{#link-to 'publications.manage.new' class="btn btn-primary"}}Registera ny{{/link-to}}
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Registera ny</a></li>
-            <li><a href="#">Importera publikationer från fil</a></li>
-            <li><a href="#">Importera publikation</a></li>
+            <li>{{#link-to 'publications.manage.new'}}Registera ny{{/link-to}}</li>
+            <li>{{#link-to 'publications.manage.import'}}Importera publikation{{/link-to}}</li>
+            <li>{{#link-to 'publications.manage.fileimport'}}Importera från fil{{/link-to}}</li>
           </ul>
         </div>
     </div>
@@ -22,8 +22,9 @@
     <div class="col-xs-12">
       <nav id="sub-nav">
         <ul class="nav">
-          <li>{{#link-to 'publications.manage.dashboard.drafts'}}Drafts{{/link-to}}</li>
+          <li>{{#link-to 'publications.manage.dashboard.drafts'}}Utkast{{/link-to}}</li>
           <li>{{#link-to 'publications.manage.dashboard.published'}}Publicerade{{/link-to}}</li>
+          <li>{{#link-to 'publications.manage.dashboard.touched'}}Registrerade/redigerade av mig{{/link-to}}</li>
         </ul>
       </nav>
     </div>
@@ -31,7 +32,7 @@
 
   <div class="row">
     <div class="col-xs-10">
-      {{outlet}}
+      {{liquid-outlet}}
     </div>
   </div>
 
