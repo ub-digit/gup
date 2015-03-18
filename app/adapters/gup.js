@@ -8,6 +8,15 @@ export default Ember.Object.extend({
 	publication_type: { path: 'publication_types' },
 	draft: { path: 'publications?drafts=true',plural: 'publications' }
     },
+
+	sessionHeaders: function() {
+		var session = this.container.lookup('simple-auth-session:main');
+		var headers = {};
+		if(session && session.get('isAuthenticated')) {
+		    headers["Authorization"] = "Token " + session.get('token');
+		}
+		return headers;
+    },
     findOne: function(name, id, params) {
 	var that = this;
 	return this.fetch(this.urlOne(name, id, params))
@@ -24,16 +33,19 @@ export default Ember.Object.extend({
     },
     fetch: function(url) {
 	var headers = {};
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
 	    crossDomain: true,
 	    type: 'json',
-	    headers: headers
+		headers: that.sessionHeaders(),
+
 	});
     },
     send: function(url, method, data) {
 	var headers = {};
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: method,
@@ -41,17 +53,18 @@ export default Ember.Object.extend({
 	    contentType: 'application/json',
 	    dataType: 'json',
 	    data: JSON.stringify(data),
-	    headers: headers
+	    headers: that.sessionHeaders(),
 	});
     },
     sendDelete: function(url) {
 	var headers = {};
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'delete',
 	    crossDomain: true,
 	    type: 'json',
-	    headers: headers
+	    headers: that.sessionHeaders(),
 	});
     },
     endpoint: function(name) {
