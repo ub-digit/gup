@@ -425,18 +425,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    createAuthor: function(item) {
-        var successHandler = function(model) {
-            item.set('selectedAuthor', model);
-            item.set('transformedToNewAuthor', false);
-        };
-        var errorHandler = function() {
-            alert("error");
-        };
-        //console.log(newAuthor.get('firstName'));
-        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'birthyear': item.newAuthorForm.get('birthyear'), 
-                            'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
-    },
+
 
     save: function(model,is_draft) {
       var that = this;

@@ -8,6 +8,11 @@ export default Ember.Controller.extend({
   showRegisterNewAuthor: false,
   authorArr: [],
 
+
+  updateModelWithCorrectPublicationType: function() {
+    this.set("model.publication_type_id", this.get("selectedContentType"));
+  }.observes('selectedPublicationType', 'selectedContentType'),
+
   authorArrChanged: function() {
     console.log("DEBUG state of author array", this.authorArr);
   //  this.formatAuthorsForServer();
@@ -50,6 +55,7 @@ export default Ember.Controller.extend({
       return false;
     }
   }.property('authorArr.@each'),
+
 
 
   authorComponentDisabled: function() {
@@ -129,18 +135,8 @@ export default Ember.Controller.extend({
         }
       });
     },
-    closeRegisterNewAuthor: function() {
-      this.set("showRegisterNewAuthor", false);
-    },
 
-    queryAuthors: function(query, deferred) {
-      deferred.reject = function(reason) {
-        console.log(reason);
-      };
-      var fromStore = this.store.find("person", {search_term: query.term});
-      fromStore.then(deferred.resolve, deferred.reject);
-  
-    },
+
 
     cancel: function() {     
         this.transitionTo('publications.manage.show', this.model);
