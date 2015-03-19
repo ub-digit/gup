@@ -22,16 +22,18 @@ export default Ember.Controller.extend({
   formatAuthorsForServer: function() {
     var arr = [];
     var departments = [];
-    this.get("authorArr").forEach(function(item) {
-      if (item.selectedAuthor) {
-        if (item.selectedInstitution) {
-          if (item.selectedInstitution.length > 0) {
-            item.selectedInstitution.forEach(function(item) {
-              departments.push({id: item.id, name: item.text});
+    this.get("authorArr").forEach(function(author) {
+      if (author.selectedAuthor) {
+        if (author.selectedInstitution) {
+          if (author.selectedInstitution.length > 0) {
+              author.selectedInstitution.forEach(function(department) {
+              departments.push({id: department.id, name: department.text});
             });
           }
         }
-        arr.addObject({id: item.selectedAuthor.id, departments: departments});
+        arr.addObject({id: author.selectedAuthor.id, departments: departments});
+        //empty array 
+        departments = [];
       }
     });
     this.set("model.people", arr);

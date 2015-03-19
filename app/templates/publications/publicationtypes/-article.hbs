@@ -128,6 +128,7 @@
 	
 	<section id="author-component" {{bind-attr class="getClassNameForSelectedPublicationTypeAndContentType"}}>
 		{{#each item in authorArr}}
+			{{log authorArr}}
 			{{author-row item=item institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow}}
 	
 		{{/each}}
