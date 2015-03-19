@@ -9,3 +9,12 @@
 			<h1>Importera publikationer från fil</h1>
 		</div>
 	</div>
+
+	<div class="row">
+    <div class='col-xs-3'>Importera lista från fil:</div>
+    <div class='col-xs-3'>
+	      <button type="button" {{action 'uploadFile'}} class="btn btn-primary btn-lg btn-block">Ladda upp</button>
+      {{file-uploader id='fileUploader' class="hide-element"}}
+    </div>
+  </div>
+</div>
