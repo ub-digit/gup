@@ -15,6 +15,7 @@ export default Ember.Route.extend({
     controller.set('authors', arr);
 
     var arr2 = [];
+    arr2.push(Ember.Object.create({id: '666', text: 'Extern institution'}));
     arr2.push(Ember.Object.create({id: '1798', text: 'Akademin Valand  [2012-]  1798'}));
     arr2.push(Ember.Object.create({id: '1856', text: 'Akademistatistik  [2012-]  1856'}));
     arr2.push(Ember.Object.create({id: '1783', text: 'Avdelningen för freds- och konfliktforskning  [1971-1978]  1783'}));

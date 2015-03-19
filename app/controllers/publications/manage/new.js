@@ -30,6 +30,12 @@ export default Ember.Controller.extend({
               departments.push({id: department.id, name: department.text});
             });
           }
+          else {
+            departments.push({id: '666', name: 'Extern institution'});
+          }
+        }
+        else {
+          departments.push({id: '666', name: 'Extern institution'});
         }
         arr.addObject({id: author.selectedAuthor.id, departments: departments});
         //empty array 
