@@ -20,9 +20,9 @@
       }}
     </div>
     <div class='col-xs-3'>
-      {{input class='form-control manageFields' value=sourceData.sourceId placeholder="id-nummer"}}
+      {{input class='form-control manageFields' value=sourceId placeholder="id-nummer"}}
     </div>
     <div class='col-xs-3'>
-      <button {{action 'import' sourceData}}  class='btn btn-primary'>Importera</button>  
+      <button {{action 'import' selectedSource sourceId}}  {{bind-attr class=":btn :btn-primary btnIsActive:active:disabled"}}>Importera</button>  
     </div>
   </div>  

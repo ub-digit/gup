@@ -16,11 +16,11 @@ export default Ember.Controller.extend({
 
   formatAuthorsForServer: function() {
     var arr = [];
+    var departments = [];
     this.get("authorArr").forEach(function(item) {
       if (item.selectedAuthor) {
         if (item.selectedInstitution) {
           if (item.selectedInstitution.length > 0) {
-            var departments = [];
             item.selectedInstitution.forEach(function(item) {
               departments.push({id: item.id, name: item.text});
             });
@@ -79,12 +79,12 @@ export default Ember.Controller.extend({
 
   }.property('publicationTypes'),
 
-  formPartial: function() {
+/*  formPartial: function() {
     if (this.get('model')) {
       this.set('model.publication_type_id', this.get('selectedContentType'));
       var contentType = this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0);    
     }
-  }.observes('selectedPublicationType', 'selectedContentType'),
+  }.observes('selectedPublicationType', 'selectedContentType'),*/
 
 
   getClassNameForSelectedPublicationTypeAndContentType: function() {
@@ -111,7 +111,14 @@ export default Ember.Controller.extend({
 
   actions: {
     addNewAuthorRow: function() {
-      this.get("authorArr").addObject(Ember.Object.create({id: this.generateUUID(), selectedAuthor: null, selectedInstitution: null}));
+      this.get("authorArr").addObject(
+        Ember.Object.create({
+          id: this.generateUUID(),
+          selectedAuthor: null, 
+          selectedInstitution: null, 
+          newAuthorForm: Ember.Object.create({firstName: 'firstname', lastName: 'lastname', birthyear: 'birthyear', xaccount: 'xkonto', orcid: 'orcid'})
+        })
+      );
     },
     removeAuthorRow: function(id) {
       var list = this.get("authorArr").toArray();
