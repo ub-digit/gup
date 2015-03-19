@@ -404,14 +404,14 @@ export default Ember.Route.extend({
     }
     var tempAuthorArr = [];
     if (authors) {
-        authors.forEach(function(item) {
+        authors.forEach(function(author) {
 
             var departments = [];
-            item.departments.forEach(function(department) {
+            author.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
             })
             //departments.push(Ember.Object.create({id: 1, text: item.department_name}));
-            tempAuthorArr.push(Ember.Object.create({id: item.id, selectedAuthor: {id: item.id, presentation_string: item.first_name}, selectedInstitution: departments}));
+            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.first_name}, selectedInstitution: departments}));
         }) 
     }
     else {
