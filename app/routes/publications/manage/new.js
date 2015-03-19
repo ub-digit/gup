@@ -433,6 +433,7 @@ export default Ember.Route.extend({
       var successHandler = function(model) {
       //  that.modelFor('publications.manage.show').reload().then(function() {alert("hello")});
         that.send('refreshModel', model.id); // Refresh children of current model
+        that.refresh(model.id);
    //     that.get('publications.manage.show').send('refreshModel', model.id);
         that.transitionTo('publications.manage.show', model.id);      
       };
@@ -457,9 +458,7 @@ export default Ember.Route.extend({
       this.controller.set('hasErrors', false);
       this.controller.set('errors',''); 
     },
-    refreshModel: function(modelId) {
-      this.refresh(modelId);
-    }
+
 
   }
 });
