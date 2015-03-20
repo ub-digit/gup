@@ -15,14 +15,14 @@
 		</div>
 		<div class="col-xs-6">
 		  <label class="control-label">Innehållstyp:</label>
-		  {{view Ember.Select classNames="form-control" 
+		  {{view Ember.Select classNames="form-control"
 				content=contentTypes
 				value=selectedContentType
 				optionValuePath="content.id"
 				optionLabelPath="content.content_type"
 		  }}
 		</div>
-	</div><!-- end row --> 
+	</div><!-- end row -->
 	{{getClassNameForSelectedPublicationTypeAndContentType}}
 
 
@@ -33,7 +33,7 @@
 				{{textarea rows=3 classBinding=":form-control" value=model.title}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 	<div id="alt-title" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-12">
@@ -42,8 +42,18 @@
 				{{textarea rows=3 classBinding=":form-control" value=model.alt_title}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
+<!--
+  <div id="pubyear" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
+        <label class="control-label">Publikationsår:</label>
+        {{textarea rows=1 classBinding=":form-control" value=model.pubyear}}
+      </span>
+    </div>
+  </div>
+-->
 
 	<div id="abstract" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-12">
@@ -52,7 +62,7 @@
 					{{textarea rows=12 classBinding=":form-control" value=model.abstract}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 	<div id="meta" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-2">
@@ -65,17 +75,17 @@
 			<span {{bind-attr class=":form-group errors.publanguage:has-error"}}>
 				<label class="control-label">Språk:</label>
 					{{input type='text' classBinding=":form-control" value=model.publanguage}}
-				
+
 			</span>
 		</div>
 		<div class="col-xs-2">
 			<span {{bind-attr class=":form-group errors.category_hsv_local:has-error"}}>
 				<label class="control-label">Ämne:</label>
 					{{input type='text' classBinding=":form-control" value=model.category_hsv_local}}
-				
+
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 
 
@@ -86,7 +96,7 @@
 				{{input type='text' classBinding=":form-control" value=model.url}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 
 
@@ -97,7 +107,7 @@
 				{{input type='text' classBinding=":form-control" value=model.extid}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 	<div id="external-links" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-12">
@@ -106,29 +116,37 @@
 				{{input type='text' classBinding=":form-control" value=model.links}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
 
 	<div id="keywords" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.keywords:has-error"}}>
 				<label class="control-label">Nyckelord:</label>
-					{{textarea rows=5 classBinding=":form-control" value=model.keywords}}
+          {{textarea rows=5 classBinding=":form-control" value=model.keywords}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
 
+  <div id="project" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.project:has-error"}}>
+        <label class="control-label">Projekt:</label>
+        {{input type='text' classBinding=":form-control" value=model.project}}
+      </span>
+    </div>
+  </div> <!-- end row -->
 
 	<div id="notes" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.pub_notes:has-error"}}>
 				<label class="control-label">Kommentar:</label>
 				{{textarea rows=5 classBinding=":form-control" value=model.pub_notes}}
-				
-			</span>	
+
+			</span>
 		</div>
-	</div> <!-- end row --> 
-	
+	</div> <!-- end row -->
+
 	<h3>Författare</h3>
 	<section id="author-component" {{bind-attr class="getClassNameForSelectedPublicationTypeAndContentType"}}>
 		{{#each item in authorArr}}
@@ -146,7 +164,7 @@
 				<span {{bind-attr class=":form-group errors.author:has-error"}}>
 					<label class="control-label">Författare:</label>
 						{{input type='text' classBinding=":form-control" value=model.author}}
-					
+
 				</span>
 			</div>
 		</div>  -->
@@ -160,7 +178,7 @@
 						<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 							<label class="control-label">Publicerad i:</label>
 								{{input type='text' classBinding=":form-control" value=model.sourcetitle}}
-							
+
 						</span>
 					 </div>
 					<div class="col-xs-1">
@@ -197,7 +215,7 @@
 					</div>
 				</div>
 			</div>
-		</div> <!-- end row --> 
+		</div> <!-- end row -->
 	</section>
 
 
@@ -208,4 +226,4 @@
 					{{input type='text' classBinding=":form-control" value=model.article_number}}
 			</span>
 		</div>
-	</div> <!-- end row --> 
+	</div> <!-- end row -->
