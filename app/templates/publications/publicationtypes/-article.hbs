@@ -234,7 +234,7 @@
   <div id="publisher" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.publisher:has-error"}}>
-        <label class="control-label">Förläggare eller Förlag eller Utgivare ???:</label>
+        <label class="control-label">Förlag:</label>
         {{input type='text' classBinding=":form-control" value=model.publisher}}
       </span>
     </div>
@@ -243,7 +243,7 @@
   <div id="place" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.place:has-error"}}>
-        <label class="control-label">Ort eller Utgivningsort ???:</label>
+        <label class="control-label">Ort:</label>
         {{input type='text' classBinding=":form-control" value=model.place}}
       </span>
     </div>
