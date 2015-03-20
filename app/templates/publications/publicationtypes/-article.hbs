@@ -227,3 +227,66 @@
 			</span>
 		</div>
 	</div> <!-- end row -->
+
+  <div id="extent" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.extent:has-error"}}>
+        <label class="control-label">Omfång:</label>
+        {{input type='text' classBinding=":form-control" value=model.extent}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="publisher" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.publisher:has-error"}}>
+        <label class="control-label">Förläggare eller Förlag eller Utgivare ???:</label>
+        {{input type='text' classBinding=":form-control" value=model.publisher}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="place" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.place:has-error"}}>
+        <label class="control-label">Ort eller Utgivningsort ???:</label>
+        {{input type='text' classBinding=":form-control" value=model.place}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="series" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.series:has-error"}}>
+        <label class="control-label">Serie:</label>
+        {{input type='text' classBinding=":form-control" value=model.series}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="isbn" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.isbn:has-error"}}>
+        <label class="control-label">isbn:</label>
+        {{input type='text' classBinding=":form-control" value=model.isbn}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="artwork-type" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.artwork_type:has-error"}}>
+        <label class="control-label">Konstnärlig typ:</label>
+        {{input type='text' classBinding=":form-control" value=model.artwork_type}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="editor" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.editor:has-error"}}>
+        <label class="control-label">Redaktör:</label>
+        {{input type='text' classBinding=":form-control" value=model.editor}}
+      </span>
+    </div>
+  </div> <!-- end row -->
