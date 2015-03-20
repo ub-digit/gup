@@ -451,7 +451,8 @@ export default Ember.Route.extend({
         else {
             model.is_draft = false;
         }
-        Ember.$("body").addClass("loading");
+        Ember.$("body").addClass("loading");    
+        this.get("controller").formatAuthorsForServer();
         this.store.save('publication',model).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
