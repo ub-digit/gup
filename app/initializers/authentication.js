@@ -16,6 +16,7 @@ var CustomAuthenticator = Base.extend({
 		});
     },
     authenticate: function(credentials) {
+    	Ember.$('body').addClass("loading");
 		return new Ember.RSVP.Promise(function(resolve, reject) {
 		    Ember.$.ajax({
 			type: 'POST',

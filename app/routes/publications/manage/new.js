@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model: function(params) {
     return RSVP.hash({
-      publication: {},
+      publication: this.store.save('publication', {datastore:'none'}),
       publicationTypes: this.store.find('publication_type')
     });
   },
@@ -406,12 +406,10 @@ export default Ember.Route.extend({
     var tempAuthorArr = [];
     if (authors) {
         authors.forEach(function(author) {
-
             var departments = [];
             author.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
             })
-            //departments.push(Ember.Object.create({id: 1, text: item.department_name}));
             tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.first_name}, selectedInstitution: departments}));
         }) 
     }
@@ -425,38 +423,41 @@ export default Ember.Route.extend({
 
   },
 
+  handleSuccess: function(model) {
+    this.transitionTo('publications.manage.show', model.id);      
+  },
+  exit: function() {
+    var controller = this.get("controller");
+    controller.set('selectedContentType', null);
+    controller.set('selectedPublicationType', null);
+  },
   actions: {
-
-
     save: function(model,is_draft) {
-      var that = this;
-      var successHandler = function(model) {
-      //  that.modelFor('publications.manage.show').reload().then(function() {alert("hello")});
-        that.send('refreshModel', model.id); // Refresh children of current model
-        that.refresh(model.id);
-   //     that.get('publications.manage.show').send('refreshModel', model.id);
-        that.transitionTo('publications.manage.show', model.id);      
-      };
-      var errorHandler = function(reason) {
-        console.log(reason);
-        that.controller.set('hasErrors', true);
-        that.controller.set('showMesgHeader', true);
-        that.controller.set('errors', reason.responseJSON.errors);
-        return false;
-      };
-      if (is_draft === 'draft'){
-        model.is_draft = true;
-      }else{
-        model.is_draft = false;
-      }
-      console.log('debug: model', model);
-      this.get("controller").formatAuthorsForServer();
-      this.store.save('publication',model).then(successHandler, errorHandler);
+        var that = this;
+        var successHandler = function(model) {
+            that.handleSuccess(model);
+            Ember.$("body").removeClass("loading");
+        };
+        var errorHandler = function(reason) {
+            that.controller.set('hasErrors', true);
+            that.controller.set('showMesgHeader', true);
+            that.controller.set('errors', reason.responseJSON.errors);
+            Ember.$("body").removeClass("loading");
+            return false;
+        };
+        if (is_draft === 'draft'){
+            model.is_draft = true;
+        }
+        else {
+            model.is_draft = false;
+        }
+        Ember.$("body").addClass("loading");
+        this.store.save('publication',model).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
-      this.controller.set('showMesgHeader', false);
-      this.controller.set('hasErrors', false);
-      this.controller.set('errors',''); 
+        this.controller.set('showMesgHeader', false);
+        this.controller.set('hasErrors', false);
+        this.controller.set('errors',''); 
     },
 
 

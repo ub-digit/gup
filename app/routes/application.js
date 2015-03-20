@@ -17,10 +17,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
 	actions: {
 		sessionAuthenticationSucceeded: function() {
+		//Ember.run.later(Ember.$('body').removeClass("loading"));
 			this.transitionTo("publications.manage.dashboard.drafts");
+			Ember.run.later(Ember.$('body').removeClass("loading"));
 	    //	return this._super();	
 	    },
 		sessionAuthenticationFailed: function(error) {
+			Ember.$('body').removeClass("loading");
 		    this.controllerFor('login').set('error', error);
 		},
 	}

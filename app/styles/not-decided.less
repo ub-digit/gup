@@ -1,15 +1,15 @@
-.fa {
-	&.fa-spinner {
-		visibility: hidden;
-		&.loading {
-			visibility: visible;
-		}
-	}
-	&.fa-check {
-		color: @brand-success;
-	}
-	&.fa-times {
-		color: @brand-danger;
+#spinner {
+	position: fixed;
+	top:50%;
+	left:50%;
+	margin-left: -10px;
+	z-index: 100;
+	font-size: 20px;
+	display: none;
+}
+.loading {
+	#spinner {
+		display: block;
 	}
 }
 
@@ -42,7 +42,9 @@
 
 
 
-
+#login-form {
+	margin-top: 20%;
+}
 
 
 .dashboard-list {
@@ -91,6 +93,7 @@
 
 
 .sort-control {
+	display: none;
 	height: 15px;
 	.sort-control-up {
 		height: 15px;

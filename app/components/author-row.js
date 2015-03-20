@@ -1,6 +1,27 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	didInsertElement: function() {
+
+	},
+	resetForm: function() {
+		this.set("item.newAuthorForm.firstName", ''); 
+		this.set("item.newAuthorForm.lastName", '');
+		this.set("item.newAuthorForm.birthyear", ''); 
+		this.set("item.newAuthorForm.xaccount", ''); 
+		this.set("item.newAuthorForm.orcid", '');
+	},
+
+	newAuhtorFormVisible: function() {
+		var self = this;
+		if (this.get("item.transformedToNewAuthor") === true) {
+			this.resetForm();
+			Ember.run.later(function() {
+				self.$().find('#first-name').focus();
+			});
+		}
+ 	}.observes('item.transformedToNewAuthor'),
+
 	actions: {
 	    queryAuthors: function(query, deferred) {
 	      deferred.reject = function(reason) {
