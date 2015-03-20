@@ -4,11 +4,11 @@ export default Ember.View.extend({
 	shake: function() {
 	  	var l = 20;  
 	  	if (this.controller.get("error") !== "") {
-		  if (this.$(".panel")) {
+		  if (this.$("#login-form")) {
 		  	for( var i = 0; i < 10; i++ )   {
-				this.$(".panel").animate( { 'margin-left': "+=" + ( l = -l ) + 'px' }, 50);  
+				this.$("login-form").animate( { 'margin-left': "+=" + ( l = -l ) + 'px' }, 50);  
 		   	}
-		  };
+		  }
 		}
 	}.observes('controller.error'),
 
