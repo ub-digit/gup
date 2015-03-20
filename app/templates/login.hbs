@@ -2,19 +2,21 @@
   {{#if error}}
 
   {{/if}}
-  <div class="panel panel-default col-md-offset-4 col-md-4 col-lg-offset-4">
-    <div class="panel-body">
-  <form {{action 'authenticate' on='submit'}} role="form">
-    <div class="form-group">
-      <label for="identification" class="sr-only">X-konto</label>
-      {{input id="input-account" value=identification classBinding=":form-control :inputfield" placeholder='X-konto (exempel xrasto)'}}
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+          <form id="login-form" {{action 'authenticate' on='submit'}} role="form">
+            <div class="form-group">
+              <label for="identification" class="sr-only">X-konto</label>
+              {{input id="input-account" value=identification classBinding=":form-control :inputfield" placeholder='X-konto (exempel xrasto)'}}
+            </div>
+            <div class="form-group">
+              <label for="password" class="sr-only">Lösenord</label>
+              {{input id="input-password" value=password classBinding=":form-control" placeholder='Lösenord' type='password'}}
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Logga in</button>
+          </form>
     </div>
-    <div class="form-group">
-      <label for="password" class="sr-only">Lösenord</label>
-      {{input id="input-password" value=password classBinding=":form-control" placeholder='Lösenord' type='password'}}
-    </div>
-    <button class="btn btn-default btn-block" type="submit">Logga in</button>
-  </form>
   </div>
-  </div>
-</div>
+
+</div> <!-- container --> 
