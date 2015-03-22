@@ -284,3 +284,89 @@
       </span>
     </div>
   </div> <!-- end row -->
+
+  <!-- Dissertaion fields -->
+
+  <div id="diss-date" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.dissdate:has-error"}}>
+        <label class="control-label">Diss datum:</label>
+        {{input type='text' classBinding=":form-control" value=model.dissdate}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="diss-time" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.disstime:has-error"}}>
+        <label class="control-label">Diss tidpunkt:</label>
+        {{input type='text' classBinding=":form-control" value=model.disstime}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="diss-location" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.disslocation:has-error"}}>
+        <label class="control-label">Diss ställe:</label>
+        {{input type='text' classBinding=":form-control" value=model.disslocation}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="diss-opponent" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.dissopponent:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.dissopponent}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <!-- Patent fields -->
+
+  <div id="patent-applicant" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.patent_applicant:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.patent_applicant}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="patent-application-number" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.patent_application_number:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.patent_application_number}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="patent-application-date" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.patent_application_date:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.patent_application_date}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="patent-number" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.patent_number:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.patent_number}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
+  <div id="patent-date" {{bind-attr class=":row :bottom-spacing-20 getClassNameForSelectedPublicationTypeAndContentType"}}>
+    <div class="col-xs-12">
+      <span {{bind-attr class=":form-group errors.patent_date:has-error"}}>
+        <label class="control-label">Opponent:</label>
+        {{input type='text' classBinding=":form-control" value=model.patent_date}}
+      </span>
+    </div>
+  </div> <!-- end row -->
+
