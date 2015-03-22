@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 	resetForm: function() {
 		this.set("item.newAuthorForm.firstName", ''); 
 		this.set("item.newAuthorForm.lastName", '');
-		this.set("item.newAuthorForm.birthyear", ''); 
+		this.set("item.newAuthorForm.year_of_birth", ''); 
 		this.set("item.newAuthorForm.xaccount", ''); 
 		this.set("item.newAuthorForm.orcid", '');
 	},
@@ -55,7 +55,7 @@ export default Ember.Component.extend({
 	            alert("error");
 	        };
 	        //console.log(newAuthor.get('firstName'));
-	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'birthyear': item.newAuthorForm.get('birthyear'), 
+	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'), 
 	                            'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
 	    },
 	}
