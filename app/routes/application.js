@@ -24,7 +24,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	    },
 		sessionAuthenticationFailed: function(error) {
 			Ember.$('body').removeClass("loading");
-		    this.controllerFor('login').set('error', error);
+		    this.controllerFor('login').set('error', error.msg);
 		},
 	}
 });
