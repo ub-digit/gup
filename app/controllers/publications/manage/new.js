@@ -130,7 +130,7 @@ export default Ember.Controller.extend({
           id: this.generateUUID(),
           selectedAuthor: null, 
           selectedInstitution: null, 
-          newAuthorForm: Ember.Object.create({firstName: '', lastName: '', birthyear: '', xaccount: '', orcid: ''})
+          newAuthorForm: Ember.Object.create({firstName: '', lastName: '', year_of_birth: '', xaccount: '', orcid: ''})
         })
       );
     },
