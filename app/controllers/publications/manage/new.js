@@ -6,8 +6,18 @@ export default Ember.Controller.extend({
   selectedPublicationType: null,
   selectedContentType: null,
   showRegisterNewAuthor: false,
+  formIsVisible: false,
   authorArr: [],
 
+
+  formIsVisible: function() {  
+      if (this.get("selectedPublicationType") === null) {
+          return false;
+      }
+      else {
+        return true;
+      }
+  }.property('selectedPublicationType', 'selectedContentType'),
 
   updateModelWithCorrectPublicationType: function() {
     this.set("model.publication_type_id", this.get("selectedContentType"));

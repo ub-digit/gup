@@ -5,11 +5,13 @@ export default Ember.Component.extend({
 
 	},
 	resetForm: function() {
-		this.set("item.newAuthorForm.firstName", ''); 
-		this.set("item.newAuthorForm.lastName", '');
-		this.set("item.newAuthorForm.year_of_birth", ''); 
-		this.set("item.newAuthorForm.xaccount", ''); 
-		this.set("item.newAuthorForm.orcid", '');
+		if (this.get("item.newAuthorForm")) {
+			this.set("item.newAuthorForm.firstName", ''); 
+			this.set("item.newAuthorForm.lastName", '');
+			this.set("item.newAuthorForm.year_of_birth", ''); 
+			this.set("item.newAuthorForm.xaccount", ''); 
+			this.set("item.newAuthorForm.orcid", '');
+		}
 	},
 
 	newAuhtorFormVisible: function() {

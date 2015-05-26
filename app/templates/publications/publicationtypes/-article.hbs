@@ -129,7 +129,7 @@
 	</div> <!-- end row -->
 
 	<section id="author-component" {{bind-attr class="getClassNameForSelectedPublicationTypeAndContentType"}}>
-    <h3>Författare</h3>
+    	<h3>Författare</h3>
 		{{#each item in authorArr}}
 			{{author-row item=item institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow}}
 		{{/each}}
@@ -361,3 +361,5 @@
       </span>
     </div>
   </div> <!-- end row -->
+
+
