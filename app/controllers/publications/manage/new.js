@@ -134,6 +134,40 @@ export default Ember.Controller.extend({
   }.observes('selectedPublicationType'),
 
   actions: {
+    moveUp: function(id) {
+      // first find the item and its index
+      var curPos = null;
+      var temp = this.get("authorArr").find(function(item, index) {
+        if (item.id === id) {
+          curPos = index;
+          return true;
+        }
+      });
+      if (curPos > 0) {
+        var temp2 = this.get("authorArr").objectAt(curPos-1);
+        this.get("authorArr").removeAt(curPos);
+        this.get("authorArr").insertAt(curPos, temp2);
+        this.get("authorArr").removeAt(curPos-1);
+        this.get("authorArr").insertAt(curPos-1, temp);
+      }
+    },
+    moveDown: function(id) {
+        // first find the item and its index
+        var curPos = null;
+        var temp = this.get("authorArr").find(function(item, index) {
+          if (item.id === id) {
+            curPos = index;
+            return true;
+          }
+        });
+        if (curPos < (this.get("authorArr").length-1)) {
+          var temp2 = this.get("authorArr").objectAt(curPos+1);
+          this.get("authorArr").removeAt(curPos);
+          this.get("authorArr").insertAt(curPos, temp2);
+          this.get("authorArr").removeAt(curPos+1);
+          this.get("authorArr").insertAt(curPos+1, temp);
+        }
+    },
     addNewAuthorRow: function() {
       this.get("authorArr").addObject(
         Ember.Object.create({

@@ -34,6 +34,13 @@ export default Ember.Component.extend({
 	  
 	    },
 
+	    moveUpOne: function(id) {
+	    	this.sendAction('moveUp', id);
+	    },
+
+	    moveDownOne: function(id) {
+	    	this.sendAction('moveDown', id);
+	    },
 
 	    remove: function(id) {
 	    	this.sendAction('removeAuthor', id);
