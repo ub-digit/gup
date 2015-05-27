@@ -112,15 +112,16 @@ export default Ember.Controller.extend({
 
 
   getClassNameForSelectedPublicationTypeAndContentType: function() {
-    if (this.get('selectedPublicationType') === '- Välj -') {
+    if (this.get('selectedPublicationType') === null) {
       return "no-selection";
     }
     else {
-      return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
+      return this.get("selectedPublicationType");
+      //return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
    //   var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
    //   return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
     }
-   }.property('selectedPublicationType', 'selectedContentType'),
+   }.property('selectedPublicationType'),
   
   contentTypes: function() {
     return this.get('publicationTypes').filterBy('publication_type_code', this.get('selectedPublicationType'));

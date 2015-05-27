@@ -7,6 +7,7 @@
 		        value=selectedPublicationType
 		        optionValuePath="content.publication_type_code"
 		        optionLabelPath="content.publication_type_code"
+		        prompt='Välj'
 		    }}
 		</div>
 		<div class="col-xs-6">
@@ -187,16 +188,22 @@
 								{{input type='text' classBinding=":form-control" value=model.sourcepages}}
 						</span>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-2">
 						<span {{bind-attr class=":form-group errors.issn:has-error"}}>
 							<label class="control-label">ISSN:</label>
 								{{input type='text' classBinding=":form-control" value=model.issn}}
 						</span>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-2">
 						<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
 							<label class="control-label">EISSN:</label>
 								{{input type='text' classBinding=":form-control" value=model.eissn}}
+						</span>
+					</div>
+					<div class="col-xs-4">
+						<span {{bind-attr class=":form-group errors.article-number:has-error"}}>
+							<label class="control-label">Artikelnummer: (not yet in model)</label>
+								{{input type='text' classBinding=":form-control" value="tobedecided"}}
 						</span>
 					</div>
 				</div>

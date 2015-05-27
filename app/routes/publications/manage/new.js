@@ -9,7 +9,43 @@ export default Ember.Route.extend({
   },
   setupController: function(controller, models) {
     controller.set("model", models.publication);
-    controller.set("publicationTypes", models.publicationTypes);
+    var publication_types = [
+        {
+        id: 1,
+        publication_type_code: "article-in-scientific-journal",
+        content_type: "ref",
+        created_at: "2015-03-05T09:26:07.159Z",
+        updated_at: "2015-03-05T09:26:07.159Z",
+        label: "Artikel i vet. tidskrift"
+        },
+        {
+        id: 2,
+        publication_type_code: "scientific-overview-article",
+        content_type: "ovr",
+        created_at: "2015-03-05T09:26:07.170Z",
+        updated_at: "2015-03-05T09:26:07.170Z",
+        label: "Forskningsöversiktsartikel"
+        },
+        {
+        id: 3,
+        publication_type_code: "intro-text-in-journal",
+        content_type: "for",
+        created_at: "2015-03-05T09:26:07.176Z",
+        updated_at: "2015-03-05T09:26:07.176Z",
+        label: "Inledande text i tidskrift"
+        },
+        {
+        id: 4,
+        publication_type_code: "review",
+        content_type: "pop",
+        created_at: "2015-03-05T09:26:07.182Z",
+        updated_at: "2015-03-05T09:26:07.182Z",
+        label: "Recension"
+        },
+    ]
+
+    controller.set("publicationTypes", publication_types);
+
 
     var arr = [];
     controller.set('authors', arr);
@@ -410,16 +446,18 @@ export default Ember.Route.extend({
             author.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
             })
-            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.first_name}, selectedInstitution: departments}));
-        }) 
+            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.first_name}, selectedInstitution: departments, }));
+        });
+        controller.set('authorArr', tempAuthorArr);
     }
     else {
-        var guid = controller.generateUUID();
-        tempAuthorArr.push(Ember.Object.create({id: guid, selectedAuthor: null, selectedInstitution: null}));
+        controller.send('addNewAuthorRow');
+              /*  var guid = controller.generateUUID();
+        tempAuthorArr.push(Ember.Object.create({id: guid, selectedAuthor: null, selectedInstitution: null}));*/
     }
     
 
-    controller.set('authorArr', tempAuthorArr);
+    
 
   },
 
