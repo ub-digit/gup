@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
   selectedPublicationType: null,
   selectedContentType: null,
   showRegisterNewAuthor: false,
-  formIsVisible: false,
   authorArr: [],
 
 
