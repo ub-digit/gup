@@ -427,6 +427,7 @@ export default Ember.Route.extend({
     var controller = this.get("controller");
     controller.set('selectedContentType', null);
     controller.set('selectedPublicationType', null);
+    controller.set("authorArr", []);
   },
   actions: {
     save: function(model,is_draft) {
@@ -443,14 +444,14 @@ export default Ember.Route.extend({
             return false;
         };
         if (is_draft === 'draft'){
-            model.is_draft = true;
+            this.controller.set("publication.is_draft", true);
         }
         else {
-            model.is_draft = false;
+            this.controller.set("publication.is_draft", false);
         }
         Ember.$("body").addClass("loading");    
         this.get("controller").formatAuthorsForServer();
-        this.store.save('publication',model).then(successHandler, errorHandler);
+        this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
         this.controller.set('showMesgHeader', false);

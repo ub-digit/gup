@@ -25,7 +25,7 @@
 	<div id="title" {{bind-attr class=":row :bottom-spacing-20"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.title:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" label="Titel:" value=model.title}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" label="Titel:" value=publication.title}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -33,7 +33,7 @@
 	<div id="alt-title" {{bind-attr class=":row :bottom-spacing-20"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.alt_title:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" label="Alternativ titel:" value=model.alt_title}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" label="Alternativ titel:" value=publication.alt_title}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -41,7 +41,7 @@
 	<div id="abstract" {{bind-attr class=":row :bottom-spacing-20"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.abstract:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" label="Sammanfattning" value=model.abstract}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" label="Sammanfattning" value=publication.abstract}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -49,17 +49,17 @@
 	<div id="meta" {{bind-attr class=":row :bottom-spacing-20 "}}>
 		<div class="col-xs-2">
 			<span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" label="Publikationsår:" value=model.pubyear}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" label="Publikationsår:" value=publication.pubyear}}
 			</span>
 		</div>
 		<div class="col-xs-2">
 			<span {{bind-attr class=":form-group errors.publanguage:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" value=model.publanguage}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" value=publication.publanguage}}
 			</span>
 		</div>
 		<div class="col-xs-2">
 			<span {{bind-attr class=":form-group errors.category_hsv_local:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" value=model.category_hsv_local}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" value=publication.category_hsv_local}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -69,7 +69,7 @@
 	<div id="fulltext-link" {{bind-attr class=":row :bottom-spacing-20 "}}>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.url:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" label="Fulltextlänk:" value=model.url}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" label="Fulltextlänk:" value=publication.url}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -78,7 +78,7 @@
 	<div id="external-id" {{bind-attr class=":row :bottom-spacing-20 "}}>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.extid:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" label="Externa ID:" value=model.extid}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" label="Externa ID:" value=publication.extid}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -86,7 +86,7 @@
 	<div id="external-links" {{bind-attr class=":row :bottom-spacing-20"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.links:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" label="Externa länkar:" value=model.links}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" label="Externa länkar:" value=publication.links}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -95,7 +95,7 @@
 	<div id="keywords" {{bind-attr class=":row :bottom-spacing-20 "}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.keywords:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" label="Nyckelord:" value=model.keywords}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" label="Nyckelord:" value=publication.keywords}}
 			</span>
 		</div>
 	</div> <!-- end row -->
@@ -103,7 +103,7 @@
   <div id="project" {{bind-attr class=":row :bottom-spacing-20 "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.project:has-error"}}>
-			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="text" label="Projekt:" value=model.project}}
+			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="text" label="Projekt:" value=publication.project}}
 
 	      </span>
 	    </div>
@@ -112,11 +112,11 @@
 	<div id="notes" {{bind-attr class=":row :bottom-spacing-20 "}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.pub_notes:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" label="Kommentar:" value=model.pub_notes}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" label="Kommentar:" value=publication.pub_notes}}
 			</span>
 		</div>
 	</div> <!-- end row -->
-	{{#if authorComponentVisible}}
+	{{#if authorComponentIsVisible}}
 		<section id="author-component" {{bind-attr class=""}}>
 	    	<h3>Författare</h3>
 			{{#each item in authorArr}}
@@ -130,10 +130,10 @@
 			</div>
 		</section>
 	{{/if}}
-  <div id="source-title" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="source-title" {{bind-attr class=":row :bottom-spacing-20"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
-			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=model.sourcetitle}}
+			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=publication.sourcetitle}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -141,7 +141,7 @@
   <div id="source-pages" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-2">
       <span {{bind-attr class=":form-group errors.sourcepages:has-error"}}>
-			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=model.sourcepages}}
+			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=publication.sourcepages}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -152,37 +152,37 @@
 				<div class="row">
 					 <div class="col-xs-12 bottom-spacing-20">
 						<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=model.sourcetitle}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=publication.sourcetitle}}
 						</span>
 					 </div>
 					<div class="col-xs-1">
 						<span {{bind-attr class=":form-group errors.sourcevolume:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcevolume" type="text" label="Volym:" value=model.sourcevolume}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcevolume" type="text" label="Volym:" value=publication.sourcevolume}}
 						</span>
 					</div>
 					<div class="col-xs-1">
 						<span {{bind-attr class=":form-group errors.sourceissue:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourceissue" type="text" label="Nr:" value=model.sourceissue}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourceissue" type="text" label="Nr:" value=publication.sourceissue}}
 						</span>
 					</div>
 					<div class="col-xs-2">
 						<span {{bind-attr class=":form-group errors.sourcepages:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=model.sourcepages}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=publication.sourcepages}}
 						</span>
 					</div>
 					<div class="col-xs-2">
 						<span {{bind-attr class=":form-group errors.issn:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="text" label="ISSN:" value=model.issn}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="text" label="ISSN:" value=publication.issn}}
 						</span>
 					</div>
 					<div class="col-xs-2">
 						<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="text" label="EISSN:" value=model.eissn}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="text" label="EISSN:" value=publication.eissn}}
 						</span>
 					</div>
 					<div class="col-xs-4">
 						<span {{bind-attr class=":form-group errors.article-number:has-error"}}>
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text" label="Artikelnummer:" value=model.article_number}}
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text" label="Artikelnummer:" value=publication.article_number}}
 						</span>
 					</div>
 				</div>
@@ -195,7 +195,7 @@
   <div id="extent" {{bind-attr class=":row :bottom-spacing-20 "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.extent:has-error"}}>
-	        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" label="Omfång:" value=model.extent}}
+	        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" label="Omfång:" value=publication.extent}}
 	      </span>
 	    </div>
   </div> <!-- end row -->
@@ -203,7 +203,7 @@
   <div id="publisher" {{bind-attr class=":row :bottom-spacing-20 "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.publisher:has-error"}}>
-	        	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text" label="Förlag:" value=model.publisher}}
+	        	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text" label="Förlag:" value=publication.publisher}}
 	      </span>
 	    </div>
   </div> <!-- end row -->
@@ -211,7 +211,7 @@
   <div id="place" {{bind-attr class=":row :bottom-spacing-20"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.place:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text" label="Ort:" value=model.place}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text" label="Ort:" value=publication.place}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -219,7 +219,7 @@
   <div id="series" {{bind-attr class=":row :bottom-spacing-20"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.series:has-error"}}>
-		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="text" label="Serie:" value=model.series}}
+		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="text" label="Serie:" value=publication.series}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -227,7 +227,7 @@
   <div id="isbn" {{bind-attr class=":row :bottom-spacing-20"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.isbn:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" label="ISBN:" value=model.isbn}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" label="ISBN:" value=publication.isbn}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -235,7 +235,7 @@
   <div id="artwork-type" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.artwork_type:has-error"}}>
-		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text" label="Konstnärlig typ:" value=model.artwork_type}}
+		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text" label="Konstnärlig typ:" value=publication.artwork_type}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -243,7 +243,7 @@
   <div id="editor" {{bind-attr class=":row :bottom-spacing-20"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.editor:has-error"}}>
-       	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" label="Redaktör:" value=model.editor}}
+       	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" label="Redaktör:" value=publication.editor}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -253,7 +253,7 @@
   <div id="diss-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.dissdate:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" label="Diss datum:" value=model.dissdate}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" label="Diss datum:" value=publication.dissdate}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -261,7 +261,7 @@
   <div id="diss-time" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.disstime:has-error"}}>
-		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="disstime" type="text" label="Diss tidpunkt:" value=model.disstime}}
+		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="disstime" type="text" label="Diss tidpunkt:" value=publication.disstime}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -269,7 +269,7 @@
   <div id="diss-location" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.disslocation:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="disslocation" type="text" label="Diss ställe:" value=model.disslocation}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="disslocation" type="text" label="Diss ställe:" value=publication.disslocation}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -277,7 +277,7 @@
   <div id="diss-opponent" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.dissopponent:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" label="Opponent:" value=model.dissopponent}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" label="Opponent:" value=publication.dissopponent}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -287,7 +287,7 @@
   <div id="patent-applicant" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_applicant:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text" label="Patentsökare:" value=model.patent_applicant}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text" label="Patentsökare:" value=publication.patent_applicant}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -295,7 +295,7 @@
   <div id="patent-application-number" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_application_number:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" label="Ansökningsnummer:" value=model.patent_application_number}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" label="Ansökningsnummer:" value=publication.patent_application_number}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -303,7 +303,7 @@
   <div id="patent-application-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_application_date:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" label="Ansökningsdatum:" value=model.patent_application_date}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" label="Ansökningsdatum:" value=publication.patent_application_date}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -311,7 +311,7 @@
   <div id="patent-number" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_number:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" label="Patentnummer:" value=model.patent_number}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" label="Patentnummer:" value=publication.patent_number}}
       </span>
     </div>
   </div> <!-- end row -->
@@ -319,7 +319,7 @@
   <div id="patent-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_date:has-error"}}>
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" label="Patentdatum:" value=model.patent_date}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" label="Patentdatum:" value=publication.patent_date}}
       </span>
     </div>
   </div> <!-- end row -->

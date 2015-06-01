@@ -13,10 +13,9 @@ export default New.extend(AuthenticatedRouteMixin, {
 
   setupController: function(controller, models) {
     this._super(controller, models);
-    var publicationType = models.publicationTypes.findBy('id', models.publication.publication_type_id);
+    var publicationType = models.publicationTypes.findBy('code', models.publication.publication_type);
+    controller.set("selectedPublicationType", publicationType.code);
 
-    controller.set("selectedPublicationType", publicationType.publication_type_code);
-    controller.set("selectedContentType", publicationType.id);
 
   },
 

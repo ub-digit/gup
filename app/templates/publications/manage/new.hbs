@@ -12,19 +12,20 @@
 
 	<div class="row">
 	    <div class="col-xs-10">
-	    	
 	        {{partial 'publications/publicationtypes/-article'}}
-	        <div class="row">
-	          <div class="col-xs-12">
-	            <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
-	              <button class='btn btn-default'  {{action 'cancel'}}>Avbryt</button>
-	              {{#if model.is_draft}}
-	                <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
-	              {{/if}}
-	              <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
-	            </div>
-	          </div>
-	        </div>
+	        {{#if actionButtonsAreVisible}}
+		        <div class="row">
+		          <div class="col-xs-12">
+		            <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
+		              <button class='btn btn-default'  {{action 'cancel'}}>Avbryt</button>
+		              {{#if publication.is_draft}}
+		                <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
+		              {{/if}}
+		              <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
+		            </div>
+		          </div>
+		        </div>
+	       {{/if}}
 	    </div>
 	    <div class="col-xs-2">
 	    </div>

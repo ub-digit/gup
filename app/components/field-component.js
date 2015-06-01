@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   isVisible: function() {
     var rule = this.getConfigMetaForField();
     if (rule) {
-    	if (rule === "n/a") {
+    	if (rule === "na") {
     		return false;
     	}
     	else {
@@ -41,7 +41,7 @@ export default Ember.Component.extend({
     	}
     }
     else {
-    	false;
+    	return false;
     }
   }.property('selectedPublicationType'),
 

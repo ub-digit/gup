@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
         departments = [];
       }
     });
-    this.set("model.people", arr);
+    this.set("publication.people", arr);
   },
 
   generateUUID: function () {
@@ -95,14 +95,32 @@ export default Ember.Controller.extend({
     }
   }.property('showRegisterNewAuthor'),
 
-  authorComponentVisible: function() {
-      if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null)) {
+  isSelectedPublicationValid: function() {
+    if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }.property('selectedPublicationType'),
+
+  authorComponentIsVisible: function() {
+      if (this.get("isSelectedPublicationValid")) {
         return true;
       }
       else {
         return false;
       }
-  }.property('selectedContentType'),
+  }.property('selectedPublicationType'),
+
+  actionButtonsAreVisible: function() {
+      if (this.get("isSelectedPublicationValid")) {
+        return true;
+      }
+      else {
+        return false;
+      }
+  }.property('selectedPublicationType'),
 
 /*
   publicationTypeCodes: function(){
