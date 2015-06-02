@@ -5,9 +5,11 @@ export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null, 
+  mayBecomeOldSelectedPublicationType: null, 
   selectedContentType: null,
   showRegisterNewAuthor: false,
   authorArr: [],
+
 
   getConfigMetaForField: function(fieldName) {
      var fullObject = this.get("publicationTypes").findBy('code', this.get("selectedPublicationType"));
@@ -141,6 +143,16 @@ export default Ember.Controller.extend({
         return false;
       }
   }.property('selectedPublicationType'),
+
+  descriptionOfMayBecomeSelectedPublicationType: function() {
+    var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
+    if (fullObj) {
+      return fullObj.label + " - en massa andra detajler här som t ex hur denna typen är tänkt att användas." // description later
+    }
+    else {
+      return null;
+    }
+  }.property("mayBecomeSelectedPublicationType"),
   
   contentTypes: function() {
     return this.get('publicationTypes').filterBy('publication_type_code', this.get('selectedPublicationType'));
@@ -160,6 +172,7 @@ export default Ember.Controller.extend({
       }
     },
     resetSelectedPublicationType: function() {
+      this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));
       this.set("selectedPublicationType", null);
     },
 
@@ -216,9 +229,10 @@ export default Ember.Controller.extend({
         }
       });
     },
-
-
-
+    cancelChangePublicationType: function() {
+      this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
+    },
+    
     cancel: function() {     
         this.transitionTo('publications.manage.show', this.publication);
     },

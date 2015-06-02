@@ -1,8 +1,10 @@
 
 	{{#if selectPublicationTypeIsVisible}}
 		<div class="row ">
-			<div class="col-xs-8">
-				<form class="form-inline">
+			<div class="col-xs-2">
+			</div>
+			<div class="select-publication-type-box col-xs-8 center-content">
+				<form class="select-publication-type-dropdown form-inline">
 				  <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}></span>
 				    {{view Ember.Select classNames="form-control"
 				        content=publicationTypes
@@ -11,16 +13,27 @@
 				        optionLabelPath="content.label"
 				        prompt='Välj publikationstyp'
 				    }}
-				    <button class="btn btn-default" {{action 'setAsSelectedPublicationType'}}>Välj</button>
 				</form>
+				{{#if descriptionOfMayBecomeSelectedPublicationType}}
+					<div class="meta-description">
+						<i class="fa fa-info-circle"></i> {{descriptionOfMayBecomeSelectedPublicationType}}
+					</div>
+				{{/if}}
+				<div class="action-links">
+					{{#if mayBecomeOldSelectedPublicationType}}
+						<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>Avbryt</button>
+					{{/if}}
+					<button class="btn btn-primary" {{action 'setAsSelectedPublicationType'}}>Välj</button>
+				</div>
+			</div>
+			<div class="col-xs-2">
 			</div>
 		</div><!-- end row -->
 	{{/if}}
 
 
 	{{#if isSelectedPublicationValid}}
-		{{selectedPublicationType}}
-		<button class="btn btn-default" {{action 'resetSelectedPublicationType'}}>Byt publikationstyp</button>
+		{{selectedPublicationType}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>Byt publikationstyp</button>
 	{{/if}}
 
 	{{#if contentTypesAreVisible}}
@@ -37,7 +50,7 @@
 		</div><!-- end row -->
 	{{/if}}
 
-	<div id="title" {{bind-attr class=":row :"}}>
+	<div id="title" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.title:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" label="Titel:" value=publication.title}}
@@ -45,7 +58,7 @@
 		</div>
 	</div> <!-- end row -->
 	
-	<div id="alt-title" {{bind-attr class=":row :"}}>
+	<div id="alt-title" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.alt_title:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" label="Alternativ titel:" value=publication.alt_title}}
@@ -53,7 +66,7 @@
 		</div>
 	</div> <!-- end row -->
 
-	<div id="abstract" {{bind-attr class=":row :"}}>
+	<div id="abstract" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.abstract:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" label="Sammanfattning" value=publication.abstract}}

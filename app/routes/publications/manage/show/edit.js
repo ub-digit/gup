@@ -10,7 +10,6 @@ export default New.extend(AuthenticatedRouteMixin, {
       publicationTypes: this.store.find('publication_type')
     });
   },
-
   setupController: function(controller, models) {
     this._super(controller, models);
     var publicationType = models.publicationTypes.findBy('code', models.publication.publication_type);
@@ -25,6 +24,5 @@ export default New.extend(AuthenticatedRouteMixin, {
     this.send('refreshModel', model.id);
     this.transitionTo('publications.manage.show', model.id); 
   },
-
 });
 
