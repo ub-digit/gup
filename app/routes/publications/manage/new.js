@@ -411,7 +411,7 @@ export default Ember.Route.extend({
             author.departments.forEach(function(department) {
                 departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
             })
-            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.first_name}, selectedInstitution: departments, }));
+            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, last_name: author.last_name}, selectedInstitution: departments, }));
         });
         controller.set('authorArr', tempAuthorArr);
     }
@@ -428,6 +428,7 @@ export default Ember.Route.extend({
     controller.set('selectedContentType', null);
     controller.set('selectedPublicationType', null);
     controller.set("authorArr", []);
+    controller.set("mayBecomeSelectedPublicationType", null);
   },
   actions: {
     save: function(model,is_draft) {

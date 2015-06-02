@@ -4,9 +4,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
+  mayBecomeSelectedPublicationType: null, 
   selectedContentType: null,
   showRegisterNewAuthor: false,
   authorArr: [],
+
+
 
   getConfigMetaForField: function(fieldName) {
      var fullObject = this.get("publicationTypes").findBy('code', this.get("selectedPublicationType"));
@@ -122,6 +125,27 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
 
+  contentTypesAreVisible: function() {
+      if (this.get("isSelectedPublicationValid")) {
+        return true;
+      }
+      else {
+        return false;
+      }
+  }.property('selectedPublicationType'),
+
+
+  selectPublicationTypeIsVisible: function() {
+      if (!this.get("isSelectedPublicationValid")) {
+        return true;
+      }
+      else {
+        return false;
+      }
+  }.property('selectedPublicationType'),
+  
+
+
 /*
   publicationTypeCodes: function(){
     var found = {};
@@ -169,6 +193,15 @@ export default Ember.Controller.extend({
   }.observes('selectedPublicationType'),
 
   actions: {
+    setAsSelectedPublicationType: function() {
+      if (this.get("mayBecomeSelectedPublicationType")) {
+        this.set("selectedPublicationType", this.get("mayBecomeSelectedPublicationType"));
+      }
+    },
+    resetSelectedPublicationType: function() {
+      this.set("selectedPublicationType", null);
+    },
+
     moveUp: function(id) {
       // first find the item and its index
       var curPos = null;
