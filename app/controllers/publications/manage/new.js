@@ -5,10 +5,10 @@ export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null, 
+  mayBecomeOldSelectedPublicationType: null, 
   selectedContentType: null,
   showRegisterNewAuthor: false,
   authorArr: [],
-
 
 
   getConfigMetaForField: function(fieldName) {
@@ -143,43 +143,16 @@ export default Ember.Controller.extend({
         return false;
       }
   }.property('selectedPublicationType'),
-  
 
-
-/*
-  publicationTypeCodes: function(){
-    var found = {};
-    return this.get('publicationTypes').map(function(pubtype) {
-      if (found[pubtype.publication_type_code]) {
-        return null;
-      }
-      else {
-        found[pubtype.publication_type_code] = true;
-        return pubtype;
-      }
-    }).compact();
-
-  }.property('publicationTypes'),*/
-
-/*  formPartial: function() {
-    if (this.get('model')) {
-      this.set('model.publication_type_id', this.get('selectedContentType'));
-      var contentType = this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0);    
-    }
-  }.observes('selectedPublicationType', 'selectedContentType'),*/
-
-
-/*  getClassNameForSelectedPublicationTypeAndContentType: function() {
-    if (this.get('selectedPublicationType') === null) {
-      return "no-selection";
+  descriptionOfMayBecomeSelectedPublicationType: function() {
+    var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
+    if (fullObj) {
+      return fullObj.label + " - en massa andra detajler här som t ex hur denna typen är tänkt att användas." // description later
     }
     else {
-      return this.get("selectedPublicationType");
-      //return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
-   //   var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
-   //   return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
+      return null;
     }
-   }.property('selectedPublicationType'),*/
+  }.property("mayBecomeSelectedPublicationType"),
   
   contentTypes: function() {
     return this.get('publicationTypes').filterBy('publication_type_code', this.get('selectedPublicationType'));
@@ -199,6 +172,7 @@ export default Ember.Controller.extend({
       }
     },
     resetSelectedPublicationType: function() {
+      this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));
       this.set("selectedPublicationType", null);
     },
 
@@ -255,11 +229,12 @@ export default Ember.Controller.extend({
         }
       });
     },
-
-
-
+    cancelChangePublicationType: function() {
+      this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
+    },
+    
     cancel: function() {     
-        this.transitionTo('publications.manage.show', this.model);
+        this.transitionTo('publications.manage.show', this.publication);
     },
 
 

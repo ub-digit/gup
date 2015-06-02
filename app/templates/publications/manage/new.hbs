@@ -6,7 +6,11 @@
 
 	<div class="row bottom-spacing-20">
 		<div class="col-xs-12">
-			<h1>Registrera ny publikation</h1>
+	      {{#if selectPublicationTypeIsVisible}}
+	        <h1>Välj publikationstyp</h1>
+	      {{else}}
+	        <h1>Redigera publikation</h1>
+	      {{/if}}
 		</div>
 	</div>
 

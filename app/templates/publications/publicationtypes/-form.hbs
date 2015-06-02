@@ -1,8 +1,10 @@
 
 	{{#if selectPublicationTypeIsVisible}}
-		<div class="row bottom-spacing-20">
-			<div class="col-xs-8">
-				<form class="form-inline">
+		<div class="row ">
+			<div class="col-xs-2">
+			</div>
+			<div class="select-publication-type-box col-xs-8 center-content">
+				<form class="select-publication-type-dropdown form-inline">
 				  <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}></span>
 				    {{view Ember.Select classNames="form-control"
 				        content=publicationTypes
@@ -11,20 +13,31 @@
 				        optionLabelPath="content.label"
 				        prompt='Välj publikationstyp'
 				    }}
-				    <button class="btn btn-default" {{action 'setAsSelectedPublicationType'}}>Välj</button>
 				</form>
+				{{#if descriptionOfMayBecomeSelectedPublicationType}}
+					<div class="meta-description">
+						<i class="fa fa-info-circle"></i> {{descriptionOfMayBecomeSelectedPublicationType}}
+					</div>
+				{{/if}}
+				<div class="action-links">
+					{{#if mayBecomeOldSelectedPublicationType}}
+						<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>Avbryt</button>
+					{{/if}}
+					<button class="btn btn-primary" {{action 'setAsSelectedPublicationType'}}>Välj</button>
+				</div>
+			</div>
+			<div class="col-xs-2">
 			</div>
 		</div><!-- end row -->
 	{{/if}}
 
 
 	{{#if isSelectedPublicationValid}}
-		{{selectedPublicationType}}
-		<button class="btn btn-default" {{action 'resetSelectedPublicationType'}}>Byt publikationstyp</button>
+		{{selectedPublicationType}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>Byt publikationstyp</button>
 	{{/if}}
 
 	{{#if contentTypesAreVisible}}
-		<div class="row bottom-spacing-20">
+		<div class="row ">
 			<div class="col-xs-6">
 			  <label class="control-label">Innehållstyp:</label>
 			  {{view Ember.Select classNames="form-control"
@@ -37,7 +50,7 @@
 		</div><!-- end row -->
 	{{/if}}
 
-	<div id="title" {{bind-attr class=":row :bottom-spacing-20"}}>
+	<div id="title" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.title:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" label="Titel:" value=publication.title}}
@@ -45,7 +58,7 @@
 		</div>
 	</div> <!-- end row -->
 	
-	<div id="alt-title" {{bind-attr class=":row :bottom-spacing-20"}}>
+	<div id="alt-title" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.alt_title:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" label="Alternativ titel:" value=publication.alt_title}}
@@ -53,7 +66,7 @@
 		</div>
 	</div> <!-- end row -->
 
-	<div id="abstract" {{bind-attr class=":row :bottom-spacing-20"}}>
+	<div id="abstract" {{bind-attr class=":row"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.abstract:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" label="Sammanfattning" value=publication.abstract}}
@@ -61,7 +74,7 @@
 		</div>
 	</div> <!-- end row -->
 
-	<div id="meta" {{bind-attr class=":row :bottom-spacing-20 "}}>
+	<div id="meta" {{bind-attr class=":row : "}}>
 		<div class="col-xs-2">
 			<span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" label="Publikationsår:" value=publication.pubyear}}
@@ -81,7 +94,7 @@
 
 
 
-	<div id="fulltext-link" {{bind-attr class=":row :bottom-spacing-20 "}}>
+	<div id="fulltext-link" {{bind-attr class=":row : "}}>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.url:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" label="Fulltextlänk:" value=publication.url}}
@@ -90,7 +103,7 @@
 	</div> <!-- end row -->
 
 
-	<div id="external-id" {{bind-attr class=":row :bottom-spacing-20 "}}>
+	<div id="external-id" {{bind-attr class=":row : "}}>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.extid:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" label="Externa ID:" value=publication.extid}}
@@ -98,7 +111,7 @@
 		</div>
 	</div> <!-- end row -->
 
-	<div id="external-links" {{bind-attr class=":row :bottom-spacing-20"}}>
+	<div id="external-links" {{bind-attr class=":row :"}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.links:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" label="Externa länkar:" value=publication.links}}
@@ -107,7 +120,7 @@
 	</div> <!-- end row -->
 
 
-	<div id="keywords" {{bind-attr class=":row :bottom-spacing-20 "}}>
+	<div id="keywords" {{bind-attr class=":row : "}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.keywords:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" label="Nyckelord:" value=publication.keywords}}
@@ -115,7 +128,7 @@
 		</div>
 	</div> <!-- end row -->
 
-  <div id="project" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="project" {{bind-attr class=":row : "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.project:has-error"}}>
 			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="text" label="Projekt:" value=publication.project}}
@@ -124,7 +137,7 @@
 	    </div>
   </div> <!-- end row -->
 
-	<div id="notes" {{bind-attr class=":row :bottom-spacing-20 "}}>
+	<div id="notes" {{bind-attr class=":row : "}}>
 		<div class="col-xs-12">
 			<span {{bind-attr class=":form-group errors.pub_notes:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" label="Kommentar:" value=publication.pub_notes}}
@@ -137,7 +150,7 @@
 			{{#each item in authorArr}}
 				{{author-row item=item institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
 			{{/each}}
-			<div class="row bottom-spacing-20">
+			<div class="row ">
 				<div class="col-xs-12">
 					<div class="dotted-line"></div>
 					<button class="btn btn-primary" {{action 'addNewAuthorRow'}}>Lägg till författare <i class="fa fa-plus"></i></button>
@@ -145,7 +158,7 @@
 			</div>
 		</section>
 	{{/if}}
-  <div id="source-title" {{bind-attr class=":row :bottom-spacing-20"}}>
+  <div id="source-title" {{bind-attr class=":row :"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=publication.sourcetitle}}
@@ -153,7 +166,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="source-pages" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="source-pages" {{bind-attr class=":row : "}}>
     <div class="col-xs-2">
       <span {{bind-attr class=":form-group errors.sourcepages:has-error"}}>
 			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=publication.sourcepages}}
@@ -162,10 +175,10 @@
   </div> <!-- end row -->
 
 	<section id="magazine-details" {{bind-attr class=""}}>
-		<div class="row bottom-spacing-20">
+		<div class="row ">
 			<div class="col-xs-12">
 				<div class="row">
-					 <div class="col-xs-12 bottom-spacing-20">
+					 <div class="col-xs-12 ">
 						<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=publication.sourcetitle}}
 						</span>
@@ -207,7 +220,7 @@
 
 
 
-  <div id="extent" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="extent" {{bind-attr class=":row : "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.extent:has-error"}}>
 	        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" label="Omfång:" value=publication.extent}}
@@ -215,7 +228,7 @@
 	    </div>
   </div> <!-- end row -->
 
-  <div id="publisher" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="publisher" {{bind-attr class=":row : "}}>
 	    <div class="col-xs-12">
 	      <span {{bind-attr class=":form-group errors.publisher:has-error"}}>
 	        	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text" label="Förlag:" value=publication.publisher}}
@@ -223,7 +236,7 @@
 	    </div>
   </div> <!-- end row -->
 
-  <div id="place" {{bind-attr class=":row :bottom-spacing-20"}}>
+  <div id="place" {{bind-attr class=":row :"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.place:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text" label="Ort:" value=publication.place}}
@@ -231,7 +244,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="series" {{bind-attr class=":row :bottom-spacing-20"}}>
+  <div id="series" {{bind-attr class=":row :"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.series:has-error"}}>
 		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="text" label="Serie:" value=publication.series}}
@@ -239,7 +252,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="isbn" {{bind-attr class=":row :bottom-spacing-20"}}>
+  <div id="isbn" {{bind-attr class=":row :"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.isbn:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" label="ISBN:" value=publication.isbn}}
@@ -247,7 +260,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="artwork-type" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="artwork-type" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.artwork_type:has-error"}}>
 		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text" label="Konstnärlig typ:" value=publication.artwork_type}}
@@ -255,7 +268,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="editor" {{bind-attr class=":row :bottom-spacing-20"}}>
+  <div id="editor" {{bind-attr class=":row :"}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.editor:has-error"}}>
        	{{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" label="Redaktör:" value=publication.editor}}
@@ -265,7 +278,7 @@
 
   <!-- Dissertaion fields -->
 
-  <div id="diss-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="diss-date" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.dissdate:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" label="Diss datum:" value=publication.dissdate}}
@@ -273,7 +286,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="diss-time" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="diss-time" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.disstime:has-error"}}>
 		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="disstime" type="text" label="Diss tidpunkt:" value=publication.disstime}}
@@ -281,7 +294,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="diss-location" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="diss-location" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.disslocation:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="disslocation" type="text" label="Diss ställe:" value=publication.disslocation}}
@@ -289,7 +302,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="diss-opponent" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="diss-opponent" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.dissopponent:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" label="Opponent:" value=publication.dissopponent}}
@@ -299,7 +312,7 @@
 
   <!-- Patent fields -->
 
-  <div id="patent-applicant" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="patent-applicant" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_applicant:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text" label="Patentsökare:" value=publication.patent_applicant}}
@@ -307,7 +320,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="patent-application-number" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="patent-application-number" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_application_number:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" label="Ansökningsnummer:" value=publication.patent_application_number}}
@@ -315,7 +328,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="patent-application-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="patent-application-date" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_application_date:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" label="Ansökningsdatum:" value=publication.patent_application_date}}
@@ -323,7 +336,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="patent-number" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="patent-number" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_number:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" label="Patentnummer:" value=publication.patent_number}}
@@ -331,7 +344,7 @@
     </div>
   </div> <!-- end row -->
 
-  <div id="patent-date" {{bind-attr class=":row :bottom-spacing-20 "}}>
+  <div id="patent-date" {{bind-attr class=":row : "}}>
     <div class="col-xs-12">
       <span {{bind-attr class=":form-group errors.patent_date:has-error"}}>
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" label="Patentdatum:" value=publication.patent_date}}
