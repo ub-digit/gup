@@ -9,8 +9,6 @@ export default Ember.Controller.extend({
   showRegisterNewAuthor: false,
   authorArr: [],
 
-
-
   getConfigMetaForField: function(fieldName) {
      var fullObject = this.get("publicationTypes").findBy('code', this.get("selectedPublicationType"));
      if (fullObject) {
@@ -144,43 +142,6 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
   
-
-
-/*
-  publicationTypeCodes: function(){
-    var found = {};
-    return this.get('publicationTypes').map(function(pubtype) {
-      if (found[pubtype.publication_type_code]) {
-        return null;
-      }
-      else {
-        found[pubtype.publication_type_code] = true;
-        return pubtype;
-      }
-    }).compact();
-
-  }.property('publicationTypes'),*/
-
-/*  formPartial: function() {
-    if (this.get('model')) {
-      this.set('model.publication_type_id', this.get('selectedContentType'));
-      var contentType = this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0);    
-    }
-  }.observes('selectedPublicationType', 'selectedContentType'),*/
-
-
-/*  getClassNameForSelectedPublicationTypeAndContentType: function() {
-    if (this.get('selectedPublicationType') === null) {
-      return "no-selection";
-    }
-    else {
-      return this.get("selectedPublicationType");
-      //return this.get('publicationTypes').findBy('id', this.get('selectedContentType') || 0).form_template;
-   //   var names = this.get("selectedPublicationType") + '-' + this.get("selectedContentType");
-   //   return names.replace(/[!\"#$%&'\(\)\' '\\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '');
-    }
-   }.property('selectedPublicationType'),*/
-  
   contentTypes: function() {
     return this.get('publicationTypes').filterBy('publication_type_code', this.get('selectedPublicationType'));
   }.property('selectedPublicationType', 'publicationTypes'),
@@ -259,7 +220,7 @@ export default Ember.Controller.extend({
 
 
     cancel: function() {     
-        this.transitionTo('publications.manage.show', this.model);
+        this.transitionTo('publications.manage.show', this.publication);
     },
 
 

@@ -20,20 +20,11 @@ export default New.extend(AuthenticatedRouteMixin, {
     else {
       controller.set("selectedPublicationType", null);
     }
-    
-
-
   },
-
   handleSuccess: function(model) {
     this.send('refreshModel', model.id);
     this.transitionTo('publications.manage.show', model.id); 
   },
 
-  actions: {
-
-
-
-  }
 });
 
