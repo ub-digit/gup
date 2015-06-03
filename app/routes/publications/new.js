@@ -9,8 +9,8 @@ export default Ember.Route.extend({
   },
   setupController: function(controller, models) {
 
-   controller.set("publicationTypes", models.publicationTypes);
-   controller.set("publication", models.publication);
+    controller.set("publicationTypes", models.publicationTypes);
+    controller.set("publication", models.publication);
 
     var arr = [];
     controller.set('authors', arr);
@@ -396,32 +396,32 @@ export default Ember.Route.extend({
     arr2.push(Ember.Object.create({id: '1232', text: 'Zoologiska institutionen, zoofysiologi  [1988-2011]  1232'}));
     arr2.push(Ember.Object.create({id: '1231', text: 'Zoologiska institutionen, zoomorfologi  [1988-2011]  1231'}));
     controller.set('institutions', arr2);
-    
+
     if (models.publication) {
-        if (models.publication.people) {
-          if (models.publication.people.length > 0) {
-            var authors = models.publication.people;
-          }
+      if (models.publication.people) {
+        if (models.publication.people.length > 0) {
+          var authors = models.publication.people;
         }
+      }
     }
     var tempAuthorArr = [];
     if (authors) {
-        authors.forEach(function(author) {
-            var departments = [];
-            author.departments.forEach(function(department) {
-                departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
-            })
-            tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, last_name: author.last_name}, selectedInstitution: departments, }));
-        });
-        controller.set('authorArr', tempAuthorArr);
+      authors.forEach(function(author) {
+        var departments = [];
+        author.departments.forEach(function(department) {
+          departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
+        })
+        tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, last_name: author.last_name}, selectedInstitution: departments, }));
+      });
+      controller.set('authorArr', tempAuthorArr);
     }
     else {
-        controller.send('addNewAuthorRow');
+      controller.send('addNewAuthorRow');
     }
   },
 
   handleSuccess: function(model) {
-    this.transitionTo('publications.show', model.id);      
+    this.transitionTo('publications.show', model.id);
   },
   exit: function() {
     var controller = this.get("controller");
@@ -431,33 +431,27 @@ export default Ember.Route.extend({
     controller.set("mayBecomeSelectedPublicationType", null);
   },
   actions: {
-    save: function(model,is_draft) {
-        var that = this;
-        var successHandler = function(model) {
-            that.handleSuccess(model);
-            Ember.$("body").removeClass("loading");
-        };
-        var errorHandler = function(reason) {
-            that.controller.set('hasErrors', true);
-            that.controller.set('showMesgHeader', true);
-            that.controller.set('errors', reason.error.errors);
-            Ember.$("body").removeClass("loading");
-            return false;
-        };
-        if (is_draft === 'draft'){
-            this.controller.set("publication.is_draft", true);
-        }
-        else {
-            this.controller.set("publication.is_draft", false);
-        }
-        Ember.$("body").addClass("loading");    
-        this.get("controller").formatAuthorsForServer();
-        this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
-    },
-    hideMesgHeader: function() {
-        this.controller.set('showMesgHeader', false);
-        this.controller.set('hasErrors', false);
-        this.controller.set('errors',''); 
-    },
+    save: function(model, is_draft) {
+      var that = this;
+      var successHandler = function(model) {
+        that.handleSuccess(model);
+        Ember.$("body").removeClass("loading");
+      };
+      var errorHandler = function(reason) {
+        that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
+        that.controller.set('errors', reason.error.errors);
+        Ember.$("body").removeClass("loading");
+        return false;
+      };
+      if (is_draft === 'draft'){
+        this.controller.set("publication.is_draft", true);
+      }
+      else {
+        this.controller.set("publication.is_draft", false);
+      }
+      Ember.$("body").addClass("loading");
+      this.get("controller").formatAuthorsForServer();
+      this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
+    }
   }
 });

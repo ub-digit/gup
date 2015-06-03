@@ -2,12 +2,16 @@
 	<i class="fa fa-circle-o-notch fa-spin"></i>
 </div>
 
+<div class="container messages">
+	{{partial 'msgheader'}}
+</div>
+
 {{partial 'header'}}
 
 {{partial 'main-menu'}}
 
-{{partial 'mesgframe'}}
-
-{{outlet}}
+<div class="container">
+	{{outlet}}
+</div>
 
 {{partial 'footer'}}

@@ -14,7 +14,7 @@ export default New.extend(AuthenticatedRouteMixin, {
     this._super(controller, models);
     var publicationType = models.publicationTypes.findBy('code', models.publication.publication_type);
     if (publicationType) {
-      controller.set("selectedPublicationType", publicationType.code); 
+      controller.set("selectedPublicationType", publicationType.code);
     }
     else {
       controller.set("selectedPublicationType", null);
@@ -22,8 +22,8 @@ export default New.extend(AuthenticatedRouteMixin, {
   },
   handleSuccess: function(model) {
     this.send('refreshModel', model.id);
-    this.send('setMesgHeader', false, 'Sparande lyckades!');
-    this.transitionTo('publications.show', model.id); 
+    this.send('setMsgHeader', 'success', 'Posten har sparats.');
+    this.transitionTo('publications.show', model.id);
   },
-});
 
+});
