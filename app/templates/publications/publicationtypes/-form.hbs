@@ -88,12 +88,12 @@
 		</div>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.publanguage:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" value=publication.publanguage}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" errors=errors.publanguage value=publication.publanguage}}
 			</span>
 		</div>
 		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.category_hsv_local:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" value=publication.category_hsv_local}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" errors=errors.category_hsv_local value=publication.category_hsv_local}}
 			</span>
 		</div>
 	</div> <!-- end row -->
