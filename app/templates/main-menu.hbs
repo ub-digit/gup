@@ -3,14 +3,14 @@
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
-      {{#link-to 'publications.manage' class="navbar-brand"}}
+      {{#link-to 'publications.dashboard.drafts' class="navbar-brand"}}
       GUP 3
       {{/link-to}}
     </div>
     <ul class="nav navbar-nav">
       {{#if session.isAuthenticated}}
       <li>
-        {{#link-to 'publications.manage'}}Publikationer
+        {{#link-to 'publications.dashboard.drafts'}}Publikationer
         {{/link-to}}
       </li>
       {{/if}}
