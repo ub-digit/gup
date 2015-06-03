@@ -9,7 +9,7 @@
             {{#if item.title}}
             <div class="row">
               <div class="col-xs-12">
-                <div class="dashboard-list-header">{{#link-to 'publications.manage.show' item.pubid }}{{item.title}}{{/link-to}}</div>
+                <div class="dashboard-list-header">{{#link-to 'publications.show' item.pubid }}{{item.title}}{{/link-to}}</div>
               </div>
             </div>
             <div class="row">
@@ -17,7 +17,7 @@
             </div>
 
             {{else}}
-            <div class="dashboard-list-header">{{#link-to 'publications.manage.show' item.pubid }}Titel ej angiven{{/link-to}}</div>
+            <div class="dashboard-list-header">{{#link-to 'publications.show' item.pubid }}Titel ej angiven{{/link-to}}</div>
             {{/if}}
           </div>
           <div class="col-xs-2">

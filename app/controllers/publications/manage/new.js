@@ -155,8 +155,14 @@ export default Ember.Controller.extend({
   }.property("mayBecomeSelectedPublicationType"),
   
   contentTypes: function() {
-    return this.get('publicationTypes').filterBy('publication_type_code', this.get('selectedPublicationType'));
-  }.property('selectedPublicationType', 'publicationTypes'),
+      var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
+      if (currentlySelectedPublicationType) {
+        return currentlySelectedPublicationType.content_types;
+      }
+      else {
+        return null;
+      }
+  }.property('selectedPublicationType'),
  
   setDefaultContentType: function() {
     var contentType = this.get('publicationTypes').findBy('publication_type_code', this.get('selectedPublicationType'));    

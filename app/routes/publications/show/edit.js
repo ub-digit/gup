@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
-import New from 'gup/routes/publications/manage/new';
+import New from 'gup/routes/publications/new';
 
 export default New.extend(AuthenticatedRouteMixin, {
   model: function(params) {
@@ -22,7 +22,7 @@ export default New.extend(AuthenticatedRouteMixin, {
   },
   handleSuccess: function(model) {
     this.send('refreshModel', model.id);
-    this.transitionTo('publications.manage.show', model.id); 
+    this.transitionTo('publications.show', model.id); 
   },
 });
 
