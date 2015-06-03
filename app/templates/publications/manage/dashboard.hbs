@@ -1,40 +1,28 @@
-  <div class="row bottom-spacing-40">
-    <div class="col-xs-6 header">
-      <h1>Publikationer</h1>
-    </div>
-    <div class="col-xs-6">
-        <!-- Split button -->
-        <div class="btn-group pull-right">
-          {{#link-to 'publications.manage.new' class="btn btn-primary"}}Registera ny{{/link-to}}
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li>{{#link-to 'publications.manage.new'}}Registera ny{{/link-to}}</li>
-            <li>{{#link-to 'publications.manage.import'}}Importera publikation{{/link-to}}</li>
-            <li>{{#link-to 'publications.manage.fileimport'}}Importera från fil{{/link-to}}</li>
-          </ul>
-        </div>
+<div class="row bottom-spacing-40">
+  <div class="col-xs-6 header">
+    <h1>Publikationer</h1>
+  </div>
+  <div class="col-xs-6">
+    <!-- Split button -->
+    <div class="pull-right">
+      {{#link-to 'publications.manage.create' class="btn btn-primary"}}Registera ny{{/link-to}}
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <nav id="sub-nav">
-        <ul class="nav">
-          <li>{{#link-to 'publications.manage.dashboard.drafts'}}Utkast{{/link-to}}</li>
-          <li>{{#link-to 'publications.manage.dashboard.published'}}Publicerade{{/link-to}}</li>
-          <li>{{#link-to 'publications.manage.dashboard.touched'}}Registrerade/redigerade av mig{{/link-to}}</li>
-        </ul>
-      </nav>
-    </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <nav id="sub-nav">
+      <ul class="nav">
+        <li>{{#link-to 'publications.manage.dashboard.drafts'}}Utkast{{/link-to}}</li>
+        <li>{{#link-to 'publications.manage.dashboard.published'}}Publicerade{{/link-to}}</li>
+        <li>{{#link-to 'publications.manage.dashboard.touched'}}Registrerade/redigerade av mig{{/link-to}}</li>
+      </ul>
+    </nav>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-xs-10">
-      {{liquid-outlet}}
-    </div>
+<div class="row">
+  <div class="col-xs-10">
+    {{outlet}}
   </div>
-
-
-
+</div>

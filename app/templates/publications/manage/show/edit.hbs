@@ -6,23 +6,19 @@
 
   <div class="row bottom-spacing-20">
     <div class="col-xs-12">
-      <h1>Redigera publikation</h1>
+      {{#if selectPublicationTypeIsVisible}}
+        <h1>Välj publikationstyp</h1>
+      {{else}}
+        <h1>Redigera publikation</h1>
+      {{/if}}
+
     </div>
   </div>
 
   <div class="row">
       <div class="col-xs-10">
-          {{partial 'publications/publicationtypes/-article'}}
-
-          <div class="row">
-            <div class="col-xs-12">
-              <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
-                <button class='btn btn-default'  {{action 'cancel'}}>Avbryt</button>
-                <button class='btn btn-success'  {{action 'save' model 'draft'}}>Spara utkast</button>
-                <button class='btn btn-primary'  {{action 'save' model }}>Spara och publicera</button>
-              </div>
-            </div>
-          </div>
+          {{partial 'publications/publicationtypes/-form'}}
+          {{partial 'publications/manage/-actions-buttons-for-form'}}
       </div>
       <div class="col-xs-2">
       </div>

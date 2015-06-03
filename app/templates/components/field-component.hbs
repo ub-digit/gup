@@ -1,0 +1,16 @@
+
+{{#if isVisible}}
+	<label class="control-label">
+		{{label}} 
+		{{#if isMandatory}}
+		*
+		{{/if}}
+	</label>
+	{{#if isTypeText}}	
+			{{input classBinding=":form-control" value=value}}
+	{{else}}
+		{{#if isTypeTextarea}}
+			{{textarea classBinding=":form-control" value=value}}
+		{{/if}}
+	{{/if}}
+{{/if}}

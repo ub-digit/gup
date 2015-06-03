@@ -1,0 +1,10 @@
+<h1>välj pubtyp då da</h1>
+
+
+{{view Ember.Select classNames="form-control"
+    content=model
+    value=selectedPublicationType
+    optionValuePath="content.code"
+    optionLabelPath="content.label"
+    prompt='Välj'
+}}

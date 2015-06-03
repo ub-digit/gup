@@ -11,9 +11,9 @@ export default Ember.View.extend({
 	}.observes('controller.error'),
 
 
-	click: function(evt) {
-		if ((evt.target.id === "input-account") || (evt.target.id === "input-password")) {
-			this.controller.set("error", "");
-		}
-	}
+//click: function(evt) {
+//	if ((evt.target.id === "input-account") || (evt.target.id === "input-password")) {
+//		this.controller.set("error", "");
+//	}
+//}
 });
