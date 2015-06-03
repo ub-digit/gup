@@ -38,8 +38,8 @@ export default Ember.Controller.extend({
           Ember.$('body').removeClass("loading");
           that.set('error', error);
           that.set('importData', null);
-
         }
+
       );
     },
 
@@ -50,7 +50,7 @@ export default Ember.Controller.extend({
       this.store.save('publication', this.get('importData')).then(
 
         function(response) {
-          that.transitionToRoute('publications.manage.show', response.id);
+          that.transitionToRoute('publications.manage.show.edit', response.id);
 
         },
 
