@@ -6,7 +6,7 @@
 			<div class="select-publication-type-box col-xs-8 center-content">
 				<form class="select-publication-type-dropdown form-inline">
 				  <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}></span>
-				    {{view Ember.Select classNames="form-control"
+				    {{view "select" classNames="form-control"
 				        content=publicationTypes
 				        value=mayBecomeSelectedPublicationType
 				        optionValuePath="content.code"
@@ -40,7 +40,7 @@
 		<div class="row ">
 			<div class="col-xs-6">
 			  <label class="control-label">Innehållstyp:</label>
-			  {{view Ember.Select classNames="form-control"
+			  {{view "select" classNames="form-control"
 					content=contentTypes
 					value=selectedContentType
 					optionValuePath="content"
@@ -159,23 +159,8 @@
 			</div>
 		</section>
 	{{/if}}
-  <div id="source-title" {{bind-attr class=":row :"}}>
-    <div class="col-xs-12">
-      <span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
-			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" label="Publicerad i:" value=publication.sourcetitle}}
-      </span>
-    </div>
-  </div> <!-- end row -->
 
-  <div id="source-pages" {{bind-attr class=":row : "}}>
-    <div class="col-xs-2">
-      <span {{bind-attr class=":form-group errors.sourcepages:has-error"}}>
-			{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" label="Sidor:" value=publication.sourcepages}}
-      </span>
-    </div>
-  </div> <!-- end row -->
-
-	<section id="magazine-details" {{bind-attr class=""}}>
+<section id="magazine-details" {{bind-attr class=""}}>
 		<div class="row ">
 			<div class="col-xs-12">
 				<div class="row">
