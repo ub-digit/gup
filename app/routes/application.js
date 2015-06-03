@@ -26,5 +26,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			Ember.$('body').removeClass("loading");
 		    this.controllerFor('login').set('error', error.msg);
 		},
+        hideMesgHeader: function() {
+            this.controller.set('showMesgHeader', false);
+            this.controller.set('hasErrors', false);
+            this.controller.set('errors',''); 
+            this.controller.set('mesg',''); 
+        },
 	}
 });
