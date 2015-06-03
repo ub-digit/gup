@@ -3,12 +3,13 @@ import ENV from '../config/environment';
 
 export default Ember.Object.extend({
   endpoints: {
-    person: 		   {path: 'people', plural:'people'},
-    publication:	  { path: 'publications'	  },
-    publication_type: { path: 'publication_types' },
-    draft: { path: 'publications?drafts=true', plural: 'publications' },
-    import_data: { path: 'fetch_import_data', plural: 'publication'},
-    data_source: { path: 'data_sources'}
+    person: {path: 'people', plural:'people'},
+    department: {path: 'departments'},
+    publication: {path: 'publications'},
+    publication_type: {path: 'publication_types'},
+    draft: { path: 'publications?drafts=true', plural: 'publications'},
+    import_data: {path: 'fetch_import_data', plural: 'publication'},
+    data_source: {path: 'data_sources'}
   },
 
   sessionHeaders: function() {

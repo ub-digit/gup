@@ -7,7 +7,8 @@ export default New.extend(AuthenticatedRouteMixin, {
     var model = this.modelFor('publications.show');
     return RSVP.hash({
       publication: model,
-      publicationTypes: this.store.find('publication_type')
+      publicationTypes: this.store.find('publication_type'),
+      departments: this.store.find('department')
     });
   },
   setupController: function(controller, models) {
