@@ -440,7 +440,7 @@ export default Ember.Route.extend({
         var errorHandler = function(reason) {
             that.controller.set('hasErrors', true);
             that.controller.set('showMesgHeader', true);
-            that.controller.set('errors', reason.responseJSON.errors);
+            that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             return false;
         };
