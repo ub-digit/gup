@@ -1,9 +1,12 @@
 
 {{#if isVisible}}
 	<label class="control-label">
+		{{#if errors}}
+			{{error-feedback errors}}
+		{{/if}}	
 		{{label}} 
 		{{#if isMandatory}}
-		*
+		<span style="color:red">*</span>
 		{{/if}}
 	</label>
 	{{#if isTypeText}}	

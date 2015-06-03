@@ -22,6 +22,7 @@ export default New.extend(AuthenticatedRouteMixin, {
   },
   handleSuccess: function(model) {
     this.send('refreshModel', model.id);
+    this.send('setMesgHeader', false, 'Sparande lyckades!');
     this.transitionTo('publications.show', model.id); 
   },
 });
