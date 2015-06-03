@@ -43,9 +43,6 @@ export default Ember.Route.extend({
     }
   },
 
-  handleSuccess: function(model) {
-    this.transitionTo('publications.show', model.id);
-  },
   exit: function() {
     var controller = this.get("controller");
     controller.set('selectedContentType', null);
@@ -55,11 +52,12 @@ export default Ember.Route.extend({
   },
   actions: {
 
-    save: function(model,is_draft) {
+    save: function(model, is_draft) {
         var that = this;
         var successHandler = function(model) {
-            that.handleSuccess(model);
+            that.send('setMsgHeader', 'success', 'Posten har sparats.');
             Ember.$("body").removeClass("loading");
+            that.transitionTo('publications.show', model.id);            
         };
         var errorHandler = function(reason) {
             that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
@@ -79,12 +77,7 @@ export default Ember.Route.extend({
         Ember.$("body").addClass("loading");
         this.get("controller").formatAuthorsForServer();
         this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
-    },
-    hideMesgHeader: function() {
-        this.controller.set('showMesgHeader', false);
-        this.controller.set('hasErrors', false);
-        this.controller.set('errors','');
-    },
+    }
 
   }
 });
