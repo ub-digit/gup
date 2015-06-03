@@ -11,4 +11,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	afterModel: function() {
 		Ember.$("body").removeClass("loading");
 	},
+
+	actions: {
+
+		refreshModel: function() {
+
+			this.refresh();
+			
+		}
+
+	}
 });
