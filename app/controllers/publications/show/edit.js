@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import New from 'gup/controllers/publications/manage/new';
+import New from 'gup/controllers/publications/new';
 
 export default New.extend({
   

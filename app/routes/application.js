@@ -18,7 +18,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	actions: {
 		sessionAuthenticationSucceeded: function() {
 		//Ember.run.later(Ember.$('body').removeClass("loading"));
-			this.transitionTo("publications.manage.dashboard.drafts");
+			this.transitionTo("publications.dashboard.drafts");
 			Ember.run.later(function() {Ember.$('body').removeClass("loading")});
 	    //	return this._super();	
 	    },
