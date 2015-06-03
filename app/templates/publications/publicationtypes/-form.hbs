@@ -37,18 +37,23 @@
 	{{/if}}
 
 	{{#if contentTypesAreVisible}}
-		<div class="row ">
-			<div class="col-xs-6">
-			  <label class="control-label">Innehållstyp:</label>
-			  {{view Ember.Select classNames="form-control"
-					content=contentTypes
-					value=selectedContentType
-					optionValuePath="content"
-					optionLabelPath="content"
-					prompt='Välj innehållstyp'
-			  }}
-			</div>
-		</div><!-- end row -->
+		{{#unless selectedPublicationTypeHasNoContentType}}
+			{{#if selectedPublicationTypeHasNoOnlyOneContentType}}
+			{{else}}
+				<div class="row ">
+					<div class="col-xs-6">
+					  <label class="control-label">Innehållstyp:</label>
+					  {{view Ember.Select classNames="form-control"
+							content=contentTypes
+							value=publication.content_type
+							optionValuePath="content"
+							optionLabelPath="content"
+							prompt='Välj innehållstyp'
+					  }}
+					</div>
+				</div><!-- end row -->
+			{{/if}}
+		{{/unless}}
 	{{/if}}
 
 	<div id="title" {{bind-attr class=":row"}}>

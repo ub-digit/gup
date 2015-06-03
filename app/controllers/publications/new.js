@@ -164,8 +164,46 @@ export default Ember.Controller.extend({
      }
   }.property('selectedPublicationType'),
  
+  selectedPublicationTypeHasNoContentType: function() {
+    var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
+    if (currentlySelectedPublicationType) {
+      if (currentlySelectedPublicationType.content_types) {
+        if(currentlySelectedPublicationType.content_types.length >0) {
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+      else {
+        return true;
+      }
+    }
+  }.property("selectedPublicationType"),
+  
+  selectedPublicationTypeHasNoOnlyOneContentType: function() {
+    var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
+    if (currentlySelectedPublicationType) {
+      if (currentlySelectedPublicationType.content_types) {
+        if(currentlySelectedPublicationType.content_types.length === 1) {
+          this.set("publication.content_type", currentlySelectedPublicationType.content_types[0]);
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+  }.property('selectedPublicationType'), 
+
+
+
+
   setDefaultContentType: function() {
-    var contentType = this.get('publicationTypes').findBy('publication_type_code', this.get('selectedPublicationType'));    
+    var contentType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));    
     if (contentType) {
       this.set('selectedContentType', contentType.id);
     }
