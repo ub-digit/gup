@@ -37,18 +37,23 @@
 	{{/if}}
 
 	{{#if contentTypesAreVisible}}
-		<div class="row ">
-			<div class="col-xs-6">
-			  <label class="control-label">Innehållstyp:</label>
-			  {{view "select" classNames="form-control"
-					content=contentTypes
-					value=selectedContentType
-					optionValuePath="content"
-					optionLabelPath="content"
-					prompt='Välj innehållstyp'
-			  }}
-			</div>
-		</div><!-- end row -->
+		{{#unless selectedPublicationTypeHasNoContentType}}
+			{{#if selectedPublicationTypeHasNoOnlyOneContentType}}
+			{{else}}
+				<div class="row ">
+					<div class="col-xs-6">
+					  <label class="control-label">Innehållstyp:</label>
+					  {{view Ember.Select classNames="form-control"
+							content=contentTypes
+							value=publication.content_type
+							optionValuePath="content"
+							optionLabelPath="content"
+							prompt='Välj innehållstyp'
+					  }}
+					</div>
+				</div><!-- end row -->
+			{{/if}}
+		{{/unless}}
 	{{/if}}
 
 	<div id="title" {{bind-attr class=":row"}}>
@@ -75,20 +80,20 @@
 		</div>
 	</div> <!-- end row -->
 
-	<div id="meta" {{bind-attr class=":row : "}}>
-		<div class="col-xs-2">
-			<span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" label="Publikationsår:" value=publication.pubyear}}
-			</span>
+	<div id="meta" {{bind-attr class=":row"}}>
+		<div class="col-xs-4">
+				<span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
+					{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" label="Publikationsår:" errors=errors.pubyear value=publication.pubyear}}		
+				</span>
 		</div>
-		<div class="col-xs-2">
+		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.publanguage:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" value=publication.publanguage}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" label="Språk:" errors=errors.publanguage value=publication.publanguage}}
 			</span>
 		</div>
-		<div class="col-xs-2">
+		<div class="col-xs-4">
 			<span {{bind-attr class=":form-group errors.category_hsv_local:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" value=publication.category_hsv_local}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="text" label="Ämne:" errors=errors.category_hsv_local value=publication.category_hsv_local}}
 			</span>
 		</div>
 	</div> <!-- end row -->

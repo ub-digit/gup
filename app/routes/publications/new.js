@@ -431,27 +431,37 @@ export default Ember.Route.extend({
     controller.set("mayBecomeSelectedPublicationType", null);
   },
   actions: {
-    save: function(model, is_draft) {
-      var that = this;
-      var successHandler = function(model) {
-        that.handleSuccess(model);
-        Ember.$("body").removeClass("loading");
-      };
-      var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
-        that.controller.set('errors', reason.error.errors);
-        Ember.$("body").removeClass("loading");
-        return false;
-      };
-      if (is_draft === 'draft'){
-        this.controller.set("publication.is_draft", true);
-      }
-      else {
-        this.controller.set("publication.is_draft", false);
-      }
-      Ember.$("body").addClass("loading");
-      this.get("controller").formatAuthorsForServer();
-      this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
-    }
+
+    save: function(model,is_draft) {
+        var that = this;
+        var successHandler = function(model) {
+            that.handleSuccess(model);
+            Ember.$("body").removeClass("loading");
+        };
+        var errorHandler = function(reason) {
+            that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
+            that.controller.set('errors', reason.error.errors);
+            Ember.$("body").removeClass("loading");
+            Ember.run.later(function() {
+                Ember.$('[data-toggle="popover"]').popover();
+            });
+            return false;
+        };
+        if (is_draft === 'draft'){
+            this.controller.set("publication.is_draft", true);
+        }
+        else {
+            this.controller.set("publication.is_draft", false);
+        }
+        Ember.$("body").addClass("loading");
+        this.get("controller").formatAuthorsForServer();
+        this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
+    },
+    hideMesgHeader: function() {
+        this.controller.set('showMesgHeader', false);
+        this.controller.set('hasErrors', false);
+        this.controller.set('errors','');
+    },
+
   }
 });
