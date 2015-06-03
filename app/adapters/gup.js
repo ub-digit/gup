@@ -7,7 +7,8 @@ export default Ember.Object.extend({
     publication:	  { path: 'publications'	  },
     publication_type: { path: 'publication_types' },
     draft: { path: 'publications?drafts=true', plural: 'publications' },
-    import_data: { path: 'fetch_import_data', plural: 'publication'}
+    import_data: { path: 'fetch_import_data', plural: 'publication'},
+    data_source: { path: 'data_sources'}
   },
 
   sessionHeaders: function() {

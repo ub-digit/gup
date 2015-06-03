@@ -18,18 +18,19 @@
             <h2>Importera</h2>
             <p>Importera publikationsuppgifter från extern källa, tex PubMed, Scopus eller Web of Science.</p>
           </div>
-          <div class="create-icon-background" />          
+          <div class="create-icon-background" />
         </div>
-        <div class="row bottom-spacing-40">
+        <div class="row bottom-spacing-20">
           <div class="col-xs-12 center-content">
             <form class="form-inline">
               {{
                 view Ember.Select
                 classNames="form-control input-lg"
-                content=sources
+                content=dataSources
                 value=selectedSource
                 optionValuePath="content.value"
-                optionLabelPath="content.label" prompt="Välj källa"
+                optionLabelPath="content.label"
+                prompt="Välj källa"
               }}
               {{input class='form-control input-lg manageFields' value=sourceId placeholder="ID"}}
               <button {{action 'fetchSource'}} {{bind-attr class=":btn :btn-lg :btn-primary fetchButtonIsActive::disabled"}}>Hämta</button>
@@ -48,8 +49,13 @@
         {{#if importData}}
         <div class="row">
           <div class="col-xs-12">
-            <h5>{{importData.title}}</h5>
-            <h6>{{importData.author}}</h6>
+            <h4>Vill du importera följande post:</h4>
+            <dl class="dl-horizontal">
+              <dt>Titel:</dt>
+              <dd>{{importData.title}}</dd>
+              <dt>Författare:</dt>
+              <dd>{{importData.author}}</dd>
+            </dl>
           </div>
           <div class="row">
             <div class="col-xs-12 center-content">
