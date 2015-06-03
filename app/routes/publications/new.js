@@ -421,7 +421,7 @@ export default Ember.Route.extend({
   },
 
   handleSuccess: function(model) {
-    this.transitionTo('publications.manage.show', model.id);      
+    this.transitionTo('publications.show', model.id);      
   },
   exit: function() {
     var controller = this.get("controller");
@@ -435,21 +435,12 @@ export default Ember.Route.extend({
         var that = this;
         var successHandler = function(model) {
             that.handleSuccess(model);
-            that.controllerFor('application').set('hasErrors', false);
-            that.controllerFor('application').set('errors', '');
-            that.controllerFor('application').set('showMesgHeader', true);
-            if (is_draft) {
-                that.controllerFor('application').set('mesg', 'Du har nu sparat posten som utkast.');
-            } else {
-                that.controllerFor('application').set('mesg', 'Du har nu sparat och publicerat posten.');
-            }
             Ember.$("body").removeClass("loading");
         };
         var errorHandler = function(reason) {
-            that.controllerFor('application').set('hasErrors', true);
-            that.controllerFor('application').set('errors', 'reason.responseJSON.errors');
-            that.controllerFor('application').set('showMesgHeader', true);
-            that.controllerFor('application').set('mesg', '');
+            that.controller.set('hasErrors', true);
+            that.controller.set('showMesgHeader', true);
+            that.controller.set('errors', reason.responseJSON.errors);
             Ember.$("body").removeClass("loading");
             return false;
         };
@@ -464,9 +455,9 @@ export default Ember.Route.extend({
         this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
-        that.controller.set('showMesgHeader', false);
-        that.controller.set('hasErrors', false);
-        that.controller.set('errors',''); 
+        this.controller.set('showMesgHeader', false);
+        this.controller.set('hasErrors', false);
+        this.controller.set('errors',''); 
     },
   }
 });

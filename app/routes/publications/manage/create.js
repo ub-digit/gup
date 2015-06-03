@@ -3,6 +3,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
+
   model: function() {
 
     return Ember.RSVP.hash({dataSources: this.store.find("data_source")});

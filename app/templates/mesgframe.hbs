@@ -1,0 +1,31 @@
+<!-- 
+<div id="mesgdiv">
+  -->
+{{#unless showMesgHeader}}
+  <div class="alert neutral">
+    <h4>
+      <a href="#" class="btn btn-default btn-sm btninvisible" {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+    </h4>
+  </div>
+{{else}}
+  {{#if hasErrors}}
+  <div class="alert alert-danger">
+    <h4>{{errors}}
+      <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+    </h4>
+  </div>
+  {{else}}
+  <div class="alert alert-success">
+    <h4>{{mesg}}
+      <a href="#" class="btn btn-default btn-sm " {{action 'hideMesgHeader'}}><i class="fa fa-check last"></i>OK</a>
+    </h4>
+  </div>
+  {{/if}}
+{{/unless}}
+<!-- 
+  <span>Kolla på detta meddelandet väldigt noga för det här är viktiga grejer...</span>
+  <button {{action "showMesg" item}} id="showMesgBtn" class="btn btn-danger">clickme</button>
+</div>
+  -->
+
+
