@@ -477,7 +477,11 @@ export default Ember.Route.extend({
             that.controllerFor('application').set('hasErrors', false);
             that.controllerFor('application').set('errors', '');
             that.controllerFor('application').set('showMesgHeader', true);
-            that.controllerFor('application').set('mesg', 'fwe we fwe ');
+            if (is_draft) {
+                that.controllerFor('application').set('mesg', 'Du har nu sparat posten som utkast.');
+            } else {
+                that.controllerFor('application').set('mesg', 'Du har nu sparat och publicerat posten.');
+            }
             Ember.$("body").removeClass("loading");
         };
         var errorHandler = function(reason) {
@@ -489,14 +493,14 @@ export default Ember.Route.extend({
             return false;
         };
         if (is_draft === 'draft'){
-            model.is_draft = true;
+            this.controller.set("publication.is_draft", true);
         }
         else {
-            model.is_draft = false;
+            this.controller.set("publication.is_draft", false);
         }
         Ember.$("body").addClass("loading");    
         this.get("controller").formatAuthorsForServer();
-        this.store.save('publication',model).then(successHandler, errorHandler);
+        this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
     },
     hideMesgHeader: function() {
         that.controller.set('showMesgHeader', false);
