@@ -4,13 +4,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
       {{#link-to 'publications.dashboard.drafts' class="navbar-brand"}}
-      GUP 3
+      {{t 'mainMenu.applicationName'}}
       {{/link-to}}
     </div>
     <ul class="nav navbar-nav">
       {{#if session.isAuthenticated}}
       <li>
-        {{#link-to 'publications'}}Publikationer
+        {{#link-to 'publications'}}{{t 'mainMenu.publications'}}
         {{/link-to}}
       </li>
       {{/if}}
@@ -21,8 +21,10 @@
       <p><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logga ut</a></small>)</p>                
       {{else}}
       {{/if}}
-
-    </div><!-- /.container -->    
-  </div>
+    </div>
+    <div class="lang-switch pull-right">
+      <a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a>
+    </div>
+  </div><!-- /.container -->    
 </nav>
 

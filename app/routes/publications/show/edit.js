@@ -17,7 +17,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     var arr = [];
     controller.set('authors', arr);
 
-    console.log('departments', models.departments);
+
 
     controller.set('institutions', models.departments);
 
