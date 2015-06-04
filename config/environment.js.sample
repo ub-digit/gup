@@ -19,16 +19,29 @@ module.exports = function(environment) {
     }
   };
 
+  // config/environment.js
+  ENV.contentSecurityPolicy = {      
+      'style-src': "'self' 'unsafe-inline'",
+      //'font-src': "'self' https://webresources.gu.se"
+  }
+
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy'; 
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
+  //  ENV.APP.serviceURL = 'http://gup-publications-test.ub.gu.se';//'<backend server name, eg http://gup-publications-test.ub.gu.se>';
+    ENV.APP.serviceURL =  'http://guppi-test.ub.gu.se/v1';//'http://130.241.17.243:3030'; //'http://guppi-test.ub.gu.se'; //'http://130.241.17.243:3030';// //  <backend server name, eg http://gup-publications-test.ub.gu.se>';
+    ENV.APP.authenticationBaseURL = 'http://guppi-test.ub.gu.se/session'; //http://guppi-test.ub.gu.se/session
 
-    ENV.APP.serviceURL = '<backend server name, eg http://gup-publications-test.ub.gu.se>';
-    ENV.APP.authenticationBaseURL = '<backend server name, eg http://gup-publications-test.ub.gu.se/session>';
 
+
+    ENV['simple-auth'] = {
+        serverTokenRevocationEndpoint: '/revoke'
+      };
   }
 
   if (environment === 'test') {
@@ -45,12 +58,10 @@ module.exports = function(environment) {
 
   if (environment === 'production-live') {
     ENV.APP.serviceURL = '<backend live server name>';  
-    ENV.APP.authenticationBaseURL = '<backend live authentication server name>';  
   }
 
   if (environment === 'production-test') {
     ENV.APP.serviceURL = '<backend test server name>';  
-    ENV.APP.authenticationBaseURL = '<backend test authentication server name>';  
   }
 
   return ENV;
