@@ -36,21 +36,17 @@ export default Ember.Controller.extend({
       );
     },
 
-    import: function() {
-
+    createPublication: function(model) {
       var that = this;
-
-      this.store.save('publication', this.get('importData')).then(
-
+      var publication = {};
+      if (model) {
+        publication = model;
+      }
+      this.store.save('publication', publication).then(
         function(response) {
           that.transitionToRoute('publications.show.edit', response.id);
-
         },
-
         function(error) {
-
-
-
         }
       );
     }
