@@ -4,26 +4,30 @@
 			<div class="col-xs-2">
 			</div>
 			<div class="select-publication-type-box col-xs-8 center-content">
-				<form class="select-publication-type-dropdown form-inline">
-				  <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}></span>
-				    {{view "select" classNames="form-control"
-				        content=publicationTypes
-				        value=mayBecomeSelectedPublicationType
-				        optionValuePath="content.code"
-				        optionLabelPath="content.label"
-				        prompt='Välj publikationstyp'
-				    }}
-				</form>
-				{{#if descriptionOfMayBecomeSelectedPublicationType}}
-					<div class="meta-description">
-						<i class="fa fa-info-circle"></i> {{descriptionOfMayBecomeSelectedPublicationType}}
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form class="select-publication-type-dropdown form-inline">
+						  <span {{bind-attr class=":form-group errors.publication_type_id:has-error"}}></span>
+						    {{view "select" classNames="form-control"
+						        content=publicationTypes
+						        value=mayBecomeSelectedPublicationType
+						        optionValuePath="content.code"
+						        optionLabelPath="content.label"
+						        prompt='Välj publikationstyp'
+						    }}
+						</form>
+						{{#if descriptionOfMayBecomeSelectedPublicationType}}
+							<div class="meta-description">
+								<i class="fa fa-info-circle"></i> {{descriptionOfMayBecomeSelectedPublicationType}}
+							</div>
+						{{/if}}
+						<div class="action-links">
+							{{#if mayBecomeOldSelectedPublicationType}}
+								<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>Avbryt</button>
+							{{/if}}
+							<button class="btn btn-primary btn-lg" {{action 'setAsSelectedPublicationType'}}>Välj</button>
+						</div>
 					</div>
-				{{/if}}
-				<div class="action-links">
-					{{#if mayBecomeOldSelectedPublicationType}}
-						<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>Avbryt</button>
-					{{/if}}
-					<button class="btn btn-primary" {{action 'setAsSelectedPublicationType'}}>Välj</button>
 				</div>
 			</div>
 			<div class="col-xs-2">

@@ -58,13 +58,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('selectedPublicationType', null);
     controller.set("authorArr", []);
     controller.set("mayBecomeSelectedPublicationType", null);
+    controller.set('errors', null);
   },
-  handleSuccess: function(model) {
-    this.send('refreshModel', model.id);
-    this.send('setMsgHeader', 'success', 'Posten har sparats.');
-    this.transitionTo('publications.show', model.id);
-  },
-
 
   actions: {
     save: function(model, is_draft) {
@@ -72,6 +67,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         var successHandler = function(model) {
             that.send('setMsgHeader', 'success', 'Posten har sparats.');
             Ember.$("body").removeClass("loading");
+            that.send('refreshModel', model.id);
             that.transitionTo('publications.show', model.id);            
         };
         var errorHandler = function(reason) {
