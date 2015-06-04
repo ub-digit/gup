@@ -64,7 +64,10 @@ export default Ember.Route.extend({
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {
-                Ember.$('[data-toggle="popover"]').popover();
+                Ember.$('[data-toggle="popover"]').popover({
+                    placement: 'top',
+                    html: true
+                });
             });
             return false;
         };
