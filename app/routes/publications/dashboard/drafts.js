@@ -13,11 +13,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 
 	actions: {
-
 		refreshModel: function() {
-
 			this.refresh();
-			
 		}
 
 	}
