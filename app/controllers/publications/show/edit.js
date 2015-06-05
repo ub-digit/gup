@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
         if (author.selectedInstitution) {
           if (author.selectedInstitution.length > 0) {
               author.selectedInstitution.forEach(function(department) {
-              departments.push({id: department.id, name: department.text});
+              departments.push({id: department.id, name: department.name});
             });
           }
           else {
