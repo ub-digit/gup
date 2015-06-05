@@ -33,7 +33,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       authors.forEach(function(author) {
         var departments = [];
         author.departments.forEach(function(department) {
-          departments.push(Ember.Object.create({id: controller.generateUUID(), text: department.name}));
+          departments.push(Ember.Object.create({id: department.id, name: department.name}));
         })
         tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, last_name: author.last_name}, selectedInstitution: departments, }));
       });
