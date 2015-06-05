@@ -21,7 +21,7 @@ export default {
   },
   text: {
     youHaveNoDrafts: 'You have no drafts.',
-    youHaveNoPublications: 'Du har inga publikationer.',
+    youHaveNoPublications: 'You have no publications.',
     youHaveNoRegisteredOrEditedPublications: 'You have no registered or edited publications.',
     drafts: 'Drafts',
     published: 'Published',

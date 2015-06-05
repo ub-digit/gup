@@ -21,8 +21,8 @@ export default {
   },
   text: {
     youHaveNoDrafts: 'Du har inga utkast.',
-    youHaveNoRegisteredOrEditedPublications: 'Du har inga registrerat eller redigerat några publikationer.',
     youHaveNoPublications: 'Du har inga publikationer.',
+    youHaveNoRegisteredOrEditedPublications: 'Du har inga registrerat eller redigerat några publikationer.',
     drafts: 'Utkast',
     published: 'Publicerade',
     registeredOrEditedByMe: 'Registrerade/redigerade av mig'
