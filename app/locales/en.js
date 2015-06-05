@@ -21,10 +21,11 @@ export default {
   },
   text: {
     youHaveNoDrafts: 'You have no drafts.',
+    youHaveNoPublications: 'Du har inga publikationer.',
+    youHaveNoRegisteredOrEditedPublications: 'You have no registered or edited publications.',
     drafts: 'Drafts',
     published: 'Published',
-    registeredOrEditedByMe: 'Registered/edited by me',
-    youHaveNoRegisteredOrEditedPublications: 'You have no registered or edited publications.'
+    registeredOrEditedByMe: 'Registered/edited by me'
   },
   labels: {
     registerNew: 'Register New'
