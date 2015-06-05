@@ -32,12 +32,14 @@ fi
 # Sets the remote domain and location based on the following standards:
 # Location: production: /apps/appName/, test: /apps/test/appName
 # Domain name: production: appName.topDomain, test: appName-test.topDomain
-if ! $environment == 'production'; then
-  remote_app_location="/apps/$environment/$appname"
-  app_domain_name="$app_domain_name-$environment.$top_domain"
-else
+if [ "$environment" == "production" ]; then
+  echo "Deploying to production environment."
   remote_app_location="/apps/$appname"
   app_domain_name="$app_domain_name.$top_domain"
+else
+  echo "Deploying to ${environment} environment."
+  remote_app_location="/apps/$environment/$appname"
+  app_domain_name="$app_domain_name-$environment.$top_domain"
 fi
 
 
