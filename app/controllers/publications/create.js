@@ -2,21 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  sources: [
-    {value:'pubmed', label:'PubMed'},
-    {value:'gupea',  label:'GUPEA'},
-    {value:'scopus', label:'Scopus'},
-    {value:'libris', label:'Libris'}
-  ],
-
   selectedSource: null,
-  sourceId: null,
-
+  sourceId: null,  
   error: null,
   importData: null,
 
-  // utöka kollen så att den innefattar även sources
-  fetchButtonIsActive: Ember.computed.notEmpty('sourceId'),
+  fetchButtonIsActive: Ember.computed('selectedSource', 'sourceId', function() {
+    return (this.get('selectedSource') && this.get('sourceId'));
+  }),
 
   actions: {
 
@@ -43,21 +36,17 @@ export default Ember.Controller.extend({
       );
     },
 
-    import: function() {
-
+    createPublication: function(model) {
       var that = this;
-
-      this.store.save('publication', this.get('importData')).then(
-
+      var publication = {};
+      if (model) {
+        publication = model;
+      }
+      this.store.save('publication', publication).then(
         function(response) {
           that.transitionToRoute('publications.show.edit', response.id);
-
         },
-
         function(error) {
-
-
-
         }
       );
     }

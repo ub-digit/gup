@@ -15,28 +15,33 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
 
-       actions: {
-         sessionAuthenticationSucceeded: function() {
-           //Ember.run.later(Ember.$('body').removeClass("loading"));
-           this.transitionTo("publications.dashboard.drafts");
-           Ember.run.later(function() {Ember.$('body').removeClass("loading")});
-           //	return this._super();	
-         },
-         sessionAuthenticationFailed: function(error) {
-           Ember.$('body').removeClass("loading");
-           this.controllerFor('login').set('error', error.msg);
-         },
-         hideMesgHeader: function() {
-           this.controller.set('showMesgHeader', false);
-           this.controller.set('hasErrors', false);
-           this.controller.set('errors',''); 
-           this.controller.set('mesg',''); 
-         },
-         setMesgHeader: function(hasErrors, mesg, errors){
-           this.controller.set('showMesgHeader', true);
-           this.controller.set('hasErrors', hasErrors);
-           this.controller.set('mesg', mesg);
-           this.controller.set('errors', errors);
-         }
-       }
+  actions: {
+    sessionAuthenticationSucceeded: function() {
+      //Ember.run.later(Ember.$('body').removeClass("loading"));
+      this.transitionTo("publications.dashboard.drafts");
+      Ember.run.later(function() {Ember.$('body').removeClass("loading")});
+      //	return this._super();
+    },
+    sessionAuthenticationFailed: function(error) {
+      Ember.$('body').removeClass("loading");
+      this.controllerFor('login').set('error', error.msg);
+    },
+    hideMsgHeader: function() {
+      this.controller.set('showMsgHeader', false);
+      this.controller.set('hasErrors', false);
+      this.controller.set('errors','');
+      this.controller.set('mesg','');
+    },
+    setMsgHeader: function(type, msg){
+      this.controller.set('showMsgHeader', true);
+      this.controller.set('msgType', type);
+      this.controller.set('msg', msg);
+
+      var that = this;
+
+      Ember.run.later(function() {
+        that.send('hideMsgHeader');
+      }, 4000);
+    }
+  }
 });

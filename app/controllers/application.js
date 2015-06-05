@@ -1,15 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    showMesg: function(newmesg) {
-        newmesg = 'asdasd';
-        $("#mesgdiv").find('span').html(newmesg);
-        $("#mesgdiv").css("visibility", "visible");
-    },
-    hideMesg: function() {
-        $("#mesgdiv").find('span').html('');
-        $("#mesgdiv").css("visibility", "hidden");
-    },
 
+  isError: Ember.computed.equal('msgType', 'error'),
+  actions: {
+  	toggleLang: function() {
+  		var set = Ember.set;
+		var application = this.container.lookup('application:main');
 
+		if (!application.locale) {
+			set(application, 'locale', application.get('defaultLocale'))
+		}
+
+		if (application.locale === 'sv') {
+			set(application, 'locale', 'en');
+		}
+		else {
+			set(application, 'locale', 'sv');
+		}
+		
+  	}
+  }
 });

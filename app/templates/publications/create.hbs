@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col-xs-12">
             <h4>Vill du importera följande post:</h4>
-            <dl class="dl-horizontal">
+            <dl>
               <dt>Titel:</dt>
               <dd>{{importData.title}}</dd>
               <dt>Författare:</dt>
@@ -59,7 +59,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12 center-content">
-              <button {{action 'import'}} class="btn btn-lg btn-success">Importera</button>
+              <button {{action 'createPublication' importData}} class="btn btn-lg btn-success">Importera</button>
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@
         <p>Skapa en ny publikation och mata in informationen manuellt.</p>
       </div>
       <div class="col-xs-4">
-        {{#link-to 'publications.new'class="btn btn-primary"}}Skapa ny{{/link-to}}
+        <button class="btn btn-primary" {{action 'createPublication'}}>Skapa ny</button>
       </div>
     </div>
   </div>

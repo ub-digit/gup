@@ -16,6 +16,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      defaultLocale: 'sv'
     }
   };
 
@@ -26,8 +27,22 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.serviceURL = '<backend server name, eg http://gup-publications-test.ub.gu.se>';
-    ENV.APP.authenticationBaseURL = '<backend server name, eg http://gup-publications-test.ub.gu.se/session>';
+    ENV.APP.serviceURL = 'https://backend-server/v1';
+    ENV.APP.authenticationBaseURL = 'https://backend-server/session';
+
+    ENV.contentSecurityPolicy = {
+     'default-src': "'none'",
+     'script-src': "'self' my-own-hostname",
+     'font-src': "'self' fonts.gstatic.com",
+     'img-src': "'self'",
+     'style-src': "'self' fonts.googleapis.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+     'report-uri': "/"
+    };
+
+    ENV['simple-auth'] = {
+        serverTokenRevocationEndpoint: '/revoke'
+    };
 
   }
 
@@ -44,13 +59,23 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production-live') {
-    ENV.APP.serviceURL = '<backend live server name>';  
-    ENV.APP.authenticationBaseURL = '<backend live authentication server name>';  
+    ENV.APP.serviceURL = 'https://guppi.ub.gu.se/v1';
+    ENV.APP.authenticationBaseURL = 'https://guppi.ub.gu.se/session';
+
+    ENV.contentSecurityPolicy = {
+     'font-src': "'self' fonts.gstatic.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+    };
   }
 
   if (environment === 'production-test') {
-    ENV.APP.serviceURL = '<backend test server name>';  
-    ENV.APP.authenticationBaseURL = '<backend test authentication server name>';  
+    ENV.APP.serviceURL = 'https://guppi-test.ub.gu.se/v1';
+    ENV.APP.authenticationBaseURL = 'https://guppi-test.ub.gu.se/session';
+
+    ENV.contentSecurityPolicy = {
+     'font-src': "'self' fonts.gstatic.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+    };
   }
 
   return ENV;

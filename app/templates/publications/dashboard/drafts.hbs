@@ -13,7 +13,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-12"><strong>Författare:</strong> {{item.author}}</div>
+              <div class="col-xs-12"><strong>{{t 'publication.labels.createdAt'}}:</strong> {{format-date item.created_at}}</div>
             </div>
 
             {{else}}
@@ -30,7 +30,7 @@
       {{/each}}
     </ul>
     {{else}}
-    Du har inga utkast.
+    {{t 'text.youHaveNoDrafts'}}
     {{/if}}
   </div>
 </div>

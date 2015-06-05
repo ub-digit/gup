@@ -1,11 +1,11 @@
 <div class="row bottom-spacing-40">
   <div class="col-xs-6 header">
-    <h1>Publikationer</h1>
+    <h1>{{t 'publication.labels.publications'}}</h1>
   </div>
   <div class="col-xs-6">
     <!-- Split button -->
     <div class="pull-right">
-      {{#link-to 'publications.create' class="btn btn-primary"}}Registera ny{{/link-to}}
+      {{#link-to 'publications.create' class="btn btn-primary"}}{{t 'labels.registerNew'}}{{/link-to}}
     </div>
   </div>
 </div>
@@ -13,9 +13,9 @@
   <div class="col-xs-12">
     <nav id="sub-nav">
       <ul class="nav">
-        <li>{{#link-to 'publications.dashboard.drafts'}}Utkast{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.published'}}Publicerade{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.touched'}}Registrerade/redigerade av mig{{/link-to}}</li>
+        <li>{{#link-to 'publications.dashboard.drafts'}}{{t 'text.drafts'}}{{/link-to}}</li>
+        <li>{{#link-to 'publications.dashboard.published'}}{{t 'text.published'}}{{/link-to}}</li>
+        <li>{{#link-to 'publications.dashboard.touched'}}{{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
       </ul>
     </nav>
   </div>
