@@ -16,32 +16,34 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      defaultLocale: 'sv'
     }
   };
-
-  // config/environment.js
-  ENV.contentSecurityPolicy = {      
-      'style-src': "'self' 'unsafe-inline'",
-      //'font-src': "'self' https://webresources.gu.se"
-  }
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy'; 
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
-  //  ENV.APP.serviceURL = 'http://gup-publications-test.ub.gu.se';//'<backend server name, eg http://gup-publications-test.ub.gu.se>';
-    ENV.APP.serviceURL =  'http://guppi-test.ub.gu.se/v1';//'http://130.241.17.243:3030'; //'http://guppi-test.ub.gu.se'; //'http://130.241.17.243:3030';// //  <backend server name, eg http://gup-publications-test.ub.gu.se>';
-    ENV.APP.authenticationBaseURL = 'http://guppi-test.ub.gu.se/session'; //http://guppi-test.ub.gu.se/session
 
+    ENV.APP.serviceURL = 'https://backend-server/v1';
+    ENV.APP.authenticationBaseURL = 'https://backend-server/session';
 
+    ENV.contentSecurityPolicy = {
+     'default-src': "'none'",
+     'script-src': "'self' my-own-hostname",
+     'font-src': "'self' fonts.gstatic.com",
+     'img-src': "'self'",
+     'style-src': "'self' fonts.googleapis.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+     'report-uri': "/"
+    };
 
     ENV['simple-auth'] = {
         serverTokenRevocationEndpoint: '/revoke'
-      };
+    };
+
   }
 
   if (environment === 'test') {
@@ -57,11 +59,23 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production-live') {
-    ENV.APP.serviceURL = '<backend live server name>';  
+    ENV.APP.serviceURL = 'https://guppi.ub.gu.se/v1';
+    ENV.APP.authenticationBaseURL = 'https://guppi.ub.gu.se/session';
+
+    ENV.contentSecurityPolicy = {
+     'font-src': "'self' fonts.gstatic.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+    };
   }
 
   if (environment === 'production-test') {
-    ENV.APP.serviceURL = '<backend test server name>';  
+    ENV.APP.serviceURL = 'https://guppi-test.ub.gu.se/v1';
+    ENV.APP.authenticationBaseURL = 'https://guppi-test.ub.gu.se/session';
+
+    ENV.contentSecurityPolicy = {
+     'font-src': "'self' fonts.gstatic.com",
+     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+    };
   }
 
   return ENV;
