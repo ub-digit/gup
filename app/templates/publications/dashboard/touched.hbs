@@ -13,7 +13,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-xs-12"><strong>Skapad:</strong> {{format-date item.created_at}}</div>
+                        <div class="col-xs-12"><strong>{{t 'publication.labels.createdAt'}}:</strong> {{format-date item.created_at}}</div>
                       </div>
 
                     {{else}}
@@ -28,7 +28,7 @@
             {{/each}}
           </ul>
           {{else}}
-            Du har inga registrerat eller redigerat några publikationer .
+            {{t 'text.youHaveNoRegisteredOrEditedPublications'}}
           {{/if}}
   </div>
 </div>
