@@ -13,7 +13,7 @@
 						        value=mayBecomeSelectedPublicationType
 						        optionValuePath="content.code"
 						        optionLabelPath="content.label"
-						        prompt='Välj publikationstyp'
+						        prompt=(t 'edit.form.selectPublicationTypePrompt')
 						    }}
 						</form>
 						{{#if descriptionOfMayBecomeSelectedPublicationType}}
@@ -23,9 +23,9 @@
 						{{/if}}
 						<div class="action-links">
 							{{#if mayBecomeOldSelectedPublicationType}}
-								<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>Avbryt</button>
+								<button class="btn btn-link" {{action 'cancelChangePublicationType'}}>{{t 'edit.actions.btnCancel'}}</button>
 							{{/if}}
-							<button class="btn btn-primary btn-lg" {{action 'setAsSelectedPublicationType'}}>Välj</button>
+							<button class="btn btn-primary btn-lg" {{action 'setAsSelectedPublicationType'}}>{{t 'edit.actions.btnSelect'}}</button>
 						</div>
 					</div>
 				</div>

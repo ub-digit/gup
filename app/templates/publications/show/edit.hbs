@@ -11,17 +11,17 @@
   </div>
 
   <div class="row">
-      <div class="publication-form col-xs-10">
+      <div class="publication-form col-xs-12">
           {{partial 'publications/publicationtypes/-form'}}
           {{#if actionButtonsAreVisible}}
               <div class="row">
                 <div class="col-xs-12">
                   <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
-                    <button class='btn btn-default'  {{action 'cancel'}}>{{edit.actions.btnCancel}}</button>
+                    <button class='btn btn-default'  {{action 'cancel'}}>{{t 'edit.actions.btnCancel'}}</button>
                     {{#if publication.is_draft}}
-                      <button class='btn btn-success'  {{action 'save' model 'draft'}}>{{edit.actions.btnSaveDraft}}</button>
+                      <button class='btn btn-success'  {{action 'save' model 'draft'}}>{{t 'edit.actions.btnSaveDraft'}}</button>
                     {{/if}}
-                    <button class='btn btn-primary'  {{action 'save' model }}>{{edit.actions.btnSaveAndPublish}}</button>
+                    <button class='btn btn-primary'  {{action 'save' model }}>{{t 'edit.actions.btnSaveAndPublish'}}</button>
                   </div>
                 </div>
               </div>
