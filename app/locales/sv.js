@@ -1,14 +1,15 @@
 export default {
-
 	mainMenu: {
 		applicationName: 'GUP 3',
 		lang: 'Engelska',
 		publications: 'Publikationer',
-    logOut: 'Logga ut'
+    	logOut: 'Logga ut'
 	},
 	login: {
 		xaccount: 'x-konto',
+		xaccountPlaceholder: 'x-konto (t ex xrasto)',
 		password: 'Lösenord',
+		passwordPlaceholder: 'Lösenord',
 		button: 'Logga in'
 	},
   publication: {
@@ -29,5 +30,14 @@ export default {
   },
   labels: {
     registerNew: 'Registrera ny'
+  },
+  edit: {
+  	header: 'Registrera publikation',
+  	actions: {
+  		btnClose: 'Stäng',
+  		btnCancel: 'Avbryt',
+  		btnSaveDraft: 'Spara utkast',
+  		btnSaveAndPublish: 'Spara och publicera'
+  	}
   }
 };
