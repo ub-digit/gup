@@ -1,0 +1,9 @@
+{{#each selectedCategory in categoryObjects}}
+  {{selectedCategory.sv_name_path}}
+  <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}>x</a>
+  <br/>
+{{/each}}
+{{input type="text" value=filterString}}
+{{#each category in categories}}
+  {{category-item category=category categoryList=value}}
+{{/each}}
