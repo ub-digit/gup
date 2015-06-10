@@ -8,7 +8,13 @@
   </a>
 {{/if}}
 
-<a href="#" {{action 'setCategory'}}>{{category.sv_name}}</a>
+{{category.name}} <a href="#" {{action 'addSelectedCategory' category.svepid}}><i class="fa fa-plus"></i></a>
+
+{{#if isSelected}}
+  <i class="fa fa-check-square-o"></i>
+{{else}}
+  <i class="fa fa-square-o"></i>
+{{/if}}
 
 {{#if isExpanded}}
   {{#each child in category.children}}
