@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	errors: null,
 	didInsertElement: function() {
 
 	},
@@ -25,6 +26,9 @@ export default Ember.Component.extend({
  	}.observes('item.transformedToNewAuthor'),
 
 	actions: {
+		setMsgHeader: function(type, msg) {
+			this.sendAction('setMsgHeader', type, msg);
+		},
 	    queryAuthors: function(query, deferred) {
 	      deferred.reject = function(reason) {
 	        console.log(reason);
@@ -56,12 +60,20 @@ export default Ember.Component.extend({
 	      
 	    },
 	    createAuthor: function(item) {
+	    	var that = this;
 	        var successHandler = function(model) {
 	            item.set('selectedAuthor', model);
 	            item.set('transformedToNewAuthor', false);
 	        };
-	        var errorHandler = function() {
-	            alert("error");
+	        var errorHandler = function(reason) {
+	        	that.send('setMsgHeader', 'error', reason.error.msg);
+				that.set('errors', reason.error.errors);
+	            Ember.run.later(function() {
+	                Ember.$('[data-toggle="popover"]').popover({
+	                    placement: 'top',
+	                    html: true
+	                });
+	            });
 	        };
 	        //console.log(newAuthor.get('firstName'));
 	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'), 
