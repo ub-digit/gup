@@ -12,11 +12,11 @@
 						{{publication.alt_title}}
 					</p>
 				{{/if}}
-				{{#if publication.people}}
+				{{#if publication.authors}}
 					<p>
 						<b>Författare och institution:</b><br />
 						<ul>
-						{{#each item in publication.people}}
+						{{#each item in publication.authors}}
 							<li>
 								{{item.first_name}} {{item.last_name}}
 								<ul>
