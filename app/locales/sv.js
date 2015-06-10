@@ -42,6 +42,7 @@ export default {
 		},
 		form: {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
+			changePublicationTypeLink: 'Byt publikationstyp',
 			selectAuthor: {
 				label: 'Välj författare',
 				placeholder: 'Välj författare',
