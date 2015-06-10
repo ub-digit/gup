@@ -90,13 +90,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
     },
     savePublish: function(model) {
-        console.log(model);
         var that = this;
-        var successHandler = function(model) {
+        var successHandler = function(response) {
             that.send('setMsgHeader', 'success', 'Posten har sparats.');
             Ember.$("body").removeClass("loading");
-            that.send('refreshModel', model.id);
-            that.transitionTo('publications.show', model.id);            
+            that.send('refreshModel', response.publication.id);
+            that.transitionTo('publications.show', response.publication.id);            
         };
         var errorHandler = function(reason) {
             that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
