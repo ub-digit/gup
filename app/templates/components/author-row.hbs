@@ -6,45 +6,45 @@
 				<div class="col-xs-12">
 					<div class="row bottom-spacing-20">
 						<div class="col-xs-6">
-							<label>Förnamn:</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.firstName label="Förnamn"}}
+							<label>{{t 'edit.createNewAuthor.form.labels.firstname'}}</label>
+							{{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
 						</div>
 						<div class="col-xs-6">
-							<label>Efternamn:</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.lastName label="Efternamn"}}
+							<label>{{t 'edit.createNewAuthor.form.labels.lastname'}}</label>
+							{{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
 						</div>
 					</div>
 					<div class="row bottom-spacing-20">
 						<div class="col-xs-3">
-							<label>Födelseår:</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth label="Födelseår (1977)"}}
+							<label>{{t 'edit.createNewAuthor.form.labels.birthyear'}}</label>
+							{{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
 						</div>
 
 						<div class="col-xs-3">
-							<label>x-konto:</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.xaccount label="x-konto (t ex xrasto)"}}
+							<label>{{t 'edit.createNewAuthor.form.labels.xaccount'}}</label>
+							{{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
 						</div>
 						<div class="col-xs-6">
-							<label>Orcid:</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.orcid label="Orcid (t ex 0000-0003-5000-0001"}}
+							<label>{{t 'edit.createNewAuthor.form.labels.orcid'}}</label>
+							{{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
 						</div>
 					</div>
 					<div class="btn-toolbar">
-						<button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">Spara</button>
-						<button {{action "toggleAddNewAuthor" item}}class="btn btn-danger">Avbryt</button>
+						<button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'edit.createNewAuthor.form.actions.btnSave'}}</button>
+						<button {{action "toggleAddNewAuthor" item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
 					</div>
 				</div>
 			</div>
 		{{else}}
 			<div class="row">
 				<div class="col-xs-5">
-					<label>Välj författare</label>
+					<label>{{t 'edit.form.selectAuthor.label'}}</label>
 					{{select2-adjusted
-					    placeholder="Välj författare"
+					    placeholder=(t 'edit.form.selectAuthor.placeholder')
 					    value=item.selectedAuthor
 					    optionLabelPath="last_name"
-					    typeaheadSearchingText="Söker författare"
-					   	typeaheadNoMatchesText="Hittade inga författare för '%@'"
+					    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
+					   	typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
 					   	minimumInputLength=3
 					    query="queryAuthors"
 					    allowClear=true
@@ -54,18 +54,18 @@
 				</div>
 				<div class="col-xs-7">
 					<div class="how-to-sort">
-						<a href="javascript:void();">Sortera?</a>
+						<a href="javascript:void();">{{t 'edit.form.selectInstitutions.sortingLink'}}</a>
 						<div class="outer-wrapper">
 							<div class="message">
 							</div>
 						</div>
 					</div>	
-					<label>Välj institutioner</label>
+					<label>{{t 'edit.form.selectInstitutions.placeholder'}}</label>
 					{{select2-adjusted-sortable
 					    content=institutions
 					    optionLabelPath="name"
 					    value=item.selectedInstitution
-					    placeholder="Välj institutioner"
+					    placeholder=(t 'edit.form.selectInstitutions.placeholder')
 					    allowClear=true
 					    multiple=true
 					}}
