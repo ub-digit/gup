@@ -9,9 +9,11 @@ export default Ember.Component.extend({
     this.set('filterString', '');
   }),
 
+
   numberLeft: Ember.computed('categoryList.@each', function() {
     return this.get('MAX_NUMBER_OF_CATEGORIES') - this.get('categoryList.length');
   }),
+
 
   updateCategories: Ember.observer('filterString', function(){
     var that = this;
@@ -22,8 +24,9 @@ export default Ember.Component.extend({
     function(error){
       console.log('error', error);
     }
-    );
-  }),
+  );
+}),
+
 
   actions: {
     removeSelectedCategory: function(categoryId){
@@ -45,7 +48,6 @@ export default Ember.Component.extend({
     closeEdit: function() {
       this.set('isEditing', false);
     }
-
-
   }
+
 });

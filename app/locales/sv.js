@@ -42,7 +42,42 @@ export default {
 		},
 		form: {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
+			changePublicationTypeLink: 'Byt publikationstyp',
+			selectAuthor: {
+				label: 'Välj författare',
+				placeholder: 'Välj författare',
+				typeaheadSearchingText: 'Söker författare',
+				typeaheadNoMatchesText: 'Hittade inga författare'
+			},
+			selectInstitutions: {
+				label: 'Välj institutioner',
+				placeholder: 'Välj institutioner',
+				sortingLink: 'Sortera?'
+			}
 		},
+		createNewAuthor: {
+			form: {
+				labels: {
+					firstname: 'Förnamn:',
+					lastname: 'Efternamn:',
+					birthyear: 'Födelseår:',
+					xaccount: 'x-konto',
+					orcid: 'Orcid'
+				},
+				placeholders: {
+					firstname: 'Förnamn:',
+					lastname: 'Efternamn:',
+					birthyear: 'Födelseår:',
+					xaccount: 'x-konto',
+					orcid: 'Orcid'
+				},
+				actions: {
+					btnSave: 'Spara',
+					btnCancel: 'Avbryt'
+				}
+
+			}
+		}
 	},
 	newPub: {
 		header: 'Registrera ny publikation',
