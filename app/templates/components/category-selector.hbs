@@ -17,16 +17,19 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Välj 3 ämnen ({{numberLeft}} kvar)</h4>
+        <h3>Välj 3 ämnen ({{numberLeft}} kvar)</h3>
+        <h5>Valda ämnesord:</h5>
         {{#each selectedCategory in categoryObjects}}
         {{selectedCategory.sv_name_path}}
         <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}><i class="fa fa-times"></i></a>
         <br/>
+        {{else}}
+        Inga ämnesord valda
         {{/each}}
       </div>
       <div class="modal-body">
         <h5>Filtrera ämnesordslistan</h5>
-        {{input type="text" class="form-control" value=filterString}}
+        {{debounced-input type="text" class="form-control" value=filterString debounceWait=200 fireAtStart=false}}
       </div>
       <div class="modal-body">
         {{#each category in categories}}

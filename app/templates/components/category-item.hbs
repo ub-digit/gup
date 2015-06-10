@@ -8,13 +8,13 @@
   </a>
 {{/if}}
 
-{{category.name}} <a href="#" {{action 'addSelectedCategory' category.svepid}}><i class="fa fa-plus"></i></a>
-
-{{#if isSelected}}
-  <i class="fa fa-check-square-o"></i>
+{{category.name}}
+{{#unless isSelected}}
+  <a href="#" {{action 'addSelectedCategory' category.svepid}}><i class="fa fa-plus"></i></a>
 {{else}}
-  <i class="fa fa-square-o"></i>
-{{/if}}
+  <i class="fa fa-check"></i>
+{{/unless}}
+
 
 {{#if isExpanded}}
   {{#each child in category.children}}
