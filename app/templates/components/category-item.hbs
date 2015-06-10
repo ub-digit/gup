@@ -1,0 +1,19 @@
+{{#if category.children}}
+  <a href="#" {{bind-attr class=":toggle-icon children.length::leaf"}} {{action 'toggle'}}>
+    {{#if isExpanded}}
+      <i class="fa fa-folder-open-o"></i>
+    {{else}}
+      <i class="fa fa-folder-o"></i>
+    {{/if}}
+  </a>
+{{/if}}
+
+<a href="#" {{action 'setCategory'}}>{{category.sv_name}}</a>
+
+{{#if isExpanded}}
+  {{#each child in category.children}}
+  <div style="padding-left:10px">
+    {{category-item category=child categoryList=categoryList}}
+  </div>
+  {{/each}}
+{{/if}}

@@ -8,6 +8,35 @@ export default Ember.Controller.extend({
   selectedContentType: null,
   showRegisterNewAuthor: false,
   authorArr: [],
+  categoryObjectsList: Ember.A([]),
+  
+  updateCategoryObjects: Ember.observer('publication.category_hsv_local.@each', function(){
+    var that = this;
+    // Create list if it doesn\t exist
+    if (that.get('categoryObjectsList') === undefined) {
+      that.set('categoryObjectsList', Ember.A([]));
+    }
+
+    // Fetch objects if they aren\t loaded
+    this.get('publication.category_hsv_local').forEach(function(item){
+      var categoryObject = that.get('categoryObjectsList').findBy('svepid', item);
+      if (categoryObject === null || categoryObject === undefined) {
+        that.store.find('category', item).then(
+          function(response){
+            that.categoryObjectsList.pushObject(response);
+        },
+          function(error){
+        })
+      }
+    });
+
+    // Remove objects which are no longer part of category list
+    that.get('categoryObjectsList').forEach(function(item){
+      if (that.get('publication.category_hsv_local').indexOf(item.svepid) === -1) {
+        that.get('categoryObjectsList').removeObject(item);
+      }
+    })
+  }),
 
 
   getConfigMetaForField: function(fieldName) {
@@ -64,6 +93,7 @@ export default Ember.Controller.extend({
       }
     });
     this.set("publication.people", arr);
+    console.log('catarray', this.get('publication.category_hsv_local'));
   },
 
   generateUUID: function () {

@@ -15,5 +15,8 @@
 		{{#if isTypeTextarea}}
 			{{textarea classBinding=":form-control" value=value}}
 		{{/if}}
+    {{#if isTypeCategorySelector}}
+      {{category-selector value=value categoryObjects=categoryObjects}}
+    {{/if}}
 	{{/if}}
 {{/if}}

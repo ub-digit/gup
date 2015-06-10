@@ -64,6 +64,8 @@ export default Ember.Component.extend({
   	}
   }.property('type'),
 
-
+  isTypeCategorySelector: function() {
+    return (this.get('type') === 'category-selector');
+  }.property('type')
 
 });
