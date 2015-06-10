@@ -5,7 +5,7 @@
 </div>
 <div class="row bottom-spacing-20">
   <div class="col-xs-12">
-    <h1>Registrera ny publikation</h1>
+    <h1>{{t 'newPub.header'}}</h1>
   </div>
 </div>
 
@@ -15,8 +15,8 @@
       <div class="panel-body">
         <div class="row bottom-spacing-40">
           <div class="col-xs-9">
-            <h2>Importera</h2>
-            <p>Importera publikationsuppgifter från extern källa, tex PubMed, Scopus eller Web of Science.</p>
+            <h2>{{t 'newPub.importPub.header'}}</h2>
+            <p>{{t 'newPub.importPub.ingress'}}</p>
           </div>
           <div class="create-icon-background" />
         </div>
@@ -30,9 +30,9 @@
                 value=selectedSource
                 optionValuePath="content.value"
                 optionLabelPath="content.label"
-                prompt="Välj källa"
+                prompt=(t 'newPub.importPub.form.selectImportSourcePrompt')
               }}
-              {{input class='form-control input-lg manageFields' value=sourceId placeholder="ID"}}
+              {{input class='form-control input-lg manageFields' value=sourceId placeholder=(t 'newPub.importPub.form.inputId.placeholder')}}
               <button {{action 'fetchSource'}} {{bind-attr class=":btn :btn-lg :btn-primary fetchButtonIsActive::disabled"}}>Hämta</button>
             </form>
           </div>
@@ -49,17 +49,17 @@
         {{#if importData}}
         <div class="row">
           <div class="col-xs-12">
-            <h4>Vill du importera följande post:</h4>
+            <h4>{{t 'newPub.importPub.importConfirmation.header'}}</h4>
             <dl>
-              <dt>Titel:</dt>
+              <dt>{{t 'newPub.importPub.importConfirmation.title'}}</dt>
               <dd>{{importData.title}}</dd>
-              <dt>Författare:</dt>
+              <dt>{{t 'newPub.importPub.importConfirmation.author'}}</dt>
               <dd>{{importData.author}}</dd>
             </dl>
           </div>
           <div class="row">
             <div class="col-xs-12 center-content">
-              <button {{action 'createPublication' importData}} class="btn btn-lg btn-success">Importera</button>
+              <button {{action 'createPublication' importData}} class="btn btn-lg btn-success">{{t 'newPub.importPub.importConfirmation.btnImport'}}</button>
             </div>
           </div>
         </div>
@@ -73,15 +73,15 @@
   <div class="col-xs-12 col-md-4 col-md-offset-4">
     <div class="row">
       <div class="col-xs-12">
-        <h4>Har du ingen källa att importera från?</h4>
+        <h4>{{t 'newPub.manualPub.header'}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-8">
-        <p>Skapa en ny publikation och mata in informationen manuellt.</p>
+        <p>{{t 'newPub.manualPub.ingress'}}</p>
       </div>
       <div class="col-xs-4">
-        <button class="btn btn-primary" {{action 'createPublication'}}>Skapa ny</button>
+        <button class="btn btn-primary" {{action 'createPublication'}}>{{t 'newPub.manualPub.btnNew'}}</button>
       </div>
     </div>
   </div>

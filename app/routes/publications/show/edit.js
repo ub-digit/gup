@@ -7,7 +7,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return RSVP.hash({
       publication: model,
       publicationTypes: this.store.find('publication_type'),
-      categories: this.store.find('category')
     });
   },
   setupController: function(controller, models) {
