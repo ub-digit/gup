@@ -18,17 +18,19 @@ export default Ember.Controller.extend({
     }
 
     // Fetch objects if they aren\t loaded
-    this.get('publication.category_hsv_local').forEach(function(item){
-      var categoryObject = that.get('categoryObjectsList').findBy('svepid', item);
-      if (categoryObject === null || categoryObject === undefined) {
-        that.store.find('category', item).then(
-          function(response){
-            that.categoryObjectsList.pushObject(response);
-        },
-          function(error){
-        })
-      }
-    });
+    if (this.get('publication.category_hsv_local')) {
+      this.get('publication.category_hsv_local').forEach(function(item){
+        var categoryObject = that.get('categoryObjectsList').findBy('svepid', item);
+        if (categoryObject === null || categoryObject === undefined) {
+          that.store.find('category', item).then(
+            function(response){
+              that.categoryObjectsList.pushObject(response);
+          },
+            function(error){
+          })
+        }
+      });
+    }
 
     // Remove objects which are no longer part of category list
     that.get('categoryObjectsList').forEach(function(item){

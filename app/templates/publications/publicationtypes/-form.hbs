@@ -12,7 +12,7 @@
 						        content=publicationTypes
 						        value=mayBecomeSelectedPublicationType
 						        optionValuePath="content.code"
-						        optionLabelPath="content.label"
+						        optionLabelPath="content.name"
 						        prompt=(t 'edit.form.selectPublicationTypePrompt')
 						    }}
 						</form>
@@ -158,7 +158,7 @@
 		<section id="author-component" {{bind-attr class=""}}>
 	    	<h3>Författare</h3>
 			{{#each item in authorArr}}
-				{{author-row item=item institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
+				{{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
 			{{/each}}
 			<div class="row ">
 				<div class="col-xs-12">

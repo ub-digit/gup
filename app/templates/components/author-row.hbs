@@ -6,27 +6,57 @@
 				<div class="col-xs-12">
 					<div class="row bottom-spacing-20">
 						<div class="col-xs-6">
-							<label>{{t 'edit.createNewAuthor.form.labels.firstname'}}</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
+							<span {{bind-attr class=":form-group errors.first_name:has-error"}}>
+								<label class="control-label">								
+									{{#if errors.first_name}}
+										{{error-feedback errors.first_name}}
+									{{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
+								</label>
+								{{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
+							</span>
 						</div>
 						<div class="col-xs-6">
-							<label>{{t 'edit.createNewAuthor.form.labels.lastname'}}</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
+							<span {{bind-attr class=":form-group errors.last_name:has-error"}}>
+								<label class="control-label">								
+									{{#if errors.last_name}}
+										{{error-feedback errors.last_name}}
+									{{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
+								</label>
+								{{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
+							</span>
 						</div>
 					</div>
 					<div class="row bottom-spacing-20">
 						<div class="col-xs-3">
-							<label>{{t 'edit.createNewAuthor.form.labels.birthyear'}}</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
+							<span {{bind-attr class=":form-group errors.birthyear:has-error"}}>
+								<label class="control-label">								
+									{{#if errors.year_of_birth}}
+										{{error-feedback errors.year_of_birth}}
+									{{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
+								</label>
+								{{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
+							</span>
 						</div>
 
 						<div class="col-xs-3">
-							<label>{{t 'edit.createNewAuthor.form.labels.xaccount'}}</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
+							<span {{bind-attr class=":form-group errors.xaccount:has-error"}}>
+								<label class="control-label">								
+									{{#if errors.xaccount}}
+										{{error-feedback errors.xaccount}}
+									{{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
+								</label>
+								{{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
+							</span>
 						</div>
 						<div class="col-xs-6">
-							<label>{{t 'edit.createNewAuthor.form.labels.orcid'}}</label>
-							{{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
+							<span {{bind-attr class=":form-group errors.orcid:has-error"}}>
+								<label class="control-label">								
+									{{#if errors.orcid}}
+										{{error-feedback errors.orcid}}
+									{{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
+								</label>
+								{{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
+							</span>
 						</div>
 					</div>
 					<div class="btn-toolbar">
