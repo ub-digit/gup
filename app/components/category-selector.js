@@ -29,8 +29,8 @@ export default Ember.Component.extend({
 
 
   actions: {
-    removeSelectedCategory: function(categoryId){
-      this.get('categoryList').removeObject(categoryId);
+    removeSelectedCategory: function(id){
+      this.get('categoryList').removeObject(id);
     },
 
     addSelectedCategory: function(id) {
@@ -41,13 +41,11 @@ export default Ember.Component.extend({
       }
     },
 
-    openEdit: function() {
-      this.set('isEditing', true);
-    },
-
-    closeEdit: function() {
-      this.set('isEditing', false);
+    clearSearch: function() {
+      this.set('filterString', '');
     }
+
+
   }
 
 });

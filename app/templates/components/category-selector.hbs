@@ -18,23 +18,31 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>Välj 3 ämnen ({{numberLeft}} kvar)</h3>
-        <h5>Valda ämnesord:</h5>
-        {{#each selectedCategory in categoryObjects}}
-        {{selectedCategory.sv_name_path}}
-        <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}><i class="fa fa-times"></i></a>
-        <br/>
-        {{else}}
-        Inga ämnesord valda
-        {{/each}}
       </div>
       <div class="modal-body">
-        <h5>Filtrera ämnesordslistan</h5>
-        {{debounced-input type="text" class="form-control" value=filterString debounceWait=200 fireAtStart=false}}
-      </div>
-      <div class="modal-body">
-        {{#each category in categories}}
-        {{category-item category=category categoryList=categoryList}}
-        {{/each}}
+        <p>
+        <strong>Valda ämnesord:</strong><br/>
+          {{#each selectedCategory in categoryObjects}}
+          {{selectedCategory.sv_name_path}}
+          <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}><i class="fa fa-times text-danger"></i></a>
+          <br/>
+          {{else}}
+          Inga ämnesord valda
+          {{/each}}
+        </p>
+        <strong>Ämnesord</strong>
+        <div class="form-group form-inline">
+          <label for="categoryFilter"><i class="fa fa-search"></i></label>
+          {{debounced-input type="text" name="categoryFilter" class="form-control form-inline" value=filterString debounceWait=200 fireAtStart=false}}
+          <a href="#" {{action 'clearSearch'}}>Rensa</a>
+        </div>
+        <p>
+          {{#each category in categories}}
+          {{category-item category=category categoryList=categoryList}}
+          {{else}}
+          <p>Inga ämnesord matchar filtret</p>
+          {{/each}}
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">Stäng</button>

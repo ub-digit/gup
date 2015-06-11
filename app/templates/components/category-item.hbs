@@ -1,18 +1,24 @@
 {{#if category.children}}
   <a href="#" {{bind-attr class=":toggle-icon children.length::leaf"}} {{action 'toggle'}}>
     {{#if isExpanded}}
-      <i class="fa fa-folder-open-o"></i>
+      <!--<i class="fa fa-folder-open-o"></i>-->
+      <i class="fa fa-minus-square-o text-muted"></i>
     {{else}}
-      <i class="fa fa-folder-o"></i>
+      <!--<i class="fa fa-folder-o"></i>-->
+      <i class="fa fa-plus-square-o text-muted"></i>
     {{/if}}
   </a>
+
+{{else}}
+  <i class="fa fa-tag text-muted"></i>
 {{/if}}
+
 
 {{category.name}}
 {{#unless isSelected}}
-  <a href="#" {{action 'addSelectedCategory' category.svepid}}><i class="fa fa-plus"></i></a>
+  <a href="#" {{action 'addSelectedCategory' category.svepid}}><i class="fa fa-square-o"></i></a>
 {{else}}
-  <i class="fa fa-check"></i>
+  <a href="#" {{action 'removeSelectedCategory' category.svepid}}><i class="fa fa-check-square-o"></i></a>
 {{/unless}}
 
 
