@@ -309,7 +309,7 @@ export default Ember.Controller.extend({
     },
     
     cancel: function() {     
-        this.transitionTo('publications.show', this.publication);
+        this.transitionToRoute('publications.show', this.publication);
     },
 
 

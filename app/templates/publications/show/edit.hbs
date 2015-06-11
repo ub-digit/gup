@@ -17,7 +17,7 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
-                    <button class='btn btn-default'  {{action 'cancel'}}>{{t 'edit.actions.btnCancel'}}</button>
+                    <button class='btn btn-default'  {{action 'cancelEdit'}}>{{t 'edit.actions.btnCancel'}}</button>
                     {{#unless publication.published_at}}
                       <button class='btn btn-success'  {{action 'saveDraft' model }}>{{t 'edit.actions.btnSaveDraft'}}</button>
                     {{/unless}}
