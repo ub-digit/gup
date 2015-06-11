@@ -13,6 +13,18 @@ export default Ember.Object.extend({
     category: { path: 'categories', plural: 'categories' }
   },
 
+  getLocale: function() {
+    //this.controllerFor("application").setLocale();
+    var set = Ember.set;
+    var application = this.container.lookup('application:main');
+
+    if (!application.locale) {
+      set(application, 'locale', application.get('defaultLocale'))
+    }
+    return application.locale;
+  },
+
+
   sessionHeaders: function() {
     var session = this.container.lookup('simple-auth-session:main');
     var headers = {};
@@ -90,16 +102,16 @@ export default Ember.Object.extend({
     }
   },
   urlOne: function(name, id, params) {
-    var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '/' + id;
+    var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '/' + id + '?locale=' + this.getLocale();
     if(params) {
-      url += '?' + Ember.$.param(params);
+      url += '&' + Ember.$.param(params);
     }
     return url;
   },
   urlMany: function(name, params) {
-    var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path;
+    var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '?locale=' + this.getLocale();
     if(params) {
-      url += '?' + Ember.$.param(params);
+      url += '&' + Ember.$.param(params);
     }
     return url;
   },

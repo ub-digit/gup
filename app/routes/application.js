@@ -15,6 +15,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
 
+  model: function(params) {
+    this.controllerFor("application").setLocale();
+  },
+
+  setupController: function(controller) {
+  //  this.controllerFor("application").setLocale();
+  },
+
   actions: {
     sessionAuthenticationSucceeded: function() {
       //Ember.run.later(Ember.$('body').removeClass("loading"));
