@@ -7,17 +7,11 @@ export default Ember.Component.extend({
   removeSelectedCategoryString: 'removeSelectedCategory',
   isExpanded: Ember.computed.equal('expanded', true),
 
-
-  initComponent: Ember.on('init', function(){
-    console.log(this.get('category'));
-  }),
-
-
   isSelected: Ember.computed('categoryList.@each', 'category.svepid', function() {
-
     return !(this.get('categoryList').indexOf(this.get('category.svepid')) === -1);
-
   }),
+
+  isRoot: Ember.computed.equal('category.node_type', 'root'),
 
   actions: {
     toggle: function() {
