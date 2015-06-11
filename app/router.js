@@ -16,9 +16,10 @@ Router.map(function() {
     });
     this.route('create');
     this.route('dashboard', function() {
-        this.route('drafts');
-        this.route("published");
-        this.route("touched");
+      this.route('drafts');
+      this.route("published");
+      this.route("touched");
+      this.route('review');
     });
   });
 });
