@@ -94,7 +94,7 @@ export default Ember.Controller.extend({
         departments = [];
       }
     });
-    this.set("publication.people", arr);
+    this.set("publication.authors", arr);
     console.log('catarray', this.get('publication.category_hsv_local'));
   },
 

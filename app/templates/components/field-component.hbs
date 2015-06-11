@@ -3,20 +3,20 @@
 	<label class="control-label">
 		{{#if errors}}
 			{{error-feedback errors}}
-		{{/if}}	
-		{{label}} 
+		{{/if}}
+		{{label}}
 		{{#if isMandatory}}
 		<span style="color:red">*</span>
 		{{/if}}
 	</label>
-	{{#if isTypeText}}	
+	{{#if isTypeText}}
 			{{input classBinding=":form-control" value=value}}
 	{{else}}
 		{{#if isTypeTextarea}}
 			{{textarea classBinding=":form-control" value=value}}
 		{{/if}}
     {{#if isTypeCategorySelector}}
-      {{category-selector value=value categoryObjects=categoryObjects}}
+      {{category-selector categoryList=value categoryObjects=categoryObjects}}
     {{/if}}
 	{{/if}}
 {{/if}}

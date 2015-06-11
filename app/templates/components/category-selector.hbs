@@ -1,9 +1,52 @@
-{{#each selectedCategory in categoryObjects}}
-  {{selectedCategory.sv_name_path}}
-  <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}>x</a>
-  <br/>
-{{/each}}
-{{input type="text" value=filterString}}
-{{#each category in categories}}
-  {{category-item category=category categoryList=value}}
-{{/each}}
+<div class="row">
+  <div class="col-xs-12">
+    {{#each selectedCategory in categoryObjects}}
+    {{selectedCategory.sv_name_path}}
+    <br/>
+    {{/each}}
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Lägg till ämnesord
+</button>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Välj 3 ämnen ({{numberLeft}} kvar)</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+        <strong>Valda ämnesord:</strong><br/>
+          {{#each selectedCategory in categoryObjects}}
+          {{selectedCategory.sv_name_path}}
+          <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}><i class="fa fa-times text-danger"></i></a>
+          <br/>
+          {{else}}
+          Inga ämnesord valda
+          {{/each}}
+        </p>
+        <strong>Ämnesord</strong>
+        <div class="form-group form-inline">
+          <label for="categoryFilter"><i class="fa fa-search"></i></label>
+          {{debounced-input type="text" name="categoryFilter" class="form-control form-inline" value=filterString debounceWait=200 fireAtStart=false}}
+          <a href="#" {{action 'clearSearch'}}>Rensa</a>
+        </div>
+        <p>
+          {{#each category in categories}}
+          {{category-item category=category categoryList=categoryList}}
+          {{else}}
+          <p>Inga ämnesord matchar filtret</p>
+          {{/each}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">Stäng</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
