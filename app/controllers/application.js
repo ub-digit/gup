@@ -1,9 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
-	isError: Ember.computed.equal('msgType', 'error'),
 	queryParams: ['lang'],
+	lang : null,
+	isError: Ember.computed.equal('msgType', 'error'),
+	getDefaultLocale: function() {
+		var application = this.container.lookup('application:main');
+		return application.get('defaultLocale');
+	},
+
 	setLocale: function() {
 		var set = Ember.set;
 		var application = this.container.lookup('application:main');
@@ -28,6 +33,9 @@ export default Ember.Controller.extend({
 					this.set("lang", 'en');
 				}
 				this.setLocale();
+			}
+			else {
+				this.set("lang", this.getDefaultLocale());
 			}
 		}
 	}
