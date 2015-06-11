@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xs-12">
+    {{#if model.length}}
+    <ul class="list-unstyled dashboard-list">
+      {{#each item in model}}
+      <li>
+        <div class="row">
+          <div class="col-xs-10">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="dashboard-list-header">{{item.title}}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                  <dl class="dl-horizontal">
+                    <dt>Publikationstyp:</dt>
+                    <dd>{{item.publication_type}}</dd>
+                    <dt>Innehållsmärkning:</dt>
+                    <dd>{{item.content_type}}</dd>
+                    <dt>Din affiliering:</dt>
+                    {{#each department in item.affiliation.departments}}
+                      <dd>{{department.name}}</dd>
+                    {{/each}}
+                    <dt>Ämnesord:</dt>
+                    {{#each category in item.category_objects}}
+                      <dd>{{category.name}}</dd>
+                    {{/each}}
+                  </dl>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="btn-toolbar pull-right">
+              <button class="btn btn-sm btn-success">Godkänn</button>
+            </div>
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+      {{t 'text.youHaveNoDrafts'}}
+    {{/if}}
+  </div>
+</div>
