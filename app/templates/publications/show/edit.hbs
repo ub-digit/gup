@@ -18,10 +18,10 @@
                 <div class="col-xs-12">
                   <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
                     <button class='btn btn-default'  {{action 'cancel'}}>{{t 'edit.actions.btnCancel'}}</button>
-                    {{#if publication.is_draft}}
-                      <button class='btn btn-success'  {{action 'save' model 'draft'}}>{{t 'edit.actions.btnSaveDraft'}}</button>
-                    {{/if}}
-                    <button class='btn btn-primary'  {{action 'save' model }}>{{t 'edit.actions.btnSaveAndPublish'}}</button>
+                    {{#unless publication.published_at}}
+                      <button class='btn btn-success'  {{action 'saveDraft' model }}>{{t 'edit.actions.btnSaveDraft'}}</button>
+                    {{/unless}}
+                    <button class='btn btn-primary'  {{action 'savePublish' publication }}>{{t 'edit.actions.btnSaveAndPublish'}}</button>
                   </div>
                 </div>
               </div>
