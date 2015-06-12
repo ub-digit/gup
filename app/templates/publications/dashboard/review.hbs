@@ -1,3 +1,5 @@
+<p class="lead">Text som förklarar vad detta är och varför man ska hålla på med det osv.</p>
+
 <div class="row">
   <div class="col-xs-12">
     {{#if model.length}}
@@ -8,26 +10,32 @@
           <div class="col-xs-10">
             <div class="row">
               <div class="col-xs-12">
-                {{publication-list-row item=item}}
+                {{publication-list-row item=item link='publications.show.edit'}}
               </div>
             </div>
             <div class="row">
               <div class="col-xs-12">
-                  <dl class="dl-horizontal">
-                    <dt>Publikationstyp:</dt>
-                    <dd>{{item.publication_type}}</dd>
-                    <dt>Innehållsmärkning:</dt>
-                    <dd>{{item.content_type}}</dd>
-                    <dt>Din affiliering:</dt>
-                    {{#each department in item.affiliation.departments}}
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Granska och godkänn följande:</h3>
+                  </div>
+                  <div class="panel-body">
+                    <dl class="dl-horizontal">
+                      <dt>Publikationstyp:</dt>
+                      <dd>{{item.publication_type}}</dd>
+                      <dt>Innehållsmärkning:</dt>
+                      <dd>{{item.content_type}}</dd>
+                      <dt>Din affiliering:</dt>
+                      {{#each department in item.affiliation.departments}}
                       <dd>{{department.name}}</dd>
-                    {{/each}}
-                    <dt>Ämnesord:</dt>
-                    {{#each category in item.category_objects}}
-                      <dd>{{category.name}}</dd>
-                    {{/each}}
-                  </dl>
-
+                      {{/each}}
+                      <dt>Ämnesord:</dt>
+                      {{#each category in item.category_objects}}
+                      <dd>{{category.name_path}}</dd>
+                      {{/each}}
+                    </dl>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -41,7 +49,7 @@
       {{/each}}
     </ul>
     {{else}}
-      {{t 'text.youHaveNoDrafts'}}
+    {{t 'text.youHaveNoDrafts'}}
     {{/if}}
   </div>
 </div>
