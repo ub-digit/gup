@@ -6,6 +6,7 @@ export default Ember.Object.extend({
     person: {path: 'people', plural:'people'},
     department: {path: 'departments'},
     publication: {path: 'publications'},
+    publish: {path: 'publications/publish', singular: 'publication'},
     publication_type: {path: 'publication_types'},
     draft: { path: 'publications?drafts=true', plural: 'publications'},
     import_data: {path: 'fetch_import_data', plural: 'publication'},
@@ -147,10 +148,11 @@ export default Ember.Object.extend({
     return this.sendDelete(this.urlOne(name, id));
   },
   saveUpdate: function(name, id, data) {
+    var newName = this.singular(name);
     var that = this;
     var dataObject = {};
     dataObject[name] = data;
-    return this.send(this.urlOne(name, id), 'put', dataObject)
+    return this.send(this.urlOne(newName, id), 'put', dataObject)
     .then(function(data) {
       return that.extractOne(name, data);
     }, this.extractErrors);

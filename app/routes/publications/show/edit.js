@@ -95,12 +95,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
     savePublish: function(model) {
         var that = this;
-        var successHandler = function(response) {
+        var successHandler = function(model) {
             that.send('setMsgHeader', 'success', 'Posten har sparats.');
             Ember.$("body").removeClass("loading");
 
-            that.send('refreshModel', response.publication.id);
-            that.transitionTo('publications.show', response.publication.id);            
+            that.send('refreshModel', model.id);
+            that.transitionTo('publications.show', model.id);            
         };
         var errorHandler = function(reason) {
             that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
@@ -118,14 +118,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         Ember.$("body").addClass("loading");
         this.get("controller").formatAuthorsForServer();
 
+
+        this.store.save('publish',this.controller.get("publication")).then(successHandler, errorHandler);
         // Change this when adapter is rewrited
-        Ember.$.ajax({
+        /*Ember.$.ajax({
           type: 'PUT',
           url: ENV.APP.serviceURL + '/publications/publish/' + model.id,
           data: JSON.stringify({publication: this.controller.get("publication")}),
           contentType: 'application/json',
           dataType: 'json'
-        }).then(successHandler, errorHandler);
+        }).then(successHandler, errorHandler);*/
       }
     }
 
