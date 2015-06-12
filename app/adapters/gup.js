@@ -151,8 +151,8 @@ export default Ember.Object.extend({
     var newName = this.singular(name);
     var that = this;
     var dataObject = {};
-    dataObject[name] = data;
-    return this.send(this.urlOne(newName, id), 'put', dataObject)
+    dataObject[newName] = data;
+    return this.send(this.urlOne(name, id), 'put', dataObject)
     .then(function(data) {
       return that.extractOne(name, data);
     }, this.extractErrors);

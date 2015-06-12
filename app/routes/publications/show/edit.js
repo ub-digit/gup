@@ -98,7 +98,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         var successHandler = function(model) {
             that.send('setMsgHeader', 'success', 'Posten har sparats.');
             Ember.$("body").removeClass("loading");
-
             that.send('refreshModel', model.id);
             that.transitionTo('publications.show', model.id);            
         };
