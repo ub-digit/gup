@@ -9,8 +9,13 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-    approve: function(id) {
-      confirm('Vill du godkänna denne ' + id);
+    approve: function(item) {
+      var that = this;
+      //confirm('Vill du godkänna denne ' + id);
+      this.store.find('publication', item.db_id + '/review').then(function(response){
+      },
+      function(reason){
+      });
     }
   }
 });
