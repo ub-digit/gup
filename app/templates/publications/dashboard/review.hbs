@@ -41,7 +41,11 @@
           </div>
           <div class="col-xs-2">
             <div class="btn-toolbar pull-right">
-              <button {{action 'approve' item.id}} class="btn btn-sm btn-success">Godkänn</button>
+            {{#unless item.justApproved}}
+              <button {{action 'approve' item}} class="btn btn-sm btn-success">Godkänn</button>
+            {{else}}
+              <i class="fa fa-check"></i>
+            {{/unless}}
             </div>
           </div>
         </div>
