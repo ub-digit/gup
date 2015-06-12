@@ -1,9 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
-    {{#each selectedCategory in categoryObjects}}
-    {{selectedCategory.sv_name_path}}
-    <br/>
-    {{/each}}
+    {{#if categoryObjects.length}}
+      <p class="form-control-static">
+      {{#each selectedCategory in categoryObjects}}
+        {{selectedCategory.sv_name_path}}<br/>      
+      {{/each}}
+      </p>
+    {{/if}}
   </div>
 </div>
 
