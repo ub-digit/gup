@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3>{{item.title}}
+      {{#if showSourceTitle}}
+      <br/>
+      <small>{{item.sourcetitle}}</small>
+      {{/if}}
+    </h3>
+  </div>
+  <div class="col-xs-12">
+    <dl class="dl-horizontal">
+      {{#if showIssue}}
+        <dt>Utgåva:</dt>
+        <dd>{{item.sourceissue}}</dd>
+      {{/if}}
+
+      {{#if showPlace}}
+        <dt>Ort:</dt>
+        <dd>{{item.place}}</dd>
+      {{/if}}
+
+      {{#if showPublisher}}
+        <dt>Förlag:</dt>
+        <dd>{{item.publisher}}</dd>
+      {{/if}}
+
+      <dt>Publikationsår:</dt>
+      <dd>{{item.pubyear}}</dd>
+
+      {{#if showPages}}
+        <dt>Sidor:</dt>
+        <dd>{{item.pages}}</dd>
+      {{/if}}
+    </dl>
+  </div>
+</div>
