@@ -3,13 +3,13 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['publications'],
   selectedPublicationType: null,
-  mayBecomeSelectedPublicationType: null, 
-  mayBecomeOldSelectedPublicationType: null, 
+  mayBecomeSelectedPublicationType: null,
+  mayBecomeOldSelectedPublicationType: null,
   selectedContentType: null,
   showRegisterNewAuthor: false,
   authorArr: [],
   categoryObjectsList: Ember.A([]),
-  
+
   updateCategoryObjects: Ember.observer('publication.category_hsv_local.@each', function(){
     var that = this;
     // Create list if it doesn\t exist
@@ -50,9 +50,9 @@ export default Ember.Controller.extend({
         }
         else {
           return null;
-        } 
+        }
       }
-      else { // if no object was found 
+      else { // if no object was found
         return null;
       }
   }.property('selectedPublicationType'),
@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
        var fullObjectPubtype = this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
        return fullObjectPubtype;
     }
-   
+
   }.property('selectedPublicationType'),
 
   updateModelWithCorrectPublicationType: function() {
@@ -90,7 +90,7 @@ export default Ember.Controller.extend({
           departments.push({id: '666', name: 'Extern institution'});
         }
         arr.addObject({id: author.selectedAuthor.id, departments: departments});
-        //empty array 
+        //empty array
         departments = [];
       }
     });
@@ -178,13 +178,13 @@ export default Ember.Controller.extend({
   descriptionOfMayBecomeSelectedPublicationType: function() {
     var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
     if (fullObj) {
-      return fullObj.label + " - en massa andra detajler här som t ex hur denna typen är tänkt att användas." // description later
+      return fullObj.description;
     }
     else {
       return null;
     }
   }.property("mayBecomeSelectedPublicationType"),
-  
+
   contentTypes: function() {
      var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
      if (currentlySelectedPublicationType) {
@@ -194,7 +194,7 @@ export default Ember.Controller.extend({
        return null;
      }
   }.property('selectedPublicationType'),
- 
+
   selectedPublicationTypeHasNoContentType: function() {
     var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
     if (currentlySelectedPublicationType) {
@@ -211,7 +211,7 @@ export default Ember.Controller.extend({
       }
     }
   }.property("selectedPublicationType"),
-  
+
   selectedPublicationTypeHasNoOnlyOneContentType: function() {
     var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
     if (currentlySelectedPublicationType) {
@@ -228,13 +228,13 @@ export default Ember.Controller.extend({
         return false;
       }
     }
-  }.property('selectedPublicationType'), 
+  }.property('selectedPublicationType'),
 
 
 
 
   setDefaultContentType: function() {
-    var contentType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));    
+    var contentType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
     if (contentType) {
       this.set('selectedContentType', contentType.id);
     }
@@ -289,8 +289,8 @@ export default Ember.Controller.extend({
       this.get("authorArr").addObject(
         Ember.Object.create({
           id: this.generateUUID(),
-          selectedAuthor: null, 
-          selectedInstitution: null, 
+          selectedAuthor: null,
+          selectedInstitution: null,
           newAuthorForm: Ember.Object.create({firstName: '', lastName: '', year_of_birth: '', xaccount: '', orcid: ''})
         })
       );
@@ -307,8 +307,8 @@ export default Ember.Controller.extend({
     cancelChangePublicationType: function() {
       this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
     },
-    
-    cancel: function() {     
+
+    cancel: function() {
         this.transitionToRoute('publications.show', this.publication);
     },
 
@@ -321,7 +321,7 @@ export default Ember.Controller.extend({
       else {
         obj.set("transformedToNewAuthor", true);
       }
-      
+
     },
   }
 });
