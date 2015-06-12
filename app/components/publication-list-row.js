@@ -2,38 +2,48 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  showSourceTitle: Ember.computed('item.publication_type', function() {
 
-    var t = this.get('item.publication_type');
-    return !(t === 'books' || t === 'translations' || t === 'reports');
+  bibliographicInfoString: Ember.computed('item.publication_type', function() {
 
-  }),
+    var i = this.get('item');
+    var s = '';
 
-  showIssue: Ember.computed('item.publication_type', function() {
+    switch (this.get('item.publication_type')) {
+      case 'journal-articles':
+      case 'review-articles':
+      case 'editorial-letters':
+      case 'book-reviews':
+      case 'magazine-articles':
 
-    var t = this.get('item.publication_type');
-    return (t === 'journal-articles' || t === 'review-articles' || t === 'editorial-letters' || t === 'book-reviews' || t === 'magazine-articles');
+        s += i.sourcetitle || '';
+        s += i.sourcevolume ? ', (' + i.sourcevolume + ')' : '';
+        s += i.sourceissue ? i.sourceissue : '';
+        s += i.pubyear ? ', ' + i.pubyear : '';
+        s += i.sourcepages ? ', ' + i.sourcepages : '';
+        return s;
+        break;
 
-  }),
+      case 'books':
+      case 'translations':
+      case 'doctoral-thesis':
+      case 'reports':
 
-  showPages: Ember.computed('item.publication_type', function() {
+        s += i.place || '';
+        s += i.publisher ? ', ' + i.publisher : '';
+        s += i.pubyear ? ', ' + i.pubyear : '';
+        return s;
+        break;
 
-    var t = this.get('item.publication_type');
-    return !(t === 'books' || t === 'translations' || t === 'reports');
+      case 'book-chapters':
+      case 'conference-papers':
+      case 'conference-contributions':
 
-  }),
-
-  showPlace: Ember.computed('item.publication_type', function() {
-
-    var t = this.get('item.publication_type');
-    return (t === 'books' || t === 'translations' || t === 'reports');
-
-  }),
-
-  showPublisher: Ember.computed('item.publication_type', function() {
-
-    var t = this.get('item.publication_type');
-    return (t === 'books' || t === 'translations' || t === 'reports');
+        s += i.sourcetitle || '';
+        s += i.pubyear ? ', ' + i.pubyear : '';
+        s += i.sourcepages ? ', ' + i.sourcepages : '';
+        return s;
+        break;
+    }
 
   })
 

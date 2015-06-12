@@ -3,34 +3,6 @@
     <h3>{{#link-to link item.pubid}}{{item.title}}{{/link-to}}</h3>
   </div>
   <div class="col-xs-12">
-    <dl class="dl-horizontal">
-      {{#if showSourceTitle}}
-        <dt>Publicerad i:</dt>
-        <dd>{{item.sourcetitle}}</dd>
-      {{/if}}
-
-      {{#if showIssue}}
-        <dt>Utgåva:</dt>
-        <dd>{{item.sourceissue}}</dd>
-      {{/if}}
-
-      {{#if showPlace}}
-        <dt>Ort:</dt>
-        <dd>{{item.place}}</dd>
-      {{/if}}
-
-      {{#if showPublisher}}
-        <dt>Förlag:</dt>
-        <dd>{{item.publisher}}</dd>
-      {{/if}}
-
-      <dt>Publikationsår:</dt>
-      <dd>{{item.pubyear}}</dd>
-
-      {{#if showPages}}
-        <dt>Sidor:</dt>
-        <dd>{{item.sourcepages}}</dd>
-      {{/if}}
-    </dl>
+    <p>{{bibliographicInfoString}}</p>
   </div>
 </div>
