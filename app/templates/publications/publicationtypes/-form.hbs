@@ -37,7 +37,7 @@
 
 
 	{{#if isSelectedPublicationValid}}
-		{{selectedPublicationType}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>
+		{{getPublicationTypeObject.name}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>
 	{{/if}}
 
 	{{#if contentTypesAreVisible}}
