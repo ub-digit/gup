@@ -7,7 +7,7 @@ export default Ember.Object.extend({
     department: {path: 'departments'},
     publication: {path: 'publications'},
     publication_type: {path: 'publication_types'},
-    draft: { path: 'publications?drafts=true', plural: 'publications'},
+    draft: { path: 'publications', plural: 'publications'},
     import_data: {path: 'fetch_import_data', plural: 'publication'},
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' }

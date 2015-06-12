@@ -6,7 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		Ember.$("body").addClass("loading");
 	},
 	model: function(){
-		return  this.store.find("draft");
+		return  this.store.find("draft", {drafts: true});
 	},
 	afterModel: function() {
 		Ember.$("body").removeClass("loading");
