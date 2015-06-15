@@ -307,10 +307,6 @@ export default Ember.Controller.extend({
       this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
     },
 
-    cancel: function() {
-        this.transitionToRoute('publications.show', this.publication);
-    },
-
 
     toggleAddNewAuthor: function(id) {
       var obj = this.get("authorArr").findBy('id', id);

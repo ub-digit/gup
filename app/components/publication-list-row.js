@@ -15,12 +15,14 @@ export default Ember.Component.extend({
       case 'book-reviews':
       case 'magazine-articles':
 
-        s += i.sourcetitle || '';
-        s += i.sourcevolume ? ', (' + i.sourcevolume + ')' : '';
-        s += i.sourceissue ? i.sourceissue : '';
-        s += i.pubyear ? ', ' + i.pubyear : '';
-        s += i.sourcepages ? ', ' + i.sourcepages : '';
-        return s;
+        var a = [];
+
+        if (i.sourcetitle) a.push(i.sourcetitle);
+        if (i.sourcevolume) a.push('(' + i.sourcevolume + ')' + i.sourceissue);
+        if (i.pubyear) a.push(i.pubyear);
+        if (i.sourcepages) a.push(i.sourcepages);
+
+        return a.join(', ');
         break;
 
       case 'books':
@@ -28,20 +30,24 @@ export default Ember.Component.extend({
       case 'doctoral-thesis':
       case 'reports':
 
-        s += i.place || '';
-        s += i.publisher ? ', ' + i.publisher : '';
-        s += i.pubyear ? ', ' + i.pubyear : '';
-        return s;
+        var a = [];
+
+        if (i.place) a.push(i.place);
+        if (i.publisher) a.push(i.publisher);
+        if (i.pubyear) a.push(i.pubyear);
+
+        return a.join(', ');
         break;
 
       case 'book-chapters':
       case 'conference-papers':
       case 'conference-contributions':
 
-        s += i.sourcetitle || '';
-        s += i.pubyear ? ', ' + i.pubyear : '';
-        s += i.sourcepages ? ', ' + i.sourcepages : '';
-        return s;
+        if (i.sourcetitle) a.push(i.sourcetitle);
+        if (i.pubyear) a.push(i.pubyear);
+        if (i.sourcepages) a.push(i.sourcepages);
+
+        return a.join(', ');
         break;
     }
 
