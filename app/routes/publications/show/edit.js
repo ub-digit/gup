@@ -119,14 +119,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
 
         this.store.save('publish',this.controller.get("publication")).then(successHandler, errorHandler);
-        // Change this when adapter is rewrited
-        /*Ember.$.ajax({
-          type: 'PUT',
-          url: ENV.APP.serviceURL + '/publications/publish/' + model.id,
-          data: JSON.stringify({publication: this.controller.get("publication")}),
-          contentType: 'application/json',
-          dataType: 'json'
-        }).then(successHandler, errorHandler);*/
       }
     }
 

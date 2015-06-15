@@ -231,8 +231,6 @@ export default Ember.Controller.extend({
   }.property('selectedPublicationType'),
 
 
-
-
   setDefaultContentType: function() {
     var contentType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
     if (contentType) {
@@ -248,6 +246,7 @@ export default Ember.Controller.extend({
     },
     resetSelectedPublicationType: function() {
       this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));
+      this.set("mayBecomeSelectedPublicationType", this.get("selectedPublicationType"));
       this.set("selectedPublicationType", null);
     },
 
