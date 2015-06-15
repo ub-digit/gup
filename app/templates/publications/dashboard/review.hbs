@@ -15,27 +15,7 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Granska och godkänn följande:</h3>
-                  </div>
-                  <div class="panel-body">
-                    <dl class="dl-horizontal">
-                      <dt>Publikationstyp:</dt>
-                      <dd>{{item.publication_type}}</dd>
-                      <dt>Innehållsmärkning:</dt>
-                      <dd>{{item.content_type}}</dd>
-                      <dt>Din affiliering:</dt>
-                      {{#each department in item.affiliation.departments}}
-                      <dd>{{department.name}}</dd>
-                      {{/each}}
-                      <dt>Ämnesord:</dt>
-                      {{#each category in item.category_objects}}
-                      <dd>{{category.name_path}}</dd>
-                      {{/each}}
-                    </dl>
-                  </div>
-                </div>
+                {{review-item item=item}}                
               </div>
             </div>
           </div>
