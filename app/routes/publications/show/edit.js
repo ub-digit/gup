@@ -37,7 +37,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         author.departments.forEach(function(department) {
           departments.push(Ember.Object.create({id: department.id, name: department.name}));
         })
-        tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, last_name: author.last_name}, selectedInstitution: departments, }));
+
+        // fallback if presentationstring is not loaded from server
+        var presentationString = author.first_name + " " + author.last_name;
+        if (author.year_of_birth) {
+          presentationString += ", " + author.year_of_birth;
+        }
+        // if presentationstring is loaded from server
+        if (author.presentation_string) {
+          presentationString = author.presentation_string;
+        }
+        tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: presentationString, last_name: author.last_name}, selectedInstitution: departments, }));
       });
       controller.set('authorArr', tempAuthorArr);
     }
