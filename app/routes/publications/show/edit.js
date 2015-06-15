@@ -70,6 +70,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('selectedPublicationType', null);
     controller.set("authorArr", []);
     controller.set("mayBecomeSelectedPublicationType", null);
+    controller.set("mayBecomeOldSelectedPublicationType", null);
     controller.set('errors', null);
   },
 

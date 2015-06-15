@@ -338,7 +338,7 @@ export default Select2.extend({
         });
 
     });
-    Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>Hittar du inte den du söker?</p><button id='toggleBtn' class='btn btn-primary'>Skapa ny</button></div>");
+    Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>" + this.get("didNotFindWhatYouWereLookingForStr") + "</p><button id='toggleBtn' class='btn btn-primary'>"+ this.get("btnText") + "</button></div>");
     this.watchDisabled();
     
   },

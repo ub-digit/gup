@@ -238,6 +238,10 @@ export default Ember.Controller.extend({
     }
   }.observes('selectedPublicationType'),
 
+  showCancel: function() {
+    //if ()
+  }.observes('selectedPublicationType'),
+
   actions: {
     setAsSelectedPublicationType: function() {
       if (this.get("mayBecomeSelectedPublicationType")) {
