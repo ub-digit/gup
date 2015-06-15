@@ -9,7 +9,7 @@
             {{#if item.title}}
             <div class="row">
               <div class="col-xs-12">
-                <div class="dashboard-list-header">{{#link-to 'publications.show' item.pubid }}{{item.title}}{{/link-to}}</div>
+                {{publication-list-row item=item link='publications.show'}}
               </div>
             </div>
             <div class="row">
