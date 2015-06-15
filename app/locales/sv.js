@@ -83,9 +83,9 @@ export default {
 		header: 'Registrera ny publikation',
 		importPub: {
 			header: 'Importera',
-			ingress: 'Importera publikationsuppgifter från extern källa, tex PubMed, Scopus eller Web of Science.',
+			ingress: 'Använd ett ID för att importera publikationsuppgifter från en extern källa, tex PubMed, Scopus eller Libris.',
 			form: {
-				selectImportSourcePrompt: 'Välj källa',
+				selectImportSourcePrompt: 'Välj typ av ID',
 				inputId: {
 					placeholder: 'ID',
 				}
