@@ -1,0 +1,66 @@
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">Granska och godkänn följande:</h3>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>Publikationstyp:</dt>
+      <dd>{{item.publication_type}}</dd>
+      <dd>
+        {{#if item.diff_since_review.publication_type}}
+          <del class="text-danger">{{item.diff_since_review.publication_type.from}}</del>
+        {{/if}}
+      </dd>
+
+      <dt>Innehållsmärkning:</dt>
+      <dd>{{item.content_type}}</dd>
+      <dd>
+        {{#if item.diff_since_review.content_type}}
+          <del class="text-danger">{{item.diff_since_review.content_type.from}}</del>
+        {{/if}}
+      </dd>
+
+      <dt>Din affiliering:</dt>
+      {{#if item.diff_since_review.affiliation}}
+        {{#each department in departments}}
+          {{#if department.added}}
+            <dd class="text-success">{{department.name}}</dd>
+          {{/if}}
+          {{#if department.removed}}
+            <dd><del class="text-danger">{{department.name}}</del></dd>
+          {{/if}}
+          {{#if department.same}}
+            <dd>{{department.name}}</dd>
+          {{/if}}
+        {{/each}}
+      {{else}}
+        {{#each department in item.affiliation.departments}}
+          <dd>{{department.name}}</dd>
+        {{/each}}
+      {{/if}}
+
+      <dt>Ämnesord:</dt>
+
+
+      {{#if item.diff_since_review.category_hsv_local}}
+        {{#each category in categories}}
+          {{#if category.added}}
+            <dd class="text-success">{{category.name_path}}</dd>
+          {{/if}}
+          {{#if category.removed}}
+            <dd><del class="text-danger">{{category.name_path}}</del></dd>
+          {{/if}}
+          {{#if category.same}}
+            <dd>{{category.name_path}}</dd>
+          {{/if}}
+        {{/each}}
+      {{else}}
+        {{#each category in item.category_objects}}
+          <dd>{{category.name_path}}</dd>
+        {{/each}}
+      {{/if}}
+
+
+    </dl>
+  </div>
+</div>
