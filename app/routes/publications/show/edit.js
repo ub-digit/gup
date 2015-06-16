@@ -74,20 +74,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    cancelEdit: function() {     
-        this.send('refreshModel', this.controller.get("publication.id"));  
+    cancelEdit: function() {
+        this.send('refreshModel', this.controller.get("publication.id"));
         this.transitionTo('publications.show', this.controller.get("publication.id"));
     },
     saveDraft: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', 'Posten har sparats.');
+            that.send('setMsgHeader', 'success', 'Posten har sparats som utkast.');
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
-            that.transitionTo('publications.show', model.id);            
+            that.transitionTo('publications.show', model.id);
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
+            that.send('setMsgHeader', 'error', 'Posten kunde inte sparas som utkast.');
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {
@@ -106,13 +106,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     savePublish: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', 'Posten har sparats.');
+            that.send('setMsgHeader', 'success', 'Posten har publicerats.');
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
-            that.transitionTo('publications.show', model.id);            
+            that.transitionTo('publications.show', model.id);
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', 'Posten kunde inte sparas.');
+            that.send('setMsgHeader', 'error', 'Posten kunde inte publiceras.');
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {

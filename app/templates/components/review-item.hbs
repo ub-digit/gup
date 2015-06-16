@@ -1,66 +1,84 @@
-<div class="panel panel-warning">
-  <div class="panel-heading">
-    <h3 class="panel-title">Granska och godkänn följande:</h3>
-  </div>
-  <div class="panel-body">
-    <dl class="dl-horizontal">
-      <dt>Publikationstyp:</dt>
-      <dd>{{item.publication_type}}</dd>
-      <dd>
-        {{#if item.diff_since_review.publication_type}}
+<div class="row">
+  <div class="col-xs-10">
+
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Granska och godkänn följande:</h3>
+    </div>
+    <div class="panel-body">
+      {{#if item.diff_since_review}}
+      <div class="alert alert-info">
+        <strong>Senast granskad:</strong> {{format-date item.diff_since_review.reviewed_at}}
+      </div>
+      {{/if}}
+      <dl class="dl-horizontal">
+        <dt>Publikationstyp:</dt>
+        <dd>{{item.publication_type_label}}</dd>
+        <dd>
+          {{#if item.diff_since_review.publication_type}}
           <del class="text-danger">{{item.diff_since_review.publication_type.from}}</del>
-        {{/if}}
-      </dd>
+          {{/if}}
+        </dd>
 
-      <dt>Innehållsmärkning:</dt>
-      <dd>{{item.content_type}}</dd>
-      <dd>
-        {{#if item.diff_since_review.content_type}}
+        <dt>Innehållsmärkning:</dt>
+        <dd>{{item.content_type_label}}</dd>
+        <dd>
+          {{#if item.diff_since_review.content_type}}
           <del class="text-danger">{{item.diff_since_review.content_type.from}}</del>
-        {{/if}}
-      </dd>
+          {{/if}}
+        </dd>
 
-      <dt>Din affiliering:</dt>
-      {{#if item.diff_since_review.affiliation}}
-        {{#each department in departments}}
-          {{#if department.added}}
+        <dt>Din affiliering:</dt>
+        {{#if item.diff_since_review.affiliation}}
+          {{#each department in diffDepartments}}
+            {{#if department.added}}
             <dd class="text-success">{{department.name}}</dd>
-          {{/if}}
-          {{#if department.removed}}
+            {{/if}}
+            {{#if department.removed}}
             <dd><del class="text-danger">{{department.name}}</del></dd>
-          {{/if}}
-          {{#if department.same}}
+            {{/if}}
+            {{#if department.same}}
             <dd>{{department.name}}</dd>
           {{/if}}
-        {{/each}}
-      {{else}}
-        {{#each department in item.affiliation.departments}}
+          {{/each}}
+          {{else}}
+          {{#each department in item.affiliation.departments}}
           <dd>{{department.name}}</dd>
-        {{/each}}
-      {{/if}}
+          {{/each}}
+        {{/if}}
 
-      <dt>Ämnesord:</dt>
+        <dt>Ämnesord:</dt>
 
-
-      {{#if item.diff_since_review.category_hsv_local}}
-        {{#each category in categories}}
-          {{#if category.added}}
-            <dd class="text-success">{{category.name_path}}</dd>
-          {{/if}}
-          {{#if category.removed}}
-            <dd><del class="text-danger">{{category.name_path}}</del></dd>
-          {{/if}}
-          {{#if category.same}}
+        {{#if item.diff_since_review.category_hsv_local}}
+          {{#each category in diffCategories}}
+            {{#if category.added}}
+              <dd class="text-success">{{category.name_path}}</dd>
+            {{/if}}
+            {{#if category.removed}}
+              <dd><del class="text-danger">{{category.name_path}}</del></dd>
+            {{/if}}
+            {{#if category.same}}
+              <dd>{{category.name_path}}</dd>
+            {{/if}}
+          {{/each}}
+        {{else}}
+          {{#each category in item.category_objects}}
             <dd>{{category.name_path}}</dd>
-          {{/if}}
-        {{/each}}
-      {{else}}
-        {{#each category in item.category_objects}}
-          <dd>{{category.name_path}}</dd>
-        {{/each}}
-      {{/if}}
+          {{/each}}
+        {{/if}}
 
-
-    </dl>
+      </dl>
+    </div>
   </div>
+</div>
+<div class="col-xs-2">
+  <div class="btn-toolbar pull-right">
+
+    {{#unless isApproved}}
+      <button {{action 'approve' item}} class="btn btn-sm btn-success">Godkänn</button>
+    {{else}}
+      <span class="text-success">Godkänd <i class="fa fa-check"></i></span>
+    {{/unless}}
+  </div>
+</div>
 </div>
