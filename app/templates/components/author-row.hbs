@@ -1,5 +1,17 @@
 <div class="row bottom-spacing-20">
 	<div class="dotted-line"></div>
+	<div class="col-xs-12">
+		{{#if item.importedAuthorName}}
+			<div class="imported-author">
+		      <h4><i class="fa fa-info-circle"></i> {{t 'edit.form.possibleAuthorFoundText'}}</h4>
+		      <p><strong>{{item.importedAuthorName}}</strong> 
+		      {{#unless item.transformedToNewAuthor}}
+		     	 - lägg till författare genom att söka nedan eller <a href="javascript:void()" {{action 'toggleAddNewAuthor' item}}>{{t 'newPub.manualPub.linkNew'}}</a>
+		      {{/unless}}
+		      </p>
+			</div>
+		{{/if}}
+	</div>
 	<div class="col-xs-10">
 		{{#if item.transformedToNewAuthor}}
 			<div class="row bottom-spacing-20">
