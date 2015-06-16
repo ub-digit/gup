@@ -71,10 +71,13 @@
 					<label>{{t 'edit.form.selectAuthor.label'}}</label>
 					{{select2-adjusted
 					    placeholder=(t 'edit.form.selectAuthor.placeholder')
+					    didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
+					    btnText=(t 'edit.form.selectAuthor.btnCreateNew')
 					    value=item.selectedAuthor
 					    optionLabelPath="presentation_string"
 					    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
 					   	typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
+					   	formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
 					   	minimumInputLength=3
 					    query="queryAuthors"
 					    allowClear=true

@@ -47,7 +47,10 @@ export default {
 				label: 'Välj författare',
 				placeholder: 'Välj författare',
 				typeaheadSearchingText: 'Söker författare',
-				typeaheadNoMatchesText: 'Hittade inga författare'
+				typeaheadNoMatchesText: 'Hittade inga författare',
+				didNotFindPersonText: 'Hittar du inte den du söker?',
+				formatInputTooShortText: 'Ange minst 3 tecken',
+				btnCreateNew: 'Skapa ny'
 			},
 			selectInstitutions: {
 				label: 'Välj institutioner',
