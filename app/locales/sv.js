@@ -43,6 +43,8 @@ export default {
 		form: {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
 			changePublicationTypeLink: 'Byt publikationstyp',
+			btnAddNewAuthor: 'Lägg till författare',
+			possibleAuthorFoundText: 'Eventuell författare funnen:',
 			selectAuthor: {
 				label: 'Välj författare',
 				placeholder: 'Välj författare',
@@ -103,7 +105,8 @@ export default {
 		manualPub: {
 			header: 'Har du ingen källa att importera från?',
 			ingress: 'Skapa en ny publikation och mata in informationen manuellt.',
-			btnNew: 'Skapa ny'
+			btnNew: 'Skapa ny',
+			linkNew: 'skapa ny författare'
 		}
 
 	}

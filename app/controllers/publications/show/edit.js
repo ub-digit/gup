@@ -288,9 +288,10 @@ export default Ember.Controller.extend({
           this.get("authorArr").insertAt(curPos+1, temp);
         }
     },
-    addNewAuthorRow: function() {
+    addNewAuthorRow: function(name) {
       this.get("authorArr").addObject(
         Ember.Object.create({
+          importedAuthorName: name,
           id: this.generateUUID(),
           selectedAuthor: null,
           selectedInstitution: null,
