@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  categories: Ember.computed('item.category_objects', function() {
+  isApproved: false,
+
+  diffCategories: Ember.computed('item.category_objects', function() {
 
     var oldCategories = this.get('item.diff_since_review.category_hsv_local.from') || [];
     var newCategories = this.get('item.category_objects');
@@ -34,7 +36,7 @@ export default Ember.Component.extend({
 
   }),
 
-  departments: Ember.computed('item.affiliation', function() {
+  diffDepartments: Ember.computed('item.affiliation', function() {
 
     var oldDepartments = this.get('item.diff_since_review.affiliation.from') || [];
     var newDepartments = this.get('item.affiliation.departments');
@@ -64,9 +66,32 @@ export default Ember.Component.extend({
 
     return a;
 
-  })
+  }),
 
+  actions: {
 
+    approve: function(item) {
+
+      Ember.$("body").addClass("loading");
+      var that = this;
+
+      this.store.find('review', item.db_id).then(
+        function(response) {
+
+          that.sendAction('setMsgHeader', 'success', 'Posten har godkänts.');
+          Ember.$("body").removeClass("loading");
+          that.set('isApproved', true);
+
+        },
+        function(reason) {
+
+          that.sendAction('setMsgHeader', 'error', 'Posten kunde inte godkännas.');
+          Ember.$("body").removeClass("loading");
+
+      });     
+
+    }
+  }
 
 
 });
