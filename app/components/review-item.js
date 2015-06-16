@@ -78,17 +78,17 @@ export default Ember.Component.extend({
       this.store.find('review', item.db_id).then(
         function(response) {
 
-          that.sendAction('setMsgHeader', 'success', 'Posten har godkänts.');
+          that.sendAction('setMsgHeader', 'success', that.t('messages.approveSuccess'));
           Ember.$("body").removeClass("loading");
           that.set('isApproved', true);
 
         },
         function(reason) {
 
-          that.sendAction('setMsgHeader', 'error', 'Posten kunde inte godkännas.');
+          that.sendAction('setMsgHeader', 'error', that.t('messages.approveError'));
           Ember.$("body").removeClass("loading");
 
-      });     
+      });
 
     }
   }

@@ -81,13 +81,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     saveDraft: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', 'Posten har sparats som utkast.');
+            that.send('setMsgHeader', 'success', that.t('messages.saveDraftSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
             that.transitionTo('publications.show', model.id);
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', 'Posten kunde inte sparas som utkast.');
+            that.send('setMsgHeader', 'error', that.t('messages.saveDraftSuccess'));
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {
@@ -106,13 +106,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     savePublish: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', 'Posten har publicerats.');
+            that.send('setMsgHeader', 'success', that.t('messages.publishSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
             that.transitionTo('publications.show', model.id);
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', 'Posten kunde inte publiceras.');
+            that.send('setMsgHeader', 'error', that.t('messages.publishError'));
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {

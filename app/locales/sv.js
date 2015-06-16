@@ -7,7 +7,7 @@ export default {
 	},
 	login: {
 		xaccount: 'x-konto',
-		xaccountPlaceholder: 'x-konto (t ex xrasto)',
+		xaccountPlaceholder: 'x-konto',
 		password: 'Lösenord',
 		passwordPlaceholder: 'Lösenord',
 		button: 'Logga in'
@@ -17,19 +17,44 @@ export default {
 		  publications: 'Publikationer',
 		  createdAt: 'Skapad',
 		  updatedAt: 'Uppdaterad',
-		  publishedAt: 'Publicerad'
+		  publishedAt: 'Publicerad',
+			noTitle: '[Ingen titel]'
 		}
+	},
+	messages: {
+		saveDraftSuccess: 'Posten har sparats som utkast.',
+		saveDraftError: 'Posten kunde inte sparas som utkast.',
+		deleteDraftSuccess: 'Utkast borttaget.',
+		deleteDraftError: 'Utkastet kunde inte tas bort.',
+		confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
+		publishSuccess: 'Posten har publicerats.',
+		publishError: 'Posten kunde inte publiceras.',
+		approveSuccess: 'Posten har godkänts.',
+		approveError: 'Posten kunde inte godkännas.'
 	},
 	text: {
 		youHaveNoDrafts: 'Du har inga utkast.',
 		youHaveNoPublications: 'Du har inga publikationer.',
-		youHaveNoRegisteredOrEditedPublications: 'Du har inga registrerat eller redigerat några publikationer.',
+		youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
+		youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
+		reviewListPreamble: 'Forskare är skyldiga att granska och godkänna sina registrerade publikationer pga ett beslut som tagits.',
 		drafts: 'Utkast',
 		published: 'Publicerade',
-		registeredOrEditedByMe: 'Registrerade/redigerade av mig'
+		registeredOrEditedByMe: 'Registrerade/redigerade av mig',
+		forReview: 'Att granska'
 	},
 	labels: {
 		registerNew: 'Registrera ny'
+	},
+	review: {
+		reviewDetailsHeader: 'Granska och godkänn följande:',
+		lastReview: 'Senast granskad av dig:',
+		publicationType: 'Publikationstyp',
+		contentType: 'Innehållsmärkning:',
+		affiliation: 'Din affiliering:',
+		categories: 'Ämnesord:',
+		approve: 'Godkänn',
+		approved: 'Godkänd'
 	},
 	edit: {
 		header: 'Registrera publikation',

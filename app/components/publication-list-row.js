@@ -3,6 +3,12 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
 
+  titleString: Ember.computed('item.title', function() {
+
+    return this.get('item.title') || this.t('publication.labels.noTitle');
+
+  }),
+
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
 
     var i = this.get('item');

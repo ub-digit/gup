@@ -3,16 +3,16 @@
 
   <div class="panel panel-warning">
     <div class="panel-heading">
-      <h3 class="panel-title">Granska och godkänn följande:</h3>
+      <h3 class="panel-title">{{t 'review.reviewDetailsHeader'}}</h3>
     </div>
     <div class="panel-body">
       {{#if item.diff_since_review}}
       <div class="alert alert-info">
-        <strong>Senast granskad:</strong> {{format-date item.diff_since_review.reviewed_at}}
+        <strong>{{t 'review.lastReview'}}</strong> {{format-date item.diff_since_review.reviewed_at}}
       </div>
       {{/if}}
       <dl class="dl-horizontal">
-        <dt>Publikationstyp:</dt>
+        <dt>{{t 'review.publicationType'}}</dt>
         <dd>{{item.publication_type_label}}</dd>
         <dd>
           {{#if item.diff_since_review.publication_type}}
@@ -20,7 +20,7 @@
           {{/if}}
         </dd>
 
-        <dt>Innehållsmärkning:</dt>
+        <dt>{{t 'review.contentType'}}</dt>
         <dd>{{item.content_type_label}}</dd>
         <dd>
           {{#if item.diff_since_review.content_type}}
@@ -28,7 +28,7 @@
           {{/if}}
         </dd>
 
-        <dt>Din affiliering:</dt>
+        <dt>{{t 'review.affiliation'}}</dt>
         {{#if item.diff_since_review.affiliation}}
           {{#each department in diffDepartments}}
             {{#if department.added}}
@@ -47,7 +47,7 @@
           {{/each}}
         {{/if}}
 
-        <dt>Ämnesord:</dt>
+        <dt>{{t 'review.categories'}}</dt>
 
         {{#if item.diff_since_review.category_hsv_local}}
           {{#each category in diffCategories}}
@@ -75,9 +75,9 @@
   <div class="btn-toolbar pull-right">
 
     {{#unless isApproved}}
-      <button {{action 'approve' item}} class="btn btn-sm btn-success">Godkänn</button>
+      <button {{action 'approve' item}} class="btn btn-sm btn-success">{{t 'review.approve'}}</button>
     {{else}}
-      <span class="text-success">Godkänd <i class="fa fa-check"></i></span>
+      <span class="text-success">{{t 'review.approved'}} <i class="fa fa-check"></i></span>
     {{/unless}}
   </div>
 </div>
