@@ -1,7 +1,7 @@
 export default {
   mainMenu: {
     applicationName: 'GUP 3 (en)',
-    lang: 'Svenska',
+    lang: 'Engelska',
     publications: 'Publikationer',
     logOut: 'Logga ut'
   },
@@ -47,7 +47,10 @@ export default {
         label: 'Välj författare',
         placeholder: 'Välj författare',
         typeaheadSearchingText: 'Söker författare',
-        typeaheadNoMatchesText: 'Hittade inga författare'
+        typeaheadNoMatchesText: 'Hittade inga författare',
+        didNotFindPersonText: 'Hittar du inte den du söker?',
+        formatInputTooShortText: 'Ange minst 3 tecken',
+        btnCreateNew: 'Skapa ny'
       },
       selectInstitutions: {
         label: 'Välj institutioner',
@@ -83,9 +86,9 @@ export default {
     header: 'Registrera ny publikation',
     importPub: {
       header: 'Importera',
-      ingress: 'Importera publikationsuppgifter från extern källa, tex PubMed, Scopus eller Web of Science.',
+      ingress: 'Använd ett ID för att importera publikationsuppgifter från en extern källa, tex PubMed, Scopus eller Libris.',
       form: {
-        selectImportSourcePrompt: 'Välj källa',
+        selectImportSourcePrompt: 'Välj typ av ID',
         inputId: {
           placeholder: 'ID',
         }

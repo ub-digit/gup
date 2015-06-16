@@ -49,6 +49,7 @@ export default {
 				typeaheadSearchingText: 'Söker författare',
 				typeaheadNoMatchesText: 'Hittade inga författare',
 				didNotFindPersonText: 'Hittar du inte den du söker?',
+				formatInputTooShortText: 'Ange minst 3 tecken',
 				btnCreateNew: 'Skapa ny'
 			},
 			selectInstitutions: {
