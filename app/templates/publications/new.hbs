@@ -32,8 +32,12 @@
                 optionLabelPath="content.label"
                 prompt=(t 'newPub.importPub.form.selectImportSourcePrompt')
               }}
-              {{input class='form-control input-lg manageFields' value=sourceId placeholder=(t 'newPub.importPub.form.inputId.placeholder')}}
-              <button {{action 'fetchSource'}} {{bind-attr class=":btn :btn-lg :btn-primary fetchButtonIsActive::disabled"}}>Hämta</button>
+              <div class="input-group input-group-lg">
+                {{input class='form-control manageFields' value=sourceId placeholder=(t 'newPub.importPub.form.inputId.placeholder')}}
+                <span class="input-group-btn">
+                  <button {{action 'fetchSource'}} {{bind-attr class=":btn :btn-primary fetchButtonIsActive::disabled"}}>Hämta</button>
+                </span>
+              </div>
             </form>
           </div>
         </div>
