@@ -1,113 +1,141 @@
 export default {
-  mainMenu: {
-    applicationName: 'GUP 3 (en)',
-    lang: 'Svenska',
-    publications: 'Publikationer',
-    logOut: 'Logga ut'
-  },
-  login: {
-    xaccount: 'x-konto',
-    xaccountPlaceholder: 'x-konto (t ex xrasto)',
-    password: 'Lösenord',
-    passwordPlaceholder: 'Lösenord',
-    button: 'Logga in'
-  },
-  publication: {
-    labels: {
-      publications: 'Publikationer',
-      createdAt: 'Skapad',
-      updatedAt: 'Uppdaterad',
-      publishedAt: 'Publicerad'
-    }
-  },
-  text: {
-    youHaveNoDrafts: 'Du har inga utkast.',
-    youHaveNoPublications: 'Du har inga publikationer.',
-    youHaveNoRegisteredOrEditedPublications: 'Du har inga registrerat eller redigerat några publikationer.',
-    drafts: 'Utkast',
-    published: 'Publicerade',
-    registeredOrEditedByMe: 'Registrerade/redigerade av mig'
-  },
-  labels: {
-    registerNew: 'Registrera ny'
-  },
-  edit: {
-    header: 'Registrera publikation',
-    actions: {
-      btnClose: 'Stäng',
-      btnCancel: 'Avbryt',
-      btnSaveDraft: 'Spara utkast',
-      btnSaveAndPublish: 'Spara och publicera',
-      btnSelect: 'Ok',
-    },
-    form: {
-      selectPublicationTypePrompt: 'Välj publikationstyp',
-      changePublicationTypeLink: 'Byt publikationstyp',
-      btnAddNewAuthor: 'Lägg till författare',
-      possibleAuthorFoundText: 'Eventuell författare funnen:',
-      selectAuthor: {
-        label: 'Välj författare',
-        placeholder: 'Välj författare',
-        typeaheadSearchingText: 'Söker författare',
-        typeaheadNoMatchesText: 'Hittade inga författare',
-        didNotFindPersonText: 'Hittar du inte den du söker?',
-        formatInputTooShortText: 'Ange minst 3 tecken',
-        btnCreateNew: 'Skapa ny'
-      },
-      selectInstitutions: {
-        label: 'Välj institutioner',
-        placeholder: 'Välj institutioner',
-        sortingLink: 'Sortera?'
-      }
-    },
-    createNewAuthor: {
-      form: {
-        labels: {
-          firstname: 'Förnamn:',
-          lastname: 'Efternamn:',
-          birthyear: 'Födelseår:',
-          xaccount: 'x-konto',
-          orcid: 'Orcid'
-        },
-        placeholders: {
-          firstname: 'Förnamn:',
-          lastname: 'Efternamn:',
-          birthyear: 'Födelseår:',
-          xaccount: 'x-konto',
-          orcid: 'Orcid'
-        },
-        actions: {
-          btnSave: 'Spara',
-          btnCancel: 'Avbryt'
-        }
+	mainMenu: {
+		applicationName: 'GUP 3',
+		lang: 'Svenska',
+		publications: 'Publications',
+		logOut: 'Log out'
+	},
+	login: {
+		xaccount: 'x-account',
+		xaccountPlaceholder: 'x-account',
+		password: 'Password',
+		passwordPlaceholder: 'Password',
+		button: 'Log in'
+	},
+	publication: {
+		labels: {
+		  publications: 'Publications',
+		  createdAt: 'Created',
+		  updatedAt: 'Uppdated',
+		  publishedAt: 'Published',
+			noTitle: '[No title]'
+		}
+	},
+	messages: {
+		saveDraftSuccess: 'The record has been saved as a draft.',
+		saveDraftError: 'The record could not be saved as a draft.',
+		deleteDraftSuccess: 'Draft deleted.',
+		deleteDraftError: 'The draft could not be deleted.',
+		confirmDeleteDraft: 'Are you sure you want to delete the draft?',
+		publishSuccess: 'The record has been published.',
+		publishError: 'The record could not be published.',
+		approveSuccess: 'The record has been approved.',
+		approveError: 'The record could not be approved.'
+	},
+	text: {
+		youHaveNoDrafts: 'You have no drafts.',
+		youHaveNoPublications: 'You have no published publications.',
+		youHaveNoRegisteredOrEditedPublications: 'You have not registered or edited any publications.',
+		youHaveNoPublicationsForReview: 'You have no publications pending review.',
+		reviewListPreamble: 'Researchers are obliged to review and approve some aspects of their registered publications.',
+		drafts: 'Draft',
+		published: 'Published',
+		registeredOrEditedByMe: 'Registered/edited by me',
+		forReview: 'Pending review'
+	},
+	labels: {
+		registerNew: 'Register new',
+		back: 'Back'
+	},
+	review: {
+		reviewDetailsHeader: 'Review and approve the following aspects:',
+		lastReview: 'Last review by you:',
+		publicationType: 'Publication type:',
+		contentType: 'Content type:',
+		affiliation: 'Your affiliation:',
+		categories: 'Subject terms:',
+		approve: 'Approve',
+		approved: 'Approved'
+	},
+	edit: {
+		header: 'Edit publication',
+		actions: {
+			btnClose: 'Close',
+			btnCancel: 'Cancel',
+			btnSaveDraft: 'Save as draft',
+			btnSaveAndPublish: 'Save and publish',
+			btnSelect: 'Ok',
+		},
+		form: {
+			selectPublicationTypePrompt: 'Select publication type',
+			changePublicationTypeLink: 'Change publication type',
+			btnAddNewAuthor: 'Add author',
+			possibleAuthorFoundText: 'Probable author detected:',
+			selectAuthor: {
+				label: 'Choose author',
+				placeholder: 'Choose author',
+				typeaheadSearchingText: 'Searching for authors',
+				typeaheadNoMatchesText: 'No authors found',
+				didNotFindPersonText: 'Did you not find the one you were looking for?',
+				formatInputTooShortText: 'Enter at least 3 charachters',
+				btnCreateNew: 'Create new'
+			},
+			selectInstitutions: {
+				label: 'Select departments',
+				placeholder: 'Select departments',
+				sortingLink: 'Sort?'
+			}
+		},
+		createNewAuthor: {
+			form: {
+				labels: {
+					firstname: 'First name:',
+					lastname: 'Last name:',
+					birthyear: 'Year of birth:',
+					xaccount: 'x-account',
+					orcid: 'Orcid'
+				},
+				placeholders: {
+					firstname: 'First name:',
+					lastname: 'Last name:',
+					birthyear: 'Year or birth:',
+					xaccount: 'x-account',
+					orcid: 'Orcid'
+				},
+				actions: {
+					btnSave: 'Save',
+					btnCancel: 'Cancel'
+				}
 
-      }
-    }
-  },
-  newPub: {
-    header: 'Registrera ny publikation',
-    importPub: {
-      header: 'Importera',
-      ingress: 'Använd ett ID för att importera publikationsuppgifter från en extern källa, tex PubMed, Scopus eller Libris.',
-      form: {
-        selectImportSourcePrompt: 'Välj typ av ID',
-        inputId: {
-          placeholder: 'ID',
-        }
-      },
-      importConfirmation: {
-        header: 'Vill du importera följande post:',
-        title: 'Titel:',
-        author: 'Författare:',
-        btnImport: 'Importera'
-      }
-    },
-    manualPub: {
-      header: 'Har du ingen källa att importera från?',
-      ingress: 'Skapa en ny publikation och mata in informationen manuellt.',
-      btnNew: 'Skapa ny',
-      linkNew: 'skapa ny författare'
-    }
+			}
+		}
+	},
+	newPub: {
+		header: 'Register new publication',
+		importPub: {
+			header: 'Import',
+			ingress: 'Use an external ID to import publication data from an external source, e.g. PubMed, Scopus or Libris.',
 
-  }
+			form: {
+				selectImportSourcePrompt: 'Choose an ID',
+				inputId: {
+					placeholder: 'ID',
+				},
+				fetchButton: 'Fetch'
+			},
+			importConfirmation: {
+				header: 'Would you like to import the following record:',
+				title: 'Title:',
+				author: 'Author:',
+				btnImport: 'Import'
+			}
+		},
+		manualPub: {
+			header: 'Are you missing a source to import from?',
+			ingress: 'Create a new record from scratch and enter the data manually.',
+			btnNew: 'Create new',
+			linkNew: 'Create new author'
+		}
+
+	}
 };
