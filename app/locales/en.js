@@ -69,6 +69,8 @@ export default {
 		form: {
 			selectPublicationTypePrompt: 'Select publication type',
 			changePublicationTypeLink: 'Change publication type',
+      authorHeaderTextStrong: 'Authors',
+      authorHeaderTextSoft: '(provide at least one)',
 			btnAddNewAuthor: 'Add author',
 			possibleAuthorFoundText: 'Probable author detected:',
 			selectAuthor: {

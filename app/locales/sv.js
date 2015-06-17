@@ -69,6 +69,8 @@ export default {
 		form: {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
 			changePublicationTypeLink: 'Byt publikationstyp',
+			authorHeaderTextStrong: 'Författare',
+			authorHeaderTextSoft: '(ange minst en)',
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',
 			selectAuthor: {

@@ -1,6 +1,7 @@
 <section id="author-component" {{bind-attr class="errors:has-error"}}>
+	<h2>{{t 'edit.form.authorHeaderTextStrong'}} <small>{{t 'edit.form.authorHeaderTextSoft'}}</small></h2>
 	{{#if errors}}
-		<ul class="list-unstyled">
+		<ul class="list-unstyled has-error">
 		{{#each item in errors}}
 			<li><i class="fa fa-info-circle"></i> {{item}}</li>
 		{{/each}}

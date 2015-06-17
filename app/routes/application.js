@@ -2,11 +2,11 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
-  queryParams: {
+  /*queryParams: {
     lang: {
       refreshModel: true
     }
-  },
+  },*/
   beforeModel: function() {
     this._super();
     //	this.transitionTo('login');
@@ -21,10 +21,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   model: function(params) {
     this.controllerFor("application").set('lang', params.lang)
+    this.controllerFor("application").setLocale();
   },
 
   setupController: function(controller) {
-    this.controllerFor("application").setLocale();
+    
   },
 
   actions: {
