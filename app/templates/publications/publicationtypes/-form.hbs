@@ -45,16 +45,11 @@
 			{{else}}
 				<div class="row">
 					<div class="col-xs-6">
-						<label class="control-label">Innehållstyp:</label>
-						{{view Ember.Select classNames="form-control"
-							content=contentTypes
-							value=publication.content_type
-							optionValuePath="content"
-							optionLabelPath="content"
-							prompt='Välj innehållstyp'
-						}}
+						<span {{bind-attr class=":form-group errors.content_type:has-error"}}>
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="select"  errors=errors.content_type value=publication.content_type selectValues=getPublicationTypeObject.content_types prompt=(t 'edit.form.selectContentTypePrompt') label=(t 'edit.form.selectContentTypeLabel')}}
+						</span>
 					</div>
-				</div><!-- end row -->
+				</div>
 			{{/if}}
 		{{/unless}}
 	{{/if}}

@@ -15,7 +15,7 @@ export default Ember.Component.extend({
           return null;
         }
       }
-      else { // if no object was found 
+      else { // if no object was found
         return null;
       }
 
@@ -38,6 +38,11 @@ export default Ember.Component.extend({
   }.observes('selectedPublicationType'),
 
   getLabel: function() {
+
+    if (this.get('label')) {
+      return this.get('label');
+    }
+
     var fullObj = this.getFullObject();
     if (fullObj) {
       if (fullObj.label) {
@@ -59,10 +64,14 @@ export default Ember.Component.extend({
     }
     else {
       return false;
-    } 
+    }
   }.property('selectedPublicationType'),
 
   isVisible: function() {
+    if (this.get('fieldName') === 'content_type') {
+      return true;
+    }
+
     var rule = this.getRule();
     if (rule) {
     	if (rule === "na") {
