@@ -84,7 +84,18 @@ export default {
 				label: 'Välj institutioner',
 				placeholder: 'Välj institutioner',
 				sortingLink: 'Sortera?'
-			}
+			},
+			selectCategory: {
+        addCategory: 'Lägg till ämnesord',
+        modalHeader: 'Välj 3 ämnesord',
+        left: 'kvar',
+        selectedCategories: 'Valda ämnesord:',
+        noCategoriesSelected: 'Inga ämnesord valda',
+        subjectTerms: 'Ämnesord',
+        clear: 'Rensa',
+        noFilteredSubjectTerms: 'Inga ämnesord matcher filtret',
+        close: 'Stäng'
+      }
 		},
 		createNewAuthor: {
 			form: {
