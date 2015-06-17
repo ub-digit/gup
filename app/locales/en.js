@@ -84,7 +84,18 @@ export default {
 				label: 'Select departments',
 				placeholder: 'Select departments',
 				sortingLink: 'Sort?'
-			}
+			},
+      selectCategory: {
+        addCategory: 'Add subject terms',
+        modalHeader: 'Select 3 subject terms',
+        left: 'left',
+        selectedCategories: 'Selected subject terms:',
+        noCategoriesSelected: 'No subject terms selected',
+        subjectTerms: 'Subject terms',
+        clear: 'Clear',
+        noFilteredSubjectTerms: 'Found no matching subject terms',
+        close: 'Close'
+      }
 		},
 		createNewAuthor: {
 			form: {
