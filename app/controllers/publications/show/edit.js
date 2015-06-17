@@ -39,22 +39,22 @@ export default Ember.Controller.extend({
     })
   }),
 
-
-  getConfigMetaForField: function(fieldName) {
-     var fullObject = this.get("publicationTypes").findBy('code', this.get("selectedPublicationType"));
-     if (fullObject) {
-        var logicForField = fullObject.fields.findBy('name','title');
-        if (logicForField) {
-          return logicForField;
-        }
-        else {
-          return null;
-        }
-      }
-      else { // if no object was found
-        return null;
-      }
-  }.property('selectedPublicationType'),
+  //Update department list depending on given publication year
+  updateDepartmentList: Ember.observer('publication.pubyear', function(){
+    var that = this;
+    // Check if value is a valid year
+    var year = this.get('publication.pubyear');
+    if (isNaN(year) || year > 2100 || year < 1000){
+      return;
+    }
+    console.log('fetching departments...');
+    this.store.find('department', {year: year}).then(
+      function(response) {
+        that.set('institutions', response);
+      },
+      function(reason){}
+      )
+  }),
 
   getPublicationTypeObject: function() {
     if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null)) {

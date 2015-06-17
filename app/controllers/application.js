@@ -14,13 +14,13 @@ export default Ember.Controller.extend({
 		var application = this.container.lookup('application:main');
 
 		if (this.get("lang")) {
-			set(application, 'locale', this.get("lang"));
+			var that = this;
+			set(application, 'locale', that.get("lang"));
 		}
 		else {
 			set(application, 'locale', application.get('defaultLocale'));
 			this.set("lang",  application.get('defaultLocale'));
 		}
-
 	},
 	actions: {
 		toggleLang: function() {
@@ -32,11 +32,15 @@ export default Ember.Controller.extend({
 				else {
 					this.set("lang", 'en');
 				}
-				this.setLocale();
+				//this.setLocale();
 			}
 			else {
 				this.set("lang", this.getDefaultLocale());
 			}
+			Ember.run.later(function() {
+				location.reload(true);
+			})
+			
 		}
 	}
 });

@@ -17,7 +17,6 @@ export default Ember.Object.extend({
   },
 
   getLocale: function() {
-    //this.controllerFor("application").setLocale();
     var set = Ember.set;
     var application = this.container.lookup('application:main');
 

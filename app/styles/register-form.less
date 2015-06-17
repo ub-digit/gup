@@ -9,6 +9,19 @@
   label {
     margin-top: 10px;
   }
+  #author-component {
+    border-left: 3px solid @brand-primary;
+    padding-left: 20px;
+    margin-top: 20px;
+    h2 {
+      margin-top: 0;
+    }
+    ul {
+      &.has-error {
+        color: @brand-danger;
+      }
+    }
+  }
 }
 
 .select-publication-type-box {
