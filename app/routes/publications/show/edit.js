@@ -9,6 +9,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       publication: model,
       publicationTypes: this.store.find('publication_type'),
       departments: this.store.find("department"),
+      languages: this.store.find("language")
     });
   },
   setupController: function(controller, models) {
@@ -16,6 +17,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set("publication", models.publication);
     controller.set('categories', models.categories);
     controller.set('institutions', models.departments);
+    controller.set('languages', models.languages);
 
     if (models.publication) {
       if (models.publication.authors) {
