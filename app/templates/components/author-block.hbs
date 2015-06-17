@@ -1,8 +1,15 @@
-<section id="author-component" {{bind-attr class=""}}>
+<section id="author-component" {{bind-attr class="errors:has-error"}}>
+	{{#if errors}}
+		<ul class="list-unstyled">
+		{{#each item in errors}}
+			<li><i class="fa fa-info-circle"></i> {{item}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
 	{{#each item in authorArr}}
 		{{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
 	{{/each}}
-	<div class="row ">
+	<div class="row">
 		<div class="col-md-9">
 			<div class="dotted-line"></div>
 			<button class="btn btn-primary" {{action 'addNewAuthorRow'}}>{{t 'edit.form.btnAddNewAuthor'}} <i class="fa fa-plus"></i></button>
