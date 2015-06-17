@@ -39,7 +39,22 @@ export default Ember.Controller.extend({
     })
   }),
 
-
+  //Update department list depending on given publication year
+  updateDepartmentList: Ember.observer('publication.pubyear', function(){
+    var that = this;
+    // Check if value is a valid year
+    var year = this.get('publication.pubyear');
+    if (isNaN(year) || year > 2100 || year < 1000){
+      return;
+    }
+    console.log('fetching departments...');
+    this.store.find('department', {year: year}).then(
+      function(response) {
+        that.set('institutions', response);
+      },
+      function(reason){}
+      )
+  }),
 
   getPublicationTypeObject: function() {
     if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null)) {
