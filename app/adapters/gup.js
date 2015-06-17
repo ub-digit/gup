@@ -12,7 +12,8 @@ export default Ember.Object.extend({
     import_data: {path: 'fetch_import_data', plural: 'publication'},
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' },
-    review: { path: 'publications/review', singular: 'publication'}
+    review: { path: 'publications/review', singular: 'publication'},
+    language: {path: 'languages'}
   },
 
   getLocale: function() {

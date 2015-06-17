@@ -98,6 +98,8 @@ export default Ember.Component.extend({
 
   isTypeCategorySelector: function() {
     return (this.get('type') === 'category-selector');
-  }.property('type')
+  }.property('type'),
+
+  isTypeSelect: Ember.computed.equal('type', 'select')
 
 });
