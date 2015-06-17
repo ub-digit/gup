@@ -3,9 +3,34 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   selectedSource: null,
-  sourceId: null,  
+  sourceId: null,
   error: null,
   importData: null,
+
+  idPlaceholderString: Ember.computed('selectedSource', function() {
+
+    var prefix = this.t('newPub.importPub.form.inputId.placeholder');
+
+    switch(this.get('selectedSource')) {
+
+      case 'gupea':
+        return prefix + '12345';
+        break;
+      case 'pubmed':
+        return prefix + '25855245';
+        break;
+      case 'scopus':
+        return prefix + '10.1577/H02-043';
+        break;
+      case 'libris':
+        return prefix + '978-91-7385-325-5';
+        break;
+      default:
+        return 'ID';
+        break;
+    }
+
+  }),
 
   fetchButtonIsActive: Ember.computed('selectedSource', 'sourceId', function() {
     return (this.get('selectedSource') && this.get('sourceId'));

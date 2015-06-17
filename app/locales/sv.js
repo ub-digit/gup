@@ -50,7 +50,7 @@ export default {
 	review: {
 		reviewDetailsHeader: 'Granska och godkänn följande:',
 		lastReview: 'Senast granskad av dig:',
-		publicationType: 'Publikationstyp',
+		publicationType: 'Publikationstyp:',
 		contentType: 'Innehållsmärkning:',
 		affiliation: 'Din affiliering:',
 		categories: 'Ämnesord:',
@@ -130,7 +130,7 @@ export default {
 			form: {
 				selectImportSourcePrompt: 'Välj typ av ID',
 				inputId: {
-					placeholder: 'ID',
+					placeholder: 't.ex. ',
 				},
 				fetchButton: 'Hämta'
 			},

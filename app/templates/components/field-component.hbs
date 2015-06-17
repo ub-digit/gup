@@ -18,5 +18,13 @@
     {{#if isTypeCategorySelector}}
       {{category-selector categoryList=value categoryObjects=categoryObjects}}
     {{/if}}
+    {{#if isTypeSelect}}
+      {{view "select"
+        content=selectValues
+        optionValuePath="content.value"
+        optionLabelPath="content.label"
+        value=value
+        class="form-control"}}
+    {{/if}}
 	{{/if}}
 {{/if}}
