@@ -20,6 +20,10 @@ export default Ember.Component.extend({
       }
   }.observes('selectedPublicationType'),
 
+  getLabel: function() {
+    return "labelName";
+  }.observes('selectedPublicationType'),
+
   isMandatory: function() {
     var rule = this.getConfigMetaForField();
     if (rule === 'R') {
