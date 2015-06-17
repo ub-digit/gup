@@ -6,7 +6,7 @@
       <h3 class="panel-title">{{t 'review.reviewDetailsHeader'}}</h3>
     </div>
     <div class="panel-body">
-      {{#if item.diff_since_review}}
+      {{#if item.diff_since_review.reviewed_at}}
       <div class="alert alert-info">
         <strong>{{t 'review.lastReview'}}</strong> {{format-date item.diff_since_review.reviewed_at}}
       </div>
