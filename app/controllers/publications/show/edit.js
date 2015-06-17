@@ -40,21 +40,6 @@ export default Ember.Controller.extend({
   }),
 
 
-  getConfigMetaForField: function(fieldName) {
-     var fullObject = this.get("publicationTypes").findBy('code', this.get("selectedPublicationType"));
-     if (fullObject) {
-        var logicForField = fullObject.fields.findBy('name','title');
-        if (logicForField) {
-          return logicForField;
-        }
-        else {
-          return null;
-        }
-      }
-      else { // if no object was found
-        return null;
-      }
-  }.property('selectedPublicationType'),
 
   getPublicationTypeObject: function() {
     if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null)) {
