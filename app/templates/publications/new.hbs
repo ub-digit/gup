@@ -33,7 +33,7 @@
                 prompt=(t 'newPub.importPub.form.selectImportSourcePrompt')
               }}
               <div class="input-group input-group-lg">
-                {{input class='form-control manageFields' value=sourceId placeholder=(t 'newPub.importPub.form.inputId.placeholder')}}
+                {{input class='form-control manageFields' value=sourceId placeholder=idPlaceholderString}}
                 <span class="input-group-btn">
                   <button {{action 'fetchSource'}} {{bind-attr class=":btn :btn-primary fetchButtonIsActive::disabled"}}>{{t 'newPub.importPub.form.fetchButton'}}</button>
                 </span>

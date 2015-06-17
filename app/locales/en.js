@@ -130,7 +130,7 @@ export default {
 			form: {
 				selectImportSourcePrompt: 'Choose an ID',
 				inputId: {
-					placeholder: 'ID',
+					placeholder: 'e.g. ',
 				},
 				fetchButton: 'Fetch'
 			},
