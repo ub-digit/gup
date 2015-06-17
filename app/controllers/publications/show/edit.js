@@ -6,8 +6,7 @@ export default Ember.Controller.extend({
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,
   selectedContentType: null,
-  showRegisterNewAuthor: false,
-  authorArr: [],
+  authorArr: Ember.A([]),
   categoryObjectsList: Ember.A([]),
 
   updateCategoryObjects: Ember.observer('publication.category_hsv_local.@each', function(){
@@ -70,6 +69,7 @@ export default Ember.Controller.extend({
   }.observes('selectedPublicationType'),
 
 
+  /* author-block */ 
 
   formatAuthorsForServer: function() {
     var arr = [];
@@ -95,27 +95,7 @@ export default Ember.Controller.extend({
       }
     });
     this.set("publication.authors", arr);
-    console.log('catarray', this.get('publication.category_hsv_local'));
   },
-
-  generateUUID: function () {
-    var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c==='x' ? r : (r&0x3|0x8)).toString(16);
-    });
-    return uuid;
-  },
-
-  isThisTheOnlyAuthorRow: function() {
-    if (this.get("authorArr").length === 1) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }.property('authorArr.@each'),
 
 
 
@@ -129,6 +109,18 @@ export default Ember.Controller.extend({
     }
   }.property('showRegisterNewAuthor'),
 
+  authorComponentIsVisible: function() {
+      if (this.get("isSelectedPublicationValid")) {
+        return true;
+      }
+      else {
+        return false;
+      }
+  }.property('selectedPublicationType'),
+
+  /* end author-block */ 
+
+
   isSelectedPublicationValid: function() {
     if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
       return true;
@@ -138,14 +130,7 @@ export default Ember.Controller.extend({
     }
   }.property('selectedPublicationType'),
 
-  authorComponentIsVisible: function() {
-      if (this.get("isSelectedPublicationValid")) {
-        return true;
-      }
-      else {
-        return false;
-      }
-  }.property('selectedPublicationType'),
+
 
   actionButtonsAreVisible: function() {
       if (this.get("isSelectedPublicationValid")) {
@@ -238,9 +223,6 @@ export default Ember.Controller.extend({
     }
   }.observes('selectedPublicationType'),
 
-  showCancel: function() {
-    //if ()
-  }.observes('selectedPublicationType'),
 
   actions: {
     setAsSelectedPublicationType: function() {
@@ -254,64 +236,7 @@ export default Ember.Controller.extend({
       this.set("selectedPublicationType", null);
     },
 
-    moveUp: function(id) {
-      // first find the item and its index
-      var curPos = null;
-      var temp = this.get("authorArr").find(function(item, index) {
-        if (item.id === id) {
-          curPos = index;
-          return true;
-        }
-      });
-      if (curPos > 0) {
-        var temp2 = this.get("authorArr").objectAt(curPos-1);
-        this.get("authorArr").removeAt(curPos);
-        this.get("authorArr").insertAt(curPos, temp2);
-        this.get("authorArr").removeAt(curPos-1);
-        this.get("authorArr").insertAt(curPos-1, temp);
-      }
-    },
-    moveDown: function(id) {
-        // first find the item and its index
-        var curPos = null;
-        var temp = this.get("authorArr").find(function(item, index) {
-          if (item.id === id) {
-            curPos = index;
-            return true;
-          }
-        });
-        if (curPos < (this.get("authorArr").length-1)) {
-          var temp2 = this.get("authorArr").objectAt(curPos+1);
-          this.get("authorArr").removeAt(curPos);
-          this.get("authorArr").insertAt(curPos, temp2);
-          this.get("authorArr").removeAt(curPos+1);
-          this.get("authorArr").insertAt(curPos+1, temp);
-        }
-    },
-    addNewAuthorRow: function(name) {
-      this.get("authorArr").addObject(
-        Ember.Object.create({
-          importedAuthorName: name,
-          id: this.generateUUID(),
-          selectedAuthor: null,
-          selectedInstitution: null,
-          newAuthorForm: Ember.Object.create({firstName: '', lastName: '', year_of_birth: '', xaccount: '', orcid: ''})
-        })
-      );
-    },
-    removeAuthorRow: function(id) {
-      var list = this.get("authorArr").toArray();
-      var that = this;
-      list.forEach(function(item) {
-        if (item.id === id) {
-          that.get("authorArr").removeObject(item);
-        }
-      });
-    },
-    cancelChangePublicationType: function() {
-      this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
-    },
-
+    /* author-block */ 
 
     toggleAddNewAuthor: function(id) {
       var obj = this.get("authorArr").findBy('id', id);
@@ -321,7 +246,11 @@ export default Ember.Controller.extend({
       else {
         obj.set("transformedToNewAuthor", true);
       }
+    },
+    /* end author-block */ 
 
+    cancelChangePublicationType: function() {
+      this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
     },
   }
 });

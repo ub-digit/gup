@@ -15,16 +15,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set("publicationTypes", models.publicationTypes);
     controller.set("publication", models.publication);
     controller.set('categories', models.categories);
-    var arr = [];
-    controller.set('authors', arr);
     controller.set('institutions', models.departments);
+
     if (models.publication) {
       if (models.publication.authors) {
         if (models.publication.authors.length > 0) {
           var authors = models.publication.authors;
         }
-        var arrOfAuthorsFromImport = models.publication.authors_from_import;
-       // controller.set("authorsFromImport", arrOfAuthorsFromImport);
+        controller.set("arrOfAuthorsFromImport", models.publication.authors_from_import);
       }
     }
     var tempAuthorArr = [];
@@ -38,20 +36,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       });
       controller.set('authorArr', tempAuthorArr);
     }
-    else {
-        if (arrOfAuthorsFromImport) {
-            if (arrOfAuthorsFromImport.length === 0) {
-                controller.send('addNewAuthorRow');
-            }
-            else {
-
-                arrOfAuthorsFromImport.forEach(function(author) {
-                    controller.send('addNewAuthorRow', author);
-                });
-            }
-        }
-    }
-
 
 
     var publicationType = models.publicationTypes.findBy('code', models.publication.publication_type);

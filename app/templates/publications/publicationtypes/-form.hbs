@@ -84,17 +84,7 @@
 	</div>
 
 	{{#if authorComponentIsVisible}}
-		<section id="author-component" {{bind-attr class=""}}>
-			{{#each item in authorArr}}
-				{{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
-			{{/each}}
-			<div class="row ">
-				<div class="col-md-9">
-					<div class="dotted-line"></div>
-					<button class="btn btn-primary" {{action 'addNewAuthorRow'}}>Lägg till författare <i class="fa fa-plus"></i></button>
-				</div>
-			</div>
-		</section>
+		{{author-block authorArr=authorArr arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions}}
 	{{/if}}
 
 	<div class="row">

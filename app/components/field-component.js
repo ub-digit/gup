@@ -1,15 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  getConfigMetaForField: function() {
+  getFullObject: function() {
      var fullObject = this.get("selectedPublicationType");
      if (fullObject) {
-        var logicForField = fullObject.all_fields.findBy('name',this.get("fieldName"));
-        if (!logicForField) {
-        	return null;
+        var correctObjectBasedOnFieldName = fullObject.all_fields.findBy('name',this.get("fieldName"));
+        if (!correctObjectBasedOnFieldName) {
+          return null;
         }
-        if (logicForField.rule) {
-          return logicForField.rule;
+        if (correctObjectBasedOnFieldName) {
+          return correctObjectBasedOnFieldName;
         }
         else {
           return null;
@@ -18,10 +18,42 @@ export default Ember.Component.extend({
       else { // if no object was found 
         return null;
       }
+
   }.observes('selectedPublicationType'),
 
+
+  getRule: function() {
+    var fullObj = this.getFullObject();
+    if (fullObj) {
+      if (fullObj.rule) {
+        return fullObj.rule;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      return null;
+    }
+  }.observes('selectedPublicationType'),
+
+  getLabel: function() {
+    var fullObj = this.getFullObject();
+    if (fullObj) {
+      if (fullObj.label) {
+        return fullObj.label;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      return null;
+    }
+  }.property('selectedPublicationType'),
+
   isMandatory: function() {
-    var rule = this.getConfigMetaForField();
+    var rule = this.getRule();
     if (rule === 'R') {
       return true;
     }
@@ -31,7 +63,7 @@ export default Ember.Component.extend({
   }.property('selectedPublicationType'),
 
   isVisible: function() {
-    var rule = this.getConfigMetaForField();
+    var rule = this.getRule();
     if (rule) {
     	if (rule === "na") {
     		return false;
