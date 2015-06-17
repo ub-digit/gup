@@ -44,7 +44,8 @@ export default {
 		forReview: 'Att granska'
 	},
 	labels: {
-		registerNew: 'Registrera ny'
+		registerNew: 'Registrera ny',
+		back: 'Tillbaka'
 	},
 	review: {
 		reviewDetailsHeader: 'Granska och godkänn följande:',
@@ -114,11 +115,13 @@ export default {
 		importPub: {
 			header: 'Importera',
 			ingress: 'Använd ett ID för att importera publikationsuppgifter från en extern källa, tex PubMed, Scopus eller Libris.',
+
 			form: {
 				selectImportSourcePrompt: 'Välj typ av ID',
 				inputId: {
 					placeholder: 'ID',
-				}
+				},
+				fetchButton: 'Hämta'
 			},
 			importConfirmation: {
 				header: 'Vill du importera följande post:',
