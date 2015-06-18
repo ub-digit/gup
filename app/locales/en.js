@@ -68,6 +68,8 @@ export default {
 		},
 		form: {
 			selectPublicationTypePrompt: 'Select publication type',
+			selectContentTypePrompt: 'Select content type',
+			selectContentTypeLabel: 'Content type',
 			changePublicationTypeLink: 'Change publication type',
       authorHeaderTextStrong: 'Authors',
       authorHeaderTextSoft: '(provide at least one)',

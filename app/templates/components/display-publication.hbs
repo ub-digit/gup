@@ -61,7 +61,9 @@
 				{{#if publication.category_hsv_local}}
 					<p>
 						<b>Ämne:</b><br />
-						{{publication.category_hsv_local}}
+						{{#each category in publication.category_objects}}
+							{{category.name_path}}<br/>
+						{{/each}}
 					</p>
 				{{/if}}
 				{{#if publication.dissdate}}
@@ -99,7 +101,7 @@
 						<b>Artikelnummer:</b><br />
 						{{publication.article_number}}
 					</p>
-				{{/if}}	
+				{{/if}}
 				{{#if publication.email_supplier}}
 					<p>
 						<b>E-postadress:</b><br />
@@ -138,7 +140,7 @@
 				{{/if}}
 				{{#if publication.keywords}}
 					<p>
-						<b>Nyckelord:</b>
+						<b>Nyckelord:</b><br/>
 						{{publication.keywords}}
 					</p>
 				{{/if}}
@@ -173,7 +175,7 @@
 					</p>
 				{{/if}}
 
-				
+
 				{{#if publication.patent_number}}
 					<p>
 						<b>Patenteringsnummer:</b><br />
@@ -195,7 +197,7 @@
 				{{#if publication.publanguage}}
 					<p>
 						<b>Språk:</b><br />
-						{{publication.publanguage}}
+						{{publication.publanguage_label}}
 					</p>
 				{{/if}}
 				{{#if publication.publisher}}

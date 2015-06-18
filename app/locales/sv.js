@@ -1,7 +1,7 @@
 export default {
 	mainMenu: {
 		applicationName: 'GUP 3',
-		lang: 'Engelska',
+		lang: 'English',
 		publications: 'Publikationer',
 		logOut: 'Logga ut'
 	},
@@ -58,7 +58,7 @@ export default {
 		approved: 'Godkänd'
 	},
 	edit: {
-		header: 'Registrera publikation',
+		header: 'Redigera publikation',
 		actions: {
 			btnClose: 'Stäng',
 			btnCancel: 'Avbryt',
@@ -68,6 +68,8 @@ export default {
 		},
 		form: {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
+			selectContentTypePrompt: 'Välj innehållsmärkning',
+			selectContentTypeLabel: 'Innehållmärkning',
 			changePublicationTypeLink: 'Byt publikationstyp',
 			authorHeaderTextStrong: 'Författare',
 			authorHeaderTextSoft: '(ange minst en)',
