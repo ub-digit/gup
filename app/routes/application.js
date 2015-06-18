@@ -9,13 +9,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },*/
   beforeModel: function() {
     this._super();
-    //	this.transitionTo('login');
-    if (this.get("session.authenticated")) {
-      //console.log("session", this.get("session"));
-      this.transitionTo('publications.dashboard.drafts');
+    var defaultLang = this.controllerFor("application").getDefaultLocale();
+    if (this.get("session.authenticated")) {    
+      this.transitionTo('publications.dashboard.drafts', {queryParams: {lang: defaultLang}});
     }
     else {
-      this.transitionTo('login');
+      this.transitionTo('login', {queryParams: {lang: defaultLang}});
     }
   },
 
