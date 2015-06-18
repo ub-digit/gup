@@ -11,7 +11,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this._super();
     var defaultLang = this.controllerFor("application").getDefaultLocale();
     if (this.get("session.authenticated")) {    
-     // this.transitionTo('publications.dashboard.drafts', {queryParams: {lang: defaultLang}});
+      // redirect handled in index route
     }
     else {
       this.transitionTo('login', {queryParams: {lang: defaultLang}});
