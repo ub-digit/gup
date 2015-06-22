@@ -6,6 +6,8 @@
         {{selectedCategory.name_path}}<br/>
       {{/each}}
       </p>
+    {{else}}
+      <p>{{t 'edit.form.selectCategory.noCategoriesSelected'}}</p>
     {{/if}}
   </div>
 </div>
