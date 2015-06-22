@@ -9,18 +9,21 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },*/
   beforeModel: function() {
     this._super();
-    //	this.transitionTo('login');
-    if (this.get("session.authenticated")) {
-      //console.log("session", this.get("session"));
-      //	this.transitionTo('publications.manage');
+    var defaultLang = this.controllerFor("application").getDefaultLocale();
+    if (this.get("session.authenticated")) {    
+      // redirect handled in index route
     }
     else {
-      this.transitionTo('login');
+      this.transitionTo('login', {queryParams: {lang: defaultLang}});
     }
   },
 
   model: function(params) {
-    this.controllerFor("application").set('lang', params.lang)
+    var lang = "sv"; /// change to default
+    if (params.lang) {
+      lang = params.lang;
+    }
+    this.controllerFor("application").set('lang', lang);
     this.controllerFor("application").setLocale();
   },
 
