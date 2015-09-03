@@ -89,7 +89,6 @@ export default Ember.Component.extend({
 				year_of_birth: '', 
 				xaccount: '', 
 				orcid: ''});
-			console.log("author-block", authorObject);
 	    this.get("authorArr").addObject(
 	        Ember.Object.create({
 	          importedAuthorName: importedAuthor.full_author_string,

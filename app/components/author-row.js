@@ -16,6 +16,11 @@ export default Ember.Component.extend({
 		}
 	},
 
+	// Used to signal select2-adjusted component to set a default query string
+	setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
+		return !!this.get('item.importedAuthorName');
+	}),
+
 	newAuhtorFormVisible: function() {
 		var self = this;
 		if (this.get("item.transformedToNewAuthor") === true) {
