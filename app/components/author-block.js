@@ -75,14 +75,28 @@ export default Ember.Component.extend({
 	          this.get("authorArr").insertAt(curPos+1, temp);
 	        }
 	    },
-		addNewAuthorRow: function(name) {
-	      this.get("authorArr").addObject(
+		addNewAuthorRow: function(importedAuthor) {
+			var isImported = !!importedAuthor;
+			var lastName = '';
+			var firstName = '';
+			if(isImported) {
+				lastName = importedAuthor.last_name;
+				firstName = importedAuthor.first_name;
+			}
+			var authorObject = Ember.Object.create({
+				firstName: firstName, 
+				lastName: lastName, 
+				year_of_birth: '', 
+				xaccount: '', 
+				orcid: ''});
+			console.log("author-block", authorObject);
+	    this.get("authorArr").addObject(
 	        Ember.Object.create({
-	          importedAuthorName: name,
+	          importedAuthorName: importedAuthor.full_author_string,
 	          id: this.generateUUID(),
 	          selectedAuthor: null,
 	          selectedInstitution: null,
-	          newAuthorForm: Ember.Object.create({firstName: '', lastName: '', year_of_birth: '', xaccount: '', orcid: ''})
+	          newAuthorForm: authorObject
 	        })
 	      );
 	    },

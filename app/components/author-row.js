@@ -3,12 +3,18 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	errors: null,
 	didInsertElement: function() {
-
+		this.set('item.newAuthorForm.saved_firstName', this.get('item.newAuthorForm.firstName'));
+		this.set('item.newAuthorForm.saved_lastName', this.get('item.newAuthorForm.lastName'));
 	},
 	resetForm: function() {
 		if (this.get("item.newAuthorForm")) {
-			this.set("item.newAuthorForm.firstName", ''); 
-			this.set("item.newAuthorForm.lastName", '');
+			if(this.get('item.importedAuthorName')) {
+				this.set("item.newAuthorForm.firstName", this.get('item.newAuthorForm.saved_firstName')); 
+				this.set("item.newAuthorForm.lastName", this.get('item.newAuthorForm.saved_lastName'));
+			} else {
+				this.set("item.newAuthorForm.firstName", ''); 
+				this.set("item.newAuthorForm.lastName", '');
+			}
 			this.set("item.newAuthorForm.year_of_birth", ''); 
 			this.set("item.newAuthorForm.xaccount", ''); 
 			this.set("item.newAuthorForm.orcid", '');
