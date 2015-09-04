@@ -68,8 +68,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     cancelEdit: function() {
-        this.send('refreshModel', this.controller.get("publication.id"));
-        this.transitionTo('publications.show', this.controller.get("publication.id"));
+      this.send('refreshModel', this.controller.get("publication.id"));
+			if(this.returnTo) {
+				this.transitionTo(this.returnTo);
+			} else {
+				this.transitionTo('publications.show', this.controller.get("publication.id"));
+			}
     },
     saveDraft: function(model) {
         var that = this;
