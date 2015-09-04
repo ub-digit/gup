@@ -55,7 +55,8 @@ export default {
 		affiliation: 'Your affiliation:',
 		categories: 'Subject terms:',
 		approve: 'Approve',
-		approved: 'Approved'
+		approved: 'Approved',
+		edit: 'Edit'
 	},
 	edit: {
 		header: 'Edit publication',

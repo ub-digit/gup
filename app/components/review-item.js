@@ -90,7 +90,11 @@ export default Ember.Component.extend({
 
       });
 
-    }
+    },
+		reviewEdit: function(item) {
+			console.log("reviewItem", "reviewEdit", item);
+			this.sendAction('editItem', item, {returnTo: 'publications.dashboard.review'});
+		}
   }
 
 

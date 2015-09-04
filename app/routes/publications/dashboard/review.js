@@ -11,5 +11,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
   model: function() {
     return this.store.find("publication", {is_actor: true, for_review: true});
-  }
+  },
+	actions: {
+		editItem: function(item, params) {
+			console.log("transitionTo publication.show.edit", item, params);
+			this.transitionTo('publications.show.edit', item.id, {queryParams: params});
+		}
+	}
 });
