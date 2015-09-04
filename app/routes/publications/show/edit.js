@@ -19,6 +19,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('institutions', models.departments);
     controller.set('languages', models.languages);
 
+		console.log("edit-setupController", models);
+
     if (models.publication) {
       if (models.publication.authors) {
         if (models.publication.authors.length > 0) {
@@ -47,6 +49,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     else {
       controller.set("selectedPublicationType", null);
     }
+		if (models.publication.publication_type_suggestion) {
+			controller.set('mayBecomeSelectedPublicationType', models.publication.publication_type_suggestion);
+		}
   },
 
   exit: function() {
