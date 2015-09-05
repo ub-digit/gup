@@ -79,9 +79,11 @@ export default Ember.Component.extend({
 			var isImported = !!importedAuthor;
 			var lastName = '';
 			var firstName = '';
+			var importedAuthorFullAuthorString = '';
 			if(isImported) {
 				lastName = importedAuthor.last_name;
 				firstName = importedAuthor.first_name;
+				importedAuthorFullAuthorString = importedAuthor.full_author_string;
 			}
 			var authorObject = Ember.Object.create({
 				firstName: firstName, 
@@ -91,7 +93,7 @@ export default Ember.Component.extend({
 				orcid: ''});
 	    this.get("authorArr").addObject(
 	        Ember.Object.create({
-	          importedAuthorName: importedAuthor.full_author_string,
+	          importedAuthorName: importedAuthorFullAuthorString,
 	          id: this.generateUUID(),
 	          selectedAuthor: null,
 	          selectedInstitution: null,
