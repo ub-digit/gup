@@ -10,7 +10,8 @@ export default {
 		xaccountPlaceholder: 'x-konto',
 		password: 'Lösenord',
 		passwordPlaceholder: 'Lösenord',
-		button: 'Logga in'
+		button: 'Logga in',
+		casLogin: 'Logga in via CAS'
 	},
 	publication: {
 		labels: {

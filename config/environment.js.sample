@@ -29,6 +29,7 @@ module.exports = function(environment) {
 
     ENV.APP.serviceURL = 'https://backend-server/v1';
     ENV.APP.authenticationBaseURL = 'https://backend-server/session';
+    ENV.APP.casBaseURL = 'https://cas-server.example.com';
 
     ENV.contentSecurityPolicy = {
      'default-src': "'none'",

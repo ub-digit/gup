@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	queryParams: ['lang'],
+	queryParams: ['lang', 'ticket'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
 	getDefaultLocale: function() {

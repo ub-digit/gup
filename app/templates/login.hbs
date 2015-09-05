@@ -16,6 +16,7 @@
               {{input id="input-password" value=password classBinding=":form-control" placeholder=(t 'login.passwordPlaceholder') type='password'}}
             </div>
             <button class="btn btn-primary btn-block" type="submit">{{t 'login.button'}}</button>
+            <a class="btn btn-primary btn-block" type="submit" {{bind-attr href=application.casLoginUrl}}>{{t 'login.casLogin'}}</a>
           </form>
     </div>
   </div>

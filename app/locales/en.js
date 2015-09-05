@@ -10,7 +10,8 @@ export default {
 		xaccountPlaceholder: 'x-account',
 		password: 'Password',
 		passwordPlaceholder: 'Password',
-		button: 'Log in'
+		button: 'Log in',
+		casLogin: 'Log in using CAS'
 	},
 	publication: {
 		labels: {

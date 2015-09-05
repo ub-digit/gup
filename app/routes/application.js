@@ -1,19 +1,36 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
+import ENV from '../config/environment';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  session: Ember.inject.service('simple-auth-session:main'),
   /*queryParams: {
     lang: {
       refreshModel: true
     }
   },*/
-  beforeModel: function() {
-    this._super();
+	casService: function() {
+    var baseUrl = window.location.origin;
+    var routeUrl = this.router.generate('application');
+    return baseUrl + '/' + routeUrl;
+  },
+  beforeModel: function(transition) {
+		console.log("application-beforeModel", transition);
+    var ticket = transition.queryParams.ticket;
+		console.log("application-beforeModel.ticket", ticket);
+    if(ticket) {
+      this.get('session').authenticate('authenticator:custom', {
+        cas_ticket: ticket,
+        cas_service: this.casService()
+      });
+    }
+
+    this._super(transition);
     var defaultLang = this.controllerFor("application").getDefaultLocale();
     if (this.get("session.authenticated")) {    
       // redirect handled in index route
     }
-    else {
+    else if(!ticket) {
       this.transitionTo('login', {queryParams: {lang: defaultLang}});
     }
   },
@@ -28,7 +45,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   setupController: function(controller) {
-    
+    if(ENV.APP.casBaseURL) {
+      var casLoginUrl = ENV.APP.casBaseURL+'/login?'+Ember.$.param({service: this.casService()});
+      controller.set('casLoginUrl', casLoginUrl);
+    }
   },
 
   actions: {
