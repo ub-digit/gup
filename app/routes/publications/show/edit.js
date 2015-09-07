@@ -3,9 +3,11 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 import ENV from 'gup/config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  model: function(params) {
+	returnTo: null,
+  model: function(params, transition) {
+		this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.show');
-    return RSVP.hash({
+    return Ember.RSVP.hash({
       publication: model,
       publicationTypes: this.store.find('publication_type'),
       departments: this.store.find("department"),
@@ -18,6 +20,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('categories', models.categories);
     controller.set('institutions', models.departments);
     controller.set('languages', models.languages);
+
+		console.log("edit-setupController", models);
 
     if (models.publication) {
       if (models.publication.authors) {
@@ -47,6 +51,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     else {
       controller.set("selectedPublicationType", null);
     }
+		if (models.publication.publication_type_suggestion) {
+			controller.set('mayBecomeSelectedPublicationType', models.publication.publication_type_suggestion);
+		}
   },
 
   exit: function() {
@@ -61,8 +68,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     cancelEdit: function() {
-        this.send('refreshModel', this.controller.get("publication.id"));
-        this.transitionTo('publications.show', this.controller.get("publication.id"));
+      this.send('refreshModel', this.controller.get("publication.id"));
+			if(this.returnTo) {
+				this.transitionTo(this.returnTo);
+			} else {
+				this.transitionTo('publications.show', this.controller.get("publication.id"));
+			}
     },
     saveDraft: function(model) {
         var that = this;
@@ -95,7 +106,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             that.send('setMsgHeader', 'success', that.t('messages.publishSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
-            that.transitionTo('publications.show', model.id);
+					if(that.returnTo) {
+						that.transitionTo(that.returnTo);
+					} else {
+						that.transitionTo('publications.show', model.id);
+					}
         };
         var errorHandler = function(reason) {
             that.send('setMsgHeader', 'error', that.t('messages.publishError'));

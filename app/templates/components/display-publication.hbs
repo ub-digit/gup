@@ -61,7 +61,9 @@
 				{{#if publication.category_hsv_local}}
 					<p>
 						<b>Ämne:</b><br />
-						{{publication.category_hsv_local}}
+						{{#each category in publication.category_objects}}
+							{{category.name_path}}<br/>
+						{{/each}}
 					</p>
 				{{/if}}
 				{{#if publication.dissdate}}
@@ -138,7 +140,7 @@
 				{{/if}}
 				{{#if publication.keywords}}
 					<p>
-						<b>Nyckelord:</b>
+						<b>Nyckelord:</b><br/>
 						{{publication.keywords}}
 					</p>
 				{{/if}}

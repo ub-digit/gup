@@ -73,12 +73,12 @@
 </div>
 <div class="col-xs-2">
   <div class="btn-toolbar pull-right">
-
     {{#unless isApproved}}
       <button {{action 'approve' item}} class="btn btn-sm btn-success">{{t 'review.approve'}}</button>
     {{else}}
       <span class="text-success">{{t 'review.approved'}} <i class="fa fa-check"></i></span>
     {{/unless}}
-  </div>
-</div>
+     <button {{action 'reviewEdit' item}} class="btn btn-sm btn-primary">{{t 'review.edit'}}</button>
+    </div>
+ </div>
 </div>

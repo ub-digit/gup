@@ -55,7 +55,8 @@ export default {
 		affiliation: 'Din affiliering:',
 		categories: 'Ämnesord:',
 		approve: 'Godkänn',
-		approved: 'Godkänd'
+		approved: 'Godkänd',
+		edit: 'Redigera'
 	},
 	edit: {
 		header: 'Redigera publikation',

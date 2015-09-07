@@ -314,10 +314,24 @@ export default Select2.extend({
       // grab currently selected data from select plugin
       var data = this._select.select2("data");
 
+			console.log("DEBUG-select2-change", data);
       // call our callback for further processing
       this.selectionChanged(data);
 
     }));
+
+		// GUB: Listen for select2 opening so that we can populate the search field
+		// with provided data.
+		// Only populate field if setDefaultQuery tells us to do so.
+		this._select.on("select2-opening", run.bind(this, function() {
+			if(self.get('setDefaultQuery')) {
+				Ember.run.later(function() {
+					var inputs = Ember.$('.'+self.get('cssClass')).find('input.select2-input');
+					inputs.first().val(self.get('defaultQuery'));
+					self._select.select2('search', self.get('defaultQuery'));
+				});
+			}
+		}));
 
     this.addObserver('content.[]', this.valueChanged);
     this.addObserver('content.@each.' + optionLabelPath, this.valueChanged);
@@ -344,7 +358,6 @@ export default Select2.extend({
           // close dropdown
         });
         
-
     });
     Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>" + this.get("didNotFindWhatYouWereLookingForStr") + "</p><button id='toggleBtn' class='btn btn-primary'>"+ this.get("btnText") + "</button></div>");
     this.watchDisabled();

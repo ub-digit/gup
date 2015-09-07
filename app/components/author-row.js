@@ -3,17 +3,23 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	errors: null,
 	didInsertElement: function() {
-
 	},
 	resetForm: function() {
 		if (this.get("item.newAuthorForm")) {
-			this.set("item.newAuthorForm.firstName", ''); 
-			this.set("item.newAuthorForm.lastName", '');
+			if(!this.get('item.importedAuthorName')) {
+				this.set("item.newAuthorForm.firstName", ''); 
+				this.set("item.newAuthorForm.lastName", '');
+			}
 			this.set("item.newAuthorForm.year_of_birth", ''); 
 			this.set("item.newAuthorForm.xaccount", ''); 
 			this.set("item.newAuthorForm.orcid", '');
 		}
 	},
+
+	// Used to signal select2-adjusted component to set a default query string
+	setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
+		return !!this.get('item.importedAuthorName');
+	}),
 
 	newAuhtorFormVisible: function() {
 		var self = this;

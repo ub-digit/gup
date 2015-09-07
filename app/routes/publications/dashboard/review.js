@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
   beforeModel: function() {
 		Ember.$("body").addClass("loading");
 	},
@@ -10,5 +11,11 @@ export default Ember.Route.extend({
 	},
   model: function() {
     return this.store.find("publication", {is_actor: true, for_review: true});
-  }  
+  },
+	actions: {
+		editItem: function(item, params) {
+			console.log("transitionTo publication.show.edit", item, params);
+			this.transitionTo('publications.show.edit', item.id, {queryParams: params});
+		}
+	}
 });
