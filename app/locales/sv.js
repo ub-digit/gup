@@ -153,5 +153,12 @@ export default {
 			linkNew: 'skapa ny författare'
 		}
 
-	}
+	},
+  publicationIdentifier: {
+    label: 'Identifikatorer',
+    code: 'Typ',
+    value: 'Värde',
+    delete: 'Ta bort',
+    create: 'Lägg till'
+  }
 };

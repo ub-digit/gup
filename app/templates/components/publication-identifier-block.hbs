@@ -1,10 +1,11 @@
+<label class="control-label">{{t 'publicationIdentifier.label'}}</label>
 <div class="row">
   <div class="col-md-9">
     <table class="table table-hover">
     <thead>
       <tr>
-        <th>Typ</th>
-        <th>Identifierare</th>
+        <th>{{t 'publicationIdentifier.code'}}</th>
+        <th>{{t 'publicationIdentifier.value'}}</th>
       </tr>
     </thead>
     <tbody>
@@ -12,7 +13,7 @@
         <tr>
           <td>{{publicationIdentifier.identifier_code}}</td>
           <td>{{publicationIdentifier.identifier_value}}</td>
-          <td><button {{action 'deleteIdentifier' publicationIdentifier}} class="btn btn-md btn-danger">Ta bort</button></td>
+          <td><button {{action 'deleteIdentifier' publicationIdentifier}} class="btn btn-md btn-danger">{{t 'publicationIdentifier.delete'}}</button></td>
         </tr>
       {{/each}}
       <tr>
@@ -24,7 +25,7 @@
             class='form-control'}}
           </td>
         <td>{{input class='input-group' value=identifierValue}}</td>
-        <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">Skapa</button></td>
+        <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">{{t 'publicationIdentifier.create'}}</button></td>
       </tr>
       </tbody>
       </table>
