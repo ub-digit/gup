@@ -80,10 +80,12 @@ export default Ember.Component.extend({
 			var lastName = '';
 			var firstName = '';
 			var importedAuthorFullAuthorString = '';
+			var selectedInstitution = null;
 			if(isImported) {
 				lastName = importedAuthor.last_name;
 				firstName = importedAuthor.first_name;
 				importedAuthorFullAuthorString = importedAuthor.full_author_string;
+				selectedInstitution = [this.get('defaultInstitution')];
 			}
 			var authorObject = Ember.Object.create({
 				firstName: firstName, 
@@ -96,7 +98,7 @@ export default Ember.Component.extend({
 	          importedAuthorName: importedAuthorFullAuthorString,
 	          id: this.generateUUID(),
 	          selectedAuthor: null,
-	          selectedInstitution: null,
+	          selectedInstitution: selectedInstitution,
 	          newAuthorForm: authorObject
 	        })
 	      );

@@ -20,6 +20,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set("publication", models.publication);
     controller.set('categories', models.categories);
     controller.set('institutions', models.departments);
+		models.departments.forEach(function(dep) {
+			if(dep.name === "Extern institution") {
+				controller.set('defaultInstitution', dep);
+			}
+		});
     controller.set('languages', models.languages);
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
 
