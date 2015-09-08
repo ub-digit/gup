@@ -130,8 +130,6 @@ export default Ember.Controller.extend({
     }
   }.property('selectedPublicationType'),
 
-
-
   actionButtonsAreVisible: function() {
       if (this.get("isSelectedPublicationValid")) {
         return true;

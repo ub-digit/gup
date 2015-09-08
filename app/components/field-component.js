@@ -86,29 +86,90 @@ export default Ember.Component.extend({
     }
   }.property('selectedPublicationType'),
 
-  isTypeTextarea: function() {
-  	if (this.get("type") === "textarea") {
-		return true;
-  	}
-  	else {
-  		return false;
-  	}
+	isTypeText: Ember.computed.equal('type', 'text'),
+	isTypeISSN: Ember.computed.equal('type', 'issn'),
+	isTypeISBN: Ember.computed.equal('type', 'isbn'),
+	isTypeTextarea: Ember.computed.equal('type', 'textarea'),
+  isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
+  isTypeSelect: Ember.computed.equal('type', 'select'),
+	
+	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
+		if(!this.get('isValidISSN')) {
+			return true;
+		}
+		if(!this.get('isValidISBN')) {
+			return true;
+		}
+		return false;
+	}),
 
-  }.property('type'),
+	isValidISSN: Ember.computed('isTypeISSN', 'value', function() {
+		if(!this.get('isTypeISSN')) {
+			return true;
+		}
+		var issn = this.get('value');
+		if(!issn) {
+			return true;
+		}
+		issn = issn.replace(/[^\dX]/gi, '');
+		if(issn.length !== 8){
+			return false;
+		}
+		var chars = issn.split('');
+		if(chars[7].toUpperCase() === 'X'){
+			chars[7] = 10;
+		}
+		var sum = 0;
+		for (var i = 0; i < chars.length; i++) {
+			sum += ((8-i) * parseInt(chars[i]));
+		}
+		return ((sum % 11) === 0);
+	}),
 
-  isTypeText: function() {
-  	if (this.get("type") === "text") {
-		return true;
-  	}
-  	else {
-  		return false;
-  	}
-  }.property('type'),
+	isValidISBN: Ember.computed('isTypeISBN', 'value', function() {
+    var sum, weight, digit, check, i;
 
-  isTypeCategorySelector: function() {
-    return (this.get('type') === 'category-selector');
-  }.property('type'),
+		if(!this.get('isTypeISBN')) {
+			return true;
+		}
+		var isbn = this.get('value');
+		if(!isbn) {
+			return true;
+		}
 
-  isTypeSelect: Ember.computed.equal('type', 'select')
+    isbn = isbn.replace(/[^0-9X]/gi, '');
 
+    if (isbn.length !== 10 && isbn.length !== 13) {
+      return false;
+    }
+
+    if (isbn.length === 13) {
+      sum = 0;
+      for (i = 0; i < 12; i++) {
+        digit = parseInt(isbn[i]);
+        if (i % 2 === 1) {
+          sum += 3*digit;
+        } else {
+          sum += digit;
+        }
+      }
+      check = (10 - (sum % 10)) % 10;
+      return (check.toString() === isbn[isbn.length-1]);
+    }
+
+    if (isbn.length === 10) {
+      weight = 10;
+      sum = 0;
+      for (i = 0; i < 9; i++) {
+        digit = parseInt(isbn[i]);
+        sum += weight*digit;
+        weight--;
+      }
+      check = 11 - (sum % 11);
+      if (check === 10) {
+        check = 'X';
+      }
+      return (check.toString() === isbn[isbn.length-1].toUpperCase());
+    }
+	})
 });

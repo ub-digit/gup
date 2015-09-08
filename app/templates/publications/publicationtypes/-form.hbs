@@ -162,12 +162,12 @@
 	<div class="row">
 		<div class="col-md-3">
 			<span {{bind-attr class=":form-group errors.issn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="text"  errors=errors.issn value=publication.issn}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  errors=errors.issn value=publication.issn}}
 			</span>
 		</div>
 		<div class="col-md-3">
 			<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="text"  errors=errors.eissn value=publication.eissn}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  errors=errors.eissn value=publication.eissn}}
 			</span>
 		</div>
 	</div>
@@ -175,7 +175,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<span {{bind-attr class=":form-group errors.isbn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text"  errors=errors.isbn value=publication.isbn}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="isbn"  errors=errors.isbn value=publication.isbn}}
 			</span>
 		</div>
 	</div>

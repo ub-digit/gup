@@ -1,31 +1,40 @@
 
 {{#if isVisible}}
-	<label class="control-label">
-		{{#if errors}}
-			{{error-feedback errors}}
-		{{/if}}
-		{{getLabel}}
-		{{#if isMandatory}}
-		<span style="color:red">*</span>
-		{{/if}}
-	</label>
-	{{#if isTypeText}}
-			{{input classBinding=":form-control" value=value}}
-	{{else}}
-		{{#if isTypeTextarea}}
-			{{textarea classBinding=":form-control" value=value}}
-		{{/if}}
+  <label class="control-label">
+    {{#if errors}}
+      {{error-feedback errors}}
+    {{/if}}
+    {{getLabel}}
+    {{#if isMandatory}}
+      <span style="color:red">*</span>
+    {{/if}}
+    {{#if showWarningSymbol}}
+      <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
+    {{/if}}
+  </label>
+  {{#if isTypeText}}
+    {{input classBinding=":form-control" value=value}}
+  {{else}}
+    {{#if isTypeISSN}}
+      {{input classBinding=":form-control" value=value}}
+    {{/if}}
+    {{#if isTypeISBN}}
+      {{input classBinding=":form-control" value=value}}
+    {{/if}}
+    {{#if isTypeTextarea}}
+      {{textarea classBinding=":form-control" value=value}}
+    {{/if}}
     {{#if isTypeCategorySelector}}
       {{category-selector categoryList=value categoryObjects=categoryObjects}}
     {{/if}}
     {{#if isTypeSelect}}
       {{view "select"
-        content=selectValues
-        optionValuePath="content.value"
-        optionLabelPath="content.label"
-        value=value
-        class="form-control"
-				prompt=prompt}}
+      content=selectValues
+      optionValuePath="content.value"
+      optionLabelPath="content.label"
+      value=value
+      class="form-control"
+      prompt=prompt}}
     {{/if}}
-	{{/if}}
+  {{/if}}
 {{/if}}
