@@ -3,7 +3,9 @@ export default {
 		applicationName: 'GUP 3',
 		lang: 'English',
 		publications: 'Publikationer',
-		logOut: 'Logga ut'
+		logOut: 'Logga ut',
+    searchById: 'Sök efter PubId',
+    idMissing: 'Ogiltigt ID'
 	},
 	login: {
 		xaccount: 'x-konto',
@@ -150,7 +152,8 @@ export default {
 				header: 'Vill du importera följande post:',
 				title: 'Titel:',
 				author: 'Författare:',
-				btnImport: 'Importera'
+				btnImport: 'Importera',
+        duplicateMessage: 'Posten verkar redan vara publicerad!'
 			}
 		},
 		manualPub: {
@@ -160,5 +163,12 @@ export default {
 			linkNew: 'skapa ny författare'
 		}
 
-	}
+	},
+  publicationIdentifier: {
+    label: 'Identifikatorer',
+    code: 'Typ',
+    value: 'Värde',
+    delete: 'Ta bort',
+    create: 'Lägg till'
+  }
 };

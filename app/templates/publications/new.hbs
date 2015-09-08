@@ -61,6 +61,23 @@
               <dd>{{importData.author}}</dd>
             </dl>
           </div>
+
+          {{#if importData.publication_identifier_duplicates}}
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="alert alert-warning">
+                  <h4>{{t 'newPub.importPub.importConfirmation.duplicateMessage'}}</h4>
+                  <ul>
+                  {{#each importData.publication_identifier_duplicates as |duplicate|}}
+                    <li>
+                    {{duplicate.identifier_code}}: {{duplicate.identifier_value}} - {{#link-to 'publications.show' duplicate.publication_id}}{{duplicate.publication_title}}{{/link-to}}
+                    </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {{/if}}
           <div class="row">
             <div class="col-xs-12 center-content">
               <button {{action 'createPublication' importData}} class="btn btn-lg btn-success">{{t 'newPub.importPub.importConfirmation.btnImport'}}</button>

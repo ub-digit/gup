@@ -15,6 +15,10 @@
       </li>
       {{/if}}
     </ul>
+    <div class="form-group navbar-form navbar-left" style="margin-top:3px;">
+      {{input action="showPublication" class="form-control" value=publication_id placeholder=(t 'mainMenu.searchById')}}
+      <span style="color:red">{{publication_id_error}}</span>
+    </div>
 
     <div class="user-auth pull-right">
       {{#if session.isAuthenticated}}
