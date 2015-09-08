@@ -19,6 +19,10 @@ export default {
 		  updatedAt: 'Uppdated',
 		  publishedAt: 'Published',
 			noTitle: '[No title]'
+		},
+		show: {
+			edit: "Edit",
+			"delete": "Delete"
 		}
 	},
 	messages: {
@@ -26,6 +30,8 @@ export default {
 		saveDraftError: 'The record could not be saved as a draft.',
 		deleteDraftSuccess: 'Draft deleted.',
 		deleteDraftError: 'The draft could not be deleted.',
+		deletePublicationSuccess: 'Publication deleted.',
+		deletePublicationError: 'Publicatino could not be deleted.',
 		confirmDeleteDraft: 'Are you sure you want to delete the draft?',
 		publishSuccess: 'The record has been published.',
 		publishError: 'The record could not be published.',

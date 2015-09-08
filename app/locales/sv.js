@@ -19,6 +19,10 @@ export default {
 		  updatedAt: 'Uppdaterad',
 		  publishedAt: 'Publicerad',
 			noTitle: '[Ingen titel]'
+		},
+		show: {
+			edit: "Redigera",
+			"delete": "Radera"
 		}
 	},
 	messages: {
@@ -26,7 +30,10 @@ export default {
 		saveDraftError: 'Posten kunde inte sparas som utkast.',
 		deleteDraftSuccess: 'Utkast borttaget.',
 		deleteDraftError: 'Utkastet kunde inte tas bort.',
+		deletePublicationSuccess: 'Publikationen borttagen.',
+		deletePublicationError: 'Publikationen kunde inte tas bort.',
 		confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
+		confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
 		publishSuccess: 'Posten har publicerats.',
 		publishError: 'Posten kunde inte publiceras.',
 		approveSuccess: 'Posten har godkänts.',
