@@ -143,7 +143,8 @@ export default {
 				header: 'Vill du importera följande post:',
 				title: 'Titel:',
 				author: 'Författare:',
-				btnImport: 'Importera'
+				btnImport: 'Importera',
+        duplicateMessage: 'Posten verkar redan vara publicerad!'
 			}
 		},
 		manualPub: {
