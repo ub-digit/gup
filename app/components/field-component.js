@@ -87,6 +87,7 @@ export default Ember.Component.extend({
   }.property('selectedPublicationType'),
 
 	isTypeText: Ember.computed.equal('type', 'text'),
+	isTypeDate: Ember.computed.equal('type', 'date'),
 	isTypeISSN: Ember.computed.equal('type', 'issn'),
 	isTypeISBN: Ember.computed.equal('type', 'isbn'),
 	isTypeTextarea: Ember.computed.equal('type', 'textarea'),

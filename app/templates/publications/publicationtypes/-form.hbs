@@ -97,7 +97,7 @@
 	<div id="diss-date" class="row">
 		<div class="col-md-9">
 			<span {{bind-attr class=":form-group errors.dissdate:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" errors=errors.dissdate value=publication.dissdate}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="date" errors=errors.dissdate value=publication.dissdate}}
 			</span>
 		</div>
 	</div>
@@ -339,7 +339,7 @@
 	<div id="patent-date" class="row">
 		<div class="col-md-9">
 			<span {{bind-attr class=":form-group errors.patent_date:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text"  errors=errors.patent_date value=publication.patent_date}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="date"  errors=errors.patent_date value=publication.patent_date}}
 			</span>
 		</div>
 	</div>
