@@ -58,6 +58,21 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       Ember.run.later(function() {
         that.send('hideMsgHeader');
       }, 4000);
+    },
+
+    showPublication: function(publication_id) {
+      var that = this;
+      this.controller.set('publication_id', null);
+      this.controller.set('publication_id_error', null);
+
+      if (publication_id) {
+        that.store.find('publication', publication_id).then(function() {
+          that.transitionTo('publications.show', publication_id);
+        },
+        function(){
+          that.controller.set('publication_id_error', that.t('mainMenu.idMissing') + ': ' + publication_id);
+        });
+      }
     }
   }
 });

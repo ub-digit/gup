@@ -3,7 +3,9 @@ export default {
 		applicationName: 'GUP 3',
 		lang: 'English',
 		publications: 'Publikationer',
-		logOut: 'Logga ut'
+		logOut: 'Logga ut',
+    searchById: 'Sök efter PubId',
+    idMissing: 'Ogiltigt ID'
 	},
 	login: {
 		xaccount: 'x-konto',
