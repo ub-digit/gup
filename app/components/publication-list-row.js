@@ -49,6 +49,8 @@ export default Ember.Component.extend({
       case 'conference-papers':
       case 'conference-contributions':
 
+        var a = [];
+
         if (i.sourcetitle) a.push(i.sourcetitle);
         if (i.pubyear) a.push(i.pubyear);
         if (i.sourcepages) a.push(i.sourcepages);
