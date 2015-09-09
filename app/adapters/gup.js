@@ -14,7 +14,8 @@ export default Ember.Object.extend({
     category: { path: 'categories', plural: 'categories' },
     review: { path: 'publications/review', singular: 'publication'},
     language: {path: 'languages'},
-    publication_identifier_code: {path: 'publication_identifier_codes'}
+    publication_identifier_code: {path: 'publication_identifier_codes'},
+    journal: {path: 'journals'}
   },
 
   getLocale: function() {

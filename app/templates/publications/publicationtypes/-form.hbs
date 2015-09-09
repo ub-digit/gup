@@ -130,8 +130,26 @@
 
 	<div class="row">
 		<div class="col-md-9 ">
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="journal"  }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 ">
 			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text"  errors=errors.sourcetitle value=publication.sourcetitle}}
+			</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<span {{bind-attr class=":form-group errors.issn:has-error"}}>
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  errors=errors.issn value=publication.issn}}
+			</span>
+		</div>
+		<div class="col-md-3">
+			<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  errors=errors.eissn value=publication.eissn}}
 			</span>
 		</div>
 	</div>
@@ -159,18 +177,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.issn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  errors=errors.issn value=publication.issn}}
-			</span>
-		</div>
-		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  errors=errors.eissn value=publication.eissn}}
-			</span>
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="col-md-6">

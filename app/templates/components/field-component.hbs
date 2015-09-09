@@ -39,5 +39,19 @@
       class="form-control"
       prompt=prompt}}
     {{/if}}
+    {{#if isTypeJournal}}
+      {{select-2
+          placeholder="Choose from our many journals"
+          value=selectedJournal
+          typeaheadSearchingText="Searching journals"
+          typeaheadNoMatchesText="No journals found for '%@'"
+          typeaheadErrorText="Loading failed: %@"
+          minimumInputLength=3
+          maximumInputLength=100
+          optionDescriptionPath="title"
+          optionLabelPath="title"
+          query="queryJournals"
+      }}
+    {{/if}}
   {{/if}}
 {{/if}}

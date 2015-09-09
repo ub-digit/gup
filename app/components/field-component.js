@@ -86,13 +86,14 @@ export default Ember.Component.extend({
     }
   }.property('selectedPublicationType'),
 
+	isTypeJournal: Ember.computed.equal('type', 'journal'),
 	isTypeText: Ember.computed.equal('type', 'text'),
 	isTypeDate: Ember.computed.equal('type', 'date'),
 	isTypeISSN: Ember.computed.equal('type', 'issn'),
 	isTypeISBN: Ember.computed.equal('type', 'isbn'),
 	isTypeTextarea: Ember.computed.equal('type', 'textarea'),
-  isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
-  isTypeSelect: Ember.computed.equal('type', 'select'),
+    isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
+    isTypeSelect: Ember.computed.equal('type', 'select'),
 	
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {
@@ -172,5 +173,12 @@ export default Ember.Component.extend({
       }
       return (check.toString() === isbn[isbn.length-1].toUpperCase());
     }
-	})
+	}),
+    actions: {
+        queryJournals: function(query, deferred) {
+            this.store.find('journal', { search_term: query.term })
+                .then(deferred.resolve, deferred.reject);
+            
+        }
+    }
 });
