@@ -79,6 +79,7 @@ export default Ember.Component.extend({
         function(response) {
 
           that.sendAction('setMsgHeader', 'success', that.t('messages.approveSuccess'));
+					that.sendAction('refreshReviewCount');
           Ember.$("body").removeClass("loading");
           that.set('isApproved', true);
 
