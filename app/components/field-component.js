@@ -174,11 +174,22 @@ export default Ember.Component.extend({
       return (check.toString() === isbn[isbn.length-1].toUpperCase());
     }
 	}),
+    journalSelected:function(){
+        console.log(this.get('selectedJournal'));
+        var journal = this.get('selectedJournal') ;
+        this.set('issn',journal.issn);
+        this.set('eissn',journal.eissn);
+        this.set('sourcetitle',journal.title);
+        this.set('journal_id',journal.id);
+    }.observes("selectedJournal"),
     actions: {
         queryJournals: function(query, deferred) {
             this.store.find('journal', { search_term: query.term })
                 .then(deferred.resolve, deferred.reject);
             
+        },
+        manual_journal: function() {
+        this.set('journal_id',null);
         }
     }
 });

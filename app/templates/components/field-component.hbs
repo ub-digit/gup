@@ -13,10 +13,10 @@
     {{/if}}
   </label>
   {{#if isTypeText}}
-    {{input classBinding=":form-control" value=value}}
+    {{input classBinding=":form-control" disabled=disabled value=value}}
   {{else}}
     {{#if isTypeISSN}}
-      {{input classBinding=":form-control" value=value}}
+      {{input classBinding=":form-control" disabled=disabled value=value}}
     {{/if}}
     {{#if isTypeISBN}}
       {{input classBinding=":form-control" value=value}}
@@ -48,10 +48,12 @@
           typeaheadErrorText="Loading failed: %@"
           minimumInputLength=3
           maximumInputLength=100
-          optionDescriptionPath="title"
+          optionDescriptionPath="issn"
+          optionLabelSelectedPath="title"
           optionLabelPath="title"
           query="queryJournals"
       }}
+      <button class="btn btn-danger" {{action "manual_journal"}} ><i class="fa fa-chain-broken"></i>Manuell redigering av tidskrifts-namn</button> 
     {{/if}}
   {{/if}}
 {{/if}}

@@ -130,26 +130,36 @@
 
 	<div class="row">
 		<div class="col-md-9 ">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="journal"  }}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcechooser" type="journal" issn=publication.issn eissn=publication.eissn  journal_id=publication.journal_id sourcetitle=publication.sourcetitle  }}
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-md-9 ">
 			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text"  errors=errors.sourcetitle value=publication.sourcetitle}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.sourcetitle}}
 			</span>
 		</div>
 	</div>
 
 	<div class="row">
+		<div class="col-md-9 ">
+			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.journal_id}}
+			</span>
+		</div>
+	</div>
+
+
+	<div class="row">
 		<div class="col-md-3">
 			<span {{bind-attr class=":form-group errors.issn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  errors=errors.issn value=publication.issn}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  disabled=publication.journal_id errors=errors.issn value=publication.issn}}
 			</span>
 		</div>
 		<div class="col-md-3">
 			<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  errors=errors.eissn value=publication.eissn}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  disabled=publication.journal_id errors=errors.eissn value=publication.eissn}}
 			</span>
 		</div>
 	</div>
