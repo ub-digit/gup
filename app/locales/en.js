@@ -3,6 +3,7 @@ export default {
 		applicationName: 'GUP 3',
 		lang: 'Svenska',
 		publications: 'Publications',
+    searchById: 'Search for PubID',
 		logOut: 'Log out'
 	},
 	login: {
@@ -159,5 +160,12 @@ export default {
 			linkNew: 'Create new author'
 		}
 
-	}
+	},
+  publicationIdentifier: {
+    label: 'Identifiers',
+    code: 'Type',
+    value: 'Value',
+    delete: 'Delete',
+    create: 'Add'
+  }
 };

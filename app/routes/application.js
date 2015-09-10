@@ -19,23 +19,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   model: function(params) {
-    var lang = "sv"; /// change to default
-    if (params.lang) {
-      lang = params.lang;
-    }
-    this.controllerFor("application").set('lang', lang);
-    this.controllerFor("application").setLocale();
+		return {lang: params.lang};
   },
 
-  setupController: function(controller) {
-    
+  setupController: function(controller, model) {
+    var lang = "sv"; /// change to default
+    if (model.lang) {
+      lang = model.lang;
+    }
+    controller.set('lang', lang);
+    controller.setLocale();
   },
 
   actions: {
     sessionAuthenticationSucceeded: function() {
       //Ember.run.later(Ember.$('body').removeClass("loading"));
       this.transitionTo("publications.dashboard.drafts");
-      Ember.run.later(function() {Ember.$('body').removeClass("loading")});
+      Ember.run.later(function() {Ember.$('body').removeClass("loading");});
       //	return this._super();
     },
     sessionAuthenticationFailed: function(error) {
