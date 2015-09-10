@@ -10,8 +10,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel: function() {
     this._super();
     var defaultLang = this.controllerFor("application").getDefaultLocale();
-    if (this.get("session.authenticated")) {    
-      // redirect handled in index route
+    if (this.get("session.authenticated")) {
+			this.fetchUserdata();
     }
     else {
       this.transitionTo('login', {queryParams: {lang: defaultLang}});
@@ -31,11 +31,30 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     controller.setLocale();
   },
 
+	fetchUserdata: function() {
+		var controller = this.controllerFor('application');
+		var session = this.get('session.content');
+		this.store.find('userdata', session.username).then(function(data) {
+			controller.set('userdata', data);
+		});
+	},
+	fetchUserdataLoop: function(interval) {
+		if(!interval) { interval = 60000; }
+		this.fetchUserdata();
+		Ember.run.later(this, function() {
+			this.fetchUserdataLoop();
+		}, interval);
+	},
+
   actions: {
+		refreshUserdata: function() {
+			this.fetchUserdata();
+		},
     sessionAuthenticationSucceeded: function() {
       //Ember.run.later(Ember.$('body').removeClass("loading"));
       this.transitionTo("publications.dashboard.drafts");
       Ember.run.later(function() {Ember.$('body').removeClass("loading");});
+			this.fetchUserdataLoop(60000);
       //	return this._super();
     },
     sessionAuthenticationFailed: function(error) {
