@@ -1,0 +1,26 @@
+<!-- Button-->
+<a type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#mailerModal">
+  {{t 'mailer.report'}}
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="mailerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel3">{{t 'mailer.report'}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+        <span class="input-group-addon" id="restart-message-text">{{t 'mailer.message'}}
+          </span>
+        {{textarea value=message cols=80 rows=6 classNames='form-control'}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary navbar-btn" data-dismiss="modal" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
+      </div>
+    </div>
+  </div>
+</div>

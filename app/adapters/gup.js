@@ -15,7 +15,8 @@ export default Ember.Object.extend({
     review: { path: 'publications/review', singular: 'publication'},
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
-    journal: {path: 'journals'}
+    journal: {path: 'journals'},
+    feedback_email: {path: 'publications/feedback_email', singular: 'publication'}
   },
 
   getLocale: function() {
@@ -23,7 +24,7 @@ export default Ember.Object.extend({
     var application = this.container.lookup('application:main');
 
     if (!application.locale) {
-      set(application, 'locale', application.get('defaultLocale'))
+      set(application, 'locale', application.get('defaultLocale'));
     }
     return application.locale;
   },

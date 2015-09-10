@@ -170,5 +170,10 @@ export default {
     value: 'Värde',
     delete: 'Ta bort',
     create: 'Lägg till'
+  },
+  mailer: {
+    report: 'Rapportera publikation',
+    send: 'Skicka rapport',
+    message: 'Meddelande'
   }
 };
