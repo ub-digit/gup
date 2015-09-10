@@ -113,6 +113,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             that.send('setMsgHeader', 'success', that.t('messages.publishSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
+            that.send('refreshUserdata');
 					if(that.returnTo) {
 						that.transitionTo(that.returnTo);
 					} else {

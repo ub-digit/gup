@@ -16,7 +16,13 @@
         <li>{{#link-to 'publications.dashboard.drafts'}}{{t 'text.drafts'}}{{/link-to}}</li>
         <li>{{#link-to 'publications.dashboard.published'}}{{t 'text.published'}}{{/link-to}}</li>
         <li>{{#link-to 'publications.dashboard.touched'}}{{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}{{/link-to}}</li>
+        <li>
+          {{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}
+          {{#if showReviewCount}}
+            <span class="badge badge-red">{{application.userdata.counts.review}}</span>
+          {{/if}}
+          {{/link-to}}
+        </li>
       </ul>
     </nav>
   </div>

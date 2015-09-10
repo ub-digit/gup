@@ -34,7 +34,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	fetchUserdata: function() {
 		var controller = this.controllerFor('application');
 		var session = this.get('session.content');
+		console.log("via sessionAuthenticationSucceeded", session);
 		this.store.find('userdata', session.username).then(function(data) {
+			console.log("userdata", data);
 			controller.set('userdata', data);
 		});
 	},
@@ -48,6 +50,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   actions: {
 		refreshUserdata: function() {
+			console.log("DEBUG", "refreshing userdata");
 			this.fetchUserdata();
 		},
     sessionAuthenticationSucceeded: function() {

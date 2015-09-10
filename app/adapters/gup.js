@@ -15,7 +15,8 @@ export default Ember.Object.extend({
     review: { path: 'publications/review', singular: 'publication'},
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
-    journal: {path: 'journals'}
+    journal: {path: 'journals'},
+		userdata: {path: 'userdata'}
   },
 
   getLocale: function() {
