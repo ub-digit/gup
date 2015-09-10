@@ -27,6 +27,13 @@
 	}
 }
 
+.btn-fake {
+    cursor: default;
+}
+
+.btn-toolbar {
+    margin-bottom: 5px;
+}
 
 .center-content {
 	text-align: center;
@@ -72,6 +79,10 @@
 .dashboard-list {
 	li {
 		border-top: 1px solid #ccc;
+		&:first-child {
+		    border-top: 0px;
+		    padding-top: 0px;
+		}
 		&:nth-child(odd) {
 			//background: @gray-lighter;
 		}

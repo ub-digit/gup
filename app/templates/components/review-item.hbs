@@ -72,13 +72,15 @@
   </div>
 </div>
 <div class="col-xs-2">
-  <div class="btn-toolbar pull-right">
+  <div class="btn-toolbar col-xs-12">
     {{#unless isApproved}}
-      <button {{action 'approve' item}} class="btn btn-sm btn-success">{{t 'review.approve'}}</button>
+      <button {{action 'approve' item}} class="col-xs-12 btn btn-success">{{t 'review.approve'}}</button>
     {{else}}
-      <span class="text-success">{{t 'review.approved'}} <i class="fa fa-check"></i></span>
+      <span class="text-success btn btn-fake col-xs-12">{{t 'review.approved'}} <i class="fa fa-check"></i></span>
     {{/unless}}
-     <button {{action 'reviewEdit' item}} class="btn btn-sm btn-primary">{{t 'review.edit'}}</button>
-    </div>
+  </div>
+  <div class="btn-toolbar col-xs-12">
+    <button {{action 'reviewEdit' item}} class="col-xs-12 btn btn-primary">{{t 'review.edit'}}</button>
+  </div>
  </div>
 </div>
