@@ -16,7 +16,7 @@ export default Ember.Object.extend({
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
     journal: {path: 'journals'},
-    feedback_email: {path: 'publications/feedback_email', singular: 'publication'}
+    feedback_email: {path: 'publications/feedback_email', singular: 'publication'},
 		userdata: {path: 'userdata'}
   },
 
