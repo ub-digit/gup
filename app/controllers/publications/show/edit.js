@@ -200,7 +200,7 @@ export default Ember.Controller.extend({
     if (currentlySelectedPublicationType) {
       if (currentlySelectedPublicationType.content_types) {
         if(currentlySelectedPublicationType.content_types.length === 1) {
-          this.set("publication.content_type", currentlySelectedPublicationType.content_types[0]);
+          this.set("publication.content_type", currentlySelectedPublicationType.content_types[0].value);
           return true;
         }
         else {
