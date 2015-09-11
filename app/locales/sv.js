@@ -172,7 +172,7 @@ export default {
     create: 'Lägg till'
   },
   mailer: {
-    report: 'Rapportera publikation',
+    report: 'Rapportera',
     send: 'Skicka rapport',
     message: 'Meddelande'
   }
