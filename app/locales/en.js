@@ -3,6 +3,7 @@ export default {
 		applicationName: 'GUP 3',
 		lang: 'Svenska',
 		publications: 'Publications',
+    logOut: 'Log out',
     searchById: 'Search for PubID',
 		logOut: 'Log out'
 	},
@@ -34,6 +35,7 @@ export default {
 		deletePublicationSuccess: 'Publication deleted.',
 		deletePublicationError: 'Publicatino could not be deleted.',
 		confirmDeleteDraft: 'Are you sure you want to delete the draft?',
+    confirmDeletePublication: 'Are you sure you want to delete the publication?',
 		publishSuccess: 'The record has been published.',
 		publishError: 'The record could not be published.',
 		approveSuccess: 'The record has been approved.',
@@ -150,7 +152,8 @@ export default {
 				header: 'Would you like to import the following record:',
 				title: 'Title:',
 				author: 'Author:',
-				btnImport: 'Import'
+				btnImport: 'Import',
+        duplicateMessage: 'The publication appears to already be imported'
 			}
 		},
 		manualPub: {

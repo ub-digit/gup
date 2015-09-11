@@ -17,7 +17,7 @@
                     {{/unless}}
                     <button class='btn btn-success'  {{action 'savePublish' publication }}>{{t 'edit.actions.btnSaveAndPublish'}}</button>
                   </div>
-                  {{mailer-modal publication=publication}}
+                  {{mailer-modal publication=publication buttonClass="btn btn-default pull-right"}}
                 </div>
               </div>
           {{/if}}

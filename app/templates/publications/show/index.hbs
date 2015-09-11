@@ -9,7 +9,7 @@
 		    <button {{action 'deletePublication' model.id}} class='btn btn-danger pull-right'>{{t 'publication.show.delete'}} <i class="fa fa-trash-o"></i></button>
                     {{/if}}
 				{{#link-to  'publications.show.edit' model class='btn btn-primary pull-right'}}{{t 'publication.show.edit'}} <i class="fa fa-edit"></i>{{/link-to}}
-        {{mailer-modal publication=model}}
+        {{mailer-modal publication=model buttonClass="btn btn-default pull-right"}}
 			</div>
 
 		</div>
