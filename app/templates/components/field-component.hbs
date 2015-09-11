@@ -53,7 +53,9 @@
           optionLabelPath="title"
           query="queryJournals"
       }}
-      <button class="btn btn-danger" {{action "manual_journal"}} ><i class="fa fa-chain-broken"></i>Manuell redigering av tidskrifts-namn</button> 
+      {{#if journal_id}}
+        <button class="btn btn-primary" {{action "manual_journal"}} ><i class="fa fa-chain-broken"></i>Manuell redigering av tidskrifts-uppgifter</button> 
+      {{/if}}
     {{/if}}
   {{/if}}
 {{/if}}

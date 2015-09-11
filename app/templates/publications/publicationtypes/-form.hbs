@@ -142,7 +142,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="col-md-9 ">
 			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.journal_id}}
