@@ -255,7 +255,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<span {{bind-attr class=":form-group errors.series:has-error"}}>
-		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="text"  errors=errors.series value=publication.series}}
+		          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="multiselect"  errors=errors.series selectValues=series value=selectedSeries}}
 			</span>
 		</div>
 	</div>
@@ -291,7 +291,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<span {{bind-attr class=":form-group errors.project:has-error"}}>
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="text" errors=errors.project value=publication.project}}
+		          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="multiselect"  errors=errors.project selectValues=projects value=selectedProjects}}
 			</span>
 		</div>
 	</div>

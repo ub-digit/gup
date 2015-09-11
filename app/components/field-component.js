@@ -87,6 +87,7 @@ export default Ember.Component.extend({
   }.property('selectedPublicationType'),
 
 	isTypeJournal: Ember.computed.equal('type', 'journal'),
+	isTypeMultiSelect: Ember.computed.equal('type', 'multiselect'),
 	isTypeText: Ember.computed.equal('type', 'text'),
 	isTypeDate: Ember.computed.equal('type', 'date'),
 	isTypeISSN: Ember.computed.equal('type', 'issn'),

@@ -30,6 +30,16 @@
     {{#if isTypeCategorySelector}}
       {{category-selector categoryList=value categoryObjects=categoryObjects}}
     {{/if}}
+    {{#if isTypeMultiSelect}}
+      {{select-2
+          multiple=true
+          value=value
+          content=selectValues
+          optionLabelSelectedPath="title"
+          optionLabelPath="title"
+          optionDescriptionPath="null"
+      }}
+    {{/if}}
     {{#if isTypeSelect}}
       {{view "select"
       content=selectValues

@@ -12,6 +12,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       publicationTypes: this.store.find('publication_type'),
       departments: this.store.find("department"),
       languages: this.store.find("language"),
+      series: this.store.find("serie"),
+      projects: this.store.find("project"),
       publicationIdentifierCodes: this.store.find('publication_identifier_code')
     });
   },
@@ -19,6 +21,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set("publicationTypes", models.publicationTypes);
     controller.set("publication", models.publication);
     controller.set('categories', models.categories);
+    controller.set('projects', models.projects);
+    controller.set('series', models.series);
     controller.set('institutions', models.departments);
 		models.departments.forEach(function(dep) {
 			if(dep.name === "Extern institution") {
