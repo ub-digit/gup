@@ -50,7 +50,8 @@ export default {
 		drafts: 'Utkast',
 		published: 'Publicerade',
 		registeredOrEditedByMe: 'Registrerade/redigerade av mig',
-		forReview: 'Att granska'
+		forReview: 'Att granska',
+		forBReview: 'Bibl. granskn.'
 	},
 	labels: {
 		registerNew: 'Registrera ny',

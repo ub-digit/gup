@@ -20,6 +20,7 @@ Router.map(function() {
       this.route("published");
       this.route("touched");
       this.route('review');
+      this.route('biblreview');
     });
   });
 });

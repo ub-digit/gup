@@ -50,7 +50,9 @@ export default {
 		drafts: 'Draft',
 		published: 'Published',
 		registeredOrEditedByMe: 'Registered/edited by me',
-		forReview: 'Pending review'
+		forReview: 'Pending review',
+		forBReview: 'Bibl. review.'
+
 	},
 	labels: {
 		registerNew: 'Register new',
