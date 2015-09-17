@@ -1,3 +1,9 @@
+<table>
 {{#each model as |publication|}}
-<li>{{publication.title}}</li>
+<tr class="reviewtable">
+    <td>{{publication.id}}</td>
+    <td>{{publication.title}}</td>
+    <td>{{publication.pubyear}}</td>
+</tr>
 {{/each}}
+</table>
