@@ -23,7 +23,9 @@
           {{/if}}
           {{/link-to}}
         </li>
+        {{#if session.content.can_bibreview}}
         <li>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
+        {{/if}}
       </ul>
     </nav>
   </div>
