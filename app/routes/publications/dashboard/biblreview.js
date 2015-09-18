@@ -2,6 +2,10 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  queryParams:{
+      pubyear:{refreshModel: true},
+      pubtype:{refreshModel: true}
+  },
   beforeModel: function() {
 		Ember.$("body").addClass("loading");
 	},
@@ -9,8 +13,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		Ember.$("body").removeClass("loading");
     this.controllerFor('application').set('currentList', transition.targetName);
 	},
-  model: function() {
-    return this.store.find("publication", {for_biblreview: true});
+  model: function(params) {
+    params.for_biblreview = true;
+    return this.store.find("publication", params);
   },
 	actions: {
 		editItem: function(item, params) {
