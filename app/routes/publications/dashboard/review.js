@@ -10,7 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this.controllerFor('application').set('currentList', transition.targetName);
 	},
   model: function() {
-    return this.store.find("publication", {is_actor: true, for_review: true});
+    return this.store.find("publication", {list_type: 'is_actor_for_review'});
   },
 	actions: {
 		editItem: function(item, params) {

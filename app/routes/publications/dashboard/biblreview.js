@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this.controllerFor('application').set('currentList', transition.targetName);
 	},
   model: function(params) {
-    params.for_biblreview = true;
+    params.list_type = 'for_biblreview';
     return this.store.find("publication", params);
   },
 	actions: {
