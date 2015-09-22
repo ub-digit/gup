@@ -2,7 +2,7 @@
 {{#each model as |publication|}}
 <tr class="reviewtable">
     <td>{{publication.id}}</td>
-    <td>{{publication.title}}</td>
+    <td>{{#link-to 'publications.show' publication.pubid (query-params mode="bibreview")}}{{publication.title}}{{/link-to}}</td>
     <td>{{publication.pubyear}}</td>
     <td>{{publication.publication_type}}</td>
 </tr>
