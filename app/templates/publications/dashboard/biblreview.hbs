@@ -1,4 +1,22 @@
-<table class="table">
+<div class="selectDiv">
+  {{view Ember.Select 
+    content=pubyears  
+    optionValuePath="content.id"
+    optionLabelPath="content.pubyear"
+    value=pubyear
+  }}
+  {{view Ember.Select 
+    content=pubtypes  
+    value=pubtype
+  }}
+</div>
+<table class="table especial">
+<tr class="reviewtable">
+    <th id="pubidid"  >pubid</th>
+    <th id="titleid"  >title</th>
+    <th id="yearid"   >year</th>
+    <th id="pubtypeid">pubtype</th>
+</tr>
 {{#each model as |publication|}}
 <tr class="reviewtable">
     <td>{{publication.id}}</td>
@@ -8,3 +26,4 @@
 </tr>
 {{/each}}
 </table>
+

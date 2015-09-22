@@ -196,9 +196,26 @@
 	text-align: center !important;
 	padding: 10px 0;
 }
-.reviewtable * {
+.reviewtable th,td {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.2em 0.8em;
   margin: 0.2em;
 }
+.selectDiv {
+  text-align:right;
+  margin: 2em 0;
+}
+.table.especial {
+  table-layout:fixed;
+}
+
+.table.especial td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#pubidid   { width:2em; }
+#titleid   { width:30em; }
+#yearid    { width:2em; }
+#pubtypeid { width:6em; }
