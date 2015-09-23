@@ -24,7 +24,8 @@ export default {
 		},
 		show: {
 			edit: "Redigera",
-			"delete": "Radera"
+			"delete": "Radera",
+			biblreview: "Godkänn"
 		}
 	},
 	messages: {

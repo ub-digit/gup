@@ -5,7 +5,7 @@ export default {
 		publications: 'Publications',
     logOut: 'Log out',
     searchById: 'Search for PubID',
-		logOut: 'Log out'
+		idMissing: 'Missing ID'
 	},
 	login: {
 		xaccount: 'x-account',
@@ -24,7 +24,8 @@ export default {
 		},
 		show: {
 			edit: "Edit",
-			"delete": "Delete"
+			"delete": "Delete",
+			biblreview: "Approve"
 		}
 	},
 	messages: {
@@ -182,5 +183,11 @@ export default {
     value: 'Value',
     delete: 'Delete',
     create: 'Add'
+  },
+  mailer: {
+    report: 'Report',
+    send: 'Send report',
+    message: 'Message'
   }
+
 };
