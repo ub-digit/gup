@@ -69,7 +69,14 @@ export default {
 		edit: 'Redigera'
 	},
     biblreview: {
-        selectPublicationTypePrompt: 'Alla typer'
+        selectPublicationTypePrompt: 'Alla typer',
+        selectPublicationYearPrompt: 'Alla år',
+        orLater: 'och senare',
+        orEarlier: 'och tidigare',
+        pubid: 'Pubid',
+        title: 'Titel',
+        year: 'År',
+        pubtype: 'Pub-typ'
     },
 	edit: {
 		header: 'Redigera publikation',

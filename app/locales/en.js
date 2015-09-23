@@ -70,7 +70,14 @@ export default {
 		edit: 'Edit'
 	},
     biblreview: {
-        selectPublicationTypePrompt: 'All types'
+        selectPublicationTypePrompt: 'All types',
+        selectPublicationYearPrompt: 'All years',
+        orLater: 'and later',
+        orEarlier: 'and earlier',
+        pubid: 'Pubid',
+        title: 'Title',
+        year: 'Year',
+        pubtype: 'Pub-type'
     },
 	edit: {
 		header: 'Edit publication',
