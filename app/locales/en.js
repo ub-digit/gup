@@ -69,6 +69,9 @@ export default {
 		approved: 'Approved',
 		edit: 'Edit'
 	},
+    biblreview: {
+        selectPublicationTypePrompt: 'All types'
+    },
 	edit: {
 		header: 'Edit publication',
 		actions: {

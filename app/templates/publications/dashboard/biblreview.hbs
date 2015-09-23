@@ -6,9 +6,13 @@
     value=pubyear
   }}
   {{view Ember.Select 
-    content=pubtypes  
-    value=pubtype
+      value=pubtype
+      content=controllers.application.publicationTypes
+      optionValuePath="content.code"
+      optionLabelPath="content.name"
+      prompt="Välj"
   }}
+
 </div>
 <table class="table especial">
 <tr class="reviewtable">

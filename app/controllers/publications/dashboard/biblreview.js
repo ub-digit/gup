@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     pubyear: 0,
     queryParams: ['pubyear','pubtype'],
-    pubtypes: ['alla typer','journal-articles', 'review-articles', 'editorial-letters', 'book-reviews', 'magazine-articles', 'books', 'book-chapters', 'translations', 'doctoral-thesis', 'reports', 'conference-papers', 'conference-contributions', 'edited-book', 'report-chapter', 'newspaper-article', 'encyclopedia-entry', 'licentiate-thesis', 'journal-issue', 'poster', 'proceeding', 'patent', 'working-paper','original-creative-work','curated-exhibition','other'],
+    needs: ['application'],
     pubyears: [
       {pubyear: 'alla år', id: 0},
       {pubyear: moment().year()   + ' eller senare', id: 1},

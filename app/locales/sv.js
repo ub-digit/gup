@@ -68,6 +68,9 @@ export default {
 		approved: 'Godkänd',
 		edit: 'Redigera'
 	},
+    biblreview: {
+        selectPublicationTypePrompt: 'Alla typer'
+    },
 	edit: {
 		header: 'Redigera publikation',
 		actions: {

@@ -15,7 +15,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
   model: function(params) {
     params.list_type = 'for_biblreview';
-    return this.store.find("publication", params);
+    return Ember.RSVP.hash({
+      publicationList:  this.store.find("publication", params)
+    });
+
+  },
+  setupController: function(controller, models) {
+    controller.set("model", models.publicationList);
   },
 	actions: {
 		editItem: function(item, params) {
@@ -24,4 +30,3 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		}
 	}
 });
-

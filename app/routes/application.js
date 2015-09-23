@@ -19,7 +19,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   model: function(params) {
-		return {lang: params.lang};
+    return Ember.RSVP.hash({
+      publicationTypes: this.store.find('publication_type'),
+	  lang:params.lang
+    });
   },
 
   setupController: function(controller, model) {
@@ -28,6 +31,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       lang = model.lang;
     }
     controller.set('lang', lang);
+    controller.set("publicationTypes", model.publicationTypes);
     controller.setLocale();
   },
 
