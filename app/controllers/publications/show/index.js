@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['application'],
+  needs: ['application', 'publications', 'publications/show'],
+  viewModeBinding: 'controllers.publications/show.viewMode',
 
   deletePublication: function(id) {
     var that = this;
@@ -13,6 +14,14 @@ export default Ember.Controller.extend({
       that.send('setMsgHeader', 'success', that.t('messages.deletePublicationError'));
     });
   },
+
+  advancedMode: Ember.computed('session.content.can_bibreview', 'controllers.publications/show.viewMode', function() {
+    var is_reviewer = this.get('session.content.can_bibreview');
+    var view_mode = this.get('controllers.publications/show.viewMode');
+    console.log("VAR INNE I COMPUTED PROPERY VID NAMN: advancedMode");
+
+    return (is_reviewer && (view_mode === 'advanced'));
+  }),
 
   actions: {
     goBack: function() {
