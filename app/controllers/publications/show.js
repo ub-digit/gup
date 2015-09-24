@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['publications'],
+  queryParams: ['viewMode'],
 
   publicationType: function() {
     var pubType = this.get('controllers.publications.model').findBy('id', this.get('model.publication_type_id'));
