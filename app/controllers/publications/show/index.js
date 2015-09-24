@@ -14,6 +14,11 @@ export default Ember.Controller.extend({
       that.send('setMsgHeader', 'success', that.t('messages.deletePublicationError'));
     });
   },
+  approvePublication: function(id) {
+    var that = this;
+    that.send('setMsgHeader', 'success', 'iiiiii oooooooooo ');
+    that.transitionToRoute('publications.dashboard.biblreview');
+  },
 
   advancedMode: Ember.computed('session.content.can_bibreview', 'controllers.publications/show.viewMode', function() {
     var is_reviewer = this.get('session.content.can_bibreview');
@@ -33,6 +38,10 @@ export default Ember.Controller.extend({
       if (r === true) {
         this.deletePublication(id);
       }
+    },
+    approvePublication: function(id) {
+        console.log('XXXXXXX');
+        this.approvePublication(id);
     }
   }
 });
