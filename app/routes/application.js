@@ -19,7 +19,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   model: function(params) {
-		return {lang: params.lang};
+    return {lang: params.lang};
   },
 
   setupController: function(controller, model) {

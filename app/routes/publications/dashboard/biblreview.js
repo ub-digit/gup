@@ -4,6 +4,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   queryParams:{
       pubyear:{refreshModel: true},
+      page:{refreshModel: true},
       pubtype:{refreshModel: true}
   },
   beforeModel: function() {
@@ -15,7 +16,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
   model: function(params) {
     params.list_type = 'for_biblreview';
-    return this.store.find("publication", params);
+    if(!params.page) {
+      params.page = 1;
+    }
+    return Ember.RSVP.hash({
+      publicationList:  this.store.find("publication", params)
+    });
+
+  },
+  setupController: function(controller, models) {
+    controller.set("model", models.publicationList);
+    controller.set("pubyears", []);
+    controller.get("pubyears").addObjects([
+      {pubyear: this.t('biblreview.selectPublicationYearPrompt'), id: 0},
+      {pubyear: moment().year()   + ' ' + this.t('biblreview.orLater'), id: 1},
+      {pubyear: moment().year()-1, id:moment().year()-1},
+      {pubyear: moment().year()-2, id:moment().year()-2},
+      {pubyear: moment().year()-3, id:moment().year()-3},
+      {pubyear: moment().year()-4, id:moment().year()-4},
+      {pubyear: moment().year()-5 + ' ' + this.t('biblreview.orEarlier'), id:-1}
+      ]);
   },
 	actions: {
 		editItem: function(item, params) {
@@ -24,4 +44,3 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		}
 	}
 });
-

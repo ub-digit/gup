@@ -1,6 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    queryParams: ['pubyear','pubtype']
+    pubyear: 0,
+    page: 1,
+    queryParams: ['pubyear','pubtype','page'],
+    needs: ['publications']
 });
+
+
 

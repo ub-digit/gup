@@ -1,4 +1,26 @@
-<table class="table">
+<div class="selectDiv">
+  {{view Ember.Select 
+    content=pubyears  
+    optionValuePath="content.id"
+    optionLabelPath="content.pubyear"
+    value=pubyear
+  }}
+  {{view Ember.Select 
+      value=pubtype
+      content=controllers.publications.publicationTypes
+      optionValuePath="content.code"
+      optionLabelPath="content.name"
+      prompt="Välj"
+  }}
+
+</div>
+<table class="table especial">
+<tr class="reviewtable">
+    <th id="pubidid"  >{{t 'biblreview.pubid'}}  </th>  
+    <th id="titleid"  >{{t 'biblreview.title'}}  </th>  
+    <th id="yearid"   >{{t 'biblreview.year'}}   </th>  
+    <th id="pubtypeid">{{t 'biblreview.pubtype'}}</th>  
+</tr>
 {{#each model as |publication|}}
 <tr class="reviewtable">
     <td>{{publication.id}}</td>
@@ -6,5 +28,7 @@
     <td>{{publication.pubyear}}</td>
     <td>{{publication.publication_type}}</td>
 </tr>
+
 {{/each}}
 </table>
+{{pagination-pager pagination=model.meta.pagination}}

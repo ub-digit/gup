@@ -5,7 +5,7 @@ export default {
 		publications: 'Publications',
     logOut: 'Log out',
     searchById: 'Search for PubID',
-		logOut: 'Log out'
+		idMissing: 'Missing ID'
 	},
 	login: {
 		xaccount: 'x-account',
@@ -24,7 +24,8 @@ export default {
 		},
 		show: {
 			edit: "Edit",
-			"delete": "Delete"
+			"delete": "Delete",
+			biblreview: "Approve"
 		}
 	},
 	messages: {
@@ -69,6 +70,16 @@ export default {
 		approved: 'Approved',
 		edit: 'Edit'
 	},
+    biblreview: {
+        selectPublicationTypePrompt: 'All types',
+        selectPublicationYearPrompt: 'All years',
+        orLater: 'and later',
+        orEarlier: 'and earlier',
+        pubid: 'Pubid',
+        title: 'Title',
+        year: 'Year',
+        pubtype: 'Pub-type'
+    },
 	edit: {
 		header: 'Edit publication',
 		actions: {
@@ -172,5 +183,11 @@ export default {
     value: 'Value',
     delete: 'Delete',
     create: 'Add'
+  },
+  mailer: {
+    report: 'Report',
+    send: 'Send report',
+    message: 'Message'
   }
+
 };

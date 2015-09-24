@@ -24,7 +24,8 @@ export default {
 		},
 		show: {
 			edit: "Redigera",
-			"delete": "Radera"
+			"delete": "Radera",
+			biblreview: "Godkänn"
 		}
 	},
 	messages: {
@@ -68,6 +69,16 @@ export default {
 		approved: 'Godkänd',
 		edit: 'Redigera'
 	},
+    biblreview: {
+        selectPublicationTypePrompt: 'Alla typer',
+        selectPublicationYearPrompt: 'Alla år',
+        orLater: 'och senare',
+        orEarlier: 'och tidigare',
+        pubid: 'Pubid',
+        title: 'Titel',
+        year: 'År',
+        pubtype: 'Pub-typ'
+    },
 	edit: {
 		header: 'Redigera publikation',
 		actions: {
