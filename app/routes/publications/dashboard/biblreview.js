@@ -4,6 +4,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   queryParams:{
       pubyear:{refreshModel: true},
+      page:{refreshModel: true},
       pubtype:{refreshModel: true}
   },
   beforeModel: function() {
@@ -15,6 +16,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
   model: function(params) {
     params.list_type = 'for_biblreview';
+    if(!params.page) {
+      params.page = 1;
+    }
     return Ember.RSVP.hash({
       publicationList:  this.store.find("publication", params)
     });

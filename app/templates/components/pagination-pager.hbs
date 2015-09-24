@@ -1,0 +1,33 @@
+<ul class="col-xs-12 pagination">
+  {{#if pagination.previous}}
+    <li>
+      {{#link-to (query-params page=pagination.previous) class=""}}
+      <span>Previous</span>
+      {{/link-to}}
+    </li>
+  {{else}}
+    <li class="disabled">
+      <a href="javascript:void(0)"><span>Previous</span></a>
+    </li>
+  {{/if}}
+  {{#each page in pageArray}}
+    {{#if page.spacer}}
+      <li class="disabled spacer"><span>...</span></li>
+    {{else}}
+      <li {{bind-attr class="page.active:active"}}>
+        {{#link-to (query-params page=page.page) class="btn btn-default"}}{{page.page}}{{/link-to}}
+      </li>
+    {{/if}}
+  {{/each}}
+  {{#if pagination.next}}
+    <li>
+      {{#link-to (query-params page=pagination.next) class="btn btn-primary"}}
+      <span>Next</span>
+      {{/link-to}}
+    </li>
+  {{else}}
+    <li class="disabled">
+      <a href="javascript:void(0)"><span>Next</span></a>
+    </li>
+  {{/if}}
+</ul>
