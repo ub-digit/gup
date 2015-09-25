@@ -13,6 +13,7 @@ export default Ember.Object.extend({
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' },
     review: { path: 'publications/review', singular: 'publication'},
+    bibl_review: { path: 'publications/bibl_review', singular: 'publication'},
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
     journal: {path: 'journals'},
@@ -153,6 +154,9 @@ export default Ember.Object.extend({
   },
   destroy: function(name, id) {
     return this.sendDelete(this.urlOne(name, id));
+  },
+  approve: function(name, id) {
+    return this.send(this.urlOne(name, id),'get','');
   },
   saveUpdate: function(name, id, data) {
     var newName = this.singular(name);

@@ -7,8 +7,8 @@ export default Ember.Controller.extend({
   deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
-      that.send('setMsgHeader', 'success', that.t('messages.deletePublicationSuccess'));
-			that.transitionToRoute('application');
+        that.send('setMsgHeader', 'success', that.t('messages.deletePublicationSuccess'));
+        that.transitionToRoute('application');
     },
     function() {
       that.send('setMsgHeader', 'success', that.t('messages.deletePublicationError'));
@@ -16,8 +16,13 @@ export default Ember.Controller.extend({
   },
   approvePublication: function(id) {
     var that = this;
-    that.send('setMsgHeader', 'success', 'iiiiii oooooooooo ');
-    that.transitionToRoute('publications.dashboard.biblreview');
+    this.store.find('bibl_review', id).then(function() {
+        that.send('setMsgHeader', 'success', that.t('messages.approvePublicationSuccess'));
+        that.transitionToRoute('publications.dashboard.biblreview');
+    },
+    function() {
+      that.send('setMsgHeader', 'success', that.t('messages.approvePublicationError'));
+    });
   },
 
   advancedMode: Ember.computed('session.content.can_bibreview', 'controllers.publications/show.viewMode', function() {

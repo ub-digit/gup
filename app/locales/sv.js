@@ -35,6 +35,8 @@ export default {
 		deleteDraftError: 'Utkastet kunde inte tas bort.',
 		deletePublicationSuccess: 'Publikationen borttagen.',
 		deletePublicationError: 'Publikationen kunde inte tas bort.',
+		approvePublicationSuccess: 'Publikationen godkänd.',
+		approvePublicationError: 'Publikationen kunde inte godkännas.',
 		confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
 		confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
 		publishSuccess: 'Posten har publicerats.',
