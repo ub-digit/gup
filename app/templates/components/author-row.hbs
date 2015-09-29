@@ -116,7 +116,11 @@
 					    placeholder=(t 'edit.form.selectInstitutions.placeholder')
 					    allowClear=true
 					    multiple=true
+              id=item.id
 					}}
+          {{#each item.selectedAuthor.affiliations as |affiliation|}}
+           <a href="#" {{action 'addInstitution' affiliation}}> {{affiliation.name}}</a>
+          {{/each}}
 				</div>
 			</div>
 		{{/if}}

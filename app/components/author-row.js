@@ -85,5 +85,15 @@ export default Ember.Component.extend({
 	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'), 
 	                            'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
 	    },
+    addInstitution: function(institution){
+      // Add institution to selected array
+      var institution = Ember.Object.create(institution);
+      this.get('item.selectedInstitution').addObject(institution);
+      // Add institution to select2 component
+      var id = '#s2id_' + this.get('item.id');
+      var institutions = Ember.$(id).select2('data');
+      institutions.addObject(institution);
+      Ember.$(id).select2('data', institutions);
+    }
 	}
 });
