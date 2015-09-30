@@ -31,6 +31,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		});
     controller.set('languages', models.languages);
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
+    controller.set('publicationTypes', models.publicationTypes);
 
 		console.log("edit-setupController", models);
 
@@ -63,7 +64,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       controller.set("selectedPublicationType", null);
     }
 		if (models.publication.publication_type_suggestion) {
-			controller.set('mayBecomeSelectedPublicationType', models.publication.publication_type_suggestion);
+//controller.set('mayBecomeSelectedPublicationType', models.publication.publication_type_suggestion);
+      controller.set('suggestedPublicationType', models.publication.publication_type_suggestion);
 		}
   },
 

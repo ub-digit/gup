@@ -258,6 +258,9 @@ export default Ember.Controller.extend({
         this.set("selectedPublicationType", this.get("mayBecomeSelectedPublicationType"));
       }
     },
+    setPublicationType: function(publicationType) {
+      this.set("selectedPublicationType", publicationType);
+    },
     resetSelectedPublicationType: function() {
       this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));
       this.set("mayBecomeSelectedPublicationType", this.get("selectedPublicationType"));
