@@ -1,10 +1,14 @@
 <div class="selectDiv">
+Visa endast publikationer som är fördröjda för granskning {{input type="checkbox" checked=only_delayed}}
+
+
   {{view Ember.Select 
     content=pubyears  
     optionValuePath="content.id"
     optionLabelPath="content.pubyear"
     value=pubyear
   }}
+
   {{view Ember.Select 
       value=pubtype
       content=controllers.publications.publicationTypes
