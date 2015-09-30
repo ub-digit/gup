@@ -14,6 +14,7 @@ export default Ember.Object.extend({
     category: { path: 'categories', plural: 'categories' },
     review: { path: 'publications/review', singular: 'publication'},
     bibl_review: { path: 'publications/bibl_review', singular: 'publication'},
+    set_bibl_review_start_time: {path: 'publications/set_bibl_review_start_time', singular: 'publication'},
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
     journal: {path: 'journals'},

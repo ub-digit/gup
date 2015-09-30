@@ -42,7 +42,10 @@ export default {
 		publishSuccess: 'Posten har publicerats.',
 		publishError: 'Posten kunde inte publiceras.',
 		approveSuccess: 'Posten har godkänts.',
-		approveError: 'Posten kunde inte godkännas.'
+		approveError: 'Posten kunde inte godkännas.',
+		delaySuccess: 'Posten har fördröjts.',
+		delayError: 'Posten kunde inte fördröjas.'
+
 	},
 	text: {
 		youHaveNoDrafts: 'Du har inga utkast.',
@@ -79,7 +82,12 @@ export default {
         pubid: 'Pubid',
         title: 'Titel',
         year: 'År',
-        pubtype: 'Pub-typ'
+        pubtype: 'Pub-typ',
+        delay: 'Fördröj',
+        delayHeader: 'Fördröj granskning av publikation',
+        date: 'Datum',
+        comment: 'Kommentar',
+        btnDelay: 'Fördröj'
     },
 	edit: {
 		header: 'Redigera publikation',
