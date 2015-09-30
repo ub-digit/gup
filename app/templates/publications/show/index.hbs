@@ -11,6 +11,7 @@
       {{mailer-modal publication=model buttonClass="btn btn-info pull-right"}}
       {{#if controllers.application.isViewModeAdvanced}}
       {{#unless model.biblreviewed_at}}
+          {{delay-review-modal publication=model buttonClass="btn btn-info pull-right"}}
         <button {{action 'approvePublication' model.id}} class='btn btn-success pull-right'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>
       {{/unless}}
       {{/if}}

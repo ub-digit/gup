@@ -80,7 +80,12 @@ export default {
         pubid: 'Pubid',
         title: 'Title',
         year: 'Year',
-        pubtype: 'Pub-type'
+        pubtype: 'Pub-type',
+        delay: 'Delay',
+        delayHeader: 'Delay publication review',
+        date: 'Date',
+        comment: 'Comment',
+        btnDelay: 'Delay',
     },
 	edit: {
 		header: 'Edit publication',

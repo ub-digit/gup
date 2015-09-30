@@ -5,7 +5,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   queryParams:{
       pubyear:{refreshModel: true},
       page:{refreshModel: true},
-      pubtype:{refreshModel: true}
+      pubtype:{refreshModel: true},
+      only_delayed:{refreshModel: true}
   },
   beforeModel: function() {
 		Ember.$("body").addClass("loading");
