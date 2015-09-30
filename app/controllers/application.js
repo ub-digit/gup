@@ -4,6 +4,9 @@ export default Ember.Controller.extend({
 	queryParams: ['lang'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
+  viewMode: 'basic',
+  isViewModeAdvanced: Ember.computed.equal('viewMode', 'advanced'),
+  isViewModeBasic: Ember.computed.equal('viewMode', 'basic'),
 	getDefaultLocale: function() {
 		var application = this.container.lookup('application:main');
 		return application.get('defaultLocale');

@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  // Determines if input or presentation template should be used
+  isPresentation: Ember.computed.equal('format', 'presentation'),
+  isEditable: Ember.computed('isPresentation', function(){
+    return !this.get('isPresentation');
+  }),
+  // Determines if all fields should be shown regardless of information
+  isAdvanced: Ember.computed.equal('viewMode', 'advanced'),
   getFullObject: function() {
      var fullObject = this.get("selectedPublicationType");
      if (fullObject) {
@@ -75,16 +82,30 @@ export default Ember.Component.extend({
     var rule = this.getRule();
     if (rule) {
     	if (rule === "na") {
-    		return false;
+    	  return false;
     	}
     	else {
-    		return true;
+        if (this.get('isPresentation') && this.get('valueIsEmpty') && !this.get('isAdvanced')){
+          return false;
+        } else {
+    		  return true;
+        }
     	}
     }
     else {
     	return false;
     }
-  }.property('selectedPublicationType'),
+  }.property('selectedPublicationType', 'isAdvanced', 'value', 'fieldName', 'isPresentation'),
+
+  valueIsEmpty: Ember.computed('value', function(){
+    if (!this.get('value')){
+      return true;
+    }
+    if (this.get('value').constructor === Array && this.get('value').length < 1) {
+      return true;
+    }
+    return false;
+  }),
 
 	isTypeJournal: Ember.computed.equal('type', 'journal'),
 	isTypeMultiSelect: Ember.computed.equal('type', 'multiselect'),

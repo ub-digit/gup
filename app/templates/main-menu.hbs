@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav {{bind-attr class=":navbar :navbar-default :navbar-fixed-top isViewModeAdvanced:advanced-view"}} role="navigation">
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
@@ -22,15 +22,14 @@
     </div>
     {{/if}}
 
-    <div class="user-auth pull-right">
       {{#if session.isAuthenticated}}
-      <p><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
+        {{#if session.content.can_bibreview}}
+            <p class="navbar-text navbar-right"><a href="javascript.void(0)" {{action 'toggleViewMode'}}>{{#if isViewModeBasic}}Aktivera granskningsvy{{else}}Inaktivera granskningsvy{{/if}}</a></p>
+        {{/if}}
+      <p class="navbar-text navbar-right"><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
       {{else}}
       {{/if}}
-    </div>
-    <div class="lang-switch pull-right">
-      <a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a>
-    </div>
+      <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
   </div><!-- /.container -->
 </nav>
 

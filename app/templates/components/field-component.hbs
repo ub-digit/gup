@@ -1,5 +1,10 @@
 
 {{#if isVisible}}
+  {{#if isPresentation}}
+  <label>
+    {{getLabel}}
+  </label>
+  {{else}}
   <label class="control-label">
     {{#if errors}}
       {{error-feedback errors}}
@@ -12,8 +17,13 @@
       <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
     {{/if}}
   </label>
+  {{/if}}
   {{#if isTypeText}}
-    {{input classBinding=":form-control" disabled=disabled value=value}}
+    {{#if isPresentation}}
+      {{value}}
+    {{else}}
+      {{input classBinding=":form-control" disabled=disabled value=value}}
+    {{/if}}
   {{else}}
     {{#if isTypeISSN}}
       {{input classBinding=":form-control" disabled=disabled value=value}}
@@ -25,12 +35,29 @@
       {{date-picker date=value class="form-control" valueFormat='YYYY-MM-DD' allowBlank='true' firstDay=1 placeholder="YYYY-MM-DD"}}
     {{/if}}
     {{#if isTypeTextarea}}
+      {{#if isPresentation}}
+      <p>{{value}}</p>
+      {{else}}
       {{textarea classBinding=":form-control" value=value}}
+      {{/if}}
     {{/if}}
     {{#if isTypeCategorySelector}}
-      {{category-selector categoryList=value categoryObjects=categoryObjects}}
+      {{#if isPresentation}}
+        <ul>{{#each category in value}}
+          <li>{{category.name_path}}</li>
+        {{/each}}</ul>
+      {{else}}
+        {{category-selector categoryList=value categoryObjects=categoryObjects}}
+      {{/if}}
     {{/if}}
     {{#if isTypeMultiSelect}}
+      {{#if isPresentation}}
+        <ul>
+          {{#each item in value}}
+          <li>{{item}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
       {{select-2
           multiple=true
           value=value
@@ -39,6 +66,7 @@
           optionLabelPath="title"
           optionDescriptionPath="null"
       }}
+      {{/if}}
     {{/if}}
     {{#if isTypeSelect}}
       {{view "select"

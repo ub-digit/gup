@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['application', 'publications', 'publications/show'],
-  viewModeBinding: 'controllers.publications/show.viewMode',
+  viewModeBinding: 'controllers.application.viewMode',
 
   deletePublication: function(id) {
     var that = this;
@@ -25,12 +25,14 @@ export default Ember.Controller.extend({
     });
   },
 
-  advancedMode: Ember.computed('session.content.can_bibreview', 'controllers.publications/show.viewMode', function() {
+  advancedMode: Ember.computed('session.content.can_bibreview', 'viewMode', function() {
     var is_reviewer = this.get('session.content.can_bibreview');
-    var view_mode = this.get('controllers.publications/show.viewMode');
-    console.log("VAR INNE I COMPUTED PROPERY VID NAMN: advancedMode");
-
+    var view_mode = this.get('viewMode');
     return (is_reviewer && (view_mode === 'advanced'));
+  }),
+
+  getPublicationTypeObject: Ember.computed('model.publication_type', function(){
+    return this.get("controllers.publications.publicationTypes").findBy("code", this.get("model.publication_type"));
   }),
 
   actions: {
@@ -45,7 +47,6 @@ export default Ember.Controller.extend({
       }
     },
     approvePublication: function(id) {
-        console.log('XXXXXXX');
         this.approvePublication(id);
     }
   }

@@ -9,7 +9,7 @@
       {{/if}}
       {{#link-to  'publications.show.edit' model class='btn btn-primary pull-right'}}{{t 'publication.show.edit'}} <i class="fa fa-edit"></i>{{/link-to}}
       {{mailer-modal publication=model buttonClass="btn btn-info pull-right"}}
-      {{#if session.content.can_bibreview}}
+      {{#if controllers.application.isViewModeAdvanced}}
       {{#unless model.biblreviewed_at}}
         <button {{action 'approvePublication' model.id}} class='btn btn-success pull-right'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>
       {{/unless}}
@@ -19,7 +19,85 @@
   <div class="col-xs-10">
     <div class="row">
       <div class="col-xs-12">
-        {{display-publication publication=model advancedMode=advancedMode}}
+      <h2>{{model.pubid}}: {{model.title}}</h2>
+      <label>PubID</label> {{model.pubid}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" value=model.title format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" value=model.alt_title format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type label=(t 'edit.form.selectContentTypeLabel') format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" value=model.editor format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" value=model.dissdate format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" value=model.dissopponent format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" value=model.sourcetitle format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text" value=model.journal_id format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="text" value=model.issn format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="text" value=model.eissn format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcevolume" type="text" value=model.sourcevolume format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourceissue" type="text" value=model.sourceissue format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" value=model.sourcepages format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text" value=model.article_number format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" value=model.isbn format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" value=model.publanguage format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" value=model.extid format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" value=model.url format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" value=model.links format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" value=model.extent format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text" value=model.publisher format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text" value=model.place format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="multiselect" value=model.series format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="category-selector" value=model.category_objects format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" value=model.keywords format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="multiselect" value=model.project format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" value=model.pub_notes format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" value=model.keywords format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text" value=model.artwork_type format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text" value=model.patent_applicant format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" value=model.patent_application_number format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" value=model.patent_application_date format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" value=model.patent_number format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" value=model.patent_date format='presentation' viewMode=viewMode}}
+      
+      {{#if model.authors}}
+        <label>{{t 'edit.form.authorHeaderTextStrong'}}</label>
+        <ul>
+        {{#each author in model.authors}} 
+          <li>{{author.first_name}} {{author.last_name}}
+            {{#if author.departments}}
+              <ul>
+              {{#each department in author.departments}}
+                <li>{{department.name}}</li>
+              {{/each}}
+              </ul>
+            {{/if}}
+          </li>
+        {{/each}}
+        </ul>
+      {{/if}}
+
+      {{#if model.publication_identifiers}}
+      <label>{{t 'publicationIdentifier.label'}}</label>
+      <ul>
+      {{#each identifier in model.publication_identifiers}}
+        <li>{{identifier.identifier_code}}: {{identifier.identifier_value}}</li>
+      {{/each}}
+      </ul>
+      {{/if}}
+
+      {{#if advancedMode}}
+      <hr/>
+        <table class="table">
+          <thead>
+            <th>Field</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr><td>DB-ID</td><td>{{model.db_id}}</td></tr>
+            <tr><td>Created_by</td><td> {{model.created_by}}</td></tr>
+          </tbody>
+        </table>
+      {{/if}}
+
       </div>
     </div>
   </div>
