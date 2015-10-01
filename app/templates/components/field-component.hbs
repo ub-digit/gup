@@ -1,9 +1,7 @@
 
 {{#if isVisible}}
   {{#if isPresentation}}
-  <label>
-    {{getLabel}}
-  </label>
+    <dt>{{getLabel}}</dt>
   {{else}}
   <label class="control-label">
     {{#if errors}}
@@ -20,7 +18,7 @@
   {{/if}}
   {{#if isTypeText}}
     {{#if isPresentation}}
-      {{value}}
+      <dd>{{value}}</dd>
     {{else}}
       {{input classBinding=":form-control" disabled=disabled value=value}}
     {{/if}}
@@ -36,27 +34,27 @@
     {{/if}}
     {{#if isTypeTextarea}}
       {{#if isPresentation}}
-      <p>{{value}}</p>
+      <dd>{{value}}</dd>
       {{else}}
       {{textarea classBinding=":form-control" value=value}}
       {{/if}}
     {{/if}}
     {{#if isTypeCategorySelector}}
       {{#if isPresentation}}
-        <ul>{{#each category in value}}
+        <dd><ul>{{#each category in value}}
           <li>{{category.name_path}}</li>
-        {{/each}}</ul>
+        {{/each}}</ul></dd>
       {{else}}
         {{category-selector categoryList=value categoryObjects=categoryObjects}}
       {{/if}}
     {{/if}}
     {{#if isTypeMultiSelect}}
       {{#if isPresentation}}
-        <ul>
+        <dd><ul>
           {{#each item in value}}
           <li>{{item}}</li>
           {{/each}}
-        </ul>
+        </ul></dd>
       {{else}}
       {{select-2
           multiple=true

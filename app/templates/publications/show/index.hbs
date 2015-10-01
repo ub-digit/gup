@@ -21,7 +21,8 @@
     <div class="row">
       <div class="col-xs-12">
       <h2>{{model.pubid}}: {{model.title}}</h2>
-      <label>PubID</label> {{model.pubid}}
+      <dl class="dl-horizontal">
+      <dt>PubID</dt> <dd>{{model.pubid}}</dd>
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" value=model.title format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" value=model.alt_title format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode}}
@@ -57,10 +58,9 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" value=model.patent_application_date format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" value=model.patent_number format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" value=model.patent_date format='presentation' viewMode=viewMode}}
-      
       {{#if model.authors}}
-        <label>{{t 'edit.form.authorHeaderTextStrong'}}</label>
-        <ul>
+        <dt>{{t 'edit.form.authorHeaderTextStrong'}}</dt>
+        <dd><ul>
         {{#each author in model.authors}} 
           <li>{{author.first_name}} {{author.last_name}}
             {{#if author.departments}}
@@ -72,17 +72,18 @@
             {{/if}}
           </li>
         {{/each}}
-        </ul>
+        </ul></dd>
       {{/if}}
 
       {{#if model.publication_identifiers}}
-      <label>{{t 'publicationIdentifier.label'}}</label>
-      <ul>
+      <dt>{{t 'publicationIdentifier.label'}}</dt>
+      <dd><ul>
       {{#each identifier in model.publication_identifiers}}
         <li>{{identifier.identifier_code}}: {{identifier.identifier_value}}</li>
       {{/each}}
-      </ul>
+      </ul></dd>
       {{/if}}
+      </dl>
 
       {{#if advancedMode}}
       <hr/>

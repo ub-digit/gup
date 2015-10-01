@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName:'',
   // Determines if input or presentation template should be used
   isPresentation: Ember.computed.equal('format', 'presentation'),
   isEditable: Ember.computed('isPresentation', function(){
