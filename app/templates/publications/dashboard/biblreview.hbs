@@ -1,5 +1,5 @@
-<div class="selectDiv">
-Visa endast publikationer som är fördröjda för granskning {{input type="checkbox" checked=only_delayed}}
+<div class="selectDiv form-inline">
+Visa endast fördröjda {{input type="checkbox" checked=only_delayed}}
 
 
   {{view Ember.Select 
@@ -7,6 +7,7 @@ Visa endast publikationer som är fördröjda för granskning {{input type="chec
     optionValuePath="content.id"
     optionLabelPath="content.pubyear"
     value=pubyear
+    class="form-control"
   }}
 
   {{view Ember.Select 
@@ -15,18 +16,22 @@ Visa endast publikationer som är fördröjda för granskning {{input type="chec
       optionValuePath="content.code"
       optionLabelPath="content.name"
       prompt="Välj"
+      class="form-control"
   }}
 
 </div>
 <table class="table especial">
-<tr class="reviewtable">
+<thead>
+<tr>
     <th id="pubidid"  >{{t 'biblreview.pubid'}}  </th>  
     <th id="titleid"  >{{t 'biblreview.title'}}  </th>  
     <th id="yearid"   >{{t 'biblreview.year'}}   </th>  
     <th id="pubtypeid">{{t 'biblreview.pubtype'}}</th>  
 </tr>
+</thead>
+<tbody>
 {{#each model as |publication|}}
-<tr class="reviewtable">
+<tr>
     <td>{{publication.id}}</td>
     <td>{{#link-to 'publications.show' publication.pubid (query-params viewMode="advanced")}}{{publication.title}}{{/link-to}}</td>
     <td>{{publication.pubyear}}</td>
@@ -34,5 +39,6 @@ Visa endast publikationer som är fördröjda för granskning {{input type="chec
 </tr>
 
 {{/each}}
+</tbody>
 </table>
 {{pagination-pager pagination=model.meta.pagination}}
