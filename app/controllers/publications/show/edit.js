@@ -77,7 +77,6 @@ export default Ember.Controller.extend({
     if (isNaN(year) || year > 2100 || year < 1000){
       return;
     }
-    console.log('fetching departments...');
     this.store.find('department', {year: year}).then(
       function(response) {
         that.set('institutions', response);
@@ -86,13 +85,10 @@ export default Ember.Controller.extend({
       )
   }),
 
-  getPublicationTypeObject: function() {
-    if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null)) {
-       var fullObjectPubtype = this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
-       return fullObjectPubtype;
-    }
-
-  }.property('selectedPublicationType'),
+  getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
+    var fullObjectPubtype = this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
+    return fullObjectPubtype;
+  }),
 
   updateModelWithCorrectPublicationType: function() {
     this.set("publication.publication_type", this.get("selectedPublicationType"));

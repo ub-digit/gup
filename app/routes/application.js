@@ -89,7 +89,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           that.transitionTo('publications.show', publication_id);
         },
         function(){
-          that.controller.set('publication_id_error', that.t('mainMenu.idMissing') + ': ' + publication_id);
+          that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
         });
       }
     },

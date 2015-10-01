@@ -41,7 +41,7 @@
     {{/if}}
     {{#if isTypeCategorySelector}}
       {{#if isPresentation}}
-        <dd><ul>{{#each category in value}}
+        <dd><ul>{{#each value as |category|}}
           <li>{{category.name_path}}</li>
         {{/each}}</ul></dd>
       {{else}}
@@ -51,7 +51,7 @@
     {{#if isTypeMultiSelect}}
       {{#if isPresentation}}
         <dd><ul>
-          {{#each item in value}}
+          {{#each value as |item|}}
           <li>{{item}}</li>
           {{/each}}
         </ul></dd>

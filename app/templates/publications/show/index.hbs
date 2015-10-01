@@ -61,11 +61,11 @@
       {{#if model.authors}}
         <dt>{{t 'edit.form.authorHeaderTextStrong'}}</dt>
         <dd><ul>
-        {{#each author in model.authors}} 
+        {{#each model.authors as |author|}} 
           <li>{{author.first_name}} {{author.last_name}}
             {{#if author.departments}}
               <ul>
-              {{#each department in author.departments}}
+              {{#each author.departments as |department|}}
                 <li>{{department.name}}</li>
               {{/each}}
               </ul>
@@ -78,7 +78,7 @@
       {{#if model.publication_identifiers}}
       <dt>{{t 'publicationIdentifier.label'}}</dt>
       <dd><ul>
-      {{#each identifier in model.publication_identifiers}}
+      {{#each model.publication_identifiers as |identifier|}}
         <li>{{identifier.identifier_code}}: {{identifier.identifier_value}}</li>
       {{/each}}
       </ul></dd>

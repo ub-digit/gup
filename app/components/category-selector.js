@@ -22,7 +22,7 @@ export default Ember.Component.extend({
       that.set('categories', response);
     },
     function(error){
-      console.log('error', error);
+      //console.log('error', error);
     }
   );
 }),

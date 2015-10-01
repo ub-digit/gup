@@ -30,7 +30,7 @@
 
         <dt>{{t 'review.affiliation'}}</dt>
         {{#if item.diff_since_review.affiliation}}
-          {{#each department in diffDepartments}}
+          {{#each diffDepartments as |department|}}
             {{#if department.added}}
             <dd class="text-success">{{department.name}}</dd>
             {{/if}}
@@ -42,7 +42,7 @@
           {{/if}}
           {{/each}}
           {{else}}
-          {{#each department in item.affiliation.departments}}
+          {{#each item.affiliation.departments as |department|}}
           <dd>{{department.name}}</dd>
           {{/each}}
         {{/if}}
@@ -50,7 +50,7 @@
         <dt>{{t 'review.categories'}}</dt>
 
         {{#if item.diff_since_review.category_hsv_local}}
-          {{#each category in diffCategories}}
+          {{#each diffCategories as |category|}}
             {{#if category.added}}
               <dd class="text-success">{{category.name_path}}</dd>
             {{/if}}
@@ -62,7 +62,7 @@
             {{/if}}
           {{/each}}
         {{else}}
-          {{#each category in item.category_objects}}
+          {{#each item.category_objects as |category|}}
             <dd>{{category.name_path}}</dd>
           {{/each}}
         {{/if}}

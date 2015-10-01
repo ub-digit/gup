@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 
   idPlaceholderString: Ember.computed('selectedSource', function() {
 
-    var prefix = this.t('newPub.importPub.form.inputId.placeholder');
+    var prefix = this.get('i18n').t('newPub.importPub.form.inputId.placeholder');
 
     switch(this.get('selectedSource')) {
 

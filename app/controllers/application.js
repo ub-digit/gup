@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  i18n: Ember.inject.service(),
 	queryParams: ['lang'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
@@ -13,16 +14,8 @@ export default Ember.Controller.extend({
 	},
 
 	setLocale: function() {
-		var set = Ember.set;
-		var application = this.container.lookup('application:main');
-
 		if (this.get("lang")) {
-			var that = this;
-			set(application, 'locale', that.get("lang"));
-		}
-		else {
-			set(application, 'locale', application.get('defaultLocale'));
-			this.set("lang",  application.get('defaultLocale'));
+      this.set('i18n.locale', this.get('lang'));
 		}
 	},
 	actions: {

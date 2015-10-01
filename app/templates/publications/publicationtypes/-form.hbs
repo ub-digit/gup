@@ -2,7 +2,6 @@
 	{{#if selectPublicationTypeIsVisible}}
     {{partial 'publications/publicationtypes/-selector'}}
 	{{else}}
-
 	{{#if isSelectedPublicationValid}}
 		{{getPublicationTypeObject.name}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>
 	{{/if}}
@@ -13,7 +12,7 @@
 			{{else}}
 				<div class="row">
 					<div class="col-xs-6">
-						<span {{bind-attr class=":form-group errors.content_type:has-error"}}>
+						<span class="form-group {{if errors.content_type 'has-error'}}">
 							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="select"  errors=errors.content_type value=publication.content_type selectValues=getPublicationTypeObject.content_types prompt=(t 'edit.form.selectContentTypePrompt') label=(t 'edit.form.selectContentTypeLabel')}}
 						</span>
 					</div>
@@ -24,7 +23,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.title:has-error"}}>
+			<span class="form-group {{if errors.title 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" errors=errors.title value=publication.title}}
 			</span>
 		</div>
@@ -32,7 +31,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.alt_title:has-error"}}>
+			<span class="form-group {{if errors.alt_title 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" errors=errors.alt_title value=publication.alt_title}}
 			</span>
 		</div>
@@ -40,7 +39,7 @@
 
 	<div class="row">
 		<div class="col-sm-3">
-				<span {{bind-attr class=":form-group errors.pubyear:has-error"}}>
+				<span class="form-group {{if errors.pubyear 'has-error'}}">
 					{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text"  errors=errors.pubyear value=publication.pubyear}}
 				</span>
 		</div>
@@ -52,7 +51,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.editor:has-error"}}>
+			<span class="form-group {{if errors.editor 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" errors=errors.editor value=publication.editor}}
 			</span>
 		</div>
@@ -64,7 +63,7 @@
 
 	<div id="diss-date" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.dissdate:has-error"}}>
+			<span class="form-group {{if errors.dissdate 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="date" errors=errors.dissdate value=publication.dissdate}}
 			</span>
 		</div>
@@ -72,7 +71,7 @@
 
 	<div id="diss-time" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.disstime:has-error"}}>
+			<span class="form-group {{if errors.disstime 'has-error'}}">
 		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="disstime" type="text" errors=errors.disstime value=publication.disstime}}
 			</span>
 		</div>
@@ -80,7 +79,7 @@
 
 	<div id="diss-location" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.disslocation:has-error"}}>
+			<span class="form-group {{if errors.disslocation 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="disslocation" type="text"  errors=errors.disslocation value=publication.disslocation}}
 			</span>
 		</div>
@@ -88,7 +87,7 @@
 
 	<div id="diss-opponent" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.dissopponent:has-error"}}>
+			<span class="form-group {{if errors.dissopponent 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" errors=errors.dissopponent value=publication.dissopponent}}
 			</span>
 		</div>
@@ -104,7 +103,7 @@
 
 	<div class="row">
 		<div class="col-md-9 ">
-			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
+			<span class="form-group {{if errors.sourcetitle 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.sourcetitle}}
 			</span>
 		</div>
@@ -112,7 +111,7 @@
 
 	<div class="row" style="display:none">
 		<div class="col-md-9 ">
-			<span {{bind-attr class=":form-group errors.sourcetitle:has-error"}}>
+			<span class="form-group {{if errors.sourcetitle 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.journal_id}}
 			</span>
 		</div>
@@ -121,12 +120,12 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.issn:has-error"}}>
+			<span class="form-group {{if errors.issn 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="issn"  disabled=publication.journal_id errors=errors.issn value=publication.issn}}
 			</span>
 		</div>
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.eissn:has-error"}}>
+			<span class="form-group {{if errors.eissn 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="issn"  disabled=publication.journal_id errors=errors.eissn value=publication.eissn}}
 			</span>
 		</div>
@@ -134,22 +133,22 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.sourcevolume:has-error"}}>
+			<span class="form-group {{if errors.sourcevolume 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcevolume" type="text"  errors=errors.sourcevolume value=publication.sourcevolume}}
 			</span>
 		</div>
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.sourceissue:has-error"}}>
+			<span class="form-group {{if errors.sourceissue 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourceissue" type="text" errors=errors.sourceissue value=publication.sourceissue}}
 			</span>
 		</div>
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.sourcepages:has-error"}}>
+			<span class="form-group {{if errors.sourcepages 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text"  errors=errors.sourcepages value=publication.sourcepages}}
 			</span>
 		</div>
 		<div class="col-md-3">
-			<span {{bind-attr class=":form-group errors.article-number:has-error"}}>
+			<span class="form-group {{if errors.article-number 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text"  errors=errors.article_number value=publication.article_number}}
 			</span>
 		</div>
@@ -158,7 +157,7 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<span {{bind-attr class=":form-group errors.isbn:has-error"}}>
+			<span class="form-group {{if errors.isbn 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="isbn"  errors=errors.isbn value=publication.isbn}}
 			</span>
 		</div>
@@ -166,7 +165,7 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<span {{bind-attr class=":form-group errors.publanguage:has-error"}}>
+			<span class="form-group {{if errors.publanguage 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="select"  errors=errors.publanguage value=publication.publanguage selectValues=languages}}
 			</span>
 		</div>
@@ -174,7 +173,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.extid:has-error"}}>
+			<span class="form-group {{if errors.extid 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" errors=errors.extid value=publication.extid}}
 			</span>
 		</div>
@@ -182,7 +181,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.url:has-error"}}>
+			<span class="form-group {{if errors.url 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text"  errors=errors.url value=publication.url}}
 			</span>
 		</div>
@@ -190,7 +189,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.links:has-error"}}>
+			<span class="form-group {{if errors.links 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" errors=errors.links value=publication.links}}
 			</span>
 		</div>
@@ -198,7 +197,7 @@
 
 	<div class="row">
 			<div class="col-md-3">
-				<span {{bind-attr class=":form-group errors.extent:has-error"}}>
+				<span class="form-group {{if errors.extent 'has-error'}}">
 					{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" errors=errors.extent value=publication.extent}}
 				</span>
 			</div>
@@ -206,7 +205,7 @@
 
 	<div class="row">
 			<div class="col-md-9">
-				<span {{bind-attr class=":form-group errors.publisher:has-error"}}>
+				<span class="form-group {{if errors.publisher 'has-error'}}">
 						{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text"  errors=errors.publisher value=publication.publisher}}
 				</span>
 			</div>
@@ -214,7 +213,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.place:has-error"}}>
+			<span class="form-group {{if errors.place 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text"  errors=errors.place value=publication.place}}
 			</span>
 		</div>
@@ -222,7 +221,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.series:has-error"}}>
+			<span class="form-group {{if errors.series 'has-error'}}">
 		          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="multiselect"  errors=errors.series selectValues=series value=selectedSeries}}
 			</span>
 		</div>
@@ -232,7 +231,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<span {{bind-attr class=":form-group errors.category_hsv_local:has-error"}}>
+			<span class="form-group {{if errors.category_hsv_local 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="category-selector" errors=errors.category_hsv_local value=publication.category_hsv_local categoryObjects=categoryObjectsList}}
 			</span>
 		</div>
@@ -240,7 +239,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.abstract:has-error"}}>
+			<span class="form-group {{if errors.abstract 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" errors=errors.abstract value=publication.abstract}}
 			</span>
 		</div>
@@ -248,7 +247,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.keywords:has-error"}}>
+			<span class="form-group {{if errors.keywords 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" errors=errors.keywords value=publication.keywords}}
 			</span>
 		</div>
@@ -258,7 +257,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.project:has-error"}}>
+			<span class="form-group {{if errors.project 'has-error'}}">
 		          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="multiselect"  errors=errors.project selectValues=projects value=selectedProjects}}
 			</span>
 		</div>
@@ -266,7 +265,7 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.pub_notes:has-error"}}>
+			<span class="form-group {{if errors.pub_notes 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" errors=errors.pub_notes value=publication.pub_notes}}
 			</span>
 		</div>
@@ -279,7 +278,7 @@
 
 	<div id="artwork-type" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.artwork_type:has-error"}}>
+			<span class="form-group {{if errors.artwork_type 'has-error'}}">
 		{{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text"  errors=errors.artwork_type value=publication.artwork_type}}
 			</span>
 		</div>
@@ -290,7 +289,7 @@
 
 	<div id="patent-applicant" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.patent_applicant:has-error"}}>
+			<span class=":form-group {{if errors.patent_applicant 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text"  errors=errors.patent_applicant value=publication.patent_applicant}}
 			</span>
 		</div>
@@ -298,7 +297,7 @@
 
 	<div id="patent-application-number" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.patent_application_number:has-error"}}>
+			<span class="form-group {{if errors.patent_application_number 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" errors=errors.patent_application_number value=publication.patent_application_number}}
 			</span>
 		</div>
@@ -306,7 +305,7 @@
 
 	<div id="patent-application-date" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.patent_application_date:has-error"}}>
+			<span class="form-group {{if errors.patent_application_date 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text"  errors=errors.patent_application_date value=publication.patent_application_date}}
 			</span>
 		</div>
@@ -314,7 +313,7 @@
 
 	<div id="patent-number" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.patent_number:has-error"}}>
+			<span class="form-group {{if errors.patent_number 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text"  errors=errors.patent_number value=publication.patent_number}}
 			</span>
 		</div>
@@ -322,7 +321,7 @@
 
 	<div id="patent-date" class="row">
 		<div class="col-md-9">
-			<span {{bind-attr class=":form-group errors.patent_date:has-error"}}>
+			<span class="form-group {{if errors.patent_date 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="date"  errors=errors.patent_date value=publication.patent_date}}
 			</span>
 		</div>

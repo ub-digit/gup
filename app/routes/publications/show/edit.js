@@ -3,6 +3,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 import ENV from 'gup/config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  i18n: Ember.inject.service(),
 	returnTo: null,
   model: function(params, transition) {
 		this.returnTo = transition.queryParams.returnTo;
@@ -91,13 +92,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     saveDraft: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', that.t('messages.saveDraftSuccess'));
+            that.send('setMsgHeader', 'success', that.get('i18n').t('messages.saveDraftSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
             that.transitionTo('publications.show', model.id);
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', that.t('messages.saveDraftSuccess'));
+            that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftSuccess'));
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {
@@ -116,7 +117,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     savePublish: function(model) {
         var that = this;
         var successHandler = function(model) {
-            that.send('setMsgHeader', 'success', that.t('messages.publishSuccess'));
+            that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
             Ember.$("body").removeClass("loading");
             that.send('refreshModel', model.id);
             that.send('refreshUserdata');
@@ -127,7 +128,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 					}
         };
         var errorHandler = function(reason) {
-            that.send('setMsgHeader', 'error', that.t('messages.publishError'));
+            that.send('setMsgHeader', 'error', that.get('i18n').t('messages.publishError'));
             that.controller.set('errors', reason.error.errors);
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {

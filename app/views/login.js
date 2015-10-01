@@ -5,7 +5,7 @@ export default Ember.View.extend({
 	  var l = 20;  
 	  if (this.$("#login-form")) {
 	  	for( var i = 0; i < 10; i++ )   {
-			this.$("#login-form").animate( { 'margin-left': "+=" + ( l = -l ) + 'px' }, 50);  
+			//this.$("#login-form").animate( { 'margin-left': "+=" + ( l = -l ) + 'px' }, 50);  
 	   	}
 	  }
 	}.observes('controller.error'),

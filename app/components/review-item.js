@@ -78,7 +78,7 @@ export default Ember.Component.extend({
       this.store.find('review', item.db_id).then(
         function(response) {
 
-          that.sendAction('setMsgHeader', 'success', that.t('messages.approveSuccess'));
+          that.sendAction('setMsgHeader', 'success', that.get('i18n').t('messages.approveSuccess'));
 					that.sendAction('refreshReviewCount');
           Ember.$("body").removeClass("loading");
           that.set('isApproved', true);
@@ -86,14 +86,13 @@ export default Ember.Component.extend({
         },
         function(reason) {
 
-          that.sendAction('setMsgHeader', 'error', that.t('messages.approveError'));
+          that.sendAction('setMsgHeader', 'error', that.get('i18n').t('messages.approveError'));
           Ember.$("body").removeClass("loading");
 
       });
 
     },
 		reviewEdit: function(item) {
-			console.log("reviewItem", "reviewEdit", item);
 			this.sendAction('editItem', item, {returnTo: 'publications.dashboard.review'});
 		}
   }

@@ -1,5 +1,5 @@
 {{#if category.children}}
-  <a href="#" {{bind-attr class=":toggle-icon children.length::leaf"}} {{action 'toggle'}}>
+  <a href="#" class="toggle-icon {{if children.length '' 'leaf'}}" {{action 'toggle'}}>
     {{#if isExpanded}}
       <!--<i class="fa fa-folder-open-o"></i>-->
       <i class="fa fa-minus-square-o text-muted"></i>
@@ -26,7 +26,7 @@
 
 
 {{#if isExpanded}}
-  {{#each child in category.children}}
+  {{#each category.children as |child|}}
   <div style="padding-left:10px">
     {{category-item category=child categoryList=categoryList}}
   </div>

@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
+  i18n: Ember.inject.service(),
 
   titleString: Ember.computed('item.title', function() {
 
-    return this.get('item.title') || this.t('publication.labels.noTitle');
+    return this.get('item.title') || this.get('i18n').t('publication.labels.noTitle');
 
   }),
 

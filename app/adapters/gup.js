@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 export default Ember.Object.extend({
+  i18n: Ember.inject.service(),
   endpoints: {
     person: {path: 'people', plural:'people'},
     department: {path: 'departments'},
@@ -25,13 +26,7 @@ export default Ember.Object.extend({
   },
 
   getLocale: function() {
-    var set = Ember.set;
-    var application = this.container.lookup('application:main');
-
-    if (!application.locale) {
-      set(application, 'locale', application.get('defaultLocale'));
-    }
-    return application.locale;
+    return this.get('i18n.locale');
   },
 
 

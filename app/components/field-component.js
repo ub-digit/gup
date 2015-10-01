@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  tagName:'',
   // Determines if input or presentation template should be used
   isPresentation: Ember.computed.equal('format', 'presentation'),
   isEditable: Ember.computed('isPresentation', function(){
@@ -27,11 +26,11 @@ export default Ember.Component.extend({
         return null;
       }
 
-  }.observes('selectedPublicationType'),
+  }.property('selectedPublicationType', 'fieldName'),
 
 
   getRule: function() {
-    var fullObj = this.getFullObject();
+    var fullObj = this.get('getFullObject');
     if (fullObj) {
       if (fullObj.rule) {
         return fullObj.rule;
@@ -43,7 +42,7 @@ export default Ember.Component.extend({
     else {
       return null;
     }
-  }.observes('selectedPublicationType'),
+  }.property('getFullObject'),
 
   getLabel: function() {
 
@@ -51,7 +50,7 @@ export default Ember.Component.extend({
       return this.get('label');
     }
 
-    var fullObj = this.getFullObject();
+    var fullObj = this.get('getFullObject');
     if (fullObj) {
       if (fullObj.label) {
         return fullObj.label;
@@ -63,24 +62,26 @@ export default Ember.Component.extend({
     else {
       return null;
     }
-  }.property('selectedPublicationType'),
+  }.property('getFullObject'),
 
   isMandatory: function() {
-    var rule = this.getRule();
+    
+    var rule = this.get('getRule');
     if (rule === 'R') {
       return true;
     }
     else {
       return false;
     }
-  }.property('selectedPublicationType'),
+  }.property('getRule'),
 
   isVisible: function() {
+    
     if (this.get('fieldName') === 'content_type') {
       return true;
     }
 
-    var rule = this.getRule();
+    var rule = this.get('getRule');
     if (rule) {
     	if (rule === "na") {
     	  return false;
@@ -96,7 +97,7 @@ export default Ember.Component.extend({
     else {
     	return false;
     }
-  }.property('selectedPublicationType', 'isAdvanced', 'value', 'fieldName', 'isPresentation'),
+  }.property('getRule', 'isAdvanced', 'value', 'fieldName', 'isPresentation'),
 
   valueIsEmpty: Ember.computed('value', function(){
     if (!this.get('value')){
@@ -198,7 +199,6 @@ export default Ember.Component.extend({
     }
 	}),
     journalSelected:function(){
-        console.log(this.get('selectedJournal'));
         var journal = this.get('selectedJournal') ;
         this.set('issn',journal.issn);
         this.set('eissn',journal.eissn);

@@ -1,5 +1,5 @@
 
-<nav {{bind-attr class=":navbar :navbar-default :navbar-fixed-top isViewModeAdvanced:advanced-view"}} role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top {{if isViewModeAdvanced 'advanced-view'}}" role="navigation">
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
@@ -17,7 +17,7 @@
     </ul>
     {{#if session.isAuthenticated}}
     <div class="form-group navbar-form navbar-left" style="margin-top:3px;">
-      {{input action="showPublication" class="form-control" value=publication_id placeholder=(t 'mainMenu.searchById')}}
+      {{input enter="showPublication" class="form-control" value=publication_id placeholder=(t 'mainMenu.searchById')}}
       <span style="color:red">{{publication_id_error}}</span>
     </div>
     {{/if}}

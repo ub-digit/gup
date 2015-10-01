@@ -314,7 +314,6 @@ export default Select2.extend({
       // grab currently selected data from select plugin
       var data = this._select.select2("data");
 
-			console.log("DEBUG-select2-change", data);
       // call our callback for further processing
       this.selectionChanged(data);
 

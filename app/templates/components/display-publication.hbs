@@ -22,11 +22,11 @@
 					<p>
 						<b>Författare och institution:</b>
 						<ul>
-						{{#each item in publication.authors}}
+						{{#each publication.authors as |item|}}
 							<li>
 								{{item.first_name}} {{item.last_name}}
 								<ul>
-									{{#each item in item.departments}}
+									{{#each item.departments as |item|}}
 										<li>{{item.name}}</li>
 									{{/each}}
 								</ul>
@@ -67,7 +67,7 @@
 				{{#if publication.category_hsv_local}}
 					<p>
 						<b>Ämne:</b>
-						{{#each category in publication.category_objects}}
+						{{#each publication.category_objects as |category|}}
 							{{category.name_path}}<br/>
 						{{/each}}
 					</p>

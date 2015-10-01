@@ -10,7 +10,7 @@
           {{#if actionButtonsAreVisible}}
               <div class="row">
                 <div class="col-xs-12">
-                  <div id="toolbar" {{bind-attr class=":btn-toolbar :pull-right getClassNameForSelectedPublicationTypeAndContentType"}}>
+                  <div id="toolbar" class="btn-toolbar pull-right {{getClassNameForSelectedPublicationTypeAndContentType}}">
                     <button class='btn btn-link'  {{action 'cancelEdit'}}>{{t 'edit.actions.btnCancel'}}</button>
                     {{#unless publication.published_at}}
                       <button class='btn btn-primary'  {{action 'saveDraft' model }}>{{t 'edit.actions.btnSaveDraft'}}</button>

@@ -10,11 +10,11 @@
       <a href="javascript:void(0)"><span>Previous</span></a>
     </li>
   {{/if}}
-  {{#each page in pageArray}}
+  {{#each pageArray as |page|}}
     {{#if page.spacer}}
       <li class="disabled spacer"><span>...</span></li>
     {{else}}
-      <li {{bind-attr class="page.active:active"}}>
+      <li class="{{if page.active 'active'}}">
         {{#link-to (query-params page=page.page) class="btn btn-default"}}{{page.page}}{{/link-to}}
       </li>
     {{/if}}
