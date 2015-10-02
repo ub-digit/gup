@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   removeSelectedCategoryString: 'removeSelectedCategory',
   isExpanded: Ember.computed.equal('expanded', true),
 
-  isSelected: Ember.computed('categoryList.@each', 'category.svepid', function() {
+  isSelected: Ember.computed('categoryList.[]', 'category.svepid', function() {
     return !(this.get('categoryList').indexOf(this.get('category.svepid')) === -1);
   }),
 

@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 	actions: {
 		editItem: function(item, params) {
-			console.log("transitionTo publication.show.edit", item, params);
+//			console.log("transitionTo publication.show.edit", item, params);
 			this.transitionTo('publications.show.edit', item.id, {queryParams: params});
 		}
 	}

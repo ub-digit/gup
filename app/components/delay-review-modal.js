@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
+  i18n: Ember.inject.service(),
   setMsgHeaderAction: 'setMsgHeader',
   actions: {
     sendDelay: function(){

@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
     var that = this;
     this.store.find('bibl_review', id).then(function() {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
-        that.transitionToRoute('publicationsController.dashboard.biblreview');
+        that.transitionToRoute('publications.dashboard.biblreview');
     },
     function() {
       that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationError'));
@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
 
   actions: {
     goBack: function() {
-      var target = this.get('applicationController.currentList') || 'publicationsController.dashboard.drafts';
+      var target = this.get('applicationController.currentList') || 'publications.dashboard.drafts';
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {

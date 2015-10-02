@@ -333,9 +333,9 @@ export default Select2.extend({
 		}));
 
     this.addObserver('content.[]', this.valueChanged);
-    this.addObserver('content.@each.' + optionLabelPath, this.valueChanged);
-    this.addObserver('content.@each.' + optionHeadlinePath, this.valueChanged);
-    this.addObserver('content.@each.' + optionDescriptionPath, this.valueChanged);
+    this.addObserver('content.[].' + optionLabelPath, this.valueChanged);
+    this.addObserver('content.[].' + optionHeadlinePath, this.valueChanged);
+    this.addObserver('content.[].' + optionDescriptionPath, this.valueChanged);
     this.addObserver('value', this.valueChanged);
 
     // trigger initial data sync to set select2 to the external "value"

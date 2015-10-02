@@ -42,7 +42,7 @@
           <a href="#" {{action 'clearSearch'}}>{{t 'edit.form.selectCategory.clear'}}</a>
         </div>
         <p>
-          {{#each categories as |cateogry|}}
+          {{#each categories as |category|}}
             {{category-item category=category categoryList=categoryList}}
           {{else}}
             <p>{{t 'edit.form.selectCategory.noFilteredSubjectTerms'}}</p>

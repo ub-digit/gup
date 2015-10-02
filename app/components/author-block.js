@@ -4,19 +4,19 @@ export default Ember.Component.extend({
 	didInsertElement: function() {
 		if (this.get("authorArr").length === 0) {
 			if (this.get("arrOfAuthorsFromImport")) {
-	            if (this.get("arrOfAuthorsFromImport").length === 0) {
-	                this.send('addNewAuthorRow');
-	            }
-	            else {
-	            	var that = this;
-	                this.get("arrOfAuthorsFromImport").forEach(function(author) {
-	                    that.send('addNewAuthorRow', author);
-	                });
-	            }
-	        }
-	        else {
-	        	this.send('addNewAuthorRow');
-	        }
+        if (this.get("arrOfAuthorsFromImport").length === 0) {
+          this.send('addNewAuthorRow');
+        }
+        else {
+        	var that = this;
+            this.get("arrOfAuthorsFromImport").forEach(function(author) {
+              that.send('addNewAuthorRow', author);
+             });
+         }
+      }
+      else {
+      	this.send('addNewAuthorRow');
+      }
 		}
 	},
 
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
 		else {
 		  return false;
 		}
-	}.property('authorArr.@each'),
+	}.property('authorArr.[]'),
 
 
 	actions: {

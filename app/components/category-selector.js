@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   }),
 
 
-  numberLeft: Ember.computed('categoryList.@each', function() {
+  numberLeft: Ember.computed('categoryList.[]', function() {
     return this.get('MAX_NUMBER_OF_CATEGORIES') - this.get('categoryList.length');
   }),
 
