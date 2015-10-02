@@ -12,7 +12,7 @@ Visa endast fördröjda {{input type="checkbox" checked=only_delayed}}
 
   {{view Ember.Select 
       value=pubtype
-      content=controllers.publications.publicationTypes
+      content=publicationsController.publicationTypes
       optionValuePath="content.code"
       optionLabelPath="content.name"
       prompt="Välj"

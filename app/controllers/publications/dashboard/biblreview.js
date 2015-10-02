@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     i18n: Ember.inject.service(),
-    publications: Ember.inject.controller(),
+    publicationsController: Ember.inject.controller('publications'),
     pubyear: 0,
     page: 1,
     queryParams: ['pubyear','pubtype','page', 'only_delayed'],
