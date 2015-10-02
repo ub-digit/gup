@@ -1,7 +1,11 @@
 <!-- Button-->
+{{#if isDelayed}}
+<button class="pull-right btn btn-default" title="{{publication.bibl_review_delay_comment}}">Fördröjd till <strong>{{startDate}}</strong></button>
+{{else}}
 <a type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#delayReviewModal">
   {{t 'biblreview.delay'}} <i class="fa fa-clock-o"></i>
 </a>
+{{/if}}
 
 <!-- Modal -->
 <div class="modal fade" id="delayReviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -6,6 +6,19 @@ export default Ember.Component.extend({
   optDate: 'calendar',
   optText: 'freetext',
 
+  startDate: Ember.computed('publication.bibl_review_start_time', function(){
+    return moment(this.get('publication.bibl_review_start_time')).format('YYYY-MM-DD');
+  }),
+  isDelayed: Ember.computed('publication.bibl_review_start_time', function(){
+    if (!this.get('publication.bibl_review_start_time')) {
+      return false;
+    }
+    if (moment(this.get('publication.bibl_review_start_time'))> moment()){
+      return true;
+    }
+    return false;
+  }),
+
   datePickerDisabled: Ember.computed('optDate', function(){
     return (this.get('optDate') !== 'calendar');
   }),
