@@ -1,10 +1,10 @@
 <!-- Button-->
 {{#if isDelayed}}
-<button class="pull-right btn btn-default" title="{{publication.bibl_review_delay_comment}}">Fördröjd till <strong>{{startDate}}</strong></button>
+<p title="{{publication.bibl_review_delay_comment}}" class="form-control-static pull-right">Fördröjd till <strong>{{startDate}}</strong></p>
 {{else}}
-<a type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#delayReviewModal">
+<button type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#delayReviewModal">
   {{t 'biblreview.delay'}} <i class="fa fa-clock-o"></i>
-</a>
+</button>
 {{/if}}
 
 <!-- Modal -->
@@ -16,27 +16,36 @@
         <h4 class="modal-title" id="myModalLabel3">{{t 'biblreview.delayHeader'}}</h4>
       </div>
       <div class="modal-body">
-        <div class="input-group">
+        <div class="form-group">
         <h4>{{t 'biblreview.date'}}</h4>
-        {{#radio-button value="calendar" groupValue=optDate changed="dateOptionChanged"}}Kalender{{/radio-button}}
+          <div class="radio-inline">
+        {{#radio-button value="calendar" groupValue=optDate changed="dateOptionChanged"}}Välj datum{{/radio-button}}
+        </div>
+          <div class="radio-inline">
         {{#radio-button value="onemonth" groupValue=optDate changed="dateOptionChanged"}}1 mån{{/radio-button}}
+        </div>
+          <div class="radio-inline">
         {{#radio-button value="threemonths" groupValue=optDate changed="dateOptionChanged"}}3 mån{{/radio-button}}
+        </div>
+          <div class="radio-inline">
         {{#radio-button value="sixmonths" groupValue=optDate changed="dateOptionChanged"}}6 mån{{/radio-button}}
+        </div>
           {{date-picker date=date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" disabled=datePickerDisabled}}
         </div>
-        <div class="input-group">
         <h4>{{t 'biblreview.comment'}}</h4>
 
-          <div class="radio">
-            {{#radio-button value="e-pub-ahead" groupValue=optText changed="textOptionChanged"}}E-pub ahead of print{{/radio-button}}
-          </div>
-          <div class="radio">
+          <div class="form-group">
+          <div class="radio-inline">
             {{#radio-button value="freetext" groupValue=optText changed="textOptionChanged"}}Fritext{{/radio-button}}
-          </div>
+            </div>
+          <div class="radio-inline">
+            {{#radio-button value="e-pub-ahead" groupValue=optText changed="textOptionChanged"}}E-pub ahead of print{{/radio-button}}
+            </div>
           {{textarea value=comment cols=80 rows=6 classNames='form-control' disabled=commentFieldDisabled}}
+          </div>
         </div>
-      </div>
       <div class="modal-footer">
+        <button class="btn btn-link" data-dismiss="modal">Avbryt</button>
         <button class="btn btn-primary navbar-btn" data-dismiss="modal" {{action 'sendDelay'}}>{{t 'biblreview.btnDelay'}}</button>
       </div>
     </div>

@@ -5,15 +5,15 @@
   <div class="col-xs-9">
     <div id="publication-toolbar">
       {{#if session.content.can_delete_published}}
-        <button {{action 'deletePublication' model.id}} class='btn btn-danger pull-right'>{{t 'publication.show.delete'}} <i class="fa fa-trash-o"></i></button>
+        <button {{action 'deletePublication' model.id}} class="btn btn-link pull-right">{{t 'publication.show.delete'}} <i class="fa fa-trash" title=""></i></button>
       {{/if}}
-      {{#link-to  'publications.show.edit' model class='btn btn-primary pull-right'}}{{t 'publication.show.edit'}} <i class="fa fa-edit"></i>{{/link-to}}
-      {{mailer-modal publication=model buttonClass="btn btn-info pull-right"}}
+      {{#link-to  'publications.show.edit' model class='btn btn-link pull-right'}}{{t 'publication.show.edit'}} <i class="fa fa-pencil"></i>{{/link-to}}
+      {{mailer-modal publication=model buttonClass="btn btn-link pull-right"}}
       {{#if applicationController.isViewModeAdvanced}}
         {{#if model.published_at}}
           {{#unless model.biblreviewed_at}}
-            {{delay-review-modal publication=model buttonClass="btn btn-info pull-right"}}
-            <button {{action 'approvePublication' model.id}} class='btn btn-success pull-right'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>
+            {{delay-review-modal publication=model buttonClass="btn btn-link pull-right"}}
+            <button {{action 'approvePublication' model.id}} class='btn btn-link pull-right'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>
           {{/unless}}
         {{/if}}
       {{/if}}
@@ -25,10 +25,11 @@
       <h2>{{model.pubid}}: {{model.title}}</h2>
       <dl class="dl-horizontal">
       <dt>PubID</dt> <dd>{{model.pubid}}</dd>
+      <dt>Publikationstyp</dt><dd>{{model.publication_type_label}}</dd>
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" value=model.title format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" value=model.alt_title format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type label=(t 'edit.form.selectContentTypeLabel') format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type_label label=(t 'edit.form.selectContentTypeLabel') format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" value=model.editor format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" value=model.dissdate format='presentation' viewMode=viewMode}}
@@ -42,7 +43,7 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" value=model.sourcepages format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text" value=model.article_number format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" value=model.isbn format='presentation' viewMode=viewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" value=model.publanguage format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" value=model.publanguage_label format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" value=model.extid format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" value=model.url format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" value=model.links format='presentation' viewMode=viewMode}}
@@ -62,7 +63,7 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" value=model.patent_date format='presentation' viewMode=viewMode}}
       {{#if model.authors}}
         <dt>{{t 'edit.form.authorHeaderTextStrong'}}</dt>
-        <dd><ul>
+        <dd><ul class="list-unstyled">
         {{#each model.authors as |author|}} 
           <li>{{author.first_name}} {{author.last_name}}
             {{#if author.departments}}
@@ -79,7 +80,7 @@
 
       {{#if model.publication_identifiers}}
       <dt>{{t 'publicationIdentifier.label'}}</dt>
-      <dd><ul>
+      <dd><ul class="list-unstyled">
       {{#each model.publication_identifiers as |identifier|}}
         <li>{{identifier.identifier_code}}: {{identifier.identifier_value}}</li>
       {{/each}}
@@ -89,16 +90,17 @@
 
       {{#if advancedMode}}
       <hr/>
-        <table class="table">
-          <thead>
-            <th>Field</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-            <tr><td>DB-ID</td><td>{{model.db_id}}</td></tr>
-            <tr><td>Created_by</td><td> {{model.created_by}}</td></tr>
-          </tbody>
-        </table>
+        <dl class="dl-horizontal">
+          <dt>DB-ID</dt><dd>{{model.db_id}}</dd>
+          <dt>Skapad av</dt><dd>{{model.created_by}}</dd>
+          <dt>Skapad datum</dt><dd>{{format-date model.created_at}}</dd>
+          {{#if model.updated_at}}<dt>Uppdaterad datum</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
+          {{#if model.published_at}}<dt>Publicerad datum</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
+          {{#if model.bibl_review_start_time}}<dt>Granskas datum</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
+          <dt>Delay comment</dt><dd>{{model.bibl_review_delay_comment}}</dd>
+          <dt>Granskad datum</dt><dd>{{model.biblreviewed_at}}</dd>
+          <dt>Granskad av</dt><dd>{{model.biblreviewed_by}}</dd>
+        </dl>
       {{/if}}
 
       </div>

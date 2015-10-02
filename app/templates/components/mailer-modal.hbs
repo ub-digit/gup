@@ -1,7 +1,7 @@
 <!-- Button-->
-<a type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#mailerModal">
+<button type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#mailerModal">
   {{t 'mailer.report'}} <i class="fa fa-flag"></i>
-</a>
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="mailerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -12,14 +12,12 @@
         <h4 class="modal-title" id="myModalLabel3">{{t 'mailer.report'}}</h4>
       </div>
       <div class="modal-body">
-        <div class="input-group">
-        <span class="input-group-addon" id="restart-message-text">{{t 'mailer.message'}}
-          </span>
+        <h4>{{t 'mailer.message'}}</h4>
         {{textarea value=message cols=80 rows=6 classNames='form-control'}}
-        </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary navbar-btn" data-dismiss="modal" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
+        <button class="btn btn-link" data-dismiss="modal">Avbryt</button>
+        <button class="btn btn-primary" data-dismiss="modal" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
       </div>
     </div>
   </div>

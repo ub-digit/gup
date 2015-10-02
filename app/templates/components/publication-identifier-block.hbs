@@ -11,8 +11,8 @@
     <tbody>
       {{#each publicationIdentifiers as |publicationIdentifier|}}
         <tr>
-          <td>{{publicationIdentifier.identifier_code}}</td>
-          <td>{{publicationIdentifier.identifier_value}}</td>
+          <td><p class="form-control-static">{{publicationIdentifier.identifier_code}}</p></td>
+          <td><p class="form-control-static">{{publicationIdentifier.identifier_value}}</p></td>
           <td><button {{action 'deleteIdentifier' publicationIdentifier}} class="btn btn-md btn-danger">{{t 'publicationIdentifier.delete'}}</button></td>
         </tr>
       {{/each}}
@@ -26,7 +26,7 @@
             prompt='<Välj typ>'}}
 
           </td>
-        <td>{{input class='input-group' value=identifierValue}}</td>
+        <td>{{input class='form-control' value=identifierValue}}</td>
         <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">{{t 'publicationIdentifier.create'}}</button></td>
       </tr>
       </tbody>

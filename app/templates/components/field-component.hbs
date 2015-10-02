@@ -18,7 +18,7 @@
   {{/if}}
   {{#if isTypeText}}
     {{#if isPresentation}}
-      <dd>{{value}}</dd>
+      <dd>{{linkify value}}</dd>
     {{else}}
       {{input classBinding=":form-control" disabled=disabled value=value}}
     {{/if}}
@@ -34,14 +34,14 @@
     {{/if}}
     {{#if isTypeTextarea}}
       {{#if isPresentation}}
-      <dd>{{value}}</dd>
+      <dd>{{linkify value}}</dd>
       {{else}}
       {{textarea classBinding=":form-control" value=value}}
       {{/if}}
     {{/if}}
     {{#if isTypeCategorySelector}}
       {{#if isPresentation}}
-        <dd><ul>{{#each value as |category|}}
+        <dd><ul class="list-unstyled">{{#each value as |category|}}
           <li>{{category.name_path}}</li>
         {{/each}}</ul></dd>
       {{else}}
@@ -50,7 +50,7 @@
     {{/if}}
     {{#if isTypeMultiSelect}}
       {{#if isPresentation}}
-        <dd><ul>
+        <dd><ul class="list-unstyled">
           {{#each value as |item|}}
           <li>{{item}}</li>
           {{/each}}
