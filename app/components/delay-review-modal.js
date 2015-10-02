@@ -3,11 +3,45 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   setMsgHeaderAction: 'setMsgHeader',
+  optDate: 'calendar',
+  optText: 'freetext',
+
+  datePickerDisabled: Ember.computed('optDate', function(){
+    return (this.get('optDate') !== 'calendar');
+  }),
+
+  commentFieldDisabled: Ember.computed('optText', function(){
+    return (this.get('optText') !== 'freetext');
+  }),
   actions: {
+    dateOptionChanged: function(){
+      switch(this.get('optDate')){
+        case 'onemonth':
+          this.set('date', moment().add(1, 'months'));
+          break;
+        case 'threemonths':
+          this.set('date', moment().add(3, 'months'));
+          break;
+        case 'sixmonths':
+          this.set('date', moment().add(6, 'months'));
+          break;
+      }
+    },
+
+    textOptionChanged: function(){
+      switch(this.get('optText')){
+        case 'freetext':
+          break;
+        case 'e-pub-ahead':
+          this.set('comment', 'E-pub ahead of print');
+          break;
+      }
+    },
+
     sendDelay: function(){
       var that = this;
       var publication = that.get('publication');
-      var date = that.get('date');
+      var date = moment(that.get('date')).format('YYYY-MM-DD');
       var comment = that.get('comment');
       that.store.find('set_bibl_review_start_time', publication.pubid, {date: date, comment: comment}).then(
         function(response){

@@ -22,7 +22,9 @@
             optionValuePath="content.code"
             optionLabelPath="content.code"
             value=identifierCode
-            class='form-control'}}
+            class='form-control'
+            prompt='<Välj typ>'}}
+
           </td>
         <td>{{input class='input-group' value=identifierValue}}</td>
         <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">{{t 'publicationIdentifier.create'}}</button></td>
