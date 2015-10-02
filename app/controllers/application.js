@@ -8,35 +8,19 @@ export default Ember.Controller.extend({
   viewMode: 'basic',
   isViewModeAdvanced: Ember.computed.equal('viewMode', 'advanced'),
   isViewModeBasic: Ember.computed.equal('viewMode', 'basic'),
-	getDefaultLocale: function() {
-		var application = this.container.lookup('application:main');
-		return application.get('defaultLocale');
-	},
 
-	setLocale: function() {
-		if (this.get("lang")) {
-      this.set('i18n.locale', this.get('lang'));
-		}
-	},
 	actions: {
 		toggleLang: function() {
-			var lang = this.get("lang");
-			if (lang) {
-				if (lang === "en") {
-					this.set("lang", 'sv');
-				}
-				else {
-					this.set("lang", 'en');
-				}
-				//this.setLocale();
-			}
-			else {
-				this.set("lang", this.getDefaultLocale());
-			}
-			Ember.run.later(function() {
-				location.reload(true);
-			})
-			
+      if (this.get('i18n.locale') === 'sv') {
+        this.set('i18n.locale', 'en');
+        sessionStorage.setItem('lang', 'en');
+      } else {
+        this.set('i18n.locale', 'sv');
+        sessionStorage.setItem('lang', 'sv');
+      }
+      Ember.run.later(function() {
+        location.reload(true);
+      })
 		}
 	}
 });

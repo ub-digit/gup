@@ -3,33 +3,21 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
-  /*queryParams: {
-    lang: {
-      refreshModel: true
-    }
-  },*/
   beforeModel: function() {
+    var lang = "sv"; /// change to default
+    if (sessionStorage.getItem('lang')) {
+      lang = sessionStorage.getItem('lang');
+    }
+    this.set('i18n.locale', lang);
+    sessionStorage.setItem('lang', lang);
+
     this._super();
-    var defaultLang = this.controllerFor("application").getDefaultLocale();
     if (this.get("session.authenticated")) {
 			this.fetchUserdata();
     }
     else {
-      this.transitionTo('login', {queryParams: {lang: defaultLang}});
+      this.transitionTo('login');
     }
-  },
-
-  model: function(params) {
-    return {lang: params.lang};
-  },
-
-  setupController: function(controller, model) {
-    var lang = "sv"; /// change to default
-    if (model.lang) {
-      lang = model.lang;
-    }
-    controller.set('lang', lang);
-    controller.setLocale();
   },
 
 	fetchUserdata: function() {
