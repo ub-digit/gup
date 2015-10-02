@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   applicationController: Ember.inject.controller("application"),
   publicationsController: Ember.inject.controller("publications"),
   publicationsShowController: Ember.inject.controller("publications/show"), 
-  viewModeBinding: 'applicationsController.viewMode',
+  viewModeBinding: 'applicationController.viewMode',
 
   deletePublication: function(id) {
     var that = this;
