@@ -1,7 +1,11 @@
 <!-- Button-->
+{{#if isDelayed}}
+<button class="pull-right btn btn-default" title="{{publication.bibl_review_delay_comment}}">Fördröjd till <strong>{{startDate}}</strong></button>
+{{else}}
 <a type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#delayReviewModal">
   {{t 'biblreview.delay'}} <i class="fa fa-clock-o"></i>
 </a>
+{{/if}}
 
 <!-- Modal -->
 <div class="modal fade" id="delayReviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -14,22 +18,22 @@
       <div class="modal-body">
         <div class="input-group">
         <h4>{{t 'biblreview.date'}}</h4>
-          <label class="radio-inline"><input type="radio" name="optdate">Kalender</label>
-          <label class="radio-inline"><input type="radio" name="optdate">1 mån</label>
-          <label class="radio-inline"><input type="radio" name="optdate">3 mån</label>
-          <label class="radio-inline"><input type="radio" name="optdate">6 mån</label>
-          {{date-picker date=date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
+        {{#radio-button value="calendar" groupValue=optDate changed="dateOptionChanged"}}Kalender{{/radio-button}}
+        {{#radio-button value="onemonth" groupValue=optDate changed="dateOptionChanged"}}1 mån{{/radio-button}}
+        {{#radio-button value="threemonths" groupValue=optDate changed="dateOptionChanged"}}3 mån{{/radio-button}}
+        {{#radio-button value="sixmonths" groupValue=optDate changed="dateOptionChanged"}}6 mån{{/radio-button}}
+          {{date-picker date=date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" disabled=datePickerDisabled}}
         </div>
         <div class="input-group">
         <h4>{{t 'biblreview.comment'}}</h4>
 
           <div class="radio">
-            <label><input type="radio" name="optcomment">E-pub ahead of print</label>
+            {{#radio-button value="e-pub-ahead" groupValue=optText changed="textOptionChanged"}}E-pub ahead of print{{/radio-button}}
           </div>
           <div class="radio">
-            <label><input type="radio" name="optcomment">Fritext</label>
+            {{#radio-button value="freetext" groupValue=optText changed="textOptionChanged"}}Fritext{{/radio-button}}
           </div>
-          {{textarea value=comment cols=80 rows=6 classNames='form-control'}}
+          {{textarea value=comment cols=80 rows=6 classNames='form-control' disabled=commentFieldDisabled}}
         </div>
       </div>
       <div class="modal-footer">
