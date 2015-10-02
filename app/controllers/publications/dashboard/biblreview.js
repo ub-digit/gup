@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     i18n: Ember.inject.service(),
+    publications: Ember.inject.controller(),
     pubyear: 0,
     page: 1,
     queryParams: ['pubyear','pubtype','page', 'only_delayed'],
-    needs: ['publications'],
     only_delayed: false,
     pubyears: Ember.computed(function(){      
       return [

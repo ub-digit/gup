@@ -1,11 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['publications', 'application'],
+  publications: Ember.inject.controller(),
+  application: Ember.inject.controller(),
 
-  viewModeBinding: 'controllers.application.viewMode',
+  viewModeBinding: 'application.viewMode',
   publicationType: function() {
-    var pubType = this.get('controllers.publications.model').findBy('id', this.get('model.publication_type_id'));
+    var pubType = this.get('publications.model').findBy('id', this.get('model.publication_type_id'));
     if (!pubType) {
       return '';
     }

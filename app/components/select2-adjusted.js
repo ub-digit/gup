@@ -152,7 +152,7 @@ export default Select2.extend({
 
     options.formatInputTooShort = function() {
       var minimumInputLength = self.get('minimumInputLength');
-      var text = self.get("formatInputTooShort").fmt(minimumInputLength); //  self.get("formatInputTooShort")
+      var text = self.get("formatInputTooShort")//.fmt(minimumInputLength); //  self.get("formatInputTooShort")
       return Ember.String.htmlSafe(text);
     }
     /*

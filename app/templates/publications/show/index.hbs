@@ -9,7 +9,7 @@
       {{/if}}
       {{#link-to  'publications.show.edit' model class='btn btn-primary pull-right'}}{{t 'publication.show.edit'}} <i class="fa fa-edit"></i>{{/link-to}}
       {{mailer-modal publication=model buttonClass="btn btn-info pull-right"}}
-      {{#if controllers.application.isViewModeAdvanced}}
+      {{#if applicationController.isViewModeAdvanced}}
       {{#unless model.biblreviewed_at}}
           {{delay-review-modal publication=model buttonClass="btn btn-info pull-right"}}
         <button {{action 'approvePublication' model.id}} class='btn btn-success pull-right'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>

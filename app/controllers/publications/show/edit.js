@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['publications'],
+  publications: Ember.inject.controller(),
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,
@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-  updateCategoryObjects: Ember.observer('publication.category_hsv_local.@each', function(){
+  updateCategoryObjects: Ember.observer('publication.category_hsv_local.[]', function(){
     var that = this;
     // Create list if it doesn\t exist
     if (that.get('categoryObjectsList') === undefined) {

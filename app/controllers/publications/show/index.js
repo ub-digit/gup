@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['application', 'publications', 'publications/show'],
-  viewModeBinding: 'controllers.application.viewMode',
+  applicationController: Ember.inject.controller("application"),
+  publicationsController: Ember.inject.controller("publications"),
+  publicationsShowController: Ember.inject.controller("publications/show"), 
+  viewModeBinding: 'applicationsController.viewMode',
 
   deletePublication: function(id) {
     var that = this;
@@ -18,7 +20,7 @@ export default Ember.Controller.extend({
     var that = this;
     this.store.find('bibl_review', id).then(function() {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
-        that.transitionToRoute('publications.dashboard.biblreview');
+        that.transitionToRoute('publicationsController.dashboard.biblreview');
     },
     function() {
       that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationError'));
@@ -32,12 +34,12 @@ export default Ember.Controller.extend({
   }),
 
   getPublicationTypeObject: Ember.computed('model.publication_type', function(){
-    return this.get("controllers.publications.publicationTypes").findBy("code", this.get("model.publication_type"));
+    return this.get("publicationsController.publicationTypes").findBy("code", this.get("model.publication_type"));
   }),
 
   actions: {
     goBack: function() {
-      var target = this.get('controllers.application.currentList') || 'publications.dashboard.drafts';
+      var target = this.get('applicationController.currentList') || 'publicationsController.dashboard.drafts';
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {
