@@ -17,10 +17,17 @@ export default {
 	publication: {
 		labels: {
 		  publications: 'Publications',
+		  publicationType: 'Publication type',
 		  createdAt: 'Created',
+		  createdBy: 'Created by',
 		  updatedAt: 'Uppdated',
+		  updatedBy: 'Uppdated by',
 		  publishedAt: 'Published',
-			noTitle: '[No title]'
+		  reviewedAt: 'Reviewed',
+		  reviewedBy: 'Reviewed by',
+		  reviewStart: 'Review start',
+		  delayComment: 'Comment',
+		  noTitle: '[No title]'
 		},
 		show: {
 			edit: "Edit",
@@ -86,6 +93,7 @@ export default {
         date: 'Date',
         comment: 'Comment',
         btnDelay: 'Delay',
+        showDelayedOnly: 'Show delayed only',
     },
 	edit: {
 		header: 'Edit publication',

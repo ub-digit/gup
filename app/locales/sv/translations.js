@@ -17,10 +17,17 @@ export default {
 	publication: {
 		labels: {
 		  publications: 'Publikationer',
+		  publicationType: 'Publikationstyp',
 		  createdAt: 'Skapad',
+		  createdBy: 'Skapad av',
 		  updatedAt: 'Uppdaterad',
+		  updatedBy: 'Uppdaterad av',
 		  publishedAt: 'Publicerad',
-			noTitle: '[Ingen titel]'
+		  reviewedAt: 'Granskad',
+		  reviewedBy: 'Granskad av',
+		  reviewStart: 'Kan granskas från',
+		  delayComment: 'Kommentar',
+		  noTitle: '[Ingen titel]'
 		},
 		show: {
 			edit: "Redigera",
@@ -87,7 +94,8 @@ export default {
         delayHeader: 'Fördröj granskning av publikation',
         date: 'Datum',
         comment: 'Kommentar',
-        btnDelay: 'Fördröj'
+        btnDelay: 'Fördröj',
+        showDelayedOnly: 'Visa endast fördröjda',
     },
 	edit: {
 		header: 'Redigera publikation',
