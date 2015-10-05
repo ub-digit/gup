@@ -251,8 +251,36 @@ export default Ember.Controller.extend({
     }
   }.observes('selectedPublicationType'),
 
+  publicationTypeFilter: 'all',
+
+  showPublicationTypeGroupBooks: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'books' || this.get('publicationTypeFilter') === 'all');
+  }),
+  showPublicationTypeGroupArticles: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'articles' || this.get('publicationTypeFilter') === 'all');
+  }),
+  showPublicationTypeGroupConference: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'conference' || this.get('publicationTypeFilter') === 'all');
+  }),
+  showPublicationTypeGroupThesis: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'thesis' || this.get('publicationTypeFilter') === 'all');
+  }),
+  showPublicationTypeGroupOther: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'other' || this.get('publicationTypeFilter') === 'all');
+  }),
+  isSelectedAll: Ember.computed.equal('publicationTypeFilter', 'all'),
+  isSelectedBooks: Ember.computed.equal('publicationTypeFilter', 'books'),
+  isSelectedArticles: Ember.computed.equal('publicationTypeFilter', 'articles'),
+  isSelectedConference: Ember.computed.equal('publicationTypeFilter', 'conference'),
+  isSelectedThesis: Ember.computed.equal('publicationTypeFilter', 'thesis'),
+  isSelectedOther: Ember.computed.equal('publicationTypeFilter', 'other'),
+ 
+
 
   actions: {
+    setPublicationTypeFilter: function(filter){
+      this.set('publicationTypeFilter', filter);
+    },
     setAsSelectedPublicationType: function() {
       if (this.get("mayBecomeSelectedPublicationType")) {
         this.set("selectedPublicationType", this.get("mayBecomeSelectedPublicationType"));
