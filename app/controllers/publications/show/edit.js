@@ -9,29 +9,33 @@ export default Ember.Controller.extend({
   authorArr: Ember.A([]),
   categoryObjectsList: Ember.A([]),
 
-	selectedSeries: Ember.computed('publication.series', function(key, value, oldValue) {
-		var pubSeries = this.get('publication.series');
-		if(arguments.length === 1) {
+	selectedSeries: Ember.computed('publication.series', {
+    get: function(){
+		  var pubSeries = this.get('publication.series');
 			return this.get('series').filter(function(item) {
 				if(!pubSeries) { return false; }
 				return pubSeries.contains(parseInt(item.id));
 			});
-		} else {
-			this.set('publication.series', value.map(function(item) {
-				return parseInt(item.id);
+    },
+    set: function(key, value){
+		  var pubSeries = this.get('publication.series');
+		  this.set('publication.series', value.map(function(item) {
+		    return parseInt(item.id);
 			}));
 			return value;
-		}
+    }
 	}),
 
-	selectedProjects: Ember.computed('publication.project', function(key, value, oldValue) {
-		var pubProject = this.get('publication.project');
-		if(arguments.length === 1) {
-			return this.get('projects').filter(function(item) {
-				if(!pubProject) { return false; }
-				return pubProject.contains(parseInt(item.id));
-			});
-		} else {
+	selectedProjects: Ember.computed('publication.project', {
+    get: function() {
+		  var pubProject = this.get('publication.project');
+		  return this.get('projects').filter(function(item) {
+		    if(!pubProject) { return false; }
+			  return pubProject.contains(parseInt(item.id));
+		  });
+    },
+    set: function(key, value){
+		  var pubProject = this.get('publication.project');
 			this.set('publication.project', value.map(function(item) {
 				return parseInt(item.id);
 			}));

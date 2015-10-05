@@ -2,7 +2,7 @@
 {{#if isDelayed}}
 <p title="{{publication.bibl_review_delay_comment}}" class="form-control-static pull-right">Fördröjd till <strong>{{startDate}}</strong></p>
 {{else}}
-<button type="button" class={{buttonClass}} style={{buttonStyle}} data-toggle="modal" data-target="#delayReviewModal">
+<button type="button" class={{buttonClass}} data-toggle="modal" data-target="#delayReviewModal">
   {{t 'biblreview.delay'}} <i class="fa fa-clock-o"></i>
 </button>
 {{/if}}
