@@ -15,8 +15,8 @@
 <div class="col-xs-12">
   <ul class="nav nav-pills">
     <li role="presentation" class={{if isSelectedAll 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'all'}}>Alla</a></li>
-    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker</a></li>
     <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
+    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
     <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
     <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
     <li role="presentation" class={{if isSelectedOther 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'other'}}>Övrigt</a></li>
@@ -26,7 +26,7 @@
     {{#if showPublicationTypeGroupArticles}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Artikel</h3>
+        <h3>Artiklar</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='journal-articles'}}
       {{publicationtype-item publicationTypes=publicationTypes code='review-articles'}}
@@ -39,7 +39,7 @@
     {{#if showPublicationTypeGroupBooks}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Bok eller kapitel i bok</h3>
+        <h3>Böcker, kapitel och rapporter</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='books'}}
       {{publicationtype-item publicationTypes=publicationTypes code='book-chapters'}}
@@ -54,7 +54,7 @@
     {{#if showPublicationTypeGroupConference}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Konferensbidrag mm</h3>
+        <h3>Konferensbidrag</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='conference-papers'}}
       {{publicationtype-item publicationTypes=publicationTypes code='conference-contributions'}}
