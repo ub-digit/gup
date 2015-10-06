@@ -109,6 +109,22 @@ export default Ember.Component.extend({
     return false;
   }),
 
+  initSourceTitleType: function(){
+    if (this.get('type') !== 'journal'){
+      return;
+    }
+    if (this.get('sourcetitle') && !this.get('journal_id')) {
+      console.log('test1');
+      this.set('sourceTitleType', 'freetext');
+    } else {
+      console.log('test2');
+      this.set('sourceTitleType', 'journal');
+    }
+  }.on("init"),
+
+  sourceTitleTypeJournal: Ember.computed.equal('sourceTitleType', 'journal'),
+  sourceTitleTypeFreetext: Ember.computed.equal('sourceTitleType', 'freetext'),
+
 	isTypeJournal: Ember.computed.equal('type', 'journal'),
 	isTypeMultiSelect: Ember.computed.equal('type', 'multiselect'),
 	isTypeText: Ember.computed.equal('type', 'text'),
@@ -199,6 +215,9 @@ export default Ember.Component.extend({
     }
 	}),
     journalSelected:function(){
+        if (!this.get('selectedJournal')){
+          return;
+        }
         var journal = this.get('selectedJournal') ;
         this.set('issn',journal.issn);
         this.set('eissn',journal.eissn);
@@ -211,8 +230,11 @@ export default Ember.Component.extend({
                 .then(deferred.resolve, deferred.reject);
             
         },
-        manual_journal: function() {
-        this.set('journal_id',null);
+        sourceTitleTypeChanged: function(){
+          if (this.get('sourceTitleType') == 'freetext'){
+            this.set('journal_id', null);
+            this.set('selectedJournal', null);
+          }
         }
     }
 });
