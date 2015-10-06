@@ -10,7 +10,11 @@
     <ul class="nav navbar-nav">
       {{#if session.isAuthenticated}}
       <li>
-        {{#link-to 'publications'}}{{t 'mainMenu.publications'}}
+        {{#link-to 'publications.dashboard'}}Listor
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'publications.new'}}Registrera ny
         {{/link-to}}
       </li>
       {{/if}}
@@ -23,13 +27,13 @@
     {{/if}}
 
       {{#if session.isAuthenticated}}
-        {{#if session.content.can_bibreview}}
-            <p class="navbar-text navbar-right"><a href="javascript.void(0)" {{action 'toggleViewMode'}}>{{#if isViewModeBasic}}Aktivera granskningsvy{{else}}Inaktivera granskningsvy{{/if}}</a></p>
-        {{/if}}
       <p class="navbar-text navbar-right"><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
       {{else}}
       {{/if}}
       <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
+        {{#if session.content.can_bibreview}}
+            <p class="navbar-text navbar-right"><a href="javascript.void(0)" {{action 'toggleViewMode'}}>{{#if isViewModeBasic}}Aktivera granskningsvy{{else}}Inaktivera granskningsvy{{/if}}</a></p>
+        {{/if}}
   </div><!-- /.container -->
 </nav>
 
