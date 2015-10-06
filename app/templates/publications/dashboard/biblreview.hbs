@@ -21,25 +21,39 @@
   }}
 
 </div>
-<table class="table especial">
-<thead>
-<tr>
-    <th id="pubidid"  >{{t 'biblreview.pubid'}}  </th>  
-    <th id="titleid"  >{{t 'biblreview.title'}}  </th>  
-    <th id="yearid"   >{{t 'biblreview.year'}}   </th>  
-    <th id="pubtypeid">{{t 'biblreview.pubtype'}}</th>  
-</tr>
-</thead>
-<tbody>
-{{#each model as |publication|}}
-<tr>
-    <td>{{publication.id}}</td>
-    <td>{{#link-to 'publications.show' publication.pubid (query-params viewMode="advanced")}}{{publication.title}}{{/link-to}}</td>
-    <td>{{publication.pubyear}}</td>
-    <td>{{publication.publication_type}}</td>
-</tr>
 
-{{/each}}
-</tbody>
-</table>
+<div class="row">
+  <div class="col-xs-12">
+    {{#if model.length}}
+    <ul class="list-unstyled dashboard-list">
+      {{#each model as |item|}}
+      <li>
+        <div class="row">
+          <div class="col-xs-12">
+
+            <div class="row">
+              <div class="col-xs-10">
+                {{publication-list-row item=item link='publications.show'}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <dl class="dl-horizontal">
+                  <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
+                  <dt>Publikationstyp:</dt><dd>{{item.publication_type_label}}</dd>
+                </dl>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    {{t 'text.youHaveNoPublicationsForReview'}}
+    {{/if}}
+  </div>
+</div>
 {{pagination-pager pagination=model.meta.pagination}}
