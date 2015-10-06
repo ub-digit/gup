@@ -28,26 +28,7 @@
     <ul class="list-unstyled dashboard-list">
       {{#each model as |item|}}
       <li>
-        <div class="row">
-          <div class="col-xs-12">
-
-            <div class="row">
-              <div class="col-xs-10">
-                {{publication-list-row item=item link='publications.show'}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <dl class="dl-horizontal">
-                  <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
-                  <dt>Publikationstyp:</dt><dd>{{item.publication_type_label}}</dd>
-                </dl>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
+        {{publication-list-row item=item link='publications.show'}}
       </li>
       {{/each}}
     </ul>

@@ -4,26 +4,7 @@
           <ul class="list-unstyled dashboard-list">
             {{#each model as |item|}}
               <li>
-                <div class="row">
-                  <div class="col-xs-10">
-                    {{#if item.title}}
-                      <div class="row">
-                        <div class="col-xs-12">
-                          {{publication-list-row item=item link='publications.show'}}
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-xs-12"><strong>{{t 'publication.labels.createdAt'}}:</strong> {{format-date item.created_at}}</div>
-                      </div>
-
-                    {{else}}
-                      <div class="dashboard-list-header">{{#link-to 'publications.show' item.pubid }}Titel ej angiven{{/link-to}}</div>
-                    {{/if}}
-                  </div>
-                  <div class="col-xs-2">
-
-                  </div>
-                </div>
+                {{publication-list-row item=item link='publications.show'}}
               </li>
             {{/each}}
           </ul>

@@ -1,8 +1,16 @@
 <div class="row">
   <div class="col-xs-12">
-    <h3>{{#link-to link item.pubid (query-params viewMode="basic")}} {{titleString}}{{/link-to}}</h3>
+    <h3>{{#link-to link item.pubid}} {{titleString}}{{/link-to}}</h3>
   </div>
   <div class="col-xs-12">
     <p>{{bibliographicInfoString}}</p>
+    <dl class="dl-horizontal">
+      <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
+      <dt>Publikationstyp:</dt><dd>{{item.publication_type_label}}</dd>
+      {{#if item.content_type}}<dt>Innehållsmärkning:</dt><dd>{{item.content_type_label}}</dd>{{/if}}
+      <dt>Skapad:</dt><dd>{{format-date item.created_at}}</dd>
+      {{#if item.published_at}}<dt>Publicerad:</dt><dd>{{format-date item.published_at}}</dd>{{/if}}
+    </dl>
   </div>
+  
 </div>
