@@ -173,14 +173,6 @@
 
 	<div class="row">
 		<div class="col-md-9">
-			<span class="form-group {{if errors.extid 'has-error'}}">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" errors=errors.extid value=publication.extid}}
-			</span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-9">
 			<span class="form-group {{if errors.url 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text"  errors=errors.url value=publication.url}}
 			</span>

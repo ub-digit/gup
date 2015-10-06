@@ -1,6 +1,7 @@
 <div class="selectDiv form-inline">
-{{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}
-
+  <div class="checkbox">
+    <label> {{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
+  </div>
 
   {{view Ember.Select 
     content=pubyears  
