@@ -67,13 +67,12 @@
       {{/if}}
     {{/if}}
     {{#if isTypeSelect}}
-      {{view "select"
-      content=selectValues
-      optionValuePath="content.value"
-      optionLabelPath="content.label"
-      value=value
-      class="form-control"
-      prompt=prompt}}
+      {{#x-select value=value class="form-control"}}
+      {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
+        {{#each selectValues as |selectValue|}}
+          {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
     {{/if}}
     {{#if isTypeJournal}}
       <div class="form-group">

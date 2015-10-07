@@ -114,10 +114,8 @@ export default Ember.Component.extend({
       return;
     }
     if (this.get('sourcetitle') && !this.get('journal_id')) {
-      console.log('test1');
       this.set('sourceTitleType', 'freetext');
     } else {
-      console.log('test2');
       this.set('sourceTitleType', 'journal');
     }
   }.on("init"),
@@ -231,7 +229,7 @@ export default Ember.Component.extend({
             
         },
         sourceTitleTypeChanged: function(){
-          if (this.get('sourceTitleType') == 'freetext'){
+          if (this.get('sourceTitleType') === 'freetext'){
             this.set('journal_id', null);
             this.set('selectedJournal', null);
           }

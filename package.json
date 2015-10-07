@@ -44,6 +44,7 @@
     "ember-linkify": "1.2.2",
     "ember-radio-button": "1.0.7",
     "ember-select-2": "^1.2.0",
+    "emberx-select": "2.0.1",
     "express": "^4.8.5",
     "glob": "4.0.5",
     "liquid-fire": "^0.21.0",

@@ -3,22 +3,18 @@
     <label> {{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
   </div>
 
-  {{view Ember.Select 
-    content=pubyears  
-    optionValuePath="content.id"
-    optionLabelPath="content.pubyear"
-    value=pubyear
-    class="form-control"
-  }}
+{{#x-select value=pubyear class="form-control"}}
+  {{#each pubyears as |selectValue|}}    
+    {{#x-option value=selectValue.id}}{{selectValue.pubyear}}{{/x-option}}
+  {{/each}}
+{{/x-select}}
 
-  {{view Ember.Select 
-      value=pubtype
-      content=publicationsController.publicationTypes
-      optionValuePath="content.code"
-      optionLabelPath="content.name"
-      prompt="Välj"
-      class="form-control"
-  }}
+{{#x-select value=pubtype class="form-control"}}
+  {{#x-option}}Välj{{/x-option}}
+  {{#each publicationsController.publicationTypes as |selectValue|}}    
+    {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
+  {{/each}}
+{{/x-select}}
 
 </div>
 

@@ -23,15 +23,12 @@
         <div class="row bottom-spacing-20">
           <div class="col-xs-12 center-content">
             <form class="form-inline">
-              {{
-                view Ember.Select
-                classNames="form-control input-lg"
-                content=dataSources
-                value=selectedSource
-                optionValuePath="content.value"
-                optionLabelPath="content.label"
-                prompt=(t 'newPub.importPub.form.selectImportSourcePrompt')
-              }}
+              {{#x-select value=selectedSource class="form-control input-lg"}}
+                {{#x-option}}{{t 'newPub.importPub.form.selectImportSourcePrompt'}}{{/x-option}}
+                {{#each dataSources as |dataSource|}}
+                  {{#x-option value=dataSource.value}}{{dataSource.label}}{{/x-option}}
+                {{/each}}
+              {{/x-select}}
               <div class="input-group input-group-lg">
                 {{input class='form-control manageFields' value=sourceId placeholder=idPlaceholderString}}
                 <span class="input-group-btn">

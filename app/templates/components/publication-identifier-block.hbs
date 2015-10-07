@@ -17,15 +17,14 @@
         </tr>
       {{/each}}
       <tr>
-        <td>{{view "select"
-            content=publicationIdentifierCodes
-            optionValuePath="content.code"
-            optionLabelPath="content.code"
-            value=identifierCode
-            class='form-control'
-            prompt='<Välj typ>'}}
-
-          </td>
+        <td>
+        {{#x-select value=identifierCode class="form-control"}}
+          {{#x-option}}Välj typ{{/x-option}}
+          {{#each publicationIdentifierCodes as |identifierCode|}}
+            {{#x-option value=identifierCode.code}}{{identifierCode.code}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+        </td>
         <td>{{input class='form-control' value=identifierValue}}</td>
         <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">{{t 'publicationIdentifier.create'}}</button></td>
       </tr>
