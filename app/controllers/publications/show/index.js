@@ -11,7 +11,8 @@ export default Ember.Controller.extend({
     var that = this;
     this.store.destroy('publication', id).then(function() {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationSuccess'));
-        that.transitionToRoute('application');
+        var target = that.get('applicationController.currentList') || 'publications.dashboard.drafts';
+        that.transitionToRoute(target);
     },
     function() {
       that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationError'));
