@@ -49,7 +49,7 @@ export default {
 		publishSuccess: 'The record has been published.',
 		publishError: 'The record could not be published.',
 		approveSuccess: 'The record has been approved.',
-		approveError: 'The record could not be approved.'
+		approveError: 'The record could not be approved.',
 		delaySuccess: 'Review approval has successfully been delayed.',
 		delayError: 'Review approval could not be delayed.',
 		publicationNotFound: 'Publication not found.'
