@@ -50,10 +50,9 @@ export default {
 		publishError: 'Posten kunde inte publiceras.',
 		approveSuccess: 'Posten har godkänts.',
 		approveError: 'Posten kunde inte godkännas.',
-		delaySuccess: 'Posten har fördröjts.',
-		publicationNotFound: 'Publikationen finns inte.',
-		delayError: 'Posten kunde inte fördröjas.'
-
+		delaySuccess: 'Granskningsgodkännandet har uppskjutits.',
+		delayError: 'Posten kunde inte fördröjas.',
+		publicationNotFound: 'Publikationen finns inte.'
 	},
 	text: {
 		youHaveNoDrafts: 'Du har inga utkast.',
