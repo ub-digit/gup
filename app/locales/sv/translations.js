@@ -51,6 +51,7 @@ export default {
 		approveSuccess: 'Posten har godkänts.',
 		approveError: 'Posten kunde inte godkännas.',
 		delaySuccess: 'Posten har fördröjts.',
+		publicationNotFound: 'Publikationen finns inte.',
 		delayError: 'Posten kunde inte fördröjas.'
 
 	},

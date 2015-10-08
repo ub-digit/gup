@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	beforeModel: function() {
-		this.transitionTo('publications.dashboard.drafts');
+		this.transitionTo('publications.dashboard.start');
 	}
 });

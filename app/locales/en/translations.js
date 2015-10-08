@@ -45,10 +45,11 @@ export default {
 		approvePublicationSuccess: 'Publication approved.',
 		approvePublicationError: 'Publication could not be approved.',
 		confirmDeleteDraft: 'Are you sure you want to delete the draft?',
-                confirmDeletePublication: 'Are you sure you want to delete the publication?',
+        confirmDeletePublication: 'Are you sure you want to delete the publication?',
 		publishSuccess: 'The record has been published.',
 		publishError: 'The record could not be published.',
 		approveSuccess: 'The record has been approved.',
+		publicationNotFound: 'Publication not found.',
 		approveError: 'The record could not be approved.'
 	},
 	text: {

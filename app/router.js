@@ -16,6 +16,7 @@ Router.map(function() {
     });
     this.route('create');
     this.route('dashboard', function() {
+      this.route('start');
       this.route('drafts');
       this.route("published");
       this.route("touched");

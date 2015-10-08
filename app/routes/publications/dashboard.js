@@ -3,6 +3,6 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	beforeModel: function() {
-		this.transitionTo("publications.dashboard.drafts")
+		//this.transitionTo("publications.dashboard.start")
 	}
 });

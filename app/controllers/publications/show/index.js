@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
 
   actions: {
     goBack: function() {
-      var target = this.get('applicationController.currentList') || 'publications.dashboard.drafts';
+      var target = this.get('applicationController.currentList') || 'publications.dashboard.start';
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {

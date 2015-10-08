@@ -3,24 +3,10 @@
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
-      {{#link-to 'publications.dashboard.drafts' class="navbar-brand"}}
+      {{#link-to 'publications.dashboard.start' class="navbar-brand"}}
       {{t 'mainMenu.applicationName'}}
       {{/link-to}}
     </div>
-    <ul class="nav navbar-nav">
-      {{#if session.isAuthenticated}}
-      <li>
-        {{#link-to 'publications.new'}}Registrera ny
-        {{/link-to}}
-      </li>
-      {{/if}}
-    </ul>
-    {{#if session.isAuthenticated}}
-    <div class="form-group navbar-form navbar-left" style="margin-top:3px;">
-      {{input enter="showPublication" class="form-control" value=publication_id placeholder=(t 'mainMenu.searchById')}}
-      <span style="color:red">{{publication_id_error}}</span>
-    </div>
-    {{/if}}
 
       {{#if session.isAuthenticated}}
       <p class="navbar-text navbar-right"><i class="fa fa-lock"></i> {{session.username}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
