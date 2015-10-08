@@ -67,15 +67,22 @@
       {{/if}}
     {{/if}}
     {{#if isTypeSelect}}
-      {{view "select"
-      content=selectValues
-      optionValuePath="content.value"
-      optionLabelPath="content.label"
-      value=value
-      class="form-control"
-      prompt=prompt}}
+      {{#x-select value=value class="form-control"}}
+      {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
+        {{#each selectValues as |selectValue|}}
+          {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
     {{/if}}
     {{#if isTypeJournal}}
+      <div class="form-group">
+      <div class="radio-inline">
+        {{#radio-button value="journal" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}Välj från lista{{/radio-button}}
+      </div>
+      <div class="radio-inline">
+        {{#radio-button value="freetext" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}Ange som fritext{{/radio-button}}
+      </div>
+      {{#if sourceTitleTypeJournal}}
       {{select-2
           placeholder="Choose from our many journals"
           value=selectedJournal
@@ -89,9 +96,10 @@
           optionLabelPath="title"
           query="queryJournals"
       }}
-      {{#if journal_id}}
-        <button class="btn btn-primary" {{action "manual_journal"}} ><i class="fa fa-chain-broken"></i>Manuell redigering av tidskrifts-uppgifter</button> 
+      {{else}}
+        {{input type="text" class="form-control" value=sourcetitle}}
       {{/if}}
+      </div>
     {{/if}}
   {{/if}}
 {{/if}}

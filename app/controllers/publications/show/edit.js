@@ -262,8 +262,8 @@ export default Ember.Controller.extend({
   showPublicationTypeGroupConference: Ember.computed('publicationTypeFilter', function(){
     return (this.get('publicationTypeFilter') === 'conference' || this.get('publicationTypeFilter') === 'all');
   }),
-  showPublicationTypeGroupThesis: Ember.computed('publicationTypeFilter', function(){
-    return (this.get('publicationTypeFilter') === 'thesis' || this.get('publicationTypeFilter') === 'all');
+  showPublicationTypeGroupArtworks: Ember.computed('publicationTypeFilter', function(){
+    return (this.get('publicationTypeFilter') === 'artworks' || this.get('publicationTypeFilter') === 'all');
   }),
   showPublicationTypeGroupOther: Ember.computed('publicationTypeFilter', function(){
     return (this.get('publicationTypeFilter') === 'other' || this.get('publicationTypeFilter') === 'all');
@@ -272,7 +272,7 @@ export default Ember.Controller.extend({
   isSelectedBooks: Ember.computed.equal('publicationTypeFilter', 'books'),
   isSelectedArticles: Ember.computed.equal('publicationTypeFilter', 'articles'),
   isSelectedConference: Ember.computed.equal('publicationTypeFilter', 'conference'),
-  isSelectedThesis: Ember.computed.equal('publicationTypeFilter', 'thesis'),
+  isSelectedArtworks: Ember.computed.equal('publicationTypeFilter', 'artworks'),
   isSelectedOther: Ember.computed.equal('publicationTypeFilter', 'other'),
  
 

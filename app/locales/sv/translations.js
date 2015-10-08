@@ -32,7 +32,7 @@ export default {
 		show: {
 			edit: "Redigera",
 			"delete": "Radera",
-			biblreview: "Godkänn"
+			biblreview: "Markera som granskad"
 		}
 	},
 	messages: {

@@ -15,8 +15,8 @@ export default Ember.Controller.extend({
         {pubyear: moment().year()-1, id:moment().year()-1},
         {pubyear: moment().year()-2, id:moment().year()-2},
         {pubyear: moment().year()-3, id:moment().year()-3},
-        {pubyear: moment().year()-4, id:moment().year()-4},
-        {pubyear: moment().year()-5 + ' ' + this.get('i18n').t('biblreview.orEarlier'), id:-1}
+       // {pubyear: moment().year()-4, id:moment().year()-4},
+        //{pubyear: moment().year()-5 + ' ' + this.get('i18n').t('biblreview.orEarlier'), id:-1}
       ];
     })
 

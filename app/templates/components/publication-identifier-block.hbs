@@ -11,21 +11,20 @@
     <tbody>
       {{#each publicationIdentifiers as |publicationIdentifier|}}
         <tr>
-          <td><p class="form-control-static">{{publicationIdentifier.identifier_code}}</p></td>
+          <td><p class="form-control-static">{{publicationIdentifier.identifier_label}}</p></td>
           <td><p class="form-control-static">{{publicationIdentifier.identifier_value}}</p></td>
           <td><button {{action 'deleteIdentifier' publicationIdentifier}} class="btn btn-md btn-danger">{{t 'publicationIdentifier.delete'}}</button></td>
         </tr>
       {{/each}}
       <tr>
-        <td>{{view "select"
-            content=publicationIdentifierCodes
-            optionValuePath="content.code"
-            optionLabelPath="content.code"
-            value=identifierCode
-            class='form-control'
-            prompt='<Välj typ>'}}
-
-          </td>
+        <td>
+        {{#x-select value=identifierCode class="form-control"}}
+          {{#x-option}}Välj typ{{/x-option}}
+          {{#each publicationIdentifierCodes as |identifier|}}
+            {{#x-option value=identifier.code}}{{identifier.label}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+        </td>
         <td>{{input class='form-control' value=identifierValue}}</td>
         <td><button {{action 'createIdentifier' identifierCode identifierValue}} class="btn btn-md btn-success">{{t 'publicationIdentifier.create'}}</button></td>
       </tr>

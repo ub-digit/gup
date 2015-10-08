@@ -97,26 +97,11 @@
 
 	<div class="row">
 		<div class="col-md-9 ">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcechooser" type="journal" issn=publication.issn eissn=publication.eissn  journal_id=publication.journal_id sourcetitle=publication.sourcetitle  }}
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-9 ">
 			<span class="form-group {{if errors.sourcetitle 'has-error'}}">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.sourcetitle}}
+				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="journal" issn=publication.issn eissn=publication.eissn  journal_id=publication.journal_id sourcetitle=publication.sourcetitle errors=errors.sourcetitle }}
 			</span>
 		</div>
 	</div>
-
-	<div class="row" style="display:none">
-		<div class="col-md-9 ">
-			<span class="form-group {{if errors.sourcetitle 'has-error'}}">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text"  disabled=publication.journal_id errors=errors.sourcetitle value=publication.journal_id}}
-			</span>
-		</div>
-	</div>
-
 
 	<div class="row">
 		<div class="col-md-3">
@@ -167,14 +152,6 @@
 		<div class="col-md-6">
 			<span class="form-group {{if errors.publanguage 'has-error'}}">
 				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="select"  errors=errors.publanguage value=publication.publanguage selectValues=languages}}
-			</span>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-9">
-			<span class="form-group {{if errors.extid 'has-error'}}">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="extid" type="text" errors=errors.extid value=publication.extid}}
 			</span>
 		</div>
 	</div>
