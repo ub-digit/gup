@@ -61,14 +61,25 @@ export default {
 		youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
 		youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
 		reviewListPreamble: 'Forskare är skyldiga att granska och godkänna sina registrerade publikationer pga ett beslut som tagits.',
-		drafts: 'Utkast',
-		published: 'Publicerade',
-		registeredOrEditedByMe: 'Registrerade/redigerade av mig',
+		start: 'Start',
+		drafts: 'Mina utkast',
+		registeredOrEditedByMe: 'Mina registreringar',
+		published: 'Mina publikationer',
 		forReview: 'Att granska',
 		forBReview: 'Bibl. granskn.'
 	},
+	tabTitle: {
+		start: 'Start',
+		drafts: 'Mitt arbetsmaterial: ännu ej publicerade registreringar.',
+		registeredOrEditedByMe: 'Registrerade publikationer som jag har skapat eller ändrat.',
+		published: 'Publikationer där jag finns med som författare.',
+		forReview: 'Dessa publikationer måste godkännas av mig med avseende på ämnesord och affiliering.',
+		forBReview: 'Dessa publikationer kräver bibliografisk granskning.',
+	},
 	labels: {
 		registerNew: 'Registrera ny',
+		registerNewPublication: 'Registrera ny publikation:',
+        searchForPublicationWithPubid: 'Sök efter publikation med visst pubid:',
 		back: 'Tillbaka'
 	},
 	review: {

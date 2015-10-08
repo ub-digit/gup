@@ -58,15 +58,27 @@ export default {
 		youHaveNoRegisteredOrEditedPublications: 'You have not registered or edited any publications.',
 		youHaveNoPublicationsForReview: 'You have no publications pending review.',
 		reviewListPreamble: 'Researchers are obliged to review and approve some aspects of their registered publications.',
-		drafts: 'Draft',
-		published: 'Published',
-		registeredOrEditedByMe: 'Registered/edited by me',
+		start: 'Start',
+		drafts: 'My drafts',
+		registeredOrEditedByMe: 'My registrations',
+		published: 'My publications',
 		forReview: 'Pending review',
 		forBReview: 'Bibl. review.'
 
 	},
+	tabTitle: {
+		start: 'Start',
+		drafts: 'Drafts: not yet published registrations.',
+		registeredOrEditedByMe: 'Registered publications created or edited by me.',
+		published: 'Publications where I am one of the authors.',
+		forReview: 'These publications need my approval concerning category and affiliation.',
+		forBReview: 'These publications demand bibliographiucal review.'
+
+	},
 	labels: {
 		registerNew: 'Register new',
+		registerNewPublication: 'Register new publication:',
+        searchForPublicationWithPubid: 'Search for publication with certain publication id:',
 		back: 'Back'
 	},
 	review: {

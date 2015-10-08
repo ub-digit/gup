@@ -2,11 +2,11 @@
   <div class="col-xs-12">
     <nav id="sub-nav">
       <ul class="nav">
-        <li>{{#link-to 'publications.dashboard.start'}}Start{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.drafts'}}{{t 'text.drafts'}}{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.published'}}{{t 'text.published'}}{{/link-to}}</li>
-        <li>{{#link-to 'publications.dashboard.touched'}}{{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
-        <li>
+        <li title={{t 'tabTitle.start'                 }}>{{#link-to 'publications.dashboard.start'}}    {{t 'text.start'                 }}{{/link-to}}</li>
+        <li title={{t 'tabTitle.drafts'                }}>{{#link-to 'publications.dashboard.drafts'}}   {{t 'text.drafts'                }}{{/link-to}}</li>
+        <li title={{t 'tabTitle.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched'}}  {{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
+        <li title={{t 'tabTitle.published'             }}>{{#link-to 'publications.dashboard.published'}}{{t 'text.published'             }}{{/link-to}}</li>
+        <li title={{t 'tabTitle.forReview'}}>
           {{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}
           {{#if showReviewCount}}
             <span class="badge badge-red">{{application.userdata.counts.review}}</span>
@@ -14,7 +14,7 @@
           {{/link-to}}
         </li>
         {{#if session.content.can_bibreview}}
-          <li>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
+          <li title={{t 'text.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
         {{/if}}
       </ul>
     </nav>

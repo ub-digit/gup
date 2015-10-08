@@ -2,7 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
     <div class="new-icon-background" />
-    <h3>Registrera ny publikation:</h3>
+    <h3>{{t 'labels.registerNewPublication'}}</h3>
     {{#link-to 'publications.new' class="btn btn-primary"}}{{t 'labels.registerNew'}}{{/link-to}}
 </div>
 </div>
@@ -11,7 +11,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
     <div class="search-icon-background" />
-    <h3>Sök efter publikation med visst pubid:</h3>
+    <h3>{{t 'labels.searchForPublicationWithPubid'}}</h3>
   {{input enter="showPublication" value=publication_id placeholder=(t 'mainMenu.searchById')}}
   <span style="color:red">{{application.publication_id_error}}</span>
 </div>
