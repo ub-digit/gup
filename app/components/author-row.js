@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	errors: null,
+    kolla: false,
 	didInsertElement: function() {
 	},
 	resetForm: function() {

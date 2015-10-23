@@ -16,7 +16,7 @@ export default Select2.extend({
 
     // ensure select2 is loaded
     Ember.assert("select2 has to exist on Ember.$.fn.select2", typeof Ember.$.fn.select2 === "function");
-
+    console.log(this.get('viewName'));
    
     // setup
     options.placeholder = this.get('placeholder');
@@ -360,6 +360,8 @@ export default Select2.extend({
     });
     Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>" + this.get("didNotFindWhatYouWereLookingForStr") + "</p><button id='toggleBtn' class='btn btn-primary'>"+ this.get("btnText") + "</button></div>");
     this.watchDisabled();
+    
+   this._select.select2('open');
     
   },
 

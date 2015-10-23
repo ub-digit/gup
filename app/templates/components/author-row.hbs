@@ -12,7 +12,8 @@
 			</div>
 		{{/if}}
 	</div>
-	<div class="col-xs-10">
+    {{#if kolla}}
+    <div class="col-xs-10"> <!--  style="display:none;" --> 
 		{{#if item.transformedToNewAuthor}}
 			<div class="row bottom-spacing-20">
 				<div class="col-xs-12">
@@ -86,8 +87,8 @@
 					    didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
 					    btnText=(t 'edit.form.selectAuthor.btnCreateNew')
 					    value=item.selectedAuthor
-              setDefaultQuery=setDefaultQuery
-              defaultQuery=item.newAuthorForm.lastName
+                        setDefaultQuery=setDefaultQuery
+                        defaultQuery=item.newAuthorForm.lastName
 					    optionLabelPath="presentation_string"
 					    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
 					   	typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
@@ -97,6 +98,7 @@
 					    allowClear=true
 					    zeroResult=item.transformedToNewAuthor
 					    cssClass=item.id
+                        viewName='tjosanhoppsan'
 					}}
 				</div>
 				<div class="col-xs-7">
@@ -124,10 +126,10 @@
 			</div>
 		{{/if}}
 	</div>
-	<div class="col-xs-1 compensate-for-label-on-top">
+	<div class="col-xs-1 compensate-for-label-on-top" style="display:none;">
 		<button class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
 	</div>
-	<div class="col-xs-1 compensate-for-label-on-top">
+    <div class="col-xs-1 compensate-for-label-on-top"> <!--  style="display:none;" -->
 		{{#unless isThisTheOnlyAuthorRow}}
 		<div class="sort-control">
 			<div class="sort-control-up">
@@ -139,4 +141,5 @@
 		</div>
 		{{/unless}}
 	</div>
+		{{/if}}
 </div>
