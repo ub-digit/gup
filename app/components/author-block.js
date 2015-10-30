@@ -1,24 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	didInsertElement: function() {
-		if (this.get("authorArr").length === 0) {
-			if (this.get("arrOfAuthorsFromImport")) {
-        if (this.get("arrOfAuthorsFromImport").length === 0) {
-          this.send('addNewAuthorRow');
+    didInsertElement: function() {
+        if (this.get("authorArr").length === 0) {
+            if (this.get("arrOfAuthorsFromImport")) {
+                if (this.get("arrOfAuthorsFromImport").length === 0) {
+                    this.send('addNewAuthorRow');
+                }
+                else {
+                    var that = this;
+                    this.get("arrOfAuthorsFromImport").forEach(function(author) {
+                        that.send('addNewAuthorRow', author);
+                    });
+                }
+            }
+            else {
+                this.send('addNewAuthorRow');
+            }
         }
-        else {
-        	var that = this;
-            this.get("arrOfAuthorsFromImport").forEach(function(author) {
-              that.send('addNewAuthorRow', author);
-             });
-         }
-      }
-      else {
-      	this.send('addNewAuthorRow');
-      }
-		}
-	},
+    },
 
 	generateUUID: function () {
 		var d = new Date().getTime();
@@ -75,43 +75,43 @@ export default Ember.Component.extend({
 	          this.get("authorArr").insertAt(curPos+1, temp);
 	        }
 	    },
-		addNewAuthorRow: function(importedAuthor) {
-			var isImported = !!importedAuthor;
-			var lastName = '';
-			var firstName = '';
-			var importedAuthorFullAuthorString = '';
-			var selectedInstitution = Ember.A([]);
-			if(isImported) {
-				lastName = importedAuthor.last_name;
-				firstName = importedAuthor.first_name;
-				importedAuthorFullAuthorString = importedAuthor.full_author_string;
-				selectedInstitution.pushObject(this.get('defaultInstitution'));
-			}
-			var authorObject = Ember.Object.create({
-				firstName: firstName, 
-				lastName: lastName, 
-				year_of_birth: '', 
-				xaccount: '', 
-				orcid: ''});
-	    this.get("authorArr").addObject(
-	        Ember.Object.create({
-	          importedAuthorName: importedAuthorFullAuthorString,
-	          id: this.generateUUID(),
-	          selectedAuthor: null,
-	          selectedInstitution: selectedInstitution,
-	          newAuthorForm: authorObject
-	        })
-	      );
-	    },
-	    removeAuthorRow: function(id) {
-	      var list = this.get("authorArr").toArray();
-	      var that = this;
-	      list.forEach(function(item) {
-	        if (item.id === id) {
-	          that.get("authorArr").removeObject(item);
-	        }
-	      });
-	    },
-
-	}
+        addNewAuthorRow: function(importedAuthor) {
+            var isImported = !!importedAuthor;
+            var lastName = '';
+            var firstName = '';
+            var importedAuthorFullAuthorString = '';
+            var selectedInstitution = Ember.A([]);
+            if(isImported) {
+                lastName = importedAuthor.last_name;
+                firstName = importedAuthor.first_name;
+                importedAuthorFullAuthorString = importedAuthor.full_author_string;
+                selectedInstitution.pushObject(this.get('defaultInstitution'));
+            }
+            var authorObject = Ember.Object.create({
+                firstName: firstName, 
+                lastName: lastName, 
+                year_of_birth: '', 
+                xaccount: '', 
+                orcid: ''
+            });
+            this.get("authorArr").addObject(
+                    Ember.Object.create({
+                        importedAuthorName: importedAuthorFullAuthorString,
+                        id: this.generateUUID(),
+                        selectedAuthor: null,
+                        selectedInstitution: selectedInstitution,
+                        newAuthorForm: authorObject
+                    })
+                );
+        },
+        removeAuthorRow: function(id) {
+            var list = this.get("authorArr").toArray();
+            var that = this;
+            list.forEach(function(item) {
+                if (item.id === id) {
+                    that.get("authorArr").removeObject(item);
+                }
+            });
+        },
+   	}
 });
