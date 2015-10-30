@@ -82,6 +82,11 @@ export default Ember.Component.extend({
 	            });
 	        };
 	        //console.log(newAuthor.get('firstName'));
+            console.log(item);
+            console.log('this.get("arrOfAuthorsFromImport")');
+            console.log(this.get("arrOfAuthorsFromImport"));
+            var res = $.grep(this.get("arrOfAuthorsFromImport"), function(e){return e.last_name == item.newAuthorForm.get('lastName')});
+            console.log(res);
 	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'), 
 	                            'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
 	    },
