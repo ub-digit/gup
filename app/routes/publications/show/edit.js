@@ -111,8 +111,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         };
 
         Ember.$("body").addClass("loading");
-        this.get("controller").formatAuthorsForServer();
-        this.store.save('publication',this.controller.get("publication")).then(successHandler, errorHandler);
+        this.get("controller").formatAuthorsForServer().then(function(){
+            that.store.save(
+                'publication',
+                that.controller.get("publication")).then(successHandler, errorHandler);
+        });
+        
     },
     savePublish: function(model) {
         var that = this;
@@ -141,10 +145,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         };
 
         Ember.$("body").addClass("loading");
-        this.get("controller").formatAuthorsForServer();
-
-
-        this.store.save('publish',this.controller.get("publication")).then(successHandler, errorHandler);
+        
+        this.get("controller").formatAuthorsForServer().then(function(){
+            that.store.save(
+                'publish',
+                that.controller.get("publication")).then(successHandler, errorHandler);
+        });
       }
     }
 

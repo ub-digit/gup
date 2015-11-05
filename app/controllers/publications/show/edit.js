@@ -102,29 +102,52 @@ export default Ember.Controller.extend({
   /* author-block */ 
 
   formatAuthorsForServer: function() {
-    var arr = [];
-    var departments = [];
-    this.get("authorArr").forEach(function(author) {
-      if (author.selectedAuthor) {
-        if (author.selectedInstitution) {
-          if (author.selectedInstitution.length > 0) {
-              author.selectedInstitution.forEach(function(department) {
-              departments.push({id: department.id, name: department.name});
-            });
+      var that = this;
+      return new Promise(function(resolve,reject){
+          var arr = [];
+          var elseCounter = 0;
+          var departments = [];
+          that.get("authorArr").forEach(function(author) {
+              if (author.selectedAuthor) {
+                  if (author.selectedInstitution) {
+                      if (author.selectedInstitution.length > 0) {
+                          author.selectedInstitution.forEach(function(department) {
+                              departments.push({id: department.id, name: department.name});
+                          });
+                      }else {
+                          departments.push({id: '666', name: 'Extern institution'});
+                      }
+                  }else {
+                      departments.push({id: '666', name: 'Extern institution'});
+                  }
+                  arr.addObject({id: author.selectedAuthor.id, departments: departments});
+                  //empty array
+                  departments = [];
+              }else{
+                  if (author.newAuthorForm.get('lastName')){
+                      elseCounter++;
+                      that.store.save('person',{
+                          'first_name': author.newAuthorForm.get('firstName'), 
+                          'last_name': author.newAuthorForm.get('lastName')
+                      }).then(function(savedPerson){
+                          arr.addObject({id: savedPerson.id, departments: [{id: '666', name: 'Extern institution'}]});
+                          elseCounter--;
+                      },function(){
+                          elseCounter--;
+                      });
+                  }
+              }
+          });
+          function waitingForPersonSave(){
+              if(elseCounter > 0) {
+                  setTimeout(waitingForPersonSave, 50);
+                  return;
+              }
+              that.set("publication.authors", arr);
+              resolve();
           }
-          else {
-            departments.push({id: '666', name: 'Extern institution'});
-          }
-        }
-        else {
-          departments.push({id: '666', name: 'Extern institution'});
-        }
-        arr.addObject({id: author.selectedAuthor.id, departments: departments});
-        //empty array
-        departments = [];
-      }
-    });
-    this.set("publication.authors", arr);
+          waitingForPersonSave();
+      })
   },
 
 
