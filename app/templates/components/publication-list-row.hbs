@@ -3,7 +3,7 @@
     <h3>{{#link-to link item.pubid}} {{titleString}}{{/link-to}}</h3>
   </div>
   <div class="col-xs-12">
-    <p>{{bibliographicInfoString}}</p>
+    <p>{{bibliographicInfoString}}, {{authors-string authors=item.authors}}</p>
     {{#if showMetaData}}
     <dl class="dl-horizontal">
       <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
