@@ -90,7 +90,8 @@ export default {
 		categories: 'Ämnesord:',
 		approve: 'Godkänn',
 		approved: 'Godkänd',
-		edit: 'Redigera'
+		edit: 'Redigera',
+    addedObject: 'Ny!'
 	},
     biblreview: {
         selectPublicationTypePrompt: 'Alla typer',

@@ -13,26 +13,26 @@
     <div class="panel-body">
       <dl class="dl-horizontal">
         <dt>{{t 'review.publicationType'}}</dt>
-        <dd>{{item.publication_type_label}}</dd>
-        <dd>
           {{#if item.diff_since_review.publication_type}}
-          <del class="text-danger">{{item.diff_since_review.publication_type.from}}</del>
+            <dd class="text-success">{{item.publication_type_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd><del class="text-danger">{{item.diff_since_review.publication_type.from}}</del></dd>
+          {{else}}
+            <dd>{{item.publication_type_label}}</dd>
           {{/if}}
-        </dd>
 
         <dt>{{t 'review.contentType'}}</dt>
-        <dd>{{item.content_type_label}}</dd>
-        <dd>
           {{#if item.diff_since_review.content_type}}
-          <del class="text-danger">{{item.diff_since_review.content_type.from}}</del>
+            <dd class="text-success">{{item.content_type_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd><del class="text-danger">{{item.diff_since_review.content_type.from}}</del></dd>
+          {{else}}
+            <dd>{{item.content_type_label}}</dd>
           {{/if}}
-        </dd>
 
         <dt>{{t 'review.affiliation'}}</dt>
         {{#if item.diff_since_review.affiliation}}
           {{#each diffDepartments as |department|}}
             {{#if department.added}}
-            <dd class="text-success">{{department.name}}</dd>
+            <dd class="text-success">{{department.name}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
             {{/if}}
             {{#if department.removed}}
             <dd><del class="text-danger">{{department.name}}</del></dd>
@@ -52,7 +52,7 @@
         {{#if item.diff_since_review.category_hsv_local}}
           {{#each diffCategories as |category|}}
             {{#if category.added}}
-              <dd class="text-success">{{category.name_path}}</dd>
+              <dd class="text-success">{{category.name_path}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
             {{/if}}
             {{#if category.removed}}
               <dd><del class="text-danger">{{category.name_path}}</del></dd>
