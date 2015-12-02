@@ -78,7 +78,7 @@ export default {
 	labels: {
 		registerNew: 'Registrera ny',
 		registerNewPublication: 'Registrera ny publikation:',
-        searchForPublicationWithPubid: 'Sök efter publikation med visst pubid:',
+        searchForPublicationWithPubid: 'Sök efter publikation med GUP-ID:',
 		back: 'Tillbaka'
 	},
 	review: {
