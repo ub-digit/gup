@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
+  showMetaData: true,
 
   titleString: Ember.computed('item.title', function() {
 
