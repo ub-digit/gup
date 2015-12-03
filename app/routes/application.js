@@ -41,6 +41,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		},
     sessionAuthenticationSucceeded: function() {
       //Ember.run.later(Ember.$('body').removeClass("loading"));
+      if (this.get('session.content.can_bibreview')) {
+        this.controller.set('viewMode', 'advanced');
+      }
       this.transitionTo("publications.dashboard.start");
       Ember.run.later(function() {Ember.$('body').removeClass("loading");});
 			this.fetchUserdataLoop(60000);

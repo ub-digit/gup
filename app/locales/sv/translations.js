@@ -4,7 +4,7 @@ export default {
 		lang: 'English',
 		publications: 'Publikationer',
 		logOut: 'Logga ut',
-    searchById: 'Sök efter PubId',
+    searchById: 'Sök efter GUP-ID',
     idMissing: 'Ogiltigt ID'
 	},
 	login: {
