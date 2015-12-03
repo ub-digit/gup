@@ -67,6 +67,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		if (models.publication.publication_type_suggestion) {
 //controller.set('mayBecomeSelectedPublicationType', models.publication.publication_type_suggestion);
       controller.set('suggestedPublicationType', models.publication.publication_type_suggestion);
+		} else {
+		  // This needs to be reset if no suggestion was found, so that any previous suggestion is removed
+		  controller.set('suggestedPublicationType', null);
 		}
   },
 
