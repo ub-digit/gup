@@ -65,7 +65,8 @@ export default {
 		registeredOrEditedByMe: 'Mina registreringar',
 		published: 'Mina publikationer',
 		forReview: 'Att granska',
-		forBReview: 'Bibl. granskn.'
+		forBReview: 'Bibl. granskn.',
+    numberOfHits: 'Antal träffar'
 	},
 	tabTitle: {
 		start: 'Start',
