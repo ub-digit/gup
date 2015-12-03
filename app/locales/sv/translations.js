@@ -124,7 +124,6 @@ export default {
 			selectContentTypeLabel: 'Innehållmärkning',
 			changePublicationTypeLink: 'Byt publikationstyp',
 			authorHeaderTextStrong: 'Författare',
-			authorHeaderTextSoft: '(ange minst en)',
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',
 			selectAuthor: {
