@@ -46,16 +46,8 @@
 	</div>
 
 	{{#if authorComponentIsVisible}}
-		{{author-block errors=errors.authors authorArr=authorArr arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution}}
+		{{author-block errors=errors.authors authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution}}
 	{{/if}}
-
-	<div class="row">
-		<div class="col-md-9">
-			<span class="form-group {{if errors.editor 'has-error'}}">
-				{{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" errors=errors.editor value=publication.editor}}
-			</span>
-		</div>
-	</div>
 
 	<hr/>
 

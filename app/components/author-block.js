@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
+
 	didInsertElement: function() {
 		if (this.get("authorArr").length === 0) {
 			if (this.get("arrOfAuthorsFromImport")) {
@@ -19,6 +21,15 @@ export default Ember.Component.extend({
       }
 		}
 	},
+
+  // Translates author header differently depending on publication type
+  authorHeaderText: Ember.computed('selectedPublicationType', function(){
+   var translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
+    if (translation.indexOf("Missing translation") === 0){
+      translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.default');
+    } 
+    return translation
+  }),
 
 	generateUUID: function () {
 		var d = new Date().getTime();

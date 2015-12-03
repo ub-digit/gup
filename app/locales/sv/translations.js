@@ -124,7 +124,12 @@ export default {
 			selectContentTypePrompt: 'Välj innehållsmärkning',
 			selectContentTypeLabel: 'Innehållmärkning',
 			changePublicationTypeLink: 'Byt publikationstyp',
-			authorHeaderTextStrong: 'Författare',
+			authorHeaderTextStrong: {
+        'default': 'Författare',
+        'conference-papers': 'Redaktör',
+        'edited-book': 'Redaktör',
+        'journal-issue': 'Redaktör'
+      },
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',
 			selectAuthor: {
