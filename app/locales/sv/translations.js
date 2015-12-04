@@ -207,7 +207,8 @@ export default {
 			header: 'Har du ingen källa att importera från?',
 			ingress: 'Skapa en ny publikation och mata in informationen manuellt.',
 			btnNew: 'Skapa ny',
-			linkNew: 'skapa ny författare'
+			linkNew: 'skapa ny författare',
+      addAffiliation: "Ändra affiliering"
 		}
 
 	},

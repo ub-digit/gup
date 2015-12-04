@@ -95,8 +95,8 @@ export default Ember.Component.extend({
 			if(isImported) {
 				lastName = importedAuthor.last_name;
 				firstName = importedAuthor.first_name;
-				importedAuthorFullAuthorString = importedAuthor.full_author_string;
-				selectedInstitution.pushObject(this.get('defaultInstitution'));
+				importedAuthorFullAuthorString = importedAuthor.first_name + " " + importedAuthor.last_name;
+				//selectedInstitution.pushObject(this.get('defaultInstitution'));
 			}
 			var authorObject = Ember.Object.create({
 				firstName: firstName, 

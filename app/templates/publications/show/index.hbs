@@ -31,7 +31,7 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type_label label=(t 'edit.form.selectContentTypeLabel') format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" value=model.title format='presentation' viewMode=viewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" value=model.alt_title format='presentation' viewMode=viewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode}}
+      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode isCollapsible=true}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' viewMode=viewMode}}
       {{#if model.authors}}
         <dt>{{t 'edit.form.authorHeaderTextStrong'}}</dt>

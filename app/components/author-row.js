@@ -20,6 +20,14 @@ export default Ember.Component.extend({
 	setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
 		return !!this.get('item.importedAuthorName');
 	}),
+  
+  showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
+    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName')
+  }),
+  
+  isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
+    return !!this.get('item.importedAuthorName') && !this.get('addAffiliation');
+  }),
 
 	newAuhtorFormVisible: function() {
 		var self = this;
@@ -56,6 +64,15 @@ export default Ember.Component.extend({
 	    	this.sendAction('removeAuthor', id);
 	    },
 
+    toggleAddAffiliation: function(){
+      var that = this;
+      this.toggleProperty('addAffiliation');
+      Ember.run.later(function(){
+        var obj = that.$('.'+ that.get('item.id')).first();
+        console.log('obj', obj);
+        obj.select2('open');
+      })
+    },
 	    toggleAddNewAuthor: function(item) {
 			if (item.get("transformedToNewAuthor") === true) {
 				item.set("transformedToNewAuthor", false);
