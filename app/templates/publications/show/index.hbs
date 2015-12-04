@@ -22,6 +22,13 @@
     </div>
   </div>
   <div class="col-xs-10">
+  {{#if applicationController.isViewModeAdvanced}}
+    {{#if model.epub_ahead_of_print}}
+      <div class="alert alert-warning" style="margin-bottom:0px">
+        E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
+      </div>
+    {{/if}}
+  {{/if}}
     <div class="row">
       <div class="col-xs-12">
       <h2>{{model.title}}</h2>
@@ -34,7 +41,7 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' viewMode=viewMode isCollapsible=true}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' viewMode=viewMode}}
       {{#if model.authors}}
-        <dt>{{t 'edit.form.authorHeaderTextStrong'}}</dt>
+        <dt>{{t 'edit.form.authorHeaderTextStrong.default'}}</dt>
         <dd><ul class="list-unstyled">
         {{#each model.authors as |author|}} 
           <li>{{author.first_name}} {{author.last_name}}
