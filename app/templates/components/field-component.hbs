@@ -4,17 +4,24 @@
     <dt>{{getLabel}}</dt>
   {{else}}
   <label class="control-label">
-    {{#if errors}}
+    {{#if errorsold}}
       {{error-feedback errors}}
     {{/if}}
     {{getLabel}}
     {{#if isMandatory}}
-      <span style="color:red">*</span>
+      <span class="label label-warning">Obligatoriskt!</span>
     {{/if}}
     {{#if showWarningSymbol}}
       <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
     {{/if}}
   </label>
+  {{/if}}
+  {{#if errors}}
+    <div class="alert alert-danger" style="margin-bottom:0px;">
+      {{#each errors as |error|}}
+        {{error}}
+      {{/each}}
+    </div>
   {{/if}}
   {{#if isTypeText}}
     {{#if isPresentation}}
