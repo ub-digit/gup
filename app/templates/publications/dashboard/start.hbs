@@ -12,7 +12,9 @@
     <div class="panel-body">
     <div class="search-icon-background" />
     <h3>{{t 'labels.searchForPublicationWithPubid'}}</h3>
-  {{input enter="showPublication" value=publication_id placeholder=(t 'mainMenu.searchById')}}
+    <div class="col-xs-3">
+  {{input class="form-control" enter="showPublication" value=publication_id placeholder=(t 'mainMenu.searchById')}}
+  </div>
   <span style="color:red">{{application.publication_id_error}}</span>
 </div>
 </div>
