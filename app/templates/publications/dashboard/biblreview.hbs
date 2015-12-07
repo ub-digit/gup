@@ -3,26 +3,26 @@
     <label> {{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
   </div>
 
-{{#x-select value=pubyear class="form-control"}}
-  {{#each pubyears as |selectValue|}}    
-    {{#x-option value=selectValue.id}}{{selectValue.pubyear}}{{/x-option}}
+  {{#x-select value=pubyear class="form-control"}}
+  {{#each pubyears as |selectValue|}}
+  {{#x-option value=selectValue.id}}{{selectValue.pubyear}}{{/x-option}}
   {{/each}}
-{{/x-select}}
+  {{/x-select}}
 
-{{#x-select value=pubtype class="form-control"}}
+  {{#x-select value=pubtype class="form-control"}}
   {{#x-option}}Välj{{/x-option}}
-  {{#each publicationsController.publicationTypes as |selectValue|}}    
-    {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
+  {{#each publicationsController.publicationTypes as |selectValue|}}
+  {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
   {{/each}}
-{{/x-select}}
+  {{/x-select}}
 
 </div>
 
 <div class="row">
   <div class="col-xs-12">
-  <div class="col-xs-12 text-center">
-    <strong>{{t 'text.numberOfHits'}}: {{model.meta.query.total}}</strong>
-  </div>
+    <div class="col-xs-12 text-center">
+      <strong>{{t 'text.numberOfHits'}}: {{model.meta.query.total}}</strong>
+    </div>
     {{#if model.length}}
     <ul class="list-unstyled dashboard-list">
       {{#each model as |item|}}
@@ -36,4 +36,8 @@
     {{/if}}
   </div>
 </div>
-{{pagination-pager pagination=model.meta.pagination}}
+<div class="row">
+  <div class="col-xs-12">
+    {{pagination-pager pagination=model.meta.pagination}}
+  </div>
+</div>
