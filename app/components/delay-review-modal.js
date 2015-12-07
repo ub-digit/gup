@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
+  classNames: ['delay-review-modal'],
   setMsgHeaderAction: 'setMsgHeader',
   optDate: 'calendar',
   optText: 'freetext',

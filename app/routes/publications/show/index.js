@@ -3,6 +3,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 import ENV from 'gup/config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+
   i18n: Ember.inject.service(),
   returnTo: null,
   model: function(params, transition) {
@@ -10,6 +11,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   setupController: function(controller, model) {
     controller.set('model', model);
-    controller.set('isExtendedViewMode', false);
+    var target = controller.get('applicationController.currentList');
+    // Check to see if previous post list was bibliographic review list and set view mode to extended if so. Otherwise reset view mode to compact.
+    if (target === 'publications.dashboard.biblreview') {
+      controller.set('isExtendedViewMode', true);
+    } else {
+      controller.set('isExtendedViewMode', false);
+    }
   }
 });
