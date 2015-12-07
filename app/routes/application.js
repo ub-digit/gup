@@ -84,14 +84,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
         });
       }
-    },
-    toggleViewMode: function(){
-      var controller = this.controllerFor('application');
-      if (controller.get('viewMode') === 'basic') {
-        controller.set('viewMode', 'advanced');
-      } else {
-        controller.set('viewMode', 'basic');
-      }
     }
   }
 });

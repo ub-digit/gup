@@ -13,11 +13,6 @@
       {{else}}
       {{/if}}
       <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
-        {{#if session.content.can_bibreview}}
-        <form class="navbar-form navbar-right">
-            <button class="btn btn-xs {{if isViewModeBasic 'btn-default' 'btn-success'}}" style="margin-top:5px" href="javascript.void(0)" {{action 'toggleViewMode'}}>{{#if isViewModeBasic}}Granskningsvy{{else}}Granskningsvy{{/if}}</button>
-            </form>
-        {{/if}}
   </div><!-- /.container -->
 </nav>
 

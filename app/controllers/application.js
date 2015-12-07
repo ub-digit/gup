@@ -5,9 +5,6 @@ export default Ember.Controller.extend({
 	queryParams: ['lang'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
-  viewMode: 'basic',
-  isViewModeAdvanced: Ember.computed.equal('viewMode', 'advanced'),
-  isViewModeBasic: Ember.computed.equal('viewMode', 'basic'),
 
 	actions: {
 		toggleLang: function() {

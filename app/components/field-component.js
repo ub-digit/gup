@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     return !this.get('isPresentation');
   }),
   // Determines if all fields should be shown regardless of information
-  isAdvanced: Ember.computed.equal('viewMode', 'advanced'),
+  isAdvanced: Ember.computed.equal('isExtendedViewMode', true),
   getFullObject: function() {
      var fullObject = this.get("selectedPublicationType");
      if (fullObject) {
@@ -65,7 +65,7 @@ export default Ember.Component.extend({
   }.property('getFullObject'),
 
   isMandatory: function() {
-    
+
     var rule = this.get('getRule');
     if (rule === 'R') {
       return true;
@@ -76,7 +76,7 @@ export default Ember.Component.extend({
   }.property('getRule'),
 
   isVisible: function() {
-    
+
     if (this.get('fieldName') === 'content_type') {
       return true;
     }
@@ -132,7 +132,7 @@ export default Ember.Component.extend({
 	isTypeTextarea: Ember.computed.equal('type', 'textarea'),
     isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
     isTypeSelect: Ember.computed.equal('type', 'select'),
-	
+
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {
 			return true;
@@ -226,7 +226,7 @@ export default Ember.Component.extend({
         queryJournals: function(query, deferred) {
             this.store.find('journal', { search_term: query.term })
                 .then(deferred.resolve, deferred.reject);
-            
+
         },
         sourceTitleTypeChanged: function(){
           if (this.get('sourceTitleType') === 'freetext'){
