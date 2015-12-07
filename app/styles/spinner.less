@@ -1,0 +1,20 @@
+body {
+  .spinner {
+    color: @gray-darker;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    .text-center();
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.2s;
+  }
+  &.loading {
+    .spinner {
+      opacity: 0.95;
+      visibility: visible;
+    }
+  }
+}
