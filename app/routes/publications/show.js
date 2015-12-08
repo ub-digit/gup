@@ -4,9 +4,20 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 
 export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
   i18n: Ember.inject.service(),
+
+
+  beforeModel: function() {
+		Ember.$("body").addClass("loading");
+	},
+
   model: function(params){
     return this.store.find('publication',params.id);
   },
+
+	afterModel: function(model, transition) {
+		Ember.$("body").removeClass("loading");
+	},
+
   actions: {
     refreshModel: function(modelId) {
       this.refresh(modelId);

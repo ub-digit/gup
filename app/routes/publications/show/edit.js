@@ -5,6 +5,12 @@ import ENV from 'gup/config/environment';
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: Ember.inject.service(),
 	returnTo: null,
+
+  beforeModel: function() {
+		Ember.$("body").addClass("loading");
+
+	},
+
   model: function(params, transition) {
 		this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.show');
@@ -18,6 +24,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       publicationIdentifierCodes: this.store.find('publication_identifier_code')
     });
   },
+
+  afterModel: function(model, transition) {
+		Ember.$("body").removeClass("loading");
+	},
+  
   setupController: function(controller, models) {
     controller.set("publicationTypes", models.publicationTypes);
     controller.set("publication", models.publication);
@@ -119,7 +130,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
                 'publication',
                 that.controller.get("publication")).then(successHandler, errorHandler);
         });
-        
+
     },
     savePublish: function(model) {
         var that = this;
@@ -148,7 +159,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         };
 
         Ember.$("body").addClass("loading");
-        
+
         this.get("controller").formatAuthorsForServer().then(function(){
             that.store.save(
                 'publish',
