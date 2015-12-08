@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <div class="alert alert-info">
-      Du tittar posten i granskningsläge. <a href="javascript.void(0)" {{action 'toggleViewMode'}}>Tillbaka till visningsläge. <i class="fa fa-compress"></i></a>
+      Du tittar på posten i granskningsläge. <a href="javascript.void(0)" {{action 'toggleViewMode'}}>Tillbaka till visningsläge. <i class="fa fa-compress"></i></a>
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
   <div class="col-xs-9">
     <nav id="publication-toolbar" class="pull-right">
       <ul class="list-inline">
-        <li>{{#link-to  'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
+        <li>{{#link-to 'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
         {{#if session.content.can_delete_published}}
           <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
         {{/if}}
@@ -47,6 +47,11 @@
 <div class="row">
   <div class="col-xs-10">
     <h2>{{model.title}}</h2>
+    {{#if model.epub_ahead_of_print}}
+    <div class="alert alert-warning">
+      E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
+    </div>
+    {{/if}}
   </div>
 </div>
 {{#if isExtendedViewMode}}
@@ -75,11 +80,6 @@
 
 <div class="row">
   <div class="col-xs-10">
-    {{#if model.epub_ahead_of_print}}
-    <div class="alert alert-warning">
-      E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
-    </div>
-    {{/if}}
     <dl class="dl-horizontal">
       <dt>Publikationens ID:</dt> <dd>{{model.pubid}}</dd>
       <dt>Publikationstyp</dt><dd>{{model.publication_type_label}}</dd>
