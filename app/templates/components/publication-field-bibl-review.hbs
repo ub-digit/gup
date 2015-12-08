@@ -2,14 +2,13 @@
   {{fieldLabel}}
 </th>
 <td>
-  {{#if isList}}
+  {{#if isTypeList}}
     <ul class="list-unstyled">
       {{#each listValueArray as |listItem|}}
         <li>{{listItem}}</li>
       {{/each}}
     </ul>
-  {{else if isAuthors}}
-
+  {{else if isTypeAuthors}}
     <ul class="list-unstyled">
     {{#each fieldValue as |author|}}
     <li>{{author.first_name}} {{author.last_name}}
@@ -23,6 +22,19 @@
     </li>
     {{/each}}
   </ul>
+  {{else if isTypeCollapsible}}
+
+    {{#if collapsedValue}}
+      {{#if isCollapsed}}
+        {{linkify collapsedValue}}
+        <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mer</a>
+      {{else}}
+        {{linkify fieldValue}}
+        <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mindre</a>
+      {{/if}}
+    {{else}}
+      {{linkify fieldValue}}
+    {{/if}}
 
   {{else}}
     {{linkify fieldValue}}

@@ -4,9 +4,13 @@ export default Ember.Component.extend({
 
   tagName: 'tr',
 
-  isList: Ember.computed.equal('type', 'list'),
+  isCollapsed: true,
 
-  isAuthors: Ember.computed.equal('type', 'authors'),
+  isTypeList: Ember.computed.equal('type', 'list'),
+
+  isTypeAuthors: Ember.computed.equal('type', 'authors'),
+
+  isTypeCollapsible: Ember.computed.equal('type', 'collapsed'),
 
   listValueArray: Ember.computed('fieldValue', 'listLabel', 'listValue', function() {
 
@@ -20,6 +24,23 @@ export default Ember.Component.extend({
         return listItem[listValue];
       }
     });
-  })
+  }),
+
+  collapsedValue: Ember.computed('fieldValue', function() {
+    var collapsedLength = 150;
+    var thresholdLength = 200;
+    var fieldValue = this.get('fieldValue');
+    if (fieldValue.length > thresholdLength) {
+      return fieldValue.substring(0, thresholdLength) + '...';
+    } else {
+      return null;
+    }
+  }),
+
+  actions: {
+    toggleCollapsed: function() {
+      this.toggleProperty('isCollapsed');
+    }
+  }
 
 });
