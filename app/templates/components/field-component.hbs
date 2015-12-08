@@ -9,7 +9,7 @@
     {{/if}}
     {{getLabel}}
     {{#if isMandatory}}
-      <span class="label label-warning">Obligatoriskt!</span>
+      <span class="text-danger">(obligatoriskt)</span>
     {{/if}}
     {{#if showWarningSymbol}}
       <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
@@ -17,7 +17,7 @@
   </label>
   {{/if}}
   {{#if errors}}
-    <div class="alert alert-danger" style="margin-bottom:0px;">
+    <div class="text-danger">
       {{#each errors as |error|}}
         {{error}}
       {{/each}}
