@@ -30,7 +30,7 @@ export default Ember.Component.extend({
     var collapsedLength = 150;
     var thresholdLength = 200;
     var fieldValue = this.get('fieldValue');
-    if (fieldValue.length > thresholdLength) {
+    if (fieldValue && fieldValue.length > thresholdLength) {
       return fieldValue.substring(0, thresholdLength) + '...';
     } else {
       return null;
