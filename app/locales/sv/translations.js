@@ -7,6 +7,10 @@ export default {
     searchById: 'Sök efter GUP-ID',
     idMissing: 'Ogiltigt ID'
 	},
+	footer: {
+    copyright: "Göteborgs universitetsbibliotek",
+    websiteLink: "Bibliotekets webbplats"    
+  },
 	login: {
 		xaccount: 'x-konto',
 		xaccountPlaceholder: 'x-konto',
