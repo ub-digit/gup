@@ -1,0 +1,30 @@
+<th scope="row">
+  {{fieldLabel}}
+</th>
+<td>
+  {{#if isList}}
+    <ul class="list-unstyled">
+      {{#each listValueArray as |listItem|}}
+        <li>{{listItem}}</li>
+      {{/each}}
+    </ul>
+  {{else if isAuthors}}
+
+    <ul class="list-unstyled">
+    {{#each fieldValue as |author|}}
+    <li>{{author.first_name}} {{author.last_name}}
+      {{#if author.departments}}
+      <ul>
+        {{#each author.departments as |department|}}
+        <li>{{department.name}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+    {{linkify fieldValue}}
+  {{/if}}
+</td>

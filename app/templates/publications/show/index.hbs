@@ -47,6 +47,34 @@
 <div class="row">
   <div class="col-xs-10">
     <h2>{{model.title}}</h2>
+  </div>
+</div>
+{{#if isExtendedViewMode}}
+  <div class="row">
+    <div class="col-xs-10">
+      {{publication-display publication=model publicationType=getPublicationTypeObject}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10">
+      <dl class="dl-horizontal">
+        <dt>DB-ID</dt><dd>{{model.db_id}}</dd>
+        <dt>{{t 'publication.labels.createdAt'}}</dt><dd>{{format-date model.created_at}}</dd>
+        <dt>{{t 'publication.labels.createdBy'}}</dt><dd>{{model.created_by}}</dd>
+        {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
+        {{#if model.updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.updated_by}}</dd>{{/if}}
+        {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
+        {{#if model.bibl_review_start_time}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
+        {{#if model.bibl_review_delay_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.bibl_review_delay_comment}}</dd>{{/if}}
+        {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
+        {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
+      </dl>
+    </div>
+  </div>
+{{else}}
+
+<div class="row">
+  <div class="col-xs-10">
     {{#if model.epub_ahead_of_print}}
     <div class="alert alert-warning">
       E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
@@ -115,21 +143,6 @@
       </ul></dd>
       {{/if}}
     </dl>
-
-    {{#if isExtendedViewMode}}
-    <hr/>
-    <dl class="dl-horizontal">
-      <dt>DB-ID</dt><dd>{{model.db_id}}</dd>
-      <dt>{{t 'publication.labels.createdAt'}}</dt><dd>{{format-date model.created_at}}</dd>
-      <dt>{{t 'publication.labels.createdBy'}}</dt><dd>{{model.created_by}}</dd>
-      {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
-      {{#if model.updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.updated_by}}</dd>{{/if}}
-      {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
-      {{#if model.bibl_review_start_time}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
-      {{#if model.bibl_review_delay_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.bibl_review_delay_comment}}</dd>{{/if}}
-      {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
-      {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
-    </dl>
-    {{/if}}
   </div>
 </div>
+{{/if}}
