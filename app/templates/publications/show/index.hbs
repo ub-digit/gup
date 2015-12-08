@@ -9,47 +9,50 @@
 {{/if}}
 <div class="row">
   <div class="col-xs-3">
-    <a href="javascript:void();" class="btn btn-link" {{action 'goBack'}}><i class="fa fa-chevron-left"></i> Tillbaka till listan</a>
+    <a href="javascript:void();" {{action 'goBack'}}><i class="fa fa-chevron-left"></i> Tillbaka till listan</a>
   </div>
   <div class="col-xs-9">
-    <div id="publication-toolbar" class="pull-right">
-
-      {{#if session.content.can_delete_published}}
-        <button {{action 'deletePublication' model.id}} class="btn btn-link">{{t 'publication.show.delete'}} <i class="fa fa-trash" title=""></i></button>
-      {{/if}}
-      {{#link-to  'publications.show.edit' model class='btn btn-link'}}{{t 'publication.show.edit'}} <i class="fa fa-pencil"></i>{{/link-to}}
-      {{#unless session.content.can_bibreview}}
-        {{mailer-modal publication=model buttonClass="btn btn-link"}}
-      {{/unless}}
-      {{#if isExtendedViewMode}}
-        {{#if session.content.can_bibreview}}
-          {{#if model.published_at}}
-            {{#unless model.biblreviewed_at}}
-              {{delay-review-modal publication=model buttonClass="btn btn-link"}}
-              <button {{action 'approvePublication' model.id}} class='btn btn-link'>{{t 'publication.show.biblreview'}} <i class="fa fa-check"></i></button>
-            {{/unless}}
+    <nav id="publication-toolbar" class="pull-right">
+      <ul class="list-inline">
+        <li>{{#link-to  'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
+        {{#if session.content.can_delete_published}}
+          <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
+        {{/if}}
+        {{#unless session.content.can_bibreview}}
+          <li>{{mailer-modal publication=model}}</li>
+        {{/unless}}
+        {{#if isExtendedViewMode}}
+          {{#if session.content.can_bibreview}}
+            {{#if model.published_at}}
+              {{#unless model.biblreviewed_at}}
+                <li>{{delay-review-modal publication=model}}</li>
+                <li><a href="javascript:void();" {{action 'approvePublication' model.id}}><i class="fa fa-check"></i> {{t 'publication.show.biblreview'}}</a></li>
+              {{/unless}}
+            {{/if}}
           {{/if}}
         {{/if}}
-      {{/if}}
-      {{#if session.content.can_bibreview}}
-        {{#if isExtendedViewMode}}
-          <button class="btn btn-link" href="javascript.void(0)" {{action 'toggleViewMode'}}>Visningsläge <i class="fa fa-compress"></i></button>
-        {{else}}
-          <button class="btn btn-link" href="javascript.void(0)" {{action 'toggleViewMode'}}>Granskningsläge <i class="fa fa-expand"></i></button>
+        {{#if session.content.can_bibreview}}
+        <li>
+          {{#if isExtendedViewMode}}
+            <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>
+          {{else}}
+            <a href="javascript.void(0)" {{action 'toggleViewMode'}}><i class="fa fa-expand"></i> Granskningsläge</a>
+          {{/if}}
+        </li>
         {{/if}}
-      {{/if}}
-    </div>
+    </ul>
+    </nav>
   </div>
+</div>
+<div class="row">
   <div class="col-xs-10">
-    <div class="row">
-      <div class="col-xs-12">
-      <h2>{{model.title}}</h2>
-      {{#if model.epub_ahead_of_print}}
-      <div class="alert alert-warning">
-        E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
-      </div>
-      {{/if}}
-      <dl class="dl-horizontal">
+    <h2>{{model.title}}</h2>
+    {{#if model.epub_ahead_of_print}}
+    <div class="alert alert-warning">
+      E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
+    </div>
+    {{/if}}
+    <dl class="dl-horizontal">
       <dt>Publikationens ID:</dt> <dd>{{model.pubid}}</dd>
       <dt>Publikationstyp</dt><dd>{{model.publication_type_label}}</dd>
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type_label label=(t 'edit.form.selectContentTypeLabel') format='presentation' isExtendedViewMode=isExtendedViewMode}}
@@ -58,20 +61,20 @@
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' isExtendedViewMode=isExtendedViewMode isCollapsible=true}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' isExtendedViewMode=isExtendedViewMode}}
       {{#if model.authors}}
-        <dt>{{t 'edit.form.authorHeaderTextStrong.default'}}</dt>
-        <dd><ul class="list-unstyled">
+      <dt>{{t 'edit.form.authorHeaderTextStrong.default'}}</dt>
+      <dd><ul class="list-unstyled">
         {{#each model.authors as |author|}}
-          <li>{{author.first_name}} {{author.last_name}}
-            {{#if author.departments}}
-              <ul>
-              {{#each author.departments as |department|}}
-                <li>{{department.name}}</li>
-              {{/each}}
-              </ul>
-            {{/if}}
-          </li>
+        <li>{{author.first_name}} {{author.last_name}}
+          {{#if author.departments}}
+          <ul>
+            {{#each author.departments as |department|}}
+            <li>{{department.name}}</li>
+            {{/each}}
+          </ul>
+          {{/if}}
+        </li>
         {{/each}}
-        </ul></dd>
+      </ul></dd>
       {{/if}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" value=model.editor format='presentation' isExtendedViewMode=isExtendedViewMode}}
       {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" value=model.dissdate format='presentation' isExtendedViewMode=isExtendedViewMode}}
@@ -106,31 +109,27 @@
       {{#if model.publication_identifiers}}
       <dt>{{t 'publicationIdentifier.label'}}</dt>
       <dd><ul class="list-unstyled">
-      {{#each model.publication_identifiers as |identifier|}}
+        {{#each model.publication_identifiers as |identifier|}}
         <li>{{identifier.identifier_label}}: {{identifier.identifier_value}}</li>
-      {{/each}}
+        {{/each}}
       </ul></dd>
       {{/if}}
-      </dl>
+    </dl>
 
-      {{#if isExtendedViewMode}}
-      <hr/>
-        <dl class="dl-horizontal">
-          <dt>DB-ID</dt><dd>{{model.db_id}}</dd>
-          <dt>{{t 'publication.labels.createdAt'}}</dt><dd>{{format-date model.created_at}}</dd>
-          <dt>{{t 'publication.labels.createdBy'}}</dt><dd>{{model.created_by}}</dd>
-          {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
-          {{#if model.updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.updated_by}}</dd>{{/if}}
-          {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
-          {{#if model.bibl_review_start_time}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
-          {{#if model.bibl_review_delay_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.bibl_review_delay_comment}}</dd>{{/if}}
-          {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
-          {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
-        </dl>
-      {{/if}}
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-2">
+    {{#if isExtendedViewMode}}
+    <hr/>
+    <dl class="dl-horizontal">
+      <dt>DB-ID</dt><dd>{{model.db_id}}</dd>
+      <dt>{{t 'publication.labels.createdAt'}}</dt><dd>{{format-date model.created_at}}</dd>
+      <dt>{{t 'publication.labels.createdBy'}}</dt><dd>{{model.created_by}}</dd>
+      {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
+      {{#if model.updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.updated_by}}</dd>{{/if}}
+      {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
+      {{#if model.bibl_review_start_time}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
+      {{#if model.bibl_review_delay_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.bibl_review_delay_comment}}</dd>{{/if}}
+      {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
+      {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
+    </dl>
+    {{/if}}
   </div>
 </div>
