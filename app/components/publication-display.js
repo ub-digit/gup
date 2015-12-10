@@ -2,6 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  classNames: ['publication-display'],
+
+  classNameBindings: ['isReviewMode:publication-review-list', 'isPreviewMode:publication-preview-list'],
+
   isReviewMode: Ember.computed.equal('mode', 'review'),
   isPreviewMode: Ember.computed.equal('mode', 'preview'),
 
