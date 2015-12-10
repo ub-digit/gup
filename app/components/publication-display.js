@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  isReviewMode: Ember.computed.equal('mode', 'review'),
+  isPreviewMode: Ember.computed.equal('mode', 'preview'),
 
   allFieldObjects: Ember.computed('publicationType.all_fields', function() {
     var o = Ember.Object.create();
@@ -10,5 +12,5 @@ export default Ember.Component.extend({
     });
     return o;
   })
-  
+
 });
