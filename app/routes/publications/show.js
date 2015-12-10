@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
     return this.store.find('publication',params.id);
   },
 
-	afterModel: function(model, transition) {
+	afterModel: function(/*model, transition */) {
 		Ember.$("body").removeClass("loading");
 	},
 

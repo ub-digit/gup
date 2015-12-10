@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
-import ENV from 'gup/config/environment';
+//import ENV from 'gup/config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: Ember.inject.service(),
@@ -25,7 +25,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
   },
 
-  afterModel: function(model, transition) {
+  afterModel: function(/*model, transition*/) {
 		Ember.$("body").removeClass("loading");
 	},
   
@@ -46,11 +46,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('publicationTypes', models.publicationTypes);
 
 		console.log("edit-setupController", models);
-
+    var authors = null;
     if (models.publication) {
       if (models.publication.authors) {
         if (models.publication.authors.length > 0) {
-          var authors = models.publication.authors;
+           authors = models.publication.authors;
         }
         controller.set("arrOfAuthorsFromImport", models.publication.authors_from_import);
       }
@@ -61,7 +61,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         var departments = [];
         author.departments.forEach(function(department) {
           departments.push(Ember.Object.create({id: department.id, name: department.name}));
-        })
+        });
         tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.presentation_string, last_name: author.last_name}, selectedInstitution: departments, }));
       });
       controller.set('authorArr', tempAuthorArr);
@@ -103,7 +103,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 				this.transitionTo('publications.show', this.controller.get("publication.id"));
 			}
     },
-    saveDraft: function(model) {
+    saveDraft: function(/*model*/) {
         var that = this;
         var successHandler = function(model) {
             that.send('setMsgHeader', 'success', that.get('i18n').t('messages.saveDraftSuccess'));
@@ -132,7 +132,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         });
 
     },
-    savePublish: function(model) {
+    savePublish: function(/*model*/) {
         var that = this;
         var successHandler = function(model) {
             that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
