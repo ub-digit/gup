@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
     publicationsController: Ember.inject.controller('publications'),
     pubyear: 0,
     pubtype: null,
+    faculty: null,
     page: 1,
     queryParams: ['pubyear','pubtype','page', 'only_delayed'],
     only_delayed: false,

@@ -6,6 +6,13 @@
           <label> {{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
         </div>
 
+        {{#x-select value=faculty class="form-control"}}
+          {{#x-option}}Välj fakultet{{/x-option}}
+          {{#each publicationsController.faculties as |selectValue|}}
+            {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+
         {{#x-select value=pubyear class="form-control"}}
           {{#each pubyears as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.pubyear}}{{/x-option}}
@@ -13,7 +20,7 @@
         {{/x-select}}
 
         {{#x-select value=pubtype class="form-control"}}
-          {{#x-option}}Välj{{/x-option}}
+          {{#x-option}}Välj publikationstyp{{/x-option}}
           {{#each publicationsController.publicationTypes as |selectValue|}}
             {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
           {{/each}}

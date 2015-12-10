@@ -6,6 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       pubyear:{refreshModel: true},
       page:{refreshModel: true},
       pubtype:{refreshModel: true},
+      faculty:{refreshModel: true},
       only_delayed:{refreshModel: true}
   },
   beforeModel: function() {
