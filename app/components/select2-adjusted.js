@@ -17,7 +17,7 @@ export default Select2.extend({
     // ensure select2 is loaded
     Ember.assert("select2 has to exist on Ember.$.fn.select2", typeof Ember.$.fn.select2 === "function");
 
-   
+
     // setup
     options.placeholder = this.get('placeholder');
     options.multiple = this.get('multiple');
@@ -151,10 +151,10 @@ export default Select2.extend({
 
 
     options.formatInputTooShort = function() {
-      var minimumInputLength = self.get('minimumInputLength');
-      var text = self.get("formatInputTooShort")//.fmt(minimumInputLength); //  self.get("formatInputTooShort")
+
+      var text = self.get("formatInputTooShort"); //.fmt(minimumInputLength); //  self.get("formatInputTooShort")
       return Ember.String.htmlSafe(text);
-    }
+    };
     /*
       Supplies the string used when searching for options, can be set via
       `typeaheadSearchingText`
@@ -177,7 +177,7 @@ export default Select2.extend({
       }
       term = Ember.Handlebars.Utils.escapeExpression(term);
 
-      
+
 
 
 
@@ -356,11 +356,11 @@ export default Select2.extend({
           self.set("zeroResult", true);
           // close dropdown
         });
-        
+
     });
     Ember.$("." + self.get('cssClass')).find('.select2-drop').append("<div class='select2-footer'><p>" + this.get("didNotFindWhatYouWereLookingForStr") + "</p><button id='toggleBtn' class='btn btn-primary'>"+ this.get("btnText") + "</button></div>");
     this.watchDisabled();
-    
+
   },
 
 });

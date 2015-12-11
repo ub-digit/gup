@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     this.get('authors').forEach(function(author){
       var currentAuthorString = author.first_name + ' ' + author.last_name;
       string += currentAuthorString + ' ';
-    })
+    });
     return string;
   })
 });

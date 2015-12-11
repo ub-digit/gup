@@ -7,11 +7,11 @@ export default Ember.Component.extend({
 	resetForm: function() {
 		if (this.get("item.newAuthorForm")) {
 			if(!this.get('item.importedAuthorName')) {
-				this.set("item.newAuthorForm.firstName", ''); 
+				this.set("item.newAuthorForm.firstName", '');
 				this.set("item.newAuthorForm.lastName", '');
 			}
-			this.set("item.newAuthorForm.year_of_birth", ''); 
-			this.set("item.newAuthorForm.xaccount", ''); 
+			this.set("item.newAuthorForm.year_of_birth", '');
+			this.set("item.newAuthorForm.xaccount", '');
 			this.set("item.newAuthorForm.orcid", '');
 		}
 	},
@@ -20,11 +20,11 @@ export default Ember.Component.extend({
 	setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
 		return !!this.get('item.importedAuthorName');
 	}),
-  
+
   showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
-    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName')
+    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
   }),
-  
+
   isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
     return !!this.get('item.importedAuthorName') && !this.get('addAffiliation');
   }),
@@ -49,7 +49,7 @@ export default Ember.Component.extend({
 	      };
 	      var fromStore = this.store.find("person", {search_term: query.term});
 	      fromStore.then(deferred.resolve, deferred.reject);
-	  
+
 	    },
 
 	    moveUpOne: function(id) {
@@ -71,7 +71,7 @@ export default Ember.Component.extend({
         var obj = that.$('.'+ that.get('item.id')).first();
         console.log('obj', obj);
         obj.select2('open');
-      })
+      });
     },
 	    toggleAddNewAuthor: function(item) {
 			if (item.get("transformedToNewAuthor") === true) {
@@ -80,7 +80,7 @@ export default Ember.Component.extend({
 			else {
 				item.set("transformedToNewAuthor", true);
 			}
-	      
+
 	    },
 	    createAuthor: function(item) {
 	    	var that = this;
@@ -99,12 +99,12 @@ export default Ember.Component.extend({
 	            });
 	        };
 	        //console.log(newAuthor.get('firstName'));
-	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'), 
+	        this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'),
 	                            'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
 	    },
     addInstitution: function(institution){
       // Add institution to selected array
-      var institution = Ember.Object.create(institution);
+      institution = Ember.Object.create(institution);
       this.get('item.selectedInstitution').addObject(institution);
       // Add institution to select2 component
       var id = '#s2id_' + this.get('item.id');

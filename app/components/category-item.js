@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   isExpanded: Ember.computed.equal('expanded', true),
 
   isSelected: Ember.computed('categoryList.[]', 'category.svepid', function() {
-    return !(this.get('categoryList').indexOf(this.get('category.svepid')) === -1);
+    return (this.get('categoryList').indexOf(this.get('category.svepid')) !== -1);
   }),
 
   isRoot: Ember.computed.equal('category.node_type', 'root'),
