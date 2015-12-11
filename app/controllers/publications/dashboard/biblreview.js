@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     pubtype: null,
     faculty: null,
     page: 1,
-    queryParams: ['pubyear','pubtype','page', 'only_delayed'],
+    queryParams: ['faculty','pubyear','pubtype','page', 'only_delayed'],
     only_delayed: false,
     pubyears: Ember.computed(function(){      
       return [
