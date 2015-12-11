@@ -18,7 +18,6 @@ export default Ember.Controller.extend({
 			});
     },
     set: function(key, value){
-		  var pubSeries = this.get('publication.series');
 		  this.set('publication.series', value.map(function(item) {
 		    return parseInt(item.id);
 			}));
@@ -35,7 +34,6 @@ export default Ember.Controller.extend({
 		  });
     },
     set: function(key, value){
-		  var pubProject = this.get('publication.project');
 			this.set('publication.project', value.map(function(item) {
 				return parseInt(item.id);
 			}));
@@ -60,7 +58,7 @@ export default Ember.Controller.extend({
               that.categoryObjectsList.pushObject(response);
           },
             function(error){
-          })
+          });
         }
       });
     }
@@ -70,7 +68,7 @@ export default Ember.Controller.extend({
       if (that.get('publication.category_hsv_local').indexOf(item.svepid) === -1) {
         that.get('categoryObjectsList').removeObject(item);
       }
-    })
+    });
   }),
 
   //Update department list depending on given publication year
@@ -86,7 +84,7 @@ export default Ember.Controller.extend({
         that.set('institutions', response);
       },
       function(reason){}
-      )
+    );
   }),
 
   getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
@@ -99,7 +97,7 @@ export default Ember.Controller.extend({
   }.observes('selectedPublicationType'),
 
 
-  /* author-block */ 
+  /* author-block */
 
   formatAuthorsForServer: function() {
       var that = this;
@@ -127,7 +125,7 @@ export default Ember.Controller.extend({
                   if (author.newAuthorForm.get('lastName')){
                       elseCounter++;
                       that.store.save('person',{
-                          'first_name': author.newAuthorForm.get('firstName'), 
+                          'first_name': author.newAuthorForm.get('firstName'),
                           'last_name': author.newAuthorForm.get('lastName')
                       }).then(function(savedPerson){
                           arr.addObject({id: savedPerson.id, departments: [{id: '666', name: 'Extern institution'}]});
@@ -147,7 +145,7 @@ export default Ember.Controller.extend({
               resolve();
           }
           waitingForPersonSave();
-      })
+      });
   },
 
 
@@ -171,11 +169,11 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
 
-  /* end author-block */ 
+  /* end author-block */
 
 
   isSelectedPublicationValid: function() {
-    if ((this.get("selectedPublicationType") != "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
+    if ((this.get("selectedPublicationType") !== "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
       return true;
     }
     else {
@@ -297,7 +295,7 @@ export default Ember.Controller.extend({
   isSelectedConference: Ember.computed.equal('publicationTypeFilter', 'conference'),
   isSelectedArtworks: Ember.computed.equal('publicationTypeFilter', 'artworks'),
   isSelectedOther: Ember.computed.equal('publicationTypeFilter', 'other'),
- 
+
 
 
   actions: {
@@ -318,7 +316,7 @@ export default Ember.Controller.extend({
       this.set("selectedPublicationType", null);
     },
 
-    /* author-block */ 
+    /* author-block */
 
     toggleAddNewAuthor: function(id) {
       var obj = this.get("authorArr").findBy('id', id);
@@ -329,7 +327,7 @@ export default Ember.Controller.extend({
         obj.set("transformedToNewAuthor", true);
       }
     },
-    /* end author-block */ 
+    /* end author-block */
 
     cancelChangePublicationType: function() {
       this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
