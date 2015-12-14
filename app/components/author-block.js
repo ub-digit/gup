@@ -27,8 +27,8 @@ export default Ember.Component.extend({
    var translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
     if (translation.indexOf("Missing translation") === 0){
       translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.default');
-    } 
-    return translation
+    }
+    return translation;
   }),
 
 	generateUUID: function () {
@@ -99,10 +99,10 @@ export default Ember.Component.extend({
 				//selectedInstitution.pushObject(this.get('defaultInstitution'));
 			}
 			var authorObject = Ember.Object.create({
-				firstName: firstName, 
-				lastName: lastName, 
-				year_of_birth: '', 
-				xaccount: '', 
+				firstName: firstName,
+				lastName: lastName,
+				year_of_birth: '',
+				xaccount: '',
 				orcid: ''});
 	    this.get("authorArr").addObject(
 	        Ember.Object.create({

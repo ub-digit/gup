@@ -1,4 +1,9 @@
 import Ember from 'ember';
+import {
+  module,
+  test,
+  ok
+} from 'ember-qunit';
 import { initialize } from 'gup/initializers/inject-store';
 
 var container, application;
@@ -20,4 +25,3 @@ test('it works', function() {
   // you would normally confirm the results of the initializer here
   ok(true);
 });
-

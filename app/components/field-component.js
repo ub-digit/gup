@@ -1,35 +1,28 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  // Determines if input or presentation template should be used
-  isPresentation: Ember.computed.equal('format', 'presentation'),
-  isEditable: Ember.computed('isPresentation', function(){
-    return !this.get('isPresentation');
-  }),
-  // Determines if all fields should be shown regardless of information
-  isAdvanced: Ember.computed.equal('isExtendedViewMode', true),
-  getFullObject: function() {
-     var fullObject = this.get("selectedPublicationType");
-     if (fullObject) {
-        var correctObjectBasedOnFieldName = fullObject.all_fields.findBy('name',this.get("fieldName"));
-        if (!correctObjectBasedOnFieldName) {
-          return null;
-        }
-        if (correctObjectBasedOnFieldName) {
-          return correctObjectBasedOnFieldName;
-        }
-        else {
-          return null;
-        }
-      }
-      else { // if no object was found
+
+  getFullObject: Ember.computed('selectedPublicationType', 'fieldName', function() {
+    var fullObject = this.get("selectedPublicationType");
+    if (fullObject) {
+      var correctObjectBasedOnFieldName = fullObject.all_fields.findBy('name',this.get("fieldName"));
+      if (!correctObjectBasedOnFieldName) {
         return null;
       }
+      if (correctObjectBasedOnFieldName) {
+        return correctObjectBasedOnFieldName;
+      }
+      else {
+        return null;
+      }
+    }
+    else { // if no object was found
+      return null;
+    }
 
-  }.property('selectedPublicationType', 'fieldName'),
+  }),
 
-
-  getRule: function() {
+  getRule: Ember.computed('getFullObject', function() {
     var fullObj = this.get('getFullObject');
     if (fullObj) {
       if (fullObj.rule) {
@@ -42,9 +35,9 @@ export default Ember.Component.extend({
     else {
       return null;
     }
-  }.property('getFullObject'),
+  }),
 
-  getLabel: function() {
+  getLabel: Ember.computed('getFullObject', function() {
 
     if (this.get('label')) {
       return this.get('label');
@@ -62,9 +55,9 @@ export default Ember.Component.extend({
     else {
       return null;
     }
-  }.property('getFullObject'),
+  }),
 
-  isMandatory: function() {
+  isMandatory: Ember.computed('getRule', function() {
 
     var rule = this.get('getRule');
     if (rule === 'R') {
@@ -73,9 +66,9 @@ export default Ember.Component.extend({
     else {
       return false;
     }
-  }.property('getRule'),
+  }),
 
-  isVisible: function() {
+  isVisible: Ember.computed('getRule', 'fieldName', function() {
 
     if (this.get('fieldName') === 'content_type') {
       return true;
@@ -87,19 +80,15 @@ export default Ember.Component.extend({
     	  return false;
     	}
     	else {
-        if (this.get('isPresentation') && this.get('valueIsEmpty') && !this.get('isAdvanced')){
-          return false;
-        } else {
-    		  return true;
-        }
+  		  return true;
     	}
     }
     else {
     	return false;
     }
-  }.property('getRule', 'isAdvanced', 'value', 'fieldName', 'isPresentation'),
+  }),
 
-  valueIsEmpty: Ember.computed('value', function(){
+  valueIsEmpty: Ember.computed('value', function() {
     if (!this.get('value')){
       return true;
     }
@@ -130,8 +119,8 @@ export default Ember.Component.extend({
 	isTypeISSN: Ember.computed.equal('type', 'issn'),
 	isTypeISBN: Ember.computed.equal('type', 'isbn'),
 	isTypeTextarea: Ember.computed.equal('type', 'textarea'),
-    isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
-    isTypeSelect: Ember.computed.equal('type', 'select'),
+  isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
+  isTypeSelect: Ember.computed.equal('type', 'select'),
 
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {
@@ -212,27 +201,29 @@ export default Ember.Component.extend({
       return (check.toString() === isbn[isbn.length-1].toUpperCase());
     }
 	}),
-    journalSelected:function(){
-        if (!this.get('selectedJournal')){
-          return;
-        }
-        var journal = this.get('selectedJournal') ;
-        this.set('issn',journal.issn);
-        this.set('eissn',journal.eissn);
-        this.set('sourcetitle',journal.title);
-        this.set('journal_id',journal.id);
-    }.observes("selectedJournal"),
-    actions: {
-        queryJournals: function(query, deferred) {
-            this.store.find('journal', { search_term: query.term })
-                .then(deferred.resolve, deferred.reject);
 
-        },
-        sourceTitleTypeChanged: function(){
-          if (this.get('sourceTitleType') === 'freetext'){
-            this.set('journal_id', null);
-            this.set('selectedJournal', null);
-          }
-        }
+  journalSelected: Ember.observer('selectedJournal', function() {
+      if (!this.get('selectedJournal')){
+        return;
+      }
+      var journal = this.get('selectedJournal') ;
+      this.set('issn',journal.issn);
+      this.set('eissn',journal.eissn);
+      this.set('sourcetitle',journal.title);
+      this.set('journal_id',journal.id);
+  }),
+
+  actions: {
+    queryJournals: function(query, deferred) {
+      this.store.find('journal', { search_term: query.term })
+      .then(deferred.resolve, deferred.reject);
+
+    },
+    sourceTitleTypeChanged: function(){
+      if (this.get('sourceTitleType') === 'freetext'){
+        this.set('journal_id', null);
+        this.set('selectedJournal', null);
+      }
     }
+  }
 });

@@ -15,21 +15,23 @@ export default Ember.Controller.extend({
     switch(this.get('selectedSource')) {
 
       case 'gupea':
-        return prefix + '12345';
+        prefix += '12345';
         break;
       case 'pubmed':
-        return prefix + '25855245';
+        prefix += '25855245';
         break;
       case 'scopus':
-        return prefix + '10.1577/H02-043';
+        prefix += '10.1577/H02-043';
         break;
       case 'libris':
-        return prefix + '978-91-7385-325-5';
+        prefix += '978-91-7385-325-5';
         break;
       default:
-        return 'ID';
+        prefix = 'ID';
         break;
     }
+
+    return prefix;
 
   }),
 

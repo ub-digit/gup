@@ -1,4 +1,9 @@
 import Ember from 'ember';
+import {
+  module,
+  test,
+  ok
+} from 'ember-qunit';
 import ResetscrollMixin from 'gup/mixins/resetscroll';
 
 module('ResetscrollMixin');

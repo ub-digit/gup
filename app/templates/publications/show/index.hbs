@@ -57,7 +57,7 @@
 {{#if isExtendedViewMode}}
   <div class="row">
     <div class="col-xs-10">
-      {{publication-display publication=model publicationType=getPublicationTypeObject}}
+      {{publication-display publication=model publicationType=getPublicationTypeObject mode='review'}}
     </div>
   </div>
   <div class="row">
@@ -77,72 +77,9 @@
     </div>
   </div>
 {{else}}
-
-<div class="row">
-  <div class="col-xs-10">
-    <dl class="dl-horizontal">
-      <dt>Publikationens ID:</dt> <dd>{{model.pubid}}</dd>
-      <dt>Publikationstyp</dt><dd>{{model.publication_type_label}}</dd>
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="text" value=model.content_type_label label=(t 'edit.form.selectContentTypeLabel') format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="title" type="textarea" value=model.title format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="alt_title" type="textarea" value=model.alt_title format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="abstract" type="textarea" value=model.abstract format='presentation' isExtendedViewMode=isExtendedViewMode isCollapsible=true}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pubyear" type="text" value=model.pubyear format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{#if model.authors}}
-      <dt>{{t 'edit.form.authorHeaderTextStrong.default'}}</dt>
-      <dd><ul class="list-unstyled">
-        {{#each model.authors as |author|}}
-        <li>{{author.first_name}} {{author.last_name}}
-          {{#if author.departments}}
-          <ul>
-            {{#each author.departments as |department|}}
-            <li>{{department.name}}</li>
-            {{/each}}
-          </ul>
-          {{/if}}
-        </li>
-        {{/each}}
-      </ul></dd>
-      {{/if}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="editor" type="text" value=model.editor format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="text" value=model.dissdate format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissopponent" type="text" value=model.dissopponent format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcetitle" type="text" value=model.sourcetitle format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="journal_id" type="text" value=model.journal_id format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="issn" type="text" value=model.issn format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="eissn" type="text" value=model.eissn format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcevolume" type="text" value=model.sourcevolume format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourceissue" type="text" value=model.sourceissue format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="sourcepages" type="text" value=model.sourcepages format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="article_number" type="text" value=model.article_number format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="isbn" type="text" value=model.isbn format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publanguage" type="text" value=model.publanguage_label format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="url" type="text" value=model.url format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="links" type="text" value=model.links format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="extent" type="text" value=model.extent format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="publisher" type="text" value=model.publisher format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="place" type="text" value=model.place format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="series" type="multiselect" value=model.series_objects format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="category-selector" value=model.category_objects format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="keywords" type="textarea" value=model.keywords format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="multiselect" value=model.project_objects format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" type="textarea" value=model.pub_notes format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text" value=model.artwork_type format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_applicant" type="text" value=model.patent_applicant format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_number" type="text" value=model.patent_application_number format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_application_date" type="text" value=model.patent_application_date format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_number" type="text" value=model.patent_number format='presentation' isExtendedViewMode=isExtendedViewMode}}
-      {{field-component selectedPublicationType=getPublicationTypeObject fieldName="patent_date" type="text" value=model.patent_date format='presentation' isExtendedViewMode=isExtendedViewMode}}
-
-      {{#if model.publication_identifiers}}
-      <dt>{{t 'publicationIdentifier.label'}}</dt>
-      <dd><ul class="list-unstyled">
-        {{#each model.publication_identifiers as |identifier|}}
-        <li>{{identifier.identifier_label}}: {{identifier.identifier_value}}</li>
-        {{/each}}
-      </ul></dd>
-      {{/if}}
-    </dl>
+  <div class="row">
+    <div class="col-xs-10">
+      {{publication-display publication=model publicationType=getPublicationTypeObject mode='preview'}}
+    </div>
   </div>
-</div>
 {{/if}}

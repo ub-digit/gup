@@ -6,7 +6,7 @@ export function errorFeedback(arr) {
 		str = str + '<li>' + item + '</li>';
 	});
 	str = str + "</ul>";
-	return new Ember.Handlebars.SafeString('<i class="popovers fa fa-info-circle hand" data-toggle="popover" title="Felinformation" data-content="<b>'+ str +'</b>"></i>')
+	return new Ember.Handlebars.SafeString('<i class="popovers fa fa-info-circle hand" data-toggle="popover" title="Felinformation" data-content="<b>'+ str +'</b>"></i>');
 }
 
 export default Ember.HTMLBars.makeBoundHelper(errorFeedback);
