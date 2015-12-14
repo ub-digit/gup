@@ -104,13 +104,13 @@ export default Ember.Component.extend({
 	    },
     addInstitution: function(institution){
       // Add institution to selected array
-      institution = Ember.Object.create(institution);
-      this.get('item.selectedInstitution').addObject(institution);
+      var institutionObject = Ember.Object.create(institution);
+      this.get('item.selectedInstitution').addObject(institutionObject);
       // Add institution to select2 component
       var id = '#s2id_' + this.get('item.id');
-      var institutions = Ember.$(id).select2('data');
-      institutions.addObject(institution);
-      Ember.$(id).select2('data', institutions);
+      var institutionsElement = Ember.$(id).select2('data');
+      institutionsElement.addObject(institutionObject);
+      Ember.$(id).select2('data', institutionsElement);
     }
 	}
 });
