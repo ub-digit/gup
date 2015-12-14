@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 	}),
   
   showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
-    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName')
+    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
   }),
   
   isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
@@ -71,7 +71,7 @@ export default Ember.Component.extend({
         var obj = that.$('.'+ that.get('item.id')).first();
         console.log('obj', obj);
         obj.select2('open');
-      })
+      });
     },
 	    toggleAddNewAuthor: function(item) {
 			if (item.get("transformedToNewAuthor") === true) {
@@ -108,7 +108,7 @@ export default Ember.Component.extend({
       this.get('item.selectedInstitution').addObject(institution);
       // Add institution to select2 component
       var id = '#s2id_' + this.get('item.id');
-      var institutions = Ember.$(id).select2('data');
+      institutions = Ember.$(id).select2('data');
       institutions.addObject(institution);
       Ember.$(id).select2('data', institutions);
     }
