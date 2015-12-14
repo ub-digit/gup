@@ -84,6 +84,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		}
   },
 
+
   exit: function() {
     var controller = this.get("controller");
     controller.set('selectedContentType', null);
@@ -95,8 +96,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    cancelEdit: function() {
+    willTransition: function() {
       this.send('refreshModel', this.controller.get("publication.id"));
+    },
+
+    cancelEdit: function() {
 			if(this.returnTo) {
 				this.transitionTo(this.returnTo);
 			} else {
