@@ -65,8 +65,8 @@ export default {
 		registeredOrEditedByMe: 'My registrations',
 		published: 'My publications',
 		forReview: 'Pending review',
-		forBReview: 'Bibl. review.'
-
+		forBReview: 'Bibl. review.',
+        numberOfHits: 'Number of hits'
 	},
 	tabTitle: {
 		start: 'Start',
@@ -97,6 +97,7 @@ export default {
     biblreview: {
         selectPublicationTypePrompt: 'All types',
         selectPublicationYearPrompt: 'All years',
+        selectFacultyPrompt: 'All schools',
         orLater: 'and later',
         orEarlier: 'and earlier',
         pubid: 'Pubid',

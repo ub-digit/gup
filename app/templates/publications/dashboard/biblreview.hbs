@@ -7,7 +7,7 @@
         </div>
 
         {{#x-select value=faculty class="form-control"}}
-          {{#x-option}}Välj fakultet{{/x-option}}
+          {{#x-option}}{{t 'biblreview.selectFacultyPrompt'}}{{/x-option}}
           {{#each publicationsController.faculties as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
@@ -20,7 +20,7 @@
         {{/x-select}}
 
         {{#x-select value=pubtype class="form-control"}}
-          {{#x-option}}Välj publikationstyp{{/x-option}}
+          {{#x-option}}{{t 'biblreview.selectPublicationTypePrompt'}}{{/x-option}}
           {{#each publicationsController.publicationTypes as |selectValue|}}
             {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
           {{/each}}

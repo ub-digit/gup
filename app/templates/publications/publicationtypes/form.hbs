@@ -1,6 +1,6 @@
 
 	{{#if selectPublicationTypeIsVisible}}
-    {{partial 'publications/publicationtypes/-selector'}}
+    {{partial 'publications/publicationtypes/selector'}}
 	{{else}}
 	{{#if isSelectedPublicationValid}}
 		{{getPublicationTypeObject.name}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>

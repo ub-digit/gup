@@ -70,7 +70,7 @@ export default {
 		published: 'Mina publikationer',
 		forReview: 'Att granska',
 		forBReview: 'Bibl. granskn.',
-    numberOfHits: 'Antal träffar'
+        numberOfHits: 'Antal träffar'
 	},
 	tabTitle: {
 		start: 'Start',
@@ -101,6 +101,7 @@ export default {
     biblreview: {
         selectPublicationTypePrompt: 'Alla typer',
         selectPublicationYearPrompt: 'Alla år',
+        selectFacultyPrompt: 'Alla fakulteter',
         orLater: 'och senare',
         orEarlier: 'och tidigare',
         pubid: 'Pubid',
