@@ -14,9 +14,8 @@ export default Ember.Controller.extend({
   },
   actions: {
     delete: function(id) {
-      var txt;
       var r = confirm(this.get('i18n').t('messages.confirmDeleteDraft'));
-      if (r == true) {
+      if (r === true) {
         this.deletePublication(id);
       }
     }

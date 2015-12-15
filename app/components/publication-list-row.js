@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
 
     var i = this.get('item');
-    var s = '';
+    var a = [];
 
     switch (this.get('item.publication_type')) {
       case 'journal-articles':
@@ -22,14 +22,19 @@ export default Ember.Component.extend({
       case 'book-reviews':
       case 'magazine-articles':
 
-        var a = [];
+        if (i.sourcetitle) {
+          a.push(i.sourcetitle);
+        }
+        if (i.sourcevolume) {
+          a.push('(' + i.sourcevolume + ')' + i.sourceissue);
+        }
+        if (i.pubyear) {
+          a.push(i.pubyear);
+        }
+        if (i.sourcepages) {
+          a.push(i.sourcepages);
+        }
 
-        if (i.sourcetitle) a.push(i.sourcetitle);
-        if (i.sourcevolume) a.push('(' + i.sourcevolume + ')' + i.sourceissue);
-        if (i.pubyear) a.push(i.pubyear);
-        if (i.sourcepages) a.push(i.sourcepages);
-
-        return a.join(', ');
         break;
 
       case 'books':
@@ -37,28 +42,34 @@ export default Ember.Component.extend({
       case 'doctoral-thesis':
       case 'reports':
 
-        var a = [];
+        if (i.place) {
+          a.push(i.place);
+        }
+        if (i.publisher) {
+          a.push(i.publisher);
+        }
+        if (i.pubyear) {
+          a.push(i.pubyear);
+        }
 
-        if (i.place) a.push(i.place);
-        if (i.publisher) a.push(i.publisher);
-        if (i.pubyear) a.push(i.pubyear);
-
-        return a.join(', ');
         break;
 
       case 'book-chapters':
       case 'conference-papers':
       case 'conference-contributions':
 
-        var a = [];
-
-        if (i.sourcetitle) a.push(i.sourcetitle);
-        if (i.pubyear) a.push(i.pubyear);
-        if (i.sourcepages) a.push(i.sourcepages);
-
-        return a.join(', ');
+        if (i.sourcetitle) {
+          a.push(i.sourcetitle);
+        }
+        if (i.pubyear) {
+          a.push(i.pubyear);
+        }
+        if (i.sourcepages) {
+          a.push(i.sourcepages);
+        }
         break;
     }
+    return a.join(', ');
 
   })
 

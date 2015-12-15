@@ -5,7 +5,7 @@ var get = Ember.get;
 var run = Ember.run;
 export default Select2.extend({
   didInsertElement: function() {
-    var self = this,
+    var that = this,
         options = {},
         optionIdPath = this.get('optionIdPath'),
         optionLabelPath = this.get('optionLabelPath'),
@@ -96,10 +96,10 @@ export default Select2.extend({
     options.query = function(query) {
       var select2 = this;
 
-      if (self.get('_typeaheadMode')) {
+      if (that.get('_typeaheadMode')) {
         var deferred = Ember.RSVP.defer('select2#query: ' + query.term);
 
-        self.sendAction('query', query, deferred);
+        that.sendAction('query', query, deferred);
 
         deferred.promise.then(function(data) {
           if (data instanceof Ember.ArrayProxy) {
@@ -115,9 +115,9 @@ export default Select2.extend({
           });
         });
       } else {
-        Ember.assert("select2 has no content!", self.get('content'));
+        Ember.assert("select2 has no content!", that.get('content'));
 
-        var filteredContent = self.get("content").reduce(function(results, item) {
+        var filteredContent = that.get("content").reduce(function(results, item) {
           // items may contain children, so filter them, too
           var filteredChildren = [];
 
@@ -132,7 +132,7 @@ export default Select2.extend({
 
           // apply the regular matcher
           if (select2.matcher(query.term, get(item, optionLabelPath)) || select2.matcher(query.term, get(item, optionHeadlinePath))) {
-            // keep this item either if itself matches
+            // keep this item either if itthat matches
             results.push(item);
           } else if (filteredChildren.length) {
             // or it has children that matched the term
@@ -153,7 +153,7 @@ export default Select2.extend({
       `typeaheadSearchingText`
      */
     options.formatSearching = function() {
-      var text = self.get('typeaheadSearchingText');
+      var text = that.get('typeaheadSearchingText');
 
       return Ember.String.htmlSafe(text);
     };
@@ -163,7 +163,7 @@ export default Select2.extend({
       html-escaped user input
      */
     options.formatNoMatches = function(term) {
-      var text = self.get('typeaheadNoMatchesText');
+      var text = that.get('typeaheadNoMatchesText');
 
       if (text instanceof Ember.Handlebars.SafeString) {
         text = text.string;
@@ -180,7 +180,7 @@ export default Select2.extend({
       rejection reason
      */
     options.formatAjaxError = function(jqXHR, textStatus, errorThrown) {
-      var text = self.get('typeaheadErrorText');
+      var text = that.get('typeaheadErrorText');
 
       return Ember.String.htmlSafe(Ember.String.fmt(text, errorThrown));
     };
@@ -204,10 +204,10 @@ export default Select2.extend({
      */
     options.initSelection = function(element, callback) {
       var value = element.val(),
-          content = self.get("content"),
+          content = that.get("content"),
           contentIsArrayProxy = Ember.ArrayProxy.detectInstance(content),
-          multiple = self.get("multiple"),
-          optionValuePath = self.get("optionValuePath");
+          multiple = that.get("multiple"),
+          optionValuePath = that.get("optionValuePath");
 
       if (!value || !value.length) {
         return callback([]);
@@ -220,7 +220,7 @@ export default Select2.extend({
 
       Ember.assert("select2#initSelection can not map string values to full objects " +
         "in typeahead mode. Please open a github issue if you have questions to this.",
-        !self.get('_typeaheadMode'));
+        !that.get('_typeaheadMode'));
 
 
       var values = value.split(","),
@@ -267,11 +267,11 @@ export default Select2.extend({
       // END loop over content
 
       if (unmatchedValues === 0) {
-        self.set('_hasSelectedMissingItems', false);
+        that.set('_hasSelectedMissingItems', false);
       } else {
         // disable the select2 element if there are keys left in the values
         // array that were not matched to an object
-        self.set('_hasSelectedMissingItems', true);
+        that.set('_hasSelectedMissingItems', true);
 
         Ember.warn("select2#initSelection was not able to map each \"" +
           optionValuePath +"\" to an object from \"content\". The remaining " +
@@ -294,7 +294,7 @@ export default Select2.extend({
       The value will be read from the `cssClass` binding
      */
     options.containerCssClass = options.dropdownCssClass = function() {
-      return self.get('cssClass') || '';
+      return that.get('cssClass') || '';
     };
 
     this._select = this.$().select2(options);
@@ -338,18 +338,18 @@ export default Select2.extend({
       });
     }
 
-      Ember.run.later(function() {
-        Ember.$('ul.select2-choices').sortable({
-          containment: 'parent',
-          cursor: "move",
-          update: function() {
-            that.selectionChanged(that._select.select2("data"));
-            //console.log("DEBUG data: ", that._select.select2("data"));
-          }
-        });
+    Ember.run.later(function() {
+      Ember.$('ul.select2-choices').sortable({
+        containment: 'parent',
+        cursor: "move",
+        update: function() {
+          that.selectionChanged(that._select.select2("data"));
+          //console.log("DEBUG data: ", that._select.select2("data"));
+        }
       });
+    });
     this.watchDisabled();
-    
+
   },
 
 });

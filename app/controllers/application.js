@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
       }
       Ember.run.later(function() {
         location.reload(true);
-      })
+      });
 		}
 	}
 });
