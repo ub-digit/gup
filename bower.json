@@ -1,7 +1,7 @@
 {
   "name": "gup",
   "dependencies": {
-    "jquery": "^1.11.3",
+    "jquery": "1.11.3",
     "ember": "1.13.10",
     "ember-resolver": "~0.1.18",
     "loader.js": "ember-cli/loader.js#3.2.1",
