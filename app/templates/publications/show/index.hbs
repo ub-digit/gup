@@ -69,8 +69,8 @@
         {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
         {{#if model.updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.updated_by}}</dd>{{/if}}
         {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
-        {{#if model.bibl_review_start_time}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.bibl_review_start_time}}</dd>{{/if}}
-        {{#if model.bibl_review_delay_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.bibl_review_delay_comment}}</dd>{{/if}}
+        {{#if model.biblreview_postponed_until}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.biblreview_postponed_until}}</dd>{{/if}}
+        {{#if model.biblreview_postpone_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.biblreview_postpone_comment}}</dd>{{/if}}
         {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
         {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
       </dl>

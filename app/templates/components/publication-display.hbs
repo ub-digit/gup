@@ -2,7 +2,7 @@
   <table class="table table-striped table-bordered">
     <tbody>
 
-      {{publication-field-bibl-review fieldLabel='Publikations-ID' fieldValue=publication.pubid}}
+      {{publication-field-bibl-review fieldLabel='Publikations-ID' fieldValue=publication.id}}
 
       {{publication-field-bibl-review fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
 
@@ -156,7 +156,7 @@
 {{else if isPreviewMode}}
   <dl class="dl-horizontal">
 
-    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.pubid}}
+    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
 
     {{publication-field-preview fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
 

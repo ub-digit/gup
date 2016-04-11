@@ -7,14 +7,14 @@ export default Ember.Component.extend({
   optDate: 'calendar',
   optText: 'freetext',
 
-  startDate: Ember.computed('publication.bibl_review_start_time', function(){
-    return moment(this.get('publication.bibl_review_start_time')).format('YYYY-MM-DD');
+  startDate: Ember.computed('publication.biblreview_postponed_until', function(){
+    return moment(this.get('publication.biblreview_postponed_until')).format('YYYY-MM-DD');
   }),
-  isDelayed: Ember.computed('publication.bibl_review_start_time', function(){
-    if (!this.get('publication.bibl_review_start_time')) {
+  isDelayed: Ember.computed('publication.biblreview_postponed_until', function(){
+    if (!this.get('publication.biblreview_postponed_until')) {
       return false;
     }
-    if (moment(this.get('publication.bibl_review_start_time'))> moment()){
+    if (moment(this.get('publication.biblreview_postponed_until'))> moment()){
       return true;
     }
     return false;
@@ -57,7 +57,7 @@ export default Ember.Component.extend({
       var publication = that.get('publication');
       var date = moment(that.get('date')).format('YYYY-MM-DD');
       var comment = that.get('comment');
-      that.store.find('set_bibl_review_start_time', publication.pubid, {date: date, comment: comment}).then(
+      that.store.find('set_biblreview_postponed_until', publication.pubid, {date: date, comment: comment}).then(
         function(response){
           that.sendAction('setMsgHeaderAction', 'success', that.get('i18n').t('messages.delaySuccess'));
           that.get('targetObject').transitionToRoute('publications.dashboard.biblreview');
