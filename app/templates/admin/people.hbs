@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="input-group">
+    {{input value=query class="form-control" placeholder=(t 'text.query_person') action='sendQuery'}}
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button" {{action 'sendQuery'}}>Sök</button>
+    </span>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  {{#if model}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{t 'text.person.first_name'}}</th>
+        <th>{{t 'text.person.last_name'}}</th>
+        <th>{{t 'text.person.xaccount'}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |person|}}
+      <tr>
+        <td>{{person.first_name}}</td>
+        <td>{{person.last_name}}</td>
+        <td>{{person.xaccount}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+    {{#if qp}}
+      <div class="col-xs-12">
+        {{t 'text.query_person_none'}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>

@@ -66,7 +66,16 @@ export default {
 		published: 'My publications',
 		forReview: 'Pending review',
 		forBReview: 'Bibl. review.',
-        numberOfHits: 'Number of hits'
+    numberOfHits: 'Number of hits',
+    admin: 'Admin',
+    admin_people: 'Administrate people',
+    query_person: 'Query person',
+    query_person_none: 'No people found',
+    person: {
+      first_name: 'First name',
+      last_name: 'Last name',
+      xaccount: 'Xaccount'
+    }
 	},
 	tabTitle: {
 		start: 'Start',
@@ -74,8 +83,8 @@ export default {
 		registeredOrEditedByMe: 'Registered publications created or edited by me.',
 		published: 'Publications where I am one of the authors.',
 		forReview: 'These publications need my approval concerning category and affiliation.',
-		forBReview: 'These publications demand bibliographiucal review.'
-
+		forBReview: 'These publications demand bibliographiucal review.',
+    admin: 'Administrate data'
 	},
 	labels: {
 		registerNew: 'Register new',

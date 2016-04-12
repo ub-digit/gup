@@ -29,8 +29,8 @@ export default Ember.Controller.extend({
     });
   },
 
-  //advancedMode: Ember.computed('session.content.can_bibreview', 'viewMode', function() {
-  //  var is_reviewer = this.get('session.content.can_bibreview');
+  //advancedMode: Ember.computed('session.content.can_biblreview', 'viewMode', function() {
+  //  var is_reviewer = this.get('session.content.can_biblreview');
   //  var view_mode = this.get('viewMode');
   //  return (is_reviewer && (view_mode === 'advanced'));
   //}),

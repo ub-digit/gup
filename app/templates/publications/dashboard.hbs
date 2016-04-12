@@ -13,8 +13,11 @@
           {{/if}}
           {{/link-to}}
         </li>
-        {{#if session.content.can_bibreview}}
-          <li title={{t 'text.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
+        {{#if session.content.can_biblreview}}
+          <li title={{t 'tabTitle.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
+        {{/if}}
+        {{#if session.content.can_administrate}}
+          <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin'}}{{t 'text.admin'}}{{/link-to}}</li>
         {{/if}}
       </ul>
     </nav>

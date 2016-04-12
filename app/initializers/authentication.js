@@ -35,7 +35,8 @@ var CustomAuthenticator = Base.extend({
 						username: response.user.username,
 						userid: response.user.id,
             can_delete_published : Ember.$.inArray('delete_published', response.user.role.rights) !== -1,
-            can_bibreview : Ember.$.inArray('bibreview', response.user.role.rights) !== -1
+            can_biblreview : Ember.$.inArray('biblreview', response.user.role.rights) !== -1,
+            can_administrate : Ember.$.inArray('administrate', response.user.role.rights) !== -1
 			    });
 				});
 		  }, function(xhr, status, error) {

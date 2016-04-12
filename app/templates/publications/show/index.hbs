@@ -18,11 +18,11 @@
         {{#if session.content.can_delete_published}}
           <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
         {{/if}}
-        {{#unless session.content.can_bibreview}}
+        {{#unless session.content.can_biblreview}}
           <li>{{mailer-modal publication=model}}</li>
         {{/unless}}
         {{#if isExtendedViewMode}}
-          {{#if session.content.can_bibreview}}
+          {{#if session.content.can_biblreview}}
             {{#if model.published_at}}
               {{#unless model.biblreviewed_at}}
                 <li>{{delay-review-modal publication=model}}</li>
@@ -31,7 +31,7 @@
             {{/if}}
           {{/if}}
         {{/if}}
-        {{#if session.content.can_bibreview}}
+        {{#if session.content.can_biblreview}}
         <li>
           {{#if isExtendedViewMode}}
             <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>

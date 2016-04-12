@@ -70,7 +70,16 @@ export default {
 		published: 'Mina publikationer',
 		forReview: 'Att granska',
 		forBReview: 'Bibl. granskn.',
-        numberOfHits: 'Antal träffar'
+    numberOfHits: 'Antal träffar',
+    admin: 'Admin',
+    admin_people: 'Administrera personer',
+    query_person: 'Sök person',
+    query_person_none: 'Inga personer hittades',
+    person: {
+      first_name: 'Förnamn',
+      last_name: 'Efternamn',
+      xaccount: 'Xkonto'
+    }
 	},
 	tabTitle: {
 		start: 'Start',
@@ -79,6 +88,7 @@ export default {
 		published: 'Publikationer där jag finns med som författare.',
 		forReview: 'Dessa publikationer måste godkännas av mig med avseende på ämnesord och affiliering.',
 		forBReview: 'Dessa publikationer kräver bibliografisk granskning.',
+    admin: 'Administrera data'
 	},
 	labels: {
 		registerNew: 'Registrera ny',

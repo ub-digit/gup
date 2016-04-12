@@ -22,7 +22,11 @@ Router.map(function() {
       this.route("touched");
       this.route('review');
       this.route('biblreview');
+      this.route('admin');
     });
+  });
+  this.resource('admin', function() {
+    this.route('people');
   });
 });
 
