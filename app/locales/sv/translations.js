@@ -57,6 +57,7 @@ export default {
 		delaySuccess: 'Granskningsgodkännandet har uppskjutits.',
 		delayError: 'Posten kunde inte fördröjas.',
 		publicationNotFound: 'Publikationen finns inte.',
+		confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
     personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.'
 	},
 	text: {
@@ -132,6 +133,7 @@ export default {
 		header: 'Redigera publikation',
 		actions: {
       btnEdit: 'Redigera',
+      btnDelete: 'Radera',
 			btnClose: 'Stäng',
 			btnCancel: 'Avbryt',
 			btnSaveDraft: 'Spara utkast',

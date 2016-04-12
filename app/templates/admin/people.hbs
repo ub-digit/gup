@@ -37,6 +37,15 @@
           {{#link-to 'admin.person.edit' person.id class="btn btn-default"}}
             {{t 'edit.actions.btnEdit'}}
           {{/link-to}}
+          {{#if person.has_active_publications}}
+          <button class="btn btn-default disabled">
+            {{t 'edit.actions.btnDelete'}}
+          </button>
+          {{else}}
+          <button class="btn btn-default" {{action 'deletePerson' person}}>
+            {{t 'edit.actions.btnDelete'}}
+          </button>
+          {{/if}}
         </td>
       </tr>
       {{/each}}

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  i18n: Ember.inject.service(),
   queryParams: {
     qp: { refreshModel: true}
   },
@@ -31,5 +32,15 @@ export default Ember.Route.extend({
     
     // Fill search field with query from url so that it is not lost on reload
     controller.set('query', controller.get('qp'));
+  },
+  actions: {
+    deletePerson: function(model) {
+      var that = this;
+      if(confirm(this.get('i18n').t('messages.confirmDeletePerson'))) {
+        this.store.destroy('person', model.id).then(function() {
+          that.refresh(model.id);
+        });
+      }
+    }
   }
 });

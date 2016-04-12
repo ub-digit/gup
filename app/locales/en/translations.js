@@ -45,7 +45,7 @@ export default {
 		approvePublicationSuccess: 'Publication approved.',
 		approvePublicationError: 'Publication could not be approved.',
 		confirmDeleteDraft: 'Are you sure you want to delete the draft?',
-        confirmDeletePublication: 'Are you sure you want to delete the publication?',
+    confirmDeletePublication: 'Are you sure you want to delete the publication?',
 		publishSuccess: 'The record has been published.',
 		publishError: 'The record could not be published.',
 		approveSuccess: 'The record has been approved.',
@@ -53,6 +53,7 @@ export default {
 		delaySuccess: 'Review approval has successfully been delayed.',
 		delayError: 'Review approval could not be delayed.',
 		publicationNotFound: 'Publication not found.',
+		confirmDeletePerson: 'Are you sure you want to delete the person?',
     personChangeWarningAfterEdit: 'The search result may have changed due to editing.'
 	},
 	text: {
@@ -127,6 +128,7 @@ export default {
 		header: 'Edit publication',
 		actions: {
       btnEdit: 'Edit',
+      btnDelete: 'Delete',
 			btnClose: 'Close',
 			btnCancel: 'Cancel',
 			btnSaveDraft: 'Save as draft',
