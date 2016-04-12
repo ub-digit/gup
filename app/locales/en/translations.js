@@ -52,7 +52,8 @@ export default {
 		approveError: 'The record could not be approved.',
 		delaySuccess: 'Review approval has successfully been delayed.',
 		delayError: 'Review approval could not be delayed.',
-		publicationNotFound: 'Publication not found.'
+		publicationNotFound: 'Publication not found.',
+    personChangeWarningAfterEdit: 'The search result may have changed due to editing.'
 	},
 	text: {
 		youHaveNoDrafts: 'You have no drafts.',
@@ -74,7 +75,9 @@ export default {
     person: {
       first_name: 'First name',
       last_name: 'Last name',
-      xaccount: 'Xaccount'
+      xaccount: 'Xaccount',
+      orcid: 'ORCID',
+      birthyear: 'Year of birth'
     }
 	},
 	tabTitle: {
@@ -123,6 +126,7 @@ export default {
 	edit: {
 		header: 'Edit publication',
 		actions: {
+      btnEdit: 'Edit',
 			btnClose: 'Close',
 			btnCancel: 'Cancel',
 			btnSaveDraft: 'Save as draft',

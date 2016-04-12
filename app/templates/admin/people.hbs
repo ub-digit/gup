@@ -7,6 +7,11 @@
   </div>
 </div>
 <hr/>
+{{#if personChangeWarningAfterEditActive}}
+<div class="alert alert-warning">
+  {{t 'messages.personChangeWarningAfterEdit'}}
+</div>
+{{/if}}
 <div class="row">
   {{#if model}}
   <table class="table">
@@ -15,6 +20,8 @@
         <th>{{t 'text.person.first_name'}}</th>
         <th>{{t 'text.person.last_name'}}</th>
         <th>{{t 'text.person.xaccount'}}</th>
+        <th>{{t 'text.person.orcid'}}</th>
+        <th>{{t 'text.person.birthyear'}}</th>
         <th></th>
       </tr>
     </thead>
@@ -24,6 +31,13 @@
         <td>{{person.first_name}}</td>
         <td>{{person.last_name}}</td>
         <td>{{person.xaccount}}</td>
+        <td>{{person.orcid}}</td>
+        <td>{{person.year_of_birth}}</td>
+        <td>
+          {{#link-to 'admin.person.edit' person.id class="btn btn-default"}}
+            {{t 'edit.actions.btnEdit'}}
+          {{/link-to}}
+        </td>
       </tr>
       {{/each}}
     </tbody>

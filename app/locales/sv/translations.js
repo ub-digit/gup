@@ -56,7 +56,8 @@ export default {
 		approveError: 'Posten kunde inte godkännas.',
 		delaySuccess: 'Granskningsgodkännandet har uppskjutits.',
 		delayError: 'Posten kunde inte fördröjas.',
-		publicationNotFound: 'Publikationen finns inte.'
+		publicationNotFound: 'Publikationen finns inte.',
+    personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.'
 	},
 	text: {
 		youHaveNoDrafts: 'Du har inga utkast.',
@@ -78,7 +79,9 @@ export default {
     person: {
       first_name: 'Förnamn',
       last_name: 'Efternamn',
-      xaccount: 'Xkonto'
+      xaccount: 'Xkonto',
+      orcid: 'ORCID',
+      birthyear: 'Födelseår'
     }
 	},
 	tabTitle: {
@@ -128,6 +131,7 @@ export default {
 	edit: {
 		header: 'Redigera publikation',
 		actions: {
+      btnEdit: 'Redigera',
 			btnClose: 'Stäng',
 			btnCancel: 'Avbryt',
 			btnSaveDraft: 'Spara utkast',
