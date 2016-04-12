@@ -57,7 +57,7 @@ export default Ember.Component.extend({
       var publication = that.get('publication');
       var date = moment(that.get('date')).format('YYYY-MM-DD');
       var comment = that.get('comment');
-      that.store.find('set_biblreview_postponed_until', publication.pubid, {date: date, comment: comment}).then(
+      that.store.find('set_biblreview_postponed_until', publication.id, {date: date, comment: comment}).then(
         function(response){
           that.sendAction('setMsgHeaderAction', 'success', that.get('i18n').t('messages.delaySuccess'));
           that.get('targetObject').transitionToRoute('publications.dashboard.biblreview');
