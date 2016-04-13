@@ -30,6 +30,7 @@ export default {
 		  reviewedAt: 'Granskad',
 		  reviewedBy: 'Granskad av',
 		  reviewStart: 'Kan granskas från',
+      reviewPostponedUntil: 'Fördröjd till',
 		  delayComment: 'Kommentar',
 		  noTitle: '[Ingen titel]'
 		},

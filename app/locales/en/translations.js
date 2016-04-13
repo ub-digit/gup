@@ -26,6 +26,7 @@ export default {
 		  reviewedAt: 'Reviewed',
 		  reviewedBy: 'Reviewed by',
 		  reviewStart: 'Review start',
+      reviewPostponedUntil: 'Postponed until',
 		  delayComment: 'Comment',
 		  noTitle: '[No title]'
 		},
