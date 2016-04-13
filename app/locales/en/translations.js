@@ -54,6 +54,8 @@ export default {
 		delaySuccess: 'Review approval has successfully been delayed.',
 		delayError: 'Review approval could not be delayed.',
 		publicationNotFound: 'Publication not found.',
+    invalidYear: 'Invalid year',
+    saveDepartmentError: 'Could not save',
 		confirmDeletePerson: 'Are you sure you want to delete the person?',
     personChangeWarningAfterEdit: 'The search result may have changed due to editing.'
 	},
@@ -71,7 +73,10 @@ export default {
 		forBReview: 'Bibl. review.',
     numberOfHits: 'Number of hits',
     admin: 'Admin',
+    admin_departments: 'Administrate departments',
     admin_people: 'Administrate people',
+    query_department: 'Query institution',
+    query_department_none: 'No institution found',
     query_person: 'Query person',
     query_person_none: 'No people found',
     person: {
@@ -80,6 +85,13 @@ export default {
       xaccount: 'Xaccount',
       orcid: 'ORCID',
       birthyear: 'Year of birth'
+    },
+    department: {
+      modalHeader: 'Set end year',
+      name_sv: 'Swedish name',
+      name_en: 'English name',
+      start_year: 'Start year',
+      end_year: 'End year'
     }
 	},
 	tabTitle: {
@@ -129,6 +141,8 @@ export default {
 		header: 'Edit publication',
 		actions: {
       btnEdit: 'Edit',
+      btnSetEndYear: 'Set end year',
+      btnSave: 'Save',
       btnDelete: 'Delete',
 			btnClose: 'Close',
 			btnCancel: 'Cancel',

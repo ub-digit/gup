@@ -26,6 +26,7 @@ Router.map(function() {
     });
   });
   this.resource('admin', function() {
+    this.route('departments');
     this.route('people');
     this.route('person', function() {
       this.route('edit', {path: 'edit/:id'});

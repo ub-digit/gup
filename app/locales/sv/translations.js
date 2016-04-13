@@ -58,6 +58,8 @@ export default {
 		delaySuccess: 'Granskningsgodkännandet har uppskjutits.',
 		delayError: 'Posten kunde inte fördröjas.',
 		publicationNotFound: 'Publikationen finns inte.',
+    invalidYear: 'Felaktigt årtal',
+    saveDepartmentError: 'Kunde inte spara',
 		confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
     personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.'
 	},
@@ -75,7 +77,10 @@ export default {
 		forBReview: 'Bibl. granskn.',
     numberOfHits: 'Antal träffar',
     admin: 'Admin',
+    admin_departments: 'Administrera institutioner',
     admin_people: 'Administrera personer',
+    query_department: 'Sök institution',
+    query_department_none: 'Ingen institution hittades',
     query_person: 'Sök person',
     query_person_none: 'Inga personer hittades',
     person: {
@@ -84,6 +89,13 @@ export default {
       xaccount: 'Xkonto',
       orcid: 'ORCID',
       birthyear: 'Födelseår'
+    },
+    department: {
+      modalHeader: 'Sätt slutår',
+      name_sv: 'Svenskt namn',
+      name_en: 'Engelskt namn',
+      start_year: 'Startår',
+      end_year: 'Slutår'
     }
 	},
 	tabTitle: {
@@ -134,6 +146,8 @@ export default {
 		header: 'Redigera publikation',
 		actions: {
       btnEdit: 'Redigera',
+      btnSetEndYear: 'Sätt slutår',
+      btnSave: 'Spara',
       btnDelete: 'Radera',
 			btnClose: 'Stäng',
 			btnCancel: 'Avbryt',
