@@ -45,8 +45,15 @@ export default Ember.Controller.extend({
     toggleSetEndYear: function(dep) {
       this.set('current', dep);
       this.set('modalError', null);
-      this.set('newEndYear', null);
+      if(dep.end_year) {
+        this.set('newEndYear', dep.end_year.toString());
+      } else {
+        this.set('newEndYear', null);
+      }
       Ember.$('#setEndYearModal').modal('show');
+    },
+    removeEndYear: function(model) {
+      this.send('setEndYear', model, null);
     }
   }
 });

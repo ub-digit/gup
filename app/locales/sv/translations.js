@@ -146,7 +146,8 @@ export default {
 		header: 'Redigera publikation',
 		actions: {
       btnEdit: 'Redigera',
-      btnSetEndYear: 'Sätt slutår',
+      btnEditEndYear: 'Redigera slutår',
+      btnRemoveEndYear: 'Ta bort slutår',
       btnSave: 'Spara',
       btnDelete: 'Radera',
 			btnClose: 'Stäng',

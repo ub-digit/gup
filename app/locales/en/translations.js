@@ -141,7 +141,8 @@ export default {
 		header: 'Edit publication',
 		actions: {
       btnEdit: 'Edit',
-      btnSetEndYear: 'Set end year',
+      btnEditEndYear: 'Edit end year',
+      btnRemoveEndYear: 'Remove end year',
       btnSave: 'Save',
       btnDelete: 'Delete',
 			btnClose: 'Close',

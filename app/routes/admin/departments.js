@@ -16,7 +16,11 @@ export default Ember.Route.extend({
   actions: {
     setEndYear: function(model, newEndYear) {
       var that = this;
-      Ember.set(model, 'end_year', parseInt(newEndYear));
+      if(newEndYear) {
+        Ember.set(model, 'end_year', parseInt(newEndYear));
+      } else {
+        Ember.set(model, 'end_year', null);
+      }
       this.store.save('department', model).then(function(data) {
         Ember.$('#setEndYearModal').modal('hide');
       }, function() {

@@ -27,15 +27,9 @@
         <td>{{dep.start_year}}</td>
         <td>{{dep.end_year}}</td>
         <td>
-          {{#if dep.end_year}}
-            <button class="btn btn-default disabled">
-              {{t 'edit.actions.btnSetEndYear'}}
-            </button>
-          {{else}}
-            <button class="btn btn-default" {{action 'toggleSetEndYear' dep}}>
-              {{t 'edit.actions.btnSetEndYear'}}
-            </button>
-          {{/if}}
+          <button class="btn btn-default" {{action 'toggleSetEndYear' dep}}>
+            {{t 'edit.actions.btnEditEndYear'}}
+          </button>
         </td>
       </tr>
       {{/each}}
@@ -99,6 +93,11 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-link" data-dismiss="modal">{{t 'edit.actions.btnCancel'}}</button>
+        {{#if current.end_year}}
+          <button class="btn btn-primary navbar-btn" {{action 'removeEndYear' current}}>{{t 'edit.actions.btnRemoveEndYear'}}</button>
+        {{else}}
+          <button class="btn btn-primary navbar-btn disabled">{{t 'edit.actions.btnRemoveEndYear'}}</button>
+        {{/if}}
         {{#if modalValid}}
           <button class="btn btn-primary navbar-btn" {{action 'setEndYear' current newEndYear}}>{{t 'edit.actions.btnSave'}}</button>
         {{else}}
