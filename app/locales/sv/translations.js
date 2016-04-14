@@ -260,5 +260,23 @@ export default {
     report: 'Rapportera',
     send: 'Skicka rapport',
     message: 'Meddelande'
+  },
+  admin: {
+    departments: {
+      newLink: 'Skapa ny',
+      backToList: 'TIllbaka till listan',
+      new: {
+        header: 'Skapa ny institution',
+        save: 'Skapa institution',
+        noFaculty: 'Ingen fakultet',
+        labels: {
+          nameSv: 'Namn (Svenska)',
+          nameEn: 'Namn (Engelska)',
+          startYear: 'Startår',
+          endYear: 'Slutår',
+          faculty: 'Fakultet'
+        }
+      }
+    }
   }
 };

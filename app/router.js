@@ -26,7 +26,10 @@ Router.map(function() {
     });
   });
   this.resource('admin', function() {
-    this.route('departments');
+    this.route('departments', function(){
+      this.route('index', {path: '/'});
+      this.route('new');
+    });
     this.route('people');
     this.route('person', function() {
       this.route('edit', {path: 'edit/:id'});
