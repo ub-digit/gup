@@ -1,10 +1,14 @@
 <div class="row">
-  {{#link-to 'admin.departments.new' class="btn btn-default"}}{{t 'admin.departments.newLink'}}{{/link-to}}
+  <div class="col-xs-10">
   <div class="input-group">
     {{input value=query class="form-control" placeholder=(t 'text.query_department') action='sendQuery'}}
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" {{action 'sendQuery'}}>Sök</button>
     </span>
+  </div>
+  </div>
+  <div class="col-xs-2">
+    {{#link-to 'admin.departments.new' class="btn btn-default btn-wide"}}{{t 'admin.departments.newLink'}}{{/link-to}}
   </div>
 </div>
 <hr/>
