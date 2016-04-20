@@ -153,6 +153,176 @@
       {{/if}}
     </tbody>
   </table>
+  {{else if isCompareMode}}
+  <table class="table table-striped table-bordered compare-table">
+
+    <thead>
+      <tr>
+        <th></th>
+        <th>Aktuell version</th>
+        <th>
+          <select name="tjosan">
+            <option> - Välj version - </option>
+            <option>Version 1 2016-01-01</option>
+            <option>Version 2 2016-01-02</option>
+            <option>Version 3 2016-01-03</option>
+            <option>Version 4 2016-03-21</option>
+          </select>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {{publication-field-compare fieldLabel='Publikations-ID' fieldValue=publication.id otherIsSelected=otherIsSelected otherFieldValue=otherPublication.id}}
+
+      {{publication-field-compare fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_type_label}}
+
+      {{publication-field-compare fieldLabel=(t 'edit.form.selectContentTypeLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.content_type_label fieldValue=publication.content_type_label}}
+
+      {{#if allFieldObjects.title}}
+        {{publication-field-compare fieldLabel=allFieldObjects.title.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.title fieldValue=publication.title}}
+      {{/if}}
+
+      {{#if allFieldObjects.alt_title}}
+        {{publication-field-compare fieldLabel=allFieldObjects.alt_title.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.alt_title fieldValue=publication.alt_title}}
+      {{/if}}
+
+      {{#if allFieldObjects.abstract}}
+        {{publication-field-compare fieldLabel=allFieldObjects.abstract.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.abstract type='collapsed' fieldValue=publication.abstract type='collapsed'}}
+      {{/if}}
+
+      {{#if allFieldObjects.pubyear}}
+        {{publication-field-compare fieldLabel=allFieldObjects.pubyear.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.pubyear fieldValue=publication.pubyear}}
+      {{/if}}
+
+      {{#if allFieldObjects.publanguage}}
+        {{publication-field-compare fieldLabel=allFieldObjects.publanguage.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publanguage_label fieldValue=publication.publanguage_label}}
+      {{/if}}
+
+      {{#if allFieldObjects.category_hsv_local}}
+        {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_local.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
+      {{/if}}
+
+      {{#if allFieldObjects.url}}
+        {{publication-field-compare fieldLabel=allFieldObjects.url.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.url fieldValue=publication.url}}
+      {{/if}}
+
+      {{#if publication.publication_identifiers}}
+        {{publication-field-compare fieldLabel=(t 'publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+      {{/if}}
+
+      {{#if allFieldObjects.links}}
+        {{publication-field-compare fieldLabel=allFieldObjects.links.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.links fieldValue=publication.links}}
+      {{/if}}
+
+      {{#if allFieldObjects.keywords}}
+        {{publication-field-compare fieldLabel=allFieldObjects.keywords.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.keywords fieldValue=publication.keywords}}
+      {{/if}}
+
+      {{#if allFieldObjects.project}}
+        {{publication-field-compare fieldLabel=allFieldObjects.project.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.project_objects listValue='title' type='list' fieldValue=publication.project_objects listValue='title' type='list'}}
+      {{/if}}
+
+      {{#if allFieldObjects.pub_notes}}
+        {{publication-field-compare fieldLabel=allFieldObjects.pub_notes.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.pub_notes fieldValue=publication.pub_notes}}
+      {{/if}}
+
+      {{#if allFieldObjects.authors}}
+        {{publication-field-compare fieldLabel=allFieldObjects.authors.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.authors type='authors' fieldValue=publication.authors type='authors'}}
+      {{/if}}
+
+      {{#if allFieldObjects.journal_id}}
+        {{publication-field-compare fieldLabel=allFieldObjects.journal_id.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.journal_id fieldValue=publication.journal_id}}
+      {{/if}}
+
+      {{#if allFieldObjects.sourcechooser}}
+        {{publication-field-compare fieldLabel=allFieldObjects.sourcechooser.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.sourcechooser fieldValue=publication.sourcechooser}}
+      {{/if}}
+
+      {{#if allFieldObjects.sourcetitle}}
+        {{publication-field-compare fieldLabel=allFieldObjects.sourcetitle.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.sourcetitle fieldValue=publication.sourcetitle}}
+      {{/if}}
+
+      {{#if allFieldObjects.sourcevolume}}
+        {{publication-field-compare fieldLabel=allFieldObjects.sourcevolume.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.sourcevolume fieldValue=publication.sourcevolume}}
+      {{/if}}
+
+      {{#if allFieldObjects.sourceissue}}
+        {{publication-field-compare fieldLabel=allFieldObjects.sourceissue.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.sourceissue fieldValue=publication.sourceissue}}
+      {{/if}}
+
+      {{#if allFieldObjects.sourcepages}}
+        {{publication-field-compare fieldLabel=allFieldObjects.sourcepages.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.sourcepages fieldValue=publication.sourcepages}}
+      {{/if}}
+
+      {{#if allFieldObjects.issn}}
+        {{publication-field-compare fieldLabel=allFieldObjects.issn.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.issn fieldValue=publication.issn}}
+      {{/if}}
+
+      {{#if allFieldObjects.eissn}}
+        {{publication-field-compare fieldLabel=allFieldObjects.eissn.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.eissn fieldValue=publication.eissn}}
+      {{/if}}
+
+      {{#if allFieldObjects.article_number}}
+        {{publication-field-compare fieldLabel=allFieldObjects.article_number.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.article_number fieldValue=publication.article_number}}
+      {{/if}}
+
+      {{#if allFieldObjects.extent}}
+        {{publication-field-compare fieldLabel=allFieldObjects.extent.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.extent fieldValue=publication.extent}}
+      {{/if}}
+
+      {{#if allFieldObjects.publisher}}
+        {{publication-field-compare fieldLabel=allFieldObjects.publisher.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publisher fieldValue=publication.publisher}}
+      {{/if}}
+
+      {{#if allFieldObjects.place}}
+        {{publication-field-compare fieldLabel=allFieldObjects.place.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.place fieldValue=publication.place}}
+      {{/if}}
+
+      {{#if allFieldObjects.series}}
+        {{publication-field-compare fieldLabel=allFieldObjects.series.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.series_objects listValue='title' type='list' fieldValue=publication.series_objects listValue='title' type='list'}}
+      {{/if}}
+
+      {{#if allFieldObjects.isbn}}
+        {{publication-field-compare fieldLabel=allFieldObjects.isbn.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.isbn fieldValue=publication.isbn}}
+      {{/if}}
+
+      {{#if allFieldObjects.editor}}
+        {{publication-field-compare fieldLabel=allFieldObjects.editor.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.editor fieldValue=publication.editor}}
+      {{/if}}
+
+      {{#if allFieldObjects.dissdate}}
+        {{publication-field-compare fieldLabel=allFieldObjects.dissdate.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.dissdate fieldValue=publication.dissdate}}
+      {{/if}}
+
+      {{#if allFieldObjects.dissopponent}}
+        {{publication-field-compare fieldLabel=allFieldObjects.dissopponent.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.dissopponent fieldValue=publication.dissopponent}}
+      {{/if}}
+
+      {{#if allFieldObjects.patent_applicant}}
+        {{publication-field-compare fieldLabel=allFieldObjects.patent_applicant.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.patent_applicant fieldValue=publication.patent_applicant}}
+      {{/if}}
+
+      {{#if allFieldObjects.patent_application_number}}
+        {{publication-field-compare fieldLabel=allFieldObjects.patent_application_number.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.patent_application_number fieldValue=publication.patent_application_number}}
+      {{/if}}
+
+      {{#if allFieldObjects.patent_application_date}}
+        {{publication-field-compare fieldLabel=allFieldObjects.patent_application_date.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.patent_application_date fieldValue=publication.patent_application_date}}
+      {{/if}}
+
+      {{#if allFieldObjects.patent_number}}
+        {{publication-field-compare fieldLabel=allFieldObjects.patent_number.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.patent_number fieldValue=publication.patent_number}}
+      {{/if}}
+
+      {{#if allFieldObjects.patent_date}}
+        {{publication-field-compare fieldLabel=allFieldObjects.patent_date.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.patent_date fieldValue=publication.patent_date}}
+      {{/if}}
+
+      {{#if allFieldObjects.artwork_type}}
+        {{publication-field-compare fieldLabel=allFieldObjects.artwork_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artwork_type fieldValue=publication.artwork_type}}
+      {{/if}}
+    </tbody>
+  </table>
 {{else if isPreviewMode}}
   <dl class="dl-horizontal">
 

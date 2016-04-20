@@ -6,7 +6,8 @@ export default Ember.Controller.extend({
   publicationsController: Ember.inject.controller("publications"),
   publicationsShowController: Ember.inject.controller("publications/show"),
   isExtendedViewMode: false,
-
+  queryParams: ['other_publication'],
+  
   deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
@@ -55,6 +56,9 @@ export default Ember.Controller.extend({
     },
     toggleViewMode: function() {
       this.toggleProperty('isExtendedViewMode');
+    },
+    toggleCompareMode: function() {
+      this.toggleProperty('isExtendedCompareMode');
     }
   }
 });

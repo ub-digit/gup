@@ -1,11 +1,11 @@
 {{#if isExtendedViewMode}}
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
-    <div class="alert alert-info">
-      Du tittar på posten i granskningsläge. <a href="javascript.void(0)" {{action 'toggleViewMode'}}>Tillbaka till visningsläge. <i class="fa fa-compress"></i></a>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="alert alert-info">
+        Du tittar på posten i granskningsläge. <a href="javascript.void(0)" {{action 'toggleViewMode'}}>Tillbaka till visningsläge. <i class="fa fa-compress"></i></a>
+      </div>
     </div>
   </div>
-</div>
 {{/if}}
 <div class="row">
   <div class="col-xs-3">
@@ -32,15 +32,26 @@
           {{/if}}
         {{/if}}
         {{#if session.content.can_biblreview}}
-        <li>
-          {{#if isExtendedViewMode}}
-            <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>
+            {{#if isExtendedViewMode}}
+          <li>
+              <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>
+          </li>
+          {{#if isExtendedCompareMode}}
+          <li>
+              <a href="javascript.void(0)" {{action 'toggleCompareMode'}}> <i class="fa fa-compress"></i> Granskningsläge</a>
+          </li>
           {{else}}
-            <a href="javascript.void(0)" {{action 'toggleViewMode'}}><i class="fa fa-expand"></i> Granskningsläge</a>
+          <li>
+              <a href="javascript.void(0)" {{action 'toggleCompareMode'}}> <i class="fa fa-compress"></i> Jämför versioner</a>
+          </li>
           {{/if}}
-        </li>
+            {{else}}
+          <li>
+              <a href="javascript.void(0)" {{action 'toggleViewMode'}}><i class="fa fa-expand"></i> Granskningsläge</a>
+          </li>
+            {{/if}}
         {{/if}}
-    </ul>
+      </ul>
     </nav>
   </div>
 </div>
@@ -48,55 +59,59 @@
   <div class="col-xs-10">
     <h2>{{model.title}}</h2>
     {{#if model.epub_ahead_of_print}}
-    <div class="alert alert-warning">
-      E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
-    </div>
+      <div class="alert alert-warning">
+        E-pub ahead of print sedan: {{format-date model.epub_ahead_of_print}}
+      </div>
     {{/if}}
   </div>
 </div>
 {{#if isExtendedViewMode}}
   <div class="row">
-    <div class="col-xs-10">
+    <div class="col-xs-12">
+      {{#if isExtendedCompareMode}}
+      {{publication-display publication=model publicationType=getPublicationTypeObject mode='compare' otherPublication=otherPublication otherIsSelected=otherPublicationSelected}}
+      {{else}}
       {{publication-display publication=model publicationType=getPublicationTypeObject mode='review'}}
+      {{/if}}
     </div>
   </div>
   <div class="row">
     <div class="col-xs-10">
       <dl class="dl-horizontal dl-biblreview">
-{{#if 0}}
+        {{#if 0}}
         <dt>{{t 'publication.labels.createdAt'}}</dt><dd>{{format-date model.created_at}}</dd>
         <dt>{{t 'publication.labels.createdBy'}}</dt><dd>{{model.version_created_by}}</dd>
         {{#if model.published_at}}<dt>{{t 'publication.labels.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
-        {{#if model.version_updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.version_updated_by}}</dd>{{/if}}
-        {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
-        {{#if model.biblreview_postponed_until}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.biblreview_postponed_until}}</dd>{{/if}}
-        {{#if model.biblreview_postpone_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.biblreview_postpone_comment}}</dd>{{/if}}
-        {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
-          {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
-{{else}}
-  <dt>{{t 'publication.labels.createdAt'}}</dt>
-  <dd><span>{{format-date model.created_at}}</span> av <span>{{model.version_created_by}}</span></dd>
-  {{#if model.updated_at}}
-    <dt>{{t 'publication.labels.updatedAt'}}</dt>
-    <dd><span>{{format-date model.updated_at}}</span> av <span>{{model.version_updated_by}}</span></dd>
-  {{/if}}
-  {{#if model.published_at}}
-    <dt>{{t 'publication.labels.publishedAt'}}</dt>
-    <dd><span>{{format-date model.published_at}}</span> av <span>{{model.version_created_by}}</span></dd>
-  {{/if}}
-  {{#if model.biblreview_postponed_until}}
-    <dt>{{t 'publication.labels.reviewPostponedUntil'}}</dt>
-    <dd><span>{{format-date model.biblreview_postponed_until 'YYYY-MM-DD'}}</span>
-    {{#if model.biblreview_postpone_comment}}
-      ({{model.biblreview_postpone_comment}})
-    {{/if}}
-    </dd>
-  {{/if}}
-  {{#if model.biblreviewed_at}}
-    <dt>{{t 'publication.labels.reviewedAt'}}</dt>
-    <dd><span>{{format-date model.biblreviewed_at}}</span> av <span>{{model.biblreviewed_by}}</span></dd>
-  {{/if}}
-{{/if}}
+          {{#if model.version_updated_by}}<dt>{{t 'publication.labels.updatedBy'}}</dt><dd>{{model.version_updated_by}}</dd>{{/if}}
+            {{#if model.published_at}}<dt>{{t 'publication.labels.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
+              {{#if model.biblreview_postponed_until}}<dt>{{t 'publication.labels.reviewStart'}}</dt><dd>{{format-date model.biblreview_postponed_until}}</dd>{{/if}}
+                {{#if model.biblreview_postpone_comment}}<dt>{{t 'publication.labels.delayComment'}}</dt><dd>{{model.biblreview_postpone_comment}}</dd>{{/if}}
+                  {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
+                    {{#if model.biblreviewed_at}}<dt>{{t 'publication.labels.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
+                    {{else}}
+                      <dt>{{t 'publication.labels.createdAt'}}</dt>
+                      <dd><span>{{format-date model.created_at}}</span> av <span>{{model.version_created_by}}</span></dd>
+                      {{#if model.updated_at}}
+                        <dt>{{t 'publication.labels.updatedAt'}}</dt>
+                        <dd><span>{{format-date model.updated_at}}</span> av <span>{{model.version_updated_by}}</span></dd>
+                      {{/if}}
+                      {{#if model.published_at}}
+                        <dt>{{t 'publication.labels.publishedAt'}}</dt>
+                        <dd><span>{{format-date model.published_at}}</span> av <span>{{model.version_created_by}}</span></dd>
+                      {{/if}}
+                      {{#if model.biblreview_postponed_until}}
+                        <dt>{{t 'publication.labels.reviewPostponedUntil'}}</dt>
+                        <dd><span>{{format-date model.biblreview_postponed_until 'YYYY-MM-DD'}}</span>
+                        {{#if model.biblreview_postpone_comment}}
+                          ({{model.biblreview_postpone_comment}})
+                        {{/if}}
+                        </dd>
+                      {{/if}}
+                      {{#if model.biblreviewed_at}}
+                        <dt>{{t 'publication.labels.reviewedAt'}}</dt>
+                        <dd><span>{{format-date model.biblreviewed_at}}</span> av <span>{{model.biblreviewed_by}}</span></dd>
+                      {{/if}}
+        {{/if}}
       </dl>
     </div>
   </div>

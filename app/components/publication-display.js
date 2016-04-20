@@ -8,6 +8,7 @@ export default Ember.Component.extend({
 
   isReviewMode: Ember.computed.equal('mode', 'review'),
   isPreviewMode: Ember.computed.equal('mode', 'preview'),
+  isCompareMode: Ember.computed.equal('mode', 'compare'),
 
   allFieldObjects: Ember.computed('publicationType.all_fields', function() {
     var o = Ember.Object.create();
