@@ -6,7 +6,8 @@ export default Ember.Controller.extend({
   publicationsController: Ember.inject.controller("publications"),
   publicationsShowController: Ember.inject.controller("publications/show"),
   isExtendedViewMode: false,
-  queryParams: ['other_publication'],
+  queryParams: ['other_version'],
+  other_version: null,
   
   deletePublication: function(id) {
     var that = this;

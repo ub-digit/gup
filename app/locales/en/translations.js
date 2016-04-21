@@ -137,6 +137,10 @@ export default {
         btnDelay: 'Delay',
         showDelayedOnly: 'Show delayed only',
     },
+  compare: {
+    versionBy: 'by',
+    selectVersion: '- Select version -'
+  },
 	edit: {
 		header: 'Edit publication',
 		actions: {

@@ -143,6 +143,10 @@ export default {
         btnDelay: 'Fördröj',
         showDelayedOnly: 'Visa endast fördröjda',
     },
+  compare: {
+    versionBy: 'av',
+    selectVersion: '- Välj version -'
+  },
 	edit: {
 		header: 'Redigera publikation',
 		actions: {

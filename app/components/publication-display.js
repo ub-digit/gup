@@ -16,6 +16,9 @@ export default Ember.Component.extend({
       Ember.set(o, field.name, field);
     });
     return o;
+  }),
+  comparableVersions: Ember.computed('publication.versions', function() {
+    return this.get('publication.versions').slice(1);
   })
 
 });

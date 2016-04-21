@@ -69,7 +69,7 @@
   <div class="row">
     <div class="col-xs-12">
       {{#if isExtendedCompareMode}}
-      {{publication-display publication=model publicationType=getPublicationTypeObject mode='compare' otherPublication=otherPublication otherIsSelected=otherPublicationSelected}}
+      {{publication-display publication=model publicationType=getPublicationTypeObject mode='compare' otherPublication=otherPublication otherIsSelected=otherPublicationSelected other_version=other_version}}
       {{else}}
       {{publication-display publication=model publicationType=getPublicationTypeObject mode='review'}}
       {{/if}}

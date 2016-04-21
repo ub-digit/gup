@@ -161,13 +161,17 @@
         <th></th>
         <th>Aktuell version</th>
         <th>
-          <select name="tjosan">
-            <option> - Välj version - </option>
-            <option>Version 1 2016-01-01</option>
-            <option>Version 2 2016-01-02</option>
-            <option>Version 3 2016-01-03</option>
-            <option>Version 4 2016-03-21</option>
-          </select>
+          {{#x-select value=other_version class="form-control"}}
+          {{#x-option}}{{t 'compare.selectVersion'}}{{/x-option}}
+            {{#each comparableVersions as |version|}}
+            {{#x-option value=version.id}}
+              {{format-date version.created_at}}
+              {{#if version.created_by}}
+                {{t 'compare.versionBy'}} {{version.created_by}}
+              {{/if}}
+            {{/x-option}}
+            {{/each}}
+          {{/x-select}}
         </th>
       </tr>
       </thead>

@@ -7,15 +7,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   returnTo: null,
 
   queryParams: {
-    other_publication: { refreshModel: true }
+    other_version: { refreshModel: true }
   },
   
   model: function(params, transition) {
     var model = this.modelFor('publications.show');
-    if(params.other_publication) {
+    if(params.other_version) {
       return Ember.RSVP.hash({
         model: model,
-        other: this.store.find('publication', params.other_publication),
+        other: this.store.find('publication', model.id, {version_id: params.other_version}),
       });
     } else {
       return { model: model };
@@ -25,6 +25,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('model', model.model);
     controller.set('otherPublication', model.other || {});
     if(model.other) {
+      controller.set('other_version', parseInt(controller.get('other_version')));
       controller.set('otherPublicationSelected', true);
     } else {
       controller.set('otherPublicationSelected', false);
