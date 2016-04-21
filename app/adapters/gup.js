@@ -23,7 +23,8 @@ export default Ember.Object.extend({
     feedback_email: {path: 'publications/feedback_email', singular: 'publication'},
 		userdata: {path: 'userdata'},
 		serie: {path: 'series'},
-		project: {path: 'projects'}
+		project: {path: 'projects'},
+    message: {path: 'messages'}
   },
 
   getLocale: function() {

@@ -79,6 +79,7 @@ export default {
     admin: 'Admin',
     admin_departments: 'Administrera institutioner',
     admin_people: 'Administrera personer',
+    admin_messages: 'Administrera meddelanden',
     query_department: 'Sök institution',
     query_department_none: 'Ingen institution hittades',
     query_person: 'Sök person',
@@ -262,9 +263,22 @@ export default {
     message: 'Meddelande'
   },
   admin: {
+    messages: {
+      newsMessageHeader: 'Nyhetsmeddelande',
+      alertMessageHeader: 'Driftmeddelande',
+      message: 'Meddelande',
+      start_date: 'Startdatum',
+      end_date: 'Slutdatum',
+      save: 'Spara',
+      delete: 'Radera',
+      saved: 'Meddelandet har sparats',
+      deleted: 'Meddelandet har raderats',
+      saveError: 'Kunde inte spara meddelandet',
+      deleteError: 'Kunde inte radera meddelandet'
+    },
     departments: {
       newLink: 'Skapa ny',
-      backToList: 'TIllbaka till listan',
+      backToList: 'Tillbaka till listan',
       new: {
         header: 'Skapa ny institution',
         save: 'Skapa institution',
