@@ -76,7 +76,7 @@ export default Ember.Component.extend({
       Ember.$("body").addClass("loading");
       var that = this;
 
-      this.store.find('review', item.db_id).then(
+      this.store.find('review', item.version_id).then(
         function(response) {
 
           that.sendAction('setMsgHeader', 'success', that.get('i18n').t('messages.approveSuccess'));
