@@ -28,8 +28,6 @@ export default Ember.Component.extend({
       rightValue = JSON.stringify(this.get('listOtherValueArray'));
     }
 
-    console.log("isDifferent", leftValue, rightValue);
-    
     if(leftValue !== rightValue) {
       return true;
     }

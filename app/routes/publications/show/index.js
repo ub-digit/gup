@@ -6,9 +6,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: Ember.inject.service(),
   returnTo: null,
 
-  queryParams: {
-    other_version: { refreshModel: true }
-  },
+//  queryParams: {
+//    other_version: { refreshModel: true }
+//  },
   
   model: function(params, transition) {
     var model = this.modelFor('publications.show');
@@ -34,8 +34,27 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     // Check to see if previous post list was bibliographic review list and set view mode to extended if so. Otherwise reset view mode to compact.
     if (target === 'publications.dashboard.biblreview') {
       controller.set('isExtendedViewMode', true);
+      if(!model.other) {
+        controller.set('isExtendedCompareMode', false);
+      }
     } else {
       controller.set('isExtendedViewMode', false);
+      controller.set('isExtendedCompareMode', false);
+    }
+  },
+  actions: {
+    fetchVersion: function(publication_id, version_id) {
+      var controller = this.get('controller');
+
+      if(version_id) {
+        this.store.find('publication', publication_id, {version_id: version_id}).then(function(data) {
+          controller.set('otherPublication', data);
+          controller.set('otherPublicationSelected', true);
+        });
+      } else {
+        controller.set('otherPublication', {});
+        controller.set('otherPublicationSelected', false);
+      }
     }
   }
 });

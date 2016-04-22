@@ -144,8 +144,10 @@ export default {
         showDelayedOnly: 'Visa endast fördröjda',
     },
   compare: {
-    versionBy: 'av',
-    selectVersion: '- Välj version -'
+    version: 'Version',
+    versionBy: 'uppdaterad av',
+    currentVersion: 'Aktuell version',
+    selectVersion: '- Välj äldre version -'
   },
 	edit: {
 		header: 'Redigera publikation',
