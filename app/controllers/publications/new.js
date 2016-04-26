@@ -70,7 +70,7 @@ export default Ember.Controller.extend({
       if (model) {
         publication = model;
       }
-      this.store.save('publication', publication).then(
+      this.store.save('draft', publication).then(
         function(response) {
           that.transitionToRoute('publications.show.edit', response.id);
         },

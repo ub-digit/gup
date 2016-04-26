@@ -10,7 +10,7 @@ export default Ember.Object.extend({
     publish: {path: 'publications/publish', singular: 'publication'},
     publication_type: {path: 'publication_types'},
     faculty: {path: 'faculties', plural:'faculties'},
-    draft: { path: 'publications', plural: 'publications'},
+    draft: { path: 'drafts', singular: 'publication', plural: 'publications'},
     import_data: {path: 'fetch_import_data', plural: 'publication'},
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' },

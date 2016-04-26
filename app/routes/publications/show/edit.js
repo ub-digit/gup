@@ -131,7 +131,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         Ember.$("body").addClass("loading");
         this.get("controller").formatAuthorsForServer().then(function(){
             that.store.save(
-                'publication',
+                'draft',
                 that.controller.get("publication")).then(successHandler, errorHandler);
         });
 
