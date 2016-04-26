@@ -159,15 +159,21 @@
     <thead>
       <tr>
         <th></th>
-        <th>Aktuell version</th>
         <th>
-          {{#x-select value=other_version class="form-control"}}
+          {{t 'compare.currentVersion'}},
+          {{format-date publication.version_created_at}}
+          {{#if publication.version_created_by}}
+            {{t 'compare.versionBy'}} {{publication.version_created_by}}
+          {{/if}}
+        </th>
+        <th>
+          {{#x-select value=other_version action='fetchVersion' class="form-control"}}
           {{#x-option}}{{t 'compare.selectVersion'}}{{/x-option}}
             {{#each comparableVersions as |version|}}
-            {{#x-option value=version.id}}
-              {{format-date version.created_at}}
-              {{#if version.created_by}}
-                {{t 'compare.versionBy'}} {{version.created_by}}
+            {{#x-option value=version.item.id}}
+              {{t 'compare.version'}} {{version.index}},
+              {{format-date version.item.created_at}}{{#if version.item.created_by}},
+                {{t 'compare.versionBy'}} {{version.item.created_by}}
               {{/if}}
             {{/x-option}}
             {{/each}}

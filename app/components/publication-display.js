@@ -18,7 +18,15 @@ export default Ember.Component.extend({
     return o;
   }),
   comparableVersions: Ember.computed('publication.versions', function() {
-    return this.get('publication.versions').slice(1);
-  })
-
+    var versions = this.get('publication.versions').slice(1);
+    return versions.map(function(item,i) {
+      return {index: (versions.length - i), item: item};
+    });
+  }),
+  fetchVersionString: 'fetchVersion',
+  actions: {
+    fetchVersion: function(version_id) {
+      this.sendAction('fetchVersionString', this.get('publication.id'), version_id);
+    }
+  }
 });

@@ -138,8 +138,10 @@ export default {
         showDelayedOnly: 'Show delayed only',
     },
   compare: {
-    versionBy: 'by',
-    selectVersion: '- Select version -'
+    version: 'Version',
+    versionBy: 'updated by',
+    currentVersion: 'Current version',
+    selectVersion: '- Select older version -'
   },
 	edit: {
 		header: 'Edit publication',
