@@ -14,7 +14,6 @@ export default Ember.Object.extend({
     import_data: {path: 'fetch_import_data', plural: 'publication'},
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' },
-    review: { path: 'publications/review', singular: 'publication'},
     bibl_review: { path: 'publications/bibl_review', singular: 'publication'},
     set_biblreview_postponed_until: {path: 'publications/set_biblreview_postponed_until', singular: 'publication'},
     language: {path: 'languages'},
@@ -25,7 +24,8 @@ export default Ember.Object.extend({
 		serie: {path: 'series'},
 		project: {path: 'projects'},
     message: {path: 'messages'},
-    published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'}
+    published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'},
+    review_publication: {path: 'review_publications', singular: 'publication', plural: 'publications'}
   },
 
   getLocale: function() {
