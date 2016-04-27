@@ -4,6 +4,7 @@ import ENV from '../config/environment';
 export default Ember.Object.extend({
   i18n: Ember.inject.service(),
   endpoints: {
+    report: {path: 'reports'},
     person: {path: 'people', plural:'people'},
     department: {path: 'departments'},
     publication: {path: 'publications'},

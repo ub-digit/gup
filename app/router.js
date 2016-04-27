@@ -23,6 +23,7 @@ Router.map(function() {
       this.route('review');
       this.route('biblreview');
       this.route('admin');
+      this.route('reports');
     });
   });
   this.resource('admin', function() {

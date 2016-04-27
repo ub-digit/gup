@@ -97,7 +97,8 @@ export default {
       name_en: 'Engelskt namn',
       start_year: 'Startår',
       end_year: 'Slutår'
-    }
+    },
+    reports: 'Statistik'
 	},
 	tabTitle: {
 		start: 'Start',
@@ -106,8 +107,23 @@ export default {
 		published: 'Publikationer där jag finns med som författare.',
 		forReview: 'Dessa publikationer måste godkännas av mig med avseende på ämnesord och affiliering.',
 		forBReview: 'Dessa publikationer kräver bibliografisk granskning.',
-    admin: 'Administrera data'
+    admin: 'Administrera data',
+    reports: 'Statistik'
 	},
+  reports: {
+    select_criteria: "Välj kriterier",
+    year: "År",
+    start_year: "Start",
+    end_year: "Slut",
+    include_as_column: "Kolumn",
+    faculty: "Fakultet",
+    select_faculty: "Välj fakultet",
+    create: "Skapa rapport",
+    department: "Institution",
+    publication_type: "Publikationstyp",
+    content_type: "Innehållsmärkning",
+    select_department: "Välj institution"
+  },
 	labels: {
 		registerNew: 'Registrera ny',
 		registerNewPublication: 'Registrera ny publikation:',

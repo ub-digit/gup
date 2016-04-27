@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 report-form">
+      <div class="row">
+        <h3>{{t 'reports.select_criteria'}}</h3>
+      </div>
+      
+      <div class="row">
+        <h4>
+          {{t 'reports.year'}}
+          <label class="report-column-check">
+            {{input type="checkbox" checked=columns.year}}
+            {{t 'reports.include_as_column'}}
+          </label>
+        </h4>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-6 col-no-left-padding">
+              <label>{{t 'reports.start_year'}}</label>
+              {{input value=filter.start_year class="form-control" placeholder=(t 'reports.start_year')}}
+            </div>
+            <div class="col-xs-6 col-no-right-padding">
+              <label>{{t 'reports.end_year'}}</label>
+              {{input value=filter.end_year class="form-control" placeholder=(t 'reports.end_year')}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h4>
+          {{t 'reports.faculty'}}
+          <label class="report-column-check">
+            {{input type="checkbox" checked=columns.faculty}}
+            {{t 'reports.include_as_column'}}
+          </label>
+        </h4>
+
+        {{#x-select value=filter.faculties class="form-control"}}
+        {{#x-option}}{{t 'reports.select_faculty'}}{{/x-option}}
+          {{#each publicationsController.faculties as |selectValue|}}
+          {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+
+      </div>
+
+      <div class="row">
+        <h4>
+          {{t 'reports.department'}}
+          <label class="report-column-check">
+            {{input type="checkbox" checked=columns.department}}
+            {{t 'reports.include_as_column'}}
+          </label>
+        </h4>
+
+        {{select2-adjusted
+        content=departments
+        optionLabelPath="name"
+        optionValuePath="id"
+        value=filter.departments
+        placeholder=(t 'reports.select_department')
+        allowClear=true
+        multiple=true
+        }}
+      </div>
+
+      <div class="row">
+        <h4>
+          {{t 'reports.content_type'}}
+          <label class="report-column-check">
+            {{input type="checkbox" checked=columns.content_type}}
+            {{t 'reports.include_as_column'}}
+          </label>
+        </h4>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-4">
+              {{input type="checkbox" checked=content_type.ref}}Ref
+            </div>
+            <div class="col-xs-4">
+              {{input type="checkbox" checked=content_type.vet}}Vet
+            </div>
+            <div class="col-xs-4">
+              {{input type="checkbox" checked=content_type.pop}}Pop
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <h4>
+          {{t 'reports.publication_type'}}
+          <label class="report-column-check">
+            {{input type="checkbox" checked=columns.publication_type}}
+            {{t 'reports.include_as_column'}}
+          </label>
+        </h4>
+
+        {{#each publicationTypes as |pubType|}}
+        {{input type="checkbox" checked=pubType.checked}}{{pubType.name}}<br/>
+        {{/each}}
+      </div>
+      
+      <div class="row">
+        <button class="btn btn-primary"
+          {{action 'createReport' filterData columnArray}}>{{t 'reports.create'}}</button>
+      </div>
+    </div>
+    <div class="col-xs-8">
+      {{#if model}}
+        <table class="table">
+          <thead>
+            <tr>
+              {{#each model.columns as |column|}}
+              <th>{{column}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.data as |row|}}
+            <tr>
+              {{#each row as |col|}}
+              <td>{{col}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        
+      {{/if}}
+      
+    </div>
+  </div>
+</div>

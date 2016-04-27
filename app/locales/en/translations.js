@@ -92,7 +92,8 @@ export default {
       name_en: 'English name',
       start_year: 'Start year',
       end_year: 'End year'
-    }
+    },
+    reports: 'Reports'
 	},
 	tabTitle: {
 		start: 'Start',
@@ -101,8 +102,23 @@ export default {
 		published: 'Publications where I am one of the authors.',
 		forReview: 'These publications need my approval concerning category and affiliation.',
 		forBReview: 'These publications demand bibliographiucal review.',
-    admin: 'Administrate data'
+    admin: 'Administrate data',
+    reports: 'Reports'
 	},
+  reports: {
+    select_criteria: "Select criteria",
+    year: "Year",
+    start_year: "Start year",
+    end_year: "End year",
+    include_as_column: "Column",
+    faculty: "Faculty",
+    select_faculty: "Select faculty",
+    create: "Create report",
+    department: "Institution",
+    publication_type: "Publication type",
+    content_type: "Content type",
+    select_department: "Select institution"
+  },
 	labels: {
 		registerNew: 'Register new',
 		registerNewPublication: 'Register new publication:',
