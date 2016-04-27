@@ -152,6 +152,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         var errorHandler = function(reason) {
             that.send('setMsgHeader', 'error', that.get('i18n').t('messages.publishError'));
             that.controller.set('errors', reason.error.errors);
+
+            if (that.controller.get('publication.draft_id')) {
+              that.controller.set('publication.id', that.controller.get('publication.draft_id'));
+              that.controller.set('publication.draft_id', null);
+            } 
             Ember.$("body").removeClass("loading");
             Ember.run.later(function() {
                 Ember.$('[data-toggle="popover"]').popover({
@@ -164,10 +169,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
         Ember.$("body").addClass("loading");
 
+        if (!that.controller.get('publication.published_at')) {
+          that.controller.set('publication.draft_id', that.controller.get('publication.id'));
+          that.controller.set('publication.id', null);
+        }
+
         this.get("controller").formatAuthorsForServer().then(function(){
-            that.store.save(
-                'publish',
-                that.controller.get("publication")).then(successHandler, errorHandler);
+            that.store.save('published_publication',that.controller.get("publication")).then(successHandler, errorHandler);
         });
       }
     }

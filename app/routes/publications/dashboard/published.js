@@ -11,7 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 
   model: function(){
-    return this.store.find("publication", {list_type: 'is_actor'});
+    return this.store.find("published_publication", {actor: 'logged_in_user'});
   },
 
 });

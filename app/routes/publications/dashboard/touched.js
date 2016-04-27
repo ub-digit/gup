@@ -11,6 +11,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		this.controllerFor('application').set('currentList', transition.targetName);
 	},
   model: function(){
-    return  this.store.find("publication", {list_type: 'is_registrator'});
+    return  this.store.find("published_publication", {registrator: 'logged_in_user'});
   },
 });

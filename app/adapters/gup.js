@@ -7,7 +7,6 @@ export default Ember.Object.extend({
     person: {path: 'people', plural:'people'},
     department: {path: 'departments'},
     publication: {path: 'publications'},
-    publish: {path: 'publications/publish', singular: 'publication'},
     publication_type: {path: 'publication_types'},
     faculty: {path: 'faculties', plural:'faculties'},
     draft: { path: 'drafts', singular: 'publication', plural: 'publications'},
@@ -24,7 +23,8 @@ export default Ember.Object.extend({
 		userdata: {path: 'userdata'},
 		serie: {path: 'series'},
 		project: {path: 'projects'},
-    message: {path: 'messages'}
+    message: {path: 'messages'},
+    published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'}
   },
 
   getLocale: function() {
@@ -167,9 +167,10 @@ export default Ember.Object.extend({
     }, this.extractErrors);
   },
   saveCreate: function(name, data) {
+    var newName = this.singular(name);
     var that = this;
     var dataObject = {};
-    dataObject[name] = data;
+    dataObject[newName] = data;
     return this.send(this.urlMany(name), 'post', dataObject)
     .then(function(data) {
       return that.extractOne(name, data);
