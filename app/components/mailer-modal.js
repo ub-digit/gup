@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     sendMail: function(){
       var publication = this.get('publication');
       var message = this.get('message');
-      this.store.find('feedback_email', publication.id, {message: message, from: 'from_person'}).then(
+      this.store.save('feedback_mail',{message: message, from: 'from_person', publication_id: publication.id}).then(
         function(response){
         },
         function(error) {
