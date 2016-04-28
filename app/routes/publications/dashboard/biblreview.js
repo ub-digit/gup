@@ -17,12 +17,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this.controllerFor('application').set('currentList', transition.targetName);
 	},
   model: function(params) {
-    params.list_type = 'for_biblreview';
     if(!params.page) {
       params.page = 1;
     }
     return Ember.RSVP.hash({
-      publicationList:  this.store.find("publication", params)
+      publicationList:  this.store.find("biblreview_publication", params)
     });
 
   },

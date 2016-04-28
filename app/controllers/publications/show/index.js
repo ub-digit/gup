@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
   },
   approvePublication: function(id) {
     var that = this;
-    this.store.find('bibl_review', id).then(function() {
+    this.store.save('biblreview_publication', {id: id}).then(function() {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
         that.transitionToRoute('publications.dashboard.biblreview');
     },
