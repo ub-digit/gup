@@ -107,6 +107,7 @@ export default {
 	},
   reports: {
     select_criteria: "Select criteria",
+    export_csv: "Export to Excel",
     year: "Year",
     start_year: "Start year",
     end_year: "End year",

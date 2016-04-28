@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'gup/config/environment';
 
 export default Ember.Controller.extend({
   publicationsController: Ember.inject.controller("publications"),
@@ -33,5 +34,20 @@ export default Ember.Controller.extend({
     return this.get('filter');
   }),
 
+  csvUrl: Ember.computed('columnArray', 'filterData', function() {
+    var that = this;
+    var date = moment();
+    var report_name = "report-"+date.format("YYYY-MM-DD_HHMM");
+    var token =  this.container.lookup('simple-auth-session:main').get('token');
+    var report_data = Ember.$.param({
+      report: {
+        filter: that.get('filterData'),
+        columns: that.get('columnArray')
+      }
+    });
+    return ENV.APP.serviceURL + '/reports/' + report_name + '?token=' + token + '&' + report_data;
+  }),
+
+  
   model: {}
 });

@@ -112,6 +112,7 @@ export default {
 	},
   reports: {
     select_criteria: "Välj kriterier",
+    export_csv: "Exportera till Excel",
     year: "År",
     start_year: "Start",
     end_year: "Slut",

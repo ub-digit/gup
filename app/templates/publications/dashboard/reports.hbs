@@ -103,8 +103,11 @@
       </div>
       
       <div class="row">
+        <div class="btn-toolbar">
+        <a href="{{csvUrl}}" class="btn btn-default">{{t 'reports.export_csv'}}</a>
         <button class="btn btn-primary"
           {{action 'createReport' filterData columnArray}}>{{t 'reports.create'}}</button>
+        </div>
       </div>
     </div>
     <div class="col-xs-8">
