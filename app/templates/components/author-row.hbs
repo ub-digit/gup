@@ -142,7 +142,7 @@
 		{{/if}}
 	</div>
 	<div class="col-xs-1 compensate-for-label-on-top">
-		<button class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
+		<button class="btn btn-danger" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
 	</div>
 	<div class="col-xs-1 compensate-for-label-on-top">
 		{{#unless isThisTheOnlyAuthorRow}}
