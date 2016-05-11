@@ -5,9 +5,10 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
   });
+  app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
+  app.import('bower_components/jquery-ui/jquery-ui.min.js');
   app.import("bower_components/moment/min/moment.min.js");
   app.import('bower_components/ember-uploader/dist/ember-uploader.js');
-  app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
   app.import('bower_components/rsvp/rsvp.min.js');
   app.import('vendor/select2-bootstrap.css');
