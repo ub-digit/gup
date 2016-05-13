@@ -28,9 +28,7 @@
         {{publication-field-bibl-review fieldLabel=allFieldObjects.publanguage.label fieldValue=publication.publanguage_label}}
       {{/if}}
 
-      {{#if allFieldObjects.category_hsv_local}}
-        {{publication-field-bibl-review fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
-      {{/if}}
+      {{publication-field-bibl-review fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
 
       {{#if allFieldObjects.url}}
         {{publication-field-bibl-review fieldLabel=allFieldObjects.url.label fieldValue=publication.url}}
@@ -208,9 +206,7 @@
         {{publication-field-compare fieldLabel=allFieldObjects.publanguage.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publanguage_label fieldValue=publication.publanguage_label}}
       {{/if}}
 
-      {{#if allFieldObjects.category_hsv_local}}
         {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_local.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
-      {{/if}}
 
       {{#if allFieldObjects.url}}
         {{publication-field-compare fieldLabel=allFieldObjects.url.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.url fieldValue=publication.url}}
@@ -488,11 +484,7 @@
       {{/if}}
     {{/if}}
 
-    {{#if allFieldObjects.category_hsv_local}}
-      {{#if publication.category_hsv_local}}
         {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
-      {{/if}}
-    {{/if}}
 
     {{#if allFieldObjects.keywords}}
       {{#if publication.keywords}}

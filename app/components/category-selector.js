@@ -39,6 +39,7 @@ export default Ember.Component.extend({
       if (this.get('categoryList').indexOf(id) === -1 && this.get('categoryList.length') < this.get('MAX_NUMBER_OF_CATEGORIES')){
         this.get('categoryList').pushObject(id);
       }
+
     },
 
     clearSearch: function() {

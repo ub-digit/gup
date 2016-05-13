@@ -51,7 +51,7 @@ export default Ember.Controller.extend({
     // Fetch objects if they aren\t loaded
     if (this.get('publication.category_hsv_local')) {
       this.get('publication.category_hsv_local').forEach(function(item){
-        var categoryObject = that.get('categoryObjectsList').findBy('svepid', item);
+        var categoryObject = that.get('categoryObjectsList').findBy('id', item);
         if (categoryObject === null || categoryObject === undefined) {
           that.store.find('category', item).then(
             function(response){
@@ -65,7 +65,7 @@ export default Ember.Controller.extend({
 
     // Remove objects which are no longer part of category list
     that.get('categoryObjectsList').forEach(function(item){
-      if (that.get('publication.category_hsv_local').indexOf(item.svepid) === -1) {
+      if (that.get('publication.category_hsv_local').indexOf(item.id) === -1) {
         that.get('categoryObjectsList').removeObject(item);
       }
     });

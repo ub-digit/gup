@@ -70,7 +70,7 @@ export default Ember.Component.extend({
 
   isVisible: Ember.computed('getRule', 'fieldName', function() {
 
-    if (this.get('fieldName') === 'content_type') {
+    if (this.get('fieldName') === 'content_type' || this.get('fieldName') === 'category_hsv_local') {
       return true;
     }
 

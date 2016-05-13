@@ -16,9 +16,9 @@
 
 {{#unless isRoot}}
   {{#unless isSelected}}
-  <a href="#" style="color:black;"{{action 'addSelectedCategory' category.svepid}}>{{category.name}} <i class="fa fa-square-o"></i></a>
+  <a href="#" style="color:black;"{{action 'addSelectedCategory' category.id}}>{{category.name}} <i class="fa fa-square-o"></i></a>
   {{else}}
-    <a href="#" {{action 'removeSelectedCategory' category.svepid}}>{{category.name}} <i class="fa fa-check-square-o"></i></a>
+    <a href="#" {{action 'removeSelectedCategory' category.id}}>{{category.name}} <i class="fa fa-check-square-o"></i></a>
   {{/unless}}
   {{else}}
   {{category.name}}

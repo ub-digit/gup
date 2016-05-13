@@ -29,7 +29,7 @@
         <strong>{{t 'edit.form.selectCategory.selectedCategories'}}</strong><br/>
           {{#each categoryObjects as |selectedCategory|}}
           {{selectedCategory.name_path}}
-          <a href="#" {{action 'removeSelectedCategory' selectedCategory.svepid}}><i class="fa fa-times text-danger"></i></a>
+          <a href="#" {{action 'removeSelectedCategory' selectedCategory.id}}><i class="fa fa-times text-danger"></i></a>
           <br/>
           {{else}}
           {{t 'edit.form.selectCategory.noCategoriesSelected'}}

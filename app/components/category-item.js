@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   removeSelectedCategoryString: 'removeSelectedCategory',
   isExpanded: Ember.computed.equal('expanded', true),
 
-  isSelected: Ember.computed('categoryList.[]', 'category.svepid', function() {
-    return (this.get('categoryList').indexOf(this.get('category.svepid')) !== -1);
+  isSelected: Ember.computed('categoryList.[]', 'category.id', function() {
+    return (this.get('categoryList').indexOf(this.get('category.id')) !== -1);
   }),
 
   isRoot: Ember.computed.equal('category.node_type', 'root'),
