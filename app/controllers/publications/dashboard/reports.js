@@ -4,6 +4,7 @@ import ENV from 'gup/config/environment';
 export default Ember.Controller.extend({
   publicationsController: Ember.inject.controller("publications"),
   publicationTypes: [],
+  person: null,
   columns: {},
   content_type: {},
   filter: {},
@@ -16,8 +17,9 @@ export default Ember.Controller.extend({
     if(this.get('columns.content_type')) { cArray.push('content_type'); }
     return cArray;
   }),
-  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,content_types}', 'content_type.{ref,vet,pop}','publicationTypes.@each.checked', function() {
+  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,content_types}', 'content_type.{ref,vet,pop}','publicationTypes.@each.checked', 'person.identifiers', function() {
     var content_types = [];
+    var that = this;
     if(this.get('content_type.ref')) { content_types.push('ref'); }
     if(this.get('content_type.vet')) { content_types.push('vet'); }
     if(this.get('content_type.pop')) { content_types.push('pop'); }
@@ -30,6 +32,11 @@ export default Ember.Controller.extend({
       }
     });
     this.set('filter.publication_types', publication_types);
+    if(this.get('person.identifiers')) {
+      this.get('person.identifiers').forEach(function(identifier) {
+        that.set('filter.persons', [identifier.value]);
+      });
+    }
     
     return this.get('filter');
   }),

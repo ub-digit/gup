@@ -123,7 +123,9 @@ export default {
     department: "Institution",
     publication_type: "Publikationstyp",
     content_type: "Innehållsmärkning",
-    select_department: "Välj institution"
+    select_department: "Välj institution",
+    person: "Person",
+    select_person: "Välj person"
   },
 	labels: {
 		registerNew: 'Registrera ny',

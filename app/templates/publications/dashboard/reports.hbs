@@ -67,6 +67,22 @@
 
       <div class="row">
         <h4>
+          {{t 'reports.person'}}
+        </h4>
+
+        {{select2-adjusted
+        query="queryAuthors"
+        value=person
+        minimumInputLength=3
+        optionLabelPath="presentation_string"
+        placeholder=(t 'reports.select_person')
+        allowClear=true
+        multiple=false
+        }}
+      </div>
+
+      <div class="row">
+        <h4>
           {{t 'reports.content_type'}}
           <label class="report-column-check">
             {{input type="checkbox" checked=columns.content_type}}

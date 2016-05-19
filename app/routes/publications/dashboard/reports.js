@@ -26,6 +26,13 @@ export default Ember.Route.extend({
       this.store.save('report', {filter: filter, columns: columns}).then(function(model) {
         controller.set('model', model);
       });
-    }
+    },
+    queryAuthors: function(query, deferred) {
+	    deferred.reject = function(reason) {
+	      console.log(reason);
+	    };
+	    var fromStore = this.store.find("person", {search_term: query.term, require_xaccount: true});
+	    fromStore.then(deferred.resolve, deferred.reject);
+	  },
   }
 });

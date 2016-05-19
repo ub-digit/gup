@@ -118,7 +118,9 @@ export default {
     department: "Institution",
     publication_type: "Publication type",
     content_type: "Content type",
-    select_department: "Select institution"
+    select_department: "Select institution",
+    person: "Person",
+    select_person: "Select person"
   },
 	labels: {
 		registerNew: 'Register new',
