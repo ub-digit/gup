@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
 
       var that = this;
 
-      return this.store.find('import_data', {datasource: this.get('selectedSource'), sourceid: this.get('sourceId')}).then(
+      return this.store.save('import_data', {datasource: this.get('selectedSource'), sourceid: this.get('sourceId')}).then(
 
         function(response) {
           Ember.$('body').removeClass("loading");
