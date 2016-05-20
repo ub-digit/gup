@@ -25,6 +25,7 @@ export default Ember.Route.extend({
       var controller = this.controller;
       this.store.save('report', {filter: filter, columns: columns}).then(function(model) {
         controller.set('model', model);
+        window.scrollTo(0,0);
       });
     },
     queryAuthors: function(query, deferred) {
