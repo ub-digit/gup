@@ -14,7 +14,7 @@ export default Ember.Object.extend({
     import_data: {path: 'imports', singular: 'publication', plural: 'publications'},
     data_source: {path: 'data_sources'},
     category: { path: 'categories', plural: 'categories' },
-    set_biblreview_postponed_until: {path: 'publications/set_biblreview_postponed_until', singular: 'publication'},
+    postpone_date: { path: 'postpone_dates' },
     language: {path: 'languages'},
     publication_identifier_code: {path: 'publication_identifier_codes'},
     journal: {path: 'journals'},
