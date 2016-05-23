@@ -17,7 +17,7 @@
           <li title={{t 'tabTitle.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'}}{{t 'text.forBReview'}}{{/link-to}}</li>
         {{/if}}
         {{#if session.content.can_administrate}}
-          <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin'}}{{t 'text.admin'}}{{/link-to}}</li>
+          <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'text.admin'}}{{/link-to}}</li>
         {{/if}}
         <li title={{t 'tabTitle.reports'             }}>{{#link-to 'publications.dashboard.reports'}}{{t 'text.reports'             }}{{/link-to}}</li>
       </ul>
