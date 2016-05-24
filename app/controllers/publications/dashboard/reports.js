@@ -56,5 +56,6 @@ export default Ember.Controller.extend({
   }),
 
   
-  model: {}
+  model: {},
+
 });

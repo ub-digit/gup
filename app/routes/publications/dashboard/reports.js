@@ -35,5 +35,17 @@ export default Ember.Route.extend({
 	    var fromStore = this.store.find("person", {search_term: query.term, require_xaccount: true});
 	    fromStore.then(deferred.resolve, deferred.reject);
 	  },
+    resetFilter: function(){
+      this.controller.set('filter', {});
+      this.controller.set('content_type', {});
+      this.controller.get('publicationTypes').setEach('checked', false);
+      this.controller.set('person', null);
+    },
+    didTransition: function(){
+      this.controller.set('filter', {});
+      this.controller.set('content_type', {});
+      this.controller.get('publicationTypes').setEach('checked', false);
+      this.controller.set('person', null);
+    }
   }
 });
