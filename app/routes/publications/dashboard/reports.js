@@ -40,6 +40,7 @@ export default Ember.Route.extend({
       this.controller.set('content_type', {});
       this.controller.get('publicationTypes').setEach('checked', false);
       this.controller.set('person', null);
+      window.scrollTo(0,0);
     },
     didTransition: function(){
       this.controller.set('filter', {});
