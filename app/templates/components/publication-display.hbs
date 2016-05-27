@@ -54,8 +54,8 @@
         {{publication-field-bibl-review fieldLabel=allFieldObjects.pub_notes.label fieldValue=publication.pub_notes}}
       {{/if}}
 
-      {{#if allFieldObjects.authors}}
-        {{publication-field-bibl-review fieldLabel=allFieldObjects.authors.label fieldValue=publication.authors type='authors'}}
+      {{#if allFieldObjects.author}}
+        {{publication-field-bibl-review fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
       {{/if}}
 
       {{#if allFieldObjects.journal_id}}
@@ -232,8 +232,8 @@
         {{publication-field-compare fieldLabel=allFieldObjects.pub_notes.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.pub_notes fieldValue=publication.pub_notes}}
       {{/if}}
 
-      {{#if allFieldObjects.authors}}
-        {{publication-field-compare fieldLabel=allFieldObjects.authors.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.authors type='authors' fieldValue=publication.authors type='authors'}}
+      {{#if allFieldObjects.author}}
+        {{publication-field-compare fieldLabel=allFieldObjects.author.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.authors type='authors' fieldValue=publication.authors type='authors'}}
       {{/if}}
 
       {{#if allFieldObjects.journal_id}}
@@ -364,9 +364,9 @@
       {{/if}}
     {{/if}}
 
-    {{#if allFieldObjects.authors}}
+    {{#if allFieldObjects.author}}
       {{#if publication.authors}}
-        {{publication-field-preview fieldLabel=allFieldObjects.authors.label fieldValue=publication.authors type='authors'}}
+        {{publication-field-preview fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
       {{/if}}
     {{/if}}
 
