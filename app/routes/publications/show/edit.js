@@ -68,7 +68,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
 
 
-    var publicationType = models.publicationTypes.findBy('code', models.publication.publication_type);
+    var publicationType = models.publicationTypes.findBy('id', models.publication.publication_type_id);
     if (publicationType) {
       controller.set("selectedPublicationType", publicationType.code);
     }

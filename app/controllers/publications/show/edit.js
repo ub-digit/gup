@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
   }),
 
   updateModelWithCorrectPublicationType: function() {
-    this.set("publication.publication_type", this.get("selectedPublicationType"));
+    this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
   }.observes('selectedPublicationType'),
 
 
