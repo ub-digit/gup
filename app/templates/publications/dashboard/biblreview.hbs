@@ -22,7 +22,7 @@
         {{#x-select value=pubtype class="form-control"}}
           {{#x-option}}{{t 'biblreview.selectPublicationTypePrompt'}}{{/x-option}}
           {{#each publicationsController.publicationTypes as |selectValue|}}
-            {{#x-option value=selectValue.code}}{{selectValue.name}}{{/x-option}}
+            {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
       </div>
