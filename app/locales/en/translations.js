@@ -181,8 +181,14 @@ export default {
 			selectContentTypePrompt: 'Select content type',
 			selectContentTypeLabel: 'Content type',
 			changePublicationTypeLink: 'Change publication type',
-      authorHeaderTextStrong: 'Authors',
-      authorHeaderTextSoft: '(provide at least one)',
+			authorHeaderTextStrong: {
+        'default': 'Authors',
+        'conference-papers': 'Editor',
+        'edited-book': 'Editor',
+        'journal-issue': 'Editor',
+        'proceeding': 'Editor',
+        'textcritical-edition': 'Editor'
+      },
 			btnAddNewAuthor: 'Add author',
 			possibleAuthorFoundText: 'Probable author detected:',
 			selectAuthor: {

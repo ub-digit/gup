@@ -191,7 +191,9 @@ export default {
         'default': 'Författare',
         'conference-papers': 'Redaktör',
         'edited-book': 'Redaktör',
-        'journal-issue': 'Redaktör'
+        'journal-issue': 'Redaktör',
+        'proceeding': 'Redaktör',
+        'textcritical-edition': 'Redaktör'
       },
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',
