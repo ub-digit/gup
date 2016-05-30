@@ -21,11 +21,11 @@
           {{/if}}
 
         <dt>{{t 'review.contentType'}}</dt>
-          {{#if item.diff_since_review.content_type}}
-            <dd class="text-success">{{item.content_type_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
-            <dd><del class="text-danger">{{item.diff_since_review.content_type.from}}</del></dd>
+          {{#if item.diff_since_review.ref_value}}
+            <dd class="text-success">{{item.ref_value_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd><del class="text-danger">{{item.diff_since_review.ref_value.from}}</del></dd>
           {{else}}
-            <dd>{{item.content_type_label}}</dd>
+            <dd>{{item.ref_value_label}}</dd>
           {{/if}}
 
         <dt>{{t 'review.affiliation'}}</dt>

@@ -87,7 +87,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   exit: function() {
     var controller = this.get("controller");
-    controller.set('selectedContentType', null);
     controller.set('selectedPublicationType', null);
     controller.set("authorArr", []);
     controller.set("mayBecomeSelectedPublicationType", null);

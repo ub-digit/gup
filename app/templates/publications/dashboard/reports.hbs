@@ -85,20 +85,14 @@
         <h4>
           {{t 'reports.content_type'}}
           <label class="report-column-check">
-            {{input type="checkbox" checked=columns.content_type}}
+            {{input type="checkbox" checked=columns.ref_value}}
             {{t 'reports.include_as_column'}}
           </label>
         </h4>
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-4">
-              {{input type="checkbox" checked=content_type.ref}}Ref
-            </div>
-            <div class="col-xs-4">
-              {{input type="checkbox" checked=content_type.vet}}Vet
-            </div>
-            <div class="col-xs-4">
-              {{input type="checkbox" checked=content_type.pop}}Pop
+              {{input type="checkbox" checked=filter.ref_value}}Ref
             </div>
           </div>
         </div>

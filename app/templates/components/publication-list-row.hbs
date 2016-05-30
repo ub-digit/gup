@@ -8,7 +8,7 @@
     <dl class="dl-horizontal">
       <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
       <dt>Publikationstyp:</dt><dd>{{item.publication_type_label}}</dd>
-      {{#if item.content_type}}<dt>Innehållsmärkning:</dt><dd>{{item.content_type_label}}</dd>{{/if}}
+      {{#if item.ref_value}}<dt>Innehållsmärkning:</dt><dd>{{item.ref_value_label}}</dd>{{/if}}
       <dt>Skapad:</dt><dd>{{format-date item.created_at}}</dd>
       {{#if item.published_at}}<dt>Publicerad:</dt><dd>{{format-date item.published_at}}</dd>{{/if}}
     </dl>

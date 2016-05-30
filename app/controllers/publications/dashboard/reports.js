@@ -6,24 +6,18 @@ export default Ember.Controller.extend({
   publicationTypes: [],
   person: null,
   columns: {},
-  content_type: {},
   filter: {},
-  columnArray: Ember.computed('columns.{year,faculty,department,publication_type,content_type}', function() {
+  columnArray: Ember.computed('columns.{year,faculty,department,publication_type,ref_value}', function() {
     var cArray = [];
     if(this.get('columns.year')) { cArray.push('year'); }
     if(this.get('columns.faculty')) { cArray.push('faculty_id'); }
     if(this.get('columns.department')) { cArray.push('department_id'); }
     if(this.get('columns.publication_type')) { cArray.push('publication_type'); }
-    if(this.get('columns.content_type')) { cArray.push('content_type'); }
+    if(this.get('columns.ref_value')) { cArray.push('ref_value'); }
     return cArray;
   }),
-  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,content_types}', 'content_type.{ref,vet,pop}','publicationTypes.@each.checked', 'person.identifiers', function() {
-    var content_types = [];
+  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,ref_value}','publicationTypes.@each.checked', 'person.identifiers', function() {
     var that = this;
-    if(this.get('content_type.ref')) { content_types.push('ref'); }
-    if(this.get('content_type.vet')) { content_types.push('vet'); }
-    if(this.get('content_type.pop')) { content_types.push('pop'); }
-    this.set('filter.content_types', content_types);
 
     var publication_types = [];
     this.get('publicationTypes').forEach(function(item) {
