@@ -266,7 +266,8 @@ export default {
 			header: 'Are you missing a source to import from?',
 			ingress: 'Create a new record from scratch and enter the data manually.',
 			btnNew: 'Create new',
-			linkNew: 'Create new author'
+			linkNew: 'Create new author',
+      addAffiliation: "Change affiliation"
 		}
 
 	},
