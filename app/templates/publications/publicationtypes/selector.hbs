@@ -18,7 +18,9 @@
     <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
     <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
     <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
-    <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
+    {{#if session.content.can_administrate}}
+      <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
+    {{/if}}
     <li role="presentation" class={{if isSelectedOther 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'other'}}>Övrigt</a></li>
   </ul>
   </div>
@@ -42,11 +44,12 @@
         <h3>Böcker, kapitel och rapporter</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='books'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='textbook'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='textcritical-edition'}}
       {{publicationtype-item publicationTypes=publicationTypes code='book-chapters'}}
       {{publicationtype-item publicationTypes=publicationTypes code='doctoral-thesis'}}
       {{publicationtype-item publicationTypes=publicationTypes code='licentiate-thesis'}}
       {{publicationtype-item publicationTypes=publicationTypes code='edited-book'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='translations'}}
       {{publicationtype-item publicationTypes=publicationTypes code='reports'}}
       {{publicationtype-item publicationTypes=publicationTypes code='report-chapter'}}
     </div>
@@ -62,14 +65,15 @@
       {{publicationtype-item publicationTypes=publicationTypes code='proceeding'}}
     </div>
     {{/if}}
-    {{#if showPublicationTypeGroupArtworks}}
-    <div class="row">
-      <div class="col-xs-12">
-        <h3>Konstnärliga arbeten</h3>
-          {{publicationtype-item publicationTypes=publicationTypes code='original-creative-work'}}
-          {{publicationtype-item publicationTypes=publicationTypes code='curated-exhibition'}}
+    {{#if session.content.can_administrate}}
+      {{#if showPublicationTypeGroupArtworks}}
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Konstnärliga arbeten</h3>
+            {{publicationtype-item publicationTypes=publicationTypes code='original-creative-work' onlyAdmin=true}}
+        </div>
       </div>
-    </div>
+      {{/if}}
     {{/if}}
     {{#if showPublicationTypeGroupOther}}
     <div class="row">

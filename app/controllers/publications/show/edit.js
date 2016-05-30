@@ -5,7 +5,6 @@ export default Ember.Controller.extend({
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,
-  selectedContentType: null,
   authorArr: Ember.A([]),
   categoryObjectsList: Ember.A([]),
 
@@ -93,7 +92,7 @@ export default Ember.Controller.extend({
   }),
 
   updateModelWithCorrectPublicationType: function() {
-    this.set("publication.publication_type", this.get("selectedPublicationType"));
+    this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
   }.observes('selectedPublicationType'),
 
 
@@ -190,15 +189,6 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
 
-  contentTypesAreVisible: function() {
-      if (this.get("isSelectedPublicationValid")) {
-        return true;
-      }
-      else {
-        return false;
-      }
-  }.property('selectedPublicationType'),
-
 
   selectPublicationTypeIsVisible: function() {
       if (!this.get("isSelectedPublicationValid")) {
@@ -209,6 +199,12 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
 
+  refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
+
+  publicationTypeObject: Ember.computed('selectedPublicationType', function(){
+    return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
+  }),
+
   descriptionOfMayBecomeSelectedPublicationType: function() {
     var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
     if (fullObj) {
@@ -218,59 +214,6 @@ export default Ember.Controller.extend({
       return null;
     }
   }.property("mayBecomeSelectedPublicationType"),
-
-  contentTypes: function() {
-     var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
-     if (currentlySelectedPublicationType) {
-       return currentlySelectedPublicationType.content_types;
-     }
-     else {
-       return null;
-     }
-  }.property('selectedPublicationType'),
-
-  selectedPublicationTypeHasNoContentType: function() {
-    var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
-    if (currentlySelectedPublicationType) {
-      if (currentlySelectedPublicationType.content_types) {
-        if(currentlySelectedPublicationType.content_types.length >0) {
-          return false;
-        }
-        else {
-          return true;
-        }
-      }
-      else {
-        return true;
-      }
-    }
-  }.property("selectedPublicationType"),
-
-  selectedPublicationTypeHasNoOnlyOneContentType: function() {
-    var currentlySelectedPublicationType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
-    if (currentlySelectedPublicationType) {
-      if (currentlySelectedPublicationType.content_types) {
-        if(currentlySelectedPublicationType.content_types.length === 1) {
-          this.set("publication.content_type", currentlySelectedPublicationType.content_types[0].value);
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-      else {
-        return false;
-      }
-    }
-  }.property('selectedPublicationType'),
-
-
-  setDefaultContentType: function() {
-    var contentType = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
-    if (contentType) {
-      this.set('selectedContentType', contentType.id);
-    }
-  }.observes('selectedPublicationType'),
 
   publicationTypeFilter: 'all',
 
@@ -309,6 +252,13 @@ export default Ember.Controller.extend({
     },
     setPublicationType: function(publicationType) {
       this.set("selectedPublicationType", publicationType);
+
+      var ref_options = this.get('publicationTypeObject.ref_options');
+      if (ref_options !== 'BOTH') {
+        this.set('publication.ref_value', ref_options);
+      } else {
+        this.set('publication.ref_value');
+      }
     },
     resetSelectedPublicationType: function() {
       this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));

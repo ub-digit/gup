@@ -6,20 +6,15 @@
 		{{getPublicationTypeObject.name}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>
 	{{/if}}
 
-	{{#if contentTypesAreVisible}}
-		{{#unless selectedPublicationTypeHasNoContentType}}
-			{{#if selectedPublicationTypeHasNoOnlyOneContentType}}
-			{{else}}
+  {{#if refValueSelectionVisible}}
 				<div class="row">
 					<div class="col-xs-6">
-						<span class="form-group {{if errors.content_type 'has-error'}}">
-							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="content_type" type="select"  errors=errors.content_type value=publication.content_type selectValues=getPublicationTypeObject.content_types prompt=(t 'edit.form.selectContentTypePrompt') label=(t 'edit.form.selectContentTypeLabel')}}
+						<span class="form-group {{if errors.ref_value 'has-error'}}">
+							{{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="select"  errors=errors.ref_value value=publication.ref_value selectValues=getPublicationTypeObject.ref_select_options prompt=(t 'edit.form.selectContentTypePrompt') label=(t 'edit.form.selectContentTypeLabel')}}
 						</span>
 					</div>
 				</div>
-			{{/if}}
-		{{/unless}}
-	{{/if}}
+  {{/if}}
 
 	<div class="row">
 		<div class="col-md-9">

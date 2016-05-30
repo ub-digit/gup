@@ -6,7 +6,7 @@
 
       {{publication-field-bibl-review fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
 
-      {{publication-field-bibl-review fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.content_type_label}}
+      {{publication-field-bibl-review fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
 
       {{#if allFieldObjects.title}}
         {{publication-field-bibl-review fieldLabel=allFieldObjects.title.label fieldValue=publication.title}}
@@ -54,8 +54,8 @@
         {{publication-field-bibl-review fieldLabel=allFieldObjects.pub_notes.label fieldValue=publication.pub_notes}}
       {{/if}}
 
-      {{#if allFieldObjects.authors}}
-        {{publication-field-bibl-review fieldLabel=allFieldObjects.authors.label fieldValue=publication.authors type='authors'}}
+      {{#if allFieldObjects.author}}
+        {{publication-field-bibl-review fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
       {{/if}}
 
       {{#if allFieldObjects.journal_id}}
@@ -184,7 +184,7 @@
 
       {{publication-field-compare fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_type_label}}
 
-      {{publication-field-compare fieldLabel=(t 'edit.form.selectContentTypeLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.content_type_label fieldValue=publication.content_type_label}}
+      {{publication-field-compare fieldLabel=(t 'edit.form.selectContentTypeLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.ref_value_label fieldValue=publication.ref_value_label}}
 
       {{#if allFieldObjects.title}}
         {{publication-field-compare fieldLabel=allFieldObjects.title.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.title fieldValue=publication.title}}
@@ -232,8 +232,8 @@
         {{publication-field-compare fieldLabel=allFieldObjects.pub_notes.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.pub_notes fieldValue=publication.pub_notes}}
       {{/if}}
 
-      {{#if allFieldObjects.authors}}
-        {{publication-field-compare fieldLabel=allFieldObjects.authors.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.authors type='authors' fieldValue=publication.authors type='authors'}}
+      {{#if allFieldObjects.author}}
+        {{publication-field-compare fieldLabel=allFieldObjects.author.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.authors type='authors' fieldValue=publication.authors type='authors'}}
       {{/if}}
 
       {{#if allFieldObjects.journal_id}}
@@ -336,8 +336,8 @@
 
     {{publication-field-preview fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
 
-    {{#if publication.content_type_label}}
-      {{publication-field-preview fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.content_type_label}}
+    {{#if publication.ref_value_label}}
+      {{publication-field-preview fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
     {{/if}}
 
     {{#if allFieldObjects.title}}
@@ -364,9 +364,9 @@
       {{/if}}
     {{/if}}
 
-    {{#if allFieldObjects.authors}}
+    {{#if allFieldObjects.author}}
       {{#if publication.authors}}
-        {{publication-field-preview fieldLabel=allFieldObjects.authors.label fieldValue=publication.authors type='authors'}}
+        {{publication-field-preview fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
       {{/if}}
     {{/if}}
 
