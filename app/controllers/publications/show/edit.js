@@ -209,6 +209,12 @@ export default Ember.Controller.extend({
       }
   }.property('selectedPublicationType'),
 
+  refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
+
+  publicationTypeObject: Ember.computed('selectedPublicationType', function(){
+    return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
+  }),
+
   descriptionOfMayBecomeSelectedPublicationType: function() {
     var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
     if (fullObj) {
@@ -309,6 +315,13 @@ export default Ember.Controller.extend({
     },
     setPublicationType: function(publicationType) {
       this.set("selectedPublicationType", publicationType);
+
+      var ref_options = this.get('publicationTypeObject.ref_options');
+      if (ref_options != 'BOTH') {
+        this.set('publication.ref_value', ref_options);
+      } else {
+        this.set('publication.ref_value');
+      }
     },
     resetSelectedPublicationType: function() {
       this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));

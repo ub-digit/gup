@@ -18,7 +18,9 @@
     <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
     <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
     <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
-    <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
+    {{#if session.content.can_administrate}}
+      <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
+    {{/if}}
     <li role="presentation" class={{if isSelectedOther 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'other'}}>Övrigt</a></li>
   </ul>
   </div>
