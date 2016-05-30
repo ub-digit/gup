@@ -317,7 +317,7 @@ export default Ember.Controller.extend({
       this.set("selectedPublicationType", publicationType);
 
       var ref_options = this.get('publicationTypeObject.ref_options');
-      if (ref_options != 'BOTH') {
+      if (ref_options !== 'BOTH') {
         this.set('publication.ref_value', ref_options);
       } else {
         this.set('publication.ref_value');
