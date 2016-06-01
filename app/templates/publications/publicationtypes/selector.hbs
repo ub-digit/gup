@@ -16,7 +16,7 @@
   <ul class="nav nav-pills">
     <li role="presentation" class={{if isSelectedAll 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'all'}}>Alla</a></li>
     <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
-    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
+    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'publication_book'}}>Böcker, kapitel och rapporter</a></li>
     <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
     {{#if session.content.can_administrate}}
       <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
@@ -30,12 +30,12 @@
       <div class="col-xs-12">
         <h3>Artiklar</h3>
       </div>
-      {{publicationtype-item publicationTypes=publicationTypes code='journal-articles'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='review-articles'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='magazine-articles'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='editorial-letters'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='book-reviews'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='newspaper-article'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_journal-article'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_review-article'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_magazine-article'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_editorial-letter'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_book-review'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_newspaper-article'}}
     </div>
     {{/if}}
     {{#if showPublicationTypeGroupBooks}}
@@ -43,15 +43,15 @@
       <div class="col-xs-12">
         <h3>Böcker, kapitel och rapporter</h3>
       </div>
-      {{publicationtype-item publicationTypes=publicationTypes code='books'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='textbook'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='textcritical-edition'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='book-chapters'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='doctoral-thesis'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='licentiate-thesis'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='edited-book'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='reports'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='report-chapter'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_book'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_textbook'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_textcritical-edition'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_book-chapter'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_doctoral-thesis'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_licentiate-thesis'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_edited-book'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_report'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_report-chapter'}}
     </div>
     {{/if}}
     {{#if showPublicationTypeGroupConference}}
@@ -59,10 +59,10 @@
       <div class="col-xs-12">
         <h3>Konferensbidrag</h3>
       </div>
-      {{publicationtype-item publicationTypes=publicationTypes code='conference-papers'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='conference-contributions'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='poster'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='proceeding'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='conference_paper'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='conference_other'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='conference_poster'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='conference_proceeding'}}
     </div>
     {{/if}}
     {{#if session.content.can_administrate}}
@@ -70,7 +70,7 @@
       <div class="row">
         <div class="col-xs-12">
           <h3>Konstnärliga arbeten</h3>
-            {{publicationtype-item publicationTypes=publicationTypes code='original-creative-work' onlyAdmin=true}}
+            {{publicationtype-item publicationTypes=publicationTypes code='artistic-work_original-creative-work' onlyAdmin=true}}
         </div>
       </div>
       {{/if}}
@@ -80,10 +80,10 @@
       <div class="col-xs-12">
         <h3>Övrigt</h3>
       </div>
-      {{publicationtype-item publicationTypes=publicationTypes code='journal-issue'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='working-paper'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='encyclopedia-entry'}}
-      {{publicationtype-item publicationTypes=publicationTypes code='patent'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_journal-issue'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_working-paper'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='publication_encyclopedia-entry'}}
+      {{publicationtype-item publicationTypes=publicationTypes code='intellectual-property_patent'}}
       {{publicationtype-item publicationTypes=publicationTypes code='other'}}
     </div>
     {{/if}}

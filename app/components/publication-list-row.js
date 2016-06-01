@@ -16,11 +16,11 @@ export default Ember.Component.extend({
     var a = [];
 
     switch (this.get('item.publication_type')) {
-      case 'journal-articles':
-      case 'review-articles':
-      case 'editorial-letters':
-      case 'book-reviews':
-      case 'magazine-articles':
+      case 'publication_journal-article':
+      case 'publication_review-article':
+      case 'publication_editorial-letter':
+      case 'publication_book-review':
+      case 'publication_magazine-article':
 
         if (i.sourcetitle) {
           a.push(i.sourcetitle);
@@ -37,10 +37,9 @@ export default Ember.Component.extend({
 
         break;
 
-      case 'books':
-      case 'translations':
-      case 'doctoral-thesis':
-      case 'reports':
+      case 'publication_book':
+      case 'publication_doctoral-thesis':
+      case 'publication_report':
 
         if (i.place) {
           a.push(i.place);
@@ -54,9 +53,9 @@ export default Ember.Component.extend({
 
         break;
 
-      case 'book-chapters':
-      case 'conference-papers':
-      case 'conference-contributions':
+      case 'publication_book-chapter':
+      case 'conference_paper':
+      case 'conference_other':
 
         if (i.sourcetitle) {
           a.push(i.sourcetitle);

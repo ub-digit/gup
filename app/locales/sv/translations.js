@@ -189,11 +189,11 @@ export default {
 			changePublicationTypeLink: 'Byt publikationstyp',
 			authorHeaderTextStrong: {
         'default': 'Författare',
-        'conference-papers': 'Redaktör',
-        'edited-book': 'Redaktör',
-        'journal-issue': 'Redaktör',
-        'proceeding': 'Redaktör',
-        'textcritical-edition': 'Redaktör'
+        'conference_paper': 'Redaktör',
+        'publication_edited-book': 'Redaktör',
+        'publication_journal-issue': 'Redaktör',
+        'conference_proceeding': 'Redaktör',
+        'publication_textcritical-edition': 'Redaktör'
       },
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',

@@ -183,11 +183,11 @@ export default {
 			changePublicationTypeLink: 'Change publication type',
 			authorHeaderTextStrong: {
         'default': 'Authors',
-        'conference-papers': 'Editor',
-        'edited-book': 'Editor',
-        'journal-issue': 'Editor',
-        'proceeding': 'Editor',
-        'textcritical-edition': 'Editor'
+        'conference_paper': 'Editor',
+        'publication_edited-book': 'Editor',
+        'publication_journal-issue': 'Editor',
+        'conference_proceeding': 'Editor',
+        'publication_textcritical-edition': 'Editor'
       },
 			btnAddNewAuthor: 'Add author',
 			possibleAuthorFoundText: 'Probable author detected:',
