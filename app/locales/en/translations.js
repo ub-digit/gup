@@ -120,7 +120,8 @@ export default {
     content_type: "Content type",
     select_department: "Select institution",
     person: "Person",
-    select_person: "Select person"
+    select_person: "Select person",
+    ref_value: "Reviewed"
   },
 	labels: {
 		registerNew: 'Register new',

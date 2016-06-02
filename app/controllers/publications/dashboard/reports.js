@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     if(this.get('columns.year')) { cArray.push('year'); }
     if(this.get('columns.faculty')) { cArray.push('faculty_id'); }
     if(this.get('columns.department')) { cArray.push('department_id'); }
-    if(this.get('columns.publication_type')) { cArray.push('publication_type'); }
+    if(this.get('columns.publication_type')) { cArray.push('publication_type_id'); }
     if(this.get('columns.ref_value')) { cArray.push('ref_value'); }
     return cArray;
   }),

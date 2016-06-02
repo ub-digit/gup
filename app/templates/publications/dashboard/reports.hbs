@@ -1,60 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4 report-form">
-      <div class="row">
-        <h3>{{t 'reports.select_criteria'}}</h3>
-      </div>
-      
-      <div class="row">
-        <h4>
-          {{t 'reports.year'}}
-          <label class="report-column-check">
-            {{input type="checkbox" checked=columns.year}}
-            {{t 'reports.include_as_column'}}
-          </label>
-        </h4>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-6 col-no-left-padding">
-              <label>{{t 'reports.start_year'}}</label>
-              {{input value=filter.start_year class="form-control" placeholder=(t 'reports.start_year')}}
-            </div>
-            <div class="col-xs-6 col-no-right-padding">
-              <label>{{t 'reports.end_year'}}</label>
-              {{input value=filter.end_year class="form-control" placeholder=(t 'reports.end_year')}}
-            </div>
+    <div class="col-xs-12">
+      <h3>Filter</h3>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+          <div class="col-xs-6">
+            <label>{{t 'reports.start_year'}}</label>
+            {{input value=filter.start_year class="form-control" placeholder=(t 'reports.start_year')}}
+          </div>
+          <div class="col-xs-6">
+            <label>{{t 'reports.end_year'}}</label>
+            {{input value=filter.end_year class="form-control" placeholder=(t 'reports.end_year')}}
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <h4>
-          {{t 'reports.faculty'}}
-          <label class="report-column-check">
-            {{input type="checkbox" checked=columns.faculty}}
-            {{t 'reports.include_as_column'}}
-          </label>
-        </h4>
-
-        {{#x-select value=filter.faculties class="form-control"}}
+    </div>
+    <div class="col-md-4">
+        <label for="faculty-filter-select">{{t 'reports.faculty'}}</label>
+        {{#x-select value=filter.faculties class="form-control" id="faculty-filter-select"}}
         {{#x-option}}{{t 'reports.select_faculty'}}{{/x-option}}
           {{#each publicationsController.faculties as |selectValue|}}
           {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
-
-      </div>
-
-      <div class="row">
-        <h4>
-          {{t 'reports.department'}}
-          <label class="report-column-check">
-            {{input type="checkbox" checked=columns.department}}
-            {{t 'reports.include_as_column'}}
-          </label>
-        </h4>
-
+    </div>
+    <div class="col-md-4">
+        <label for="department-filter-select">{{t 'reports.department'}}</label>
         {{select2-adjusted
+        id="department-filter-select"
         content=departments
         optionLabelPath="name"
         optionValuePath="id"
@@ -63,67 +36,56 @@
         allowClear=true
         multiple=true
         }}
-      </div>
-
-      <div class="row">
-        <h4>
-          {{t 'reports.person'}}
-        </h4>
-
-        {{select2-adjusted
-        query="queryAuthors"
-        value=person
-        minimumInputLength=3
-        optionLabelPath="presentation_string"
-        placeholder=(t 'reports.select_person')
-        allowClear=true
-        multiple=false
-        }}
-      </div>
-
-      <div class="row">
-        <h4>
-          {{t 'reports.content_type'}}
-          <label class="report-column-check">
-            {{input type="checkbox" checked=columns.ref_value}}
-            {{t 'reports.include_as_column'}}
-          </label>
-        </h4>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-4">
-              {{input type="checkbox" checked=filter.ref_value}}Ref
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <h4>
-          {{t 'reports.publication_type'}}
-          <label class="report-column-check">
-            {{input type="checkbox" checked=columns.publication_type}}
-            {{t 'reports.include_as_column'}}
-          </label>
-        </h4>
-
-        {{#each publicationTypes as |pubType|}}
-        {{input type="checkbox" checked=pubType.checked}}{{pubType.name}}<br/>
-        {{/each}}
-      </div>
-      
-      <div class="row">
-        <div class="btn-toolbar">
-        <button class="btn btn-default" {{action 'resetFilter'}}>Reset</button>
-        <a href="{{csvUrl}}" class="btn btn-default">{{t 'reports.export_csv'}}</a>
-        <button class="btn btn-primary"
-          {{action 'createReport' filterData columnArray}}>{{t 'reports.create'}}</button>
-        </div>
-      </div>
     </div>
-    <div class="col-xs-8">
+    <div class="col-md-1">
+      <label style="color:#FFF">-</label>
+      <button class="btn btn-default" {{action 'resetFilter'}}>Rensa</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Gruppering</h3> 
+    </div>
+    <div class="col-xs-12">
+        <label class="checkbox-inline">
+          {{input type="checkbox" checked=columns.year}}
+          {{t 'reports.year'}}
+        </label>
+        <label class="checkbox-inline">
+          {{input type="checkbox" checked=columns.faculty}}
+          {{t 'reports.faculty'}}
+        </label>
+        <label class="checkbox-inline">
+          {{input type="checkbox" checked=columns.department}}
+          {{t 'reports.department'}}
+        </label>
+        <label class="checkbox-inline">
+          {{input type="checkbox" checked=columns.ref_value}}
+          {{t 'reports.ref_value'}}
+        </label>
+        <label class="checkbox-inline">
+          {{input type="checkbox" checked=columns.publication_type}}
+          {{t 'reports.publication_type'}}
+        </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+        <div class="btn-toolbar" style="margin-top:8px">
+          <button class="btn btn-primary"
+            {{action 'createReport' filterData columnArray}}>{{t 'reports.create'}}</button>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="btn-toolbar pull-right" style="margin-top:8px">
+          <a href="{{csvUrl}}" class="btn btn-success"><i class="fa fa-table" aria-hidden='true'></i> {{t 'reports.export_csv'}}</a>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
       {{#if model}}
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr>
               {{#each model.columns as |column|}}

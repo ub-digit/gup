@@ -125,7 +125,8 @@ export default {
     content_type: "Innehållsmärkning",
     select_department: "Välj institution",
     person: "Person",
-    select_person: "Välj person"
+    select_person: "Välj person",
+    ref_value: "Refereegranskad"
   },
 	labels: {
 		registerNew: 'Registrera ny',
