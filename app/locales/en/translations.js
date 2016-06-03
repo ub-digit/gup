@@ -184,7 +184,6 @@ export default {
 			changePublicationTypeLink: 'Change publication type',
 			authorHeaderTextStrong: {
         'default': 'Authors',
-        'conference_paper': 'Editor',
         'publication_edited-book': 'Editor',
         'publication_journal-issue': 'Editor',
         'conference_proceeding': 'Editor',
