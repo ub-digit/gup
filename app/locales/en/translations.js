@@ -188,7 +188,7 @@ export default {
         'publication_edited-book': 'Editor',
         'publication_journal-issue': 'Editor',
         'conference_proceeding': 'Editor',
-        'publication_textcritical-edition': 'Editor'
+        'publication_textcritical-edition': 'Editor',
       },
 			btnAddNewAuthor: 'Add author',
 			possibleAuthorFoundText: 'Probable author detected:',
