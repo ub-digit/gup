@@ -2,16 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  MAX_NUMBER_OF_CATEGORIES: 3,
   isEditing: false,
 
   initComponent: Ember.on('init', function(){
     this.set('filterString', '');
-  }),
-
-
-  numberLeft: Ember.computed('categoryList.[]', function() {
-    return this.get('MAX_NUMBER_OF_CATEGORIES') - this.get('categoryList.length');
   }),
 
 
@@ -35,8 +29,8 @@ export default Ember.Component.extend({
 
     addSelectedCategory: function(id) {
 
-      // Check if category already exists in list, and that maximum value is not reached
-      if (this.get('categoryList').indexOf(id) === -1 && this.get('categoryList.length') < this.get('MAX_NUMBER_OF_CATEGORIES')){
+      // Check if category already exists in list
+      if (this.get('categoryList').indexOf(id) === -1){
         this.get('categoryList').pushObject(id);
       }
 

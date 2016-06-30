@@ -207,8 +207,7 @@ export default {
 			},
       selectCategory: {
         addCategory: 'Add subject terms',
-        modalHeader: 'Select 3 subject terms',
-        left: 'left',
+        modalHeader: 'Select subject terms',
         selectedCategories: 'Selected subject terms:',
         noCategoriesSelected: 'No subject terms selected',
         subjectTerms: 'Subject terms',

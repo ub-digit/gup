@@ -213,8 +213,7 @@ export default {
 			},
 			selectCategory: {
         addCategory: 'Lägg till ämnesord',
-        modalHeader: 'Välj 3 ämnesord',
-        left: 'kvar',
+        modalHeader: 'Välj ämnesord',
         selectedCategories: 'Valda ämnesord:',
         noCategoriesSelected: 'Inga ämnesord valda',
         subjectTerms: 'Ämnesord',
