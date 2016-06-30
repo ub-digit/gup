@@ -1,14 +1,16 @@
 import Ember from 'ember';
 export default Ember.Component.extend({
 
-  tagName: 'nav',
-  classNames: ['center-content'],
-
+  tagName: '',
   pageArray: function() {
     var pagePadding = 3; //Pages showing around current selection and at start/end
     var pArray = [];
     var i;
     var p;
+    if((this.get('pagination.pages')) === 1)
+    {
+      return null;      
+    }
     if((4*pagePadding+1) > (this.get('pagination.pages') - 2)) {
       for(i=0;i<this.get('pagination.pages');i++) {
         p = {page: i+1};

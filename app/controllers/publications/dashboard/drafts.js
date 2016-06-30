@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  page: 1,
+  queryParams: ['page'],
+
   i18n: Ember.inject.service(),
   deletePublication: function(id) {
     var that = this;

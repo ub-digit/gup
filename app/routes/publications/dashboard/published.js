@@ -2,6 +2,9 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+    queryParams:{
+        page:{refreshModel: true}
+    },	
 	beforeModel: function() {
 		Ember.$("body").addClass("loading");
 	},
@@ -10,8 +13,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		this.controllerFor('application').set('currentList', transition.targetName);
 	},
 
-  model: function(){
-    return this.store.find("published_publication", {actor: 'logged_in_user'});
+  model: function(params){
+    if(!params.page) {
+      params.page = 1;
+    }    
+    params.actor = 'logged_in_user';
+    return  this.store.find("published_publication", params);
   },
-
 });

@@ -1,24 +1,34 @@
 <div class="row">
   <div class="col-xs-12">
     {{#if model.length}}
-    <ul class="list-unstyled dashboard-list">
-      {{#each model as |item|}}
-      <li>
-        <div class="row">
-          <div class="col-xs-10">
-            {{publication-list-row item=item link='publications.show'}}
-          </div>
-          <div class="col-xs-2">
-            <div class="btn-toolbar pull-right">
-              <button {{action 'delete' item.id}} class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
+      <div class="row number-of-results">
+        <div class="col-xs-12 text-center">
+          <strong>{{t 'text.numberOfHits'}}: {{model.meta.query.total}}</strong>
         </div>
-      </li>
-      {{/each}}
-    </ul>
+      </div>
+      <ul class="list-unstyled dashboard-list">
+        {{#each model as |item|}}
+          <li>
+            <div class="row">
+              <div class="col-xs-10">
+                {{publication-list-row item=item link='publications.show'}}
+              </div>
+              <div class="col-xs-2">
+                <div class="btn-toolbar pull-right">
+                  <button {{action 'delete' item.id}} class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+      <div class="row">
+        <div class="col-xs-12">
+          {{pagination-pager pagination=model.meta.pagination}}
+        </div>
+      </div>
     {{else}}
-    {{t 'text.youHaveNoDrafts'}}
+      {{t 'text.youHaveNoDrafts'}}
     {{/if}}
   </div>
 </div>

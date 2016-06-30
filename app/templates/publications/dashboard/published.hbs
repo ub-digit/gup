@@ -1,15 +1,25 @@
 <div class="row">
   <div class="col-xs-12">
-          {{#if model.length}}
-          <ul class="list-unstyled dashboard-list">
-            {{#each model as |item|}}
-              <li>
-                {{publication-list-row item=item link='publications.show'}}
-              </li>
-            {{/each}}
-          </ul>
-          {{else}}
-            {{t 'text.youHaveNoPublications'}}
-          {{/if}}
+    {{#if model.length}}
+      <div class="row number-of-results">
+        <div class="col-xs-12 text-center">
+          <strong>{{t 'text.numberOfHits'}}: {{model.meta.query.total}}</strong>
+        </div>
+      </div>
+      <ul class="list-unstyled dashboard-list">
+        {{#each model as |item|}}
+          <li>
+            {{publication-list-row item=item link='publications.show'}}
+          </li>
+        {{/each}}
+      </ul>
+      <div class="row">
+        <div class="col-xs-12">
+          {{pagination-pager pagination=model.meta.pagination}}
+        </div>
+      </div>            
+    {{else}}
+      {{t 'text.youHaveNoPublications'}}
+    {{/if}}
   </div>
 </div>
