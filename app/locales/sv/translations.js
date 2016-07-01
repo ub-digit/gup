@@ -85,6 +85,7 @@ export default {
     query_person: 'Sök person',
     query_person_none: 'Inga personer hittades',
     person: {
+      id: 'Id',
       first_name: 'Förnamn',
       last_name: 'Efternamn',
       xaccount: 'Xkonto',
@@ -93,6 +94,7 @@ export default {
     },
     department: {
       modalHeader: 'Sätt slutår',
+      id: 'Id',
       name_sv: 'Svenskt namn',
       name_en: 'Engelskt namn',
       start_year: 'Startår',
@@ -225,6 +227,7 @@ export default {
 		createNewAuthor: {
 			form: {
 				labels: {
+					id: 'Id:',					
 					firstname: 'Förnamn:',
 					lastname: 'Efternamn:',
 					birthyear: 'Födelseår:',
@@ -232,6 +235,7 @@ export default {
 					orcid: 'Orcid'
 				},
 				placeholders: {
+					id: 'Id:',					
 					firstname: 'Förnamn:',
 					lastname: 'Efternamn:',
 					birthyear: 'Födelseår:',

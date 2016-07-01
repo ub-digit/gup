@@ -75,11 +75,13 @@ export default {
     admin: 'Admin',
     admin_departments: 'Administrate departments',
     admin_people: 'Administrate people',
+    admin_messages: 'Administrate messages',
     query_department: 'Query institution',
     query_department_none: 'No institution found',
     query_person: 'Query person',
     query_person_none: 'No people found',
     person: {
+      id: 'Id',    	
       first_name: 'First name',
       last_name: 'Last name',
       xaccount: 'Xaccount',
@@ -88,6 +90,7 @@ export default {
     },
     department: {
       modalHeader: 'Set end year',
+      id: 'Id',
       name_sv: 'Swedish name',
       name_en: 'English name',
       start_year: 'Start year',
@@ -219,6 +222,7 @@ export default {
 		createNewAuthor: {
 			form: {
 				labels: {
+					id: 'Id:',
 					firstname: 'First name:',
 					lastname: 'Last name:',
 					birthyear: 'Year of birth:',
@@ -226,6 +230,7 @@ export default {
 					orcid: 'Orcid'
 				},
 				placeholders: {
+					id: 'Id:',
 					firstname: 'First name:',
 					lastname: 'Last name:',
 					birthyear: 'Year or birth:',

@@ -17,6 +17,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th>{{t 'text.person.id'}}</th>
         <th>{{t 'text.person.first_name'}}</th>
         <th>{{t 'text.person.last_name'}}</th>
         <th>{{t 'text.person.xaccount'}}</th>
@@ -28,6 +29,7 @@
     <tbody>
       {{#each model as |person|}}
       <tr>
+        <td>{{person.id}}</td>
         <td>{{person.first_name}}</td>
         <td>{{person.last_name}}</td>
         <td>{{person.xaccount}}</td>
