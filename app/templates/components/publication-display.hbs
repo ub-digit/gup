@@ -378,7 +378,7 @@
 
     {{#if allFieldObjects.dissdate}}
       {{#if publication.dissdate}}
-        {{publication-field-preview fieldLabel=allFieldObjects.dissdate.label fieldValue=publication.dissdate}}
+        {{publication-field-preview fieldLabel=allFieldObjects.dissdate.label fieldValue=(format-date publication.dissdate "YYYY-MM-DD")}}
       {{/if}}
     {{/if}}
 
