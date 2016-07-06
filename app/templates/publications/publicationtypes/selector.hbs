@@ -16,7 +16,7 @@
   <ul class="nav nav-pills">
     <li role="presentation" class={{if isSelectedAll 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'all'}}>Alla</a></li>
     <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
-    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'publication_book'}}>Böcker, kapitel och rapporter</a></li>
+    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
     <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
     {{#if session.content.can_administrate}}
       <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
