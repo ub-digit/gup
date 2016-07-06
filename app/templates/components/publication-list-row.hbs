@@ -3,7 +3,7 @@
     <h3>{{#link-to link item.id (query-params other_version=null)}} {{titleString}}{{/link-to}}</h3>
   </div>
   <div class="col-xs-12">
-    <p>{{bibliographicInfoString}}{{#if item.authors}}, {{authors-string authors=item.authors}}{{/if}}</p>
+    <p>{{bibliographicInfoString}}{{#if item.authors}} {{authors-string authors=item.authors}}{{/if}}</p>
     {{#if showMetaData}}
     <dl class="dl-horizontal">
       <dt>Publikationens id:</dt><dd>{{item.id}}</dd>
