@@ -4,7 +4,6 @@
       <ul class="nav">
         <li title={{t 'tabTitle.start'                 }}>{{#link-to 'publications.dashboard.start'}}    {{t 'text.start'                 }}{{/link-to}}</li>
         <li title={{t 'tabTitle.drafts'                }}>{{#link-to 'publications.dashboard.drafts' (query-params page='1')}}   {{t 'text.drafts'                }}{{/link-to}}</li>
-        <li title={{t 'tabTitle.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
         <li title={{t 'tabTitle.published'             }}>{{#link-to 'publications.dashboard.published' (query-params page='1')}}{{t 'text.published'             }}{{/link-to}}</li>
         <li title={{t 'tabTitle.forReview'}}>
           {{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}
@@ -15,6 +14,9 @@
         </li>
         {{#if session.content.can_biblreview}}
           <li title={{t 'tabTitle.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'text.forBReview'}}{{/link-to}}</li>
+        {{/if}}
+        {{#if session.content.can_administrate}}
+          <li title={{t 'tabTitle.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
         {{/if}}
         {{#if session.content.can_administrate}}
           <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'text.admin'}}{{/link-to}}</li>
