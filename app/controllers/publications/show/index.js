@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
         that.transitionToRoute(target);
     },
     function() {
-      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('messages.deletePublicationError'));
     });
   },
   approvePublication: function(id) {
@@ -27,7 +27,7 @@ export default Ember.Controller.extend({
         that.transitionToRoute('publications.dashboard.biblreview');
     },
     function() {
-      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('messages.approvePublicationError'));
     });
   },
 
