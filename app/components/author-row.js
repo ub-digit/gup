@@ -47,8 +47,27 @@ export default Ember.Component.extend({
 	      deferred.reject = function(reason) {
 	        console.log(reason);
 	      };
-	      var fromStore = this.store.find("person", {search_term: query.term});
-	      fromStore.then(deferred.resolve, deferred.reject);
+	      var success = function(data) {
+	      	data = data.map(function(item){
+	      	  // Create presentation string
+	      	  var nameStr = [item.first_name, item.last_name].compact().join(' ');
+	      	  var yearStr = [item.year_of_birth].compact().join('');
+			  var idStr = [item.xaccount, item.orcid].compact().join(', ')
+
+			  if(yearStr) {
+			    yearStr = ', ' + yearStr
+			  }
+			  if(idStr) {
+			    idStr = ' ' + ['(', idStr, ')'].join('')
+			  }
+	      	  item.presentation_string = nameStr + yearStr + idStr;
+	      	  return item;
+	      	});
+	        return deferred.resolve(data);
+	      };
+
+	      var fromStore = this.store.find("person_record", {search_term: query.term});
+	      fromStore.then(success, deferred.reject);
 
 	    },
 

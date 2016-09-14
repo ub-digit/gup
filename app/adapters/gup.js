@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   endpoints: {
     report: {path: 'reports'},
     person: {path: 'people', plural:'people'},
+    person_record: {path: 'person_records'},
     department: {path: 'departments'},
     publication: {path: 'publications'},
     publication_type: {path: 'publication_types'},
