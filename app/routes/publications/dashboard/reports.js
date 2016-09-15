@@ -28,13 +28,6 @@ export default Ember.Route.extend({
         window.scrollTo(0,0);
       });
     },
-    queryAuthors: function(query, deferred) {
-	    deferred.reject = function(reason) {
-	      console.log(reason);
-	    };
-	    var fromStore = this.store.find("person", {search_term: query.term, require_xaccount: true});
-	    fromStore.then(deferred.resolve, deferred.reject);
-	  },
     resetFilter: function(){
       this.controller.set('filter', {});
       this.controller.get('publicationTypes').setEach('checked', false);
