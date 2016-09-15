@@ -12,9 +12,11 @@ export default Ember.Component.extend({
 
   allFieldObjects: Ember.computed('publicationType.all_fields', function() {
     var o = Ember.Object.create();
-    this.get('publicationType.all_fields').forEach(function(field) {
-      Ember.set(o, field.name, field);
-    });
+    if (this.get('publicationType.all_fields')) {
+      this.get('publicationType.all_fields').forEach(function(field) {
+        Ember.set(o, field.name, field);
+      });
+    } 
     return o;
   }),
   comparableVersions: Ember.computed('publication.versions', function() {

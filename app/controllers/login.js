@@ -1,7 +1,19 @@
 import Ember from 'ember';
-import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
-export default Ember.Controller.extend(LoginControllerMixin, {
-    authenticator: 'authenticator:custom',
-    error: {},
+
+export default Ember.Controller.extend({
+  session: Ember.inject.service(),
+  application: Ember.inject.controller(),
+
+  actions: {
+    authenticate() {
+      let { identification, password } = this.getProperties('identification', 'password');
+      this.get('session').authenticate('authenticator:gub', {identification: identification, password: password}).catch((reason) => {
+        this.set('errorMessage', reason.error || reason);
+      });
+    },
+    authenticationSucceeded: function() {
+		alert("hello");
+    }
+  }
 });

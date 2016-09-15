@@ -12,11 +12,12 @@ export default {
     websiteLink: "Bibliotekets webbplats"    
   },
 	login: {
-		xaccount: 'x-konto',
-		xaccountPlaceholder: 'x-konto',
+		header: "Logga in",
+		button: "Logga in",
+		username: 'x-konto',
+		usernamePlaceholder: 'x-konto',
 		password: 'Lösenord',
 		passwordPlaceholder: 'Lösenord',
-		button: 'Logga in'
 	},
 	publication: {
 		labels: {
@@ -41,6 +42,7 @@ export default {
 		}
 	},
 	messages: {
+		loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
 		saveDraftSuccess: 'Posten har sparats som utkast.',
 		saveDraftError: 'Posten kunde inte sparas som utkast.',
 		deleteDraftSuccess: 'Utkast borttaget.',

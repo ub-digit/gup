@@ -1,8 +1,12 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
+
   beforeModel: function() {
     var lang = "sv"; /// change to default
     if (sessionStorage.getItem('lang')) {
@@ -10,45 +14,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
     this.set('i18n.locale', lang);
     sessionStorage.setItem('lang', lang);
-
     this._super();
-    if (this.get("session.authenticated")) {
-			this.fetchUserdata();
-    }
-    else {
-      this.transitionTo('login');
-    }
   },
 
-	fetchUserdata: function() {
-		var controller = this.controllerFor('application');
-		var session = this.get('session.content');
-		this.store.find('userdata', session.username).then(function(data) {
-			controller.set('userdata', data);
-		});
-	},
-	fetchUserdataLoop: function(interval) {
-		if(!interval) { interval = 60000; }
-		this.fetchUserdata();
-		Ember.run.later(this, function() {
-			this.fetchUserdataLoop();
-		}, interval);
-	},
 
   actions: {
+    invalidateSession() {
+      this.get('session').invalidate();
+    },
+
 		refreshUserdata: function() {
 			this.fetchUserdata();
 		},
-    sessionAuthenticationSucceeded: function() {
-      //Ember.run.later(Ember.$('body').removeClass("loading"));
-      if (this.get('session.content.can_biblreview')) {
-        this.controller.set('viewMode', 'advanced');
-      }
-      this.transitionTo("publications.dashboard.start");
-      Ember.run.later(function() {Ember.$('body').removeClass("loading");});
-			this.fetchUserdataLoop(60000);
-      //	return this._super();
-    },
+
     sessionAuthenticationFailed: function(error) {
       Ember.$('body').removeClass("loading");
       this.controllerFor('login').set('error', error.msg);

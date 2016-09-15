@@ -1,8 +1,11 @@
 import Ember from 'ember';
+const { getOwner } = Ember;
 
 export default Ember.Object.extend({
   adapter: function() {
-	  return this.container.lookup('adapter:gup');
+
+
+	  return getOwner(this).lookup('adapter:gup');
   },
   id: function(id_or_params) {
 	  if(typeof(id_or_params) === "number" || typeof(id_or_params) === "string") {

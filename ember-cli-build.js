@@ -5,21 +5,15 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
   });
-  app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
+
+  
+  //app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
   app.import('bower_components/jquery-ui/jquery-ui.min.js');
   app.import("bower_components/moment/min/moment.min.js");
-  app.import('bower_components/ember-uploader/dist/ember-uploader.js');
+  //app.import('bower_components/ember-uploader/dist/ember-uploader.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
-  app.import('bower_components/rsvp/rsvp.min.js');
+  //app.import('bower_components/rsvp/rsvp.min.js');
   app.import('vendor/select2-bootstrap.css');
-
-  app.import("bower_components/font-awesome/css/font-awesome.css");
-  app.import("bower_components/font-awesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
-  app.import("bower_components/font-awesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });
-  app.import("bower_components/font-awesome/fonts/fontawesome-webfont.ttf", { destDir: "fonts" });
-  app.import("bower_components/font-awesome/fonts/fontawesome-webfont.woff", { destDir: "fonts" });
-  app.import("bower_components/font-awesome/fonts/FontAwesome.otf", { destDir: "fonts" });
-
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
