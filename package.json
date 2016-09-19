@@ -38,6 +38,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-cli-uploader": "^0.3.11",
     "ember-export-application-global": "^1.0.5",
     "ember-i18n": "4.2.2",
     "ember-linkify": "2.5.1",
@@ -48,10 +49,7 @@
     "ember-simple-auth": "1.1.0",
     "ember-welcome-page": "^1.0.1",
     "emberx-select": "2.0.1",
-    "loader.js": "^4.0.1",
-    "ember-linkify": "2.5.1"
+    "loader.js": "^4.0.1"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }

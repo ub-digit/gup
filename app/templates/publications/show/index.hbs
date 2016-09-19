@@ -15,14 +15,14 @@
     <nav id="publication-toolbar" class="pull-right">
       <ul class="list-inline">
         <li>{{#link-to 'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
-        {{#if session.content.can_delete_published}}
+        {{#if session.data.authenticated.can_delete_published}}
           <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
         {{/if}}
-        {{#unless session.content.can_biblreview}}
+        {{#unless session.data.authenticated.can_biblreview}}
           <li>{{mailer-modal publication=model}}</li>
         {{/unless}}
         {{#if isExtendedViewMode}}
-          {{#if session.content.can_biblreview}}
+          {{#if session.data.authenticated.can_biblreview}}
             {{#if model.published_at}}
               {{#unless model.biblreviewed_at}}
                 <li>{{delay-review-modal publication=model}}</li>
@@ -31,7 +31,7 @@
             {{/if}}
           {{/if}}
         {{/if}}
-        {{#if session.content.can_biblreview}}
+        {{#if session.data.authenticated.can_biblreview}}
             {{#if isExtendedViewMode}}
           <li>
               <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>
@@ -122,3 +122,6 @@
     </div>
   </div>
 {{/if}}
+
+
+

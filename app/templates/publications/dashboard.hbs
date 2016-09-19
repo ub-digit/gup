@@ -13,13 +13,13 @@
           {{/if}}
           {{/link-to}}
         </li>
-        {{#if session.content.can_biblreview}}
+        {{#if session.data.authenticated.can_biblreview}}
           <li title={{t 'tabTitle.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'text.forBReview'}}{{/link-to}}</li>
         {{/if}}
-        {{#if session.content.can_administrate}}
+        {{#if session.data.authenticated.can_administrate}}
           <li title={{t 'tabTitle.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
         {{/if}}
-        {{#if session.content.can_administrate}}
+        {{#if session.data.authenticated.can_administrate}}
           <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'text.admin'}}{{/link-to}}</li>
         {{/if}}
         <li title={{t 'tabTitle.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'text.reports'             }}{{/link-to}}</li>
