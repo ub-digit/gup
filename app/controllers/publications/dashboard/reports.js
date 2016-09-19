@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from 'gup/config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service('session'),
   publicationsController: Ember.inject.controller("publications"),
   publicationTypes: [],
   person: null,
@@ -39,7 +40,7 @@ export default Ember.Controller.extend({
     var that = this;
     var date = moment();
     var report_name = "report-"+date.format("YYYY-MM-DD_HHMM");
-    var token =  this.container.lookup('simple-auth-session:main').get('token');
+    var token =  this.get("session.data.authenticated.token");
     var report_data = Ember.$.param({
       report: {
         filter: that.get('filterData'),

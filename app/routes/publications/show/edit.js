@@ -128,16 +128,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             return false;
         };
 
+        var generalHandler = function(model) {
+          if (model.error) {
+            errorHandler(model);
+          } 
+          else {
+            successHandler(model);
+          }
+        };
+
         Ember.$("body").addClass("loading");
         this.get("controller").formatAuthorsForServer().then(function(){
             that.store.save(
                 'draft',
-                that.controller.get("publication")).then(successHandler, errorHandler);
+                that.controller.get("publication")).then(generalHandler);
         });
 
     },
     savePublish: function(/*model*/) {
         var that = this;
+
         var successHandler = function(model) {
             that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
             Ember.$("body").removeClass("loading");
@@ -167,6 +177,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             return false;
         };
 
+        var generalHandler = function(model) {
+          if (model.error) {
+            errorHandler(model);
+          } 
+          else {
+            successHandler(model);
+          }
+        };
+
         Ember.$("body").addClass("loading");
 
         if (!that.controller.get('publication.published_at')) {
@@ -175,7 +194,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
 
         this.get("controller").formatAuthorsForServer().then(function(){
-            that.store.save('published_publication',that.controller.get("publication")).then(successHandler, errorHandler);
+            that.store.save('published_publication',that.controller.get("publication")).then(generalHandler);
         });
       }
     }

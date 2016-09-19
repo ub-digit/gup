@@ -8,6 +8,7 @@
         <li title={{t 'tabTitle.forReview'}}>
           {{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}
           {{#if showReviewCount}}
+          test
             <span class="badge badge-red">{{application.userdata.counts.review}}</span>
           {{/if}}
           {{/link-to}}
@@ -21,7 +22,7 @@
         {{#if session.content.can_administrate}}
           <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'text.admin'}}{{/link-to}}</li>
         {{/if}}
-        <li title={{t 'tabTitle.reports'             }}>{{#link-to 'publications.dashboard.reports'}}{{t 'text.reports'             }}{{/link-to}}</li>
+        <li title={{t 'tabTitle.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'text.reports'             }}{{/link-to}}</li>
       </ul>
     </nav>
   </div>

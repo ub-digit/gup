@@ -37,6 +37,7 @@ export default {
 		}
 	},
 	messages: {
+		loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
 		saveDraftSuccess: 'The record has been saved as a draft.',
 		saveDraftError: 'The record could not be saved as a draft.',
 		deleteDraftSuccess: 'Draft deleted.',

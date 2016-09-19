@@ -165,7 +165,7 @@ export default Select2.extend({
     options.formatNoMatches = function(term) {
       var text = that.get('typeaheadNoMatchesText');
 
-      if (text instanceof Ember.Handlebars.htmlSafe) {
+      if (text instanceof Ember.Handlebars.SafeString) {
         text = text.string;
       }
       term = Ember.Handlebars.Utils.escapeExpression(term);

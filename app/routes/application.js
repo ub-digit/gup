@@ -54,13 +54,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.controller.set('publication_id', null);
       this.controller.set('publication_id_error', null);
 
-      if (publication_id) {
-        that.store.find('publication', publication_id).then(function() {
+      var successHandler = function(model) {
           that.transitionTo('publications.show', publication_id);
-        },
-        function(){
+      };
+      var errorHandler = function(model) {
           that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
-        });
+      };
+      var generalHandler = function(model) {
+        if (model.error) {
+          errorHandler(model);
+        }
+        else {
+          successHandler(model);
+        }
+      };
+
+      if (publication_id) {
+        that.store.find('publication', publication_id).then(generalHandler);
       }
     }
   }
