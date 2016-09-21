@@ -6,4 +6,5 @@ export default Ember.Controller.extend({
 
   viewModeBinding: 'application.viewMode'
 
+
 });

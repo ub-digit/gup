@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   isExtendedViewMode: false,
   queryParams: ['other_version'],
   other_version: null,
+
   
   deletePublication: function(id) {
     var that = this;
@@ -36,6 +37,7 @@ export default Ember.Controller.extend({
   //  var view_mode = this.get('viewMode');
   //  return (is_reviewer && (view_mode === 'advanced'));
   //}),
+
 
   getPublicationTypeObject: Ember.computed('model.publication_type', function(){
     return this.get("publicationsController.publicationTypes").findBy("id", this.get("model.publication_type_id"));

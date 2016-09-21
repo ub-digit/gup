@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+
 export default Ember.Component.extend({
 
   classNames: ['publication-display'],
@@ -26,6 +27,7 @@ export default Ember.Component.extend({
     });
   }),
   fetchVersionString: 'fetchVersion',
+
   actions: {
     fetchVersion: function(version_id) {
       this.sendAction('fetchVersionString', this.get('publication.id'), version_id);

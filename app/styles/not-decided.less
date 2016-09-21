@@ -237,3 +237,29 @@ table.compare-table {
     font-size: 75%;
     font-weight: normal;
 }
+
+
+.gup-input-upload {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	+ label {
+		.btn();
+		.btn-default();
+	}
+}
+
+
+#gup-progress-bar {
+	margin-top: 10px;
+}
+
+
+.gup-file-list {
+	li + li::before {
+    	content: " | ";
+	}
+}

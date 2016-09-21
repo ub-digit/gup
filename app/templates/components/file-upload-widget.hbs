@@ -1,0 +1,48 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="fileUploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel3">{{assetData.name}}</h4>
+      </div>
+     	<div class="modal-body">
+     		{{#if hasError }}
+     			<div class="alert alert-danger" role="alert">
+     				{{hasError}}
+     			</div>
+     		{{/if}}
+			<div class="form-group">
+				<div class="checkbox">
+					<label>
+						{{input type="checkbox" name="isEmbargod" checked=isEmbargo}}
+						Ange embargo
+					</label>
+				</div>
+			</div>
+			{{#if isEmbargo }}
+				<div class="gup-embargo-datepicker">
+					<label>
+						Visa offentligt först efter
+						{{pikaday-input  class="form-control" value=gupEmbargoDate format="YYYY-MM-DD"}}
+					</label>
+				</div>
+			{{/if}}
+			<div class="form-group">
+				<div class="checkbox">
+					<label>
+						{{input type="checkbox" checked=isAccepted}}
+						Jag godkänner avtal | <a href="http://www.ub.gu.se" class="small" target="_blank">läs avtalet (nytt fönster)</a>
+					</label>
+				</div>
+			</div>
+      	</div>
+		<div class="modal-footer">
+			<button class="btn btn-link" data-dismiss="modal">Avbryt</button>
+			<button class="btn btn-primary" {{action 'saveModel'}}>Spara</button>
+		</div>
+    </div>
+  </div>
+</div>

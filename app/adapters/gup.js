@@ -25,6 +25,7 @@ export default Ember.Object.extend({
 		serie: {path: 'series'},
 		project: {path: 'projects'},
     message: {path: 'messages'},
+    asset_data: {path: 'asset_data', singular: 'asset_data', plural: 'asset_data'},
     published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'},
     review_publication: {path: 'review_publications', singular: 'publication', plural: 'publications'},
     biblreview_publication: {path: 'biblreview_publications', singular: 'publication', plural: 'publications'}
