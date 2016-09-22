@@ -247,8 +247,12 @@ table.compare-table {
 	position: absolute;
 	z-index: -1;
 	+ label {
-		.btn();
-		.btn-default();
+		//.btn();
+		//.btn-default();
+		cursor: pointer;
+		font-weight: normal;
+
+		.btn-link();
 	}
 }
 
@@ -261,5 +265,8 @@ table.compare-table {
 .gup-file-list {
 	li + li::before {
     	content: " | ";
+	}
+	.hasEmbargo {
+		opacity: .5;
 	}
 }

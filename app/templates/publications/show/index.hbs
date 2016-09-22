@@ -14,6 +14,11 @@
   <div class="col-xs-9">
     <nav id="publication-toolbar" class="pull-right">
       <ul class="list-inline">
+        <li>
+          {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError publicationID=model.id assetData=assetData}}
+          <label for="gup-input-upload"><i class="fa fa-paperclip" aria-hidden="true"></i>  Bifoga fil</label>
+          {{file-upload-widget assetData=assetData fileUploadProgress=fileUploadProgress}}
+        </li>
         <li>{{#link-to 'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
         {{#if session.data.authenticated.can_delete_published}}
           <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
@@ -34,7 +39,7 @@
         {{#if session.data.authenticated.can_biblreview}}
             {{#if isExtendedViewMode}}
           <li>
-              <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i> Visningsläge</a>
+              <a href="javascript.void(0)" {{action 'toggleViewMode'}}> <i class="fa fa-compress"></i>  </a>
           </li>
           {{#if isExtendedCompareMode}}
           <li>
@@ -53,6 +58,14 @@
         {{/if}}
       </ul>
     </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="progress" id="gup-progress-bar">
+      <div class="progress-bar" role="progressbar" aria-valuenow="{{fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{fileUploadProgress}}%;">
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
@@ -123,22 +136,5 @@
   </div>
 {{/if}}
 
-<div class="row">
-  <div class="col-xs-12">
-    {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError publicationID=model.id assetData=assetData}}
-    <label for="gup-input-upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i>  Bifoga fil</label>
-   
-    {{#if fileUploadError}}
-    <div class="gup-error">{{fileUploadError}}</div>
-    {{/if}}
 
-    {{file-upload-widget assetData=assetData fileUploadProgress=fileUploadProgress}}
-  </div>
-  <div class="col-xs-12 col-sm-6">
-    <div class="progress" id="gup-progress-bar">
-      <div class="progress-bar" role="progressbar" aria-valuenow="{{fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{fileUploadProgress}}%;">
-      </div>
-    </div>
-  </div>
-</div>
 

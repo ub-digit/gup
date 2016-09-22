@@ -2,8 +2,13 @@
 <dd>
 	<ul class="list-inline gup-file-list">
 	  {{#each fieldValue as |listItem|}}
-	    <li>
-	    <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a> <a href="javascript:void()" {{action 'removeFile' listItem.id}} ><i class="fa gup-error fa-times" aria-hidden="true"></i></a></li>
+	    <li class={{if listItem.visible_after "hasEmbargo"}}>
+	    	<a class={{if listItem.visible_after "hasEmbargo"}} target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a> 
+	    	{{#if listItem.visible_after}}
+				<span class="small">(Embargo {{listItem.visible_after}})</span> 
+			{{/if}}
+	    	<a href="javascript:void()" {{action 'removeFile' listItem.id}} ><i class="fa gup-error fa-times" aria-hidden="true"></i></a>
+	   	</li>
 	  {{/each}}
 	</ul>
 </dd>
