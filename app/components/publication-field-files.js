@@ -25,7 +25,7 @@ export default Ember.Component.extend({
 			}
 			var generalHandler = function(model) {
 				//alert("this was generalHandler");
-				that.sendAction("refreshModelAction");
+				that.sendAction("refreshModelAction", model.id);
 				that.sendAction("setMsgHeaderAction", 'success', 'Filen har tagits bort');
 			};
 
