@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   isPreviewMode: Ember.computed.equal('mode', 'preview'),
   isCompareMode: Ember.computed.equal('mode', 'compare'),
 
-  allFieldObjects: Ember.computed('publicationType.all_fields', function() {
+  allFieldObjects: Ember.computed('publicationType.all_fields', function( ) {
     var o = Ember.Object.create();
     if (this.get('publicationType.all_fields')) {
       this.get('publicationType.all_fields').forEach(function(field) {
@@ -30,7 +30,13 @@ export default Ember.Component.extend({
 
   refreshModelAction: 'refreshModel',
 
+  setMessageAction: 'setMsgHeader',
+
   actions: {
+    setMessage: function() {
+      this.sendAction('refreshModelAction', this.get('publication.id'));
+      this.sendAction("setMessageAction", 'success', 'Filen har tagits bort');
+    },
     refreshModel: function() {
       this.sendAction('refreshModelAction', this.get('publication.id'));
     },

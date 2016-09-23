@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 	},
 
 	refreshModelAction: 'refreshModel',
-	setMsgHeaderAction: 'setMsgHeader',
+	setMsgHeaderAction: 'setMessage',
 
 	actions: {
 		removeFile: function(id) {
