@@ -28,7 +28,12 @@ export default Ember.Component.extend({
   }),
   fetchVersionString: 'fetchVersion',
 
+  refreshModelAction: 'refreshModel',
+
   actions: {
+    refreshModel: function() {
+      this.sendAction('refreshModelAction', this.get('publication.id'));
+    },
     fetchVersion: function(version_id) {
       this.sendAction('fetchVersionString', this.get('publication.id'), version_id);
     }

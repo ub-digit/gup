@@ -17,7 +17,7 @@
         <li>
           {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError publicationID=model.id assetData=assetData}}
           <label for="gup-input-upload"><i class="fa fa-paperclip" aria-hidden="true"></i>  Bifoga fil</label>
-          {{file-upload-widget assetData=assetData fileUploadProgress=fileUploadProgress}}
+          {{file-upload-widget publication=model assetData=assetData fileUploadProgress=fileUploadProgress}}
         </li>
         <li>{{#link-to 'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
         {{#if session.data.authenticated.can_delete_published}}
