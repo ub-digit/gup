@@ -28,7 +28,7 @@
       {{input classBinding=":form-control" value=value}}
     {{/if}}
     {{#if isTypeDate}}
-      {{date-picker date=value class="form-control" valueFormat='YYYY-MM-DD' allowBlank='true' firstDay=1 placeholder="YYYY-MM-DD"}}
+      {{pikaday-input date=value class="form-control" valueFormat='YYYY-MM-DD' allowBlank='true' firstDay=1 placeholder="YYYY-MM-DD"}}
     {{/if}}
     {{#if isTypeTextarea}}
       {{textarea classBinding=":form-control" value=value}}

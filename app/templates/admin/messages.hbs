@@ -11,14 +11,14 @@
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.start_date'}}</label>
-        {{date-picker date=news_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
+        {{pikaday-input date=news_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
       </div>
     </div>
 
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.end_date'}}</label>
-        {{date-picker date=news_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
+        {{pikaday-input date=news_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
       </div>
     </div>
 
@@ -42,14 +42,14 @@
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.start_date'}}</label>
-        {{date-picker date=alert_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-start-date'}}
+        {{pikaday-input date=alert_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-start-date'}}
       </div>
     </div>
 
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.end_date'}}</label>
-        {{date-picker date=alert_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-end-date'}}
+        {{pikaday-input date=alert_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-end-date'}}
       </div>
     </div>
 
