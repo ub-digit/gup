@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
+  session: Ember.inject.service(),
   applicationController: Ember.inject.controller("application"),
   publicationsController: Ember.inject.controller("publications"),
   publicationsShowController: Ember.inject.controller("publications/show"),
