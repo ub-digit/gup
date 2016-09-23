@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.resource('publications', function() {
+  this.route('publications', { resetNamespace: true }, function() {
     this.route('new');
     this.route('fileimport');
     this.route('import');
@@ -27,7 +27,7 @@ Router.map(function() {
       this.route('reports');
     });
   });
-  this.resource('admin', function() {
+  this.route('admin', { resetNamespace: true }, function() {
     this.route('departments', function(){
       this.route('index', {path: '/'});
       this.route('new');
