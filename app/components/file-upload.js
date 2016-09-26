@@ -48,14 +48,16 @@ export default EmberUploader.FileField.extend({
 
 
 	    uploader.on('didUpload', response => {
+	    	that.set("fileUploadError", null);
 			that.set("assetData", response.asset_data);
-			that.set('value', '');
 			preFilters.remove(authPrefilter);
 			Ember.$('#fileUploadModal').modal('show');
 	    });
 
 		uploader.on('didError', (jqXHR, textStatus, errorThrown) => {
-			that.set("fileUploadError", "Error while uploading file");
+			let errorMsg = jqXHR.responseJSON.error.msg;
+			Ember.$("#gup-progress-bar").hide();
+			that.set("fileUploadError", errorMsg);
 		});
 
 		if (!Ember.isEmpty(files)) {
