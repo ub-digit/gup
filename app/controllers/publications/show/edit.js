@@ -242,6 +242,10 @@ export default Ember.Controller.extend({
 
 
   actions: {
+    countContent: function(field_name) {
+      // Dummy catcher for non-grouped field-component
+      return false;
+    },
     setPublicationTypeFilter: function(filter){
       this.set('publicationTypeFilter', filter);
     },

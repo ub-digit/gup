@@ -45,6 +45,7 @@
 	{{/if}}
 
 	<hr/>
+{{#field-group}}
 
 	<!-- Dissertaion fields -->
 
@@ -80,8 +81,8 @@
 		</div>
 	</div>
 
-	<hr/>
-
+{{/field-group}}
+{{#field-group}}
 	<div class="row">
 		<div class="col-md-9 ">
 			<span class="form-group {{if errors.sourcetitle 'has-error'}}">
@@ -191,8 +192,8 @@
 		</div>
 	</div>
 
-	<hr/>
-
+{{/field-group}}
+{{#field-group}}
 	<div class="row">
 		<div class="col-xs-12">
 			<span class="form-group {{if errors.category_hsv_local 'has-error'}}">
@@ -216,9 +217,8 @@
 			</span>
 		</div>
 	</div>
-
-	<hr/>
-
+{{/field-group}}
+{{#field-group}}
 	<div class="row">
 		<div class="col-md-9">
 			<span class="form-group {{if errors.project 'has-error'}}">
@@ -234,7 +234,7 @@
 			</span>
 		</div>
 	</div>
-
+{{/field-group}}
 
 
 
