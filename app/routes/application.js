@@ -24,8 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
 		refreshUserdata: function() {
-			this.fetchUserdata();
-		},
+		  var that = this;
+		  this.store.find('userdata', this.get('session.data.authenticated.username')).then(function(data) {
+			  that.controllerFor("application").set("userdata", data);
+		  });
+	  },
 
     sessionAuthenticationFailed: function(error) {
       Ember.$('body').removeClass("loading");

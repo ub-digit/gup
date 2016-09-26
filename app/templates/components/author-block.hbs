@@ -1,19 +1,19 @@
 <section id="author-component" class="{{if errors 'has-error'}}">
-	<h2>{{authorHeaderText}}</h2>
-	{{#if errors}}
-		<ul class="list-unstyled has-error">
-		{{#each errors as |item|}}
-			<li><i class="fa fa-info-circle"></i> {{item}}</li>
-		{{/each}}
-		</ul>
-	{{/if}}
-	{{#each authorArr as |item|}}
-		{{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
-	{{/each}}
-	<div class="row">
-		<div class="col-md-9">
-			<div class="dotted-line"></div>
-			<button class="btn btn-primary" {{action 'addNewAuthorRow'}}>{{t 'edit.form.btnAddNewAuthor'}} <i class="fa fa-plus"></i></button>
-		</div>
-	</div>
+  <h2>{{authorHeaderText}}</h2>
+  {{#if errors}}
+    <ul class="list-unstyled has-error">
+      {{#each errors as |item|}}
+        <li><i class="fa fa-info-circle"></i> {{item}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  {{#each authorArr as |item|}}
+    {{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
+  {{/each}}
+  <div class="row">
+    <div class="col-md-9">
+      <div class="dotted-line"></div>
+      <button class="btn btn-primary" {{action 'addNewAuthorRow'}}>{{t 'edit.form.btnAddNewAuthor'}} <i class="fa fa-plus"></i></button>
+    </div>
+  </div>
 </section>
