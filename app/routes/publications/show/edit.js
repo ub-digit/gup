@@ -6,13 +6,11 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: Ember.inject.service(),
   returnTo: null,
-
   beforeModel: function() {
     //TODO: replace with loading substate
     //https://guides.emberjs.com/v2.8.0/routing/loading-and-error-substates/
     Ember.$('body').addClass('loading');
   },
-
   model: function(params, transition) {
     this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.show');
@@ -26,11 +24,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       publicationIdentifierCodes: this.store.find('publication_identifier_code')
     });
   },
-
   afterModel: function(/*model, transition*/) {
     Ember.$('body').removeClass('loading');
   },
-
   setupController: function(controller, models) {
     controller.set('publicationTypes', models.publicationTypes);
     controller.set('publication', models.publication);
@@ -47,7 +43,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
     controller.set('publicationTypes', models.publicationTypes);
 
-    console.log('edit-setupController', models);
     var authors = null;
     if (models.publication) {
       if (models.publication.authors) {
@@ -57,18 +52,28 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         controller.set('arrOfAuthorsFromImport', models.publication.authors_from_import);
       }
     }
-    var tempAuthorArr = [];
+    let tempAuthorArr = [];
     if (authors) {
       authors.forEach(function(author) {
-        var departments = [];
+        let departments = [];
         author.departments.forEach(function(department) {
-          departments.push(Ember.Object.create({id: department.id, name: department.name}));
+          departments.push(Ember.Object.create({
+            id: department.id,
+            name: department.name
+          }));
         });
-        tempAuthorArr.push(Ember.Object.create({id: author.id, selectedAuthor: {id: author.id, presentation_string: author.presentation_string, last_name: author.last_name}, selectedInstitution: departments, }));
+        tempAuthorArr.push(Ember.Object.create({
+          id: author.id,
+          selectedAuthor: {
+            id: author.id,
+            presentation_string: author.presentation_string,
+            last_name: author.last_name
+          },
+          selectedInstitution: departments
+        }));
       });
       controller.set('authorArr', tempAuthorArr);
     }
-
 
     var publicationType = models.publicationTypes.findBy('id', models.publication.publication_type_id);
     if (publicationType) {
@@ -85,8 +90,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       controller.set('suggestedPublicationType', null);
     }
   },
-
-
   exit: function() {
     var controller = this.get('controller');
     controller.set('selectedPublicationType', null);
@@ -95,12 +98,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('mayBecomeOldSelectedPublicationType', null);
     controller.set('errors', null);
   },
-
   actions: {
     willTransition: function() {
       this.send('refreshModel', this.controller.get('publication.id'));
     },
-
     cancelEdit: function() {
       if(this.returnTo) {
         this.transitionTo(this.returnTo);
@@ -132,7 +133,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var generalHandler = function(model) {
         if (model.error) {
           errorHandler(model);
-        } 
+        }
         else {
           successHandler(model);
         }
@@ -144,22 +145,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             'draft',
             that.controller.get('publication')).then(generalHandler);
       });
-
     },
     savePublish: function(/*model*/) {
       var that = this;
-
       var successHandler = function(model) {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
         Ember.$('body').removeClass('loading');
         that.send('refreshModel', model.id);
         that.send('refreshUserdata');
+
         if(that.returnTo) {
           that.transitionTo(that.returnTo);
         } else {
           that.transitionTo('publications.show', model.id);
         }
       };
+
       var errorHandler = function(reason) {
         that.send('setMsgHeader', 'error', that.get('i18n').t('messages.publishError'));
         that.controller.set('errors', reason.error.errors);
@@ -167,7 +168,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         if (that.controller.get('publication.draft_id')) {
           that.controller.set('publication.id', that.controller.get('publication.draft_id'));
           that.controller.set('publication.draft_id', null);
-        } 
+        }
         Ember.$('body').removeClass('loading');
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
@@ -199,5 +200,4 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       });
     }
   }
-
 });
