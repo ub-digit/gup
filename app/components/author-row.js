@@ -27,7 +27,7 @@ export default Ember.Component.extend({
   isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
     return !!this.get('item.importedAuthorName') && !this.get('addAffiliation');
   }),
-
+  /*
   newAuthorFormVisible: function() {
     var self = this;
     if (this.get('item.transformedToNewAuthor')) {
@@ -37,6 +37,7 @@ export default Ember.Component.extend({
       });
     }
   }.observes('item.transformedToNewAuthor'),
+  */
 
   actions: {
     setMsgHeader: function(type, msg) {
