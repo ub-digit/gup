@@ -50,6 +50,7 @@ export default EmberUploader.FileField.extend({
 	    uploader.on('didUpload', response => {
 	    	that.set("fileUploadError", null);
 			that.set("assetData", response.asset_data);
+			that.set('value', '');
 			preFilters.remove(authPrefilter);
 			Ember.$('#fileUploadModal').modal('show');
 	    });
