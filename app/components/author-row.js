@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   errors: null,
   didInsertElement: function() {
   },
+  /*
   resetForm: function() {
     if (this.get("item.newAuthorForm")) {
       if(!this.get('item.importedAuthorName')) {
@@ -15,6 +16,7 @@ export default Ember.Component.extend({
       this.set("item.newAuthorForm.orcid", '');
     }
   },
+  */
   // Used to signal select2-adjusted component to set a default query string
   setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
     return !!this.get('item.importedAuthorName');
