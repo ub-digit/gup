@@ -1,161 +1,160 @@
 <div class="row bottom-spacing-20">
-	
-	<div class="col-xs-12">
-		<div class="dotted-line"></div>
-  {{#if isImportedExternal}}
-			<div class="col-xs-10 imported-author">
-		      <p><strong>{{item.importedAuthorName}}</strong> 
-		     	 (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'newPub.manualPub.addAffiliation'}}</a>
-		      </p>
-			</div>
-	    <div class="col-xs-1">
-		<button class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
-	</div>
-	<div class="col-xs-1 ">
-		{{#unless isThisTheOnlyAuthorRow}}
-		<div class="sort-control">
-			<div class="sort-control-up">
-				<a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
-			</div>
-			<div class="sort-control-down">
-				<a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
-			</div>
-		</div>
-		{{/unless}}
-	</div>
-  {{else}}
-		{{#if item.importedAuthorName}}
-		  <p><strong>{{item.importedAuthorName}}</strong></p> 
-		{{/if}}
-	<div class="col-xs-10">
-		{{#if item.transformedToNewAuthor}}
-			<div class="row bottom-spacing-20">
-				<div class="col-xs-12">
-					<div class="row bottom-spacing-20">
-						<div class="col-xs-6">
-							<span class="form-group {{if errors.first_name 'has-error'}}">
-								<label class="control-label">								
-									{{#if errors.first_name}}
-										{{error-feedback errors.first_name}}
-									{{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
-								</label>
-								{{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
-							</span>
-						</div>
-						<div class="col-xs-6">
-							<span class="form-group {{if errors.last_name 'has-error'}}">
-								<label class="control-label">								
-									{{#if errors.last_name}}
-										{{error-feedback errors.last_name}}
-									{{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
-								</label>
-								{{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
-							</span>
-						</div>
-					</div>
-					<div class="row bottom-spacing-20">
-						<div class="col-xs-3">
-							<span class="form-group {{if errors.birthyear 'has-error'}}">
-								<label class="control-label">								
-									{{#if errors.year_of_birth}}
-										{{error-feedback errors.year_of_birth}}
-									{{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
-								</label>
-								{{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
-							</span>
-						</div>
-
-						<div class="col-xs-3">
-							<span class="form-group {{if errors.xaccount 'has-error'}}">
-								<label class="control-label">								
-									{{#if errors.xaccount}}
-										{{error-feedback errors.xaccount}}
-									{{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
-								</label>
-								{{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
-							</span>
-						</div>
-						<div class="col-xs-6">
-							<span class="form-group {{if errors.orcid 'has-error'}}">
-								<label class="control-label">								
-									{{#if errors.orcid}}
-										{{error-feedback errors.orcid}}
-									{{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
-								</label>
-								{{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
-							</span>
-						</div>
-					</div>
-					<div class="btn-toolbar">
-						<button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'edit.createNewAuthor.form.actions.btnSave'}}</button>
-						<button {{action "toggleAddNewAuthor" item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
-					</div>
-				</div>
-			</div>
-		{{else}}
-      {{#if showInputFields}}
-			<div class="row">
-				<div class="col-xs-5">
-					<label>{{t 'edit.form.selectAuthor.label'}}</label>
-					{{select2-adjusted
-					    placeholder=(t 'edit.form.selectAuthor.placeholder')
-					    didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
-					    btnText=(t 'edit.form.selectAuthor.btnCreateNew')
-					    value=item.selectedAuthor
-              setDefaultQuery=setDefaultQuery
-              defaultQuery=item.newAuthorForm.lastName
-					    optionLabelPath="presentation_string"
-					    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
-					   	typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
-					   	formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
-					   	minimumInputLength=3
-					    query="queryAuthors"
-					    allowClear=true
-					    zeroResult=item.transformedToNewAuthor
-					    cssClass=item.id
-					}}
-				</div>
-				<div class="col-xs-7">
-					<div class="how-to-sort">
-						<a href="javascript:void();">{{t 'edit.form.selectInstitutions.sortingLink'}}</a>
-						<div class="outer-wrapper">
-							<div class="message">
-							</div>
-						</div>
-					</div>	
-					<label>{{t 'edit.form.selectInstitutions.placeholder'}}</label>
-					{{select2-adjusted-sortable
-					    content=institutions
-					    optionLabelPath="name"
-					    value=item.selectedInstitution
-					    placeholder=(t 'edit.form.selectInstitutions.placeholder')
-					    allowClear=true
-					    multiple=true
-              id=item.id
-					}}
-          {{#each item.selectedAuthor.affiliations as |affiliation|}}
-           <a href="#" {{action 'addInstitution' affiliation}}> {{affiliation.name}}</a>
-          {{/each}}
-				</div>
-			</div>
+  <div class="col-xs-12">
+    <div class="dotted-line"></div>
+    {{#if isImportedExternal}}
+      <div class="col-xs-10 imported-author">
+        <p><strong>{{item.importedAuthorName}}</strong> 
+        (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'newPub.manualPub.addAffiliation'}}</a>
+        </p>
+      </div>
+      <div class="col-xs-1">
+        <button class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
+      </div>
+      <div class="col-xs-1 ">
+        {{#unless isThisTheOnlyAuthorRow}}
+          <div class="sort-control">
+            <div class="sort-control-up">
+              <a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
+            </div>
+            <div class="sort-control-down">
+              <a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
+            </div>
+          </div>
+        {{/unless}}
+      </div>
+    {{else}}
+      {{#if item.importedAuthorName}}
+        <p><strong>{{item.importedAuthorName}}</strong></p> 
       {{/if}}
-		{{/if}}
-	</div>
-	<div class="col-xs-1 compensate-for-label-on-top">
-		<button class="btn btn-danger" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
-	</div>
-	<div class="col-xs-1 compensate-for-label-on-top">
-		{{#unless isThisTheOnlyAuthorRow}}
-		<div class="sort-control">
-			<div class="sort-control-up">
-				<a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
-			</div>
-			<div class="sort-control-down">
-				<a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
-			</div>
-		</div>
-		{{/unless}}
-	</div>
-{{/if}}
-	</div>
+      <div class="col-xs-10">
+        {{#if item.transformedToNewAuthor}}
+          <div class="row bottom-spacing-20">
+            <div class="col-xs-12">
+              <div class="row bottom-spacing-20">
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.first_name 'has-error'}}">
+                    <label class="control-label">								
+                      {{#if errors.first_name}}
+                        {{error-feedback errors.first_name}}
+                      {{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
+                    </label>
+                    {{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
+                  </span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.last_name 'has-error'}}">
+                    <label class="control-label">								
+                      {{#if errors.last_name}}
+                        {{error-feedback errors.last_name}}
+                      {{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
+                    </label>
+                    {{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
+                  </span>
+                </div>
+              </div>
+              <div class="row bottom-spacing-20">
+                <div class="col-xs-3">
+                  <span class="form-group {{if errors.birthyear 'has-error'}}">
+                    <label class="control-label">								
+                      {{#if errors.year_of_birth}}
+                        {{error-feedback errors.year_of_birth}}
+                      {{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
+                    </label>
+                    {{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
+                  </span>
+                </div>
+
+                <div class="col-xs-3">
+                  <span class="form-group {{if errors.xaccount 'has-error'}}">
+                    <label class="control-label">								
+                      {{#if errors.xaccount}}
+                        {{error-feedback errors.xaccount}}
+                      {{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
+                    </label>
+                    {{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
+                  </span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.orcid 'has-error'}}">
+                    <label class="control-label">								
+                      {{#if errors.orcid}}
+                        {{error-feedback errors.orcid}}
+                      {{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
+                    </label>
+                    {{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
+                  </span>
+                </div>
+              </div>
+              <div class="btn-toolbar">
+                <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'edit.createNewAuthor.form.actions.btnSave'}}</button>
+                <button {{action "toggleAddNewAuthor" item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          {{#if showInputFields}}
+            <div class="row">
+              <div class="col-xs-5">
+                <label>{{t 'edit.form.selectAuthor.label'}}</label>
+                {{select2-adjusted
+                placeholder=(t 'edit.form.selectAuthor.placeholder')
+                didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
+                btnText=(t 'edit.form.selectAuthor.btnCreateNew')
+                value=item.selectedAuthor
+                setDefaultQuery=setDefaultQuery
+                defaultQuery=item.newAuthorForm.lastName
+                optionLabelPath="presentation_string"
+                typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
+                typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
+                formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
+                minimumInputLength=3
+                query="queryAuthors"
+                allowClear=true
+                zeroResult=item.transformedToNewAuthor
+                cssClass=item.id
+                }}
+              </div>
+              <div class="col-xs-7">
+                <div class="how-to-sort">
+                  <a href="javascript:void();">{{t 'edit.form.selectInstitutions.sortingLink'}}</a>
+                  <div class="outer-wrapper">
+                    <div class="message">
+                    </div>
+                  </div>
+                </div>	
+                <label>{{t 'edit.form.selectInstitutions.placeholder'}}</label>
+                {{select2-adjusted-sortable
+                content=institutions
+                optionLabelPath="name"
+                value=item.selectedInstitution
+                placeholder=(t 'edit.form.selectInstitutions.placeholder')
+                allowClear=true
+                multiple=true
+                id=item.id
+                }}
+                {{#each item.selectedAuthor.affiliations as |affiliation|}}
+                  <a href="#" {{action 'addInstitution' affiliation}}> {{affiliation.name}}</a>
+                {{/each}}
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="col-xs-1 compensate-for-label-on-top">
+        <button class="btn btn-danger" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
+      </div>
+      <div class="col-xs-1 compensate-for-label-on-top">
+        {{#unless isThisTheOnlyAuthorRow}}
+          <div class="sort-control">
+            <div class="sort-control-up">
+              <a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
+            </div>
+            <div class="sort-control-down">
+              <a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
+            </div>
+          </div>
+        {{/unless}}
+      </div>
+    {{/if}}
+  </div>
 </div>
