@@ -23,11 +23,11 @@ export default Ember.Component.extend({
   }),
 
   showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
-    return (!!this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
+    return (this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
   }),
 
   isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
-    return !!this.get('item.importedAuthorName') && !this.get('addAffiliation');
+    return this.get('item.importedAuthorName') && !this.get('addAffiliation');
   }),
   /*
   newAuthorFormVisible: function() {
@@ -68,7 +68,7 @@ export default Ember.Component.extend({
         return deferred.resolve(data);
       };
 
-      var fromStore = this.store.find("person_record", {search_term: query.term});
+      var fromStore = this.store.find('person_record', {search_term: query.term});
       fromStore.then(success, deferred.reject);
 
     },
@@ -90,18 +90,11 @@ export default Ember.Component.extend({
       this.toggleProperty('addAffiliation');
       Ember.run.later(function(){
         var obj = that.$('.'+ that.get('item.id')).first();
-        console.log('obj', obj);
         obj.select2('open');
       });
     },
     toggleAddNewAuthor: function(item) {
-      if (item.get("transformedToNewAuthor") === true) {
-        item.set("transformedToNewAuthor", false);
-      }
-      else {
-        item.set("transformedToNewAuthor", true);
-      }
-
+      item.toggleProperty('transformedToNewAuthor');
     },
     createAuthor: function(item) {
       var that = this;
@@ -119,7 +112,6 @@ export default Ember.Component.extend({
           });
         });
       };
-      //console.log(newAuthor.get('firstName'));
       this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'),
         'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
     },
