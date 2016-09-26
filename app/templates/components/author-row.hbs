@@ -3,7 +3,7 @@
     <div class="dotted-line"></div>
     {{#if isImportedExternal}}
       <div class="col-xs-10 imported-author">
-        <p><strong>{{item.importedAuthorName}}</strong> 
+        <p><strong>{{item.importedAuthorName}}</strong>
         (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'newPub.manualPub.addAffiliation'}}</a>
         </p>
       </div>
@@ -24,7 +24,7 @@
       </div>
     {{else}}
       {{#if item.importedAuthorName}}
-        <p><strong>{{item.importedAuthorName}}</strong></p> 
+        <p><strong>{{item.importedAuthorName}}</strong></p>
       {{/if}}
       <div class="col-xs-10">
         {{#if item.transformedToNewAuthor}}
@@ -33,7 +33,7 @@
               <div class="row bottom-spacing-20">
                 <div class="col-xs-6">
                   <span class="form-group {{if errors.first_name 'has-error'}}">
-                    <label class="control-label">								
+                    <label class="control-label">
                       {{#if errors.first_name}}
                         {{error-feedback errors.first_name}}
                       {{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-xs-6">
                   <span class="form-group {{if errors.last_name 'has-error'}}">
-                    <label class="control-label">								
+                    <label class="control-label">
                       {{#if errors.last_name}}
                         {{error-feedback errors.last_name}}
                       {{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
@@ -55,7 +55,7 @@
               <div class="row bottom-spacing-20">
                 <div class="col-xs-3">
                   <span class="form-group {{if errors.birthyear 'has-error'}}">
-                    <label class="control-label">								
+                    <label class="control-label">
                       {{#if errors.year_of_birth}}
                         {{error-feedback errors.year_of_birth}}
                       {{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
@@ -66,7 +66,7 @@
 
                 <div class="col-xs-3">
                   <span class="form-group {{if errors.xaccount 'has-error'}}">
-                    <label class="control-label">								
+                    <label class="control-label">
                       {{#if errors.xaccount}}
                         {{error-feedback errors.xaccount}}
                       {{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-xs-6">
                   <span class="form-group {{if errors.orcid 'has-error'}}">
-                    <label class="control-label">								
+                    <label class="control-label">
                       {{#if errors.orcid}}
                         {{error-feedback errors.orcid}}
                       {{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
@@ -121,7 +121,7 @@
                     <div class="message">
                     </div>
                   </div>
-                </div>	
+                </div>
                 <label>{{t 'edit.form.selectInstitutions.placeholder'}}</label>
                 {{select2-adjusted-sortable
                 content=institutions
