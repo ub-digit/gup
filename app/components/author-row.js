@@ -15,7 +15,6 @@ export default Ember.Component.extend({
       this.set("item.newAuthorForm.orcid", '');
     }
   },
-
   // Used to signal select2-adjusted component to set a default query string
   setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
     return !!this.get('item.importedAuthorName');
@@ -29,9 +28,9 @@ export default Ember.Component.extend({
     return !!this.get('item.importedAuthorName') && !this.get('addAffiliation');
   }),
 
-  newAuhtorFormVisible: function() {
+  newAuthorFormVisible: function() {
     var self = this;
-    if (this.get("item.transformedToNewAuthor") === true) {
+    if (this.get('item.transformedToNewAuthor')) {
       this.resetForm();
       Ember.run.later(function() {
         self.$().find('#first-name').focus();
