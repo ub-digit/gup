@@ -1,9 +1,8 @@
 import Ember from 'ember';
 
+//TODO: set subcomonent properties from parent dynamically??? send.action?? Read again component communication 
 export default Ember.Component.extend({
   errors: null,
-  didInsertElement: function() {
-  },
   /*
   resetForm: function() {
     if (this.get("item.newAuthorForm")) {
@@ -40,37 +39,26 @@ export default Ember.Component.extend({
     }
   }.observes('item.transformedToNewAuthor'),
   */
-
   actions: {
     setMsgHeader: function(type, msg) {
       this.sendAction('setMsgHeader', type, msg);
     },
     queryAuthors: function(query, deferred) {
-      deferred.reject = function(reason) {
-        console.log(reason);
-      };
-      var success = function(data) {
-        data = data.map(function(item){
+      var result = this.store.find('person_record', {search_term: query.term});
+      result.then(function(data) {
+        data = data.map(function(item) {
           // Create presentation string
-          var nameStr = [item.first_name, item.last_name].compact().join(' ');
-          var yearStr = [item.year_of_birth].compact().join('');
-          var idStr = [item.xaccount, item.orcid].compact().join(', ')
-
-            if(yearStr) {
-              yearStr = ', ' + yearStr
-            }
-          if(idStr) {
-            idStr = ' ' + ['(', idStr, ')'].join('')
-          }
-          item.presentation_string = nameStr + yearStr + idStr;
+          let name = [item.first_name, item.last_name].compact().join(' ');
+          let year = item.year_of_birth;
+          let id = [item.xaccount, item.orcid].compact().join(', ');
+          item.presentation_string = [name, year].compact().join(', ') + (id ? ' ' + ['(', id, ')'].join('') : '');
           return item;
         });
-        return deferred.resolve(data);
-      };
-
-      var fromStore = this.store.find('person_record', {search_term: query.term});
-      fromStore.then(success, deferred.reject);
-
+        deferred.resolve(data);
+      }, function(reason) {
+        console.error(reason);
+        deferred.reject(reason);
+      });
     },
 
     moveUpOne: function(id) {
@@ -86,10 +74,9 @@ export default Ember.Component.extend({
     },
 
     toggleAddAffiliation: function(){
-      var that = this;
       this.toggleProperty('addAffiliation');
-      Ember.run.later(function(){
-        var obj = that.$('.'+ that.get('item.id')).first();
+      Ember.run.schedule('afterRender', () => {
+        var obj = this.$('.'+ this.get('item.id')).first();
         obj.select2('open');
       });
     },
