@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-//TODO: set subcomonent properties from parent dynamically??? send.action?? Read again component communication 
 export default Ember.Component.extend({
   errors: null,
   /*
@@ -56,6 +55,7 @@ export default Ember.Component.extend({
         });
         deferred.resolve(data);
       }, function(reason) {
+        //warning?
         console.error(reason);
         deferred.reject(reason);
       });
@@ -73,7 +73,7 @@ export default Ember.Component.extend({
       this.sendAction('removeAuthor', id);
     },
 
-    toggleAddAffiliation: function(){
+    toggleAddAffiliation: function() {
       this.toggleProperty('addAffiliation');
       Ember.run.schedule('afterRender', () => {
         var obj = this.$('.'+ this.get('item.id')).first();
@@ -84,25 +84,27 @@ export default Ember.Component.extend({
       item.toggleProperty('transformedToNewAuthor');
     },
     createAuthor: function(item) {
-      var that = this;
-      var successHandler = function(model) {
+      this.store.save('person', {
+        'first_name': item.newAuthorForm.get('firstName'),
+        'last_name': item.newAuthorForm.get('lastName'),
+        'year_of_birth': item.newAuthorForm.get('year_of_birth'),
+        'xaccount': item.newAuthorForm.get('xaccount'),
+        'orcid': item.newAuthorForm.get('orcid')
+      }).then(() => {
         item.set('selectedAuthor', model);
         item.set('transformedToNewAuthor', false);
-      };
-      var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', reason.error.msg);
-        that.set('errors', reason.error.errors);
+      }, (reason) => {
+        this.send('setMsgHeader', 'error', reason.error.msg);
+        this.set('errors', reason.error.errors);
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
             html: true
           });
         });
-      };
-      this.store.save('person',{'first_name': item.newAuthorForm.get('firstName'), 'last_name': item.newAuthorForm.get('lastName'), 'year_of_birth': item.newAuthorForm.get('year_of_birth'),
-        'xaccount': item.newAuthorForm.get('xaccount'), 'orcid': item.newAuthorForm.get('orcid') }).then(successHandler, errorHandler);
+      });
     },
-    addInstitution: function(institution){
+    addInstitution: function(institution) {
       // Add institution to selected array
       var institutionObject = Ember.Object.create(institution);
       this.get('item.selectedInstitution').addObject(institutionObject);
