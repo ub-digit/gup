@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ResetScroll from 'gup/mixins/resetscroll';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+
 
 export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
   i18n: Ember.inject.service(),

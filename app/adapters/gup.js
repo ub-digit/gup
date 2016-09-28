@@ -3,6 +3,7 @@ import ENV from '../config/environment';
 
 export default Ember.Object.extend({
   i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
   endpoints: {
     report: {path: 'reports'},
     person: {path: 'people', plural:'people'},
@@ -24,6 +25,7 @@ export default Ember.Object.extend({
 		serie: {path: 'series'},
 		project: {path: 'projects'},
     message: {path: 'messages'},
+    asset_data: {path: 'asset_data', singular: 'asset_data', plural: 'asset_data'},
     published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'},
     review_publication: {path: 'review_publications', singular: 'publication', plural: 'publications'},
     biblreview_publication: {path: 'biblreview_publications', singular: 'publication', plural: 'publications'}
@@ -35,10 +37,10 @@ export default Ember.Object.extend({
 
 
   sessionHeaders: function() {
-    var session = this.container.lookup('simple-auth-session:main');
+    var session = this.get('session');
     var headers = {};
     if(session && session.get('isAuthenticated')) {
-      headers["Authorization"] = "Token " + session.get('token');
+      headers["Authorization"] = "Token " + session.get('data.authenticated.token');
     }
     return headers;
   },

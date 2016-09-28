@@ -10,12 +10,23 @@
         <h4 class="modal-title" id="myModalLabel3">{{t 'mailer.report'}}</h4>
       </div>
       <div class="modal-body">
+        {{#if error }}
+          <div class="alert alert-danger" role="alert">
+            <span class="sr-only">Error:</span>
+            {{error.msg}}
+          </div>
+        {{else if hasSuccess}}
+          <div class="alert alert-success" role="alert">
+            <span class="sr-only">Success:</span>
+              Meddelandet skickades.
+          </div>
+        {{/if}}
         <h4>{{t 'mailer.message'}}</h4>
         {{textarea value=message cols=80 rows=6 classNames='form-control'}}
       </div>
       <div class="modal-footer">
         <button class="btn btn-link" data-dismiss="modal">Avbryt</button>
-        <button class="btn btn-primary" data-dismiss="modal" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
+        <button class="btn btn-primary" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
       </div>
     </div>
   </div>

@@ -48,19 +48,29 @@ export default Ember.Controller.extend({
 
       var that = this;
 
+      var successHandler = function(model) {
+        Ember.$('body').removeClass("loading");
+        that.set('importData', model);
+      };
+
+      var errorHandler = function(error) {
+        Ember.$('body').removeClass("loading");
+        that.set('error', error);
+        that.set('importData', null);
+
+      };
+
+      var generalHandler = function(model) {
+        if (model.error) {
+          errorHandler(model.error);
+        } 
+        else {
+          successHandler(model);
+        }  
+      };
+
       return this.store.save('import_data', {datasource: this.get('selectedSource'), sourceid: this.get('sourceId')}).then(
-
-        function(response) {
-          Ember.$('body').removeClass("loading");
-          that.set('importData', response);
-        },
-
-        function(error) {
-          Ember.$('body').removeClass("loading");
-          that.set('error', error);
-          that.set('importData', null);
-        }
-
+        generalHandler
       );
     },
 

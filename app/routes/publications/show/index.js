@@ -1,10 +1,13 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   i18n: Ember.inject.service(),
   returnTo: null,
+  fileUploadProgress: 0,
+  fileUploadError: null, 
+  assetData: null,
 
 //  queryParams: {
 //    other_version: { refreshModel: true }
@@ -18,7 +21,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         other: this.store.find('publication', model.id, {version_id: params.other_version}),
       });
     } else {
-      return { model: model };
+        return {model: model};
     }
   },
   setupController: function(controller, model) {
@@ -43,6 +46,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
   actions: {
+    
     fetchVersion: function(publication_id, version_id) {
       var controller = this.get('controller');
 

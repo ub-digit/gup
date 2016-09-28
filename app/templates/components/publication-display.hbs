@@ -149,6 +149,11 @@
       {{#if allFieldObjects.artwork_type}}
         {{publication-field-bibl-review fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type}}
       {{/if}}
+
+      {{#if publication.files }}
+        {{publication-field-files}}
+      {{/if}}
+
     </tbody>
   </table>
   {{else if isCompareMode}}
@@ -542,6 +547,10 @@
 
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+    {{/if}}
+  
+    {{#if publication.files }}
+      {{publication-field-files refreshModelAction=refreshModelAction publication=publication fieldLabel="Filer" fieldValue=publication.files}}
     {{/if}}
 
   </dl>

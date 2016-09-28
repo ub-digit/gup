@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row bottom-spacing-40">
@@ -22,14 +22,14 @@
         </div>
         <div class="row bottom-spacing-20">
           <div class="col-xs-12 center-content">
-            <form class="form-inline">
-              {{#x-select value=selectedSource class="form-control input-lg" id="source-selector"}}
+            <form class="gup-form-import">
+              {{#x-select value=selectedSource class="form-control input-lg gup-form-input-xselect" id="source-selector"}}
                 {{#x-option}}{{t 'newPub.importPub.form.selectImportSourcePrompt'}}{{/x-option}}
                 {{#each dataSources as |dataSource|}}
                   {{#x-option value=dataSource.value}}{{dataSource.label}}{{/x-option}}
                 {{/each}}
               {{/x-select}}
-              <div class="input-group input-group-lg">
+              <div class="input-group input-group-lg gup-form-input-id">
                 {{input class='form-control manageFields' id="source-value-input" value=sourceId placeholder=idPlaceholderString}}
                 <span class="input-group-btn">
                   <button {{action 'fetchSource'}} id="source-fetch" class="btn btn-primary {{if fetchButtonIsActive '' 'disabled'}}">{{t 'newPub.importPub.form.fetchButton'}}</button>
@@ -42,7 +42,7 @@
         {{#if error}}
         <div class="row">
           <div class="col-xs-12">
-            <div class="alert alert-danger" role="alert">{{error.error.msg}}</div>
+            <div class="alert alert-danger" role="alert">{{error.msg}}</div>
           </div>
         </div>
         {{/if}}

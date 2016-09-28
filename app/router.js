@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
-  location: config.locationType
+const Router = Ember.Router.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function() {
   this.route('login');
-  this.resource('publications', function() {
+  this.route('publications', function() {
     this.route('new');
     this.route('fileimport');
     this.route('import');
@@ -26,7 +27,7 @@ Router.map(function() {
       this.route('reports');
     });
   });
-  this.resource('admin', function() {
+  this.route('admin', function() {
     this.route('departments', function(){
       this.route('index', {path: '/'});
       this.route('new');

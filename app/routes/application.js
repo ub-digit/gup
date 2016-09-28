@@ -1,8 +1,12 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
+
   beforeModel: function() {
     var lang = "sv"; /// change to default
     if (sessionStorage.getItem('lang')) {
@@ -10,45 +14,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
     this.set('i18n.locale', lang);
     sessionStorage.setItem('lang', lang);
-
     this._super();
-    if (this.get("session.authenticated")) {
-			this.fetchUserdata();
-    }
-    else {
-      this.transitionTo('login');
-    }
   },
 
-	fetchUserdata: function() {
-		var controller = this.controllerFor('application');
-		var session = this.get('session.content');
-		this.store.find('userdata', session.username).then(function(data) {
-			controller.set('userdata', data);
-		});
-	},
-	fetchUserdataLoop: function(interval) {
-		if(!interval) { interval = 60000; }
-		this.fetchUserdata();
-		Ember.run.later(this, function() {
-			this.fetchUserdataLoop();
-		}, interval);
-	},
 
   actions: {
-		refreshUserdata: function() {
-			this.fetchUserdata();
-		},
-    sessionAuthenticationSucceeded: function() {
-      //Ember.run.later(Ember.$('body').removeClass("loading"));
-      if (this.get('session.content.can_biblreview')) {
-        this.controller.set('viewMode', 'advanced');
-      }
-      this.transitionTo("publications.dashboard.start");
-      Ember.run.later(function() {Ember.$('body').removeClass("loading");});
-			this.fetchUserdataLoop(60000);
-      //	return this._super();
+    invalidateSession() {
+      this.get('session').invalidate();
     },
+
+		refreshUserdata: function() {
+		  var that = this;
+		  this.store.find('userdata', this.get('session.data.authenticated.username')).then(function(data) {
+			  that.controllerFor("application").set("userdata", data);
+		  });
+	  },
+
     sessionAuthenticationFailed: function(error) {
       Ember.$('body').removeClass("loading");
       this.controllerFor('login').set('error', error.msg);
@@ -76,13 +57,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.controller.set('publication_id', null);
       this.controller.set('publication_id_error', null);
 
-      if (publication_id) {
-        that.store.find('publication', publication_id).then(function() {
+      var successHandler = function(model) {
           that.transitionTo('publications.show', publication_id);
-        },
-        function(){
+      };
+      var errorHandler = function(model) {
           that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
-        });
+      };
+      var generalHandler = function(model) {
+        if (model.error) {
+          errorHandler(model);
+        }
+        else {
+          successHandler(model);
+        }
+      };
+
+      if (publication_id) {
+        that.store.find('publication', publication_id).then(generalHandler);
       }
     }
   }

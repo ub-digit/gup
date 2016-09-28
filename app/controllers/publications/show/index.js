@@ -2,12 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
+  session: Ember.inject.service(),
   applicationController: Ember.inject.controller("application"),
   publicationsController: Ember.inject.controller("publications"),
   publicationsShowController: Ember.inject.controller("publications/show"),
   isExtendedViewMode: false,
   queryParams: ['other_version'],
   other_version: null,
+
   
   deletePublication: function(id) {
     var that = this;
@@ -36,6 +38,7 @@ export default Ember.Controller.extend({
   //  var view_mode = this.get('viewMode');
   //  return (is_reviewer && (view_mode === 'advanced'));
   //}),
+
 
   getPublicationTypeObject: Ember.computed('model.publication_type', function(){
     return this.get("publicationsController.publicationTypes").findBy("id", this.get("model.publication_type_id"));

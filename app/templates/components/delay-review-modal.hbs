@@ -30,7 +30,7 @@
           <div class="radio-inline">
         {{#radio-button value="sixmonths" groupValue=optDate changed="dateOptionChanged"}}6 mån{{/radio-button}}
         </div>
-          {{date-picker date=date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" disabled=datePickerDisabled}}
+          {{pikaday-input date=date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" disabled=datePickerDisabled}}
         </div>
         <h4>{{t 'biblreview.comment'}}</h4>
 

@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
+  session : Ember.inject.service('session'),
+
 	queryParams: ['lang'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
