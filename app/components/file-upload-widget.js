@@ -27,8 +27,11 @@ export default Ember.Component.extend({
 	    	Ember.$("#gup-progress-bar").hide();
 	    	
 	    });
-	},
+  },
 
+  licenceURL: ENV.APP.licenceURL,
+  licenceCode: ENV.APP.licenceCode,
+  
   fileURL: Ember.computed('fileBaseUrl', 'assetData', function() {
     var assetData = this.get('assetData');
 		var token = this.get("session.data.authenticated.token");
@@ -61,8 +64,12 @@ export default Ember.Component.extend({
 			}
 			else {
 				this.set("assetData.visible_after", null);
-			}	
-			this.set("assetData.accepted", this.get("isAccepted"));
+			}
+      if(this.get('isAccepted')) {
+			  this.set("assetData.accepted", this.get("licenceCode"));
+      } else {
+			  this.set("assetData.accepted", null);
+      }
 			this.store.save('asset_data', this.get("assetData")).then(generalCallback);
 		}
 	}
