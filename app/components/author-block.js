@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
-  newAuthorStub : () => {
+  newAuthorStub : function () {
     // Create closure so that this will be re-eveluated on every call.
     // If we did not do this, generation of unique id would fail plus we
     // really need a fresh object or we keep overwriting the same one
@@ -41,6 +41,7 @@ export default Ember.Component.extend({
   },
   */
   init: function() {
+    this._super(...arguments);
     if (this.get('authorArr').length === 0) {
       if (this.get('arrOfAuthorsFromImport') && this.get('arrOfAuthorsFromImport').length > 0) {
         this.get('arrOfAuthorsFromImport').forEach((author) => {
