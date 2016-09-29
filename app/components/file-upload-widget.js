@@ -1,9 +1,13 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 
 export default Ember.Component.extend({
+	session: Ember.inject.service('session'),
 	isEmbargo: false,
 	isAccepted: false,
 	gupEmbargoDate: Date(),
+  fileBaseUrl: ENV.APP.fileURL,
+  assetData: {},
 
 	refreshModelAction: 'refreshModel',
 	setMsgHeader: 'setMsgHeader',
@@ -25,6 +29,19 @@ export default Ember.Component.extend({
 	    });
 	},
 
+  fileURL: Ember.computed('fileBaseUrl', 'assetData', function() {
+    var assetData = this.get('assetData');
+		var token = this.get("session.data.authenticated.token");
+    if(assetData) {
+      return this.get('fileBaseUrl')+
+        '/'+assetData.id+
+        '?tmp_token='+assetData.tmp_token+
+        '&token='+token;
+    } else {
+      return "#";
+    }
+  }),
+  
 	actions: {
 		saveModel: function () {
 			var that = this;
