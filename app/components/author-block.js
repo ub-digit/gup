@@ -20,26 +20,6 @@ export default Ember.Component.extend({
       })
     });
   },
-  /*
-  didInsertElement: function() {
-    if (this.get('authorArr').length === 0) {
-      if (this.get('arrOfAuthorsFromImport')) {
-        if (this.get('arrOfAuthorsFromImport').length === 0) {
-          this.send('addEmptyAuthorRow');
-        }
-        else {
-          var that = this;
-          this.get('arrOfAuthorsFromImport').forEach(function(author) {
-            that.send('addEmptyAuthorRow', author);
-          });
-        }
-      }
-      else {
-        this.send('addEmptyAuthorRow');
-      }
-    }
-  },
-  */
   init: function() {
     this._super(...arguments);
     if (this.get('authorArr').length === 0) {
