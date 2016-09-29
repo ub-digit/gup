@@ -8,7 +8,16 @@
     </ul>
   {{/if}}
   {{#each authorArr as |item|}}
-    {{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
+    {{author-row
+        item=item
+        setMsgHeader=setMsgHeader
+        institutions=institutions
+        removeAuthor=(action 'removeAuthorRow')
+        isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow
+        moveUp=(action 'moveUp')
+        moveDown=(action 'moveDown')
+        onQueryAuthorsResult=(action 'queryAuthorsResult')
+    }}
   {{/each}}
   <div class="row">
     <div class="col-md-9">

@@ -44,7 +44,7 @@ export default Ember.Component.extend({
     },
     queryAuthors: function(query, deferred) {
       var result = this.store.find('person_record', {search_term: query.term});
-      result.then(function(data) {
+      result.then((data) => {
         data = data.map(function(item) {
           // Create presentation string
           let name = [item.first_name, item.last_name].compact().join(' ');
@@ -53,6 +53,8 @@ export default Ember.Component.extend({
           item.presentation_string = [name, year].compact().join(', ') + (id ? ' ' + ['(', id, ')'].join('') : '');
           return item;
         });
+        // Before or after data.map??
+        this.sendAction('onQueryAuthorsResult', data);
         deferred.resolve(data);
       }, function(reason) {
         //warning?
@@ -60,7 +62,10 @@ export default Ember.Component.extend({
         deferred.reject(reason);
       });
     },
-
+    //TODO: Remove if not needed
+    selectionChange: function(data) {
+      //console.dir(data);
+    },
     moveUpOne: function(id) {
       this.sendAction('moveUp', id);
     },
