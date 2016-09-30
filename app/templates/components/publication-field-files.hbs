@@ -6,8 +6,10 @@
 	    	{{#if listItem.visible_after}}
 	    		{{listItem.name}} <span class="small">(Embargo {{listItem.visible_after}})</span> 
 	    	{{else}}
-	    	    <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>
+	    	  <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>
+                  {{#if listItem.deletable}}
 	    	    <a href="javascript:void()" {{action 'removeFile' listItem.id}} ><i class="fa gup-error fa-times" aria-hidden="true"></i></a>
+                  {{/if}}
 	    	{{/if}}
 
 	    	
