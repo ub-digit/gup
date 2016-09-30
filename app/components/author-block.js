@@ -101,13 +101,10 @@ export default Ember.Component.extend({
       this.get('authorArr').removeObject(this.get('authorArr').findBy('id', id));
     },
     queryAuthorsResult: function(result) {
-      var authorArr = this.get('authorArr');
-      /*
-      console.log('author arr');
-      console.dir(authorArr);
-      console.log('query data');
-      console.dir(result);
-      */
+      let selected_authors_ids = this.get('authorArr').mapBy('selectedAuthor.id').compact();
+      return result.filter(function(item) {
+        return selected_authors_ids.indexOf(item.id) === -1;
+      });
     }
   }
 });

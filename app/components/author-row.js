@@ -53,8 +53,9 @@ export default Ember.Component.extend({
           item.presentation_string = [name, year].compact().join(', ') + (id ? ' ' + ['(', id, ')'].join('') : '');
           return item;
         });
-        // Before or after data.map??
-        this.sendAction('onQueryAuthorsResult', data);
+        if (this.get('queryAuthorsResult')) {
+          data = this.get('queryAuthorsResult')(data);
+        }
         deferred.resolve(data);
       }, function(reason) {
         //warning?
@@ -101,6 +102,7 @@ export default Ember.Component.extend({
       }, (reason) => {
         this.send('setMsgHeader', 'error', reason.error.msg);
         this.set('errors', reason.error.errors);
+        //TODO: fix, schedule after render instead?
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
