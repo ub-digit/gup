@@ -7,6 +7,10 @@
       {{/each}}
     </ul>
   {{/if}}
+
+  {{#if fieldHelptext}}
+    <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
+  {{/if}}
   {{#each authorArr as |item|}}
     {{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
   {{/each}}

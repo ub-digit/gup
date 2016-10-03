@@ -1,4 +1,11 @@
-<label class="control-label">{{t 'publicationIdentifier.label'}}</label>
+<div class="row">
+  <div class="col-sm-9">
+    <label class="control-label">{{t 'publicationIdentifier.label'}}</label>
+    {{#if fieldHelptext}}
+      <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
+    {{/if}}
+  </div>
+</div>
 <div class="row">
   <div class="col-md-9">
     <table class="table table-hover">

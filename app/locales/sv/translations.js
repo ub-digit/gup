@@ -1,16 +1,33 @@
 export default {
+	publicationsPublicationtypesForm: {
+		fields: {
+			authors: {
+				helptext: 'Här skriver du in samtliga författare i samma ordningsföljd som i originalpublikationen. För GU-författare skriver du in fullständigt namn samt anger institution, för övriga författare räcker det med efternamn samt förnamnets första bokstav. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+			},
+			category_hsv_local: {
+				helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
+			},
+			pub_notes: {
+				helptext: 'Här skriver du endast in information som inte passar i något annat fält. Observera att denna text är synlig för de som söker fram publikationen.'
+			},
+			publicationIdentifiers: {
+				helptext: 'Att lägga till en identifikator gör det både lättare för andra att hitta din publikation och att bekräfta att de hittat rätt. I slutändan kan detta alltså leda till att fler personer läser din publikation.',
+			},
+		}
+	},
+
 	mainMenu: {
 		applicationName: 'GUP 3',
 		lang: 'English',
 		publications: 'Publikationer',
 		logOut: 'Logga ut',
-    searchById: 'Sök efter GUP-ID',
-    idMissing: 'Ogiltigt ID'
+	    searchById: 'Sök efter GUP-ID',
+	    idMissing: 'Ogiltigt ID'
 	},
 	footer: {
-    copyright: "Göteborgs universitetsbibliotek",
-    websiteLink: "Bibliotekets webbplats"    
-  },
+	    copyright: "Göteborgs universitetsbibliotek",
+	    websiteLink: "Bibliotekets webbplats"    
+  	},
 	login: {
 		header: "Logga in",
 		button: "Logga in",
@@ -21,19 +38,19 @@ export default {
 	},
 	publication: {
 		labels: {
-		  publications: 'Publikationer',
-		  publicationType: 'Publikationstyp',
-		  createdAt: 'Skapad',
-		  createdBy: 'Skapad av',
-		  updatedAt: 'Uppdaterad',
-		  updatedBy: 'Uppdaterad av',
-		  publishedAt: 'Publicerad',
-		  reviewedAt: 'Granskad',
-		  reviewedBy: 'Granskad av',
-		  reviewStart: 'Kan granskas från',
-      reviewPostponedUntil: 'Fördröjd till',
-		  delayComment: 'Kommentar',
-		  noTitle: '[Ingen titel]'
+			publications: 'Publikationer',
+			publicationType: 'Publikationstyp',
+			createdAt: 'Skapad',
+			createdBy: 'Skapad av',
+			updatedAt: 'Uppdaterad',
+			updatedBy: 'Uppdaterad av',
+			publishedAt: 'Publicerad',
+			reviewedAt: 'Granskad',
+			reviewedBy: 'Granskad av',
+			reviewStart: 'Kan granskas från',
+			reviewPostponedUntil: 'Fördröjd till',
+			delayComment: 'Kommentar',
+			noTitle: '[Ingen titel]'
 		},
 		show: {
 			edit: "Redigera",
@@ -60,10 +77,10 @@ export default {
 		delaySuccess: 'Granskningsgodkännandet har uppskjutits.',
 		delayError: 'Posten kunde inte fördröjas.',
 		publicationNotFound: 'Publikationen finns inte.',
-    invalidYear: 'Felaktigt årtal',
-    saveDepartmentError: 'Kunde inte spara',
+	    invalidYear: 'Felaktigt årtal',
+	    saveDepartmentError: 'Kunde inte spara',
 		confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
-    personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.'
+    	personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.'
 	},
 	text: {
 		youHaveNoDrafts: 'Du har inga utkast.',
@@ -77,15 +94,15 @@ export default {
 		published: 'Mina publikationer',
 		forReview: 'Att granska',
 		forBReview: 'Bibl. granskn.',
-    numberOfHits: 'Antal träffar',
-    admin: 'Admin',
-    admin_departments: 'Administrera institutioner',
-    admin_people: 'Administrera personer',
-    admin_messages: 'Administrera meddelanden',
-    query_department: 'Sök institution',
-    query_department_none: 'Ingen institution hittades',
-    query_person: 'Sök person',
-    query_person_none: 'Inga personer hittades',
+	    numberOfHits: 'Antal träffar',
+	    admin: 'Admin',
+	    admin_departments: 'Administrera institutioner',
+	    admin_people: 'Administrera personer',
+	    admin_messages: 'Administrera meddelanden',
+	    query_department: 'Sök institution',
+	    query_department_none: 'Ingen institution hittades',
+	    query_person: 'Sök person',
+	    query_person_none: 'Inga personer hittades',
     person: {
       id: 'Id',
       first_name: 'Förnamn',
@@ -111,27 +128,27 @@ export default {
 		published: 'Publikationer där jag finns med som författare.',
 		forReview: 'Dessa publikationer måste godkännas av mig med avseende på ämnesord och affiliering.',
 		forBReview: 'Dessa publikationer kräver bibliografisk granskning.',
-    admin: 'Administrera data',
-    reports: 'Statistik'
+	    admin: 'Administrera data',
+	    reports: 'Statistik'
 	},
-  reports: {
-    select_criteria: "Välj kriterier",
-    export_csv: "Exportera till Excel",
-    year: "År",
-    start_year: "Start",
-    end_year: "Slut",
-    include_as_column: "Kolumn",
-    faculty: "Fakultet",
-    select_faculty: "Välj fakultet",
-    create: "Skapa rapport",
-    department: "Institution",
-    publication_type: "Publikationstyp",
-    content_type: "Innehållsmärkning",
-    select_department: "Välj institution",
-    person: "Person",
-    select_person: "Välj person",
-    ref_value: "Refereegranskad"
-  },
+	reports: {
+		select_criteria: "Välj kriterier",
+		export_csv: "Exportera till Excel",
+		year: "År",
+		start_year: "Start",
+		end_year: "Slut",
+		include_as_column: "Kolumn",
+		faculty: "Fakultet",
+		select_faculty: "Välj fakultet",
+		create: "Skapa rapport",
+		department: "Institution",
+		publication_type: "Publikationstyp",
+		content_type: "Innehållsmärkning",
+		select_department: "Välj institution",
+		person: "Person",
+		select_person: "Välj person",
+		ref_value: "Refereegranskad"
+  	},
 	labels: {
 		registerNew: 'Registrera ny',
 		registerNewPublication: 'Registrera ny publikation:',
@@ -148,7 +165,7 @@ export default {
 		approve: 'Godkänn',
 		approved: 'Godkänd',
 		edit: 'Redigera',
-    addedObject: 'Ny!'
+    	addedObject: 'Ny!'
 	},
     biblreview: {
         selectPublicationTypePrompt: 'Alla typer',
@@ -167,20 +184,20 @@ export default {
         btnDelay: 'Fördröj',
         showDelayedOnly: 'Visa endast fördröjda',
     },
-  compare: {
-    version: 'Version',
-    versionBy: 'uppdaterad av',
-    currentVersion: 'Aktuell version',
-    selectVersion: '- Välj äldre version -'
-  },
+	compare: {
+		version: 'Version',
+		versionBy: 'uppdaterad av',
+		currentVersion: 'Aktuell version',
+		selectVersion: '- Välj äldre version -'
+	},
 	edit: {
 		header: 'Redigera publikation',
 		actions: {
-      btnEdit: 'Redigera',
-      btnEditEndYear: 'Redigera slutår',
-      btnRemoveEndYear: 'Ta bort slutår',
-      btnSave: 'Spara',
-      btnDelete: 'Radera',
+			btnEdit: 'Redigera',
+			btnEditEndYear: 'Redigera slutår',
+			btnRemoveEndYear: 'Ta bort slutår',
+			btnSave: 'Spara',
+			btnDelete: 'Radera',
 			btnClose: 'Stäng',
 			btnCancel: 'Avbryt',
 			btnSaveDraft: 'Spara utkast',
@@ -193,12 +210,12 @@ export default {
 			selectContentTypeLabel: 'Innehållmärkning',
 			changePublicationTypeLink: 'Byt publikationstyp',
 			authorHeaderTextStrong: {
-        'default': 'Författare',
-        'publication_edited-book': 'Redaktör',
-        'publication_journal-issue': 'Redaktör',
-        'conference_proceeding': 'Redaktör',
-        'publication_textcritical-edition': 'Redaktör'
-      },
+		        'default': 'Författare',
+		        'publication_edited-book': 'Redaktör',
+		        'publication_journal-issue': 'Redaktör',
+		        'conference_proceeding': 'Redaktör',
+		        'publication_textcritical-edition': 'Redaktör'
+		    },
 			btnAddNewAuthor: 'Lägg till författare',
 			possibleAuthorFoundText: 'Eventuell författare funnen:',
 			selectAuthor: {
@@ -216,15 +233,15 @@ export default {
 				sortingLink: 'Sortera?'
 			},
 			selectCategory: {
-        addCategory: 'Lägg till ämnesord',
-        modalHeader: 'Välj ämnesord',
-        selectedCategories: 'Valda ämnesord:',
-        noCategoriesSelected: 'Inga ämnesord valda',
-        subjectTerms: 'Ämnesord',
-        clear: 'Rensa',
-        noFilteredSubjectTerms: 'Inga ämnesord matcher filtret',
-        close: 'Stäng'
-      }
+		        addCategory: 'Lägg till ämnesord',
+		        modalHeader: 'Välj ämnesord',
+		        selectedCategories: 'Valda ämnesord:',
+		        noCategoriesSelected: 'Inga ämnesord valda',
+		        subjectTerms: 'Ämnesord',
+		        clear: 'Rensa',
+		        noFilteredSubjectTerms: 'Inga ämnesord matcher filtret',
+		        close: 'Stäng'
+		    }
 		},
 		createNewAuthor: {
 			form: {
@@ -270,7 +287,7 @@ export default {
 				title: 'Titel:',
 				author: 'Författare:',
 				btnImport: 'Importera',
-        duplicateMessage: 'Posten verkar redan vara publicerad!'
+        		duplicateMessage: 'Posten verkar redan vara publicerad!'
 			}
 		},
 		manualPub: {
@@ -278,7 +295,7 @@ export default {
 			ingress: 'Skapa en ny publikation och mata in informationen manuellt.',
 			btnNew: 'Skapa ny',
 			linkNew: 'skapa ny författare',
-      addAffiliation: "Ändra affiliering"
+      		addAffiliation: "Ändra affiliering"
 		}
 
 	},

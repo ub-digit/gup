@@ -11,6 +11,9 @@
       <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
     {{/if}}
   </label>
+  {{#if fieldHelptext}} 
+    <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
+  {{/if}}
   {{#if errors}}
     <div class="text-danger">
       {{#each errors as |error|}}
