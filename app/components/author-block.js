@@ -2,26 +2,37 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
-
-  didInsertElement: function() {
+  newAuthorStub : function () {
+    // Create closure so that this will be re-eveluated on every call.
+    // If we did not do this, generation of unique id would fail plus we
+    // really need a fresh object or we keep overwriting the same one
+    return Ember.Object.create({
+      importedAuthorName: '',
+      id: this.generateUUID(),
+      selectedAuthor: null,
+      selectedInstitution: Ember.A([]),
+      newAuthorForm: Ember.Object.create({
+        firstName: '',
+        lastName: '',
+        year_of_birth: '',
+        xaccount: '',
+        orcid: ''
+      })
+    });
+  },
+  init: function() {
+    this._super(...arguments);
     if (this.get('authorArr').length === 0) {
-      if (this.get('arrOfAuthorsFromImport')) {
-        if (this.get('arrOfAuthorsFromImport').length === 0) {
-          this.send('addNewAuthorRow');
-        }
-        else {
-          var that = this;
-          this.get('arrOfAuthorsFromImport').forEach(function(author) {
-            that.send('addNewAuthorRow', author);
-          });
-        }
+      if (this.get('arrOfAuthorsFromImport') && this.get('arrOfAuthorsFromImport').length > 0) {
+        this.get('arrOfAuthorsFromImport').forEach((author) => {
+          this.send('addImportedAuthorRow', author);
+        });
       }
       else {
-        this.send('addNewAuthorRow');
+        this.send('addEmptyAuthorRow');
       }
     }
   },
-
   // Translates author header differently depending on publication type
   authorHeaderText: Ember.computed('selectedPublicationType', function(){
     var translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
@@ -41,88 +52,59 @@ export default Ember.Component.extend({
     return uuid;
   },
 
-  isThisTheOnlyAuthorRow: function() {
-    if (this.get('authorArr').length === 1) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }.property('authorArr.[]'),
-
+  isThisTheOnlyAuthorRow: Ember.computed('authorArr.[]', function() {
+    return this.get('authorArr').length === 1;
+  }),
 
   actions: {
     moveUp: function(id) {
-      // first find the item and its index
-      var curPos = null;
-      var temp = this.get('authorArr').find(function(item, index) {
-        if (item.id === id) {
-          curPos = index;
-          return true;
-        }
-      });
-      if (curPos > 0) {
-        var temp2 = this.get('authorArr').objectAt(curPos-1);
-        this.get('authorArr').removeAt(curPos);
-        this.get('authorArr').insertAt(curPos, temp2);
-        this.get('authorArr').removeAt(curPos-1);
-        this.get('authorArr').insertAt(curPos-1, temp);
+      // First find the item and its index
+      //TODO: Replace with ES6s findIndex when finds it's way into ember
+      let authorArr = this.get('authorArr');
+      let authorItem = authorArr.findBy('id', id);
+      let authorItemIndex = authorArr.indexOf(authorItem);
+      // If not already on top
+      if (authorItemIndex > 0) {
+        let authorItemAbove = authorArr.objectAt(authorItemIndex - 1);
+        authorArr.removeAt(authorItemIndex);
+        authorArr.insertAt(authorItemIndex, authorItemAbove);
+        authorArr.removeAt(authorItemIndex - 1);
+        authorArr.insertAt(authorItemIndex - 1, authorItem);
       }
     },
     moveDown: function(id) {
-      // first find the item and its index
-      var curPos = null;
-      var temp = this.get('authorArr').find(function(item, index) {
-        if (item.id === id) {
-          curPos = index;
-          return true;
-        }
-      });
-      if (curPos < (this.get('authorArr').length-1)) {
-        var temp2 = this.get('authorArr').objectAt(curPos+1);
-        this.get('authorArr').removeAt(curPos);
-        this.get('authorArr').insertAt(curPos, temp2);
-        this.get('authorArr').removeAt(curPos+1);
-        this.get('authorArr').insertAt(curPos+1, temp);
+      // First find the item and its index
+      //TODO: Replace with ES6s findIndex when finds it's way into ember
+      let authorArr = this.get('authorArr');
+      let authorItem = authorArr.findBy('id', id);
+      let authorItemIndex = authorArr.indexOf(authorItem);
+      // If not already at bottom
+      if (authorItemIndex < authorArr.length - 1) {
+        let authorItemBelow = authorArr.objectAt(authorItemIndex + 1);
+        authorArr.removeAt(authorItemIndex);
+        authorArr.insertAt(authorItemIndex, authorItemBelow);
+        authorArr.removeAt(authorItemIndex + 1);
+        authorArr.insertAt(authorItemIndex + 1, authorItem);
       }
     },
-    addNewAuthorRow: function(importedAuthor) {
-      var isImported = !!importedAuthor;
-      var lastName = '';
-      var firstName = '';
-      var importedAuthorFullAuthorString = '';
-      var selectedInstitution = Ember.A([]);
-      if(isImported) {
-        lastName = importedAuthor.last_name;
-        firstName = importedAuthor.first_name;
-        importedAuthorFullAuthorString = importedAuthor.first_name + ' ' + importedAuthor.last_name;
-        //selectedInstitution.pushObject(this.get('defaultInstitution'));
-      }
-      var authorObject = Ember.Object.create({
-        firstName: firstName,
-        lastName: lastName,
-        year_of_birth: '',
-        xaccount: '',
-        orcid: ''});
-      this.get('authorArr').addObject(
-          Ember.Object.create({
-            importedAuthorName: importedAuthorFullAuthorString,
-            id: this.generateUUID(),
-            selectedAuthor: null,
-            selectedInstitution: selectedInstitution,
-            newAuthorForm: authorObject
-          })
-          );
+    addImportedAuthorRow: function(importedAuthor) {
+      let author = this.newAuthorStub();
+      author.newAuthorForm.firstName = importedAuthor.first_name;
+      author.newAuthorForm.lastName = importedAuthor.last_name;
+      author.importedAuthorName = [importedAuthor.first_name, importedAuthor.last_name].compact().join(' ');
+      this.get('authorArr').addObject(author);
+    },
+    addEmptyAuthorRow: function() {
+      this.get('authorArr').addObject(this.newAuthorStub())
     },
     removeAuthorRow: function(id) {
-      var list = this.get('authorArr').toArray();
-      var that = this;
-      list.forEach(function(item) {
-        if (item.id === id) {
-          that.get('authorArr').removeObject(item);
-        }
-      });
+      this.get('authorArr').removeObject(this.get('authorArr').findBy('id', id));
     },
-
+    queryAuthorsResult: function(result) {
+      let selected_authors_ids = this.get('authorArr').mapBy('selectedAuthor.id').compact();
+      return result.filter(function(item) {
+        return selected_authors_ids.indexOf(item.id) === -1;
+      });
+    }
   }
 });

@@ -1,9 +1,13 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 
 export default Ember.Component.extend({
+	session: Ember.inject.service('session'),
 	isEmbargo: false,
 	isAccepted: false,
 	gupEmbargoDate: Date(),
+  fileBaseUrl: ENV.APP.fileURL,
+  assetData: {},
 
 	refreshModelAction: 'refreshModel',
 	setMsgHeader: 'setMsgHeader',
@@ -23,8 +27,24 @@ export default Ember.Component.extend({
 	    	Ember.$("#gup-progress-bar").hide();
 	    	
 	    });
-	},
+  },
 
+  licenceURL: ENV.APP.licenceURL,
+  licenceCode: ENV.APP.licenceCode,
+  
+  fileURL: Ember.computed('fileBaseUrl', 'assetData', function() {
+    var assetData = this.get('assetData');
+		var token = this.get("session.data.authenticated.token");
+    if(assetData) {
+      return this.get('fileBaseUrl')+
+        '/'+assetData.id+
+        '?tmp_token='+assetData.tmp_token+
+        '&token='+token;
+    } else {
+      return "#";
+    }
+  }),
+  
 	actions: {
 		saveModel: function () {
 			var that = this;
@@ -44,8 +64,12 @@ export default Ember.Component.extend({
 			}
 			else {
 				this.set("assetData.visible_after", null);
-			}	
-			this.set("assetData.accepted", this.get("isAccepted"));
+			}
+      if(this.get('isAccepted')) {
+			  this.set("assetData.accepted", this.get("licenceCode"));
+      } else {
+			  this.set("assetData.accepted", null);
+      }
 			this.store.save('asset_data', this.get("assetData")).then(generalCallback);
 		}
 	}

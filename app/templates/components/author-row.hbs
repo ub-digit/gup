@@ -87,7 +87,7 @@
               </div>
               <div class="btn-toolbar">
                 <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'edit.createNewAuthor.form.actions.btnSave'}}</button>
-                <button {{action "toggleAddNewAuthor" item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
+                <button {{action 'toggleAddNewAuthor' item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
               </div>
             </div>
           </div>
@@ -97,21 +97,22 @@
               <div class="col-xs-5">
                 <label>{{t 'edit.form.selectAuthor.label'}}</label>
                 {{select2-adjusted
-                placeholder=(t 'edit.form.selectAuthor.placeholder')
-                didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
-                btnText=(t 'edit.form.selectAuthor.btnCreateNew')
-                value=item.selectedAuthor
-                setDefaultQuery=setDefaultQuery
-                defaultQuery=item.newAuthorForm.lastName
-                optionLabelPath="presentation_string"
-                typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
-                typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
-                formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
-                minimumInputLength=3
-                query="queryAuthors"
-                allowClear=true
-                zeroResult=item.transformedToNewAuthor
-                cssClass=item.id
+                    placeholder=(t 'edit.form.selectAuthor.placeholder')
+                    didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
+                    btnText=(t 'edit.form.selectAuthor.btnCreateNew')
+                    value=item.selectedAuthor
+                    setDefaultQuery=setDefaultQuery
+                    defaultQuery=item.newAuthorForm.lastName
+                    optionLabelPath="presentation_string"
+                    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
+                    typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
+                    formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
+                    minimumInputLength=3
+                    query=(action 'queryAuthors')
+                    allowClear=true
+                    zeroResult=item.transformedToNewAuthor
+                    cssClass=item.id
+                    didSelect=(action 'selectionChange')
                 }}
               </div>
               <div class="col-xs-7">

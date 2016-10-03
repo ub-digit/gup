@@ -34,6 +34,10 @@ module.exports = function(environment) {
     ENV.APP.serviceURL = 'https://backend-server/v1';
     ENV.APP.authenticationBaseURL = 'https://backend-server/session';
 
+    // File in public/ directory
+    ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';
+    ENV.APP.licenceCode = 'A 85 592 10';
+
     ENV.contentSecurityPolicy = {
      'default-src': "'none'",
      'script-src': "'self' my-own-hostname",

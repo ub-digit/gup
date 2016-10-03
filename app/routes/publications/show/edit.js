@@ -105,6 +105,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     cancelEdit: function() {
       if(this.returnTo) {
         this.transitionTo(this.returnTo);
+      } else if(this.get('controller').get('publication.process_state') === "PREDRAFT") {
+        this.transitionTo('publications.dashboard.start');
       } else {
         this.transitionTo('publications.show', this.controller.get('publication.id'));
       }

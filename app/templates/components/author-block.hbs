@@ -12,12 +12,21 @@
     <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
   {{/if}}
   {{#each authorArr as |item|}}
-    {{author-row item=item setMsgHeader='setMsgHeader' institutions=institutions removeAuthor='removeAuthorRow' isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow moveUp='moveUp' moveDown='moveDown'}}
+    {{author-row
+        item=item
+        setMsgHeader=setMsgHeader
+        institutions=institutions
+        removeAuthor=(action 'removeAuthorRow')
+        isThisTheOnlyAuthorRow=isThisTheOnlyAuthorRow
+        moveUp=(action 'moveUp')
+        moveDown=(action 'moveDown')
+        queryAuthorsResult=(action 'queryAuthorsResult')
+    }}
   {{/each}}
   <div class="row">
     <div class="col-md-9">
       <div class="dotted-line"></div>
-      <button class="btn btn-primary" {{action 'addNewAuthorRow'}}>{{t 'edit.form.btnAddNewAuthor'}} <i class="fa fa-plus"></i></button>
+      <button class="btn btn-primary" {{action 'addEmptyAuthorRow'}}>{{t 'edit.form.btnAddNewAuthor'}} <i class="fa fa-plus"></i></button>
     </div>
   </div>
 </section>
