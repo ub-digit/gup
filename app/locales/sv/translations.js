@@ -13,6 +13,9 @@ export default {
 			publicationIdentifiers: {
 				helptext: 'Att lägga till en identifikator gör det både lättare för andra att hitta din publikation och att bekräfta att de hittat rätt. I slutändan kan detta alltså leda till att fler personer läser din publikation.',
 			},
+			publisher: {
+				placeholder: "T ex Journal of testing",
+			},
 		}
 	},
 

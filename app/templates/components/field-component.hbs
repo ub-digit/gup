@@ -67,7 +67,7 @@
       </div>
       {{#if sourceTitleTypeJournal}}
       {{select-2
-          placeholder="Choose from our many journals"
+          placeholder=(t fieldPlaceholder)
           value=selectedJournal
           typeaheadSearchingText="Searching journals"
           typeaheadNoMatchesText="No journals found for '%@'"
@@ -80,7 +80,7 @@
           query="queryJournals"
       }}
       {{else}}
-        {{input type="text" class="form-control" value=sourcetitle}}
+        {{input type="text" placeholder=(t fieldPlaceholder) class="form-control" value=sourcetitle}}
       {{/if}}
       </div>
     {{/if}}
