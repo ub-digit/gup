@@ -96,7 +96,7 @@ export default Ember.Component.extend({
         'year_of_birth': item.newAuthorForm.get('year_of_birth'),
         'xaccount': item.newAuthorForm.get('xaccount'),
         'orcid': item.newAuthorForm.get('orcid')
-      }).then(() => {
+      }).then((model) => {
         item.set('selectedAuthor', model);
         item.set('transformedToNewAuthor', false);
       }, (reason) => {
