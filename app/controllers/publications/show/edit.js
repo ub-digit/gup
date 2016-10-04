@@ -139,7 +139,6 @@ export default Ember.Controller.extend({
     });
   },
 
-  //TODO: Ember.computed
   authorComponentDisabled: function() {
     if (this.get('showRegisterNewAuthor')) {
       return  false;
@@ -149,7 +148,6 @@ export default Ember.Controller.extend({
     }
   }.property('showRegisterNewAuthor'),
 
-  //TODO: Ember.computed
   authorComponentIsVisible: function() {
     if (this.get("isSelectedPublicationValid")) {
       return true;
@@ -161,7 +159,6 @@ export default Ember.Controller.extend({
 
   /* end author-block */
 
-  //TODO: Ember.computed
   isSelectedPublicationValid: function() {
     if ((this.get("selectedPublicationType") !== "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
       return true;
@@ -171,7 +168,6 @@ export default Ember.Controller.extend({
     }
   }.property('selectedPublicationType'),
 
-  //TODO: Ember.computed
   actionButtonsAreVisible: function() {
     if (this.get("isSelectedPublicationValid")) {
       return true;
@@ -181,7 +177,6 @@ export default Ember.Controller.extend({
     }
   }.property('selectedPublicationType'),
 
-  //TODO: Ember.computed
   selectPublicationTypeIsVisible: function() {
     if (!this.get("isSelectedPublicationValid")) {
       return true;
@@ -197,7 +192,6 @@ export default Ember.Controller.extend({
     return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
   }),
 
-  //TODO: Ember.computed
   descriptionOfMayBecomeSelectedPublicationType: function() {
     var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
     if (fullObj) {
