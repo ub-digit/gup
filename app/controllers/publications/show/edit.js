@@ -8,37 +8,37 @@ export default Ember.Controller.extend({
   authorArr: Ember.A([]),
   categoryObjectsList: Ember.A([]),
 
-	selectedSeries: Ember.computed('publication.series', {
+  selectedSeries: Ember.computed('publication.series', {
     get: function(){
-		  var pubSeries = this.get('publication.series');
-			return this.get('series').filter(function(item) {
-				if(!pubSeries) { return false; }
-				return pubSeries.contains(parseInt(item.id));
-			});
+      var pubSeries = this.get('publication.series');
+      return this.get('series').filter(function(item) {
+        if(!pubSeries) { return false; }
+        return pubSeries.contains(parseInt(item.id));
+      });
     },
     set: function(key, value){
-		  this.set('publication.series', value.map(function(item) {
-		    return parseInt(item.id);
-			}));
-			return value;
+      this.set('publication.series', value.map(function(item) {
+        return parseInt(item.id);
+      }));
+      return value;
     }
-	}),
+  }),
 
-	selectedProjects: Ember.computed('publication.project', {
+  selectedProjects: Ember.computed('publication.project', {
     get: function() {
-		  var pubProject = this.get('publication.project');
-		  return this.get('projects').filter(function(item) {
-		    if(!pubProject) { return false; }
-			  return pubProject.contains(parseInt(item.id));
-		  });
+      var pubProject = this.get('publication.project');
+      return this.get('projects').filter(function(item) {
+        if(!pubProject) { return false; }
+        return pubProject.contains(parseInt(item.id));
+      });
     },
     set: function(key, value){
-			this.set('publication.project', value.map(function(item) {
-				return parseInt(item.id);
-			}));
-			return value;
-		}
-	}),
+      this.set('publication.project', value.map(function(item) {
+        return parseInt(item.id);
+      }));
+      return value;
+    }
+  }),
 
   updateCategoryObjects: Ember.observer('publication.category_hsv_local.[]', function(){
     var that = this;
@@ -53,11 +53,11 @@ export default Ember.Controller.extend({
         var categoryObject = that.get('categoryObjectsList').findBy('id', item);
         if (categoryObject === null || categoryObject === undefined) {
           that.store.find('category', item).then(
-            function(response){
-              that.categoryObjectsList.pushObject(response);
-          },
-            function(error){
-          });
+              function(response){
+                that.categoryObjectsList.pushObject(response);
+              },
+              function(error){
+              });
         }
       });
     }
@@ -79,11 +79,11 @@ export default Ember.Controller.extend({
       return;
     }
     this.store.find('department', {year: year}).then(
-      function(response) {
-        that.set('institutions', response);
-      },
-      function(reason){}
-    );
+        function(response) {
+          that.set('institutions', response);
+        },
+        function(reason){}
+        );
   }),
 
   getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
@@ -99,52 +99,52 @@ export default Ember.Controller.extend({
   /* author-block */
 
   formatAuthorsForServer: function() {
-      var that = this;
-      return new Promise(function(resolve,reject){
-          var arr = [];
-          var elseCounter = 0;
-          var departments = [];
-          that.get("authorArr").forEach(function(author) {
-              if (author.selectedAuthor) {
-                  if (author.selectedInstitution) {
-                      if (author.selectedInstitution.length > 0) {
-                          author.selectedInstitution.forEach(function(department) {
-                              departments.push({id: department.id, name: department.name});
-                          });
-                      }else {
-                          departments.push({id: '666', name: 'Extern institution'});
-                      }
-                  }else {
-                      departments.push({id: '666', name: 'Extern institution'});
-                  }
-                  arr.addObject({id: author.selectedAuthor.id, departments: departments});
-                  //empty array
-                  departments = [];
-              }else{
-                  if (author.newAuthorForm.get('lastName')){
-                      elseCounter++;
-                      that.store.save('person',{
-                          'first_name': author.newAuthorForm.get('firstName'),
-                          'last_name': author.newAuthorForm.get('lastName')
-                      }).then(function(savedPerson){
-                          arr.addObject({id: savedPerson.id, departments: [{id: '666', name: 'Extern institution'}]});
-                          elseCounter--;
-                      },function(){
-                          elseCounter--;
-                      });
-                  }
-              }
-          });
-          function waitingForPersonSave(){
-              if(elseCounter > 0) {
-                  setTimeout(waitingForPersonSave, 50);
-                  return;
-              }
-              that.set("publication.authors", arr);
-              resolve();
+    var that = this;
+    return new Promise(function(resolve,reject){
+      var arr = [];
+      var elseCounter = 0;
+      var departments = [];
+      that.get("authorArr").forEach(function(author) {
+        if (author.selectedAuthor) {
+          if (author.selectedInstitution) {
+            if (author.selectedInstitution.length > 0) {
+              author.selectedInstitution.forEach(function(department) {
+                departments.push({id: department.id, name: department.name});
+              });
+            }else {
+              departments.push({id: '666', name: 'Extern institution'});
+            }
+          }else {
+            departments.push({id: '666', name: 'Extern institution'});
           }
-          waitingForPersonSave();
+          arr.addObject({id: author.selectedAuthor.id, departments: departments});
+          //empty array
+          departments = [];
+        }else{
+          if (author.newAuthorForm.get('lastName')){
+            elseCounter++;
+            that.store.save('person',{
+              'first_name': author.newAuthorForm.get('firstName'),
+              'last_name': author.newAuthorForm.get('lastName')
+            }).then(function(savedPerson){
+              arr.addObject({id: savedPerson.id, departments: [{id: '666', name: 'Extern institution'}]});
+              elseCounter--;
+            },function(){
+              elseCounter--;
+            });
+          }
+        }
       });
+      function waitingForPersonSave(){
+        if(elseCounter > 0) {
+          setTimeout(waitingForPersonSave, 50);
+          return;
+        }
+        that.set("publication.authors", arr);
+        resolve();
+      }
+      waitingForPersonSave();
+    });
   },
 
 
@@ -160,12 +160,12 @@ export default Ember.Controller.extend({
   }.property('showRegisterNewAuthor'),
 
   authorComponentIsVisible: function() {
-      if (this.get("isSelectedPublicationValid")) {
-        return true;
-      }
-      else {
-        return false;
-      }
+    if (this.get("isSelectedPublicationValid")) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }.property('selectedPublicationType'),
 
   /* end author-block */
@@ -181,22 +181,22 @@ export default Ember.Controller.extend({
   }.property('selectedPublicationType'),
 
   actionButtonsAreVisible: function() {
-      if (this.get("isSelectedPublicationValid")) {
-        return true;
-      }
-      else {
-        return false;
-      }
+    if (this.get("isSelectedPublicationValid")) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }.property('selectedPublicationType'),
 
 
   selectPublicationTypeIsVisible: function() {
-      if (!this.get("isSelectedPublicationValid")) {
-        return true;
-      }
-      else {
-        return false;
-      }
+    if (!this.get("isSelectedPublicationValid")) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }.property('selectedPublicationType'),
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
