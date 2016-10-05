@@ -7,16 +7,22 @@ export default Ember.Controller.extend({
   mayBecomeOldSelectedPublicationType: null,
   authorArr: Ember.A([]),
   categoryObjectsList: Ember.A([]),
-
+  submitCallbacks: Ember.A([]), // Hack
+  // Run callbacks and collect promises to resolve on submit
+  submitCallbacksRun: function() {
+    return Promise.all(this.get('submitCallbacks').map(function(callback) {
+      return callback();
+    }));
+  },
   selectedSeries: Ember.computed('publication.series', {
-    get: function(){
+    get: function() {
       var pubSeries = this.get('publication.series');
       return this.get('series').filter(function(item) {
         if (!pubSeries) { return false; }
         return pubSeries.contains(parseInt(item.id));
       });
     },
-    set: function(key, value){
+    set: function(key, value) {
       this.set('publication.series', value.map(function(item) {
         return parseInt(item.id);
       }));

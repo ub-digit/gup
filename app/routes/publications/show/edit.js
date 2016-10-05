@@ -133,7 +133,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         });
         return false;
       };
-
       var generalHandler = function(model) {
         if (model.error) {
           errorHandler(model);
@@ -144,19 +143,21 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       };
 
       Ember.$('body').addClass('loading');
-      //TODO: handle possible error from saving authors
-      // (duplicates for example)
-      this.get('controller').formatAuthorsForServer().then(function() {
-        that.store.save('draft', that.controller.get('publication')).then(
-          generalHandler,
-          function(reason) {
+
+      // TODO: this smells, can this be made feel less hackish?
+      this.get('controller').submitCallbacksRun().then(() => {
+        //TODO: handle possible error from saving authors
+        // (duplicates for example)
+        this.get('controller').formatAuthorsForServer().then(() => {
+          that.store.save('draft', that.controller.get('publication')).then(generalHandler, (reason) => {
             // Ajax error from saving author models
             // TODO: fix properly (and verify errors format)
             // Fake error object
             let errors = { 'error' : { 'errors' : [reason] } };
             errorHandler(errors);
+          });
         });
-      });
+      }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
     },
     savePublish: function(/*model*/) {
       var that = this;
@@ -204,17 +205,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
       Ember.$('body').addClass('loading');
 
-      if (!that.controller.get('publication.published_at')) {
-        that.controller.set('publication.draft_id', that.controller.get('publication.id'));
-        that.controller.set('publication.id', null);
-      }
-
-      this.get('controller').formatAuthorsForServer().then(function() {
-        that.store.save('published_publication', that.controller.get('publication')).then(
-          generalHandler,
-          function(reason) {
+      this.get('controller').submitCallbacksRun().then(() => {
+        if (!that.controller.get('publication.published_at')) {
+          that.controller.set('publication.draft_id', that.controller.get('publication.id'));
+          that.controller.set('publication.id', null);
+        }
+        this.get('controller').formatAuthorsForServer().then(function() {
+          that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, function(reason) {
             let errors = { 'error' : { 'errors' : [reason] } };
             errorHandler(errors);
+          });
         });
       });
     }

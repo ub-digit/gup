@@ -15,17 +15,58 @@ export default Ember.Component.extend({
     }
   },
   */
+  init : function() {
+    this._super(...arguments);
+    // Helper function for persisting new author items, returns promise
+    this.set('createAuthor', (item) => {
+      return new Promise((resolve, reject) => {
+        this.store.save('person', {
+          'first_name': item.newAuthorForm.get('firstName'),
+          'last_name': item.newAuthorForm.get('lastName'),
+          'year_of_birth': item.newAuthorForm.get('year_of_birth'),
+          'xaccount': item.newAuthorForm.get('xaccount'),
+          'orcid': item.newAuthorForm.get('orcid')
+        }).then((model) => {
+          item.set('selectedAuthor', model);
+          item.set('transformedToNewAuthor', false);
+          resolve(model); //Passing item, model or nothing here the right thing to do?
+        }, (reason) => {
+          reject(reason);
+        });
+      });
+    });
+
+    this.get('submitCallbacks').addObject(() => {
+      if(!this.get('isPersisted')) {
+        //TODO: user should be promted here!!
+        // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
+        return new Promise((resolve, reject) => {
+          this.get('createAuthor')(this.get('item')).then((model) => {
+            resolve();
+          }, (reason) => {
+            reject(reason);
+          });
+        });
+      }
+      return Promise.resolve();
+    });
+  },
   // Used to signal select2-adjusted component to set a default query string
   setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
     return !!this.get('item.importedAuthorName');
   }),
 
-  showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
+  showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function() {
     return (this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
   }),
 
-  isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function(){
+  isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function() {
     return this.get('item.importedAuthorName') && !this.get('addAffiliation');
+  }),
+
+  //TODO: little bit uncertain about dependant properties
+  isPersisted: Ember.computed('item.selectedAuthor', 'item.transformedToNewAuthor', function() {
+    return !Ember.isEmpty(this.get('item.selectedAuthor')) && !this.get('item.transformedToNewAuthor');
   }),
   /*
   newAuthorFormVisible: function() {
@@ -86,16 +127,7 @@ export default Ember.Component.extend({
       item.toggleProperty('transformedToNewAuthor');
     },
     createAuthor: function(item) {
-      this.store.save('person', {
-        'first_name': item.newAuthorForm.get('firstName'),
-        'last_name': item.newAuthorForm.get('lastName'),
-        'year_of_birth': item.newAuthorForm.get('year_of_birth'),
-        'xaccount': item.newAuthorForm.get('xaccount'),
-        'orcid': item.newAuthorForm.get('orcid')
-      }).then((model) => {
-        item.set('selectedAuthor', model);
-        item.set('transformedToNewAuthor', false);
-      }, (reason) => {
+      this.get('createAuthor')(item).catch((reason) => {
         this.send('setMsgHeader', 'error', reason.error.msg);
         this.set('errors', reason.error.errors);
         //TODO: fix, schedule after render instead?
