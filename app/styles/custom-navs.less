@@ -38,6 +38,25 @@
       }
     }
   }
+}
 
 
+
+#sub-nav {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 40px;
+
+  ul {
+    @media (min-width: @screen-md-min) { 
+        li {
+          float: left;
+          display: inline-block;    }
+        }
+    }
+
+    a {
+      &.active {
+        border-bottom: 2px solid @brand-primary;
+      }
+  }
 }
