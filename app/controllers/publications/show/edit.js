@@ -94,48 +94,43 @@ export default Ember.Controller.extend({
   /* author-block */
   formatAuthorsForServer: function() {
     return new Promise((resolve, reject) => {
-      var arr = [];
-      var elseCounter = 0;
-      var departments = [];
+      var authors = [];
 
-      //TODO: First iterate through all and add missing institutions?
-      // then perform save in separate iteration?
-      this.get('authorArr').forEach((author) => {
+      authors = this.get('authorArr').map((author) => {
         if (author.selectedAuthor) {
+          let departments = [];
           if (!Ember.isEmpty(author.selectedInstitution)) {
-            author.selectedInstitution.forEach(function(department) {
-              departments.push({id: department.id, name: department.name});
+            departments = author.selectedInstitution.map(function(department) {
+              return {id: department.id, name: department.name};
             });
-          } else {
-            departments.push({id: '666', name: 'Extern institution'});
           }
-          arr.addObject({id: author.selectedAuthor.id, departments: departments});
-          // Empty array
-          departments = [];
+          return Promise.resolve({id: author.selectedAuthor.id, departments: departments});
         } else if (author.newAuthorForm.get('lastName')) {
-          elseCounter++;
-          this.store.save('person', {
-            'first_name': author.newAuthorForm.get('firstName'),
-            'last_name': author.newAuthorForm.get('lastName')
-          }).then(function(savedPerson) {
-            arr.addObject({id: savedPerson.id, departments: [{id: '666', name: 'Extern institution'}]});
-            elseCounter--;
-          }, function(reason) {
-            //TODO: handle error?
-            elseCounter--;
+          //TODO: probably not saved correctly, x-konto etc missing?
+          return new Promise((resolve, reject) => {
+            this.store.save('person', {
+              'first_name': author.newAuthorForm.get('firstName'),
+              'last_name': author.newAuthorForm.get('lastName')
+            }).then(function(savedPerson) {
+              resolve({id: savedPerson.id, departments: []});
+            }, function(reason) {
+              reject(reason);
+            });
           });
         }
       });
-      var waitingForPersonSave = () => {
-        // TODO: Must be some other way?
-        if(elseCounter > 0) {
-          setTimeout(waitingForPersonSave, 50);
-          return;
-        }
-        this.set('publication.authors', arr);
+
+      Promise.all(authors).then((authors) => {
+        authors.forEach(function(author) {
+          if (!Ember.isEmpty(author.departments)) {
+            author.departments.addObject({id: '666', name: 'Extern institution'});
+          }
+        });
+        this.set('publication.authors', authors);
         resolve();
-      }
-      waitingForPersonSave();
+      }, (reason) => {
+        reject(reason);
+      });
     });
   },
 
