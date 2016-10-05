@@ -9,6 +9,7 @@ export default Ember.Route.extend({
     });
   },
   setupController: function(controller, model) {
+    this._super(...arguments);
     var news_message = {};
     var alert_message = {};
     if (model.news_message.message) {

@@ -63,10 +63,6 @@ export default Ember.Component.extend({
         deferred.reject(reason);
       });
     },
-    //TODO: Remove if not needed
-    selectionChange: function(data) {
-      //console.dir(data);
-    },
     moveUpOne: function(id) {
       this.sendAction('moveUp', id);
     },

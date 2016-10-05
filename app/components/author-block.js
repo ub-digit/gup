@@ -95,7 +95,7 @@ export default Ember.Component.extend({
       this.get('authorArr').addObject(author);
     },
     addEmptyAuthorRow: function() {
-      this.get('authorArr').addObject(this.newAuthorStub())
+      this.get('authorArr').addObject(this.newAuthorStub());
     },
     removeAuthorRow: function(id) {
       this.get('authorArr').removeObject(this.get('authorArr').findBy('id', id));

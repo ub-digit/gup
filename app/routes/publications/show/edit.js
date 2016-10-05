@@ -28,6 +28,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     Ember.$('body').removeClass('loading');
   },
   setupController: function(controller, models) {
+    this._super(...arguments);
     controller.set('publicationTypes', models.publicationTypes);
     controller.set('publication', models.publication);
     controller.set('categories', models.categories);
@@ -111,6 +112,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         this.transitionTo('publications.show', this.controller.get('publication.id'));
       }
     },
+    // TODO: this should probably live in the controller?
     saveDraft: function(/*model*/) {
       var that = this;
       var successHandler = function(model) {
@@ -142,10 +144,18 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       };
 
       Ember.$('body').addClass('loading');
-      this.get('controller').formatAuthorsForServer().then(function(){
-        that.store.save(
-            'draft',
-            that.controller.get('publication')).then(generalHandler);
+      //TODO: handle possible error from saving authors
+      // (duplicates for example)
+      this.get('controller').formatAuthorsForServer().then(function() {
+        that.store.save('draft', that.controller.get('publication')).then(
+          generalHandler,
+          function(reason) {
+            // Ajax error from saving author models
+            // TODO: fix properly (and verify errors format)
+            // Fake error object
+            let errors = { 'error' : { 'errors' : [reason] } };
+            errorHandler(errors);
+        });
       });
     },
     savePublish: function(/*model*/) {
@@ -156,7 +166,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         that.send('refreshModel', model.id);
         that.send('refreshUserdata');
 
-        if(that.returnTo) {
+        if (that.returnTo) {
           that.transitionTo(that.returnTo);
         } else {
           that.transitionTo('publications.show', model.id);
@@ -172,6 +182,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           that.controller.set('publication.draft_id', null);
         }
         Ember.$('body').removeClass('loading');
+
+        //TODO: runLoop thing
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
@@ -197,8 +209,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         that.controller.set('publication.id', null);
       }
 
-      this.get('controller').formatAuthorsForServer().then(function(){
-        that.store.save('published_publication',that.controller.get('publication')).then(generalHandler);
+      this.get('controller').formatAuthorsForServer().then(function() {
+        that.store.save('published_publication', that.controller.get('publication')).then(
+          generalHandler,
+          function(reason) {
+            let errors = { 'error' : { 'errors' : [reason] } };
+            errorHandler(errors);
+        });
       });
     }
   }

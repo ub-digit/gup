@@ -10,13 +10,13 @@ export default Ember.Controller.extend({
   queryParams: ['other_version'],
   other_version: null,
 
-  
+
   deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationSuccess'));
-        var target = that.get('applicationController.currentList') || 'publications.dashboard.drafts';
-        that.transitionToRoute(target);
+      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationSuccess'));
+      var target = that.get('applicationController.currentList') || 'publications.dashboard.drafts';
+      that.transitionToRoute(target);
     },
     function() {
       that.send('setMsgHeader', 'error', that.get('i18n').t('messages.deletePublicationError'));
@@ -25,8 +25,8 @@ export default Ember.Controller.extend({
   approvePublication: function(id) {
     var that = this;
     this.store.save('biblreview_publication', {id: id}).then(function() {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
-        that.transitionToRoute('publications.dashboard.biblreview');
+      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
+      that.transitionToRoute('publications.dashboard.biblreview');
     },
     function() {
       that.send('setMsgHeader', 'error', that.get('i18n').t('messages.approvePublicationError'));
@@ -56,7 +56,7 @@ export default Ember.Controller.extend({
       }
     },
     approvePublication: function(id) {
-        this.approvePublication(id);
+      this.approvePublication(id);
     },
     toggleViewMode: function() {
       this.toggleProperty('isExtendedViewMode');

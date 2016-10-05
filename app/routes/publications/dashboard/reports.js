@@ -7,6 +7,7 @@ export default Ember.Route.extend({
     });
   },
   setupController: function(controller, models) {
+    this._super(...arguments);
     controller.set('departments', models.departments);
     controller.set('filters', {});
     controller.set('columns', {});

@@ -10,6 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController: function(controller, model) {
+    this._super(...arguments);
     controller.set("publicationTypes", model.publicationTypes);
     controller.set("faculties", model.faculties);
   },

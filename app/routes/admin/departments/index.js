@@ -9,7 +9,7 @@ export default Ember.Route.extend({
     return this.store.find("department", {search_term: params.qd});
   },
   setupController: function(controller, model) {
-    controller.set('model', model);
+    this._super(...arguments);
     sessionStorage.setItem('admin.departments.lastQuery', controller.get('qd'));
     controller.set('query', controller.get('qd'));
   },

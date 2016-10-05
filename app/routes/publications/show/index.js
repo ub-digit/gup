@@ -25,6 +25,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
   setupController: function(controller, model) {
+    this._super(...arguments);
     controller.set('model', model.model);
     controller.set('otherPublication', model.other || {});
     if(model.other) {
