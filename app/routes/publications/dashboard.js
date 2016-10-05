@@ -12,6 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 
 	setupController: function(controller, model) {
+    this._super(...arguments);
       if (this.get('session.data.authenticated.can_biblreview')) {
         this.controllerFor("application").set('viewMode', 'advanced');
       }

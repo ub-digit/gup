@@ -11,7 +11,8 @@ export default Ember.Route.extend({
     });
   },
 
-  setupController: function(controller, model){
+  setupController: function(controller, model) {
+    this._super(...arguments);
     this.controller.set('messages', model);
   },
 	afterModel: function(model, transition) {

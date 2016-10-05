@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 	fileBaseUrl: ENV.APP.fileURL, 
 
 	init: function() {
-		this._super();
+		this._super(...arguments);
 		this.set("token", this.get("session.data.authenticated.token"));
 	},
 

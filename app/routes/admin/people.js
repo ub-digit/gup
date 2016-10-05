@@ -9,7 +9,7 @@ export default Ember.Route.extend({
     return this.store.find("person_record", {search_term: params.qp, ignore_affiliation: true});
   },
   setupController: function(controller, model) {
-    controller.set('model', model);
+    this._super(...arguments);
     sessionStorage.setItem('admin.people.lastQuery', controller.get('qp'));
     if(sessionStorage.getItem('admin.people.changeWarning') === 'true') {
       controller.set('personChangeWarningAfterEditActive', true);
@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     } else {
       controller.set('personChangeWarningAfterEditActive', false);
     }
-    
+
     // Fill search field with query from url so that it is not lost on reload
     controller.set('query', controller.get('qp'));
   },

@@ -27,7 +27,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   },
   setupController: function(controller, models) {
-    controller.set("model", models.publicationList);
+    this._super(...arguments);
+    controller.set('model', models.publicationList);
   },
 	actions: {
 		editItem: function(item, params) {
