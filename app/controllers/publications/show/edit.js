@@ -99,46 +99,19 @@ export default Ember.Controller.extend({
 
   /* author-block */
   formatAuthorsForServer: function() {
-    return new Promise((resolve, reject) => {
-      var authors = [];
-
-      authors = this.get('authorArr').map((author) => {
-        if (!Ember.isEmpty(author.selectedAuthor)) {
-          let departments = [];
-          departments = author.get('selectedInstitution').map(function(department) {
-            return {id: department.id, name: department.name};
-          });
-          return Promise.resolve({id: author.selectedAuthor.id, departments: departments});
-          //TODO: Would be nice if newAuthorForm could define its own emptyness
-          // (as we perform this check in multiple placeses and it's important that the definition
-          // of emptyness is consistant)
-        } else if (!Ember.isBlank(author.get('newAuthorForm.lastName'))) {
-          //TODO: probably not saved correctly, x-konto etc missing?
-          return new Promise((resolve, reject) => {
-            this.store.save('person', {
-              'first_name': author.newAuthorForm.get('firstName'),
-              'last_name': author.newAuthorForm.get('lastName')
-            }).then(function(savedPerson) {
-              resolve({id: savedPerson.id, departments: []});
-            }, function(reason) {
-              reject(reason);
-            });
-          });
-        }
-      });
-
-      Promise.all(authors).then((authors) => {
-        authors.forEach(function(author) {
-          if (Ember.isEmpty(author.departments)) {
-            author.departments.addObject({id: '666', name: 'Extern institution'});
-          }
+    var authors = this.get('authorArr').map((author) => {
+      if (!Ember.isEmpty(author.selectedAuthor)) {
+        let departments = [];
+        departments = author.get('selectedInstitution').map(function(department) {
+          return {id: department.id, name: department.name};
         });
-        this.set('publication.authors', authors);
-        resolve();
-      }, (reason) => {
-        reject(reason);
-      });
+        if (Ember.isEmpty(departments)) {
+          departments.addObject({id: '666', name: 'Extern institution'});
+        }
+        return {id: author.selectedAuthor.id, departments: departments};
+      }
     });
+    this.set('publication.authors', authors);
   },
 
   authorComponentDisabled: function() {

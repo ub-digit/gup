@@ -148,14 +148,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.get('controller').submitCallbacksRun().then(() => {
         //TODO: handle possible error from saving authors
         // (duplicates for example)
-        this.get('controller').formatAuthorsForServer().then(() => {
-          that.store.save('draft', that.controller.get('publication')).then(generalHandler, (reason) => {
-            // Ajax error from saving author models
-            // TODO: fix properly (and verify errors format)
-            // Fake error object
-            let errors = { 'error' : { 'errors' : [reason] } };
-            errorHandler(errors);
-          });
+        this.get('controller').formatAuthorsForServer();
+        that.store.save('draft', that.get('controller').get('publication')).then(generalHandler, (reason) => {
+          // Ajax error from saving author models
+          // TODO: fix properly (and verify errors format)
+          // Fake error object
+          let errors = { 'error' : { 'errors' : [reason] } };
+          errorHandler(errors);
         });
       }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
     },
@@ -204,17 +203,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       };
 
       Ember.$('body').addClass('loading');
-
       this.get('controller').submitCallbacksRun().then(() => {
         if (!that.controller.get('publication.published_at')) {
           that.controller.set('publication.draft_id', that.controller.get('publication.id'));
           that.controller.set('publication.id', null);
         }
-        this.get('controller').formatAuthorsForServer().then(function() {
-          that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, function(reason) {
-            let errors = { 'error' : { 'errors' : [reason] } };
-            errorHandler(errors);
-          });
+        this.get('controller').formatAuthorsForServer();
+        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, function(reason) {
+          let errors = { 'error' : { 'errors' : [reason] } };
+          errorHandler(errors);
         });
       });
     }
