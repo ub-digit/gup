@@ -37,7 +37,7 @@ export default Ember.Component.extend({
     });
 
     this.get('submitCallbacks').addObject(() => {
-      if(!this.get('isPersisted')) {
+      if(this.get('isUnsaved')) {
         //TODO: user should be promted here!!
         // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
         return new Promise((resolve, reject) => {
@@ -65,9 +65,11 @@ export default Ember.Component.extend({
   }),
 
   //TODO: little bit uncertain about dependant properties
-  isPersisted: Ember.computed('item.selectedAuthor', 'item.transformedToNewAuthor', function() {
-    return !Ember.isEmpty(this.get('item.selectedAuthor')) && !this.get('item.transformedToNewAuthor');
+  isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', 'item.importedAuthorName', function() {
+    return (this.get('item.transformedToNewAuthor') || this.get('item.isImportedExternal')) && !Ember.isBlank(this.get('item.newAuthorForm.lastName'));
   }),
+
+  //isEmpty: Ember.computed('item.
   /*
   newAuthorFormVisible: function() {
     var self = this;
