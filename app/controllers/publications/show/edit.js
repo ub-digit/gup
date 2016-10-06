@@ -103,15 +103,16 @@ export default Ember.Controller.extend({
       var authors = [];
 
       authors = this.get('authorArr').map((author) => {
-        if (author.selectedAuthor) {
+        if (!Ember.isEmpty(author.selectedAuthor)) {
           let departments = [];
-          if (!Ember.isEmpty(author.selectedInstitution)) {
-            departments = author.selectedInstitution.map(function(department) {
-              return {id: department.id, name: department.name};
-            });
-          }
+          departments = author.get('selectedInstitution').map(function(department) {
+            return {id: department.id, name: department.name};
+          });
           return Promise.resolve({id: author.selectedAuthor.id, departments: departments});
-        } else if (author.newAuthorForm.get('lastName')) {
+          //TODO: Would be nice if newAuthorForm could define its own emptyness
+          // (as we perform this check in multiple placeses and it's important that the definition
+          // of emptyness is consistant)
+        } else if (!Ember.isBlank(author.get('newAuthorForm.lastName'))) {
           //TODO: probably not saved correctly, x-konto etc missing?
           return new Promise((resolve, reject) => {
             this.store.save('person', {
@@ -128,7 +129,7 @@ export default Ember.Controller.extend({
 
       Promise.all(authors).then((authors) => {
         authors.forEach(function(author) {
-          if (!Ember.isEmpty(author.departments)) {
+          if (Ember.isEmpty(author.departments)) {
             author.departments.addObject({id: '666', name: 'Extern institution'});
           }
         });
