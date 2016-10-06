@@ -65,7 +65,7 @@ export default Ember.Component.extend({
   }),
 
   //TODO: little bit uncertain about dependant properties
-  isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', 'item.importedAuthorName', function() {
+  isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', 'item.isImportedExternal', function() {
     return (this.get('item.transformedToNewAuthor') || this.get('item.isImportedExternal')) && !Ember.isBlank(this.get('item.newAuthorForm.lastName'));
   }),
 
