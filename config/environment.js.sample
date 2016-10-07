@@ -33,7 +33,7 @@ module.exports = function(environment) {
 
     ENV.APP.serviceURL = 'https://backend-server/v1';
     ENV.APP.authenticationBaseURL = 'https://backend-server/session';
-
+    ENV.APP.fileURL = 'https://backend-server/v1/asset_data';
     // File in public/ directory
     ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';
     ENV.APP.licenceCode = 'A 85 592 10';
