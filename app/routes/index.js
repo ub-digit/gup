@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	beforeModel: function() {
-		this.transitionTo('publications.dashboard.manage.start');
+		this.transitionTo('publications.dashboard.manage.published');
 	}
 });

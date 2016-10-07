@@ -109,7 +109,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       if(this.returnTo) {
         this.transitionTo(this.returnTo);
       } else if(this.get('controller').get('publication.process_state') === "PREDRAFT") {
-        this.transitionTo('publications.dashboard.manage.start');
+        this.transitionTo('publications.dashboard.manage.published');
       } else {
         this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
       }
