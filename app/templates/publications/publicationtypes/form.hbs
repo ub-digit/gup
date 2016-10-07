@@ -42,7 +42,7 @@
   </div>
 
   {{#if authorComponentIsVisible}}
-    {{author-block errors=errors.authors  fieldHelptext="publicationsPublicationtypesForm.fields.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution}}
+    {{author-block errors=errors.authors  fieldHelptext="publicationsPublicationtypesForm.fields.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
   {{/if}}
 
   <hr/>

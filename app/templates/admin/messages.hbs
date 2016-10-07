@@ -10,15 +10,15 @@
 
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
-      <label class="control-label">{{t 'admin.messages.start_date'}}</label>
-        {{pikaday-input date=news_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
+        <label class="control-label">{{t 'admin.messages.start_date'}}</label>
+        {{pikaday-input value=news_message.start_date class="form-control" format='YYYY-MM-DD' allowBlank=false firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut news_message.start_date))}}
       </div>
     </div>
 
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.end_date'}}</label>
-        {{pikaday-input date=news_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD"}}
+        {{pikaday-input value=news_message.end_date class="form-control" format='YYYY-MM-DD' allowBlank=false firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut news_message.end_date))}}
       </div>
     </div>
 
@@ -42,14 +42,14 @@
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.start_date'}}</label>
-        {{pikaday-input date=alert_message.start_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-start-date'}}
+        {{pikaday-input value=alert_message.start_date class="form-control" format='YYYY-MM-DD' allowBlank=false firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-start-date' onSelection=(action (mut alert_message.start_date))}}
       </div>
     </div>
 
     <div class="row bottom-spacing-20">
       <div class="col-xs-12">
       <label class="control-label">{{t 'admin.messages.end_date'}}</label>
-        {{pikaday-input date=alert_message.end_date class="form-control" valueFormat='YYYY-MM-DD' allowBlank='false' firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-end-date'}}
+        {{pikaday-input value=alert_message.end_date class="form-control" format='YYYY-MM-DD' allowBlank=false firstDay=1 placeholder="YYYY-MM-DD" id='alert-message-end-date' onSelection=(action (mut alert_message.end_date))}}
       </div>
     </div>
 

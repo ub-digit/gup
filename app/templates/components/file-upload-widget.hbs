@@ -30,7 +30,7 @@
 				<div class="gup-embargo-datepicker">
 					<label>
 						Visa offentligt först efter
-						{{pikaday-input  class="form-control" value=gupEmbargoDate format="YYYY-MM-DD"}}
+						{{pikaday-input  class="form-control" value=gupEmbargoDate format="YYYY-MM-DD" onSelection=(action (mut gupEmbargoDate))}}
 					</label>
 				</div>
 			{{/if}}
