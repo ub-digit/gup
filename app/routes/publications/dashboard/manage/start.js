@@ -19,6 +19,6 @@ export default Ember.Route.extend({
       Ember.$("body").removeClass("loading");
       this.controllerFor('application').set('currentList', transition.targetName);
       this.controllerFor('application').set('publication_id_error', null);
-      this.controllerFor('publications.dashboard.start').set('publication_id', null);
+      this.controllerFor('publications.dashboard.manage.start').set('publication_id', null);
 	}
 });

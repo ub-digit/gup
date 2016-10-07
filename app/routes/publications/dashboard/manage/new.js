@@ -8,7 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController: function(controller, model) {
-    this._super(...arguments);
+    this._super();
 
     controller.set('selectedSource', null);
     controller.set('sourceId', null);
@@ -19,6 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       return {value: source.code, label: source.label};
     });
     controller.set('dataSources', dataSources);
+    controller.set("manageController.isNavVisible", false);
 
   }
 

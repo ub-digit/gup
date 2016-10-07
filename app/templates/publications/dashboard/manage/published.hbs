@@ -9,16 +9,7 @@
       <ul class="list-unstyled dashboard-list">
         {{#each model as |item|}}
           <li>
-            <div class="row">
-              <div class="col-xs-10">
-                {{publication-list-row item=item link='publications.show'}}
-              </div>
-              <div class="col-xs-2">
-                <div class="btn-toolbar pull-right">
-                  <button {{action 'delete' item.id}} class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </div>
-            </div>
+            {{publication-list-row item=item link='publications.dashboard.manage.show'}}
           </li>
         {{/each}}
       </ul>
@@ -26,9 +17,9 @@
         <div class="col-xs-12">
           {{pagination-pager pagination=model.meta.pagination}}
         </div>
-      </div>
+      </div>            
     {{else}}
-      {{t 'text.youHaveNoDrafts'}}
+      {{t 'text.youHaveNoPublications'}}
     {{/if}}
   </div>
 </div>

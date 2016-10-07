@@ -9,21 +9,20 @@
 {{/if}}
 <div class="row">
   <div class="col-xs-3">
-    <a href="javascript:void();" {{action 'goBack'}}><i class="fa fa-chevron-left"></i> Tillbaka till listan</a>
+    <a href="javascript:void();" {{action 'goBack'}}><i class="fa fa-chevron-left"></i> Tillbaka</a>
   </div>
   <div class="col-xs-9">
     <nav id="publication-toolbar" class="pull-right">
       <ul class="list-inline">
         <li>
-
           {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError publicationID=model.id assetData=assetData}}
 
           <label for="gup-input-upload"><i class="fa fa-paperclip" aria-hidden="true"></i>  Bifoga fil</label>
           {{file-upload-widget publication=model assetData=assetData fileUploadProgress=fileUploadProgress}}
         </li>
-        <li>{{#link-to 'publications.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.show.edit'}}{{/link-to}}</li>
+        <li>{{#link-to 'publications.dashboard.manage.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publication.dashboard.manage.show.edit'}}{{/link-to}}</li>
         {{#if session.data.authenticated.can_delete_published}}
-          <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.show.delete'}}</a></li>
+          <li><a href="javascript:void();" {{action 'deletePublication' model.id}}><i class="fa fa-trash" title=""></i> {{t 'publication.dashboard.manage.show.delete'}}</a></li>
         {{/if}}
         {{#unless session.data.authenticated.can_biblreview}}
           <li>{{mailer-modal publication=model}}</li>
@@ -33,7 +32,7 @@
             {{#if model.published_at}}
               {{#unless model.biblreviewed_at}}
                 <li>{{delay-review-modal publication=model}}</li>
-                <li><a href="javascript:void();" {{action 'approvePublication' model.id}}><i class="fa fa-check"></i> {{t 'publication.show.biblreview'}}</a></li>
+                <li><a href="javascript:void();" {{action 'approvePublication' model.id}}><i class="fa fa-check"></i> {{t 'publication.dashboard.manage.show.biblreview'}}</a></li>
               {{/unless}}
             {{/if}}
           {{/if}}

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
+  manageController: Ember.inject.controller("publications.dashboard.manage"),
 
   selectedSource: null,
   sourceId: null,
@@ -82,7 +83,7 @@ export default Ember.Controller.extend({
       }
       this.store.save('draft', publication).then(
         function(response) {
-          that.transitionToRoute('publications.show.edit', response.id);
+          that.transitionToRoute('publications.dashboard.manage.show.edit', response.id);
         },
         function(error) {
         }

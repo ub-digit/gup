@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
 	queryParams: ['lang'],
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
+  showReviewCount: Ember.computed.gt('userdata.counts.review', 0),
 
 	actions: {
 		toggleLang: function() {

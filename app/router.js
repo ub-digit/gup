@@ -9,17 +9,21 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('publications', function() {
-    this.route('new');
     this.route('fileimport');
     this.route('import');
-    this.route('show', {path: 'show/:id'}, function() {
-      this.route('edit');
-    });
+
     this.route('create');
     this.route('dashboard', function() {
-      this.route('start');
-      this.route('drafts');
-      this.route("published");
+      this.route('manage', function() {
+        this.route('start');
+        this.route('drafts');
+        this.route('search');
+        this.route("published");
+        this.route('new');
+        this.route('show', {path: 'show/:id'}, function() {
+          this.route('edit');
+        });
+      });
       this.route("touched");
       this.route('review');
       this.route('biblreview');

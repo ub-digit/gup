@@ -18,14 +18,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
 	afterModel: function(/*model, transition */) {
 		Ember.$("body").removeClass("loading");
 	},
-
+  setupController: function(controller, model) {
+    controller.set("model", model);
+    controller.set("manageController.isNavVisible", false);
+  },
   actions: {
     refreshModel: function(modelId) {
       this.refresh(modelId);
     },
-    error: function() {
+    error: function(reason) {
       this.send('setMsgHeader', 'error', this.get('i18n').t('messages.publicationNotFound'));
-	  this.transitionTo('publications.dashboard.start');
+	   this.transitionTo('publications.dashboard.manage.start');
     }
   }
 });

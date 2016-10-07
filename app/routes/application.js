@@ -58,7 +58,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.controller.set('publication_id_error', null);
 
       var successHandler = function(model) {
-          that.transitionTo('publications.show', publication_id);
+          that.transitionTo('publications.dashboard.manage.show', publication_id);
       };
       var errorHandler = function(model) {
           that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);

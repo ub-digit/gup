@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   publications: Ember.inject.controller(),
+  manageController: Ember.inject.controller("publications.dashboard.manage"),
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,

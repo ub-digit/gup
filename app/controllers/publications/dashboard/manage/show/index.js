@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   session: Ember.inject.service(),
   applicationController: Ember.inject.controller("application"),
   publicationsController: Ember.inject.controller("publications"),
-  publicationsShowController: Ember.inject.controller("publications/show"),
+  publicationsShowController: Ember.inject.controller("publications/dashboard/manage/show"),
   isExtendedViewMode: false,
   queryParams: ['other_version'],
   other_version: null,
@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
     var that = this;
     this.store.destroy('publication', id).then(function() {
       that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationSuccess'));
-      var target = that.get('applicationController.currentList') || 'publications.dashboard.drafts';
+      var target = that.get('applicationController.currentList') || 'publications.dashboard.manage.drafts';
       that.transitionToRoute(target);
     },
     function() {
@@ -46,7 +46,12 @@ export default Ember.Controller.extend({
 
   actions: {
     goBack: function() {
-      var target = this.get('applicationController.currentList') || 'publications.dashboard.start';
+      var target = this.get('applicationController.currentList');
+      if (!target) {
+        window.history.back();
+        return;
+
+      }
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {

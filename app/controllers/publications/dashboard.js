@@ -22,9 +22,6 @@ export default Ember.Controller.extend({
 		Ember.run.later(this, function() {
 			this.fetchUserdataLoop();
 		}, interval);
-
-
-
 	},
 
 });

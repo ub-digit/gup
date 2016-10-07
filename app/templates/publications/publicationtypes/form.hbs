@@ -2,7 +2,9 @@
   {{partial 'publications/publicationtypes/selector'}}
 {{else}}
   {{#if isSelectedPublicationValid}}
-    {{getPublicationTypeObject.name}}:<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}>{{t 'edit.form.changePublicationTypeLink'}}</button>
+    <label>Publikationstyp</label> 
+    <div>{{getPublicationTypeObject.name}}<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{t 'edit.form.changePublicationTypeLink'}}</button>
+    </div>
   {{/if}}
 
   {{#if refValueSelectionVisible}}

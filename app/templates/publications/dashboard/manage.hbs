@@ -1,0 +1,16 @@
+{{#if isNavVisible }}
+	<div class="row">
+	  <div class="col-xs-12">
+	    <nav id="sub-nav">
+	      <ul class="nav">
+	        <li title={{t 'tabTitle.published'}}>{{#link-to 'publications.dashboard.manage.published' (query-params page='1')}}{{t 'text.published'}}{{/link-to}}</li>
+	        <li title={{t 'tabTitle.drafts'}}>{{#link-to 'publications.dashboard.manage.drafts' (query-params page='1')}}   {{t 'text.drafts'}}{{/link-to}}</li>
+			<li title={{t 'tabTitle.drafts'}}>{{#link-to 'publications.dashboard.manage.search'}}Sök{{/link-to}}</li>
+	        {{#link-to 'publications.dashboard.manage.new' class="btn btn-primary pull-right" id="register-new-link"}}{{t 'labels.registerNew'}} <i class="fa fa-plus" aria-hidden="true"></i>{{/link-to}}
+	      </ul>
+	    </nav>
+	  </div>
+	</div>
+{{/if}}
+
+{{outlet}}

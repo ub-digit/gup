@@ -13,7 +13,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   model: function(params, transition) {
     this.returnTo = transition.queryParams.returnTo;
-    var model = this.modelFor('publications.show');
+    var model = this.modelFor('publications.dashboard.manage.show');
     return Ember.RSVP.hash({
       publication: model,
       publicationTypes: this.store.find('publication_type'),
@@ -90,6 +90,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       // This needs to be reset if no suggestion was found, so that any previous suggestion is removed
       controller.set('suggestedPublicationType', null);
     }
+    
+    controller.set("manageController.isNavVisible", false);
   },
   exit: function() {
     var controller = this.get('controller');
@@ -107,9 +109,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       if(this.returnTo) {
         this.transitionTo(this.returnTo);
       } else if(this.get('controller').get('publication.process_state') === "PREDRAFT") {
-        this.transitionTo('publications.dashboard.start');
+        this.transitionTo('publications.dashboard.manage.start');
       } else {
-        this.transitionTo('publications.show', this.controller.get('publication.id'));
+        this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
       }
     },
     // TODO: this should probably live in the controller?
@@ -119,7 +121,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.saveDraftSuccess'));
         Ember.$('body').removeClass('loading');
         that.send('refreshModel', model.id);
-        that.transitionTo('publications.show', model.id);
+        that.transitionTo('publications.dashboard.manage.show', model.id);
       };
       var errorHandler = function(reason) {
         that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftSuccess'));
@@ -169,7 +171,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         if (that.returnTo) {
           that.transitionTo(that.returnTo);
         } else {
-          that.transitionTo('publications.show', model.id);
+          that.transitionTo('publications.dashboard.manage.show', model.id);
         }
       };
 

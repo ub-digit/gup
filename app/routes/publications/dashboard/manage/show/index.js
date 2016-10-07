@@ -14,14 +14,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 //  },
   
   model: function(params, transition) {
-    var model = this.modelFor('publications.show');
+    var model = this.modelFor('publications.dashboard.manage.show');
     if(params.other_version) {
       return Ember.RSVP.hash({
         model: model,
         other: this.store.find('publication', model.id, {version_id: params.other_version}),
       });
     } else {
-        return {model: model};
+        return Ember.RSVP.hash({model: model});
     }
   },
   setupController: function(controller, model) {

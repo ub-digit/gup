@@ -1,6 +1,6 @@
 <div class="row bottom-spacing-20">
   <div class="col-xs-12">
-    {{#link-to 'publications.dashboard.start'}}<i class="fa fa-chevron-left"></i> {{t 'labels.back'}}{{/link-to}}
+    <a href="javascript:history.back()"><i class="fa fa-chevron-left"></i> {{t 'labels.back'}}</a>
   </div>
 </div>
 <div class="row bottom-spacing-20">
@@ -67,7 +67,7 @@
                   <ul>
                   {{#each importData.publication_identifier_duplicates as |duplicate|}}
                     <li>
-                    {{duplicate.identifier_code}}: {{duplicate.identifier_value}} - {{#link-to 'publications.show' duplicate.publication_id}}{{duplicate.publication_title}}{{/link-to}}
+                    {{duplicate.identifier_code}}: {{duplicate.identifier_value}} - {{#link-to 'publications.dashboard.manage.show' duplicate.publication_id}}{{duplicate.publication_title}}{{/link-to}}
                     </li>
                     {{/each}}
                   </ul>

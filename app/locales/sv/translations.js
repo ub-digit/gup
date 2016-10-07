@@ -55,11 +55,16 @@ export default {
 			delayComment: 'Kommentar',
 			noTitle: '[Ingen titel]'
 		},
-		show: {
-			edit: "Redigera",
-			"delete": "Radera",
-			biblreview: "Markera som granskad"
+		dashboard: {
+			manage: {
+				show: {
+					edit: "Redigera",
+					"delete": "Radera",
+					biblreview: "Markera som granskad"
+				}
+			}
 		}
+
 	},
 	messages: {
 		loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
@@ -91,7 +96,7 @@ export default {
 		youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
 		youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
 		reviewListPreamble: 'Forskare är skyldiga att granska och godkänna sina registrerade publikationer pga ett beslut som tagits.',
-		start: 'Start',
+		start: 'Registrera',
 		drafts: 'Mina utkast',
 		registeredOrEditedByMe: 'Mina registreringar',
 		published: 'Mina publikationer',
@@ -211,7 +216,7 @@ export default {
 			selectPublicationTypePrompt: 'Välj publikationstyp',
 			selectContentTypePrompt: 'Välj innehållsmärkning',
 			selectContentTypeLabel: 'Innehållmärkning',
-			changePublicationTypeLink: 'Byt publikationstyp',
+			changePublicationTypeLink: 'Byt',
 			authorHeaderTextStrong: {
 		        'default': 'Författare',
 		        'publication_edited-book': 'Redaktör',

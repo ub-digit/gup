@@ -21,4 +21,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     params.actor = 'logged_in_user';
     return  this.store.find("published_publication", params);
   },
+  setupController: function(controller, model) {
+    controller.set("model", model);
+    controller.set("manageController.isNavVisible", true);
+  }
 });

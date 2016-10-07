@@ -23,6 +23,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		this.controllerFor('application').set('currentList', transition.targetName);
 	},
 
+	setupController: function(controller, model) {
+		controller.set("model", model);
+		controller.set("manageController.isNavVisible", true);
+	},
+
 	actions: {
 		refreshModel: function() {
 			this.refresh();
