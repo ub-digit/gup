@@ -72,8 +72,6 @@ export default Ember.Component.extend({
   actions: {
 
     approve: function(item) {
-
-      Ember.$("body").addClass("loading");
       var that = this;
 
       this.store.save('review_publication', {id: item.version_id}).then(
@@ -81,14 +79,12 @@ export default Ember.Component.extend({
 
           that.sendAction('setMsgHeader', 'success', that.get('i18n').t('messages.approveSuccess'));
 					that.sendAction('refreshReviewCount');
-          Ember.$("body").removeClass("loading");
           that.set('isApproved', true);
 
         },
         function(reason) {
 
           that.sendAction('setMsgHeader', 'error', that.get('i18n').t('messages.approveError'));
-          Ember.$("body").removeClass("loading");
 
       });
 

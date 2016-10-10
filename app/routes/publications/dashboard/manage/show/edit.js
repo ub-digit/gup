@@ -9,7 +9,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   beforeModel: function() {
     //TODO: replace with loading substate
     //https://guides.emberjs.com/v2.8.0/routing/loading-and-error-substates/
-    Ember.$('body').addClass('loading');
   },
   model: function(params, transition) {
     this.returnTo = transition.queryParams.returnTo;
@@ -25,7 +24,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
   },
   afterModel: function(/*model, transition*/) {
-    Ember.$('body').removeClass('loading');
   },
   setupController: function(controller, models) {
     this._super(...arguments);
@@ -119,14 +117,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var that = this;
       var successHandler = function(model) {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.saveDraftSuccess'));
-        Ember.$('body').removeClass('loading');
         that.send('refreshModel', model.id);
         that.transitionTo('publications.dashboard.manage.show', model.id);
       };
       var errorHandler = function(reason) {
         that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftSuccess'));
         that.controller.set('errors', reason.error.errors);
-        Ember.$('body').removeClass('loading');
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
@@ -144,7 +140,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
       };
 
-      Ember.$('body').addClass('loading');
+
 
       // TODO: this smells, can this be made feel less hackish?
       this.get('controller').submitCallbacksRun().then(() => {
@@ -164,7 +160,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var that = this;
       var successHandler = function(model) {
         that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
-        Ember.$('body').removeClass('loading');
         that.send('refreshModel', model.id);
         that.send('refreshUserdata');
 
@@ -183,7 +178,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           that.controller.set('publication.id', that.controller.get('publication.draft_id'));
           that.controller.set('publication.draft_id', null);
         }
-        Ember.$('body').removeClass('loading');
 
         //TODO: runLoop thing
         Ember.run.later(function() {
@@ -204,7 +198,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
       };
 
-      Ember.$('body').addClass('loading');
       this.get('controller').submitCallbacksRun().then(() => {
         if (!that.controller.get('publication.published_at')) {
           that.controller.set('publication.draft_id', that.controller.get('publication.id'));

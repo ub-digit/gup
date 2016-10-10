@@ -7,7 +7,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
 
   beforeModel: function() {
     // TODO: loading substate instead (below should not work?)
-    Ember.$('body').addClass('loading');
   },
 
   model: function(params) {
@@ -21,7 +20,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
   },
 
   afterModel: function(/*model, transition */) {
-    Ember.$('body').removeClass('loading');
   },
 
   actions: {

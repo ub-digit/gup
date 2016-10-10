@@ -1,11 +1,18 @@
 
-<nav class="navbar navbar-default navbar-fixed-top {{if isViewModeAdvanced 'advanced-view'}}" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top gub-header {{if isViewModeAdvanced 'advanced-view'}}" role="navigation">
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
-      {{#link-to 'publications.dashboard.manage.published' class="navbar-brand" id='navbar-home'}}
-      {{t 'mainMenu.applicationName'}}
-      {{/link-to}}
+      <div class="navbar-brand">
+        <img alt="Gothenburg University Library" src="img/gub-textlogo-en.svg">
+      </div>
+      <div class="navbar-appname">
+        <span class="divider" />
+        {{#link-to 'publications.dashboard.manage.published'}}
+        {{t 'mainMenu.applicationName'}}
+        {{/link-to}}
+      </div>
+
       <ul class="nav navbar-nav">
         <li title={{t 'tabTitle.drafts'}}>{{#link-to 'publications.dashboard.manage'}}Publikationer{{/link-to}}</li>
         <li title={{t 'tabTitle.forReview'}}>

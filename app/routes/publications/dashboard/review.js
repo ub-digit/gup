@@ -4,10 +4,8 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   beforeModel: function() {
-		Ember.$("body").addClass("loading");
 	},
 	afterModel: function(model, transition) {
-		Ember.$("body").removeClass("loading");
     this.controllerFor('application').set('currentList', transition.targetName);
 	},
   model: function() {

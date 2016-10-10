@@ -44,18 +44,15 @@ export default Ember.Controller.extend({
 
     fetchSource: function() {
 
-      Ember.$('body').addClass("loading");
       this.set('error', null);
 
       var that = this;
 
       var successHandler = function(model) {
-        Ember.$('body').removeClass("loading");
         that.set('importData', model);
       };
 
       var errorHandler = function(error) {
-        Ember.$('body').removeClass("loading");
         that.set('error', error);
         that.set('importData', null);
 

@@ -19,6 +19,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
 
   actions: {
+
+
+    /*loading(transition, originRoute) {
+      let controller = this.controllerFor('application');
+      controller.set('currentlyLoading', true);
+      transition.promise.finally(function() {
+          controller.set('currentlyLoading', false);
+      });
+
+      return true;
+    },*/
+
+
     invalidateSession() {
       this.get('session').invalidate();
     },
@@ -31,7 +44,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	  },
 
     sessionAuthenticationFailed: function(error) {
-      Ember.$('body').removeClass("loading");
       this.controllerFor('login').set('error', error.msg);
     },
     hideMsgHeader: function() {

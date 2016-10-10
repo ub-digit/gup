@@ -20,7 +20,7 @@ export default {
 	},
 
 	mainMenu: {
-		applicationName: 'GUP 3',
+		applicationName: 'GUP',
 		lang: 'English',
 		publications: 'Publikationer',
 		logOut: 'Logga ut',

@@ -7,10 +7,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         page:{refreshModel: true}
     },	
 	beforeModel: function() {
-		Ember.$("body").addClass("loading");
 	},
 	afterModel: function(model, transition) {
-		Ember.$("body").removeClass("loading");
 		this.controllerFor('application').set('currentList', transition.targetName);
 	},
 

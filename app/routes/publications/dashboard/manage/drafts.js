@@ -8,7 +8,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
      },
 
 	beforeModel: function() {
-		Ember.$("body").addClass("loading");
 
 	},
 	model: function(params){
@@ -19,7 +18,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
 	},
 	afterModel: function(model, transition) {
-		Ember.$("body").removeClass("loading");
 		this.controllerFor('application').set('currentList', transition.targetName);
 	},
 
