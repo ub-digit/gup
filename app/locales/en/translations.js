@@ -1,53 +1,53 @@
 export default {
   "components": {
-    "publication-identifier-block": {
+    "publicationIdentifierBlock": {
     },
-    "author-block": {
+    "authorBlock": {
     },
-    "publication-field-files": {
+    "publicationFieldFiles": {
     },
-    "publication-field-preview": {
+    "publicationFieldPreview": {
     },
-    "pagination-pager": {
+    "paginationPager": {
     },
-    "category-selector": {
+    "categorySelector": {
     },
-    "publication-field-compare": {
+    "publicationFieldCompare": {
     },
-    "publication-display": {
+    "publicationDisplay": {
     },
-    "mailer-modal": {
+    "mailerModal": {
     },
-    "review-item": {
+    "reviewItem": {
     },
-    "publicationtype-item": {
+    "publicationtypeItem": {
     },
-    "field-component": {
+    "fieldComponent": {
     },
-    "publication-list-row": {
+    "publicationListRow": {
     },
-    "file-upload": {
+    "fileUpload": {
     },
-    "publication-field-bibl-review": {
+    "publicationFieldBiblReview": {
     },
-    "authors-string": {
+    "authorsString": {
     },
-    "author-row": {
+    "authorRow": {
     },
-    "delay-review-modal": {
+    "delayReviewModal": {
     },
-    "debounced-input": {
+    "debouncedInput": {
     },
-    "file-upload-widget": {
+    "fileUploadWidget": {
     },
-    "category-item": {
+    "categoryItem": {
     }
   },
   "header": {
   },
   "login": {
   },
-  "main-menu": {
+  "mainMenu": {
   },
   "application": {
   },
