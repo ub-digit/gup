@@ -121,7 +121,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         that.transitionTo('publications.dashboard.manage.show', model.id);
       };
       var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftSuccess'));
+        that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftError'));
         that.controller.set('errors', reason.error.errors);
         Ember.run.later(function() {
           Ember.$('[data-toggle="popover"]').popover({
@@ -140,20 +140,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
       };
 
-
-
       // TODO: this smells, can this be made feel less hackish?
       this.get('controller').submitCallbacksRun().then(() => {
-        //TODO: handle possible error from saving authors
-        // (duplicates for example)
         this.get('controller').formatAuthorsForServer();
-        that.store.save('draft', that.get('controller').get('publication')).then(generalHandler, (reason) => {
-          // Ajax error from saving author models
-          // TODO: fix properly (and verify errors format)
-          // Fake error object
-          let errors = { 'error' : { 'errors' : [reason] } };
-          errorHandler(errors);
-        });
+        that.store.save('draft', that.get('controller').get('publication')).then(generalHandler, errorHandler);
       }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
     },
     savePublish: function(/*model*/) {
@@ -204,9 +194,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           that.controller.set('publication.id', null);
         }
         this.get('controller').formatAuthorsForServer();
-        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, function(reason) {
-          let errors = { 'error' : { 'errors' : [reason] } };
-          errorHandler(errors);
+        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, errorHandler)
         });
       });
     }
