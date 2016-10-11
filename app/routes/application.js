@@ -21,7 +21,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
 
 
-    /*loading(transition, originRoute) {
+    loading(transition, originRoute) {
       let controller = this.controllerFor('application');
       controller.set('currentlyLoading', true);
       transition.promise.finally(function() {
@@ -29,7 +29,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       });
 
       return true;
-    },*/
+    },
 
 
     invalidateSession() {
