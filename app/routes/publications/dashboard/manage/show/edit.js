@@ -123,7 +123,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       var errorHandler = function(reason) {
         that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftError'));
         that.controller.set('errors', reason.error.errors);
-        Ember.run.later(function() {
+        Ember.run.schedule('afterRender', function() {
+          // What happens here? Can be removed?
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
             html: true
@@ -169,8 +170,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           that.controller.set('publication.draft_id', null);
         }
 
-        //TODO: runLoop thing
-        Ember.run.later(function() {
+        Ember.run.schedule('afterRender', function() {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
             html: true
