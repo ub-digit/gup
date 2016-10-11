@@ -14,24 +14,24 @@
       </div>
 
       <ul class="nav navbar-nav">
-        <li title={{t 'tabTitle.drafts'}}>{{#link-to 'publications.dashboard.manage'}}Publikationer{{/link-to}}</li>
-        <li title={{t 'tabTitle.forReview'}}>
-          {{#link-to 'publications.dashboard.review'}}{{t 'text.forReview'}}
+        <li title={{t 'mainMenu.publications'}}>{{#link-to 'publications.dashboard.manage'}}{{t 'mainMenu.publications'}}{{/link-to}}</li>
+        <li title={{t 'mainMenu.forReview'}}>
+          {{#link-to 'publications.dashboard.review'}}{{t 'mainMenu.forReview'}}
           {{#if showReviewCount}}
             <span class="badge badge-red">{{userdata.counts.review}}</span>
           {{/if}}
           {{/link-to}}
         </li>
         {{#if session.data.authenticated.can_administrate}}
-          <li title={{t 'tabTitle.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'text.admin'}}{{/link-to}}</li>
+          <li title={{t 'mainMenu.admin'}}>{{#link-to 'publications.dashboard.admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
         {{/if}}
         {{#if session.data.authenticated.can_biblreview}}
-          <li title={{t 'tabTitle.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'text.forBReview'}}{{/link-to}}</li>
+          <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
         {{/if}}
         {{#if session.data.authenticated.can_administrate}}
-          <li title={{t 'tabTitle.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'text.registeredOrEditedByMe'}}{{/link-to}}</li>
+          <li title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
         {{/if}}
-        <li title={{t 'tabTitle.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'text.reports'             }}{{/link-to}}</li>
+        <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'             }}{{/link-to}}</li>
       </ul>
     </div>
 

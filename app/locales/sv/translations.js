@@ -1,116 +1,147 @@
 export default {
-  "components": {
-    "publicationIdentifierBlock": {
+  components: {
+    publicationIdentifierBlock: {
     },
-    "authorBlock": {
+    authorBlock: {
     },
-    "publicationFieldFiles": {
+    publicationFieldFiles: {
     },
-    "publicationFieldPreview": {
+    publicationFieldPreview: {
     },
-    "paginationPager": {
+    paginationPager: {
     },
-    "categorySelector": {
+    categorySelector: {
     },
-    "publicationFieldCompare": {
+    publicationFieldCompare: {
     },
-    "publicationDisplay": {
+    publicationDisplay: {
     },
-    "mailerModal": {
+    mailerModal: {
     },
-    "reviewItem": {
+    reviewItem: {
     },
-    "publicationtypeItem": {
+    publicationtypeItem: {
     },
-    "fieldComponent": {
+    fieldComponent: {
     },
-    "publicationListRow": {
+    publicationListRow: {
     },
-    "fileUpload": {
+    fileUpload: {
     },
-    "publicationFieldBiblReview": {
+    publicationFieldBiblReview: {
     },
-    "authorsString": {
+    authorsString: {
     },
-    "authorRow": {
+    authorRow: {
     },
-    "delayReviewModal": {
+    delayReviewModal: {
     },
-    "debouncedInput": {
+    debouncedInput: {
     },
-    "fileUploadWidget": {
+    fileUploadWidget: {
     },
-    "categoryItem": {
+    categoryItem: {
     }
   },
-  "header": {
+  header: {
   },
-  "login": {
+  login: {
+    header: 'Logga in',
+    button: 'Logga in',
+    username: 'x-konto',
+    usernamePlaceholder: 'x-konto',
+    password: 'Lösenord',
+    passwordPlaceholder: 'Lösenord',
   },
-  "mainMenu": {
+  mainMenu: {
+    applicationName: 'GUP',
+    publications: 'Publikationer',
+    forReview: 'Att granska',
+    forBReview: 'Bibl. granskn.',
+    registeredOrEditedByMe: 'Mina registreringar',
+    admin: 'Admin',
+    reports: 'Statistik',
+    lang: 'English',
+    logOut: 'Logga ut',
+    searchById: 'Sök efter GUP-ID',
+    idMissing: 'Ogiltigt ID'
+
   },
-  "application": {
+  application: {
   },
-  "msgheader": {
+  msgheader: {
   },
-  "publications": {
-    "dashboard": {
-      "reports": {
+  publications: {
+    dashboard: {
+      reports: {
       },
-      "manage": {
-        "drafts": {
+      manage: {
+        _subnav: {
+          published: 'Mina publikationer',
+          drafts: 'Mina utkast',
+          search: 'Sök',
         },
-        "show": {
-          "edit": {
+        _actions: {
+          registerNew: 'Registrera ny',
+        },
+
+
+        drafts: {
+          numberOfHits: 'Antal träffar',
+        },
+        show: {
+          noTitle: '[Ingen titel]',
+          edit: {
           },
-          "index": {
+          index: {
           }
         },
-        "published": {
+        published: {
+          numberOfHits: 'Antal träffar',
         },
-        "start": {
+        start: {
         },
-        "search": {
+        search: {
         },
-        "new": {
+        new: {
         }
       },
-      "review": {
+      review: {
       },
-      "biblreview": {
+      biblreview: {
       },
-      "touched": {
+      touched: {
       },
-      "loading": {
+      loading: {
       },
-      "admin": {
+      admin: {
       }
     },
-    "publicationtypes": {
-      "selector": {
+    publicationtypes: {
+      selector: {
       },
-      "form": {
+      form: {
       }
     },
-    "index": {
+    index: {
     }
   },
-  "footer": {
+  footer: {
   },
-  "admin": {
-    "departments": {
-      "new": {
+  admin: {
+    departments: {
+      new: {
       },
-      "index": {
+      index: {
       }
     },
-    "person": {
-      "edit": {
+    person: {
+      edit: {
       }
     },
-    "people": {
+    people: {
     },
-    "messages": {
+    messages: {
     }
   }
 };
