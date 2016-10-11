@@ -11,8 +11,8 @@ export default Ember.Controller.extend({
     only_delayed: false,
     pubyears: Ember.computed(function(){      
       return [
-        {pubyear: this.get('i18n').t('biblreview.selectPublicationYearPrompt'), id: 0},
-        {pubyear: moment().year()   + ' ' + this.get('i18n').t('biblreview.orLater'), id: 1},
+        {pubyear: this.get('i18n').t('publications.dashboard.biblreview.selectPublicationYearPrompt'), id: 0},
+        {pubyear: moment().year()   + ' ' + this.get('i18n').t('publications.dashboard.biblreview.orLater'), id: 1},
         {pubyear: moment().year()-1, id:moment().year()-1},
         {pubyear: moment().year()-2, id:moment().year()-2},
         {pubyear: moment().year()-3, id:moment().year()-3},

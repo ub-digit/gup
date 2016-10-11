@@ -3,11 +3,11 @@
     <div class="col-xs-12">
       <div class="form-inline pull-right">
         <div class="checkbox">
-          <label> {{t 'biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
+          <label> {{t 'publications.dashboard.biblreview.showDelayedOnly'}} {{input type="checkbox" checked=only_delayed}}</label>
         </div>
 
         {{#x-select value=faculty class="form-control"}}
-          {{#x-option}}{{t 'biblreview.selectFacultyPrompt'}}{{/x-option}}
+          {{#x-option}}{{t 'publications.dashboard.biblreview.selectFacultyPrompt'}}{{/x-option}}
           {{#each publicationsController.faculties as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
@@ -20,7 +20,7 @@
         {{/x-select}}
 
         {{#x-select value=pubtype class="form-control"}}
-          {{#x-option}}{{t 'biblreview.selectPublicationTypePrompt'}}{{/x-option}}
+          {{#x-option}}{{t 'publications.dashboard.biblreview.selectPublicationTypePrompt'}}{{/x-option}}
           {{#each publicationsController.publicationTypes as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
@@ -31,7 +31,7 @@
 
   <div class="row number-of-results">
     <div class="col-xs-12 text-center">
-      <strong>{{t 'text.numberOfHits'}}: {{model.meta.query.total}}</strong>
+      <strong>{{t 'publications.dashboard.biblreview.numberOfHits'}}: {{model.meta.query.total}}</strong>
     </div>
   </div>
 

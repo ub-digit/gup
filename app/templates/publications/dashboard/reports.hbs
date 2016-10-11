@@ -6,66 +6,66 @@
     <div class="col-md-3">
         <div class="row">
           <div class="col-xs-6">
-            <label>{{t 'reports.start_year'}}</label>
-            {{input value=filter.start_year class="form-control" placeholder=(t 'reports.start_year')}}
+            <label>{{t 'publications.dashboard.reports.start_year'}}</label>
+            {{input value=filter.start_year class="form-control" placeholder=(t 'publications.dashboard.reports.start_year')}}
           </div>
           <div class="col-xs-6">
-            <label>{{t 'reports.end_year'}}</label>
-            {{input value=filter.end_year class="form-control" placeholder=(t 'reports.end_year')}}
+            <label>{{t 'publications.dashboard.reports.end_year'}}</label>
+            {{input value=filter.end_year class="form-control" placeholder=(t 'publications.dashboard.reports.end_year')}}
           </div>
         </div>
     </div>
     <div class="col-md-4">
-        <label for="faculty-filter-select">{{t 'reports.faculty'}}</label>
+        <label for="faculty-filter-select">{{t 'publications.dashboard.reports.faculty'}}</label>
         {{#x-select value=filter.faculties class="form-control" id="faculty-filter-select"}}
-        {{#x-option}}{{t 'reports.select_faculty'}}{{/x-option}}
+        {{#x-option}}{{t 'publications.dashboard.reports.select_faculty'}}{{/x-option}}
           {{#each publicationsController.faculties as |selectValue|}}
           {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
     </div>
     <div class="col-md-4">
-        <label for="department-filter-select">{{t 'reports.department'}}</label>
+        <label for="department-filter-select">{{t 'publications.dashboard.reports.department'}}</label>
         {{select2-adjusted
         id="department-filter-select"
         content=departments
         optionLabelPath="name"
         optionValuePath="id"
         value=filter.departments
-        placeholder=(t 'reports.select_department')
+        placeholder=(t 'publications.dashboard.reports.select_department')
         allowClear=true
         multiple=true
         }}
     </div>
     <div class="col-md-1">
       <label style="color:#FFF">-</label>
-      <button class="btn btn-default" {{action 'resetFilter'}}>Rensa</button>
+      <button class="btn btn-default" {{action 'resetFilter'}}>{{t 'publications.dashboard.reports.clearBtn'}}</button>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h3>Gruppering</h3> 
+      <h3>{{t 'publications.dashboard.reports.groupingHeader'}}</h3> 
     </div>
     <div class="col-xs-12">
         <label class="checkbox-inline">
           {{input type="checkbox" checked=columns.year}}
-          {{t 'reports.year'}}
+          {{t 'publications.dashboard.reports.year'}}
         </label>
         <label class="checkbox-inline">
           {{input type="checkbox" checked=columns.faculty}}
-          {{t 'reports.faculty'}}
+          {{t 'publications.dashboard.reports.faculty'}}
         </label>
         <label class="checkbox-inline">
           {{input type="checkbox" checked=columns.department}}
-          {{t 'reports.department'}}
+          {{t 'publications.dashboard.reports.department'}}
         </label>
         <label class="checkbox-inline">
           {{input type="checkbox" checked=columns.ref_value}}
-          {{t 'reports.ref_value'}}
+          {{t 'publications.dashboard.reports.ref_value'}}
         </label>
         <label class="checkbox-inline">
           {{input type="checkbox" checked=columns.publication_type}}
-          {{t 'reports.publication_type'}}
+          {{t 'publications.dashboard.reports.publication_type'}}
         </label>
     </div>
   </div>
@@ -73,12 +73,12 @@
     <div class="col-xs-6">
         <div class="btn-toolbar" style="margin-top:8px">
           <button class="btn btn-primary"
-            {{action 'createReport' filterData columnArray}}>{{t 'reports.create'}}</button>
+            {{action 'createReport' filterData columnArray}}>{{t 'publications.dashboard.reports.create'}}</button>
         </div>
     </div>
     <div class="col-xs-6">
         <div class="btn-toolbar pull-right" style="margin-top:8px">
-          <a href="{{csvUrl}}" class="btn btn-success"><i class="fa fa-table" aria-hidden='true'></i> {{t 'reports.export_csv'}}</a>
+          <a href="{{csvUrl}}" class="btn btn-success"><i class="fa fa-table" aria-hidden='true'></i> {{t 'publications.dashboard.reports.export_csv'}}</a>
         </div>
     </div>
   </div>
