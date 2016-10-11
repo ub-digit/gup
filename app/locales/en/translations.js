@@ -55,6 +55,36 @@ export default {
   },
   "publications": {
     "dashboard": {
+      "reports": {
+      },
+      "manage": {
+        "drafts": {
+        },
+        "show": {
+          "edit": {
+          },
+          "index": {
+          }
+        },
+        "published": {
+        },
+        "start": {
+        },
+        "search": {
+        },
+        "new": {
+        }
+      },
+      "review": {
+      },
+      "biblreview": {
+      },
+      "touched": {
+      },
+      "loading": {
+      },
+      "admin": {
+      }
     },
     "publicationtypes": {
       "selector": {
@@ -68,5 +98,19 @@ export default {
   "footer": {
   },
   "admin": {
+    "departments": {
+      "new": {
+      },
+      "index": {
+      }
+    },
+    "person": {
+      "edit": {
+      }
+    },
+    "people": {
+    },
+    "messages": {
+    }
   }
 };
