@@ -194,8 +194,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           that.controller.set('publication.id', null);
         }
         this.get('controller').formatAuthorsForServer();
-        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, errorHandler)
-        });
+        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, errorHandler);
       });
     }
   }
