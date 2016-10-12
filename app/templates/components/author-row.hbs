@@ -1,10 +1,11 @@
+<!-- T_YES-READY -->
 <div class="row bottom-spacing-20">
   <div class="col-xs-12">
     <div class="dotted-line"></div>
     {{#if isImportedExternal}}
       <div class="col-xs-10 imported-author">
         <p><strong>{{item.importedAuthorName}}</strong>
-        (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'newPub.manualPub.addAffiliation'}}</a>
+        (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'components.authorRow.addAffiliation'}}</a>
         </p>
       </div>
       <div class="col-xs-1">
@@ -36,9 +37,9 @@
                     <label class="control-label">
                       {{#if errors.first_name}}
                         {{error-feedback errors.first_name}}
-                      {{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
+                      {{/if}} {{t 'components.authorRow.firstname'}}
                     </label>
-                    {{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
+                    {{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'components.authorRow.firstname')}}
                   </span>
                 </div>
                 <div class="col-xs-6">
@@ -46,9 +47,9 @@
                     <label class="control-label">
                       {{#if errors.last_name}}
                         {{error-feedback errors.last_name}}
-                      {{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
+                      {{/if}} {{t 'components.authorRow.lastname'}} <span style="color:red">*</span>
                     </label>
-                    {{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
+                    {{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'components.authorRow.lastname')}}
                   </span>
                 </div>
               </div>
@@ -58,9 +59,9 @@
                     <label class="control-label">
                       {{#if errors.year_of_birth}}
                         {{error-feedback errors.year_of_birth}}
-                      {{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
+                      {{/if}} {{t 'components.authorRow.birthyear'}}
                     </label>
-                    {{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
+                    {{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'components.authorRow.birthyear')}}
                   </span>
                 </div>
 
@@ -69,9 +70,9 @@
                     <label class="control-label">
                       {{#if errors.xaccount}}
                         {{error-feedback errors.xaccount}}
-                      {{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
+                      {{/if}} {{t 'components.authorRow.xaccount'}}
                     </label>
-                    {{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
+                    {{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'components.authorRow.xaccount')}}
                   </span>
                 </div>
                 <div class="col-xs-6">
@@ -79,15 +80,15 @@
                     <label class="control-label">
                       {{#if errors.orcid}}
                         {{error-feedback errors.orcid}}
-                      {{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
+                      {{/if}} {{t 'components.authorRow.orcid'}}
                     </label>
-                    {{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
+                    {{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'components.authorRow.orcid')}}
                   </span>
                 </div>
               </div>
               <div class="btn-toolbar">
-                <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'edit.createNewAuthor.form.actions.btnSave'}}</button>
-                <button {{action 'toggleAddNewAuthor' item}}class="btn btn-danger">{{t 'edit.createNewAuthor.form.actions.btnCancel'}}</button>
+                <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'components.authorRow.btnSave'}}</button>
+                <button {{action 'toggleAddNewAuthor' item}}class="btn btn-danger">{{t 'components.authorRow.btnCancel'}}</button>
               </div>
             </div>
           </div>
@@ -95,18 +96,18 @@
           {{#if showInputFields}}
             <div class="row">
               <div class="col-xs-5">
-                <label>{{t 'edit.form.selectAuthor.label'}}</label>
+                <label>{{t 'components.authorRow.selectAuthor.label'}}</label>
                 {{select2-adjusted
-                    placeholder=(t 'edit.form.selectAuthor.placeholder')
-                    didNotFindWhatYouWereLookingForStr = (t 'edit.form.selectAuthor.didNotFindPersonText')
-                    btnText=(t 'edit.form.selectAuthor.btnCreateNew')
+                    placeholder=(t 'components.authorRow.selectAuthor.placeholder')
+                    didNotFindWhatYouWereLookingForStr = (t 'components.authorRow.selectAuthor.didNotFindPersonText')
+                    btnText=(t 'components.authorRow.selectAuthor.btnCreateNew')
                     value=item.selectedAuthor
                     setDefaultQuery=setDefaultQuery
                     defaultQuery=item.newAuthorForm.lastName
                     optionLabelPath="presentation_string"
-                    typeaheadSearchingText=(t 'edit.form.selectAuthor.typeaheadSearchingText')
-                    typeaheadNoMatchesText=(t 'edit.form.selectAuthor.typeaheadNoMatchesText')
-                    formatInputTooShort=(t 'edit.form.selectAuthor.formatInputTooShortText')
+                    typeaheadSearchingText=(t 'components.authorRow.selectAuthor.typeaheadSearchingText')
+                    typeaheadNoMatchesText=(t 'components.authorRow.selectAuthor.typeaheadNoMatchesText')
+                    formatInputTooShort=(t 'components.authorRow.selectAuthor.formatInputTooShortText')
                     minimumInputLength=3
                     query=(action 'queryAuthors')
                     allowClear=true
@@ -116,18 +117,18 @@
               </div>
               <div class="col-xs-7">
                 <div class="how-to-sort">
-                  <a href="javascript:void();">{{t 'edit.form.selectInstitutions.sortingLink'}}</a>
+                  <a href="javascript:void();">{{t 'components.authorRow.selectInstitutions.sortingLink'}}</a>
                   <div class="outer-wrapper">
                     <div class="message">
                     </div>
                   </div>
                 </div>
-                <label>{{t 'edit.form.selectInstitutions.placeholder'}}</label>
+                <label>{{t 'components.authorRow.selectInstitutions.placeholder'}}</label>
                 {{select2-adjusted-sortable
                 content=institutions
                 optionLabelPath="name"
                 value=item.selectedInstitution
-                placeholder=(t 'edit.form.selectInstitutions.placeholder')
+                placeholder=(t 'components.authorRow.selectInstitutions.placeholder')
                 allowClear=true
                 multiple=true
                 id=item.id
