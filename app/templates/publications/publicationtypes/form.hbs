@@ -2,8 +2,8 @@
   {{partial 'publications/publicationtypes/selector'}}
 {{else}}
   {{#if isSelectedPublicationValid}}
-    <label>Publikationstyp</label> 
-    <div>{{getPublicationTypeObject.name}}<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{t 'edit.form.changePublicationTypeLink'}}</button>
+    <label>{{t 'publications.publicationtypes.form.publicationType'}}</label> 
+    <div>{{getPublicationTypeObject.name}}<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{t 'publications.publicationtypes.form.changePublicationTypeLink'}}</button>
     </div>
   {{/if}}
 
@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-xs-6">
         <span class="form-group {{if errors.ref_value 'has-error'}}">
-          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="select"  errors=errors.ref_value value=publication.ref_value selectValues=getPublicationTypeObject.ref_select_options prompt=(t 'edit.form.selectContentTypePrompt') label=(t 'edit.form.selectContentTypeLabel')}}
+          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="select"  errors=errors.ref_value value=publication.ref_value selectValues=getPublicationTypeObject.ref_select_options prompt=(t 'publications.publicationtypes.form.selectContentTypePrompt') label=(t 'publications.publicationtypes.form.selectContentTypeLabel')}}
         </span>
       </div>
     </div>
@@ -42,7 +42,7 @@
   </div>
 
   {{#if authorComponentIsVisible}}
-    {{author-block errors=errors.authors  fieldHelptext="publicationsPublicationtypesForm.fields.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+    {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
   {{/if}}
 
   <hr/>
@@ -196,7 +196,7 @@
   <div class="row">
     <div class="col-xs-12">
       <span class="form-group {{if errors.category_hsv_local 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="category-selector" fieldHelptext="publicationsPublicationtypesForm.fields.category_hsv_local.helptext" errors=errors.category_hsv_local value=publication.category_hsv_local categoryObjects=categoryObjectsList}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_local" type="category-selector" fieldHelptext="publications.publicationtypes.form.help.category_hsv_local.helptext" errors=errors.category_hsv_local value=publication.category_hsv_local categoryObjects=categoryObjectsList}}
       </span>
     </div>
   </div>
@@ -230,7 +230,7 @@
   <div class="row">
     <div class="col-md-9">
       <span class="form-group {{if errors.pub_notes 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" fieldHelptext="publicationsPublicationtypesForm.fields.pub_notes.helptext" type="textarea" errors=errors.pub_notes value=publication.pub_notes}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" fieldHelptext="publications.publicationtypes.form.help.pub_notes.helptext" type="textarea" errors=errors.pub_notes value=publication.pub_notes}}
       </span>
     </div>
   </div>
@@ -287,6 +287,6 @@
 
   <hr/>
 
-  {{publication-identifier-block fieldHelptext="publicationsPublicationtypesForm.fields.publicationIdentifiers.helptext" publicationIdentifiers=publication.publication_identifiers publicationIdentifierCodes=publicationIdentifierCodes}}
+  {{publication-identifier-block fieldHelptext="publications.publicationtypes.form.help.publicationIdentifiers.helptext" publicationIdentifiers=publication.publication_identifiers publicationIdentifierCodes=publicationIdentifierCodes}}
 
 {{/if}}

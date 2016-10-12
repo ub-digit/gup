@@ -34,12 +34,14 @@
         <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'             }}{{/link-to}}</li>
       </ul>
     </div>
-
-    {{#if session.isAuthenticated}}
-    <p class="navbar-text navbar-right"><i class="fa fa-lock"></i> {{session.data.authenticated.username}} (<small><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
-    {{else}}
-    {{/if}}
-    <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
+    <div class="navbar-sub">
+      {{#if session.isAuthenticated}}
+     
+      <p class="navbar-text navbar-right"><i class="fa fa-lock"></i> {{session.data.authenticated.username}} (<small><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
+      {{else}}
+      {{/if}}
+      <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
+    </div>
   </div><!-- /.container -->
 </nav>
 
