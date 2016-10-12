@@ -1,6 +1,6 @@
 <div class="row bottom-spacing-20">
   <div class="col-xs-12">
-    <h2>Välj publikationstyp</h2>
+    <h2>{{t 'publications.publicationtypes.selector.selectorHeading'}}</h2>
   </div>
 </div>
 <div class="row">
@@ -14,21 +14,21 @@
 <div class="row">
 <div class="col-xs-12">
   <ul class="nav nav-pills">
-    <li role="presentation" class={{if isSelectedAll 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'all'}}>Alla</a></li>
-    <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>Artiklar</a></li>
-    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>Böcker, kapitel och rapporter</a></li>
-    <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>Konferensbidrag</a></li>
+    <li role="presentation" class={{if isSelectedAll 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'all'}}>{{t 'publications.publicationtypes.selector.publicationtype.all'}}</a></li>
+    <li role="presentation" class={{if isSelectedArticles 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'articles'}}>{{t 'publications.publicationtypes.selector.publicationtype.articles'}}</a></li>
+    <li role="presentation" class={{if isSelectedBooks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'books'}}>{{t 'publications.publicationtypes.selector.publicationtype.books'}}</a></li>
+    <li role="presentation" class={{if isSelectedConference 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'conference'}}>{{t 'publications.publicationtypes.selector.publicationtype.conference'}}</a></li>
     {{#if session.data.authenticated.can_administrate}}
-      <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>Konstnärliga arbeten</a></li>
+      <li role="presentation" class={{if isSelectedArtworks 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'artworks'}}>{{t 'publications.publicationtypes.selector.publicationtype.artworks'}}</a></li>
     {{/if}}
-    <li role="presentation" class={{if isSelectedOther 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'other'}}>Övrigt</a></li>
+    <li role="presentation" class={{if isSelectedOther 'active'}}><a href="#" {{action 'setPublicationTypeFilter' 'other'}}>{{t 'publications.publicationtypes.selector.publicationtype.other'}}</a></li>
   </ul>
   </div>
   </div>
     {{#if showPublicationTypeGroupArticles}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Artiklar</h3>
+        <h3>{{t 'publications.publicationtypes.selector.publicationtype.articles'}}</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='publication_journal-article'}}
       {{publicationtype-item publicationTypes=publicationTypes code='publication_review-article'}}
@@ -41,7 +41,7 @@
     {{#if showPublicationTypeGroupBooks}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Böcker, kapitel och rapporter</h3>
+        <h3>{{t 'publications.publicationtypes.selector.publicationtype.books'}}</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='publication_book'}}
       {{publicationtype-item publicationTypes=publicationTypes code='publication_textbook'}}
@@ -57,7 +57,7 @@
     {{#if showPublicationTypeGroupConference}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Konferensbidrag</h3>
+        <h3>{{t 'publications.publicationtypes.selector.publicationtype.conference'}}</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='conference_paper'}}
       {{publicationtype-item publicationTypes=publicationTypes code='conference_other'}}
@@ -69,7 +69,7 @@
       {{#if showPublicationTypeGroupArtworks}}
       <div class="row">
         <div class="col-xs-12">
-          <h3>Konstnärliga arbeten</h3>
+          <h3>{{t 'publications.publicationtypes.selector.publicationtype.artworks'}}</h3>
             {{publicationtype-item publicationTypes=publicationTypes code='artistic-work_original-creative-work' onlyAdmin=true}}
         </div>
       </div>
@@ -78,7 +78,7 @@
     {{#if showPublicationTypeGroupOther}}
     <div class="row">
       <div class="col-xs-12">
-        <h3>Övrigt</h3>
+        <h3>{{t 'publications.publicationtypes.selector.publicationtype.other'}}</h3>
       </div>
       {{publicationtype-item publicationTypes=publicationTypes code='publication_journal-issue'}}
       {{publicationtype-item publicationTypes=publicationTypes code='publication_working-paper'}}
@@ -89,7 +89,7 @@
     {{/if}}
   <div class="action-links pull-right">
     {{#if mayBecomeOldSelectedPublicationType}}
-      <button class="btn btn-link" {{action 'cancelChangePublicationType'}}>{{t 'edit.actions.btnCancel'}}</button>
+      <button class="btn btn-link" {{action 'cancelChangePublicationType'}}>{{t 'publications.publicationtypes.selector.btnCancel'}}</button>
     {{/if}}
   </div>
 
