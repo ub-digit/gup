@@ -42,6 +42,15 @@
       font-size: .8em;
     }
     .navbar-nav {
+      .open {
+        a {
+          background-color: inherit;
+          &.active {
+            border-bottom: none;  
+          }
+          
+        }
+      }
       padding-top: 7px;
       li {
         a {

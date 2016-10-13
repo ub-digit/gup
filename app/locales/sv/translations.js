@@ -143,6 +143,7 @@ export default {
     forReview: 'Att granska',
     forBReview: 'Bibl. granskn.',
     registeredOrEditedByMe: 'Mina registreringar',
+    dropdownOther: "Övrigt",
     admin: 'Admin',
     reports: 'Statistik',
     lang: 'English',
@@ -397,6 +398,8 @@ export default {
       query_person_none: 'Inga personer hittades',
 
       person: {
+        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
+        personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
         edit: {
           form: {
             labels: {
