@@ -1,6 +1,11 @@
 export default {
   components: {
     publicationIdentifierBlock: {
+      label: 'Identifikatorer',
+      code: 'Typ',
+      value: 'Värde',
+      delete: 'Ta bort',
+      create: 'Lägg till',
     },
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
@@ -10,20 +15,56 @@ export default {
     publicationFieldPreview: {
     },
     paginationPager: {
+      previous: 'Föreg.',
+      next: 'Nästa',
     },
     categorySelector: {
+      addCategory: 'Lägg till ämnesord',
+      modalHeader: 'Välj ämnesord',
+      selectedCategories: 'Valda ämnesord:',
+      noCategoriesSelected: 'Inga ämnesord valda',
+      subjectTerms: 'Ämnesord',
+      clear: 'Rensa',
+      noFilteredSubjectTerms: 'Inga ämnesord matcher filtret',
+      close: 'Stäng',
     },
     publicationFieldCompare: {
     },
     publicationDisplay: {
+      version: 'Version',
+      versionBy: 'uppdaterad av',
+      currentVersion: 'Aktuell version',
+      selectVersion: '- Välj äldre version -',
+      selectContentTypeLabel: 'Innehållmärkning',
+      publicationType: 'Publikationstyp',
+      publicationIdentifier: {
+        label: 'Identifikatorer',
+      }
     },
     mailerModal: {
+      report: 'Rapportera',
+      send: 'Skicka rapport',
+      dismiss: 'Avbryt',
+      message: 'Meddelande',
+      successMessage: 'Meddelandet skickades.',
     },
     reviewItem: {
+      reviewDetailsHeader: 'Granska och godkänn följande:',
+      lastReview: 'Senast granskad av dig:',
+      publicationType: 'Publikationstyp:',
+      contentType: 'Innehållsmärkning:',
+      affiliation: 'Din affiliering:',
+      categories: 'Ämnesord:',
+      approve: 'Godkänn',
+      approved: 'Godkänd',
+      edit: 'Redigera',
+      addedObject: 'Ny!',
     },
     publicationtypeItem: {
     },
     fieldComponent: {
+      radioLabel1: 'Välj från lista',
+      radioLabel2: 'Ange som fritext',
     },
     publicationListRow: {
     },
@@ -34,12 +75,46 @@ export default {
     authorsString: {
     },
     authorRow: {
+      addAffiliation: "Ändra affiliering",
+      firstname: 'Förnamn:',
+      lastname: 'Efternamn:',
+      birthyear: 'Födelseår:',
+      xaccount: 'x-konto',
+      orcid: 'Orcid',
+      btnSave: 'Spara',
+      btnCancel: 'Avbryt',
+      selectAuthor: {
+        label: 'Välj författare',
+        placeholder: 'Välj författare',
+        typeaheadSearchingText: 'Söker författare',
+        typeaheadNoMatchesText: 'Hittade inga författare',
+        didNotFindPersonText: 'Hittar du inte den du söker?',
+        formatInputTooShortText: 'Ange minst 3 tecken',
+        btnCreateNew: 'Skapa ny',
+      },
+      selectInstitutions: {
+        label: 'Välj institutioner',
+        placeholder: 'Välj institutioner',
+        sortingLink: 'Sortera?'
+      },
     },
     delayReviewModal: {
+        delay: 'Fördröj',
+        delayHeader: 'Fördröj granskning av publikation',
+        date: 'Datum',
+        comment: 'Kommentar',
+        btnDelay: 'Fördröj',
+        reviewPostponedUntil: 'Fördröjd till',
     },
     debouncedInput: {
     },
     fileUploadWidget: {
+      checkFile: 'Kontrollera fil',
+      enterEmbargoDate: 'Ange embargö',
+      showAfter: 'Visa offentligt först efter',
+      readAgreement: 'läs avtalet (nytt fönster)',
+      modalDismiss: 'Avbryt',
+      modalSave: 'Spara',
     },
     categoryItem: {
     }
@@ -161,7 +236,6 @@ export default {
           searchById: 'Sök efter GUP-ID',
         },
         new: {
-          btnBack: "Tillbaka",
           header: 'Registrera ny publikation',
           importPub: {
             header: 'Importera',
@@ -194,7 +268,6 @@ export default {
 
       },
       review: {
-        youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
       },
       biblreview: {
         numberOfHits: 'Antal träffar',
@@ -215,48 +288,14 @@ export default {
         showDelayedOnly: 'Visa endast fördröjda',
       },
       touched: {
-        numberOfHits: 'Antal träffar',
-        youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
       },
       loading: {
       },
     },
     publicationtypes: {
       selector: {
-        selectorHeading: "Välj publikationstyp",
-        btnCancel: 'Avbryt',
-        publicationtype: {
-          all: 'Alla',
-          articles: 'Artiklar',
-          books: 'Böcker, kapitel och rapporter',
-          conference: 'Konferensbidrag',
-          artworks: 'Konstnärliga arbeten',
-          other: 'Övrigt',
-        },
-
-
       },
       form: {
-        publicationType: 'Publikationstyp',
-        changePublicationTypeLink: 'Byt',
-        help: {
-          authors: {
-            helptext: 'Här skriver du in samtliga författare i samma ordningsföljd som i originalpublikationen. För GU-författare skriver du in fullständigt namn samt anger institution, för övriga författare räcker det med efternamn samt förnamnets första bokstav. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
-          },
-          category_hsv_local: {
-            helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
-          },
-          pub_notes: {
-            helptext: 'Här skriver du endast in information som inte passar i något annat fält. Observera att denna text är synlig för de som söker fram publikationen.'
-          },
-          publicationIdentifiers: {
-            helptext: 'Att lägga till en identifikator gör det både lättare för andra att hitta din publikation och att bekräfta att de hittat rätt. I slutändan kan detta alltså leda till att fler personer läser din publikation.',
-          },
-          publisher: {
-            placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
-          },
-        }
-       
       }
     },
     index: {

@@ -1,9 +1,11 @@
+<!-- T_YES-READY -->
+<!-- S_YES-READY -->
 <!-- Button-->
 {{#if isDelayed}}
-<span title="{{publication.biblreview_postpone_comment}}">Fördröjd till <strong>{{startDate}}</strong></span>
+<span title="{{publication.biblreview_postpone_comment}}">{{t 'components.delayReviewModal.reviewPostponedUntil'}}<strong>{{startDate}}</strong></span>
 {{else}}
 <a href="javascript:void();" class={{buttonClass}} data-toggle="modal" data-target="#delayReviewModal">
-  <i class="fa fa-clock-o"></i> {{t 'biblreview.delay'}}
+  <i class="fa fa-clock-o"></i> {{t 'components.delayReviewModal.delay'}}
 </a>
 {{/if}}
 
@@ -13,11 +15,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel3">{{t 'biblreview.delayHeader'}}</h4>
+        <h4 class="modal-title" id="myModalLabel3">{{t 'components.delayReviewModal.delayHeader'}}</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
-        <h4>{{t 'biblreview.date'}}</h4>
+        <h4>{{t 'components.delayReviewModal.date'}}</h4>
           <div class="radio-inline">
         {{#radio-button value="calendar" groupValue=optDate changed="dateOptionChanged"}}Välj datum{{/radio-button}}
         </div>
@@ -32,7 +34,7 @@
         </div>
           {{pikaday-input value=date class="form-control" format='YYYY-MM-DD' allowBlank=false firstDay=1 placeholder="YYYY-MM-DD" disabled=datePickerDisabled onSelection=(action (mut date))}}
         </div>
-        <h4>{{t 'biblreview.comment'}}</h4>
+        <h4>{{t 'components.delayReviewModal.comment'}}</h4>
 
           <div class="form-group">
           <div class="radio-inline">
@@ -46,7 +48,7 @@
         </div>
       <div class="modal-footer">
         <button class="btn btn-link" data-dismiss="modal">Avbryt</button>
-        <button class="btn btn-primary navbar-btn" data-dismiss="modal" {{action 'sendDelay'}}>{{t 'biblreview.btnDelay'}}</button>
+        <button class="btn btn-primary navbar-btn" data-dismiss="modal" {{action 'sendDelay'}}>{{t 'components.delayReviewModal.btnDelay'}}</button>
       </div>
     </div>
   </div>

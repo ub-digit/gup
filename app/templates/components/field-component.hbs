@@ -1,3 +1,5 @@
+<!-- S_YES-READY -->
+<!-- T_NOT-READY (linkify) -->
 {{#if isVisible}}
   <label class="control-label">
     {{#if errorsold}}
@@ -60,10 +62,10 @@
     {{#if isTypeJournal}}
       <div class="form-group">
       <div class="radio-inline">
-        {{#radio-button value="journal" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}Välj från lista{{/radio-button}}
+        {{#radio-button value="journal" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}{{t 'components.fieldComponent.radioLabel1'}}{{/radio-button}}
       </div>
       <div class="radio-inline">
-        {{#radio-button value="freetext" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}Ange som fritext{{/radio-button}}
+        {{#radio-button value="freetext" groupValue=sourceTitleType changed="sourceTitleTypeChanged"}}{{t 'components.fieldComponent.radioLabel2'}}{{/radio-button}}
       </div>
       {{#if sourceTitleTypeJournal}}
       {{select-2

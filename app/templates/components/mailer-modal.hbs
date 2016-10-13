@@ -1,5 +1,7 @@
+<!-- T_YES-READY -->
+<!-- S_NOT-READY -->
 <!-- Button-->
-<a href="javascript:void();" class={{buttonClass}} data-toggle="modal" data-target="#mailerModal"><i class="fa fa-flag"></i> {{t 'mailer.report'}}</a>
+<a href="javascript:void();" class={{buttonClass}} data-toggle="modal" data-target="#mailerModal"><i class="fa fa-flag"></i> {{t 'components.mailerModal.report'}}</a>
 
 <!-- Modal -->
 <div class="modal fade" id="mailerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -7,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel3">{{t 'mailer.report'}}</h4>
+        <h4 class="modal-title" id="myModalLabel3">{{t 'components.mailerModal.report'}}</h4>
       </div>
       <div class="modal-body">
         {{#if error }}
@@ -18,15 +20,15 @@
         {{else if hasSuccess}}
           <div class="alert alert-success" role="alert">
             <span class="sr-only">Success:</span>
-              Meddelandet skickades.
+            {{t 'components.mailerModal.successMessage'}}
           </div>
         {{/if}}
-        <h4>{{t 'mailer.message'}}</h4>
+        <h4>{{t 'components.mailerModal.message'}}</h4>
         {{textarea value=message cols=80 rows=6 classNames='form-control'}}
       </div>
       <div class="modal-footer">
-        <button class="btn btn-link" data-dismiss="modal">Avbryt</button>
-        <button class="btn btn-primary" {{action 'sendMail'}}>{{t 'mailer.send'}}</button>
+        <button class="btn btn-link" data-dismiss="modal">{{t 'components.mailerModal.dismiss'}}</button>
+        <button class="btn btn-primary" {{action 'sendMail'}}>{{t 'components.mailerModal.send'}}</button>
       </div>
     </div>
   </div>

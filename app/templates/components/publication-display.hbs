@@ -1,12 +1,13 @@
+<!-- T_YES-READY -->
 {{#if isReviewMode}}
   <table class="table table-striped table-bordered">
     <tbody>
 
       {{publication-field-bibl-review fieldLabel='Publikations-ID' fieldValue=publication.id}}
 
-      {{publication-field-bibl-review fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
+      {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationType') fieldValue=publication.publication_type_label}}
 
-      {{publication-field-bibl-review fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
+      {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
 
       {{#if allFieldObjects.title}}
         {{publication-field-bibl-review fieldLabel=allFieldObjects.title.label fieldValue=publication.title}}
@@ -35,7 +36,7 @@
       {{/if}}
 
       {{#if publication.publication_identifiers}}
-        {{publication-field-bibl-review fieldLabel=(t 'publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+        {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
       {{/if}}
 
       {{#if allFieldObjects.links}}
@@ -163,20 +164,20 @@
       <tr>
         <th></th>
         <th>
-          {{t 'compare.currentVersion'}},
+          {{t 'components.publicationDisplay.currentVersion'}},
           {{format-date publication.version_created_at}}
           {{#if publication.version_created_by}}
-            {{t 'compare.versionBy'}} {{publication.version_created_by}}
+            {{t 'components.publicationDisplay.versionBy'}} {{publication.version_created_by}}
           {{/if}}
         </th>
         <th>
           {{#x-select value=other_version action='fetchVersion' class="form-control"}}
-          {{#x-option}}{{t 'compare.selectVersion'}}{{/x-option}}
+          {{#x-option}}{{t 'components.publicationDisplay.selectVersion'}}{{/x-option}}
             {{#each comparableVersions as |version|}}
             {{#x-option value=version.item.id}}
-              {{t 'compare.version'}} {{version.index}},
+              {{t 'components.publicationDisplay.version'}} {{version.index}},
               {{format-date version.item.created_at}}{{#if version.item.created_by}},
-                {{t 'compare.versionBy'}} {{version.item.created_by}}
+                {{t 'components.publicationDisplay.versionBy'}} {{version.item.created_by}}
               {{/if}}
             {{/x-option}}
             {{/each}}
@@ -187,9 +188,9 @@
       <tbody>
       {{publication-field-compare fieldLabel='Publikations-ID' fieldValue=publication.id otherIsSelected=otherIsSelected otherFieldValue=otherPublication.id}}
 
-      {{publication-field-compare fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_type_label}}
+      {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationType') fieldValue=publication.publication_type_label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_type_label}}
 
-      {{publication-field-compare fieldLabel=(t 'edit.form.selectContentTypeLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.ref_value_label fieldValue=publication.ref_value_label}}
+      {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.selectContentTypeLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.ref_value_label fieldValue=publication.ref_value_label}}
 
       {{#if allFieldObjects.title}}
         {{publication-field-compare fieldLabel=allFieldObjects.title.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.title fieldValue=publication.title}}
@@ -218,7 +219,7 @@
       {{/if}}
 
       {{#if publication.publication_identifiers}}
-        {{publication-field-compare fieldLabel=(t 'publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+        {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
       {{/if}}
 
       {{#if allFieldObjects.links}}
@@ -339,10 +340,10 @@
 
     {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
 
-    {{publication-field-preview fieldLabel=(t 'publication.labels.publicationType') fieldValue=publication.publication_type_label}}
+    {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationType') fieldValue=publication.publication_type_label}}
 
     {{#if publication.ref_value_label}}
-      {{publication-field-preview fieldLabel=(t 'edit.form.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.selectContentTypeLabel') fieldValue=publication.ref_value_label}}
     {{/if}}
 
     {{#if allFieldObjects.title}}
@@ -546,7 +547,7 @@
     {{/if}}
 
     {{#if publication.publication_identifiers}}
-      {{publication-field-preview fieldLabel=(t 'publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
     {{/if}}
   
     {{#if publication.files }}

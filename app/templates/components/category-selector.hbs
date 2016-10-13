@@ -1,3 +1,4 @@
+<!-- T_YES-READY -->
 <div class="row">
   <div class="col-xs-12">
     {{#if categoryObjects.length}}
@@ -7,7 +8,7 @@
       {{/each}}
       </p>
     {{else}}
-      <p>{{t 'edit.form.selectCategory.noCategoriesSelected'}}</p>
+      <p>{{t 'components.categorySelector.noCategoriesSelected'}}</p>
     {{/if}}
   </div>
 </div>
@@ -15,42 +16,42 @@
 
 <!-- Button trigger modal -->
 <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  {{t 'edit.form.selectCategory.addCategory'}}
+  {{t 'components.categorySelector.addCategory'}}
 </button>
 
 <div class="modal" id="myModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>{{t 'edit.form.selectCategory.modalHeader'}} </h3>
+        <h3>{{t 'components.categorySelector.modalHeader'}} </h3>
       </div>
       <div class="modal-body">
         <p>
-        <strong>{{t 'edit.form.selectCategory.selectedCategories'}}</strong><br/>
+        <strong>{{t 'components.categorySelector.selectedCategories'}}</strong><br/>
           {{#each categoryObjects as |selectedCategory|}}
           {{selectedCategory.name_path}}
           <a href="#" {{action 'removeSelectedCategory' selectedCategory.id}}><i class="fa fa-times text-danger"></i></a>
           <br/>
           {{else}}
-          {{t 'edit.form.selectCategory.noCategoriesSelected'}}
+          {{t 'components.categorySelector.noCategoriesSelected'}}
           {{/each}}
         </p>
-        <strong>{{t 'edit.form.selectCategory.subjectTerms'}}</strong>
+        <strong>{{t 'components.categorySelector.subjectTerms'}}</strong>
         <div class="form-group form-inline">
           <label for="categoryFilter"><i class="fa fa-search"></i></label>
           {{debounced-input type="text" name="categoryFilter" class="form-control form-inline" value=filterString debounceWait=200 fireAtStart=false}}
-          <a href="#" {{action 'clearSearch'}}>{{t 'edit.form.selectCategory.clear'}}</a>
+          <a href="#" {{action 'clearSearch'}}>{{t 'components.categorySelector.clear'}}</a>
         </div>
         <p>
           {{#each categories as |category|}}
             {{category-item category=category categoryList=categoryList}}
           {{else}}
-            <p>{{t 'edit.form.selectCategory.noFilteredSubjectTerms'}}</p>
+            <p>{{t 'components.categorySelector.noFilteredSubjectTerms'}}</p>
           {{/each}}
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">{{t 'edit.form.selectCategory.close'}}</button>
+        <button type="button"class="btn btn-primary" data-toggle="modal" data-target="#myModal">{{t 'components.categorySelector.close'}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
