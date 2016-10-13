@@ -152,6 +152,7 @@ export default {
         },
         published: {
           numberOfHits: 'Antal träffar',
+          youHaveNoPublications: 'Du har inga publikationer.',
         },
         start: {
         },
@@ -219,11 +220,6 @@ export default {
       },
       loading: {
       },
-      admin: {
-        admin_departments: 'Administrera institutioner',
-        admin_people: 'Administrera personer',
-        admin_messages: 'Administrera meddelanden',
-      },
     },
     publicationtypes: {
       selector: {
@@ -269,19 +265,86 @@ export default {
   footer: {
   },
   admin: {
+    admin_departments: 'Administrera institutioner',
+    admin_people: 'Administrera personer',
+    admin_messages: 'Administrera meddelanden',
     departments: {
+      query_department: 'Sök institution',
+      query_department_none: 'Ingen institution hittades',
+      btnNew: 'Skapa ny',
+      btnSave: 'Spara',
+      btnCancel: 'Avbryt',
+      btnRemoveEndYear: 'Ta bort slutår',
+      btnEditEndYear: 'Redigera slutår',
+      modalHeader: 'Sätt slutår',
+      id: 'Id',
+      name_sv: 'Svenskt namn',
+      name_en: 'Engelskt namn',
+      start_year: 'Startår',
+      end_year: 'Slutår',
+
       new: {
+
       },
       index: {
       }
     },
-    person: {
-      edit: {
+
+    people: {
+      id: 'Id',
+      first_name: 'Förnamn',
+      last_name: 'Efternamn',
+      xaccount: 'Xkonto',
+      orcid: 'ORCID',
+      birthyear: 'Födelseår',
+      btnEdit: 'Redigera',
+      btnSave: 'Spara',
+      btnDelete: 'Radera',
+      query_person: 'Sök person',
+      query_person_none: 'Inga personer hittades',
+
+      person: {
+        edit: {
+          form: {
+            labels: {
+              id: 'Id:',          
+              firstname: 'Förnamn:',
+              lastname: 'Efternamn:',
+              birthyear: 'Födelseår:',
+              xaccount: 'x-konto',
+              orcid: 'Orcid'
+            },
+            placeholders: {
+              id: 'Id:',          
+              firstname: 'Förnamn:',
+              lastname: 'Efternamn:',
+              birthyear: 'Födelseår:',
+              xaccount: 'x-konto',
+              orcid: 'Orcid'
+            },
+            actions: {
+              btnSave: 'Spara',
+              btnCancel: 'Avbryt'
+            }
+
+          }
+
       }
     },
-    people: {
+
     },
     messages: {
+      newsMessageHeader: 'Nyhetsmeddelande',
+      alertMessageHeader: 'Driftmeddelande',
+      message: 'Meddelande',
+      start_date: 'Startdatum',
+      end_date: 'Slutdatum',
+      save: 'Spara',
+      delete: 'Radera',
+      saved: 'Meddelandet har sparats',
+      deleted: 'Meddelandet har raderats',
+      saveError: 'Kunde inte spara meddelandet',
+      deleteError: 'Kunde inte radera meddelandet'
     }
   }
 };

@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 ">
+    <div class="form-group bottom-spacing-40">
+      <label>{{t 'admin.people.query_person'}}</label>
+      {{debounced-input value=qp class="form-control" placeholder=(t 'admin.people.query_person') debounceWait=200 fireAtStart=false}}
+    </div>
+  </div>
+</div>
+{{#if personChangeWarningAfterEditActive}}
+<div class="row">
+  <div class="alert alert-warning">
+    {{t 'messages.personChangeWarningAfterEdit'}}
+  </div>
+</div>
+{{/if}}
+
+{{#if model}}
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{t 'admin.people.id'}}</th>
+          <th>{{t 'admin.people.first_name'}}</th>
+          <th>{{t 'admin.people.last_name'}}</th>
+          <th>{{t 'admin.people.xaccount'}}</th>
+          <th>{{t 'admin.people.orcid'}}</th>
+          <th>{{t 'admin.people.birthyear'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |person|}}
+        <tr>
+          <td>{{person.id}}</td>
+          <td>{{person.first_name}}</td>
+          <td>{{person.last_name}}</td>
+          <td>{{person.xaccount}}</td>
+          <td>{{person.orcid}}</td>
+          <td>{{person.year_of_birth}}</td>
+          <td>
+            {{#link-to 'admin.people.person.edit' person.id class="btn btn-default"}}
+              {{t 'admin.people.btnEdit'}}
+            {{/link-to}}
+            {{#if person.has_active_publications}}
+            <button class="btn btn-default disabled">
+              {{t 'admin.people.btnDelete'}}
+            </button>
+            {{else}}
+            <button class="btn btn-default" {{action 'deletePerson' person}}>
+              {{t 'admin.people.btnDelete'}}
+            </button>
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{else}}
+  {{#if qp}}
+    <div class="row">
+      <div class="col-xs-12">
+        {{no-result displaytext=(t 'admin.people.query_person_none')}}
+      </div>
+    </div>
+  {{/if}}
+{{/if}}

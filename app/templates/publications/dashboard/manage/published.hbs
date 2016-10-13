@@ -19,7 +19,9 @@
         </div>
       </div>            
     {{else}}
-      {{t 'text.youHaveNoPublications'}}
+
+      {{no-result displaytext=(t 'publications.dashboard.manage.published.youHaveNoPublications')}}
+
     {{/if}}
   </div>
 </div>

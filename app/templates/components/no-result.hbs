@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-xs-12 center-content no-result">
+	  <div class="no-result-graphic">
+	  {{#if icon}}
+	  	<i class="{{icon}}" aria-hidden="true"></i>
+	  {{else}}
+	  <span class="fa-stack fa-lg">
+	  	<i class="fa fa-circle-thin fa-stack-2x" aria-hidden="true"></i>
+	  	<i class="fa fa-file-text fa-stack-1x" aria-hidden="true"></i>
+	  </span>
+	  {{/if}}
+	  </div>
+	  <div class="no-result-text">
+	    {{displaytext}}
+	  </div>
+	</div>
+</div>

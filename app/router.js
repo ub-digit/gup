@@ -27,7 +27,6 @@ Router.map(function() {
       this.route("touched");
       this.route('review');
       this.route('biblreview');
-      this.route('admin');
       this.route('reports');
     });
   });
@@ -36,10 +35,12 @@ Router.map(function() {
       this.route('index', {path: '/'});
       this.route('new');
     });
-    this.route('people');
-    this.route('person', function() {
-      this.route('edit', {path: 'edit/:id'});
+    this.route('people', function() {
+      this.route('person', function() {
+        this.route('edit', {path: 'edit/:id'});
+      });
     });
+
     this.route('messages');
   });
 });

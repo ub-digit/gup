@@ -1,6 +1,11 @@
+<div class="row">
+	<div class="col-xs-12 bottom-spacing-20">
+	    <a href="javascript:history.back();"><i class="fa fa-chevron-left"></i> {{t 'publications.dashboard.manage.show.index.btnBack'}}</a>
+	</div>
+</div>
 <div class="row bottom-spacing-20">
   <div class="col-xs-8 col-xs-offset-2">
-    <label>{{t 'edit.createNewAuthor.form.labels.id'}}</label><br/>
+    <label>{{t 'admin.people.person.edit.form.labels.id'}}</label><br/>
     {{model.id}}
   </div>
 </div>
@@ -13,9 +18,9 @@
 	  <label class="control-label">								
 	    {{#if errors.first_name}}
 	      {{error-feedback errors.first_name}}
-	    {{/if}} {{t 'edit.createNewAuthor.form.labels.firstname'}}
+	    {{/if}} {{t 'admin.people.person.edit.form.labels.firstname'}}
 	  </label>
-	  {{input type="text" class="form-control" value=model.first_name placeholder=(t 'edit.createNewAuthor.form.labels.firstname')}}
+	  {{input type="text" class="form-control" value=model.first_name placeholder=(t 'admin.people.person.edit.form.labels.firstname')}}
 	</span>
       </div>
     </div>
@@ -25,9 +30,9 @@
 	  <label class="control-label">								
 	    {{#if errors.last_name}}
 	      {{error-feedback errors.last_name}}
-	    {{/if}} {{t 'edit.createNewAuthor.form.labels.lastname'}} <span style="color:red">*</span>
+	    {{/if}} {{t 'admin.people.person.edit.form.labels.lastname'}} <span style="color:red">*</span>
 	  </label>
-	  {{input type="text" class="form-control" value=model.last_name placeholder=(t 'edit.createNewAuthor.form.labels.lastname')}}
+	  {{input type="text" class="form-control" value=model.last_name placeholder=(t 'admin.people.person.edit.form.labels.lastname')}}
 	</span>
       </div>
     </div>
@@ -37,9 +42,9 @@
 	  <label class="control-label">								
 	    {{#if errors.year_of_birth}}
 	      {{error-feedback errors.year_of_birth}}
-	    {{/if}} {{t 'edit.createNewAuthor.form.labels.birthyear'}}
+	    {{/if}} {{t 'admin.people.person.edit.form.labels.birthyear'}}
 	  </label>
-	  {{input type="text" class="form-control" value=model.year_of_birth placeholder=(t 'edit.createNewAuthor.form.labels.birthyear')}}
+	  {{input type="text" class="form-control" value=model.year_of_birth placeholder=(t 'admin.people.person.edit.form.labels.birthyear')}}
 	</span>
       </div>
 
@@ -48,9 +53,9 @@
 	  <label class="control-label">								
 	    {{#if errors.xaccount}}
 	      {{error-feedback errors.xaccount}}
-	    {{/if}} {{t 'edit.createNewAuthor.form.labels.xaccount'}}
+	    {{/if}} {{t 'admin.people.person.edit.form.labels.xaccount'}}
 	  </label>
-	  {{input type="text" class="form-control" value=model.xaccount placeholder=(t 'edit.createNewAuthor.form.labels.xaccount')}}
+	  {{input type="text" class="form-control" value=model.xaccount placeholder=(t 'admin.people.person.edit.form.labels.xaccount')}}
 	</span>
       </div>
       <div class="col-xs-6">
@@ -58,18 +63,18 @@
 	  <label class="control-label">								
 	    {{#if errors.orcid}}
 	      {{error-feedback errors.orcid}}
-	    {{/if}} {{t 'edit.createNewAuthor.form.labels.orcid'}}
+	    {{/if}} {{t 'admin.people.person.edit.form.labels.orcid'}}
 	  </label>
-	  {{input type="text" class="form-control" value=model.orcid placeholder=(t 'edit.createNewAuthor.form.labels.orcid')}}
+	  {{input type="text" class="form-control" value=model.orcid placeholder=(t 'admin.people.person.edit.form.labels.orcid')}}
 	</span>
       </div>
     </div>
     <div class="btn-toolbar">
       <button type="submit"  {{action 'savePerson' model}} class="btn btn-success">
-        {{t 'edit.createNewAuthor.form.actions.btnSave'}}
+        {{t 'admin.people.person.edit.form.actions.btnSave'}}
       </button>
       {{#link-to 'admin.people' (query-params qp=lastQuery) class="btn btn-danger"}}
-        {{t 'edit.createNewAuthor.form.actions.btnCancel'}}
+        {{t 'admin.people.person.edit.form.actions.btnCancel'}}
       {{/link-to}}
     </div>
   </div>

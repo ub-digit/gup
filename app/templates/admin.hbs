@@ -1,3 +1,15 @@
 <div class="container">
-  {{outlet}}
+	<div class="row">
+	  <div class="col-xs-12">
+	    <nav id="sub-nav">
+	      	<ul class="nav">
+				<li>{{#link-to 'admin.people' (query-params qp='') current-when="admin.people"}}{{t 'admin.admin_people'}}{{/link-to}}</li>
+				<li>{{#link-to 'admin.departments.index' (query-params qd='')}}{{t 'admin.admin_departments'}}{{/link-to}}</li>
+				<li>{{#link-to 'admin.messages' id='admin-messages-link'}}{{t 'admin.admin_messages'}}{{/link-to}}</li>
+			</ul>
+	    </nav>
+	  </div>
+	</div>
+
+ 	{{outlet}}
 </div>
