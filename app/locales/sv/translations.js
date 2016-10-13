@@ -67,6 +67,8 @@ export default {
       approved: 'Godkänd',
       edit: 'Redigera',
       addedObject: 'Ny!',
+      approveSuccess: 'Posten har godkänts.',
+      approveError: 'Posten kunde inte godkännas.',
     },
     publicationtypeItem: {
     },
@@ -292,6 +294,7 @@ export default {
       },
       review: {
         youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
+
       },
       biblreview: {
         numberOfHits: 'Antal träffar',

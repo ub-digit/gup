@@ -77,14 +77,14 @@ export default Ember.Component.extend({
       this.store.save('review_publication', {id: item.version_id}).then(
         function(response) {
 
-          that.sendAction('setMsgHeader', 'success', that.get('i18n').t('messages.approveSuccess'));
+          that.sendAction('setMsgHeader', 'success', that.get('i18n').t('components.reviewItem.approveSuccess'));
 					that.sendAction('refreshReviewCount');
           that.set('isApproved', true);
 
         },
         function(reason) {
 
-          that.sendAction('setMsgHeader', 'error', that.get('i18n').t('messages.approveError'));
+          that.sendAction('setMsgHeader', 'error', that.get('i18n').t('components.reviewItem.approveError'));
 
       });
 
