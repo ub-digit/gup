@@ -9,6 +9,14 @@ export default {
     },
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
+
+      authorHeaderTextStrong: {
+            'default': 'Författare',
+            'publication_edited-book': 'Redaktör',
+            'publication_journal-issue': 'Redaktör',
+            'conference_proceeding': 'Redaktör',
+            'publication_textcritical-edition': 'Redaktör'
+      },
     },
     publicationFieldFiles: {
     },

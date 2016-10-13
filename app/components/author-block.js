@@ -35,9 +35,9 @@ export default Ember.Component.extend({
   },
   // Translates author header differently depending on publication type
   authorHeaderText: Ember.computed('selectedPublicationType', function(){
-    var translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
+    var translation = this.get('i18n').t('components.authorBlock.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
     if (translation.indexOf('Missing translation') === 0){
-      translation = this.get('i18n').t('edit.form.authorHeaderTextStrong.default');
+      translation = this.get('i18n').t('components.authorBlock.authorHeaderTextStrong.default');
     }
     return translation;
   }),
