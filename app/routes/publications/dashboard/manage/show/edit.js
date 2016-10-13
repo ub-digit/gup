@@ -116,12 +116,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     saveDraft: function(/*model*/) {
       var that = this;
       var successHandler = function(model) {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('messages.saveDraftSuccess'));
+        that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess'));
         that.send('refreshModel', model.id);
         that.transitionTo('publications.dashboard.manage.show', model.id);
       };
       var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('messages.saveDraftError'));
+        that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError'));
         that.controller.set('errors', reason.error.errors);
         Ember.run.schedule('afterRender', function() {
           // What happens here? Can be removed?
@@ -150,7 +150,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     savePublish: function(/*model*/) {
       var that = this;
       var successHandler = function(model) {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('messages.publishSuccess'));
+        that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.publishSuccess'));
         that.send('refreshModel', model.id);
         that.send('refreshUserdata');
 
@@ -162,7 +162,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       };
 
       var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('messages.publishError'));
+        that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.publishError'));
         that.controller.set('errors', reason.error.errors);
 
         if (that.controller.get('publication.draft_id')) {

@@ -14,22 +14,22 @@ export default Ember.Controller.extend({
   deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
-      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.deletePublicationSuccess'));
+      that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.deletePublicationSuccess'));
       var target = that.get('applicationController.currentList') || 'publications.dashboard.manage.drafts';
       that.transitionToRoute(target);
     },
     function() {
-      that.send('setMsgHeader', 'error', that.get('i18n').t('messages.deletePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.deletePublicationError'));
     });
   },
   approvePublication: function(id) {
     var that = this;
     this.store.save('biblreview_publication', {id: id}).then(function() {
-      that.send('setMsgHeader', 'success', that.get('i18n').t('messages.approvePublicationSuccess'));
+      that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.approvePublicationSuccess'));
       that.transitionToRoute('publications.dashboard.biblreview');
     },
     function() {
-      that.send('setMsgHeader', 'error', that.get('i18n').t('messages.approvePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.approvePublicationError'));
     });
   },
 
@@ -55,7 +55,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {
-      var r = confirm(this.get('i18n').t('messages.confirmDeletePublication'));
+      var r = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirmDeletePublication'));
       if (r === true) {
         this.deletePublication(id);
       }

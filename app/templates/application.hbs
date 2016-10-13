@@ -5,6 +5,20 @@
 {{partial 'main-menu'}}
 
 <div class="container">
+	{{#if messages.alert_message.message}}
+	<div class="row">
+		<div class="col-xs-12">
+		  <div class="alert alert-warning alert-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{messages.alert_message.message}}</div>
+		</div>
+	</div>
+	{{/if}}
+
+
+	{{#if messages.news_message.message}}
+		<h2>{{messages.news_message.start_date}}</h2>
+		  {{messages.news_message.message}}
+	{{/if}}
+	
 	{{outlet}}
 </div>
 
