@@ -236,6 +236,7 @@ export default {
           searchById: 'Sök efter GUP-ID',
         },
         new: {
+          btnBack: "Tillbaka",
           header: 'Registrera ny publikation',
           importPub: {
             header: 'Importera',
@@ -268,6 +269,7 @@ export default {
 
       },
       review: {
+        youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
       },
       biblreview: {
         numberOfHits: 'Antal träffar',
@@ -288,14 +290,48 @@ export default {
         showDelayedOnly: 'Visa endast fördröjda',
       },
       touched: {
+        numberOfHits: 'Antal träffar',
+        youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
       },
       loading: {
       },
     },
     publicationtypes: {
       selector: {
+        selectorHeading: "Välj publikationstyp",
+        btnCancel: 'Avbryt',
+        publicationtype: {
+          all: 'Alla',
+          articles: 'Artiklar',
+          books: 'Böcker, kapitel och rapporter',
+          conference: 'Konferensbidrag',
+          artworks: 'Konstnärliga arbeten',
+          other: 'Övrigt',
+        },
+
+
       },
       form: {
+        publicationType: 'Publikationstyp',
+        changePublicationTypeLink: 'Byt',
+        help: {
+          authors: {
+            helptext: 'Här skriver du in samtliga författare i samma ordningsföljd som i originalpublikationen. För GU-författare skriver du in fullständigt namn samt anger institution, för övriga författare räcker det med efternamn samt förnamnets första bokstav. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+          },
+          category_hsv_local: {
+            helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
+          },
+          pub_notes: {
+            helptext: 'Här skriver du endast in information som inte passar i något annat fält. Observera att denna text är synlig för de som söker fram publikationen.'
+          },
+          publicationIdentifiers: {
+            helptext: 'Att lägga till en identifikator gör det både lättare för andra att hitta din publikation och att bekräfta att de hittat rätt. I slutändan kan detta alltså leda till att fler personer läser din publikation.',
+          },
+          publisher: {
+            placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
+          },
+        }
+       
       }
     },
     index: {
