@@ -359,10 +359,20 @@ export default {
       end_year: 'Slutår',
 
       new: {
-
+        btnBack: 'Tillbaka',
+        header: 'Skapa ny institution',
+        save: 'Skapa institution',
+        noFaculty: 'Ingen fakultet',
+        labels: {
+          nameSv: 'Namn (Svenska)',
+          nameEn: 'Namn (Engelska)',
+          startYear: 'Startår',
+          endYear: 'Slutår',
+          faculty: 'Fakultet',
+        }
       },
       index: {
-      }
+      },
     },
 
     people: {
