@@ -13,28 +13,32 @@
         {{/link-to}}
       </div>
 
+
       <ul class="nav navbar-nav">
-        <li title={{t 'mainMenu.publications'}}>{{#link-to 'publications.dashboard.manage'}}{{t 'mainMenu.publications'}}{{/link-to}}</li>
-        <li title={{t 'mainMenu.forReview'}}>
-          {{#link-to 'publications.dashboard.review'}}{{t 'mainMenu.forReview'}}
-          {{#if showReviewCount}}
-            <span class="badge badge-red">{{userdata.counts.review}}</span>
+        {{#if session.isAuthenticated}}
+          <li title={{t 'mainMenu.publications'}}>{{#link-to 'publications.dashboard.manage'}}{{t 'mainMenu.publications'}}{{/link-to}}</li>
+          <li title={{t 'mainMenu.forReview'}}>
+            {{#link-to 'publications.dashboard.review'}}{{t 'mainMenu.forReview'}}
+            {{#if showReviewCount}}
+              <span class="badge badge-red">{{userdata.counts.review}}</span>
+            {{/if}}
+            {{/link-to}}
+          </li>
+          {{#if session.data.authenticated.can_administrate}}
+            <li title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
           {{/if}}
-          {{/link-to}}
-        </li>
-        {{#if session.data.authenticated.can_administrate}}
-          <li title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
+          {{#if session.data.authenticated.can_biblreview}}
+            <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
+          {{/if}}
+          {{#if session.data.authenticated.can_administrate}}
+            <li title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
+          {{/if}}
+          <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'             }}{{/link-to}}</li>
         {{/if}}
-        {{#if session.data.authenticated.can_biblreview}}
-          <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
-        {{/if}}
-        {{#if session.data.authenticated.can_administrate}}
-          <li title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
-        {{/if}}
-        <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'             }}{{/link-to}}</li>
       </ul>
     </div>
     <div class="navbar-sub">
+
       {{#if session.isAuthenticated}}
      
       <p class="navbar-text navbar-right"><i class="fa fa-user"></i> {{session.data.authenticated.username}} (<small><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
