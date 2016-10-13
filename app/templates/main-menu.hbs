@@ -56,14 +56,21 @@
         {{/if}}
       </ul>
     </div>
+    
     <div class="navbar-sub">
 
-      {{#if session.isAuthenticated}}
-     
-      <p class="navbar-text navbar-right"><i class="fa fa-user"></i> {{session.data.authenticated.username}} (<small><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}}</a></small>)</p>
-      {{else}}
-      {{/if}}
-      <p class="navbar-text navbar-right"><a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a></p>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a>
+        </li>
+        {{#if session.isAuthenticated}}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{session.data.authenticated.username}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}} </a></li>
+          </ul>
+        </li>{{/if}}      
+      </ul>
     </div>
   </div><!-- /.container -->
 </nav>
