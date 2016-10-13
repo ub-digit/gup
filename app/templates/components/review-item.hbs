@@ -4,36 +4,36 @@
 
     {{#if item.diff_since_review.reviewed_at}}
       <div class="alert alert-info">
-        <strong>{{t 'review.lastReview'}}</strong> {{format-date item.diff_since_review.reviewed_at}}
+        <strong>{{t 'components.reviewItem.lastReview'}}</strong> {{format-date item.diff_since_review.reviewed_at}}
       </div>
     {{/if}}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">{{t 'review.reviewDetailsHeader'}}</h3>
+      <h3 class="panel-title">{{t 'components.reviewItem.reviewDetailsHeader'}}</h3>
     </div>
     <div class="panel-body">
       <dl class="dl-horizontal">
-        <dt>{{t 'review.publicationType'}}</dt>
+        <dt>{{t 'components.reviewItem.publicationType'}}</dt>
           {{#if item.diff_since_review.publication_type}}
-            <dd class="text-success">{{item.publication_type_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd class="text-success">{{item.publication_type_label}}<span class="badge review-badge">{{t 'components.reviewItem.addedObject'}}</span></dd>
             <dd><del class="text-danger">{{item.diff_since_review.publication_type.from}}</del></dd>
           {{else}}
             <dd>{{item.publication_type_label}}</dd>
           {{/if}}
 
-        <dt>{{t 'review.contentType'}}</dt>
+        <dt>{{t 'components.reviewItem.contentType'}}</dt>
           {{#if item.diff_since_review.ref_value}}
-            <dd class="text-success">{{item.ref_value_label}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd class="text-success">{{item.ref_value_label}}<span class="badge review-badge">{{t 'components.reviewItem.addedObject'}}</span></dd>
             <dd><del class="text-danger">{{item.diff_since_review.ref_value.from}}</del></dd>
           {{else}}
             <dd>{{item.ref_value_label}}</dd>
           {{/if}}
 
-        <dt>{{t 'review.affiliation'}}</dt>
+        <dt>{{t 'components.reviewItem.affiliation'}}</dt>
         {{#if item.diff_since_review.affiliation}}
           {{#each diffDepartments as |department|}}
             {{#if department.added}}
-            <dd class="text-success">{{department.name}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+            <dd class="text-success">{{department.name}}<span class="badge review-badge">{{t 'components.reviewItem.addedObject'}}</span></dd>
             {{/if}}
             {{#if department.removed}}
             <dd><del class="text-danger">{{department.name}}</del></dd>
@@ -48,12 +48,12 @@
           {{/each}}
         {{/if}}
 
-        <dt>{{t 'review.categories'}}</dt>
+        <dt>{{t 'components.reviewItem.categories'}}</dt>
 
         {{#if item.diff_since_review.category_hsv_local}}
           {{#each diffCategories as |category|}}
             {{#if category.added}}
-              <dd class="text-success">{{category.name_path}}<span class="badge review-badge">{{t 'review.addedObject'}}</span></dd>
+              <dd class="text-success">{{category.name_path}}<span class="badge review-badge">{{t 'components.reviewItem.addedObject'}}</span></dd>
             {{/if}}
             {{#if category.removed}}
               <dd><del class="text-danger">{{category.name_path}}</del></dd>
@@ -75,13 +75,13 @@
 <div class="col-xs-3">
   <div class="btn-toolbar col-xs-12">
     {{#unless isApproved}}
-      <button {{action 'approve' item}} class="col-xs-12 btn btn-success">{{t 'review.approve'}}</button>
+      <button {{action 'approve' item}} class="col-xs-12 btn btn-success">{{t 'components.reviewItem.approve'}}</button>
     {{else}}
-      <span class="text-success btn btn-fake col-xs-12">{{t 'review.approved'}} <i class="fa fa-check"></i></span>
+      <span class="text-success btn btn-fake col-xs-12">{{t 'components.reviewItem.approved'}} <i class="fa fa-check"></i></span>
     {{/unless}}
   </div>
   <div class="btn-toolbar col-xs-12">
-    <button {{action 'reviewEdit' item}} class="col-xs-12 btn btn-primary">{{t 'review.edit'}}</button>
+    <button {{action 'reviewEdit' item}} class="col-xs-12 btn btn-primary">{{t 'components.reviewItem.edit'}}</button>
   </div>
   <div class="btn-toolbar col-xs-12">
     {{mailer-modal publication=item buttonClass="col-xs-12 btn btn-default" buttonStyle="margin-left:5px"}}

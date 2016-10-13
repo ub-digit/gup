@@ -1,16 +1,16 @@
-<!-- S_NOT-READY -->
+<!-- S_YES-READY -->
 {{#if pageArray}}
 <nav class="center-content">
 <ul class="pagination">
   {{#if pagination.previous}}
     <li>
       {{#link-to (query-params page=pagination.previous) class=""}}
-      <span>Previous</span>
+      <span>{{t 'components.paginationPager.previous'}}</span>
       {{/link-to}}
     </li>
   {{else}}
     <li class="disabled">
-      <a href="javascript:void(0)"><span>Previous</span></a>
+      <a href="javascript:void(0)"><span>{{t 'components.paginationPager.previous'}}</span></a>
     </li>
   {{/if}}
   {{#each pageArray as |page|}}
@@ -25,12 +25,12 @@
   {{#if pagination.next}}
     <li>
       {{#link-to (query-params page=pagination.next)}}
-      <span>Next</span>
+      <span>{{t 'components.paginationPager.next'}}</span>
       {{/link-to}}
     </li>
   {{else}}
     <li class="disabled">
-      <a href="javascript:void(0)"><span>Next</span></a>
+      <a href="javascript:void(0)"><span>{{t 'components.paginationPager.next'}}</span></a>
     </li>
   {{/if}}
 </ul>
