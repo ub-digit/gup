@@ -431,8 +431,8 @@ export default {
       query_person: 'Sök person',
       query_person_none: 'Inga personer hittades',
       index: {
-        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
-      }
+        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?'
+      },
       person: {
         personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
         edit: {
