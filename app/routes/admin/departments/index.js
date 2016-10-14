@@ -25,7 +25,7 @@ export default Ember.Route.extend({
         Ember.$('#setEndYearModal').modal('hide');
       }, function() {
         Ember.set(model, 'end_year', null);
-        that.controller.set('modalError', that.get('i18n').t('messages.saveDepartmentError'));
+        that.controller.set('modalError', that.get('i18n').t('admin.departments.index.saveError'));
       });
     }
   }
