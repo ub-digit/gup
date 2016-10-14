@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 
   titleString: Ember.computed('item.title', function() {
 
-    return this.get('item.title') || this.get('i18n').t('publication.labels.noTitle');
+    return this.get('item.title') || this.get('i18n').t('components.publicationListRow.noTitle');
 
   }),
 

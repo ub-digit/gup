@@ -75,8 +75,15 @@ export default {
     fieldComponent: {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
+
     },
     publicationListRow: {
+      noTitle: '-- Titel saknas --',
+      publicationID: "Publikationens id",
+      publicationType: "Publikationstyp",
+      contentMarker: "Innehållsmärkning",
+      createdAt: "Skapad",
+      published: "Publiserad",
     },
     fileUpload: {
     },
