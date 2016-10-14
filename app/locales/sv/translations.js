@@ -138,6 +138,7 @@ export default {
     usernamePlaceholder: 'x-konto',
     password: 'Lösenord',
     passwordPlaceholder: 'Lösenord',
+    loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
   },
   mainMenu: {
     applicationName: 'GUP',
@@ -194,6 +195,10 @@ export default {
         drafts: {
           numberOfHits: 'Antal träffar',
           youHaveNoDrafts: 'Du har inga utkast.',
+          saveDraftSuccess: 'Posten har sparats som utkast.',
+          saveDraftError: 'Posten kunde inte sparas som utkast.',
+          deleteDraftSuccess: 'Utkast borttaget.',
+          deleteDraftError: 'Utkastet kunde inte tas bort.',
         },
         show: {
           edit: {
@@ -213,6 +218,7 @@ export default {
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
             approveSuccess: 'Posten har godkänts.',
+            publicationNotFound: 'Publikationen finns inte.',
           },
           index: {
             btnBack: 'Tillbaka',

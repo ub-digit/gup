@@ -2,7 +2,10 @@
 	<div class="col-xs-12 center-content no-result">
 	  <div class="no-result-graphic">
 	  {{#if icon}}
-	  	<i class="{{icon}}" aria-hidden="true"></i>
+		  <span class="fa-stack fa-lg">
+		  	<i class="fa fa-circle-thin fa-stack-2x" aria-hidden="true"></i>
+		  	<i class="fa {{icon}} fa-stack-1x" aria-hidden="true"></i>
+		  </span>
 	  {{else}}
 	  <span class="fa-stack fa-lg">
 	  	<i class="fa fa-circle-thin fa-stack-2x" aria-hidden="true"></i>

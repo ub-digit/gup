@@ -27,7 +27,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
       this.refresh(modelId);
     },
     error: function(reason) {
-      this.send('setMsgHeader', 'error', this.get('i18n').t('messages.publicationNotFound'));
+      this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.publicationNotFound'));
 //      this.transitionTo('publications.dashboard.manage.start');
 
     }
