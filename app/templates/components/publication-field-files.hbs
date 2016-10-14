@@ -3,6 +3,7 @@
 	<ul class="list-inline gup-file-list">
 	  {{#each fieldValue as |listItem|}}
 	    <li class={{if listItem.visible_after "hasEmbargo"}}>
+	    <span class="label label-primary">
 	    	{{#if listItem.visible_after}}
 	    		{{listItem.name}} <span class="small">(Embargo {{listItem.visible_after}})</span> 
 	    	{{else}}
@@ -11,8 +12,7 @@
 	    	    <a href="javascript:void()" {{action 'removeFile' listItem.id}} ><i class="fa gup-error fa-times" aria-hidden="true"></i></a>
                   {{/if}}
 	    	{{/if}}
-
-	    	
+	    </span>
 	   	</li>
 	  {{/each}}
 	</ul>
