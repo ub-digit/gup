@@ -206,6 +206,7 @@ export default {
           saveDraftError: 'Posten kunde inte sparas som utkast.',
           deleteDraftSuccess: 'Utkast borttaget.',
           deleteDraftError: 'Utkastet kunde inte tas bort.',
+          confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
         },
         show: {
           edit: {
@@ -220,7 +221,7 @@ export default {
             deletePublicationError: 'Publikationen kunde inte tas bort.',
             approvePublicationSuccess: 'Publikationen godkänd.',
             approvePublicationError: 'Publikationen kunde inte godkännas.',
-            confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
+            
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
