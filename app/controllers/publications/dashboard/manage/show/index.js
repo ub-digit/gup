@@ -19,17 +19,17 @@ export default Ember.Controller.extend({
       that.transitionToRoute(target);
     },
     function() {
-      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.deletePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.index.deletePublicationError'));
     });
   },
   approvePublication: function(id) {
     var that = this;
     this.store.save('biblreview_publication', {id: id}).then(function() {
-      that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.approvePublicationSuccess'));
+      that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.index.approvePublicationSuccess'));
       that.transitionToRoute('publications.dashboard.biblreview');
     },
     function() {
-      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.approvePublicationError'));
+      that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.index.approvePublicationError'));
     });
   },
 
@@ -55,7 +55,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {
-      var r = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirmDeletePublication'));
+      var r = confirm(this.get('i18n').t('publications.dashboard.manage.show.index.confirmDeletePublication'));
       if (r === true) {
         this.deletePublication(id);
       }

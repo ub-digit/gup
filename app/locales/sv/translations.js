@@ -217,12 +217,7 @@ export default {
             saveDraftError: 'Posten kunde inte sparas som utkast.',
             deleteDraftSuccess: 'Utkast borttaget.',
             deleteDraftError: 'Utkastet kunde inte tas bort.',
-            deletePublicationSuccess: 'Publikationen borttagen.',
-            deletePublicationError: 'Publikationen kunde inte tas bort.',
-            approvePublicationSuccess: 'Publikationen godkänd.',
-            approvePublicationError: 'Publikationen kunde inte godkännas.',
-            
-            confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
+ 
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
             approveSuccess: 'Posten har godkänts.',
@@ -233,7 +228,11 @@ export default {
             reviewModeInfo: 'Du tittar på posten i granskningsläge.',
             reviewModeCancel: 'Tillbaka till visningsläge. ',
 
-
+            deletePublicationSuccess: 'Publikationen borttagen.',
+            deletePublicationError: 'Publikationen kunde inte tas bort.',
+            approvePublicationSuccess: 'Publikationen godkänd.',
+            approvePublicationError: 'Publikationen kunde inte godkännas.',
+            confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print sedan: ',
             _subnav: {
               attachFile: 'Bifoga fil',
