@@ -111,7 +111,8 @@ export default Ember.Controller.extend({
         }
         return {id: author.selectedAuthor.id, departments: departments};
       }
-    });
+      return null;
+    }).compact();
     this.set('publication.authors', authors);
   },
 
