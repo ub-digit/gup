@@ -138,6 +138,20 @@
                 {{/each}}
               </div>
             </div>
+            {{#if nonSelectedDepartmentSuggestions}}
+            <div class="row">
+              <div class="col-xs-7 col-xs-offset-5">
+                <label>{{t 'components.authorRow.suggestedDepartments.label'}}</label>
+                  <ul class="list-unstyled">
+                  {{#each nonSelectedDepartmentSuggestions as |suggestion|}}
+                    <li>
+                      <button class="btn btn-link" {{action 'addInstitution' suggestion.department}} disabled={{suggestion.selected}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
+                    </li>
+                  {{/each}}
+                  </ul>
+              </div>
+            </div>
+            {{/if}}
           {{/if}}
         {{/if}}
       </div>
