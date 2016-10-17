@@ -89,9 +89,9 @@ export default Ember.Component.extend({
     },
     addImportedAuthorRow: function(importedAuthor) {
       let author = this.newAuthorStub();
-      author.newAuthorForm.firstName = importedAuthor.first_name;
-      author.newAuthorForm.lastName = importedAuthor.last_name;
-      author.importedAuthorName = [importedAuthor.first_name, importedAuthor.last_name].compact().join(' ');
+      author.set('newAuthorForm.firstName', importedAuthor.first_name);
+      author.set('newAuthorForm.lastName', importedAuthor.last_name);
+      author.set('importedAuthorName', [importedAuthor.first_name, importedAuthor.last_name].compact().join(' '));
       this.get('authorArr').addObject(author);
     },
     addEmptyAuthorRow: function() {
