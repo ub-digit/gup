@@ -3,7 +3,10 @@ import ResetScroll from 'gup/mixins/resetscroll';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
-  i18n: Ember.inject.service(),
+    i18n: Ember.inject.service(),
+    titleToken: function() {
+     // return this.get("i18n").t('publications.dashboard.manage.show.title');
+    },
 
   beforeModel: function() {
     // TODO: loading substate instead (below should not work?)

@@ -3,15 +3,19 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  model: function(params) {
-    return Ember.RSVP.hash({
-      faculties: this.store.find('faculty')
-    });
-  },
+	i18n: Ember.inject.service(),
+	titleToken: function() {
+//	  return this.get("i18n").t('admin.title');
+	},
+	model: function(params) {
+		return Ember.RSVP.hash({
+		  faculties: this.store.find('faculty')
+		});
+	},
 
-  setupController: function(controller, model) {
-    this._super(...arguments);
-    controller.set("faculties", model.faculties);
-  },
+	setupController: function(controller, model) {
+		this._super(...arguments);
+		controller.set("faculties", model.faculties);
+	},
 
 });

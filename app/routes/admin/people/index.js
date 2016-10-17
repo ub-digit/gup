@@ -2,9 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   i18n: Ember.inject.service(),
+
+  titleToken: function() {
+    return this.get("i18n").t('admin.people.title');
+  },
   queryParams: {
     qp: { refreshModel: true}
   },
+
   model: function(params) {
     return this.store.find("person_record", {search_term: params.qp, ignore_affiliation: true});
   },

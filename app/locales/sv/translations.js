@@ -163,12 +163,14 @@ export default {
 
   },
   application: {
+    title: "GUP",
   },
   msgheader: {
   },
   publications: {
     dashboard: {
       reports: {
+        title: "Rapporter",
         select_criteria: "Välj kriterier",
         export_csv: "Exportera till Excel",
         year: "År",
@@ -200,6 +202,7 @@ export default {
 
 
         drafts: {
+          title: "Mina utkast",
           numberOfHits: 'Antal träffar',
           youHaveNoDrafts: 'Du har inga utkast.',
           saveDraftSuccess: 'Posten har sparats som utkast.',
@@ -209,7 +212,9 @@ export default {
           confirmDeleteDraft: 'Är du säker på att du vill ta bort utkastet?',
         },
         show: {
+          title: "Visa publikation",
           edit: {
+            title: "Redigera publikation",
             btnCancel: 'Avbryt',
             btnSaveDraft: 'Spara utkast',
             btnSaveAndPublish: 'Spara och publicera',
@@ -263,16 +268,19 @@ export default {
           }
         },
         published: {
+          title: "Mina publikationer",
           numberOfHits: 'Antal träffar',
           youHaveNoPublications: 'Du har inga publikationer.',
         },
         start: {
         },
         search: {
+          title: "Sök",
           searchForPublicationWithPubid: 'Sök efter publikation med GUP-ID:',
           searchById: 'Sök efter GUP-ID',
         },
         new: {
+          title: "Ny publikation",
           btnBack: "Tillbaka",
           header: 'Registrera ny publikation',
           importPub: {
@@ -306,10 +314,12 @@ export default {
 
       },
       review: {
+        title: "Granskning",
         youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
 
       },
       biblreview: {
+        title_page: "Bibliografisk granskning",
         numberOfHits: 'Antal träffar',
         selectPublicationTypePrompt: 'Alla typer',
         selectPublicationYearPrompt: 'Alla år',
@@ -328,6 +338,7 @@ export default {
         showDelayedOnly: 'Visa endast fördröjda',
       },
       touched: {
+        title: "Mina redigerade publikationer",
         numberOfHits: 'Antal träffar',
         youHaveNoRegisteredOrEditedPublications: 'Du har inte registrerat eller redigerat några publikationer.',
       },
@@ -382,6 +393,7 @@ export default {
     admin_people: 'Administrera personer',
     admin_messages: 'Administrera meddelanden',
     departments: {
+      title: "Administrera institutioner",
       query_department: 'Sök institution',
       query_department_none: 'Ingen institution hittades',
       btnNew: 'Skapa ny',
@@ -397,6 +409,7 @@ export default {
       end_year: 'Slutår',
 
       new: {
+        title: "Skapa ny institution",
         btnBack: 'Tillbaka',
         header: 'Skapa ny institution',
         save: 'Skapa institution',
@@ -414,6 +427,7 @@ export default {
     },
 
     people: {
+      title: "Administrera personer",
       id: 'Id',
       first_name: 'Förnamn',
       last_name: 'Efternamn',
@@ -459,6 +473,7 @@ export default {
 
     },
     messages: {
+      title: "Administrera meddelanden",
       newsMessageHeader: 'Nyhetsmeddelande',
       alertMessageHeader: 'Driftmeddelande',
       message: 'Meddelande',

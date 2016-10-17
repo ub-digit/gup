@@ -3,6 +3,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  i18n: Ember.inject.service(),
+  titleToken: function() {
+    return this.get("i18n").t('publications.dashboard.touched.title');
+  },
   queryParams:{
       page:{refreshModel: true}
   },

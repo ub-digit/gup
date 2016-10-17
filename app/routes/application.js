@@ -5,6 +5,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
+
+  title: function(tokens) {
+    return this.get('i18n').t('application.title') + ' - ' + tokens.join(' - ');
+  },
   session: Ember.inject.service('session'),
 
   beforeModel: function() {

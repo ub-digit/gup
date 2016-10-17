@@ -5,6 +5,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: Ember.inject.service(),
+  i18n: Ember.inject.service(),
+  titleToken: function() {
+    return this.get("i18n").t('publications.dashboard.manage.show.edit.title');
+  },
   returnTo: null,
   beforeModel: function() {
     //TODO: replace with loading substate
