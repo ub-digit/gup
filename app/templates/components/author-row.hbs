@@ -145,7 +145,7 @@
                   <ul class="list-unstyled">
                   {{#each nonSelectedDepartmentSuggestions as |suggestion|}}
                     <li>
-                      <button class="btn btn-link" {{action 'addInstitution' suggestion.department}} disabled={{suggestion.selected}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
+                      <button class="btn btn-link" {{action 'addInstitution' suggestion.department}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
                     </li>
                   {{/each}}
                   </ul>
