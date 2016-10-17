@@ -59,11 +59,11 @@ export default Ember.Component.extend({
       var comment = that.get('comment');
       that.store.save('postpone_date', { publication_id: publication.id, postponed_until: date, comment: comment}).then(
         function(response){
-          that.sendAction('setMsgHeaderAction', 'success', that.get('i18n').t('messages.delaySuccess'));
+          that.sendAction('setMsgHeaderAction', 'success', that.get('i18n').t('components.delayReviewModal.delaySuccess'));
           that.get('targetObject').transitionToRoute('publications.dashboard.biblreview');
         },
         function(error) {
-          that.sendAction('setMsgHeaderAction', 'error', that.get('i18n').t('messages.delayError'));
+          that.sendAction('setMsgHeaderAction', 'error', that.get('i18n').t('components.delayReviewModal.delayError'));
         }
       );
     }

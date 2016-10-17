@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
       return false;
     }
     if(!this.get('modalValid')) {
-      return this.get('i18n').t('messages.invalidYear');
+      return this.get('i18n').t('admin.departments.index.invalidYear');
     }
     return false;
   }),

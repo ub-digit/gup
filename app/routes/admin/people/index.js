@@ -29,7 +29,7 @@ export default Ember.Route.extend({
   actions: {
     deletePerson: function(model) {
       var that = this;
-      if(confirm(this.get('i18n').t('admin.people.person.confirmDeletePerson'))) {
+      if(confirm(this.get('i18n').t('admin.people.index.confirmDeletePerson'))) {
         this.store.destroy('person', model.id).then(function() {
           that.refresh(model.id);
         });

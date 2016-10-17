@@ -116,12 +116,14 @@ export default {
       },
     },
     delayReviewModal: {
-        delay: 'Fördröj',
-        delayHeader: 'Fördröj granskning av publikation',
-        date: 'Datum',
-        comment: 'Kommentar',
-        btnDelay: 'Fördröj',
-        reviewPostponedUntil: 'Fördröjd till',
+      delay: 'Fördröj',
+      delayHeader: 'Fördröj granskning av publikation',
+      date: 'Datum',
+      comment: 'Kommentar',
+      btnDelay: 'Fördröj',
+      reviewPostponedUntil: 'Fördröjd till',
+      delaySuccess: "Granskningsgodkännandet har uppskjutits.",
+      delayError: "Posten kunde inte fördröjas."
     },
     debouncedInput: {
     },
@@ -213,6 +215,7 @@ export default {
         },
         show: {
           title: "Visa publikation",
+          publicationNotFound: 'Publikationen finns inte.',
           edit: {
             title: "Redigera publikation",
             btnCancel: 'Avbryt',
@@ -226,7 +229,6 @@ export default {
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
             approveSuccess: 'Posten har godkänts.',
-            publicationNotFound: 'Publikationen finns inte.',
           },
           index: {
             btnBack: 'Tillbaka',
@@ -423,6 +425,8 @@ export default {
         }
       },
       index: {
+        invalidYear: "Ogiltigt årtal",
+        saveError: "Kunde inte spara"
       },
     },
 
@@ -439,9 +443,10 @@ export default {
       btnDelete: 'Radera',
       query_person: 'Sök person',
       query_person_none: 'Inga personer hittades',
-
+      index: {
+        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?'
+      },
       person: {
-        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?',
         personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
         edit: {
           form: {
