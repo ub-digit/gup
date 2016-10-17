@@ -1,7 +1,7 @@
 <!-- T_YES-READY -->
 <!-- T_WONT-FIX -->
 <section id="author-component" class="{{if errors 'has-error'}}">
-  <h2>{{authorHeaderText}}</h2>
+  <label class="control-label"> <h2>{{authorHeaderText}}</h2><span class="text-danger">{{t 'components.authorBlock.mandatory'}}</span></label>
   {{#if errors}}
     <ul class="list-unstyled has-error">
       {{#each errors as |item|}}

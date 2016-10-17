@@ -65,7 +65,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
       Ember.run.later(function() {
         that.send('hideMsgHeader');
-      }, 1000000);
+      }, 1000);
     },
 
     showPublication: function(publication_id) {
