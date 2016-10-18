@@ -9,7 +9,7 @@ export default {
     },
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
-      mandatory: '(obligatorisk)',
+      mandatory: '(obligatoriskt)',
 
       authorHeaderTextStrong: {
             'default': 'Författare',
