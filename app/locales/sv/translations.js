@@ -52,6 +52,7 @@ export default {
     },
     mailerModal: {
       report: 'GUP-support',
+      description: 'Här skickar du meddelanden till GUP-supporten. Ange din e-post om du vill få feedback.',
       send: 'Skicka',
       dismiss: 'Avbryt',
       message: 'Meddelande',
@@ -235,6 +236,7 @@ export default {
             approveSuccess: 'Posten har godkänts.',
           },
           index: {
+            errorMissingPublication: 'Publikationen saknas',
             btnBack: 'Tillbaka',
             reviewModeInfo: 'Du tittar på posten i granskningsläge.',
             reviewModeCancel: 'Tillbaka till visningsläge. ',

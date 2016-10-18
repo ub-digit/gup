@@ -10,6 +10,13 @@ export default Ember.Controller.extend({
   queryParams: ['other_version'],
   other_version: null,
 
+  error: Ember.computed('model.error', function(){
+    if (this.get('model.error')) {
+        return true;
+    }
+    return false;
+
+  }),
 
   deletePublication: function(id) {
     var that = this;

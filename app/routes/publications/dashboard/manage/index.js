@@ -9,6 +9,5 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 
 	setupController: function(controller) {
-		alert("HELLO");
 	}
 });
