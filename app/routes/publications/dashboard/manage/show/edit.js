@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import ResetScroll from 'gup/mixins/resetscroll';
 
 //import ENV from 'gup/config/environment';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
   i18n: Ember.inject.service(),
   i18n: Ember.inject.service(),
   titleToken: function() {

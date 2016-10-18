@@ -107,6 +107,12 @@ export default Ember.Controller.extend({
     return fullObjectPubtype;
   }),
 
+  scrollTop: function() {
+    window.scroll(0,0);
+  }.observes('selectPublicationTypeIsVisible'),
+  
+
+
   updateModelWithCorrectPublicationType: function() {
     this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
   }.observes('selectedPublicationType'),
