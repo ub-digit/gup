@@ -110,6 +110,9 @@ export default {
         formatInputTooShortText: 'Ange minst 3 tecken',
         btnCreateNew: 'Skapa ny',
       },
+      suggestedDepartments: {
+          label: 'Förslag på instutitioner'
+      },
       selectInstitutions: {
         label: 'Välj institutioner',
         placeholder: 'Välj institutioner',

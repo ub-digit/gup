@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
   errors: null,
+  departmentSuggestions: Ember.A([]),
   /*
   resetForm: function() {
     if (this.get("item.newAuthorForm")) {
@@ -16,6 +18,31 @@ export default Ember.Component.extend({
   },
   */
   init : function() {
+    var setSuggestionStatuses = () => {
+      let selected_ids = this.get('item.selectedInstitution').mapBy('id');
+      this.get('departmentSuggestions').forEach((suggestion) => {
+        suggestion.set('selected', selected_ids.indexOf(suggestion.get('department').id) !== -1);
+      });
+    };
+    var setSuggestions = () => {
+      let author_departments = this.get('item.selectedAuthor.departments');
+      if (Ember.isArray(author_departments)) {
+        this.set('departmentSuggestions', author_departments.map((department) => {
+          let suggestion = Ember.Object.create(department);
+          //TODO: Object cloned or not?
+          suggestion.department = department;
+          return suggestion;
+        }));
+      }
+      else {
+        this.set('departmentSuggestions', Ember.A([]));
+      }
+      // Also set selection statuses!
+      setSuggestionStatuses();
+    };
+    this.addObserver('item.selectedAuthor', setSuggestions);
+    this.addObserver('item.selectedInstitution', setSuggestionStatuses);
+
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise
     this.set('createAuthor', (item) => {
@@ -51,9 +78,12 @@ export default Ember.Component.extend({
       return Promise.resolve();
     });
   },
+  nonSelectedDepartmentSuggestions: Ember.computed('departmentSuggestions.@each.selected', function() {
+    return this.get('departmentSuggestions').filterBy('selected', false);
+  }),
   // Used to signal select2-adjusted component to set a default query string
   setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
-    return !!this.get('item.importedAuthorName');
+    return Ember.isPresent(this.get('item.importedAuthorName'));
   }),
 
   showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function() {
@@ -86,14 +116,31 @@ export default Ember.Component.extend({
       this.sendAction('setMsgHeader', type, msg);
     },
     queryAuthors: function(query, deferred) {
+      //TODO: This utility function should be accessible to other classes
+      // put it somewhere else, in service?
+      function zipDepartments(doc, locale) {
+        var departments = [];
+        if (Ember.isArray(doc.departments_id)) {
+          departments = doc.departments_id.map((department_id, index) => {
+            return {
+              id: department_id,
+              name: doc['departments_name_' + locale][index],
+              start_year: doc['departments_start_year'][index],
+              end_year: doc['departments_end_year'][index],
+            };
+          });
+        }
+        return departments;
+      }
       var result = this.store.find('person_record', {search_term: query.term});
       result.then((data) => {
-        data = data.map(function(item) {
+        data = data.map((item) => {
           // Create presentation string
           let name = [item.first_name, item.last_name].compact().join(' ');
           let year = item.year_of_birth;
           let id = [item.xaccount, item.orcid].compact().join(', ');
           item.presentation_string = [name, year].compact().join(', ') + (id ? ' ' + ['(', id, ')'].join('') : '');
+          item.departments = zipDepartments(item, this.get('i18n.locale'));
           return item;
         });
         if (this.get('queryAuthorsResult')) {
@@ -143,13 +190,21 @@ export default Ember.Component.extend({
     },
     addInstitution: function(institution) {
       // Add institution to selected array
-      var institutionObject = Ember.Object.create(institution);
-      this.get('item.selectedInstitution').addObject(institutionObject);
+      let selectedInstitutionCopy = Ember.copy(this.get('item.selectedInstitution'));
+      // Have to overwrite value, since select2 observes "value"
+      // (in this case bound to selectedInstitutions)
+      // but is not smart enough to detect changes within "value" (selectedInstitutions.[])
+      //TODO: This is fubar
+      let institutionObject = institution instanceof Ember.Object ? institution :  Ember.Object.create(institution);
+      selectedInstitutionCopy.addObject(institutionObject);
+      this.set('item.selectedInstitution', selectedInstitutionCopy);
       // Add institution to select2 component
+      /*
       var id = '#s2id_' + this.get('item.id');
       var institutionsElement = Ember.$(id).select2('data');
       institutionsElement.addObject(institutionObject);
       Ember.$(id).select2('data', institutionsElement);
-    }
+      */
+    },
   }
 });
