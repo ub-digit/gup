@@ -52,14 +52,25 @@ export default Ember.Component.extend({
       return Promise.resolve();
     });
   },
-  validDepartmentSuggestions: Ember.computed('item.selectedAuthor', 'institutions.[]', function() {
+  // Helper
+  // Could be generalized, with dynamic prop and made global helper
+  getDepartmentIds : function(departments) {
+    return departments.reduce(function(result, department) {
+      result[department.id] = department.id; //TODO: or null?
+      return result;
+    }, []);
+  },
+
+  departmentIds : Ember.computed('institutions.[]', function() {
+    //TODO: or this.get(?
+    return this.getDepartmentIds(this.get('institutions'));
+  }),
+
+  validDepartmentSuggestions: Ember.computed('item.selectedAuthor', 'departmentIds', function() {
     let author_departments = this.get('item.selectedAuthor.departments');
     if (Ember.isArray(author_departments)) {
       // Create array keyed by institution id for faster lookup
-      let department_ids = this.get('institutions').reduce(function(result, department) {
-        result[department.id] = null;
-        return result;
-      }, []);
+      let department_ids = this.get('departmentIds');
       return author_departments.filter((department) => {
         // Filter out departments not present in selectable institutions
         return department_ids[department.id] !== undefined;
@@ -72,18 +83,21 @@ export default Ember.Component.extend({
     }
     return Ember.A([]);
   }),
-  nonSelectedValidDepartmentsSuggestions: Ember.computed('validDepartmentSuggestions', 'item.selectedInstitution.[]', function() {
-    if (Ember.isPresent(this.get('item.selectedInstitution'))) {
-      let selected_department_ids = this.get('item.selectedInstitution').reduce(function(result, department) {
-        result[parseInt(department.id)] = null;
-        return result;
-      }, []);
+
+  selectedDepartmentIds: Ember.computed('item.selectedInstitution.[]', function() {
+    return this.getDepartmentIds(this.get('item.selectedInstitution'));
+  }),
+
+  nonSelectedValidDepartmentsSuggestions: Ember.computed('validDepartmentSuggestions', 'selectedDepartmentIds', function() {
+    let selected_department_ids = this.get('selectedDepartmentIds');
+    if (Ember.isPresent(selected_department_ids)) {
       return this.get('validDepartmentSuggestions').filter((suggestion) => {
         return selected_department_ids[suggestion.get('department').id] === undefined;
       });
     }
     return this.get('validDepartmentSuggestions');
   }),
+
   nonSelectedDepartmentSuggestions: Ember.computed('departmentSuggestions.@each.selected', function() {
     return this.get('departmentSuggestions').filterBy('selected', false);
   }),
