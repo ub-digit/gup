@@ -42,7 +42,9 @@
   </div>
 
   {{#if authorComponentIsVisible}}
-    {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+    <span class="form-group {{if errors.author 'has-error'}}">
+      {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+    </span>
   {{/if}}
 
   <hr/>
