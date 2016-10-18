@@ -88,7 +88,7 @@ export default Ember.Component.extend({
     return this.getDepartmentIds(this.get('item.selectedInstitution'));
   }),
 
-  nonSelectedValidDepartmentsSuggestions: Ember.computed('validDepartmentSuggestions', 'selectedDepartmentIds', function() {
+  nonSelectedValidDepartmentSuggestions: Ember.computed('validDepartmentSuggestions', 'selectedDepartmentIds', function() {
     let selected_department_ids = this.get('selectedDepartmentIds');
     if (Ember.isPresent(selected_department_ids)) {
       return this.get('validDepartmentSuggestions').filter((suggestion) => {

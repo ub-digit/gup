@@ -135,12 +135,12 @@
                 }}
               </div>
             </div>
-            {{#if nonSelectedValidDepartmentsSuggestions}}
+            {{#if nonSelectedValidDepartmentSuggestions}}
             <div class="row">
               <div class="col-xs-7 col-xs-offset-5">
                 <label>{{t 'components.authorRow.suggestedDepartments.label'}}</label>
                   <ul class="list-unstyled">
-                  {{#each nonSelectedValidDepartmentsSuggestions as |suggestion|}}
+                  {{#each nonSelectedValidDepartmentSuggestions as |suggestion|}}
                     <li>
                       <button class="btn btn-link" {{action 'addInstitution' suggestion.department}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
                     </li>
