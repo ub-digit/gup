@@ -193,7 +193,7 @@ export default {
         person: "Person",
         select_person: "Välj person",
         ref_value: "Refereegranskad",
-        groupingHeader: 'Gruppera',
+        groupingHeader: 'Ordna efter (gruppering)',
         clearBtn: 'Rensa',
       },
       manage: {
