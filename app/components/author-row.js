@@ -78,9 +78,11 @@ export default Ember.Component.extend({
       return Promise.resolve();
     });
   },
+
   nonSelectedDepartmentSuggestions: Ember.computed('departmentSuggestions.@each.selected', function() {
     return this.get('departmentSuggestions').filterBy('selected', false);
   }),
+
   // Used to signal select2-adjusted component to set a default query string
   setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
     return Ember.isPresent(this.get('item.importedAuthorName'));
@@ -122,6 +124,10 @@ export default Ember.Component.extend({
         var departments = [];
         if (Ember.isArray(doc.departments_id)) {
           departments = doc.departments_id.map((department_id, index) => {
+            if(!doc['departments_end_year'] && doc['departments_end_year'][index]) {
+              console.log('wtf');
+              console.dir(doc);
+            }
             return {
               id: department_id,
               name: doc['departments_name_' + locale][index],

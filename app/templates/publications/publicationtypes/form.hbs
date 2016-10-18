@@ -2,7 +2,7 @@
   {{partial 'publications/publicationtypes/selector'}}
 {{else}}
   {{#if isSelectedPublicationValid}}
-    <label>{{t 'publications.publicationtypes.form.publicationType'}}</label> 
+    <label>{{t 'publications.publicationtypes.form.publicationType'}}</label>
     <div>{{getPublicationTypeObject.name}}<button class="btn btn-link" {{action 'resetSelectedPublicationType'}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{t 'publications.publicationtypes.form.changePublicationTypeLink'}}</button>
     </div>
   {{/if}}
@@ -42,7 +42,7 @@
   </div>
 
   {{#if authorComponentIsVisible}}
-    {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=institutions defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+    {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
   {{/if}}
 
   <hr/>

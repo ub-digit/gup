@@ -75,17 +75,30 @@ export default Ember.Controller.extend({
     });
   }),
 
-  //Update department list depending on given publication year
-  updateDepartmentList: Ember.observer('publication.pubyear', function(){
-    // Check if value is a valid year
-    let year = this.get('publication.pubyear');
-    if (isNaN(year) || year > 2100 || year < 1000){
-      return;
+  publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
+    var validYearRe = /\d{4}/;
+    function validYear(year) {
+      return validYearRe.test(year);
     }
-    this.store.find('department', {year: year}).then((response) => {
-      this.set('institutions', response);
-    }, (reason) => {
-      //TODO: handle?
+    var publicationYear = parseInt(this.get('publication.pubyear'));
+    // If no valid year, return all departments
+    // (this may not be a good idea)
+    if (!validYear(publicationYear.toString())) {
+      return this.get('institutions');
+    }
+    return this.get('institutions').filter(function(department) {
+      // TODO: Warning if wrong type?
+      // TODO: This is perhaps not the place to check types,
+      // assume correct types?
+      return (
+        Ember.isBlank(department.start_year) ||
+        Ember.typeOf(department.start_year) !== 'number' ||
+        department.start_year <= publicationYear
+      ) && (
+        Ember.isBlank(department.end_year) ||
+        Ember.typeOf(department.end_year) !== 'number' ||
+        department.end_year >= publicationYear
+      );
     });
   }),
   //TODO: what is this in this context!?

@@ -92,11 +92,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       // This needs to be reset if no suggestion was found, so that any previous suggestion is removed
       controller.set('suggestedPublicationType', null);
     }
-    
     controller.set("manageController.isNavVisible", false);
   },
   exit: function() {
     var controller = this.get('controller');
+    //TODO: institutions?
     controller.set('selectedPublicationType', null);
     controller.set('authorArr', []);
     controller.set('mayBecomeSelectedPublicationType', null);
