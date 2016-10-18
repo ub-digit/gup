@@ -5,8 +5,8 @@ export default Ember.Controller.extend({
     showMessage: function(type, msg) {
       this.send('setMsgHeader', type, msg);
 		},
-		refreshReviewCount: function() {
-			this.send('refreshUserdata');
-		}
+	refreshReviewCount: function() {
+		this.send('refreshUserdata');
+	}
   }
 });

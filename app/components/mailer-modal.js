@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
   tagName: '',
 
   didRender() {
@@ -10,6 +11,8 @@ export default Ember.Component.extend({
       that.set("hasSuccess", null);
     })
   },
+
+  setMsgHeaderAction: 'setMessage',
 
   actions: {
     sendMail: function(){
@@ -22,7 +25,9 @@ export default Ember.Component.extend({
       var successHandler = function(model) {
         that.set("hasSuccess", true);
         that.set("message", '');
-      };
+        Ember.$('#mailerModal').modal('hide');   
+        that.sendAction("setMsgHeaderAction", 'success', that.get("i18n").t('components.mailerModal.successMessage'));     
+      }
       var errorHandler = function(model) {
         that.set("error", model.error);
       };

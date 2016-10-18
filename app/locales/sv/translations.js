@@ -51,8 +51,8 @@ export default {
       }
     },
     mailerModal: {
-      report: 'Rapportera',
-      send: 'Skicka rapport',
+      report: 'GUP-support',
+      send: 'Skicka',
       dismiss: 'Avbryt',
       message: 'Meddelande',
       successMessage: 'Meddelandet skickades.',
@@ -322,6 +322,8 @@ export default {
       review: {
         title: "Granskning",
         youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
+
+
 
       },
       biblreview: {

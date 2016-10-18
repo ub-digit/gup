@@ -69,7 +69,12 @@ export default Ember.Component.extend({
 
   }),
 
+
   actions: {
+
+    setMessage: function(type, msg) {
+        this.send('setMsgHeader', type, msg);
+    },
 
     approve: function(item) {
       var that = this;
