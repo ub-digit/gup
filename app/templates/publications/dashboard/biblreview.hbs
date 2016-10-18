@@ -8,7 +8,7 @@
 
         {{#x-select value=faculty class="form-control"}}
           {{#x-option}}{{t 'publications.dashboard.biblreview.selectFacultyPrompt'}}{{/x-option}}
-          {{#each publicationsController.faculties as |selectValue|}}
+          {{#each faculties as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
@@ -21,7 +21,7 @@
 
         {{#x-select value=pubtype class="form-control"}}
           {{#x-option}}{{t 'publications.dashboard.biblreview.selectPublicationTypePrompt'}}{{/x-option}}
-          {{#each publicationsController.publicationTypes as |selectValue|}}
+          {{#each pubtypes as |selectValue|}}
             {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
@@ -46,7 +46,7 @@
         {{/each}}
       </ul>
       {{else}}
-        {{t 'text.youHaveNoPublicationsForReview'}}
+        {{t 'publications.dashboard.biblreview.noPublicationsForReview'}}
       {{/if}}
     </div>
   </div>

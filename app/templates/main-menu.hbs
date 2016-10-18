@@ -33,7 +33,7 @@
                 <li title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
               {{/if}}
               {{#if session.data.authenticated.can_biblreview}}
-                <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
+                <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview' (query-params page='1' pubyear='0' pubtype=null faculty=null only_delayed='false')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
               {{/if}}
               {{#if session.data.authenticated.can_administrate}}
                 <li title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
@@ -46,7 +46,7 @@
             <li class="visible-lg" title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
           {{/if}}
           {{#if session.data.authenticated.can_biblreview}}
-            <li class="visible-lg" title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview'  (query-params page='1')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
+            <li class="visible-lg" title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview' (query-params page='1' pubyear='0' pubtype=null faculty=null only_delayed='false')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
           {{/if}}
           {{#if session.data.authenticated.can_administrate}}
             <li class="visible-lg" title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
