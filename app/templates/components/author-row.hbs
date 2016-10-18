@@ -125,25 +125,22 @@
                 </div>
                 <label>{{t 'components.authorRow.selectInstitutions.label'}}</label>
                 {{select2-adjusted-sortable
-                content=institutions
-                optionLabelPath="name"
-                value=item.selectedInstitution
-                placeholder=(t 'components.authorRow.selectInstitutions.placeholder')
-                allowClear=true
-                multiple=true
-                id=item.id
+                  content=institutions
+                  optionLabelPath="name"
+                  value=item.selectedInstitution
+                  placeholder=(t 'components.authorRow.selectInstitutions.placeholder')
+                  allowClear=true
+                  multiple=true
+                  id=item.id
                 }}
-                {{#each item.selectedAuthor.affiliations as |affiliation|}}
-                  <a href="#" {{action 'addInstitution' affiliation}}> {{affiliation.name}}</a>
-                {{/each}}
               </div>
             </div>
-            {{#if nonSelectedDepartmentSuggestions}}
+            {{#if nonSelectedValidDepartmentsSuggestions}}
             <div class="row">
               <div class="col-xs-7 col-xs-offset-5">
                 <label>{{t 'components.authorRow.suggestedDepartments.label'}}</label>
                   <ul class="list-unstyled">
-                  {{#each nonSelectedDepartmentSuggestions as |suggestion|}}
+                  {{#each nonSelectedValidDepartmentsSuggestions as |suggestion|}}
                     <li>
                       <button class="btn btn-link" {{action 'addInstitution' suggestion.department}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
                     </li>

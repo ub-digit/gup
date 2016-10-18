@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   errors: null,
-  departmentSuggestions: Ember.A([]),
   /*
   resetForm: function() {
     if (this.get("item.newAuthorForm")) {
@@ -18,31 +17,6 @@ export default Ember.Component.extend({
   },
   */
   init : function() {
-    var setSuggestionStatuses = () => {
-      let selected_ids = this.get('item.selectedInstitution').mapBy('id');
-      this.get('departmentSuggestions').forEach((suggestion) => {
-        suggestion.set('selected', selected_ids.indexOf(suggestion.get('department').id) !== -1);
-      });
-    };
-    var setSuggestions = () => {
-      let author_departments = this.get('item.selectedAuthor.departments');
-      if (Ember.isArray(author_departments)) {
-        this.set('departmentSuggestions', author_departments.map((department) => {
-          let suggestion = Ember.Object.create(department);
-          //TODO: Object cloned or not?
-          suggestion.department = department;
-          return suggestion;
-        }));
-      }
-      else {
-        this.set('departmentSuggestions', Ember.A([]));
-      }
-      // Also set selection statuses!
-      setSuggestionStatuses();
-    };
-    this.addObserver('item.selectedAuthor', setSuggestions);
-    this.addObserver('item.selectedInstitution', setSuggestionStatuses);
-
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise
     this.set('createAuthor', (item) => {
@@ -78,7 +52,38 @@ export default Ember.Component.extend({
       return Promise.resolve();
     });
   },
-
+  validDepartmentSuggestions: Ember.computed('item.selectedAuthor', 'institutions.[]', function() {
+    let author_departments = this.get('item.selectedAuthor.departments');
+    if (Ember.isArray(author_departments)) {
+      // Create array keyed by institution id for faster lookup
+      let department_ids = this.get('institutions').reduce(function(result, department) {
+        result[department.id] = null;
+        return result;
+      }, []);
+      return author_departments.filter((department) => {
+        // Filter out departments not present in selectable institutions
+        return department_ids[department.id] !== undefined;
+      }).map((department) => {
+        return Ember.Object.create({
+          'name': department.name,
+          'department': department
+        });
+      });
+    }
+    return Ember.A([]);
+  }),
+  nonSelectedValidDepartmentsSuggestions: Ember.computed('validDepartmentSuggestions', 'item.selectedInstitution.[]', function() {
+    if (Ember.isPresent(this.get('item.selectedInstitution'))) {
+      let selected_department_ids = this.get('item.selectedInstitution').reduce(function(result, department) {
+        result[parseInt(department.id)] = null;
+        return result;
+      }, []);
+      return this.get('validDepartmentSuggestions').filter((suggestion) => {
+        return selected_department_ids[suggestion.get('department').id] === undefined;
+      });
+    }
+    return this.get('validDepartmentSuggestions');
+  }),
   nonSelectedDepartmentSuggestions: Ember.computed('departmentSuggestions.@each.selected', function() {
     return this.get('departmentSuggestions').filterBy('selected', false);
   }),
@@ -124,15 +129,25 @@ export default Ember.Component.extend({
         var departments = [];
         if (Ember.isArray(doc.departments_id)) {
           departments = doc.departments_id.map((department_id, index) => {
-            if(!doc['departments_end_year'] && doc['departments_end_year'][index]) {
-              console.log('wtf');
+            //TODO: Remove this
+            if(
+                !doc['departments_end_year'] ||
+                !doc['departments_end_year'][index] ||
+                !doc['departments_start_year'] ||
+                !doc['departments_start_year'][index] ||
+                !doc['departments_name_' + locale] ||
+                !doc['departments_name_' + locale][index]
+              ) {
               console.dir(doc);
+              throw "Invalid department format for author";
             }
+            let start_year = doc['departments_start_year'][index];
+            let end_year = doc['departments_end_year'][index];
             return {
               id: department_id,
               name: doc['departments_name_' + locale][index],
-              start_year: doc['departments_start_year'][index],
-              end_year: doc['departments_end_year'][index],
+              'start_year': start_year !== -1 ? start_year : null,
+              'end_year': end_year !== -1 ? end_year : null,
             };
           });
         }
@@ -146,7 +161,11 @@ export default Ember.Component.extend({
           let year = item.year_of_birth;
           let id = [item.xaccount, item.orcid].compact().join(', ');
           item.presentation_string = [name, year].compact().join(', ') + (id ? ' ' + ['(', id, ')'].join('') : '');
-          item.departments = zipDepartments(item, this.get('i18n.locale'));
+          //TODO: This is perhaps a little bit of a micro-opmtimization overkill
+          // but instead of extracting departments greedily here
+          // (there can be quite a lot of authors)
+          // get departments lazily through getter function
+          Object.defineProperty(item, 'departments', { get: () => { return zipDepartments(item, this.get('i18n.locale')); } });
           return item;
         });
         if (this.get('queryAuthorsResult')) {
