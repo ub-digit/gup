@@ -342,6 +342,7 @@ export default {
         comment: 'Kommentar',
         btnDelay: 'Fördröj',
         showDelayedOnly: 'Visa endast fördröjda',
+        noPublicationsForReview: 'Inga publikationer att granska',
       },
       touched: {
         title: "Mina redigerade publikationer",
