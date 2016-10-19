@@ -4,12 +4,11 @@ export default Ember.Component.extend({
 
   isEditing: false,
 
-  initComponent: Ember.on('init', function(){
+  initComponent: Ember.on('init', function() {
     this.set('filterString', '');
   }),
 
-
-  updateCategories: Ember.observer('filterString', function(){
+  updateCategories: Ember.observer('filterString', function() {
     var that = this;
 
     this.store.find('category', {query: this.get('filterString')}).then(function(response){
@@ -18,9 +17,8 @@ export default Ember.Component.extend({
     function(error){
       //console.log('error', error);
     }
-  );
-}),
-
+    );
+  }),
 
   actions: {
     removeSelectedCategory: function(id){
@@ -28,7 +26,6 @@ export default Ember.Component.extend({
     },
 
     addSelectedCategory: function(id) {
-
       // Check if category already exists in list
       if (this.get('categoryList').indexOf(id) === -1){
         this.get('categoryList').pushObject(id);
@@ -39,8 +36,5 @@ export default Ember.Component.extend({
     clearSearch: function() {
       this.set('filterString', '');
     }
-
-
   }
-
 });
