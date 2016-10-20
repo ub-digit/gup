@@ -95,6 +95,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     }
     controller.set("manageController.isNavVisible", false);
   },
+  resetController: function(controller, isExiting, transition) {
+    if (isExiting) {
+      // @TODO: replace exit-hook with this?
+    }
+  },
   exit: function() {
     var controller = this.get('controller');
     //TODO: institutions?
@@ -103,6 +108,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     controller.set('mayBecomeSelectedPublicationType', null);
     controller.set('mayBecomeOldSelectedPublicationType', null);
     controller.set('errors', null);
+    //TODO: temporary fix, this sucks:
+    controller.set('categoryObjectsList', undefined);
   },
   actions: {
     willTransition: function() {
