@@ -12,7 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController: function(controller, model) {
-    this._super();
+    this._super(...arguments);
 
     controller.set('selectedSource', null);
     controller.set('sourceId', null);
