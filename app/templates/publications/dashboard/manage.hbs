@@ -1,20 +1,33 @@
 {{#if isNavVisible }}
-	<div class="row">
-		<div class="col-xs-12">
-	        {{#link-to 'publications.dashboard.manage.new' class="btn btn-primary pull-right" id="register-new-link"}}{{t 'publications.dashboard.manage._actions.registerNew'}} <i class="fa fa-plus" aria-hidden="true"></i>{{/link-to}}
-		</div>
-	</div>
-	<div class="row">
-	  <div class="col-xs-12">
-	    <nav id="sub-nav">
-	      <ul class="nav">
-	        <li title={{t 'publications.dashboard.manage._subnav.published'}}>{{#link-to 'publications.dashboard.manage.published' (query-params page='1')}}{{t 'publications.dashboard.manage._subnav.published'}}{{/link-to}}</li>
-	        <li title={{t 'publications.dashboard.manage._subnav.drafts'}}>{{#link-to 'publications.dashboard.manage.drafts' (query-params page='1')}}   {{t 'publications.dashboard.manage._subnav.drafts'}}{{/link-to}}</li>
-			<li title={{t 'publications.dashboard.manage._subnav.search'}}>{{#link-to 'publications.dashboard.manage.search'}}{{t 'publications.dashboard.manage._subnav.search'}}{{/link-to}}</li>
-	      </ul>
-	    </nav>
-	  </div>
-	</div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{#link-to 'publications.dashboard.manage.new' class="btn btn-primary pull-right" id="register-new-link"}}
+        {{t 'publications.dashboard.manage._actions.registerNew'}} <i class="fa fa-plus" aria-hidden="true"></i>
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <nav id="sub-nav">
+        <ul class="nav">
+          <li title={{t 'publications.dashboard.manage._subnav.published'}}>
+            {{#link-to 'publications.dashboard.manage.published' (query-params page='1')}}
+              {{t 'publications.dashboard.manage._subnav.published'}}
+            {{/link-to}}
+          </li>
+          <li title={{t 'publications.dashboard.manage._subnav.drafts'}}>
+            {{#link-to 'publications.dashboard.manage.drafts' (query-params page='1')}}
+              {{t 'publications.dashboard.manage._subnav.drafts'}}
+            {{/link-to}}
+          </li>
+          <li title={{t 'publications.dashboard.manage._subnav.search'}}>
+            {{#link-to 'publications.dashboard.manage.search'}}
+              {{t 'publications.dashboard.manage._subnav.search'}}
+            {{/link-to}}
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 {{/if}}
-
 {{outlet}}
