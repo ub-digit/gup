@@ -10,13 +10,12 @@ export default {
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
       mandatory: '(obligatoriskt)',
-
       authorHeaderTextStrong: {
-            'default': 'Författare',
-            'publication_edited-book': 'Redaktör',
-            'publication_journal-issue': 'Redaktör',
-            'conference_proceeding': 'Redaktör',
-            'publication_textcritical-edition': 'Redaktör'
+        'default': 'Författare',
+        'publication_edited-book': 'Redaktör',
+        'publication_journal-issue': 'Redaktör',
+        'conference_proceeding': 'Redaktör',
+        'publication_textcritical-edition': 'Redaktör'
       },
     },
     publicationFieldFiles: {
@@ -48,7 +47,7 @@ export default {
       publicationType: 'Publikationstyp',
       publicationIdentifier: {
         label: 'Identifikatorer',
-      }
+      },
     },
     mailerModal: {
       report: 'GUP-support',
@@ -77,7 +76,6 @@ export default {
     fieldComponent: {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
-
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',
@@ -112,7 +110,7 @@ export default {
         btnCreateNew: 'Skapa ny',
       },
       suggestedDepartments: {
-          label: 'Förslag på instutitioner'
+        label: 'Förslag på instutitioner'
       },
       selectInstitutions: {
         label: 'Välj institutioner',
@@ -141,7 +139,7 @@ export default {
       modalSave: 'Spara',
     },
     categoryItem: {
-    }
+    },
   },
   header: {
   },
@@ -165,9 +163,7 @@ export default {
     reports: 'Statistik',
     lang: 'English',
     logOut: 'Logga ut',
-    
     idMissing: 'Ogiltigt ID'
-
   },
   application: {
     title: "GUP",
@@ -206,8 +202,6 @@ export default {
         _actions: {
           registerNew: 'Registrera ny',
         },
-
-
         drafts: {
           title: "Mina utkast",
           numberOfHits: 'Antal träffar',
@@ -230,7 +224,6 @@ export default {
             saveDraftError: 'Posten kunde inte sparas som utkast.',
             deleteDraftSuccess: 'Utkast borttaget.',
             deleteDraftError: 'Utkastet kunde inte tas bort.',
- 
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
             approveSuccess: 'Posten har godkänts.',
@@ -240,7 +233,6 @@ export default {
             btnBack: 'Tillbaka',
             reviewModeInfo: 'Du tittar på posten i granskningsläge.',
             reviewModeCancel: 'Tillbaka till visningsläge. ',
-
             deletePublicationSuccess: 'Publikationen borttagen.',
             deletePublicationError: 'Publikationen kunde inte tas bort.',
             approvePublicationSuccess: 'Publikationen godkänd.',
@@ -255,9 +247,7 @@ export default {
               viewMode: 'Visningsläge',
               delay: 'Fördröj',
               biblreview: 'Markera som granskad',
-              delay: 'Fördröj',
               compare: 'Jämför versioner'
-
             },
             meta: {
               publicationType: 'Publikationstyp',
@@ -272,8 +262,8 @@ export default {
               reviewPostponedUntil: 'Fördröjd till',
               delayComment: 'Kommentar',
               by: 'av',
-            }
-          }
+            },
+          },
         },
         published: {
           title: "Mina publikationer",
@@ -294,7 +284,6 @@ export default {
           importPub: {
             header: 'Importera',
             ingress: 'Använd ett ID för att importera publikationsuppgifter från en extern källa, tex PubMed, Scopus eller Libris.',
-
             form: {
               selectImportSourcePrompt: 'Välj typ av ID',
               inputId: {
@@ -307,26 +296,21 @@ export default {
               title: 'Titel:',
               author: 'Författare:',
               btnImport: 'Importera',
-                  duplicateMessage: 'Posten verkar redan vara publicerad!'
-            }
+              duplicateMessage: 'Posten verkar redan vara publicerad!'
+            },
           },
           manualPub: {
             header: 'Har du ingen källa att importera från?',
             ingress: 'Skapa en ny publikation och mata in informationen manuellt.',
             btnNew: 'Skapa ny',
             linkNew: 'skapa ny författare',
-                addAffiliation: "Ändra affiliering"
-          }
+            addAffiliation: "Ändra affiliering"
+          },
         },
-
-
       },
       review: {
         title: "Granskning",
         youHaveNoPublicationsForReview: 'Du har inga publikationer att granska',
-
-
-
       },
       biblreview: {
         title_page: "Bibliografisk granskning",
@@ -368,8 +352,6 @@ export default {
           artworks: 'Konstnärliga arbeten',
           other: 'Övrigt',
         },
-
-
       },
       form: {
         publicationType: 'Publikationstyp',
@@ -390,12 +372,11 @@ export default {
           publisher: {
             placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
           },
-        }
-       
-      }
+        }  
+      },
     },
     index: {
-    }
+    },
   },
   footer: {
   },
@@ -418,7 +399,6 @@ export default {
       name_en: 'Engelskt namn',
       start_year: 'Startår',
       end_year: 'Slutår',
-
       new: {
         title: "Skapa ny institution",
         btnBack: 'Tillbaka',
@@ -431,14 +411,13 @@ export default {
           startYear: 'Startår',
           endYear: 'Slutår',
           faculty: 'Fakultet',
-        }
+        },
       },
       index: {
         invalidYear: "Ogiltigt årtal",
         saveError: "Kunde inte spara"
       },
     },
-
     people: {
       title: "Administrera personer",
       id: 'Id',
@@ -478,13 +457,10 @@ export default {
             actions: {
               btnSave: 'Spara',
               btnCancel: 'Avbryt'
-            }
-
-          }
-
-      }
-    },
-
+            },
+          },
+        },
+      },
     },
     messages: {
       title: "Administrera meddelanden",
@@ -499,6 +475,6 @@ export default {
       deleted: 'Meddelandet har raderats',
       saveError: 'Kunde inte spara meddelandet',
       deleteError: 'Kunde inte radera meddelandet'
-    }
-  }
+    },
+  },
 };
