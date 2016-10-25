@@ -37,36 +37,28 @@ export default Ember.Controller.extend({
   selectableDepartments: Ember.computed('yearRangeDepartments', 'filter.{faculties}', function() {
     let departments = this.get('yearRangeDepartments');
 
-    //Temporary hack
-    // @FIXME: Replace select2 component with something sane to
-    // not have to deal with this
-
-    // Include current selection to avoid weirdness
-    if(Ember.isPresent(this.get('filter.departments'))) {
-      let selected_departments = this.get('filter.departments').forEach((department_id) => {
-        if (!departments.findBy('id', department_id)) {
-          departments.pushObject(this.get('departments').findBy('id', department_id));
-        }
-      });
-    }
-    // End of hack
-
     if (Ember.isPresent(this.get('filter.faculties'))) {
       let facultyId = this.get('filter.faculties');
       departments = departments.filter((item) => {
         return facultyId === item.faculty_id;
       });
     }
+
+    if (Ember.isPresent(this.get('filter.departments'))) {
+      let selectable_selected_departments = this.get('filter.departments').filter((department_id) => {
+        return departments.findBy('id', department_id);
+      });
+      //If one or more selected department no longer among selectable, set new valid filtered selection
+      if (this.get('filter.departments').length !== selectable_selected_departments.length) {
+        this.set('filter.departments', selectable_selected_departments);
+      }
+    }
     return departments;
   }),
 
-  selectableFaculties: Ember.computed('selectableDepartments', 'filter.departments', 'publicationsController.faculties', function() {
-    let facultyIds = Ember.isPresent(this.get('filter.departments')) ?
-      this.get('filter.departments').map((department_id) => {
-        return this.get('selectableDepartments').findBy('id', department_id).faculty_id;
-      }) :
-      // TODO: this could be computed prop for increased performance
-      this.get('yearRangeDepartments').reduce((result, department) => {
+  selectableFaculties: Ember.computed('yearRangeDepartments', 'publicationsController.faculties', function() {
+    // TODO: this could be computed prop for increased performance
+    let facultyIds = this.get('yearRangeDepartments').reduce((result, department) => {
         result[department.faculty_id] = department.faculty_id;
         return result;
       }, []);
