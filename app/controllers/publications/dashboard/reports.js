@@ -65,16 +65,16 @@ export default Ember.Controller.extend({
       this.get('filter.departments').map((department_id) => {
         return this.get('selectableDepartments').findBy('id', department_id).faculty_id;
       }) :
-      this.get('selectableDepartments').reduce((result, department) => {
+      // TODO: this could be computed prop for increased performance
+      this.get('yearRangeDepartments').reduce((result, department) => {
         result[department.faculty_id] = department.faculty_id;
         return result;
       }, []);
     let faculties = this.get('publicationsController.faculties');
-    let tmp = facultyIds.map(function(id) {
+    return facultyIds.map(function(id) {
       //TODO: this could be made much faster by indexing faculties by id instead
       return faculties.findBy('id', id);
     }); //.compact()?
-    return tmp;
   }),
 
   columnArray: Ember.computed('columns.{year,faculty,department,publication_type,ref_value}', function() {
