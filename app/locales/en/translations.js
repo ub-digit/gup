@@ -198,6 +198,7 @@ export default {
           published: 'My publications',
           drafts: 'My drafts',
           search: 'Search',
+          file_imports: 'Uploaded lists',
         },
         _actions: {
           registerNew: 'New entry',
