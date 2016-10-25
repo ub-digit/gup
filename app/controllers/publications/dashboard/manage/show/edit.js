@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { validYear } from 'gup/lib/validations';
 
 export default Ember.Controller.extend({
   publications: Ember.inject.controller(),
@@ -76,10 +77,6 @@ export default Ember.Controller.extend({
   }),
 
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
-    var validYearRe = /\d{4}/;
-    function validYear(year) {
-      return validYearRe.test(year);
-    }
     var publicationYear = parseInt(this.get('publication.pubyear'));
     // If no valid year, return all departments
     // (this may not be a good idea)

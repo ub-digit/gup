@@ -19,7 +19,7 @@
         <label for="faculty-filter-select">{{t 'publications.dashboard.reports.faculty'}}</label>
         {{#x-select value=filter.faculties class="form-control" id="faculty-filter-select"}}
         {{#x-option}}{{t 'publications.dashboard.reports.select_faculty'}}{{/x-option}}
-          {{#each publicationsController.faculties as |selectValue|}}
+          {{#each selectableFaculties as |selectValue|}}
           {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
           {{/each}}
         {{/x-select}}
@@ -28,7 +28,7 @@
         <label for="department-filter-select">{{t 'publications.dashboard.reports.department'}}</label>
         {{select2-adjusted
         id="department-filter-select"
-        content=departments
+        content=selectableDepartments
         optionLabelPath="name"
         optionValuePath="id"
         value=filter.departments
