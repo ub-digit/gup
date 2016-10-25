@@ -23,6 +23,7 @@ Router.map(function() {
         this.route('show', {path: 'show/:id'}, function() {
           this.route('edit');
         });
+        this.route('file_imports');
       });
       this.route("touched");
       this.route('review');
