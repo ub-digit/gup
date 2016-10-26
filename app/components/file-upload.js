@@ -5,22 +5,24 @@ import EmberUploader from 'ember-uploader';
 export default EmberUploader.FileField.extend({
   session: Ember.inject.service('session'),
   multiple: false,
-  firstQueryOfProgress: true, 
+  firstQueryOfProgress: true,
   didInsertElement() {
-    Ember.$("#gup-progress-bar").hide();
+    Ember.$('#gup-progress-bar').hide();
   },
 
+  //didUploadAsset
+
   filesDidChange: (function(files) {
-    this.set("firstQueryOfProgress", true);
+    this.set('firstQueryOfProgress', true);
     var that = this;
-    if(Ember.isEmpty(files)) {
+    if (Ember.isEmpty(files)) {
       return;
     }
 
     var uploadUrl = ENV.APP.fileURL;
-    var token = this.get("session.data.authenticated.token");
+    var token = this.get('session.data.authenticated.token');
 
-    if(!token) { return; }
+    if (!token) { return; }
 
     var preFilters = Ember.$.Callbacks();
 
@@ -39,31 +41,33 @@ export default EmberUploader.FileField.extend({
     uploader.on('progress', e => {
       // Handle progress changes
       // Use `e.percent` to get percentage
-      if (this.get("firstQueryOfProgress")) {
-        Ember.$("#gup-progress-bar").show();
+      if (this.get('firstQueryOfProgress')) {
+        Ember.$('#gup-progress-bar').show();
       }
-      this.set("firstQueryOfProgress", false);
-      that.set("fileUploadProgress", e.percent);
+      this.set('firstQueryOfProgress', false);
+      that.set('fileUploadProgress', e.percent);
     });
 
     uploader.on('didUpload', response => {
-      that.set("fileUploadError", null);
-      that.set("assetData", response.asset_data);
-      that.set('value', '');
+      this.set('fileUploadError', null);
+      this.set('assetData', response.asset_data);
+      this.sendAction('didUploadAsset', response.asset_data);
+      this.set('value', ''); //??
       preFilters.remove(authPrefilter);
       Ember.$('#fileUploadModal').modal('show');
     });
 
     uploader.on('didError', (jqXHR, textStatus, errorThrown) => {
       let errorMsg = jqXHR.responseJSON.error.msg;
-      Ember.$("#gup-progress-bar").hide();
-      that.set("fileUploadError", errorMsg);
+      Ember.$('#gup-progress-bar').hide();
+      that.set('fileUploadError', errorMsg);
     });
 
     if (!Ember.isEmpty(files)) {
       Ember.$.ajaxPrefilter(preFilters.fire);
       preFilters.add(authPrefilter);
-      uploader.upload(files[0], {publication_id: this.get("publicationID")});
+      let data = Ember.isPresent(this.get('uploadExtraData')) ? this.get('uploadExtraData') : {}; //Hmm??
+      uploader.upload(files[0], data);
     }
   })
 });

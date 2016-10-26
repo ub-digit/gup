@@ -10,7 +10,7 @@
       <div class="col-xs-8 col-xs-offset-2">
         <div class="alert alert-info">
           {{t 'publications.dashboard.manage.show.index.reviewModeInfo'}} <a href="javascript.void(0)" {{action 'toggleViewMode'}}>{{t 'publications.dashboard.manage.show.index.reviewModeCancel'}}<i class="fa fa-compress"></i></a>
-        </div>  
+        </div>
       </div>
     </div>
   {{/if}}
@@ -22,7 +22,7 @@
       <nav id="publication-toolbar" class="pull-right">
         <ul class="list-inline">
           <li>
-            {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError publicationID=model.id assetData=assetData}}
+            {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError assetData=assetData uploadExtraData=(hash publication_id=model.id)}}
 
             <label for="gup-input-upload"><i class="fa fa-paperclip" aria-hidden="true"></i> {{t 'publications.dashboard.manage.show.index._subnav.attachFile'}} </label>
             {{file-upload-widget publication=model assetData=assetData fileUploadProgress=fileUploadProgress}}

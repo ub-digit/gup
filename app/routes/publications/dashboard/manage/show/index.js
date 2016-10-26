@@ -2,22 +2,19 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-
   i18n: Ember.inject.service(),
   titleToken: function(model) {
     return "Publikation" + " - " + model.model.id;
   },
-
-
   returnTo: null,
   fileUploadProgress: 0,
   fileUploadError: null, 
   assetData: null,
 
-//  queryParams: {
-//    other_version: { refreshModel: true }
-//  },
-  
+  //  queryParams: {
+  //    other_version: { refreshModel: true }
+  //  },
+
   model: function(params, transition) {
     var model = this.modelFor('publications.dashboard.manage.show');
     if(params.other_version) {
@@ -26,7 +23,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         other: this.store.find('publication', model.id, {version_id: params.other_version}),
       });
     } else {
-        return Ember.RSVP.hash({model: model});
+      return Ember.RSVP.hash({model: model});
     }
   },
   setupController: function(controller, model) {
@@ -52,7 +49,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
   actions: {
-    
+
     fetchVersion: function(publication_id, version_id) {
       var controller = this.get('controller');
 

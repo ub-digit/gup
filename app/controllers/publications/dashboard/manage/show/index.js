@@ -3,19 +3,18 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
   session: Ember.inject.service(),
-  applicationController: Ember.inject.controller("application"),
-  publicationsController: Ember.inject.controller("publications"),
-  publicationsShowController: Ember.inject.controller("publications/dashboard/manage/show"),
+  applicationController: Ember.inject.controller('application'),
+  publicationsController: Ember.inject.controller('publications'),
+  publicationsShowController: Ember.inject.controller('publications/dashboard/manage/show'),
   isExtendedViewMode: false,
   queryParams: ['other_version'],
   other_version: null,
 
   error: Ember.computed('model.error', function(){
     if (this.get('model.error')) {
-        return true;
+      return true;
     }
     return false;
-
   }),
 
   deletePublication: function(id) {
@@ -46,7 +45,6 @@ export default Ember.Controller.extend({
   //  return (is_reviewer && (view_mode === 'advanced'));
   //}),
 
-
   getPublicationTypeObject: Ember.computed('model.publication_type', function(){
     return this.get("publicationsController.publicationTypes").findBy("id", this.get("model.publication_type_id"));
   }),
@@ -57,7 +55,6 @@ export default Ember.Controller.extend({
       if (!target) {
         window.history.back();
         return;
-
       }
       this.transitionToRoute(target);
     },
