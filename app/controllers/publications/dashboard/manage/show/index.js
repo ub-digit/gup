@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../../../../../config/environment'; //TODO: Sane way of getting path
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
@@ -9,6 +10,14 @@ export default Ember.Controller.extend({
   isExtendedViewMode: false,
   queryParams: ['other_version'],
   other_version: null,
+  //AssetData
+  assetDataErrors: Ember.A([]),
+  assetDataBaseUrl: ENV.APP.fileURL,
+  assetDataLicenceUrl: ENV.APP.licenceURL,
+  assetDataLicenceCode: ENV.APP.licenceCode,
+  assetDataIsAccepted: false,
+  assetDataIsEmbargo: false,
+  assetDataEmbargoDate: Date(),
 
   error: Ember.computed('model.error', function(){
     if (this.get('model.error')) {
@@ -49,7 +58,73 @@ export default Ember.Controller.extend({
     return this.get("publicationsController.publicationTypes").findBy("id", this.get("model.publication_type_id"));
   }),
 
+  fileUrl: Ember.computed('assetDataBaseUrl', 'assetData', function() {
+    const assetData = this.get('assetData');
+    if (assetData) {
+      const token = this.get('session.data.authenticated.token');
+      return this.get('assetDataBaseUrl')+
+        '/'+assetData.id+
+        '?tmp_token='+assetData.tmp_token+
+        '&token='+token;
+    } else {
+      return null;
+    }
+  }),
+
+  hasAssetDataErrors: Ember.computed('assetDataErrors', function() {
+    return Ember.isPresent(this.get('assetDataErrors'));
+  }),
+
   actions: {
+    didUploadAssetDataFile: function(response) {
+      if('asset_data' in response) {
+        this.set('assetData', response.asset_data);
+      }
+    },
+    assetDataFileUploadDidErr: function(errorResponse) {
+      this.set('assetData', null);
+    },
+    didSaveAssetData: function(success, error) {
+      if (this.get('assetDataIsEmbargo')) {
+        this.set('assetData.visible_after', this.get('assetDataEmbargoDate'));
+      }
+      else {
+        this.set('assetData.visible_after', null);
+      }
+      if(this.get('assetDataIsAccepted')) {
+        this.set('assetData.accepted', this.get('assetDataLicenceCode'));
+      } else {
+        this.set('assetData.accepted', null);
+      }
+      this.store.save('asset_data', this.get('assetData')).then((model) => {
+        //TODO: can remove this?
+        if (model.error) {
+          error("Du måste godkänna avtalet nedan");
+        }
+        else {
+          //TODO: verify this is really used somewhere, can't find it
+          //this.sendAction('refreshModel', that.get('publication.id'));
+          this.send('setMsgHeader', 'success', 'Filen sparades');
+          success();
+        }
+      }, (errorResponse) => {
+        if(errorResponse.error) {
+          error(errorResponse.error.msg);
+        }
+        else {
+          //TODO: Handle backend crash error!
+        }
+      });
+    },
+    //TODO: better way?
+    didCancelAssetData : function() {
+      this.set('assetDataErrors', Ember.A([]));
+      this.set('assetDataIsAccepted', false);
+      this.set('assetDataIsEmbargo', false);
+      this.set('assetDataEmbargoDate', Date());
+      this.set('assetData', undefined);
+    },
+
     goBack: function() {
       var target = this.get('applicationController.currentList');
       if (!target) {

@@ -3,10 +3,13 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    'ember-bootstrap': {
+      'importBootstrapTheme': false,
+      'importBootstrapFont': false
+    }
     // Add options here
   });
 
-  
   //app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
   app.import('bower_components/jquery-ui/jquery-ui.min.js');
   app.import("bower_components/moment/min/moment.min.js");

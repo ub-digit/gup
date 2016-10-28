@@ -22,10 +22,48 @@
       <nav id="publication-toolbar" class="pull-right">
         <ul class="list-inline">
           <li>
-            {{file-upload id="gup-input-upload" class="gup-input-upload" fileUploadProgress=fileUploadProgress fileUploadError=fileUploadError assetData=assetData uploadExtraData=(hash publication_id=model.id)}}
-
-            <label for="gup-input-upload"><i class="fa fa-paperclip" aria-hidden="true"></i> {{t 'publications.dashboard.manage.show.index._subnav.attachFile'}} </label>
-            {{file-upload-widget publication=model assetData=assetData fileUploadProgress=fileUploadProgress}}
+            {{#gup-file-upload-widget
+              id="gup-file-publication-upload"
+              openModalLabel=(t 'publications.dashboard.manage.show.index._subnav.attachFile')
+              uploadExtraData=(hash publication_id=model.id)
+              uploadUrl=assetDataBaseUrl
+              didUploadFile=(action "didUploadAssetDataFile")
+              fileUploadDidErr=(action "assetDataFileUploadDidErr")
+              didSave=(action "didSaveAssetData")
+              didCancel=(action "didCancelAssetData")
+              errors=assetDataErrors
+              parentHasErrors=hasAssetDataErrors}}
+            {{#if assetData}}
+              <div class="form-group">
+                <label>{{t 'publications.dashboard.manage.show.index._subnav.checkFile'}}</label><br/>
+                <a target="_blank" href="{{fileUrl}}">{{assetData.name}}</a>
+              </div>
+              <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    {{input type="checkbox" name="asset-data-is-embargo" checked=assetDataIsEmbargo}}
+                    {{t 'publications.dashboard.manage.show.index._subnav.enterEmbargoDate'}}
+                  </label>
+                </div>
+              </div>
+              {{#if assetDataIsEmbargo }}
+                <div class="gup-embargo-datepicker">
+                  <label>
+                    {{t 'publications.dashboard.manage.show.index._subnav.showAfter'}}
+                    {{pikaday-input  class="form-control" value=assetDataEmbargoDate format="YYYY-MM-DD" onSelection=(action (mut assetDataEmbargoDate))}}
+                  </label>
+                </div>
+                {{/if}}
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      {{input type="checkbox" checked=assetDataIsAccepted}}
+                      Jag godkänner avtal | <a href="{{assetDataLicenceUrl}}" class="small" target="_blank">{{t 'publications.dashboard.manage.show.index._subnav.readAgreement'}}</a>
+                    </label>
+                  </div>
+                </div>
+              {{/if}}
+            {{/gup-file-upload-widget}}
           </li>
           <li>{{#link-to 'publications.dashboard.manage.show.edit' model }}<i class="fa fa-pencil"></i> {{t 'publications.dashboard.manage.show.index._subnav.edit'}} {{/link-to}}</li>
           {{#if session.data.authenticated.can_delete_published}}

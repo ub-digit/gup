@@ -1,5 +1,12 @@
 export default {
   components: {
+    fileUploadWidget: {
+      openModalLabel: 'Ladda upp fil',
+      modalTitle: 'Ladda upp ny fil',
+      chooseFileLabel: 'Välj fil',
+      abortFileSaveLabel: 'Avbryt',
+      saveFileLabel: 'Spara fil'
+    },
     publicationIdentifierBlock: {
       label: 'Identifikatorer',
       code: 'Typ',
@@ -130,14 +137,6 @@ export default {
     },
     debouncedInput: {
     },
-    fileUploadWidget: {
-      checkFile: 'Kontrollera fil',
-      enterEmbargoDate: 'Ange embargö',
-      showAfter: 'Visa offentligt först efter',
-      readAgreement: 'läs avtalet (nytt fönster)',
-      modalDismiss: 'Avbryt',
-      modalSave: 'Spara',
-    },
     categoryItem: {
     },
   },
@@ -242,6 +241,11 @@ export default {
             epubAheadOfPrintSince: 'E-pub ahead of print sedan: ',
             _subnav: {
               attachFile: 'Bifoga fil',
+              checkFile: 'Kontrollera fil',
+              enterEmbargoDate: 'Ange embargo',
+              showAfter: 'Visa offentligt först efter',
+              readAgreement: 'läs avtalet (nytt fönster)',
+
               edit: 'Redigera',
               delete: 'Radera',
               reviewMode: 'Granskningsläge',

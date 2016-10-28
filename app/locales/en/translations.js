@@ -1,5 +1,12 @@
 export default {
   components: {
+    fileUploadWidget: {
+      openModalLabel: 'Upload file',
+      modalTitle: 'Upload new file',
+      chooseFileLabel: 'Choose file',
+      abortFileSaveLabel: 'Cancel',
+      saveFileLabel: 'Save file'
+    },
     publicationIdentifierBlock: {
       label: 'Identifier',
       code: 'Type',
@@ -130,14 +137,6 @@ export default {
     },
     debouncedInput: {
     },
-    fileUploadWidget: {
-      checkFile: 'Check your uploaded file',
-      enterEmbargoDate: 'Enter an embargo date',
-      showAfter: 'Display file only after',
-      readAgreement: 'Read agreement (new window)',
-      modalDismiss: 'Dismiss',
-      modalSave: 'Save',
-    },
     categoryItem: {
     },
   },
@@ -242,6 +241,11 @@ export default {
             epubAheadOfPrintSince: 'E-pub ahead of print since: ',
             _subnav: {
               attachFile: 'Attach file',
+              checkFile: 'Check your uploaded file',
+              enterEmbargoDate: 'Enter an embargo date',
+              showAfter: 'Display file only after',
+              readAgreement: 'Read agreement (new window)',
+
               edit: 'Edit',
               delete: 'Delete',
               reviewMode: 'Review mode',
