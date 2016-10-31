@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   refreshModelAction: 'refreshModel',
   setMsgHeader: 'setMsgHeader',
   fileUploadProgress: 0,
-  parentHasErrors: false,
   errors: Ember.A([]),
   hasNoUploadedFile: true,
   fileLabel: null,
@@ -31,8 +30,8 @@ export default Ember.Component.extend({
       this.set('saveFileLabel', this.get('i18n').t('components.fileUploadWidget.saveFileLabel'));
     }
   },
-  hasError: Ember.computed('parentHasErrors', 'errors', function() {
-    return this.get('parentHasErrors') || Ember.isPresent(this.get('errors'));
+  hasError: Ember.computed('errors', function() {
+    return Ember.isPresent(this.get('errors'));
   }),
   chooseFileLabelOrFileLabel: Ember.computed('chooseFileLabel', 'fileLabel', function() {
     return Ember.isPresent(this.get('fileLabel')) ? this.get('fileLabel') : this.get('chooseFileLabel');
@@ -43,8 +42,7 @@ export default Ember.Component.extend({
       this.sendAction('didUploadFile', response);
     },
     fileUploadDidErr(errorResponse) {
-      //???
-      this.set('hasNoUploadedFile', true);
+      this.set('hasNoUploadedFile', true); //???
       this.sendAction('fileUploadDidErr', errorResponse);
     },
     fileDidChange(file) {
@@ -84,13 +82,13 @@ export default Ember.Component.extend({
       this.sendAction('didSave', success, error);
     },
     didCancel: function() {
-      this.set('hasNoUploadedFile', true); //TODO: !?!?
       //TODO: clean up state? Yes we should
       //@FIXME
       this.send('resetState');
       this.sendAction('didCancel');
     },
     resetState: function() {
+      this.set('hasNoUploadedFile', true); //TODO: !?!?
       this.get('resetFileUploadState')();
     }
   }
