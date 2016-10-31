@@ -103,8 +103,9 @@ export default Ember.Controller.extend({
         }
         else {
           //TODO: verify this is really used somewhere, can't find it
-          //this.sendAction('refreshModel', that.get('publication.id'));
           this.send('setMsgHeader', 'success', 'Filen sparades');
+          //this.send('refreshModel', this.get('publication.id'));
+          this.send('refreshModel');
           success();
         }
       }, (errorResponse) => {
