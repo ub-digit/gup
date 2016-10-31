@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   hasNoUploadedFile: true,
   fileLabel: null,
   isShowingUploadModal: false,
+  faIconClass: 'fa-paperclip',
   //resetFileUploadState: undefined, //@FIXME: This hack is quite horrid, must be some other way?
   init: function() {
     this._super(...arguments);
