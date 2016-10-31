@@ -1,8 +1,14 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="pull-right">
-      {{#gup-file-upload-widget id="gup-file-import-upload"}}
-      {{/gup-file-upload-widget}}
+      {{gup-file-upload-widget
+        id="gup-file-import-upload"
+        uploadExtraData=(hash todo="todo")
+        uploadUrl=importDataBaseUrl
+        didUploadFile=(action "didUploadImportDataFile")
+        fileUploadDidErr=(action "importDataFileUploadDidErr")
+        didSave=(action "didSaveImportData")
+        didCancel=(action "didCancelImportData")}}
     </div>
   </div>
 </div>
