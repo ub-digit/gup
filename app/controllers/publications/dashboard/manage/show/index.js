@@ -97,14 +97,15 @@ export default Ember.Controller.extend({
         this.set('assetData.accepted', null);
       }
       this.store.save('asset_data', this.get('assetData')).then((model) => {
+        //Is there a case when 200 will produce error in asset_data controller, don't think so
         //TODO: can remove this?
         if (model.error) {
-          error("Du måste godkänna avtalet nedan");
+          error(model.error.msg);
         }
         else {
-          //TODO: verify this is really used somewhere, can't find it
           this.send('setMsgHeader', 'success', 'Filen sparades');
           //this.send('refreshModel', this.get('publication.id'));
+          //TODO: how does this work
           this.send('refreshModel');
           success();
         }
