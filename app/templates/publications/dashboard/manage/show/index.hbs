@@ -30,9 +30,7 @@
               didUploadFile=(action "didUploadAssetDataFile")
               fileUploadDidErr=(action "assetDataFileUploadDidErr")
               didSave=(action "didSaveAssetData")
-              didCancel=(action "didCancelAssetData")
-              errors=assetDataErrors
-              parentHasErrors=hasAssetDataErrors}}
+              didCancel=(action "didCancelAssetData")}}
             {{#if assetData}}
               <div class="form-group">
                 <label>{{t 'publications.dashboard.manage.show.index._subnav.checkFile'}}</label><br/>
@@ -104,19 +102,6 @@
           {{/if}}
         </ul>
       </nav>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      {{#if fileUploadError}}
-        <div class="alert alert-danger alert-dismissible" role="alert">{{fileUploadError}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="fa-close fa"></i></span></button>
-        </div>
-      {{/if}}
-      <div class="progress" id="gup-progress-bar">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{fileUploadProgress}}%;">
-        </div>
-      </div>
     </div>
   </div>
   <div class="row">
