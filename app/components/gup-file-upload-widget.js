@@ -73,6 +73,7 @@ export default Ember.Component.extend({
     didSave: function() {
       let success = () => {
         this.set('isShowingUploadModal', false);
+        this.send('resetState');
         //TODO: reset state
       };
       let error = (reason) => {
