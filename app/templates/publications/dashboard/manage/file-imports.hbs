@@ -12,5 +12,69 @@
         didCancel=(action "didCancelImportData")}}
     </div>
   </div>
+  {{#if model}}
+  <div class="col-xs-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{t 'publications.dashboard.manage.fileImports.filenameHeader'}}</th>
+          <th>{{t 'publications.dashboard.manage.fileImports.importedDateHeader'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      {{#collapsible-items accordion=true tagName="tbody" items=model as |fileImport collapsibleItem|}}
+        <tr>
+          <td>
+            <button
+              {{action collapsibleItem.toggleIsActive}}
+              type="button"
+              class="btn btn-link"
+              aria-label="{{if collapsibleItem.isActive (t "publications.dashboard.manage.fileImports.collapse") (t "publications.dashboard.manage.fileImports.expand")}}"
+              aria-expanded="{{collapsibleItem.isActive}}">
+              <i
+                class="fa fa-lg fa-{{if collapsibleItem.isActive "plus" "minus"}}"
+                aria-hidden="true"
+                title="{{if collapsibleItem.isActive (t "publications.dashboard.manage.fileImports.collapse") (t "publications.dashboard.manage.fileImports.expand")}}">
+              </i>
+            </button>
+          </td>
+          <td>
+            <h4>{{fileImport.name}}</h4>
+          </td>
+          <td>{{fileImport.imported_date}}</td>
+          <td>
+            <button {{action "removeFileImport" fileImport}} type="button" class="btn btn-link">
+              {{t 'publications.dashboard.manage.fileImports.delete'}}
+            </button>
+          </td>
+        </tr>
+        {{#if collapsibleItem.isActive}}
+        <tr>
+          <td></td>
+          <td colspan=3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>{{t 'publications.dashboard.manage.fileImports.publicationTitleHeader'}}</th>
+                  <th>{{t 'publications.dashboard.manage.fileImports.publicationIdHeader'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{#each fileImport.publications as |publication|}}
+              <tr class="file-import-publication {{if publication.imported "file-import-publication-imported"}}" >
+                <td>{{publication.name}}</td>
+                <td>{{publication.id}}</td>
+              </tr>
+              {{/each}}
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        {{/if}}
+      {{/collapsible-items}}
+    </table>
+  </div>
+  {{/if}}
 </div>
 {{outlet}}

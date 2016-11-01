@@ -282,6 +282,15 @@ export default {
           searchForPublicationWithPubid: 'Sök efter publikation med GUP-ID:',
           searchById: 'Sök efter GUP-ID',
         },
+        fileImports: {
+          filenameHeader: 'Filnamn',
+          importedDateHeader: 'Importerad',
+          publicationTitleHeader: 'Titel',
+          publicationIdHeader: 'ID',
+          delete: 'Ta bort',
+          expand: 'Visa innehåll',
+          collapse: 'Dölj innehåll'
+        },
         new: {
           title: "Ny publikation",
           btnBack: "Tillbaka",

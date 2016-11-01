@@ -282,6 +282,15 @@ export default {
           searchForPublicationWithPubid: 'Search for a publication with GUP-ID:',
           searchById: 'Search for GUP-ID',
         },
+        fileImports: {
+          filenameHeader: 'Filnamne',
+          importedDateHeader: 'Imported',
+          publicationTitleHeader: 'Title',
+          publicationIdHeader: 'ID',
+          delete: 'Delete',
+          expand: 'Show contents',
+          collapse: 'Hide contents'
+        },
         new: {
           title: "New publication",
           btnBack: "Back to list",

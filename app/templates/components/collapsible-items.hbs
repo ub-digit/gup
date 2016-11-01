@@ -1,0 +1,5 @@
+{{#each items as |item|}}
+  {{!#collapsible-item tagName=itemTagName item=item activeItems=activeItems as |isActive|}}
+  {{yield item (hash toggleIsActive=(action "toggleActiveItem" item) isActive=(get itemIsActiveStates (concat '' (get item itemIdKey))))}}
+  {{!/collapsible-item}}
+{{/each}}
