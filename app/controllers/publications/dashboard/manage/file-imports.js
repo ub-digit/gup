@@ -34,6 +34,9 @@ export default Ember.Controller.extend({
     },
     didCancelImportData: function() {
       this.set('importData', undefined);
+    },
+    didDeleteFileImport: function(fileImport) {
+      return Promise.resolve();
     }
   }
 });

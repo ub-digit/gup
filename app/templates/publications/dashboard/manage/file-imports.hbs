@@ -44,9 +44,9 @@
           </td>
           <td>{{fileImport.imported_date}}</td>
           <td>
-            <button {{action "removeFileImport" fileImport}} type="button" class="btn btn-link">
-              {{t 'publications.dashboard.manage.fileImports.delete'}}
-            </button>
+            {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') didConfirm=(action "didDeleteFileImport" fileImport)}}
+            (TODO: Translate) Do you really want to remove the file "<strong>{{fileImport.name}}</strong>"?
+            {{/confirmation-modal}}
           </td>
         </tr>
         {{#if collapsibleItem.isActive}}
@@ -74,6 +74,7 @@
         {{/if}}
       {{/collapsible-items}}
     </table>
+    {{!#bs-modal open=isShowingFileImportDeleteModal}}
   </div>
   {{/if}}
 </div>
