@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('modalTitle'))) {
-      this.set('cancelText', 'Confirmation'); //TODO Translate
+      this.set('modalTitle', 'Confirm'); //TODO Translate
     }
     if (Ember.isBlank(this.get('cancelText'))) {
       this.set('cancelText', 'Cancel'); //TODO Translate
