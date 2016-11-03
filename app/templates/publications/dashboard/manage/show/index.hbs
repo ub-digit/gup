@@ -27,8 +27,10 @@
               openModalLabel=(t 'publications.dashboard.manage.show.index._subnav.attachFile')
               uploadExtraData=(hash publication_id=model.id)
               uploadUrl=assetDataBaseUrl
-              didUploadFile=(action "didUploadAssetDataFile")
-              fileUploadDidErr=(action "assetDataFileUploadDidErr")
+              fileDidChange=(action "assetDataFileDidChange")
+              errors=assetDataErrors
+              parentUploadFile=assetDataUploadFile
+              submitButtonIsDisabled=assetDataSubmitButtonIsDisabled
               didSave=(action "didSaveAssetData")
               didCancel=(action "didCancelAssetData")}}
             {{#if assetData}}

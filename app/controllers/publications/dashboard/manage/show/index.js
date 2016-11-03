@@ -18,6 +18,10 @@ export default Ember.Controller.extend({
   assetDataIsAccepted: false,
   assetDataIsEmbargo: false,
   assetDataEmbargoDate: Date(),
+  assetDataUploadFile: null,
+  assetDataSubmitButtonIsDisabled: true,
+  assetData: null,
+
 
   error: Ember.computed('model.error', function(){
     if (this.get('model.error')) {
@@ -71,18 +75,20 @@ export default Ember.Controller.extend({
     }
   }),
 
-  hasAssetDataErrors: Ember.computed('assetDataErrors', function() {
-    return Ember.isPresent(this.get('assetDataErrors'));
-  }),
-
   actions: {
-    didUploadAssetDataFile: function(response) {
-      if('asset_data' in response) {
-        this.set('assetData', response.asset_data);
+    assetDataFileDidChange(file) {
+      if(Ember.isPresent(file)) {
+        this.get('assetDataUploadFile')(file).then((response) => {
+          if('asset_data' in response) {
+            this.set('assetData', response.asset_data);
+            this.set('assetDataSubmitButtonIsDisabled', false);
+          }
+        }, (reason) => {
+          this.get('assetDataErrors').pushObject(reason);
+          this.set('assetDataSubmitButtonIsDisabled', true);
+          this.set('assetData', null);
+        });
       }
-    },
-    assetDataFileUploadDidErr: function(errorResponse) {
-      this.set('assetData', null);
     },
     didSaveAssetData: function(success, error) {
       if (this.get('assetDataIsEmbargo')) {
@@ -104,8 +110,9 @@ export default Ember.Controller.extend({
         }
         else {
           this.send('setMsgHeader', 'success', 'Filen sparades');
+          this.send('resetAssetDataState');
           //this.send('refreshModel', this.get('publication.id'));
-          //TODO: how does this work
+          //TODO: how does this work?
           this.send('refreshModel');
           success();
         }
@@ -118,15 +125,17 @@ export default Ember.Controller.extend({
         }
       });
     },
-    //TODO: better way?
-    didCancelAssetData : function() {
+    didCancelAssetData: function() {
+      //TODO: What if leaves window without closing modal?
+      this.send('resetAssetDataState');
+    },
+    resetAssetDataState: function() {
       this.set('assetDataErrors', Ember.A([]));
       this.set('assetDataIsAccepted', false);
       this.set('assetDataIsEmbargo', false);
       this.set('assetDataEmbargoDate', Date());
-      this.set('assetData', undefined);
+      this.set('assetData', null);
     },
-
     goBack: function() {
       var target = this.get('applicationController.currentList');
       if (!target) {

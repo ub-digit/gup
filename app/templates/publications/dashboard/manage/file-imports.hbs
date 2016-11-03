@@ -6,8 +6,14 @@
         faIconClass="fa-upload"
         uploadExtraData=(hash todo="todo")
         uploadUrl=importDataBaseUrl
+        fileDidChange=(action "importDataFileDidChange")
         didUploadFile=(action "didUploadImportDataFile")
-        fileUploadDidErr=(action "importDataFileUploadDidErr")
+        parentUploadFile=uploadImportDataFile
+        submitButtonIsVisible=uploadSubmitButtonIsVisible
+        cancelLabel=uploadCancelButtonLabel
+        submitLabel=uploadSubmitButtonLabel
+        submitButtonIsDisabled=uploadSubmitButtonIsDisabled
+        cancelButtonStyle=uploadCancelButtonStyle
         didSave=(action "didSaveImportData")
         didCancel=(action "didCancelImportData")}}
     </div>
