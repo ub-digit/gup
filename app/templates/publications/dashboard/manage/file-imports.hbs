@@ -11,7 +11,7 @@
         parentUploadFile=uploadImportDataFile
         submitButtonIsVisible=uploadSubmitButtonIsVisible
         cancelLabel=uploadCancelButtonLabel
-        submitLabel=uploadSubmitButtonLabel
+        submitLabel=(t "publications.dashboard.manage.fileImports.uploadSubmitLabel")
         submitButtonIsDisabled=uploadSubmitButtonIsDisabled
         cancelButtonStyle=uploadCancelButtonStyle
         didSave=(action "didSaveImportData")
@@ -50,7 +50,7 @@
           </td>
           <td>{{fileImport.imported_date}}</td>
           <td>
-            {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') didConfirm=(action "didDeleteFileImport" fileImport)}}
+            {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete') didConfirm=(action "didDeleteFileImport" fileImport)}}
               {{t 'publications.dashboard.manage.fileImports.deleteFileConfirmation' filename=fileImport.name}}
             {{/confirmation-modal}}
           </td>
