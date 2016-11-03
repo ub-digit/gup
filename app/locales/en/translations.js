@@ -303,7 +303,7 @@ export default {
           collapse: 'Hide contents',
           deleteFileConfirmation: 'Do you really want to delete "{{filename}}"?', //How wrap filename in <strong>?
           deleteFileSubmitText: 'Delete',
-          uploadSubmitLabel: 'Upload file',
+          uploadSubmitLabel: 'Upload',
           uploadCancelLabel: 'Cancel',
           uploadCloseLabel: 'Close'
         },

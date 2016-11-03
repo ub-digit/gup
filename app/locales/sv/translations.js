@@ -302,7 +302,7 @@ export default {
           collapse: 'Dölj innehåll',
           deleteFileConfirmation: 'Är du säker på att du vill ta bort "{{filename}}"?', //How wrap filename in <strong>?
           deleteFileSubmitText: 'Radera',
-          uploadSubmitLabel: 'Ladda upp fil',
+          uploadSubmitLabel: 'Ladda upp',
           uploadCancelLabel: 'Avbryt',
           uploadCloseLabel: 'Stäng'
         },
