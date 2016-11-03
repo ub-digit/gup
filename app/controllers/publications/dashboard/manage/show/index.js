@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
   assetDataSubmitButtonIsDisabled: true,
   assetData: null,
 
-
   error: Ember.computed('model.error', function(){
     if (this.get('model.error')) {
       return true;
@@ -109,7 +108,7 @@ export default Ember.Controller.extend({
           error(model.error.msg);
         }
         else {
-          this.send('setMsgHeader', 'success', 'Filen sparades');
+          this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.index.saveAssetDataSuccess'));
           this.send('resetAssetDataState');
           //this.send('refreshModel', this.get('publication.id'));
           //TODO: how does this work?
@@ -145,6 +144,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute(target);
     },
     deletePublication: function(id) {
+      //Use modal component?
       var r = confirm(this.get('i18n').t('publications.dashboard.manage.show.index.confirmDeletePublication'));
       if (r === true) {
         this.deletePublication(id);

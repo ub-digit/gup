@@ -4,15 +4,21 @@ export default {
       openModalLabel: 'Ladda upp fil',
       modalTitle: 'Ladda upp ny fil',
       chooseFileLabel: 'Välj fil',
-      abortFileSaveLabel: 'Avbryt',
-      saveFileLabel: 'Spara fil'
+      cancelLabel: 'Avbryt',
+      submitLabel: 'Spara fil'
+    },
+    confirmationModal: {
+      modalTitle: 'Bekräfta',
+      cancelText: 'Avbryt',
+      confirmText: 'Ja',
+      unknownError: 'Något gick fel'
     },
     publicationIdentifierBlock: {
       label: 'Identifikatorer',
       code: 'Typ',
       value: 'Värde',
       delete: 'Ta bort',
-      create: 'Lägg till',
+      create: 'Lägg till'
     },
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
@@ -239,11 +245,13 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print sedan: ',
+            saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
               attachFile: 'Bifoga fil',
               checkFile: 'Kontrollera fil',
               enterEmbargoDate: 'Ange embargo',
               showAfter: 'Visa offentligt först efter',
+              approveAgreement: 'Jag godkänner avtalet',
               readAgreement: 'läs avtalet (nytt fönster)',
 
               edit: 'Redigera',
@@ -289,7 +297,8 @@ export default {
           publicationIdHeader: 'ID',
           delete: 'Ta bort',
           expand: 'Visa innehåll',
-          collapse: 'Dölj innehåll'
+          collapse: 'Dölj innehåll',
+          deleteFileConfirmation: 'Är du säker på att du vill radera "{{filename}}"?', //How wrap filename in <strong>?
         },
         new: {
           title: "Ny publikation",

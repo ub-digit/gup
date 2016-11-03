@@ -26,10 +26,10 @@ export default Ember.Component.extend({
       this.set('chooseFileLabel', this.get('i18n').t('components.fileUploadWidget.chooseFileLabel'));
     }
     if (Ember.isBlank(this.get('cancelLabel'))) {
-      this.set('cancelLabel', this.get('i18n').t('components.fileUploadWidget.abortFileSaveLabel')); //TODO: change translatin key
+      this.set('cancelLabel', this.get('i18n').t('components.fileUploadWidget.cancelLabel'));
     }
     if (Ember.isBlank(this.get('submitLabel'))) {
-      this.set('submitLabel', this.get('i18n').t('components.fileUploadWidget.saveFileLabel'));
+      this.set('submitLabel', this.get('i18n').t('components.fileUploadWidget.submitLabel'));
     }
   },
   didInsertElement() {

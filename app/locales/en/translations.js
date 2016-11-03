@@ -4,8 +4,14 @@ export default {
       openModalLabel: 'Upload file',
       modalTitle: 'Upload new file',
       chooseFileLabel: 'Choose file',
-      abortFileSaveLabel: 'Cancel',
-      saveFileLabel: 'Save file'
+      cancelLabel: 'Cancel',
+      submitLabel: 'Save file'
+    },
+    confirmationModal: {
+      modalTitle: 'Confirm',
+      cancelText: 'Cancel',
+      confirmText: 'Yes',
+      unknownError: 'Something went wrong'
     },
     publicationIdentifierBlock: {
       label: 'Identifier',
@@ -232,18 +238,20 @@ export default {
             errorMissingPublication: 'Missing publication',
             btnBack: 'Back',
             reviewModeInfo: 'Review mode.',
-            reviewModeCancel: 'Tillbaka till visningsläge. ',
+            reviewModeCancel: 'Back to display mode.',
             deletePublicationSuccess: 'Publication deleted.',
             deletePublicationError: 'Publication could not be deleted.',
             approvePublicationSuccess: 'Publication approved.',
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print since: ',
+            saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               attachFile: 'Attach file',
               checkFile: 'Check your uploaded file',
               enterEmbargoDate: 'Enter an embargo date',
               showAfter: 'Display file only after',
+              approveAgreement: 'I approve the agreement', //Approve of? Confirm?
               readAgreement: 'Read agreement (new window)',
 
               edit: 'Edit',
@@ -289,7 +297,8 @@ export default {
           publicationIdHeader: 'ID',
           delete: 'Delete',
           expand: 'Show contents',
-          collapse: 'Hide contents'
+          collapse: 'Hide contents',
+          deleteFileConfirmation: 'Do you really want to delete "{{filename}}"?', //How wrap filename in <strong>?
         },
         new: {
           title: "New publication",
