@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   cancelButtonStyle: 'default',
   submitButtonIsVisible: true,
   submitButtonIsDisabled: false,
-  //resetFileUploadState: undefined, //@FIXME: This hack is quite horrid, must be some other way?
+  fileUploadIsVisible: true,
   init: function() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('openModalLabel'))) {
@@ -89,7 +89,6 @@ export default Ember.Component.extend({
     resetState: function() {
       this.set('fileLabel', null);
       this.get('errors').clear();
-      this.get('resetFileUploadState')();
     }
   }
 });

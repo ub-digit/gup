@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   uploadCancelButtonStyle: 'default',
   uploadCancelButtonLabel: null,
   uploadSubmitButtonIsDisabled: true,
+  uploadFileUploadIsVisible: true,
   init() {
     this._super(...arguments);
     this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCancelLabel'));
@@ -38,6 +39,7 @@ export default Ember.Controller.extend({
         this.set('uploadCancelButtonStyle', 'danger');
         error(message);
       }).finally(() => {
+        this.set('uploadFileUploadIsVisible', false);
         this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCloseLabel'));
       });
     },
@@ -54,6 +56,7 @@ export default Ember.Controller.extend({
       this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCancelLabel'));
       this.set('uploadCancelButtonStyle', 'default');
       this.set('uploadSubmitButtonIsDisabled', true);
+      this.set('uploadFileUploadIsVisible', true);
     }
   }
 });

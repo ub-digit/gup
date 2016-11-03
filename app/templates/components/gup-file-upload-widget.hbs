@@ -9,20 +9,21 @@
         {{error}}
       </div>
     {{/each}}
-    {{file-upload
+    {{#if fileUploadIsVisible}}
+      {{file-upload
       id=(concat id "-file-upload")
       class="gup-input-upload"
       fileUploadProgress=fileUploadProgress
       fileDidChange=(action "fileDidChange")
       uploadUrl=uploadUrl
-      parentResetState=(mut resetFileUploadState)
       parentUploadFile=(mut parentUploadFile)
       uploadExtraData=uploadExtraData}}
-    <label for="{{id}}-file-upload"><i class="fa fa-paperclip" aria-hidden="true"></i> {{chooseFileLabelOrFileLabel}}</label>
-    {{#if fileUploadProgress }}
-      {{#bs-progress}}
-        {{bs-progress-bar value=fileUploadProgress minValue=0 maxValue=100 showLabel=false id=(concat id "-progress")}}
-      {{/bs-progress}}
+      <label for="{{id}}-file-upload"><i class="fa fa-paperclip" aria-hidden="true"></i> {{chooseFileLabelOrFileLabel}}</label>
+      {{#if fileUploadProgress }}
+        {{#bs-progress}}
+          {{bs-progress-bar value=fileUploadProgress minValue=0 maxValue=100 showLabel=false id=(concat id "-progress")}}
+        {{/bs-progress}}
+      {{/if}}
     {{/if}}
     {{yield}}
   {{/bs-modal-body}}
