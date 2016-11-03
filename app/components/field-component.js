@@ -135,6 +135,7 @@ export default Ember.Component.extend({
 	isTypeTextarea: Ember.computed.equal('type', 'textarea'),
   isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
   isTypeSelect: Ember.computed.equal('type', 'select'),
+  isTypeAheadOfPrint: Ember.computed.equal('type', 'ahead'),
 
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {

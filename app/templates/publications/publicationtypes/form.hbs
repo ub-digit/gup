@@ -51,7 +51,7 @@
 
   <!-- Dissertaion fields -->
 
-  <div id="diss-date" class="row">
+  <div id="diss-date" class="row">  
     <div class="col-md-9">
       <span class="form-group {{if errors.dissdate 'has-error'}}">
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="date" errors=errors.dissdate value=publication.dissdate}}
@@ -129,6 +129,13 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-9">
+      <span class="form-group {{if errors.epub_ahead_of_print 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="epub_ahead_of_print" type="ahead" errors=errors.epub_ahead_of_print value=publication.epub_ahead_of_print}}
+      </span>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-6">

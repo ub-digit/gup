@@ -83,6 +83,7 @@ export default {
     fieldComponent: {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
+      aheadCheckbox: 'Ange om publikationen är en Epub ahead of print',
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',

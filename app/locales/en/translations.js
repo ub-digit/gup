@@ -83,6 +83,7 @@ export default {
     fieldComponent: {
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
+      aheadCheckbox: 'Mark if publication is Epub ahead of print',
     },
     publicationListRow: {
       noTitle: '-- Missing title --',

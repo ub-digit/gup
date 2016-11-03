@@ -59,6 +59,13 @@
         {{/each}}
       {{/x-select}}
     {{/if}}
+    {{#if isTypeAheadOfPrint}}
+      <div class="form-inline">
+        <label>
+          {{input type="checkbox" classBinding=":form-control" checked=value}} {{t 'components.fieldComponent.aheadCheckbox'}}
+        </label>
+      </div>
+    {{/if}}
     {{#if isTypeJournal}}
       <div class="form-group">
       <div class="radio-inline">
