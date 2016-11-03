@@ -15,8 +15,7 @@ export default EmberUploader.FileField.extend({
       this.filesDidChange(null);
       this.set('fileUploadProgress', null);
     });
-    //TODO: understand this:
-    this.attrs.parentResetState.update(this.get('resetState'));
+    //this.attrs.parentResetState.update(this.get('resetState'));
 
     this.set('uploadFile', (file) => {
       const token = this.get('session.data.authenticated.token');

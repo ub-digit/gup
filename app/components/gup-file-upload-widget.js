@@ -14,6 +14,7 @@ export default Ember.Component.extend({
   submitButtonIsVisible: true,
   submitButtonIsDisabled: false,
   fileUploadIsVisible: true,
+  fileUploadProgress: null,
   init: function() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('openModalLabel'))) {
@@ -87,6 +88,7 @@ export default Ember.Component.extend({
       this.sendAction('didCancel');
     },
     resetState: function() {
+      this.set('fileUploadProgress', null);
       this.set('fileLabel', null);
       this.get('errors').clear();
     }
