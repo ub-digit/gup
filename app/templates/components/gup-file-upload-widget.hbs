@@ -1,4 +1,4 @@
-<button {{action "showUploadModal"}} type="button" class="btn btn-link"><i class="fa fa-paperclip" aria-hidden="true"></i> {{openModalLabel}}</button>
+<button {{action "showUploadModal"}} type="button" class="btn btn-link"><i class="fa {{faIconClass}}" aria-hidden="true"></i> {{openModalLabel}}</button>
 {{#bs-modal open=isShowingUploadModal header=false footer=false closeAction=(action "didCancel")}}
   {{#bs-modal-header}}
     <h4 class="modal-title">{{modalTitle}}</h4>
@@ -13,12 +13,10 @@
       id=(concat id "-file-upload")
       class="gup-input-upload"
       fileUploadProgress=fileUploadProgress
-      fileUploadErrors=errors
-      didUploadFile=(action "didUploadFile")
-      fileUploadDidErr=(action "fileUploadDidErr")
       fileDidChange=(action "fileDidChange")
       uploadUrl=uploadUrl
       parentResetState=(mut resetFileUploadState)
+      parentUploadFile=(mut parentUploadFile)
       uploadExtraData=uploadExtraData}}
     <label for="{{id}}-file-upload"><i class="fa fa-paperclip" aria-hidden="true"></i> {{chooseFileLabelOrFileLabel}}</label>
     {{#if fileUploadProgress }}
@@ -28,10 +26,12 @@
     {{/if}}
     {{yield}}
   {{/bs-modal-body}}
-  {{!bs-modal-footer closeTitle=abortFileSaveLabel submitTitle=saveFileLabel}}
   {{#bs-modal-footer as |footer|}}
-    {{#bs-button action=(action "close" target=footer) type="danger"}}{{abortFileSaveLabel}}{{/bs-button}}
-    {{!#bs-button action=(action "saveFile") type="success" disabled=hasAssetData}}{{!saveFileLabel}}{{!/bs-button}}
-    <button type="button" class="btn btn-primary" {{action "didSave"}} disabled={{hasNoUploadedFile}}>{{saveFileLabel}}</button>
+    {{#if cancelButtonIsVisible}}
+    {{#bs-button action=(action "close" target=footer) type=cancelButtonStyle}}{{cancelLabel}}{{/bs-button}}
+    {{/if}}
+    {{#if submitButtonIsVisible}}
+      <button type="button" class="btn btn-primary" {{action "didSave"}} disabled={{submitButtonIsDisabled}}>{{submitLabel}}</button>
+    {{/if}}
   {{/bs-modal-footer}}
 {{/bs-modal}}
