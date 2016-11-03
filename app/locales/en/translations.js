@@ -238,7 +238,7 @@ export default {
             approvePublicationSuccess: 'Publication approved.',
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
-            epubAheadOfPrintSince: 'E-pub ahead of print since: ',
+            epubAheadOfPrintSince: 'E-pub ahead of print',
             _subnav: {
               attachFile: 'Attach file',
               checkFile: 'Check your uploaded file',
