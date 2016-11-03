@@ -246,7 +246,6 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            epubAheadOfPrintSince: 'E-pub ahead of print since: ',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               attachFile: 'Attach file',

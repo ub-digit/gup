@@ -245,7 +245,7 @@ export default {
             approvePublicationSuccess: 'Publikationen godkänd.',
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
-            epubAheadOfPrintSince: 'E-pub ahead of print sedan: ',
+            epubAheadOfPrintSince: 'E-pub ahead of print',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
               attachFile: 'Bifoga fil',
