@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { validYear } from 'gup/lib/validations';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service('session'), 
   publications: Ember.inject.controller(),
   manageController: Ember.inject.controller("publications.dashboard.manage"),
   selectedPublicationType: null,
