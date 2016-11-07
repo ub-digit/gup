@@ -10,7 +10,7 @@ export default {
     confirmationModal: {
       modalTitle: 'Confirm',
       cancelText: 'Cancel',
-      confirmText: 'Yes',
+      confirmText: 'Ok',
       unknownError: 'Something went wrong'
     },
     publicationIdentifierBlock: {
@@ -246,7 +246,6 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            epubAheadOfPrintSince: 'E-pub ahead of print since: ',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               attachFile: 'Attach file',
@@ -298,9 +297,14 @@ export default {
           publicationTitleHeader: 'Title',
           publicationIdHeader: 'ID',
           delete: 'Delete',
+          confirmDelete: 'Delete',
           expand: 'Show contents',
           collapse: 'Hide contents',
           deleteFileConfirmation: 'Do you really want to delete "{{filename}}"?', //How wrap filename in <strong>?
+          deleteFileSubmitText: 'Delete',
+          uploadSubmitLabel: 'Upload',
+          uploadCancelLabel: 'Cancel',
+          uploadCloseLabel: 'Close'
         },
         new: {
           title: "New publication",

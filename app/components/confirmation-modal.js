@@ -10,13 +10,13 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('modalTitle'))) {
-      this.set('modalTitle', 'Confirm'); //TODO Translate
+      this.set('modalTitle', this.get('i18n').t('components.confirmationModal.modalTitle'));
     }
     if (Ember.isBlank(this.get('cancelText'))) {
-      this.set('cancelText', 'Cancel'); //TODO Translate
+      this.set('cancelText', this.get('i18n').t('components.confirmationModal.cancelText'));
     }
     if (Ember.isBlank(this.get('confirmText'))) {
-      this.set('confirmText', 'Yes'); //TODO Translate
+      this.set('confirmText', this.get('i18n').t('components.confirmationModal.confirmText'));
     }
   },
   actions: {
@@ -33,7 +33,7 @@ export default Ember.Component.extend({
           if(Ember.typeOf(error) === 'string') {
             this.set('error', error);
           } else {
-            this.set('error', 'Something went wrong');
+            this.set('error', this.get('i18n').t('components.confirmationModal.unknownError'));
           }
         });
       }

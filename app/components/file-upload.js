@@ -14,56 +14,52 @@ export default EmberUploader.FileField.extend({
       //TODO: this is weird
       this.filesDidChange(null);
       this.set('fileUploadProgress', null);
-      this.get('fileUploadErrors').clear();
     });
-    //TODO: understand this:
-    this.attrs.parentResetState.update(this.get('resetState'));
+    //this.attrs.parentResetState.update(this.get('resetState'));
+
+    this.set('uploadFile', (file) => {
+      const token = this.get('session.data.authenticated.token');
+      if (!token) { Promise.reject("Invalid token"); }
+
+      var preFilters = Ember.$.Callbacks();
+
+      var authPrefilter = function(options) {
+        if(!options.headers) {
+          options.headers = {};
+        }
+        options.headers['Authorization'] = "Token "+token;
+        return options;
+      };
+
+      const uploader = EmberUploader.Uploader.create({
+        url: this.get('uploadUrl')
+      });
+
+      uploader.on('progress', e => {
+        // Handle progress changes
+        // Use `e.percent` to get percentage
+        this.set('fileUploadProgress', e.percent);
+      });
+
+      Ember.$.ajaxPrefilter(preFilters.fire);
+      preFilters.add(authPrefilter);
+
+      let data = Ember.isPresent(this.get('uploadExtraData')) ? this.get('uploadExtraData') : {}; //Hmm??
+      return uploader.upload(file, data).catch((errorResponse) => {
+        let errorMsg = 'responseJSON' in errorResponse ? errorResponse.responseJSON.error.msg : errorResponse.statusText;
+        this.set('fileUploadProgress', null);
+        throw errorMsg;
+      }).finally(() => {
+        preFilters.remove(authPrefilter);
+      });
+    });
+    // Force two way binding
+    if (this.attrs.parentUploadFile !== undefined) {
+      this.attrs.parentUploadFile.update(this.get('uploadFile'));
+    }
   },
   filesDidChange(files) {
     let file = Ember.isEmpty(files) ? files : files[0];
     this.sendAction('fileDidChange', file);
-    if (Ember.isEmpty(file)) {
-      return;
-    }
-    const token = this.get('session.data.authenticated.token');
-    if (!token) { return; }
-
-    var preFilters = Ember.$.Callbacks();
-
-    var authPrefilter = function(options) {
-      if(!options.headers) {
-        options.headers = {};
-      }
-      options.headers['Authorization'] = "Token "+token;
-      return options;
-    };
-
-    const uploader = EmberUploader.Uploader.create({
-      url: this.get('uploadUrl')
-    });
-
-    uploader.on('progress', e => {
-      // Handle progress changes
-      // Use `e.percent` to get percentage
-      this.set('fileUploadProgress', e.percent);
-    });
-
-    Ember.$.ajaxPrefilter(preFilters.fire);
-    preFilters.add(authPrefilter);
-
-    let data = Ember.isPresent(this.get('uploadExtraData')) ? this.get('uploadExtraData') : {}; //Hmm??
-    uploader.upload(file, data).then((response) => {
-      this.get('fileUploadErrors').clear();
-      this.sendAction('didUploadFile', response);
-    }, (errorResponse) => {
-      //TODO: Gah, naming
-      this.sendAction('fileUploadDidErr', errorResponse);
-      let errorMsg = 'responseJSON' in errorResponse ? errorResponse.responseJSON.error.msg : errorResponse.statusText;
-      this.get('fileUploadErrors').clear();
-      this.get('fileUploadErrors').pushObject(errorMsg);
-      this.set('fileUploadProgress', null);
-    }).then(() => {
-      preFilters.remove(authPrefilter);
-    });
   }
 });

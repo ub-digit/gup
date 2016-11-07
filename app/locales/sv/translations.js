@@ -10,7 +10,7 @@ export default {
     confirmationModal: {
       modalTitle: 'Bekräfta',
       cancelText: 'Avbryt',
-      confirmText: 'Ja',
+      confirmText: 'Ok',
       unknownError: 'Något gick fel'
     },
     publicationIdentifierBlock: {
@@ -245,7 +245,7 @@ export default {
             approvePublicationSuccess: 'Publikationen godkänd.',
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
-            epubAheadOfPrintSince: 'E-pub ahead of print sedan: ',
+            epubAheadOfPrintSince: 'E-pub ahead of print',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
               attachFile: 'Bifoga fil',
@@ -297,9 +297,14 @@ export default {
           publicationTitleHeader: 'Titel',
           publicationIdHeader: 'ID',
           delete: 'Ta bort',
+          confirmDelete: 'Ta bort',
           expand: 'Visa innehåll',
           collapse: 'Dölj innehåll',
-          deleteFileConfirmation: 'Är du säker på att du vill radera "{{filename}}"?', //How wrap filename in <strong>?
+          deleteFileConfirmation: 'Är du säker på att du vill ta bort "{{filename}}"?', //How wrap filename in <strong>?
+          deleteFileSubmitText: 'Radera',
+          uploadSubmitLabel: 'Ladda upp',
+          uploadCancelLabel: 'Avbryt',
+          uploadCloseLabel: 'Stäng'
         },
         new: {
           title: "Ny publikation",

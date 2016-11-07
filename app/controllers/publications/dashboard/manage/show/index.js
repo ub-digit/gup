@@ -79,6 +79,7 @@ export default Ember.Controller.extend({
       if(Ember.isPresent(file)) {
         this.get('assetDataUploadFile')(file).then((response) => {
           if('asset_data' in response) {
+            this.get('assetDataErrors').clear();
             this.set('assetData', response.asset_data);
             this.set('assetDataSubmitButtonIsDisabled', false);
           }
