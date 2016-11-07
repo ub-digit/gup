@@ -30,6 +30,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
   },
   afterModel: function(/*model, transition*/) {
   },
+
+
   setupController: function(controller, models) {
     this._super(...arguments);
     controller.set('publicationTypes', models.publicationTypes);

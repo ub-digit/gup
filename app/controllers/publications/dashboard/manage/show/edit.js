@@ -9,6 +9,8 @@ export default Ember.Controller.extend({
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,
   authorArr: Ember.A([]),
+  queryParams: ['selectPublicationVisible'],
+  selectPublicationVisible: true,
   categoryObjectsList: Ember.A([]),
   submitCallbacks: Ember.A([]), // Hack
   // Run callbacks and collect promises to resolve on submit
@@ -17,6 +19,7 @@ export default Ember.Controller.extend({
       return callback();
     }));
   },
+
   selectedSeries: Ember.computed('publication.series', {
     get: function() {
       var pubSeries = this.get('publication.series');
@@ -173,12 +176,16 @@ export default Ember.Controller.extend({
 
   selectPublicationTypeIsVisible: function() {
     if (!this.get("isSelectedPublicationValid")) {
+      this.set("selectPublicationVisible", true);
       return true;
     }
     else {
+      this.set("selectPublicationVisible", false);
       return false;
     }
-  }.property('selectedPublicationType'),
+  }.observes('selectedPublicationType'),
+
+
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
