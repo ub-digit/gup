@@ -97,9 +97,13 @@ export default Ember.Controller.extend({
         return result;
       }, []);
     let faculties = this.get('publicationsController.faculties');
+    console.dir(faculties);
     return facultyIds.map(function(id) {
       //TODO: this could be made much faster by indexing faculties by id instead
-      return faculties.findBy('id', id);
+      return faculties.findBy('id', id) || Ember.Object.create({
+        id: id,
+        name: 'Unknown/Extern (id: ' + id + ')'
+      });
     }); //.compact()?
   }),
 
