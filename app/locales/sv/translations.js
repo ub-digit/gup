@@ -223,6 +223,7 @@ export default {
           title: "Visa publikation",
           publicationNotFound: 'Publikationen finns inte.',
           edit: {
+
             title: "Redigera publikation",
             btnCancel: 'Avbryt',
             btnSaveDraft: 'Spara utkast',
@@ -384,6 +385,7 @@ export default {
       },
       form: {
         publicationType: 'Publikationstyp',
+        refereeLable: 'Refereegranskad',
         changePublicationTypeLink: 'Byt',
         help: {
           authors: {

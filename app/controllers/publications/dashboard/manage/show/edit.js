@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   authorArr: Ember.A([]),
   queryParams: ['selectPublicationVisible'],
   selectPublicationVisible: true,
+  refValueBool: false, 
   categoryObjectsList: Ember.A([]),
   submitCallbacks: Ember.A([]), // Hack
   // Run callbacks and collect promises to resolve on submit
@@ -35,6 +36,7 @@ export default Ember.Controller.extend({
       return value;
     }
   }),
+
 
   selectedProjects: Ember.computed('publication.project', {
     get: function() {
@@ -80,6 +82,8 @@ export default Ember.Controller.extend({
     });
   }),
 
+
+
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
     var publicationYear = parseInt(this.get('publication.pubyear'));
     // If no valid year, return all departments
@@ -110,8 +114,10 @@ export default Ember.Controller.extend({
 
   scrollTop: function() {
     window.scroll(0,0);
-  }.observes('selectPublicationTypeIsVisible'),
+  }.observes('selectPublicationVisible'),
   
+
+
 
 
   updateModelWithCorrectPublicationType: function() {
@@ -189,6 +195,26 @@ export default Ember.Controller.extend({
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
+  changeRefValue: Ember.observer('refValueBool', function() {
+      if (this.get("refValueBool")) {
+        this.set("publication.ref_value", "ISREF");
+      }
+      else {
+        this.set("publication.ref_value", "NOTREF");
+      }
+  }), 
+
+  refValueChanged: Ember.observer('publication.ref_value', function() {
+    if (this.get("publication.ref_value") == "ISREF") {
+      this.set("refValueBool", true);
+    }
+    else {
+      this.set("refValueBool", false);
+    }
+  }), 
+
+
+
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
     return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
   }),
@@ -242,7 +268,7 @@ export default Ember.Controller.extend({
       if (ref_options !== 'BOTH') {
         this.set('publication.ref_value', ref_options);
       } else {
-        this.set('publication.ref_value');
+        this.set('publication.ref_value', 'NOTREF');
       }
     },
     resetSelectedPublicationType: function() {

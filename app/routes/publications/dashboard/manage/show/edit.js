@@ -49,6 +49,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
     controller.set('publicationTypes', models.publicationTypes);
 
+    if (models.publication.ref_value == "ISREF") {
+      controller.set("refValueBool", true);
+    }
+    else {
+      controller.set("refValueBool", false);
+    }
+
+
     var authors = null;
     if (models.publication) {
       if (models.publication.authors) {

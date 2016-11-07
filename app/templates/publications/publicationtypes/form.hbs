@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-xs-6">
         <span class="form-group {{if errors.ref_value 'has-error'}}">
-          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="select"  errors=errors.ref_value value=publication.ref_value selectValues=getPublicationTypeObject.ref_select_options prompt=(t 'publications.publicationtypes.form.selectContentTypePrompt') label=(t 'publications.publicationtypes.form.selectContentTypeLabel')}}
+          {{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="ref"  errors=errors.ref_value value=refValueBool label=(t 'publications.publicationtypes.form.refereeLable')}}
         </span>
       </div>
     </div>

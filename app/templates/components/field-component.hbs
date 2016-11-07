@@ -61,9 +61,20 @@
     {{/if}}
     {{#if isTypeAheadOfPrint}}
       <div class="form-inline">
-        <label>
-          {{input type="checkbox" class="form-control" classBinding=":form-control" checked=value}} {{t 'components.fieldComponent.aheadCheckbox'}}
-        </label>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=value}} {{t 'components.fieldComponent.aheadCheckbox'}}
+          </label>
+        </div>
+      </div>
+    {{/if}}
+    {{#if isTypeRef}}
+      <div class="form-inline">
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=value}} {{label}}
+          </label>
+        </div>
       </div>
     {{/if}}
     {{#if isTypeJournal}}

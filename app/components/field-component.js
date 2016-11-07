@@ -136,6 +136,7 @@ export default Ember.Component.extend({
   isTypeCategorySelector: Ember.computed.equal('type', 'category-selector'),
   isTypeSelect: Ember.computed.equal('type', 'select'),
   isTypeAheadOfPrint: Ember.computed.equal('type', 'ahead'),
+  isTypeRef: Ember.computed.equal('type','ref'), 
 
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {
@@ -227,6 +228,8 @@ export default Ember.Component.extend({
       this.set('sourcetitle',journal.title);
       this.set('journal_id',journal.id);
   }),
+
+
 
   actions: {
     queryJournals: function(query, deferred) {
