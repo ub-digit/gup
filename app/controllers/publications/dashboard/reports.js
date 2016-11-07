@@ -19,52 +19,15 @@ export default Ember.Controller.extend({
     if (validStartYear) {
       startYear = parseInt(startYear);
       departments = departments.filter((item) => {
-        if (Ember.isPresent(item.start_year)) {
-          // No need to check end_year since end_year always >= start_year
-          return item.start_year >= startYear;
-        }
-        else {
-          return Ember.isBlank(item.end_year) || item.end_year >= startYear;
-        }
+        return !Ember.isPresent(item.end_year) || item.end_year >= startYear;
       });
     }
     if (validEndYear) {
       endYear = parseInt(endYear);
       departments = departments.filter((item) => {
-        if (Ember.isPresent(item.end_year)) {
-          // No need to check start year since start_year always <= end_year
-          return item.end_year <= endYear;
-        }
-        else {
-          return Ember.isBlank(item.start_year) || item.start_year <= endYear;
-        }
+        return !Ember.isPresent(item.start_year) || item.start_year <= endYear;
       });
     }
-    /*
-    if(validEndYear || validStartYear) {
-      startYear = Ember.isPresent(startYear) ? parseInt(startYear): null;
-      endYear = Ember.isPresent(endYear) ? parseInt(endYear): null;
-       departments = departments.filter((item) => {
-        return (
-          !validStartYear || (
-            Ember.isBlank(item.start_year) ||
-            item.start_year >= startYear
-          ) && (
-            Ember.isBlank(item.end_year) ||
-            item.end_year >= startYear
-          )
-        ) && (
-          !validEndYear || (
-            Ember.isBlank(item.end_year) ||
-            item.end_year <= endYear
-          ) && (
-            Ember.isBlank(item.start_year) ||
-            item.start_year =< endYear
-          )
-        );
-      });
-    }
-    */
     return departments;
   }),
 
@@ -97,7 +60,6 @@ export default Ember.Controller.extend({
         return result;
       }, []);
     let faculties = this.get('publicationsController.faculties');
-    console.dir(faculties);
     return facultyIds.map(function(id) {
       //TODO: this could be made much faster by indexing faculties by id instead
       return faculties.findBy('id', id) || Ember.Object.create({
