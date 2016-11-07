@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       this.get('uploadImportDataFile')(this.get('importDataFile')).then((response) => {
         this.set('uploadSubmitButtonIsVisible', false);
         this.set('uploadCancelButtonStyle', 'success');
-        this.send('refershModel');
+        this.send('refreshModel');
         //console.log('success!');
         //success();
       }, (message) => {
