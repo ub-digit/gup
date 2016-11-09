@@ -1,5 +1,9 @@
 export default {
   components: {
+    multipleItems: {
+      addItemText: 'Lägg till',
+      deleteItemText: 'Ta bort'
+    },
     fileUploadWidget: {
       openModalLabel: 'Ladda upp fil',
       modalTitle: 'Ladda upp ny fil',
@@ -387,7 +391,10 @@ export default {
         publicationType: 'Publikationstyp',
         refereeLable: 'Refereegranskad',
         changePublicationTypeLink: 'Byt',
+        publicationLinksLabel: 'Extera länkar',
+        publicationLinksAddItem: 'Lägg till länk',
         help: {
+          publicationLinks: 'Länkar bör inledas med http:// eller https://',
           authors: {
             helptext: 'Här skriver du in samtliga författare i samma ordningsföljd som i originalpublikationen. För GU-författare skriver du in fullständigt namn samt anger institution, för övriga författare räcker det med efternamn samt förnamnets första bokstav. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
           },

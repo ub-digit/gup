@@ -11,8 +11,14 @@ export default Ember.Controller.extend({
   authorArr: Ember.A([]),
   queryParams: ['selectPublicationVisible'],
   selectPublicationVisible: true,
-  refValueBool: false, 
+  refValueBool: false,
   categoryObjectsList: Ember.A([]),
+  createNewPublicationLink: function() {
+    return Ember.Object.create({
+      url: '',
+    });
+  },
+
   submitCallbacks: Ember.A([]), // Hack
   // Run callbacks and collect promises to resolve on submit
   submitCallbacksRun: function() {
@@ -36,7 +42,6 @@ export default Ember.Controller.extend({
       return value;
     }
   }),
-
 
   selectedProjects: Ember.computed('publication.project', {
     get: function() {
@@ -82,8 +87,6 @@ export default Ember.Controller.extend({
     });
   }),
 
-
-
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
     var publicationYear = parseInt(this.get('publication.pubyear'));
     // If no valid year, return all departments
@@ -116,10 +119,6 @@ export default Ember.Controller.extend({
     window.scroll(0,0);
   }.observes('selectPublicationVisible'),
   
-
-
-
-
   updateModelWithCorrectPublicationType: function() {
     this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
   }.observes('selectedPublicationType'),
@@ -191,8 +190,6 @@ export default Ember.Controller.extend({
     }
   }.observes('selectedPublicationType'),
 
-
-
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
   changeRefValue: Ember.observer('refValueBool', function() {
@@ -212,8 +209,6 @@ export default Ember.Controller.extend({
       this.set("refValueBool", false);
     }
   }), 
-
-
 
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
     return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));

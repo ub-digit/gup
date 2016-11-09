@@ -34,6 +34,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
 
   setupController: function(controller, models) {
     this._super(...arguments);
+    //TODO: Remove this when binding issue fixed
+    if (Ember.isBlank(models.publication.publication_links)) {
+      models.publication.publication_links = Ember.A([]);
+      models.publication.publication_links.pushObject({url: '', position: 0});
+    }
+
+    // GUP adapter does not return ember objects, which are needed for multiple-items component to work(?)
+    models.publication.publication_links = models.publication.publication_links.map((item) => {
+      return Ember.Object.create(item);
+    });
+
     controller.set('publicationTypes', models.publicationTypes);
     controller.set('publication', models.publication);
     controller.set('categories', models.categories);

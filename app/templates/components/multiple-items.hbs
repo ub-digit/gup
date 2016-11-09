@@ -1,0 +1,12 @@
+{{#each sortedItems as |item index|}}
+  {{yield
+    item
+    (hash
+      removeButton=(component "remove-button" isShowing=hasMoreThanOneItem text=deleteItemText click=(action "removeItem" item))
+      sortControls=(component "sort-controls" isShowing=hasMoreThanOneItem didMoveUp=(action "didMoveItemUp" item) didMoveDown=(action "didMoveItemDown" item))
+      index=index
+    )
+  }}
+{{/each}}
+
+<button {{action "addItem"}} type="button" class="btn btn-primary" title="{{addItemText}}">{{addItemText}} <i class="fa fa-plus" aria-hidden="true"></i></button>
