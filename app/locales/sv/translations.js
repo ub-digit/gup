@@ -293,8 +293,10 @@ export default {
         },
         search: {
           title: "Sök",
-          searchForPublicationWithPubid: 'Sök efter publikation med GUP-ID:',
-          searchById: 'Sök efter GUP-ID',
+          searchPublications: 'Sök efter publikationer',
+          searchBy: 'Sök på titel, författare eller identifikatorer',
+          numberOfHits: 'Antal träffar',
+          noPublicationsFound: 'Inga publikationer hittades'
         },
         fileImports: {
           filenameHeader: 'Filnamn',

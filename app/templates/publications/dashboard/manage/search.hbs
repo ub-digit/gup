@@ -3,10 +3,10 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="search-icon-background" />
-          <h3>{{t 'publications.dashboard.manage.search.searchForPublicationWithPubid'}}</h3>
+          <h3>{{t 'publications.dashboard.manage.search.searchPublications'}}</h3>
           <div class="row">
             <div class="col-xs-6">
-              {{input enter="findPublications" class="form-control" value=term placeholder=(t 'publications.dashboard.manage.search.searchById') }}
+              {{input enter="findPublications" class="form-control" value=term placeholder=(t 'publications.dashboard.manage.search.searchBy') }}
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
           {{#if model.length}}
           <div class="row number-of-results">
             <div class="col-xs-12 text-center">
-              <strong>{{t 'publications.dashboard.manage.published.numberOfHits'}}: {{model.meta.query.total}}</strong>
+              <strong>{{t 'publications.dashboard.manage.search.numberOfHits'}}: {{model.meta.query.total}}</strong>
             </div>
           </div>
           <ul class="list-unstyled dashboard-list">
@@ -33,7 +33,7 @@
             </div>
           </div>            
           {{else}}
-          {{no-result displaytext=(t 'publications.dashboard.manage.published.youHaveNoPublications')}}
+          {{no-result displaytext=(t 'publications.dashboard.manage.search.noPublicationsFound')}}
           {{/if}}
 
           <div class="col-xs-6">

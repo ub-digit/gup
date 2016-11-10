@@ -292,8 +292,10 @@ export default {
         },
         search: {
           title: "Search",
-          searchForPublicationWithPubid: 'Search for a publication with GUP-ID:',
-          searchById: 'Search for GUP-ID',
+          searchPublications: 'Search publications',
+          searchBy: 'Search by title, author name or identifiers',
+          numberOfHits: 'Number of hits',
+          noPublicationsFound: 'No publications found'
         },
         fileImports: {
           filenameHeader: 'Filnamne',
