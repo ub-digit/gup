@@ -1,19 +1,45 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="search-icon-background" />
-        <h3>{{t 'publications.dashboard.manage.search.searchForPublicationWithPubid'}}</h3>
-        <div class="row">
-          <div class="col-xs-6">
-            {{input enter="showPublication" class="form-control" value=publication_id placeholder=(t 'publications.dashboard.manage.search.searchById') }}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="search-icon-background" />
+          <h3>{{t 'publications.dashboard.manage.search.searchPublications'}}</h3>
+          <div class="row">
+            <div class="col-xs-6">
+              {{input enter="findPublications" class="form-control" value=term placeholder=(t 'publications.dashboard.manage.search.searchBy') }}
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          {{#if model.length}}
+          <div class="row number-of-results">
+            <div class="col-xs-12 text-center">
+              <strong>{{t 'publications.dashboard.manage.search.numberOfHits'}}: {{model.meta.query.total}}</strong>
+            </div>
+          </div>
+          <ul class="list-unstyled dashboard-list">
+            {{#each model as |item|}}
+            <li>
+              {{publication-list-row item=item link='publications.dashboard.manage.show'}}
+            </li>
+            {{/each}}
+          </ul>
+          <div class="row">
+            <div class="col-xs-12">
+              {{pagination-pager pagination=model.meta.pagination}}
+            </div>
+          </div>            
+          {{else}}
+          {{no-result displaytext=(t 'publications.dashboard.manage.search.noPublicationsFound')}}
+          {{/if}}
+
           <div class="col-xs-6">
             <span class="gup-error">{{application.publication_id_error}}</span>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
-</div>

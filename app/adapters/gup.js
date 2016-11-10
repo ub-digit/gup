@@ -10,6 +10,7 @@ export default Ember.Object.extend({
     person_record: {path: 'person_records'},
     department: {path: 'departments'},
     publication: {path: 'publications'},
+    publication_record: {path: 'publication_records', singular: 'publication', plural: 'publications'},
     publication_type: {path: 'publication_types'},
     faculty: {path: 'faculties', plural:'faculties'},
     draft: { path: 'drafts', singular: 'publication', plural: 'publications'},

@@ -49,6 +49,7 @@
 
   <hr/>
 
+{{#field-group}}
   <!-- Dissertaion fields -->
 
   <div id="diss-date" class="row">  
@@ -83,7 +84,9 @@
     </div>
   </div>
 
-  <hr/>
+{{/field-group}}
+
+{{#field-group}}
 
   <div class="row">
     <div class="col-md-9 ">
@@ -160,7 +163,7 @@
       </span>
     </div>
   </div>
-
+  <!--
   <div class="row">
     <div class="col-md-9">
       <span class="form-group {{if errors.links 'has-error'}}">
@@ -168,6 +171,38 @@
       </span>
     </div>
   </div>
+  -->
+  <span class="form-group {{if errors.links 'has-error'}}">
+    <section id="publication-links">
+      <label class="control-label">{{t 'publications.publicationtypes.form.publicationLinksLabel'}}</label>
+      <span class="help-block">{{t 'publications.publicationtypes.form.help.publicationLinks'}}</span>
+      {{#multiple-items
+        items=publication.publication_links
+        createNewItem=createNewPublicationLink
+        addItemText=(t 'publications.publicationtypes.form.publicationLinksAddItem')
+        as |publication_link multipleItem|}}
+        <div class="row">
+          <div class="col-xs-10">
+            <div class="form-group">
+              {{input
+                type="text"
+                class="form-control"
+                id=(concat "publication-url-" multipleItem.index)
+                focus-out=(action "sanitizePublicationLink" publication_link)
+                value=publication_link.url
+              }}
+            </div>
+          </div>
+          <div class="col-xs-1">
+            {{multipleItem.removeButton}}
+          </div>
+          <div class="col-xs-1">
+            {{multipleItem.sortControls}}
+          </div>
+        </div>
+      {{/multiple-items}}
+    </section>
+  </span>
 
   <div class="row">
     <div class="col-md-3">
@@ -200,7 +235,9 @@
       </span>
     </div>
   </div>
-  <hr/>
+{{/field-group}}
+
+{{#field-group}}
 
   <div class="row">
     <div class="col-xs-12">
@@ -225,8 +262,9 @@
       </span>
     </div>
   </div>
+{{/field-group}}
 
-  <hr/>
+{{#field-group}}
 
   <div class="row">
     <div class="col-md-9">
@@ -293,8 +331,7 @@
       </span>
     </div>
   </div>
-
-  <hr/>
+{{/field-group}}
 
   {{publication-identifier-block fieldHelptext="publications.publicationtypes.form.help.publicationIdentifiers.helptext" publicationIdentifiers=publication.publication_identifiers publicationIdentifierCodes=publicationIdentifierCodes}}
 

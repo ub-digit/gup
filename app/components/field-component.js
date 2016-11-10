@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  countContentAction: 'countContent',
+  didInsertElement: function() {
+    if(this.get('isVisible')) {
+      this.get('parentView').send('countContent', this.get('fieldName'));
+    }
+  },
+ 
 
   getFullObject: Ember.computed('selectedPublicationType', 'fieldName', function() {
     var fullObject = this.get("selectedPublicationType");

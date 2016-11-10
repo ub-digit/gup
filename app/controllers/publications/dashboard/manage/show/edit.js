@@ -11,8 +11,14 @@ export default Ember.Controller.extend({
   authorArr: Ember.A([]),
   queryParams: ['selectPublicationVisible'],
   selectPublicationVisible: true,
-  refValueBool: false, 
+  refValueBool: false,
   categoryObjectsList: Ember.A([]),
+  createNewPublicationLink: function() {
+    return Ember.Object.create({
+      url: '',
+    });
+  },
+
   submitCallbacks: Ember.A([]), // Hack
   // Run callbacks and collect promises to resolve on submit
   submitCallbacksRun: function() {
@@ -36,8 +42,6 @@ export default Ember.Controller.extend({
       return value;
     }
   }),
-
-
 
   selectedProjects: Ember.computed('publication.project', {
     get: function() {
@@ -83,8 +87,6 @@ export default Ember.Controller.extend({
     });
   }),
 
-
-
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
     var publicationYear = parseInt(this.get('publication.pubyear'));
     // If no valid year, return all departments
@@ -117,10 +119,6 @@ export default Ember.Controller.extend({
     window.scroll(0,0);
   }.observes('selectPublicationVisible'),
   
-
-
-
-
   updateModelWithCorrectPublicationType: function() {
     this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
   }.observes('selectedPublicationType'),
@@ -192,8 +190,6 @@ export default Ember.Controller.extend({
     }
   }.observes('selectedPublicationType'),
 
-
-
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
   changeRefValue: Ember.observer('refValueBool', function() {
@@ -213,8 +209,6 @@ export default Ember.Controller.extend({
       this.set("refValueBool", false);
     }
   }), 
-
-
 
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
     return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
@@ -255,6 +249,12 @@ export default Ember.Controller.extend({
   isSelectedOther: Ember.computed.equal('publicationTypeFilter', 'other'),
 
   actions: {
+    sanitizePublicationLink: function(link) {
+      link.set('url', link.get('url').trim());
+      if (Ember.isPresent(link.get('url')) && !/^\w+:\/\//.test(link.get('url'))) {
+        link.set('url', 'http://' + link.get('url'));
+      }
+    },
     setPublicationTypeFilter: function(filter){
       this.set('publicationTypeFilter', filter);
     },
@@ -292,6 +292,11 @@ export default Ember.Controller.extend({
 
     cancelChangePublicationType: function() {
       this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
+    },
+
+    // Dummy catcher for field-component without a surrounding field-group
+    countContent: function(field_name) {
+      return false;
     },
   }
 });

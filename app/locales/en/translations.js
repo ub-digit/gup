@@ -1,5 +1,9 @@
 export default {
   components: {
+    multipleItems: {
+      addItemText: 'Add new',
+      deleteItemText: 'Remove'
+    },
     fileUploadWidget: {
       openModalLabel: 'Upload file',
       modalTitle: 'Upload new file',
@@ -288,8 +292,10 @@ export default {
         },
         search: {
           title: "Search",
-          searchForPublicationWithPubid: 'Search for a publication with GUP-ID:',
-          searchById: 'Search for GUP-ID',
+          searchPublications: 'Search publications',
+          searchBy: 'Search by title, author name or identifiers',
+          numberOfHits: 'Number of hits',
+          noPublicationsFound: 'No publications found'
         },
         fileImports: {
           filenameHeader: 'Filnamne',
@@ -385,7 +391,10 @@ export default {
       form: {
         publicationType: 'Publication type',
         changePublicationTypeLink: 'Change',
+        publicationLinksLabel: 'External links',
+        publicationLinksAddItem: 'Add link',
         help: {
+          publicationLinks: 'Links should begin with http:// or https://',
           authors: {
             helptext: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
           },

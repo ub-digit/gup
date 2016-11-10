@@ -34,6 +34,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
 
   setupController: function(controller, models) {
     this._super(...arguments);
+    //TODO: Remove this when binding issue fixed
+    if (Ember.isBlank(models.publication.publication_links)) {
+      models.publication.publication_links = Ember.A([]);
+      models.publication.publication_links.pushObject({url: '', position: 0});
+    }
+
+    // GUP adapter does not return ember objects, which are needed for multiple-items component to work(?)
+    models.publication.publication_links = models.publication.publication_links.map((item) => {
+      return Ember.Object.create(item);
+    });
+
     controller.set('publicationTypes', models.publicationTypes);
     controller.set('publication', models.publication);
     controller.set('categories', models.categories);
@@ -136,15 +147,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     },
     // TODO: this should probably live in the controller?
     saveDraft: function(/*model*/) {
-      var that = this;
-      var successHandler = function(model) {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess'));
-        that.send('refreshModel', model.id);
-        that.transitionTo('publications.dashboard.manage.show', model.id);
+      var successHandler = (model) => {
+        this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess'));
+        this.send('refreshModel', model.id);
+        this.transitionTo('publications.dashboard.manage.show', model.id);
       };
-      var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError'));
-        that.controller.set('errors', reason.error.errors);
+      var errorHandler = (reason) => {
+        this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError'));
+        this.controller.set('errors', reason.error.errors);
         Ember.run.schedule('afterRender', function() {
           // What happens here? Can be removed?
           Ember.$('[data-toggle="popover"]').popover({
@@ -154,7 +164,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         });
         return false;
       };
-      var generalHandler = function(model) {
+      var generalHandler = (model) => {
         if (model.error) {
           errorHandler(model);
         }
@@ -163,10 +173,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         }
       };
 
+      //TODO: Ok solution for now, can be solved more elegantly?
+      this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
+        return Ember.isPresent(link.get('url'));
+      }));
+
+      //TODO: OCD fix to prevent position gaps, later: refactor component to not use (position) interally and just set it here
+      this.get('controller.publication.publication_links').sortBy('position').forEach((link, index) => {
+        link.set('position', index);
+      });
+
       // TODO: this smells, can this be made feel less hackish?
       this.get('controller').submitCallbacksRun().then(() => {
         this.get('controller').formatAuthorsForServer();
-        that.store.save('draft', that.get('controller').get('publication')).then(generalHandler, errorHandler);
+        this.store.save('draft', this.get('controller').get('publication')).then(generalHandler, errorHandler);
       }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
     },
     savePublish: function(/*model*/) {
