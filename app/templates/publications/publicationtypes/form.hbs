@@ -49,6 +49,7 @@
 
   <hr/>
 
+{{#field-group}}
   <!-- Dissertaion fields -->
 
   <div id="diss-date" class="row">  
@@ -83,7 +84,9 @@
     </div>
   </div>
 
-  <hr/>
+{{/field-group}}
+
+{{#field-group}}
 
   <div class="row">
     <div class="col-md-9 ">
@@ -226,7 +229,9 @@
       </span>
     </div>
   </div>
-  <hr/>
+{{/field-group}}
+
+{{#field-group}}
 
   <div class="row">
     <div class="col-xs-12">
@@ -251,8 +256,9 @@
       </span>
     </div>
   </div>
+{{/field-group}}
 
-  <hr/>
+{{#field-group}}
 
   <div class="row">
     <div class="col-md-9">
@@ -319,8 +325,7 @@
       </span>
     </div>
   </div>
-
-  <hr/>
+{{/field-group}}
 
   {{publication-identifier-block fieldHelptext="publications.publicationtypes.form.help.publicationIdentifiers.helptext" publicationIdentifiers=publication.publication_identifiers publicationIdentifierCodes=publicationIdentifierCodes}}
 

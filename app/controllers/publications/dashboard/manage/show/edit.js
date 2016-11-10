@@ -287,5 +287,10 @@ export default Ember.Controller.extend({
     cancelChangePublicationType: function() {
       this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
     },
+
+    // Dummy catcher for field-component without a surrounding field-group
+    countContent: function(field_name) {
+      return false;
+    },
   }
 });
