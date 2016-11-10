@@ -1,7 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    publication_id:null,
-    application:Ember.inject.controller(),
     manageController: Ember.inject.controller("publications.dashboard.manage"),
+  	page: 1,
+    search_term: '',
+  	queryParams: ['page', 'search_term'],
+
+    actions: {
+        findPublications: function() {
+            this.set("search_term", this.get("term"));
+            this.set("page", 1);
+        } 
+    }  	
 });
