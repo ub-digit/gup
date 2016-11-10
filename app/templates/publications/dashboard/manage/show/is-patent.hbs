@@ -1,0 +1,89 @@
+
+
+    {{#if allFieldObjects.author}}
+      {{#if publication.authors}}
+        {{publication-field-preview fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
+      {{/if}}
+    {{/if}}
+
+
+    {{#if allFieldObjects.patent_applicant}}
+      {{#if publication.patent_applicant}}
+        {{publication-field-preview fieldLabel=allFieldObjects.patent_applicant.label fieldValue=publication.patent_applicant}}
+      {{/if}}
+    {{/if}}
+
+
+    {{#if allFieldObjects.pubyear}}
+      {{#if publication.pubyear}}
+        {{publication-field-preview fieldLabel=allFieldObjects.pubyear.label fieldValue=publication.pubyear}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.patent_number}}
+      {{#if publication.patent_number}}
+        {{publication-field-preview fieldLabel=allFieldObjects.patent_number.label fieldValue=publication.patent_number}}
+      {{/if}}
+    {{/if}}
+
+
+
+
+
+    {{#if allFieldObjects.patent_date}}
+      {{#if publication.patent_date}}
+        {{publication-field-preview fieldLabel=allFieldObjects.patent_date.label fieldValue=(format-date publication.patent_application_date 'YYYY-MM-DD')}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.patent_application_number}}
+      {{#if publication.patent_application_number}}
+        {{publication-field-preview fieldLabel=allFieldObjects.patent_application_number.label fieldValue=publication.patent_application_number}}
+      {{/if}}
+    {{/if}}
+
+
+    {{#if allFieldObjects.patent_application_date}}
+      {{#if publication.patent_application_date}}
+        {{publication-field-preview fieldLabel=allFieldObjects.patent_application_date.label fieldValue=(format-date publication.patent_application_date 'YYYY-MM-DD')}}
+      {{/if}}
+    {{/if}}
+
+
+  
+
+
+    {{#if allFieldObjects.abstract}}
+      {{#if publication.abstract}}
+        {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
+      {{/if}}
+    {{/if}}
+
+    
+    {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
+
+    {{#if allFieldObjects.keywords}}
+      {{#if publication.keywords}}
+        {{publication-field-preview fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.publanguage}}
+      {{#if publication.publanguage}}
+        {{publication-field-preview fieldLabel=allFieldObjects.publanguage.label fieldValue=publication.publanguage_label}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.pub_notes}}
+      {{#if publication.pub_notes}}
+        {{publication-field-preview fieldLabel=allFieldObjects.pub_notes.label fieldValue=publication.pub_notes}}
+      {{/if}}
+    {{/if}}
+
+    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
+
+
+
+
+
+

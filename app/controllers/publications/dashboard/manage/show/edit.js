@@ -38,6 +38,7 @@ export default Ember.Controller.extend({
   }),
 
 
+
   selectedProjects: Ember.computed('publication.project', {
     get: function() {
       var pubProject = this.get('publication.project');

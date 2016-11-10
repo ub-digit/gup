@@ -1,41 +1,45 @@
 <!-- S_NOT-READY -->
-<dt>{{fieldLabel}}</dt>
-<dd>
-  {{#if isTypeList}}
-    <ul class="list-unstyled">
-      {{#each listValueArray as |listItem|}}
-        <li>{{listItem}}</li>
-      {{/each}}
-    </ul>
-  {{else if isTypeAuthors}}
-    <ul class="list-unstyled">
-    {{#each fieldValue as |author|}}
-    <li>{{author.first_name}} {{author.last_name}}
-      {{#if author.departments}}
-      <ul>
-        {{#each author.departments as |department|}}
-        <li>{{department.name}}</li>
+<div class="publication-field-preview">
+  <dt>{{fieldLabel}}</dt>
+  <dd>
+    {{#if isTypeList}}
+      <ul class="list-unstyled">
+        {{#each listValueArray as |listItem|}}
+          <li>{{listItem}}</li>
         {{/each}}
       </ul>
-      {{/if}}
-    </li>
-    {{/each}}
-  </ul>
-  {{else if isTypeCollapsible}}
+    {{else if isTypeAuthors}}
+      <div class="publication-field-preview-authors">
+      {{#each fieldValue as |author|}}
+        <div class="publication-field-preview-authors-row">
+        {{author.first_name}} {{author.last_name}}
+          {{#if author.departments}}
+          <strong>|</strong>      
+            {{#each author.departments as |department|}}
+            <span class="label label-default">{{department.name}}</span>
+            {{/each}}
+          {{/if}}
+        </div>
+        
+        {{/each}}
+      </div>
 
-    {{#if collapsedValue}}
-      {{#if isCollapsed}}
-        {{linkify collapsedValue}}
-        <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mer</a>
+    {{else if isTypeCollapsible}}
+
+      {{#if collapsedValue}}
+        {{#if isCollapsed}}
+          {{linkify collapsedValue}}
+          <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mer</a>
+        {{else}}
+          {{linkify fieldValue}}
+          <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mindre</a>
+        {{/if}}
       {{else}}
         {{linkify fieldValue}}
-        <a href="javacsript:void();" {{action 'toggleCollapsed'}}>Mindre</a>
       {{/if}}
+
     {{else}}
       {{linkify fieldValue}}
     {{/if}}
-
-  {{else}}
-    {{linkify fieldValue}}
-  {{/if}}
-</dd>
+  </dd>
+</div>

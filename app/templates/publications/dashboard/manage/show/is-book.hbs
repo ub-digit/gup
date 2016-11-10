@@ -1,0 +1,87 @@
+
+
+    {{#if allFieldObjects.author}}
+      {{#if publication.authors}}
+        {{publication-field-preview fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.pubyear}}
+      {{#if publication.pubyear}}
+        {{publication-field-preview fieldLabel=allFieldObjects.pubyear.label fieldValue=publication.pubyear}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.extent}}
+      {{#if publication.extent}}
+        {{publication-field-preview fieldLabel=allFieldObjects.extent.label fieldValue=publication.extent}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.publisher}}
+      {{#if publication.publisher}}
+        {{publication-field-preview fieldLabel=allFieldObjects.publisher.label fieldValue=publication.publisher}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.place}}
+      {{#if publication.place}}
+        {{publication-field-preview fieldLabel=allFieldObjects.place.label fieldValue=publication.place}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.isbn}}
+      {{#if publication.isbn}}
+        {{publication-field-preview fieldLabel=allFieldObjects.isbn.label fieldValue=publication.isbn}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.issn}}
+      {{#if publication.issn}}
+        {{publication-field-preview fieldLabel=allFieldObjects.issn.label fieldValue=publication.issn}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.eissn}}
+      {{#if publication.eissn}}
+        {{publication-field-preview fieldLabel=allFieldObjects.eissn.label fieldValue=publication.eissn}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.series}}
+      {{#if publication.series}}
+        {{publication-field-preview fieldLabel=allFieldObjects.series.label fieldValue=publication.series_objects listValue='title' type='list'}}
+      {{/if}}
+    {{/if}}
+
+   {{#if allFieldObjects.abstract}}
+      {{#if publication.abstract}}
+        {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.project}}
+      {{#if publication.project}}
+        {{publication-field-preview fieldLabel=allFieldObjects.project.label fieldValue=publication.project_objects listValue='title' type='list'}}
+      {{/if}}
+    {{/if}} 
+
+    {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
+
+    {{#if allFieldObjects.keywords}}
+      {{#if publication.keywords}}
+        {{publication-field-preview fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
+      {{/if}}
+    {{/if}}
+
+    {{#if allFieldObjects.publanguage}}
+      {{#if publication.publanguage}}
+        {{publication-field-preview fieldLabel=allFieldObjects.publanguage.label fieldValue=publication.publanguage_label}}
+      {{/if}}
+    {{/if}}
+
+    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
+
+    {{#if publication.publication_identifiers}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+    {{/if}}

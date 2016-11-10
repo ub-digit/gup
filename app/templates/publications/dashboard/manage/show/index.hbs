@@ -106,23 +106,14 @@
       </nav>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-10">
-      <h2>{{model.title}}</h2>
-      {{#if model.epub_ahead_of_print}}
-        <div class="alert alert-warning">
-        {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
-        </div>
-      {{/if}}
-    </div>
-  </div>
+
   {{#if isExtendedViewMode}}
     <div class="row">
       <div class="col-xs-12">
         {{#if isExtendedCompareMode}}
-        {{publication-display publication=model publicationType=getPublicationTypeObject mode='compare' otherPublication=otherPublication otherIsSelected=otherPublicationSelected other_version=other_version}}
+        {{publication-display publication=model publicationType=getPublicationTypeObject allPublicationTypes=getAllPublicationTypes mode='compare' otherPublication=otherPublication otherIsSelected=otherPublicationSelected other_version=other_version}}
         {{else}}
-        {{publication-display publication=model publicationType=getPublicationTypeObject mode='review'}}
+        {{publication-display publication=model allPublicationTypes=getAllPublicationTypes publicationType=getPublicationTypeObject mode='review'}}
         {{/if}}
       </div>
     </div>
@@ -168,8 +159,8 @@
     </div>
   {{else}}
     <div class="row">
-      <div class="col-xs-10">
-        {{publication-display publication=model publicationType=getPublicationTypeObject mode='preview'}}
+      <div class="col-xs-12">
+        {{publication-display publication=model allPublicationTypes=getAllPublicationTypes   publicationType=getPublicationTypeObject mode='preview'}}
       </div>
     </div>
   {{/if}}
