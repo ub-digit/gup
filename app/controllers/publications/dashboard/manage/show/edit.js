@@ -251,7 +251,7 @@ export default Ember.Controller.extend({
   actions: {
     sanitizePublicationLink: function(link) {
       link.set('url', link.get('url').trim());
-      if (!/^\w+:\/\//.test(link.get('url'))) {
+      if (Ember.isPresent(link.get('url')) && !/^\w+:\/\//.test(link.get('url'))) {
         link.set('url', 'http://' + link.get('url'));
       }
     },
