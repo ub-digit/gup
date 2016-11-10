@@ -177,6 +177,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
         return Ember.isPresent(link.get('url'));
       }));
+
+      //TODO: OCD fix to prevent position gaps, later: refactor component to not use (position) interally and just set it here
+      this.get('controller.publication.publication_links').sortBy('position').forEach((link, index) => {
+        link.set('position', index);
+      });
+
       // TODO: this smells, can this be made feel less hackish?
       this.get('controller').submitCallbacksRun().then(() => {
         this.get('controller').formatAuthorsForServer();
