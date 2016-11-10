@@ -2,7 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    //return this.store.find('endnote_import');
+    /*
+    this.store.find('endnote_file').then((result) => {
+      console.log('success');
+      console.dir(result);
+    }, (error) => {
+      console.log('error');
+      console.dir(error);
+    });
+    */
+    return this.store.find('endnote_file');
+    /*
     return Promise.resolve(Ember.A([Ember.Object.create({
       'id': 123,
       'name': 'Web of Scence Alert 160916.xml',
@@ -43,5 +53,6 @@ export default Ember.Route.extend({
           'imported': false,
         }]
     })]));
+    */
   }
 });
