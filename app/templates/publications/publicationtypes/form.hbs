@@ -184,7 +184,13 @@
         <div class="row">
           <div class="col-xs-10">
             <div class="form-group">
-              {{input type="text" class="form-control" id=(concat "publication-url-" multipleItem.index) value=publication_link.url}}
+              {{input
+                type="text"
+                class="form-control"
+                id=(concat "publication-url-" multipleItem.index)
+                focus-out=(action "sanitizePublicationLink" publication_link)
+                value=publication_link.url
+              }}
             </div>
           </div>
           <div class="col-xs-1">

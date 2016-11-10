@@ -249,6 +249,12 @@ export default Ember.Controller.extend({
   isSelectedOther: Ember.computed.equal('publicationTypeFilter', 'other'),
 
   actions: {
+    sanitizePublicationLink: function(link) {
+      link.set('url', link.get('url').trim());
+      if (!/^\w+:\/\//.test(link.get('url'))) {
+        link.set('url', 'http://' + link.get('url'));
+      }
+    },
     setPublicationTypeFilter: function(filter){
       this.set('publicationTypeFilter', filter);
     },
