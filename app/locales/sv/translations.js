@@ -62,6 +62,8 @@ export default {
       selectVersion: '- Välj äldre version -',
       selectContentTypeLabel: 'Innehållmärkning',
       publicationType: 'Publikationstyp',
+      publicationIDLabel: 'Publikations-ID',
+      publishedInLabel: 'Publicerad i',
       publicationIdentifier: {
         label: 'Identifikatorer',
       },
@@ -207,7 +209,7 @@ export default {
           published: 'Mina publikationer',
           drafts: 'Mina utkast',
           search: 'Sök',
-          file_imports: 'Uppladdade listor',
+          file_import: 'Uppladdade listor',
         },
         _actions: {
           registerNew: 'Registrera ny',

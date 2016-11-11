@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   uploadCancelButtonLabel: null,
   uploadSubmitButtonIsDisabled: true,
   uploadFileUploadIsVisible: true,
+  hasSuccessfullUpload: false,
   init() {
     this._super(...arguments);
     this.set('importDataBaseUrl', Ember.getOwner(this).resolveRegistration('config:environment').APP.serviceURL + '/endnote_files');
@@ -30,20 +31,20 @@ export default Ember.Controller.extend({
       this.send('resetFileImportUploadState');
     },
     didSaveImportData: function(success, error) {
-      this.set('uploadSubmitButtonIsVisible', false);
+      this.set('uploadSubmitButtonIsDisabled', true);
       this.get('uploadImportDataFile')(this.get('importDataFile')).then((response) => {
         this.set('uploadSubmitButtonIsVisible', false);
+        this.set('uploadFileUploadIsVisible', false);
         this.set('uploadCancelButtonStyle', 'success');
+        this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCloseLabel'));
+        this.set('hasSuccessfullUpload', true);
         //this.send('refreshModel');
         //console.log('success!');
-        //success();
+        success();
       }, (message) => {
-        this.set('uploadSubmitButtonIsVisible', false);
-        this.set('uploadCancelButtonStyle', 'danger');
+        this.set('hasSuccessfullUpload', false);
+        this.set('uploadSubmitButtonIsDisabled', false);
         error(message);
-      }).finally(() => {
-        this.set('uploadFileUploadIsVisible', false);
-        this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCloseLabel'));
       });
     },
     didCancelImportData: function() {
@@ -60,6 +61,7 @@ export default Ember.Controller.extend({
       this.set('uploadCancelButtonStyle', 'default');
       this.set('uploadSubmitButtonIsDisabled', true);
       this.set('uploadFileUploadIsVisible', true);
+      this.set('hasSuccessfullUpload', false);
     }
   }
 });

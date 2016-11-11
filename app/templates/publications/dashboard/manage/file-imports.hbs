@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="pull-right">
-      {{gup-file-upload-widget
+      {{#gup-file-upload-widget
         id="gup-file-import-upload"
         faIconClass="fa-upload"
         uploadExtraData=(hash todo="todo")
@@ -17,6 +17,11 @@
         cancelButtonStyle=uploadCancelButtonStyle
         didSave=(action "didSaveImportData")
         didCancel=(action "didCancelImportData")}}
+        {{#if hasSuccessfullUpload}}
+          <div class="alert alert-success">File successfully uploaded!</div>
+          <button {{action "resetFileImportUploadState"}} type="button" class="btn btn-primary">Upload another file</button>
+        {{/if}}
+      {{/gup-file-upload-widget}}
     </div>
   </div>
   {{#if model}}
@@ -81,7 +86,6 @@
         {{/if}}
       {{/collapsible-items}}
     </table>
-    {{!#bs-modal open=isShowingFileImportDeleteModal}}
   </div>
   {{/if}}
 </div>

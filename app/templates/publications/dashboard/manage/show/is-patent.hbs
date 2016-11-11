@@ -26,10 +26,6 @@
       {{/if}}
     {{/if}}
 
-
-
-
-
     {{#if allFieldObjects.patent_date}}
       {{#if publication.patent_date}}
         {{publication-field-preview fieldLabel=allFieldObjects.patent_date.label fieldValue=(format-date publication.patent_application_date 'YYYY-MM-DD')}}
@@ -49,18 +45,20 @@
       {{/if}}
     {{/if}}
 
-
-  
-
-
     {{#if allFieldObjects.abstract}}
       {{#if publication.abstract}}
         {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
       {{/if}}
     {{/if}}
 
+    {{#if publication.files }}
+      {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}
+    {{/if}}
     
+    {{#if publication.category_objects}}
     {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
+    {{/if}}
+
 
     {{#if allFieldObjects.keywords}}
       {{#if publication.keywords}}
@@ -80,10 +78,7 @@
       {{/if}}
     {{/if}}
 
-    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
-
-
-
+    {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel') fieldValue=publication.id}}
 
 
 

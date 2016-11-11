@@ -13,7 +13,7 @@
     {{/if}}
 
     {{#if publication.sourcetitle}}
-      <dt>Publicerad i:</dt>
+      <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
       <dd>
         {{publication.sourcetitle}} 
         {{#if publication.sourcevolume}}
@@ -38,6 +38,11 @@
       {{#if publication.abstract}}
         {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
       {{/if}}
+    {{/if}}
+
+
+    {{#if publication.files }}
+      {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}
     {{/if}}
 
     {{#if allFieldObjects.project}}
@@ -82,8 +87,9 @@
       {{/if}}
     {{/if}}
 
-
+    {{#if publication.category_objects}}
     {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
+    {{/if}}
 
     {{#if allFieldObjects.keywords}}
       {{#if publication.keywords}}
@@ -91,9 +97,11 @@
       {{/if}}
     {{/if}}
 
-    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
+    {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel')  fieldValue=publication.id}}
 
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
     {{/if}}    
+
+
 
