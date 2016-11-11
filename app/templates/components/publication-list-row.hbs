@@ -9,8 +9,7 @@
       <dt>{{t 'components.publicationListRow.publicationID'}}</dt><dd>{{item.id}}</dd>
       <dt>{{t 'components.publicationListRow.publicationType'}}</dt><dd>{{item.publication_type_label}}</dd>
       {{#if item.ref_value}}<dt>{{t 'components.publicationListRow.contentMarker'}}</dt><dd>{{item.ref_value_label}}</dd>{{/if}}
-      <dt>{{t 'components.publicationListRow.createdAt'}}</dt><dd>{{format-date item.created_at}}</dd>
-      {{#if item.published_at}}<dt>{{t 'components.publicationListRow.published'}}</dt><dd>{{format-date item.published_at}}</dd>{{/if}}
+      <dt>{{t 'components.publicationListRow.publicationYear'}}</dt><dd>{{item.pubyear}}</dd>
     </dl>
     {{/if}}
   </div>

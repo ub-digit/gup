@@ -99,9 +99,8 @@ export default {
       noTitle: '-- Titel saknas --',
       publicationID: "Publikationens id",
       publicationType: "Publikationstyp",
+      publicationYear: "Publikationsår",      
       contentMarker: "Innehållsmärkning",
-      createdAt: "Skapad",
-      published: "Publiserad",
     },
     fileUpload: {
     },

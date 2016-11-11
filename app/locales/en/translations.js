@@ -99,9 +99,8 @@ export default {
       noTitle: '-- Missing title --',
       publicationID: "Publication ID",
       publicationType: "Publication type",
+      publicationYear: "Publication year",
       contentMarker: "Content type",
-      createdAt: "Created",
-      published: "Published",
     },
     fileUpload: {
     },
