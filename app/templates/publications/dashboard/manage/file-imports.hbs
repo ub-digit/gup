@@ -49,7 +49,7 @@
           <td>
             <h4>{{fileImport.name}}</h4>
           </td>
-          <td>{{fileImport.imported_date}}</td>
+          <td>{{fileImport.updated_at}}</td>
           <td>
             {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete') didConfirm=(action "didDeleteFileImport" fileImport)}}
               {{t 'publications.dashboard.manage.fileImports.deleteFileConfirmation' filename=fileImport.name}}
@@ -68,11 +68,11 @@
                 </tr>
               </thead>
               <tbody>
-              {{#each fileImport.publications as |publication|}}
-              <tr class="file-import-publication {{if publication.imported "file-import-publication-imported"}}" >
-                <td>{{publication.name}}</td>
-                <td>{{publication.id}}</td>
-              </tr>
+              {{#each fileImport.endnote_records as |record|}}
+                <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
+                  <td>{{record.title}}</td>
+                  <td>{{record.links}}</td>
+                </tr>
               {{/each}}
               </tbody>
             </table>

@@ -393,7 +393,7 @@ export default {
         publicationType: 'Publikationstyp',
         refereeLable: 'Refereegranskad',
         changePublicationTypeLink: 'Byt',
-        publicationLinksLabel: 'Extera länkar',
+        publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',

@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
   uploadFileUploadIsVisible: true,
   init() {
     this._super(...arguments);
-    this.set('importDataBaseUrl', Ember.getOwner(this).resolveRegistration('config:environment').APP.serviceURL + '/end_note_files');
+    this.set('importDataBaseUrl', Ember.getOwner(this).resolveRegistration('config:environment').APP.serviceURL + '/endnote_files');
     this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCancelLabel'));
   },
   actions: {
@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       this.get('uploadImportDataFile')(this.get('importDataFile')).then((response) => {
         this.set('uploadSubmitButtonIsVisible', false);
         this.set('uploadCancelButtonStyle', 'success');
-        this.send('refreshModel');
+        //this.send('refreshModel');
         //console.log('success!');
         //success();
       }, (message) => {
