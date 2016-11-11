@@ -208,7 +208,7 @@ export default {
           published: 'Mina publikationer',
           drafts: 'Mina utkast',
           search: 'Sök',
-          file_imports: 'Uppladdade listor',
+          file_import: 'Uppladdade listor',
         },
         _actions: {
           registerNew: 'Registrera ny',

@@ -8,8 +8,17 @@ export default Ember.Route.extend({
     });
   },
 
-  setupController: function(controller, model) {
-    controller.set("publication", model.publication);
-    controller.set("publicationTypes", model.publicationTypes);
+  setupController: function(controller, models) {
+    controller.set("publication", models.publication);
+    controller.set("publicationTypes", models.publicationTypes);
+
+
+    var publicationType = models.publicationTypes.findBy('id', models.publication.publication_type_id);
+    if (publicationType) {
+      controller.set('selectedPublicationType', publicationType.code);
+    }
+    else {
+      controller.set('selectedPublicationType', null);
+    }
   }
 });
