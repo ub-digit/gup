@@ -311,7 +311,9 @@ export default {
           deleteFileSubmitText: 'Delete',
           uploadSubmitLabel: 'Upload',
           uploadCancelLabel: 'Cancel',
-          uploadCloseLabel: 'Close'
+          uploadCloseLabel: 'Close',
+          uploadAnotherFile: 'Upload another file',
+          successfulFileUpload: 'The file was successfully uploaded'
         },
         new: {
           title: "New publication",

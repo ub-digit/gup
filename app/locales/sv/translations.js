@@ -312,7 +312,9 @@ export default {
           deleteFileSubmitText: 'Radera',
           uploadSubmitLabel: 'Ladda upp',
           uploadCancelLabel: 'Avbryt',
-          uploadCloseLabel: 'Stäng'
+          uploadCloseLabel: 'Stäng', //TODO: remove Label?
+          uploadAnotherFile: 'Ladda upp ännu en fil',
+          successfulFileUpload: 'Filen har laddats upp'
         },
         new: {
           title: "Ny publikation",

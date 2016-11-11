@@ -18,8 +18,12 @@
         didSave=(action "didSaveImportData")
         didCancel=(action "didCancelImportData")}}
         {{#if hasSuccessfullUpload}}
-          <div class="alert alert-success">File successfully uploaded!</div>
-          <button {{action "resetFileImportUploadState"}} type="button" class="btn btn-primary">Upload another file</button>
+          <div class="alert alert-success">
+            {{t 'publications.dashboard.manage.fileImports.successfulFileUpload' filename=fileImport.name}}
+          </div>
+          <button {{action "resetFileImportUploadState"}} type="button" class="btn btn-primary">
+            {{t 'publications.dashboard.manage.fileImports.uploadAnotherFile'}}
+          </button>
         {{/if}}
       {{/gup-file-upload-widget}}
     </div>
