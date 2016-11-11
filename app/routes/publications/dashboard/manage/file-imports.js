@@ -7,5 +7,10 @@ export default Ember.Route.extend({
         return Ember.Object.create(endnote_file);
       });
     });
+  },
+  actions: {
+    refreshModel: function() {
+      this.refresh();
+    }
   }
 });

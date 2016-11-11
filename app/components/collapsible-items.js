@@ -32,7 +32,8 @@ export default Ember.Component.extend({
     rebuildItemIsActiveStates();
 
     // Add observers to sync active states
-    this.addObserver('items.[]', syncItemIsActiveStates);
+    //this.addObserver('items.[]', syncItemIsActiveStates);
+    this.addObserver('items.[]', rebuildItemIsActiveStates);
     this.addObserver('activeItems.[]', rebuildItemIsActiveStates);
   },
 

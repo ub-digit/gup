@@ -38,8 +38,7 @@ export default Ember.Controller.extend({
         this.set('uploadCancelButtonStyle', 'success');
         this.set('uploadCancelButtonLabel', this.get('i18n').t('publications.dashboard.manage.fileImports.uploadCloseLabel'));
         this.set('hasSuccessfullUpload', true);
-        //this.send('refreshModel');
-        //console.log('success!');
+        this.send('refreshModel');
         success();
       }, (message) => {
         this.set('hasSuccessfullUpload', false);
