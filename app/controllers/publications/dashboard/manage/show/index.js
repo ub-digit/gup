@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
   assetDataUploadFile: null,
   assetDataSubmitButtonIsDisabled: true,
   assetData: null,
+  isShowingAssetDataUploadModal: false,
 
   error: Ember.computed('model.error', function(){
     if (this.get('model.error')) {
@@ -29,9 +30,7 @@ export default Ember.Controller.extend({
     return false;
   }),
 
-
-
-  deletePublication: function(id) {
+ deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
       that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.index.deletePublicationSuccess'));
@@ -119,6 +118,7 @@ export default Ember.Controller.extend({
           this.send('resetAssetDataState');
           //this.send('refreshModel', this.get('publication.id'));
           //TODO: how does this work?
+          this.set('isShowingAssetDataUploadModal', false);
           this.send('refreshModel');
           success();
         }
