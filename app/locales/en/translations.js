@@ -62,6 +62,8 @@ export default {
       selectVersion: '- Select version -',
       selectContentTypeLabel: 'Content type',
       publicationType: 'publication type',
+      publicationIDLabel: 'Publication-ID',
+      publishedInLabel: 'Published in',
       publicationIdentifier: {
         label: 'Identifiers',
       },
