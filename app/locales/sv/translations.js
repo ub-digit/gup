@@ -62,6 +62,8 @@ export default {
       selectVersion: '- Välj äldre version -',
       selectContentTypeLabel: 'Innehållmärkning',
       publicationType: 'Publikationstyp',
+      publicationIDLabel: 'Publikations-ID',
+      publishedInLabel: 'Publicerad i',
       publicationIdentifier: {
         label: 'Identifikatorer',
       },

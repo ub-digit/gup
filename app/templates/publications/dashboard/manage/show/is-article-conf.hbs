@@ -13,7 +13,7 @@
     {{/if}}
 
     {{#if publication.sourcetitle}}
-      <dt>Publicerad i:</dt>
+      <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
       <dd>
         {{publication.sourcetitle}} 
         {{#if publication.sourcevolume}}
@@ -97,7 +97,7 @@
       {{/if}}
     {{/if}}
 
-    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
+    {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel')  fieldValue=publication.id}}
 
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}

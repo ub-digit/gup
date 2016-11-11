@@ -88,7 +88,7 @@
       {{/if}}
     {{/if}}
 
-    {{publication-field-preview fieldLabel='Publikations-ID' fieldValue=publication.id}}
+    {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel')  fieldValue=publication.id}}
 
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
