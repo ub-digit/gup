@@ -42,6 +42,11 @@
     {{/if}}
 
 
+    {{#if publication.files }}
+      {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}
+    {{/if}}
+
+    
     {{#if allFieldObjects.isbn}}
       {{#if publication.isbn}}
         {{publication-field-preview fieldLabel=allFieldObjects.isbn.label fieldValue=publication.isbn}}

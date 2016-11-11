@@ -40,6 +40,11 @@
       {{/if}}
     {{/if}}
 
+
+    {{#if publication.files }}
+      {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}
+    {{/if}}
+
     {{#if allFieldObjects.project}}
       {{#if publication.project}}
         {{publication-field-preview fieldLabel=allFieldObjects.project.label fieldValue=publication.project_objects listValue='title' type='list'}}
@@ -96,4 +101,6 @@
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
     {{/if}}    
+
+
 
