@@ -24,5 +24,6 @@ export default Ember.Route.extend({
 
         if (isExiting) {
             controller.resetData();
+        }
     }
 });

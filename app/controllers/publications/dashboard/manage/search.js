@@ -24,11 +24,7 @@ export default Ember.Controller.extend({
         }
         return "is-empty";
     }),
-
-    didRender: function() {
-        alert("hllo");
-    },
-    
+ 
     resetData: function() {
         this.set("search_term",'');
         this.set("page", 1);
