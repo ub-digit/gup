@@ -25,6 +25,7 @@
             {{#gup-file-upload-widget
               id="gup-file-publication-upload"
               openModalLabel=(t 'publications.dashboard.manage.show.index._subnav.attachFile')
+              isShowingUploadModal=isShowingAssetDataUploadModal
               uploadExtraData=(hash publication_id=model.id)
               uploadUrl=assetDataBaseUrl
               fileDidChange=(action "assetDataFileDidChange")
