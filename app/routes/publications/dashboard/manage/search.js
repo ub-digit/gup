@@ -18,5 +18,11 @@ export default Ember.Route.extend({
     setupController: function(controller, model) {
         controller.set("model", model);
         controller.set("manageController.isNavVisible", true);
+    },
+    resetController: function(controller, isExiting, transition) {
+        this._super.apply(this, arguments);
+
+        if (isExiting) {
+            controller.resetData();
     }
 });

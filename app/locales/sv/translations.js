@@ -296,6 +296,7 @@ export default {
           title: "Sök",
           searchPublications: 'Sök efter publikationer',
           searchBy: 'Sök på titel, författare eller identifikatorer',
+          loading: "Sökning pågår...",
           numberOfHits: 'Antal träffar',
           noPublicationsFound: 'Inga publikationer hittades'
         },

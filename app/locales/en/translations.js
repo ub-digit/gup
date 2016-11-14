@@ -295,6 +295,7 @@ export default {
           title: "Search",
           searchPublications: 'Search publications',
           searchBy: 'Search by title, author name or identifiers',
+          loading: "Sökning pågår...",
           numberOfHits: 'Number of hits',
           noPublicationsFound: 'No publications found'
         },
