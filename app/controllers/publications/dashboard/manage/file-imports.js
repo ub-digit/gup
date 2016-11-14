@@ -52,7 +52,14 @@ export default Ember.Controller.extend({
     didDeleteFileImport: function(fileImport) {
       return this.store.destroy('endnote_file', fileImport.get('id')).then((response) => {
         this.send('refreshModel');
-      }); //TODO: Handle error?
+        this.send(
+          'setMsgHeader',
+          'success',
+          this.get('i18n').t('publications.dashboard.manage.fileImports.deletedMessage', { filename: fileImport.name })
+        );
+      }, (errorResponse) => {
+        this.send('setMsgHeader', 'error', 'Filen togs bort!');
+      });
     },
     resetFileImportUploadState: function() {
       this.set('importData', null);
