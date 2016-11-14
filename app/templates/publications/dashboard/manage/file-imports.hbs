@@ -36,7 +36,7 @@
           <th></th>
           <th>{{t 'publications.dashboard.manage.fileImports.filenameHeader'}}</th>
           <th>{{t 'publications.dashboard.manage.fileImports.importedDateHeader'}}</th>
-          <th></th>
+          <th>{{t 'publications.dashboard.manage.fileImports.importRecord'}}</th>
         </tr>
       </thead>
       {{#collapsible-items accordion=false tagName="tbody" items=model as |fileImport collapsibleItem|}}
@@ -81,6 +81,22 @@
                 <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
                   <td>{{record.title}}</td>
                   <td>{{record.doi_url}}</td>
+                  <td>
+                    {{#async-button
+                      type="button"
+                      class="btn btn-link"
+                      default=(t 'publications.dashboard.manage.fileImports.importRecord')
+                      pending=(t 'publications.dashboard.manage.fileImports.importingRecord')
+                      action=(action "importEndNoteRecord") as |component state|
+                    }}
+                      {{#if state.isPending}}
+                        <i class="fa fa-spinner fa-pulse fa-spin fa-fw"></i>
+                        {{t 'publications.dashboard.manage.fileImports.importingRecord'}}
+                      {{else}}
+                        {{t 'publications.dashboard.manage.fileImports.importRecord'}}
+                      {{/if}}
+                    {{/async-button}}
+                  </td>
                 </tr>
               {{/each}}
               </tbody>

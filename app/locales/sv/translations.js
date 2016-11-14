@@ -302,7 +302,7 @@ export default {
         },
         fileImports: {
           filenameHeader: 'Filnamn',
-          importedDateHeader: 'Importerad',
+          importedDateHeader: 'Importerad', //TODO: should be created/uploaded?
           publicationTitleHeader: 'Titel',
           publicationIdHeader: 'ID',
           delete: 'Ta bort',
@@ -311,6 +311,8 @@ export default {
           deletionError: 'Något gick fel när "{{filename}}" skulle tas bort',
           expand: 'Visa innehåll',
           collapse: 'Dölj innehåll',
+          importRecord: 'Redigera',
+          importingRecord: 'Importerar...',
           deleteFileConfirmation: 'Är du säker på att du vill ta bort "{{filename}}"?', //How wrap filename in <strong>?
           deleteFileSubmitText: 'Radera',
           uploadSubmitLabel: 'Ladda upp',
