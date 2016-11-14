@@ -80,7 +80,7 @@
               {{#each fileImport.endnote_records as |record|}}
                 <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
                   <td>{{record.title}}</td>
-                  <td>{{record.links}}</td>
+                  <td>{{record.doi_url}}</td>
                 </tr>
               {{/each}}
               </tbody>
