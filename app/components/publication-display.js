@@ -2,11 +2,9 @@ import Ember from 'ember';
 
 
 export default Ember.Component.extend({
-
+  i18n: Ember.inject.service(),
   classNames: ['publication-display'],
-
   classNameBindings: ['isReviewMode:publication-review-list', 'isPreviewMode:publication-preview-list'],
-
   isReviewMode: Ember.computed.equal('mode', 'review'),
   isPreviewMode: Ember.computed.equal('mode', 'preview'),
   isCompareMode: Ember.computed.equal('mode', 'compare'),
@@ -19,55 +17,37 @@ export default Ember.Component.extend({
   isPatent: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['intellectual-property_patent']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
   isArt: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['artistic-work_scientific_and_development','artistic-work_original-creative-work']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
   isArticleConf: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['publication_journal-article','publication_review-article', 'publication_editorial-letter','publication_book-review','publication_magazine-article', 'publication_newspaper-article', 'conference_paper', 'conference_poster','conference_other', 'publication_journal-issue', 'publication_encyclopedia-entry','other']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
   isThesis: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['publication_doctoral-thesis','publication_licentiate-thesis']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
   isBook: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['publication_book','publication_textbook', 'publication_textcritical-edition', 'publication_report', 'publication_edited-book', 'conference_proceeding', 'publication_working-paper']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
   isChapter: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['publication_book-chapter','publication_report-chapter']);
-    if (arr.indexOf(code) != -1) {
-      return true;
-    }
-    return false;
+    return arr.indexOf(code) !== -1;
   }),
 
 
@@ -77,7 +57,7 @@ export default Ember.Component.extend({
       this.get('publicationType.all_fields').forEach(function(field) {
         Ember.set(o, field.name, field);
       });
-    } 
+    }
     return o;
   }),
   comparableVersions: Ember.computed('publication.versions', function() {
@@ -95,7 +75,7 @@ export default Ember.Component.extend({
   actions: {
     setMessage: function() {
       this.sendAction('refreshModelAction', this.get('publication.id'));
-      this.sendAction("setMessageAction", 'success', 'Filen har tagits bort');
+      this.sendAction("setMessageAction", 'success', 'Filen har tagits bort'); //@FIXME: translation
     },
     refreshModel: function() {
       this.sendAction('refreshModelAction', this.get('publication.id'));
