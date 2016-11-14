@@ -307,6 +307,8 @@ export default {
           publicationIdHeader: 'ID',
           delete: 'Ta bort',
           confirmDelete: 'Ta bort',
+          deletionSuccess: 'Filen "{{filename}}" har tagits bort',
+          deletionError: 'Något gick fel när "{{filename}}" skulle tas bort',
           expand: 'Visa innehåll',
           collapse: 'Dölj innehåll',
           deleteFileConfirmation: 'Är du säker på att du vill ta bort "{{filename}}"?', //How wrap filename in <strong>?

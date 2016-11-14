@@ -306,6 +306,8 @@ export default {
           publicationIdHeader: 'ID',
           delete: 'Delete',
           confirmDelete: 'Delete',
+          deletionSucces: 'The file "{{filename}}" has been deleted',
+          deletionError: 'Something went wrong trying to delete "{{filename}}"',
           expand: 'Show contents',
           collapse: 'Hide contents',
           deleteFileConfirmation: 'Do you really want to delete "{{filename}}"?', //How wrap filename in <strong>?
