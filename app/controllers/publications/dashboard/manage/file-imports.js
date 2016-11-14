@@ -50,7 +50,9 @@ export default Ember.Controller.extend({
       this.send('resetFileImportUploadState');
     },
     didDeleteFileImport: function(fileImport) {
-      return Promise.resolve();
+      return this.store.destroy('endnote_file', fileImport.get('id')).then((response) => {
+        this.send('refreshModel');
+      }); //TODO: Handle error?
     },
     resetFileImportUploadState: function() {
       this.set('importData', null);
