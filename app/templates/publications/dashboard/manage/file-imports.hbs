@@ -36,7 +36,7 @@
           <th></th>
           <th>{{t 'publications.dashboard.manage.fileImports.filenameHeader'}}</th>
           <th>{{t 'publications.dashboard.manage.fileImports.importedDateHeader'}}</th>
-          <th></th>
+          <th>{{t 'publications.dashboard.manage.fileImports.importRecord'}}</th>
         </tr>
       </thead>
       {{#collapsible-items accordion=false tagName="tbody" items=model as |fileImport collapsibleItem|}}
@@ -58,7 +58,7 @@
           <td>
             <h4>{{fileImport.name}}</h4>
           </td>
-          <td>{{fileImport.updated_at}}</td>
+          <td>{{formatDate fileImport.updated_at}}</td>
           <td>
             {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete') didConfirm=(action "didDeleteFileImport" fileImport)}}
               {{t 'publications.dashboard.manage.fileImports.deleteFileConfirmation' filename=fileImport.name}}
@@ -80,7 +80,21 @@
               {{#each fileImport.endnote_records as |record|}}
                 <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
                   <td>{{record.title}}</td>
-                  <td>{{record.links}}</td>
+                  <td>{{record.doi_url}}</td>
+                  <td>
+                    {{#async-button
+                      type="button"
+                      class="btn btn-link"
+                      action=(action "importEndNoteRecord") as |component state|
+                    }}
+                      {{#if state.isPending}}
+                        <i class="fa fa-spinner fa-pulse fa-spin fa-fw"></i>
+                        {{t 'publications.dashboard.manage.fileImports.importingRecord'}}
+                      {{else}}
+                        {{t 'publications.dashboard.manage.fileImports.importRecord'}}
+                      {{/if}}
+                    {{/async-button}}
+                  </td>
                 </tr>
               {{/each}}
               </tbody>

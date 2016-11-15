@@ -310,6 +310,8 @@ export default {
           deletionError: 'Something went wrong trying to delete "{{filename}}"',
           expand: 'Show contents',
           collapse: 'Hide contents',
+          importRecord: 'Edit',
+          importingRecord: 'Importing...',
           deleteFileConfirmation: 'Do you really want to delete "{{filename}}"?', //How wrap filename in <strong>?
           deleteFileSubmitText: 'Delete',
           uploadSubmitLabel: 'Upload',

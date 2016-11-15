@@ -55,10 +55,15 @@ export default Ember.Controller.extend({
         this.send(
           'setMsgHeader',
           'success',
-          this.get('i18n').t('publications.dashboard.manage.fileImports.deletedMessage', { filename: fileImport.name })
+          this.get('i18n').t('publications.dashboard.manage.fileImports.deletionSuccess', { filename: fileImport.name })
         );
       }, (errorResponse) => {
-        this.send('setMsgHeader', 'error', 'Filen togs bort!');
+        //@TODO: Display backend error reason?
+        this.send(
+          'setMsgHeader',
+          'error',
+          this.get('i18n').t('publications.dashboard.manage.fileImports.deletionError', { filename: fileImport.name })
+        );
       });
     },
     resetFileImportUploadState: function() {
@@ -70,6 +75,11 @@ export default Ember.Controller.extend({
       this.set('uploadSubmitButtonIsDisabled', true);
       this.set('uploadFileUploadIsVisible', true);
       this.set('hasSuccessfullUpload', false);
-    }
+    },
+    importEndNoteRecord: function(record) {
+      return new Promise(function(resolve, reject) {
+        window.setTimeout(resolve, 1000);
+      });
+    },
   }
 });
