@@ -19,7 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.dashboard.manage.show');
     return Ember.RSVP.hash({
-      publication: model,
+      publication: this.store.find("publication", model.id),
       publicationTypes: this.store.find('publication_type'),
       departments: this.store.find('department'),
       languages: this.store.find('language'),
@@ -36,8 +36,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this._super(...arguments);
     //TODO: Remove this when binding issue fixed
     if (Ember.isBlank(models.publication.publication_links)) {
-      models.publication.publication_links = Ember.A([]);
-      models.publication.publication_links.pushObject({url: '', position: 0});
+      models.publication.publication_links = [{url: '', position: 0}];
+      //models.publication.publication_links.pushObject({url: '', position: 0});
     }
 
     // GUP adapter does not return ember objects, which are needed for multiple-items component to work(?)
