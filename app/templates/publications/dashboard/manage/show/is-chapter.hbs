@@ -31,6 +31,10 @@
         {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
       {{/if}}
     {{/if}}
+
+    {{#if publication.publication_links}}
+      {{publication-field-preview fieldLabel='Länkar' fieldValue=publication.publication_links type='links'}}
+    {{/if}}
     
     {{#if publication.files }}
       {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}

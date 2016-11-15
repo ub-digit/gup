@@ -8,6 +8,14 @@
           <li>{{listItem}}</li>
         {{/each}}
       </ul>
+
+    {{else if isTypeLinks}}
+      <ul class="list-unstyled">
+      {{#each fieldValue as |link|}}
+        <li><a href="{{link.url}}" target="_blank">{{link.url}}</a></li>
+      {{/each}}
+      </ul>
+
     {{else if isTypeAuthors}}
       <div class="publication-field-preview-authors">
       {{#each fieldValue as |author|}}
@@ -25,7 +33,6 @@
       </div>
 
     {{else if isTypeCollapsible}}
-
       {{#if collapsedValue}}
         {{#if isCollapsed}}
           {{linkify collapsedValue}}

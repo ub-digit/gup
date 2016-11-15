@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   i18n: Ember.inject.service(),
+  
+  isTypeLinks: Ember.computed.equal('type', 'links'),
 
   isTypeList: Ember.computed.equal('type', 'list'),
 
