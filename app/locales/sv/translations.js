@@ -313,7 +313,8 @@ export default {
           deletionError: 'Något gick fel när "{{filename}}" skulle tas bort',
           expand: 'Visa innehåll',
           collapse: 'Dölj innehåll',
-          importRecord: 'Redigera',
+          importRecord: 'Registrera',
+          importRecordStatusHeader: 'Status',
           importingRecord: 'Importerar...',
           deleteFileConfirmation: 'Är du säker på att du vill ta bort "{{filename}}"?', //How wrap filename in <strong>?
           deleteFileSubmitText: 'Radera',
