@@ -59,16 +59,13 @@
         {{publication-field-preview fieldLabel=allFieldObjects.abstract.label fieldValue=publication.abstract}}
       {{/if}}
     {{/if}}
-
     {{#if publication.publication_links}}
-      {{publication-field-preview fieldLabel='Länkar' fieldValue=publication.publication_links type='links'}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.linksLabel')  fieldValue=publication.publication_links type='links'}}
     {{/if}}
-
 
     {{#if publication.files }}
-      {{publication-field-files fieldLabel="Filer" fieldValue=publication.files}}
+      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files}}
     {{/if}}
-
     {{#if allFieldObjects.project}}
       {{#if publication.project}}
         {{publication-field-preview fieldLabel=allFieldObjects.project.label fieldValue=publication.project_objects listValue='title' type='list'}}

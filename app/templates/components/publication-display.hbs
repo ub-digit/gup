@@ -48,9 +48,9 @@
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
         {{/if}}
 
-        {{#if allFieldObjects.links}}
-          {{publication-field-bibl-review fieldLabel=allFieldObjects.links.label fieldValue=publication.links}}
-        {{/if}}
+ 
+
+        {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
 
         {{#if allFieldObjects.keywords}}
           {{publication-field-bibl-review fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
@@ -233,6 +233,8 @@
         {{#if allFieldObjects.links}}
           {{publication-field-compare fieldLabel=allFieldObjects.links.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.links fieldValue=publication.links}}
         {{/if}}
+
+        {{publication-field-compare  fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
 
         {{#if allFieldObjects.keywords}}
           {{publication-field-compare fieldLabel=allFieldObjects.keywords.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.keywords fieldValue=publication.keywords}}

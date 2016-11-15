@@ -64,6 +64,8 @@ export default {
       publicationType: 'Publikationstyp',
       publicationIDLabel: 'Publikations-ID',
       publishedInLabel: 'Publicerad i',
+      filesLabel: 'Filer',
+      linksLabel: 'Länkar',
       publicationIdentifier: {
         label: 'Identifikatorer',
       },

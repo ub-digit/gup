@@ -58,7 +58,11 @@
 
 
     {{#if publication.publication_links}}
-      {{publication-field-preview fieldLabel='Länkar' fieldValue=publication.publication_links type='links'}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.linksLabel')  fieldValue=publication.publication_links type='links'}}
+    {{/if}}
+
+    {{#if publication.files }}
+      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files}}
     {{/if}}
 
     {{#if allFieldObjects.project}}

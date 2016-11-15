@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   tagName: 'tr',
 
   isCollapsed: true,
+  
+  isTypeLinks: Ember.computed.equal('type', 'links'),
 
   isTypeList: Ember.computed.equal('type', 'list'),
 

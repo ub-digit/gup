@@ -35,6 +35,8 @@ export default Ember.Component.extend({
     return false;
   }),
 
+  isTypeLinks: Ember.computed.equal('type', 'links'),
+  
   isTypeList: Ember.computed.equal('type', 'list'),
 
   isTypeAuthors: Ember.computed.equal('type', 'authors'),
