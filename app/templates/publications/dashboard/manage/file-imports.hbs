@@ -60,7 +60,7 @@
           </td>
           <td>{{formatDate fileImport.updated_at}}</td>
           <td>
-            {{#confirmation-modal openModalText=(t 'publications.dashboard.manage.fileImports.delete') confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete') didConfirm=(action "didDeleteFileImport" fileImport)}}
+            {{#confirmation-modal class="pull-right" openModalText=(t 'publications.dashboard.manage.fileImports.delete') confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete') didConfirm=(action "didDeleteFileImport" fileImport)}}
               {{t 'publications.dashboard.manage.fileImports.deleteFileConfirmation' filename=fileImport.name}}
             {{/confirmation-modal}}
           </td>
