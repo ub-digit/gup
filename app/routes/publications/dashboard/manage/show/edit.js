@@ -66,7 +66,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       controller.set("refValueBool", false);
     }
 
-
     var authors = null;
     if (models.publication) {
       if (models.publication.authors) {
@@ -145,6 +144,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       }
     },
     // TODO: this should probably live in the controller?
+    // TODO: saveDraft and savePublish does almost the same thing
+    // should perhaps try to unify into one method, or break out common stuff
     saveDraft: function(/*model*/) {
       var successHandler = (model) => {
         this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess'));
@@ -189,29 +190,28 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
     },
     savePublish: function(/*model*/) {
-      var that = this;
-      var successHandler = function(model) {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('publications.dashboard.manage.show.edit.publishSuccess'));
-        that.send('refreshModel', model.id);
-        that.send('refreshUserdata');
+      var successHandler = (model) => {
+        this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.edit.publishSuccess'));
+        this.send('refreshModel', model.id);
+        this.send('refreshUserdata');
 
-        if (that.returnTo) {
-          that.transitionTo(that.returnTo);
+        if (this.returnTo) {
+          this.transitionTo(this.returnTo);
         } else {
-          that.transitionTo('publications.dashboard.manage.show', model.id);
+          this.transitionTo('publications.dashboard.manage.show', model.id);
         }
       };
 
-      var errorHandler = function(reason) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.publishError'));
-        that.controller.set('errors', reason.error.errors);
+      var errorHandler = (reason) => {
+        this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.publishError'));
+        this.controller.set('errors', reason.error.errors);
 
-        if (that.controller.get('publication.draft_id')) {
-          that.controller.set('publication.id', that.controller.get('publication.draft_id'));
-          that.controller.set('publication.draft_id', null);
+        if (this.controller.get('publication.draft_id')) {
+          this.controller.set('publication.id', this.controller.get('publication.draft_id'));
+          this.controller.set('publication.draft_id', null);
         }
 
-        Ember.run.schedule('afterRender', function() {
+        Ember.run.schedule('afterRender', () => {
           Ember.$('[data-toggle="popover"]').popover({
             placement: 'top',
             html: true
@@ -220,9 +220,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         return false;
       };
 
-      var generalHandler = function(model) {
+      var generalHandler = (model) => {
         if (!model) {
-          that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
+          this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
           return;
         }
         if (model.error) {
@@ -233,13 +233,23 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         }
       };
 
+      //TODO: Ok solution for now, can be solved more elegantly?
+      this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
+        return Ember.isPresent(link.get('url'));
+      }));
+
+      //TODO: OCD fix to prevent position gaps, later: refactor component to not use (position) interally and just set it here
+      this.get('controller.publication.publication_links').sortBy('position').forEach((link, index) => {
+        link.set('position', index);
+      });
+
       this.get('controller').submitCallbacksRun().then(() => {
-        if (!that.controller.get('publication.published_at')) {
-          that.controller.set('publication.draft_id', that.controller.get('publication.id'));
-          that.controller.set('publication.id', null);
+        if (!this.controller.get('publication.published_at')) {
+          this.controller.set('publication.draft_id', this.controller.get('publication.id'));
+          this.controller.set('publication.id', null);
         }
         this.get('controller').formatAuthorsForServer();
-        that.store.save('published_publication', that.controller.get('publication')).then(generalHandler, errorHandler);
+        this.store.save('published_publication', this.controller.get('publication')).then(generalHandler, errorHandler);
       });
     }
   }
