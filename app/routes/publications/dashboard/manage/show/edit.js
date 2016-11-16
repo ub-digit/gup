@@ -6,7 +6,6 @@ import ResetScroll from 'gup/mixins/resetscroll';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
   i18n: Ember.inject.service(),
-  i18n: Ember.inject.service(),
   titleToken: function() {
     return this.get("i18n").t('publications.dashboard.manage.show.edit.title');
   },

@@ -6,6 +6,21 @@
           <strong>{{t 'publications.dashboard.touched.numberOfHits'}}: {{model.meta.query.total}}</strong>
         </div>
       </div>
+        <div class="row">
+          <div class="col-xs-12">
+ 
+            <div class="pull-right">
+            <label>{{t 'publications.dashboard.manage.published.sortByPreLabel'}}</label>
+             {{#x-select value=sort_by class="form-control"}}
+                {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
+                  {{#each sortSelectValues as |selectValue|}}
+                    {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
+                  {{/each}}
+              {{/x-select}}
+              
+            </div>
+          </div>
+        </div>
       <ul class="list-unstyled dashboard-list">
         {{#each model as |item|}}
           <li>
