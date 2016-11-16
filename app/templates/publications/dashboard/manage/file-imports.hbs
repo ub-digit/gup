@@ -88,8 +88,14 @@
               <tbody>
               {{#each fileImport.endnote_records as |record|}}
                 <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
-                  <td>{{record.title}}</td>
-                  <td>{{record.doi_url}}</td>
+                  <td>
+                    {{#if record.publication_id}}
+                      {{#link-to 'publications.dashboard.manage.show' publication.id}}{{record.title}}{{/link-to}}
+                    {{else}}
+                      {{record.title}}
+                    {{/if}}
+                  </td>
+                  <td><a href="{{record.doi_url}}">{{record.doi_url}}</a></td>
                   <td>
                     {{#async-button
                       type="button"
