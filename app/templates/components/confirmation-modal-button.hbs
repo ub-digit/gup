@@ -1,0 +1,12 @@
+{{#if hasBlock}}
+  {{yield
+    (hash
+      button=(component 'bs-button' type="link" action=(action "showModal"))
+      modal=(component 'confirmation-modal'
+        isShowing=isShowingModal
+      )
+    )
+  }}
+{{else}}
+{{!TODO directly call components with passed allowed arguments}}
+{{/if}}
