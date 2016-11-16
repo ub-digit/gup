@@ -62,7 +62,7 @@
           <td>
             {{#confirmation-modal-button class="pull-right" as |c|}}
               {{#c.button}}
-                {{t 'publications.dashboard.manage.fileImports.delete'}}
+                <i class="fa fa-trash" aria-hidden="true"></i> {{t 'publications.dashboard.manage.fileImports.delete'}}
               {{/c.button}}
               {{#c.modal
                 confirmText=(t 'publications.dashboard.manage.fileImports.confirmDelete')
