@@ -1,17 +1,27 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h3>{{#link-to link item.id (query-params other_version=null)}} {{titleString}}{{/link-to}}</h3>
+<div class="publication-list-row">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>{{#link-to link item.id (query-params other_version=null)}} {{titleString}}{{/link-to}}</h3>
+    </div>
+    <div class="col-xs-12">
+      <p>{{bibliographicInfoString}}{{#if item.authors}} {{authors-string authors=item.authors}}{{/if}}</p>
+      {{#if showMetaData}}
+      <table class="table">
+        <tr>
+          <th>{{t 'components.publicationListRow.publicationID'}}:</th><td>{{item.id}}</td>
+        </tr>
+        <tr>
+        <th>{{t 'components.publicationListRow.publicationType'}}:</th><td>{{item.publication_type_label}},  
+        {{#if item.ref_value}}
+          {{item.ref_value_label}}
+        {{/if}}
+        </td>
+        </tr>
+        <tr>
+        <th>{{t 'components.publicationListRow.publicationYear'}}:</th><td>{{item.pubyear}}</td>
+        </tr>
+      </table>
+      {{/if}}
+    </div>
   </div>
-  <div class="col-xs-12">
-    <p>{{bibliographicInfoString}}{{#if item.authors}} {{authors-string authors=item.authors}}{{/if}}</p>
-    {{#if showMetaData}}
-    <dl class="dl-horizontal">
-      <dt>{{t 'components.publicationListRow.publicationID'}}</dt><dd>{{item.id}}</dd>
-      <dt>{{t 'components.publicationListRow.publicationType'}}</dt><dd>{{item.publication_type_label}}</dd>
-      {{#if item.ref_value}}<dt>{{t 'components.publicationListRow.contentMarker'}}</dt><dd>{{item.ref_value_label}}</dd>{{/if}}
-      <dt>{{t 'components.publicationListRow.publicationYear'}}</dt><dd>{{item.pubyear}}</dd>
-    </dl>
-    {{/if}}
-  </div>
-  
 </div>

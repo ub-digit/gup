@@ -238,6 +238,7 @@ export default {
             deleteDraftError: 'Draft could not be deleted.',
             publishSuccess: 'Record published.',
             publishError: 'The record could not be published.',
+            systemError: 'A system error has occured', 
             approveSuccess: 'Record approved.',
           },
           index: {
@@ -288,6 +289,9 @@ export default {
           title: "My publications",
           numberOfHits: 'Number of hits',
           youHaveNoPublications: 'You don\'t have any publications',
+          sortByPreLabel: 'Sorting',
+          sortByTitleLabel: "Title", 
+          sortByYearLabel: "Year"
         },
         start: {
         },

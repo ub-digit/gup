@@ -222,6 +222,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       };
 
       var generalHandler = function(model) {
+        if (!model) {
+          that.send('setMsgHeader', 'error', that.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
+          return;
+        }
         if (model.error) {
           errorHandler(model);
         }

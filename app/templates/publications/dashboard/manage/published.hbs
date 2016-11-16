@@ -1,27 +1,44 @@
-<div class="row">
-  <div class="col-xs-12">
-    {{#if model.length}}
-      <div class="row number-of-results">
-        <div class="col-xs-12 text-center">
-          <strong>{{t 'publications.dashboard.manage.published.numberOfHits'}}: {{model.meta.query.total}}</strong>
+<div class="gup-published">
+  <div class="row">
+    <div class="col-xs-12">
+      {{#if model.length}}
+        <div class="row number-of-results">
+          <div class="col-xs-12 text-center">
+            <strong>{{t 'publications.dashboard.manage.published.numberOfHits'}}: {{model.meta.query.total}}</strong>
+          </div>
         </div>
-      </div>
-      <ul class="list-unstyled dashboard-list">
-        {{#each model as |item|}}
-          <li>
-            {{publication-list-row item=item link='publications.dashboard.manage.show'}}
-          </li>
-        {{/each}}
-      </ul>
-      <div class="row">
-        <div class="col-xs-12">
-          {{pagination-pager pagination=model.meta.pagination}}
+        <div class="row">
+          <div class="col-xs-12">
+ 
+            <div class="pull-right">
+            <label>{{t 'publications.dashboard.manage.published.sortByPreLabel'}}</label>
+             {{#x-select value=sort_by class="form-control"}}
+                {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
+                  {{#each sortSelectValues as |selectValue|}}
+                    {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
+                  {{/each}}
+              {{/x-select}}
+              
+            </div>
+          </div>
         </div>
-      </div>            
-    {{else}}
+        <ul class="list-unstyled dashboard-list">
+          {{#each model as |item|}}
+            <li>
+              {{publication-list-row item=item link='publications.dashboard.manage.show'}}
+            </li>
+          {{/each}}
+        </ul>
+        <div class="row">
+          <div class="col-xs-12">
+            {{pagination-pager pagination=model.meta.pagination}}
+          </div>
+        </div>            
+      {{else}}
 
-      {{no-result displaytext=(t 'publications.dashboard.manage.published.youHaveNoPublications')}}
+        {{no-result displaytext=(t 'publications.dashboard.manage.published.youHaveNoPublications')}}
 
-    {{/if}}
+      {{/if}}
+    </div>
   </div>
 </div>

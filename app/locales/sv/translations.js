@@ -241,6 +241,7 @@ export default {
             deleteDraftError: 'Utkastet kunde inte tas bort.',
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
+            systemError: 'Ett systemfel har inträffat', 
             approveSuccess: 'Posten har godkänts.',
           },
           index: {
@@ -291,6 +292,9 @@ export default {
           title: "Mina publikationer",
           numberOfHits: 'Antal träffar',
           youHaveNoPublications: 'Du har inga publikationer.',
+          sortByPreLabel: 'Sortering',
+          sortByTitleLabel: "Titel (A-Ö)", 
+          sortByYearLabel: "År (fallande)"
         },
         start: {
         },

@@ -25,11 +25,11 @@
             {{#if publication.sourcepages}}
             <strong>|</strong> ({{publication.sourcepages}})
             {{/if}}
+          {{else}}
+            {{#if publication.sourcepages}}
+              {{publication.sourcepages}}
+            {{/if}}
           {{/if}}
-        {{/if}}
-
-        {{#if publication.sourcepages}}
-          {{publication.sourcepages}}
         {{/if}}
       </dd>
     {{/if}}

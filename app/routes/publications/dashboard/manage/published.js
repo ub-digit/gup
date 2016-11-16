@@ -8,7 +8,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       return this.get("i18n").t('publications.dashboard.manage.published.title');
     },
     queryParams:{
-        page:{refreshModel: true}
+        page:{refreshModel: true},
+        sort_by: {refreshModel: true}
     },	
 	beforeModel: function() {
 	},
@@ -26,5 +27,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   setupController: function(controller, model) {
     controller.set("model", model);
     controller.set("manageController.isNavVisible", true);
+    if (controller.get('sortSelectValues').length == 0) {
+      controller.get("sortSelectValues").pushObjects([
+          {value: "pubyear", label: this.get("i18n").t('publications.dashboard.manage.published.sortByYearLabel')}, 
+          {value: 'title', label: this.get("i18n").t('publications.dashboard.manage.published.sortByTitleLabel')}]);
+    }
   }
 });
