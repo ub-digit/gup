@@ -2,19 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
-  manageController: Ember.inject.controller("publications.dashboard.manage"),
-
+  manageController: Ember.inject.controller('publications.dashboard.manage'),
   selectedSource: null,
   sourceId: null,
   error: null,
   importData: null,
 
   idPlaceholderString: Ember.computed('selectedSource', function() {
-
-    var prefix = this.get('i18n').t('publications.dashboard.manage.new.importPub.form.inputId.placeholder');
-
+    let prefix = this.get('i18n').t('publications.dashboard.manage.new.importPub.form.inputId.placeholder');
     switch(this.get('selectedSource')) {
-
       case 'gupea':
         prefix += '12345';
         break;
@@ -31,9 +27,7 @@ export default Ember.Controller.extend({
         prefix = 'ID';
         break;
     }
-
     return prefix;
-
   }),
 
   fetchButtonIsActive: Ember.computed('selectedSource', 'sourceId', function() {
@@ -41,48 +35,38 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-
     fetchSource: function() {
-
       this.set('error', null);
-
-      var that = this;
-
-      var successHandler = function(model) {
-        that.set('importData', model);
+      let successHandler = (model) => {
+        console.log('successHandler');
+        this.set('importData', model);
       };
-
-      var errorHandler = function(error) {
-        that.set('error', error);
-        that.set('importData', null);
-
+      let errorHandler = (error) => {
+        this.set('error', error);
+        this.set('importData', null);
       };
-
-      var generalHandler = function(model) {
+      let generalHandler = (model) => {
         if (model.error) {
           errorHandler(model.error);
-        } 
+        }
         else {
           successHandler(model);
-        }  
+        }
       };
-
-      return this.store.save('import_data', {datasource: this.get('selectedSource'), sourceid: this.get('sourceId')}).then(
+      return this.store.save('import_data', { datasource: this.get('selectedSource'), sourceid: this.get('sourceId') }).then(
         generalHandler
       );
     },
-
     createPublication: function(model) {
-      var that = this;
-      var publication = {};
+      let publication = {};
       if (model) {
         publication = model;
       }
       this.store.save('draft', publication).then(
-        function(response) {
-          that.transitionToRoute('publications.dashboard.manage.show.edit', response.id);
+        (response) => {
+          this.transitionToRoute('publications.dashboard.manage.show.edit', response.id);
         },
-        function(error) {
+        (error) => {
         }
       );
     }
