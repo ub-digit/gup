@@ -38,7 +38,6 @@ export default Ember.Controller.extend({
     fetchSource: function() {
       this.set('error', null);
       let successHandler = (model) => {
-        console.log('successHandler');
         this.set('importData', model);
       };
       let errorHandler = (error) => {
