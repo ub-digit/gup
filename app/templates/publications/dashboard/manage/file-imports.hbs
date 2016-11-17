@@ -100,7 +100,7 @@
                     {{#async-button
                       type="button"
                       class="btn btn-link"
-                      action=(action "importEndNoteRecord") as |component state|
+                      action=(action "importEndNoteRecord" record) as |component state|
                     }}
                       {{#if state.isPending}}
                         <i class="fa fa-spinner fa-pulse fa-spin fa-fw"></i>
