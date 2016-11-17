@@ -1,9 +1,7 @@
-{{!todo configurable button class etc, perhaps even yielded closure component??? }}
-<button {{action "showModal"}} type="button" class="btn btn-link">{{openModalText}}</button>
-{{#bs-modal open=isShowingModal title=modalTitle footer=false}}
+{{#bs-modal open=isShowing title=modalTitle footer=false}}
   {{#bs-modal-body}}
     {{#if error}}<div class="alert alert-danger">{{error}}</div>{{/if}}
     {{yield}}
   {{/bs-modal-body}}
-  {{bs-modal-footer closeTitle=cancelText submitTitle=confirmText submitAction=(action "didSubmit")}}
+  {{bs-modal-footer closeTitle=cancelText submitTitle=confirmText submitAction=(action "didConfirm")}}
 {{/bs-modal}}

@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  isShowingModal: false,
   i18n: Ember.inject.service(),
+  isShowing: false,
   error: null,
   modalTitle: null,
   cancelText: null,
@@ -20,16 +20,16 @@ export default Ember.Component.extend({
     }
   },
   actions: {
-    didSubmit() {
+    didConfirm() {
+      // @TODO: check if promise or ordinary function?
       if (Ember.isPresent(this.get('didConfirm'))) {
-        //Disable controls while resolving promise?
+        // Disable controls while resolving promise?
         this.didConfirm().then(() => {
           this.set('error', null);
-          this.send('hideModal');
+          this.set('isShowing', false);
         }, (error) => {
-          //Perhaps remove this, only handle success?
-          //This feels dodgy
-          //TODO: format of error message? error.msg?
+          // Perhaps remove this, only handle success? Feels dodgy
+          // @TODO: format of error message? error.msg?
           if(Ember.typeOf(error) === 'string') {
             this.set('error', error);
           } else {
@@ -37,12 +37,6 @@ export default Ember.Component.extend({
           }
         });
       }
-    },
-    showModal() {
-      this.set('isShowingModal', true);
-    },
-    hideModal() {
-      this.set('isShowingModal', false);
-    },
+    }
   }
 });
