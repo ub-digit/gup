@@ -404,6 +404,7 @@ export default {
       },
       form: {
         publicationType: 'Publication type',
+        refereeLable: 'Peer reviewed',
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
