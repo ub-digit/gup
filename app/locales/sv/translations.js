@@ -307,6 +307,7 @@ export default {
           noPublicationsFound: 'Inga publikationer hittades'
         },
         fileImports: {
+          title: 'Uppladdade listor',
           filenameHeader: 'Filnamn',
           importedDateHeader: 'Importerad', //TODO: should be created/uploaded?
           publicationTitleHeader: 'Titel',

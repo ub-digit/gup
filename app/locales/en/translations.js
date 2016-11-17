@@ -304,6 +304,7 @@ export default {
           noPublicationsFound: 'No publications found'
         },
         fileImports: {
+          title: 'Uploaded list',
           filenameHeader: 'Filnamne',
           importedDateHeader: 'Imported',
           publicationTitleHeader: 'Title',
