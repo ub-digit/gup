@@ -77,8 +77,25 @@ export default Ember.Controller.extend({
       this.set('hasSuccessfullUpload', false);
     },
     importEndNoteRecord: function(record) {
-      return new Promise(function(resolve, reject) {
-        window.setTimeout(resolve, 1000);
+      return new Promise((reject, resolve) => {
+        this.store.save('import_data', { datasource: 'endnote', sourceid: record.id }).then((model) => {
+          this.store.save('draft', model).then((model) => {
+            this.transitionToRoute('publications.dashboard.manage.show.edit', model.id);
+            resolve();
+          }, (errorResponse) => {
+            //Ember run?
+            //TODO: translate
+            this.send('setMsgHeader', 'error', 'Error fetching import data');
+            resolve();
+          });
+        }, (errorResponse) => {
+          //Ember run?
+          //TODO: tranlate
+          this.send('setMsgHeader', 'error', 'Error saving draft')
+          resolve();
+        });
+      }).catch((error) => {
+        console.dir(error);
       });
     },
   }
