@@ -64,10 +64,12 @@ export default {
       publicationType: 'publication type',
       publicationIDLabel: 'Publication-ID',
       publishedInLabel: 'Published in',
+      filesLabel: 'Files',
+      linksLabel: 'Links',
       publicationIdentifier: {
         label: 'Identifiers',
       },
-    },      
+    },
     mailerModal: {
       report: 'GUP support',
       description: 'You can contact GUP support. Please add your e-mail for feedback.',
@@ -209,7 +211,7 @@ export default {
           published: 'My publications',
           drafts: 'My drafts',
           search: 'Search',
-          file_imports: 'Uploaded lists',
+          file_import: 'Uploaded lists',
         },
         _actions: {
           registerNew: 'New entry',
@@ -238,7 +240,7 @@ export default {
             deleteDraftError: 'Draft could not be deleted.',
             publishSuccess: 'Record published.',
             publishError: 'The record could not be published.',
-            systemError: 'A system error has occured', 
+            systemError: 'A system error has occured',
             approveSuccess: 'Record approved.',
           },
           index: {
@@ -290,7 +292,7 @@ export default {
           numberOfHits: 'Number of hits',
           youHaveNoPublications: 'You don\'t have any publications',
           sortByPreLabel: 'Sorting',
-          sortByTitleLabel: "Title", 
+          sortByTitleLabel: "Title",
           sortByYearLabel: "Year"
         },
         start: {
@@ -492,7 +494,7 @@ export default {
         edit: {
           form: {
             labels: {
-              id: 'Id:',          
+              id: 'Id:',
               firstname: 'Förnamn:',
               lastname: 'Efternamn:',
               birthyear: 'Födelseår:',
@@ -500,7 +502,7 @@ export default {
               orcid: 'Orcid'
             },
             placeholders: {
-              id: 'Id:',          
+              id: 'Id:',
               firstname: 'Förnamn:',
               lastname: 'Efternamn:',
               birthyear: 'Födelseår:',
