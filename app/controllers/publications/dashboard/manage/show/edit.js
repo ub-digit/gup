@@ -4,7 +4,7 @@ import { validYear } from 'gup/lib/validations';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   publications: Ember.inject.controller(),
-  manageController: Ember.inject.controller("publications.dashboard.manage"),
+  manageController: Ember.inject.controller('publications.dashboard.manage'),
   selectedPublicationType: null,
   mayBecomeSelectedPublicationType: null,
   mayBecomeOldSelectedPublicationType: null,
@@ -30,6 +30,7 @@ export default Ember.Controller.extend({
 
   selectedSeries: Ember.computed('publication.series', {
     get: function() {
+      //TODO: ('publication.series').map()
       var pubSeries = this.get('publication.series');
       return this.get('series').filter(function(item) {
         if (!pubSeries) { return false; }
@@ -175,11 +176,11 @@ export default Ember.Controller.extend({
 
   // TODO: Replace with computed
   changeRefValue: Ember.observer('refValueBool', function() {
-      if (this.get("refValueBool")) {
-        this.set("publication.ref_value", "ISREF");
+      if (this.get('refValueBool')) {
+        this.set('publication.ref_value', 'ISREF');
       }
       else {
-        this.set("publication.ref_value", "NOTREF");
+        this.set('publication.ref_value', 'NOTREF');
       }
   }),
 
@@ -194,18 +195,18 @@ export default Ember.Controller.extend({
   }),
 
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
-    return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
+    return this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
   }),
 
   descriptionOfMayBecomeSelectedPublicationType: function() {
-    var fullObj = this.get("publicationTypes").findBy("code", this.get("mayBecomeSelectedPublicationType"));
+    var fullObj = this.get('publicationTypes').findBy('code', this.get('mayBecomeSelectedPublicationType'));
     if (fullObj) {
       return fullObj.description;
     }
     else {
       return null;
     }
-  }.property("mayBecomeSelectedPublicationType"),
+  }.property('mayBecomeSelectedPublicationType'),
 
   publicationTypeFilter: 'all',
 
@@ -242,12 +243,12 @@ export default Ember.Controller.extend({
       this.set('publicationTypeFilter', filter);
     },
     setAsSelectedPublicationType: function() {
-      if (this.get("mayBecomeSelectedPublicationType")) {
-        this.set("selectedPublicationType", this.get("mayBecomeSelectedPublicationType"));
+      if (this.get('mayBecomeSelectedPublicationType')) {
+        this.set('selectedPublicationType', this.get('mayBecomeSelectedPublicationType'));
       }
     },
     setPublicationType: function(publicationType) {
-      this.set("selectedPublicationType", publicationType);
+      this.set('selectedPublicationType', publicationType);
       var ref_options = this.get('publicationTypeObject.ref_options');
       if (ref_options !== 'BOTH') {
         this.set('publication.ref_value', ref_options);
@@ -256,25 +257,25 @@ export default Ember.Controller.extend({
       }
     },
     resetSelectedPublicationType: function() {
-      this.set("mayBecomeOldSelectedPublicationType", this.get("selectedPublicationType"));
-      this.set("mayBecomeSelectedPublicationType", this.get("selectedPublicationType"));
-      this.set("selectedPublicationType", null);
+      this.set('mayBecomeOldSelectedPublicationType', this.get('selectedPublicationType'));
+      this.set('mayBecomeSelectedPublicationType', this.get('selectedPublicationType'));
+      this.set('selectedPublicationType', null);
     },
 
     /* author-block */
     toggleAddNewAuthor: function(id) {
-      var obj = this.get("authorArr").findBy('id', id);
-      if (obj.get("transformedToNewAuthor") === true) {
-        obj.set("transformedToNewAuthor", false);
+      var obj = this.get('authorArr').findBy('id', id);
+      if (obj.get('transformedToNewAuthor') === true) {
+        obj.set('transformedToNewAuthor', false);
       }
       else {
-        obj.set("transformedToNewAuthor", true);
+        obj.set('transformedToNewAuthor', true);
       }
     },
     /* end author-block */
 
     cancelChangePublicationType: function() {
-      this.set("selectedPublicationType", this.get("mayBecomeOldSelectedPublicationType"));
+      this.set('selectedPublicationType', this.get('mayBecomeOldSelectedPublicationType'));
     },
 
     // Dummy catcher for field-component without a surrounding field-group
