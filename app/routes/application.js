@@ -83,18 +83,16 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           controller.set('currentlyLoading', true);
         });
       });
-      //TODO: replace with bind thing, nicer?
-      //TODO: check what happens if promise bails, catch?
-      transition.then(() => {
-        Ember.run(() => {
-          controller.set('currentlyLoading', false);
-          $('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
-            Ember.run(() => {
-              controller.set('pageIsDisabled', false);
-            })
-          });
+      let enablePage = Ember.run.bind(this, function() {
+        controller.set('currentlyLoading', false);
+        $('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
+          Ember.run(() => {
+            controller.set('pageIsDisabled', false);
+          })
         });
       });
+      // Restore page both regardless of resolved or rejected
+      transition.then(enablePage, enablePage);
     }
   }
 });
