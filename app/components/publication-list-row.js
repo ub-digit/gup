@@ -10,6 +10,15 @@ export default Ember.Component.extend({
 
   }),
 
+
+
+  hasRefValue: Ember.computed('item.ref_value', function() {
+    if (this.get("item.ref_value") == "NA") {
+      return false;
+    }
+    return true;
+  }),
+
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
 
     var i = this.get('item');

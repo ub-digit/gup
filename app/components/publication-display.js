@@ -51,6 +51,14 @@ export default Ember.Component.extend({
   }),
 
 
+  hasRefValue: Ember.computed('publication.ref_value', function() {
+    if (this.get("publication.ref_value") == "NA") {
+      return false;
+    }
+    return true;
+  }),
+
+
   allFieldObjects: Ember.computed('publicationType.all_fields', function( ) {
     var o = Ember.Object.create();
     if (this.get('publicationType.all_fields')) {
