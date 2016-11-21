@@ -3,7 +3,8 @@
     item
     (hash
       removeButton=(component "remove-button" isShowing=hasMoreThanOneItem text=deleteItemText click=(action "removeItem" item))
-      sortControls=(component "sort-controls" isShowing=hasMoreThanOneItem didMoveUp=(action "didMoveItemUp" item) didMoveDown=(action "didMoveItemDown" item))
+      sortControls=(component "sort-controls" isShowing=hasMoreThanOneItem didMoveUp=(action "didMoveItemUp" item) 
+      	didMoveDown=(action "didMoveItemDown" item) index=index totalNumberOfLinks=totalNumberOfItems)
       index=index
     )
   }}

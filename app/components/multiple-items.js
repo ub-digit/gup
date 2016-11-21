@@ -9,6 +9,14 @@ export default Ember.Component.extend({
   sortedItems: Ember.computed('items.@each.position', function() {
     return this.get('items').sortBy('position');
   }),
+
+ 
+
+  totalNumberOfItems: Ember.computed('items.[]', function() {
+    //TODO: double check, array length javscript weirdness etc
+    return this.get('items').length;
+  }),
+
   //TODO: replace with Ember.Computed.(magick)
   hasMoreThanOneItem: Ember.computed('items.[]', function() {
     //TODO: double check, array length javscript weirdness etc

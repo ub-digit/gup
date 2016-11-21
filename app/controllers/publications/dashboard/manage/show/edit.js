@@ -13,6 +13,9 @@ export default Ember.Controller.extend({
   selectPublicationVisible: true,
   refValueBool: false,
   categoryObjectsList: Ember.A([]),
+
+
+
   createNewPublicationLink: function() {
     return Ember.Object.create({
       url: '',

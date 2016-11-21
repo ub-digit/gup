@@ -1,27 +1,28 @@
 <div id="{{if pageIsDisabled "page-disabled-overlay"}}">
-<div class="container messages">
-	{{partial 'msgheader'}}
-</div>
 
-{{partial 'main-menu'}}
-
-<div class="container">
-	{{#if messages.alert_message.message}}
-	<div class="row">
-		<div class="col-xs-12">
-		  <div class="alert alert-warning alert-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{messages.alert_message.message}}</div>
-		</div>
+	<div class="container messages">
+		{{partial 'msgheader'}}
 	</div>
-	{{/if}}
 
-	{{#if messages.news_message.message}}
-		<h2>{{messages.news_message.start_date}}</h2>
-		  {{messages.news_message.message}}
-	{{/if}}
+	{{partial 'main-menu'}}
 
-	{{outlet}}
+	<div class="container">
+		{{#if messages.alert_message.message}}
+		<div class="row">
+			<div class="col-xs-12">
+			  <div class="alert alert-warning alert-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{messages.alert_message.message}}</div>
+			</div>
+		</div>
+		{{/if}}
+
+		{{#if messages.news_message.message}}
+			<h2>{{messages.news_message.start_date}}</h2>
+			  {{messages.news_message.message}}
+		{{/if}}
+
+		{{outlet}}
+	</div>
 </div>
-
 {{#if currentlyLoading }}
 	<div class="spinner">
 		<span class="fa-stack fa-lg">
@@ -30,4 +31,3 @@
 		</span>
 	</div>
 {{/if}}
-</div>

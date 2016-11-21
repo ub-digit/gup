@@ -99,7 +99,7 @@ export default Ember.Controller.extend({
         }, (error) => {
           reject(error.error.msg);
         });
-        }, 1000);
+        }, 1);
       }).catch((reason) => {
         Ember.run(() => {
           this.send('setMsgHeader', 'error', reason);
