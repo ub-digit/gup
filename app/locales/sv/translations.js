@@ -103,7 +103,7 @@ export default {
       noTitle: '-- Titel saknas --',
       publicationID: "Publikationens id",
       publicationType: "Publikationstyp",
-      publicationYear: "Publikationsår",      
+      publicationYear: "Publikationsår",
       contentMarker: "Innehållsmärkning",
     },
     fileUpload: {
@@ -230,7 +230,6 @@ export default {
           title: "Visa publikation",
           publicationNotFound: 'Publikationen finns inte.',
           edit: {
-
             title: "Redigera publikation",
             btnCancel: 'Avbryt',
             btnSaveDraft: 'Spara utkast',
@@ -241,7 +240,7 @@ export default {
             deleteDraftError: 'Utkastet kunde inte tas bort.',
             publishSuccess: 'Posten har publicerats.',
             publishError: 'Posten kunde inte publiceras.',
-            systemError: 'Ett systemfel har inträffat', 
+            systemError: 'Ett systemfel har inträffat',
             approveSuccess: 'Posten har godkänts.',
           },
           index: {
@@ -293,7 +292,7 @@ export default {
           numberOfHits: 'Antal träffar',
           youHaveNoPublications: 'Du har inga publikationer.',
           sortByPreLabel: 'Sortering',
-          sortByTitleLabel: "Titel (A-Ö)", 
+          sortByTitleLabel: "Titel (A-Ö)",
           sortByYearLabel: "År (fallande)"
         },
         start: {
@@ -428,7 +427,7 @@ export default {
           publisher: {
             placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
           },
-        }  
+        }
       },
     },
     index: {
@@ -495,7 +494,7 @@ export default {
         edit: {
           form: {
             labels: {
-              id: 'Id:',          
+              id: 'Id:',
               firstname: 'Förnamn:',
               lastname: 'Efternamn:',
               birthyear: 'Födelseår:',
@@ -503,7 +502,7 @@ export default {
               orcid: 'Orcid'
             },
             placeholders: {
-              id: 'Id:',          
+              id: 'Id:',
               firstname: 'Förnamn:',
               lastname: 'Efternamn:',
               birthyear: 'Födelseår:',

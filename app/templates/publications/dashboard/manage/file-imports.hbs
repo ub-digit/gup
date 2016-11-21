@@ -34,7 +34,7 @@
 
   {{#if model}}
   <div class="col-xs-12">
-    <table class="table">
+    <table class="table file-imports-files table-borderless table-responsive">
       <thead>
         <tr>
           <th></th>
@@ -44,8 +44,8 @@
         </tr>
       </thead>
       {{#collapsible-items accordion=false tagName="tbody" items=model as |fileImport collapsibleItem|}}
-        <tr>
-          <td>
+        <tr class={{isOdd collapsibleItem.index "table-row-odd table-row-accented" "table-row-even"}}>
+          <td class="collapsible-items-button-wrapper">
             <button
               {{action collapsibleItem.toggleIsActive}}
               type="button"
@@ -81,7 +81,7 @@
         <tr>
           <td></td>
           <td colspan=3>
-            <table class="table">
+            <table class="table table-responsive">
               <thead>
                 <tr>
                   <th>{{t 'publications.dashboard.manage.fileImports.publicationTitleHeader'}}</th>
@@ -101,18 +101,9 @@
                   </td>
                   <td><a href="{{record.doi_url}}">{{record.doi_url}}</a></td>
                   <td>
-                    {{#async-button
-                      type="button"
-                      class="btn btn-link"
-                      action=(action "importEndNoteRecord") as |component state|
-                    }}
-                      {{#if state.isPending}}
-                        <i class="fa fa-spinner fa-pulse fa-spin fa-fw"></i>
-                        {{t 'publications.dashboard.manage.fileImports.importingRecord'}}
-                      {{else}}
-                        {{t 'publications.dashboard.manage.fileImports.importRecord'}}
-                      {{/if}}
-                    {{/async-button}}
+                    <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
+                      {{t 'publications.dashboard.manage.fileImports.importRecord'}}
+                    </button>
                   </td>
                 </tr>
               {{/each}}

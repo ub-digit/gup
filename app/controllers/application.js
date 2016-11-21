@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
 	lang : null,
 	isError: Ember.computed.equal('msgType', 'error'),
   showReviewCount: Ember.computed.gt('userdata.counts.review', 0),
+  pageIsDisabled: false,
 
 	actions: {
 		toggleLang: function() {
@@ -21,6 +22,6 @@ export default Ember.Controller.extend({
       Ember.run.later(function() {
         location.reload(true);
       });
-		}
+		},
 	}
 });

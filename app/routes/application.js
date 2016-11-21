@@ -2,15 +2,13 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin'; //Remove?
 
-
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
 
   title: function(tokens) {
     return this.get('i18n').t('application.title') + ' - ' + tokens.join(' - ');
   },
-  session: Ember.inject.service('session'),
-
   beforeModel: function() {
     var lang = "sv"; /// change to default
     if (sessionStorage.getItem('lang')) {
@@ -21,32 +19,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this._super();
   },
 
-
   actions: {
-
-
     loading(transition, originRoute) {
       let controller = this.controllerFor('application');
       controller.set('currentlyLoading', true);
       transition.promise.finally(function() {
-          controller.set('currentlyLoading', false);
+        controller.set('currentlyLoading', false);
       });
-
       return true;
     },
-
-
     invalidateSession() {
       this.get('session').invalidate();
     },
-
-		refreshUserdata: function() {
-		  var that = this;
-		  this.store.find('userdata', this.get('session.data.authenticated.username')).then(function(data) {
-			  that.controllerFor("application").set("userdata", data);
-		  });
-	  },
-
+    refreshUserdata: function() {
+      this.store.find('userdata', this.get('session.data.authenticated.username')).then((data) => {
+        this.controllerFor("application").set("userdata", data);
+      });
+    },
     sessionAuthenticationFailed: function(error) {
       this.controllerFor('login').set('error', error.msg);
     },
@@ -60,26 +49,21 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.controller.set('showMsgHeader', true);
       this.controller.set('msgType', type);
       this.controller.set('msg', msg);
-
-      var that = this;
-
-      Ember.run.later(function() {
-        that.send('hideMsgHeader');
-      }, 1000);
+      Ember.run.later(() => {
+        this.send('hideMsgHeader');
+      }, 2500);
     },
-
     showPublication: function(publication_id) {
-      var that = this;
       this.controller.set('publication_id', null);
       this.controller.set('publication_id_error', null);
 
-      var successHandler = function(model) {
-          that.transitionTo('publications.dashboard.manage.show', publication_id);
+      let successHandler = (model) => {
+        this.transitionTo('publications.dashboard.manage.show', publication_id);
       };
-      var errorHandler = function(model) {
-          that.controller.set('publication_id_error', that.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
+      let errorHandler = (model) => {
+        this.controller.set('publication_id_error', this.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
       };
-      var generalHandler = function(model) {
+      let generalHandler = (model) => {
         if (model.error) {
           errorHandler(model);
         }
@@ -87,10 +71,30 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           successHandler(model);
         }
       };
-
       if (publication_id) {
-        that.store.find('publication', publication_id).then(generalHandler);
+        this.store.find('publication', publication_id).then(generalHandler);
       }
+    },
+    pageIsDisabled(transition) {
+      let controller = this.controllerFor('application');
+      controller.set('pageIsDisabled', true);
+      Ember.run.schedule('afterRender', this, function() {
+        $('#page-disabled-overlay').fadeTo(400, 0.25, () => {
+          controller.set('currentlyLoading', true);
+        });
+      });
+      //TODO: replace with bind thing, nicer?
+      //TODO: check what happens if promise bails, catch?
+      transition.then(() => {
+        Ember.run(() => {
+          controller.set('currentlyLoading', false);
+          $('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
+            Ember.run(() => {
+              controller.set('pageIsDisabled', false);
+            })
+          });
+        });
+      });
     }
   }
 });

@@ -22,9 +22,9 @@ export default Ember.Object.extend({
     publication_identifier_code: {path: 'publication_identifier_codes'},
     journal: {path: 'journals'},
     feedback_mail: {path: 'feedback_mails'},
-		userdata: {path: 'userdata'},
-		serie: {path: 'series'},
-		project: {path: 'projects'},
+    userdata: {path: 'userdata'},
+    serie: {path: 'series'},
+    project: {path: 'projects'},
     message: {path: 'messages'},
     asset_data: {path: 'asset_data', singular: 'asset_data', plural: 'asset_data'},
     endnote_file: {path: 'endnote_files', singular: 'endnote_file', plural: 'endnote_files'},
@@ -37,7 +37,6 @@ export default Ember.Object.extend({
     return this.get('i18n.locale');
   },
 
-
   sessionHeaders: function() {
     var session = this.get('session');
     var headers = {};
@@ -49,16 +48,16 @@ export default Ember.Object.extend({
   findOne: function(name, id, params) {
     var that = this;
     return this.fetch(this.urlOne(name, id, params))
-    .then(function(data) {
-      return that.extractOne(name, data);
-    }, this.extractErrors);
+      .then(function(data) {
+        return that.extractOne(name, data);
+      }, this.extractErrors);
   },
   findMany: function(name, params) {
     var that = this;
     return this.fetch(this.urlMany(name, params))
-    .then(function(data) {
-      return that.extractMany(name, data);
-    }, this.extractErrors);
+      .then(function(data) {
+        return that.extractMany(name, data);
+      }, this.extractErrors);
   },
   fetch: function(url) {
     var that = this;
@@ -139,22 +138,26 @@ export default Ember.Object.extend({
   extractMany: function(name, data) {
     var pluralName = this.plural(name);
     var list = data[pluralName];
-    if(data.meta) {
+    if (data.meta) {
       list.meta = data.meta;
     }
     list.error = this.extractErrors(data);
     return list;
   },
-  extractErrors: function(reason_or_data) {
-    if(reason_or_data.responseJSON) {
+  extractErrors: function(reason_or_data, tmp) {
+    if (reason_or_data.responseJSON) {
       return {
         error: reason_or_data.responseJSON.error,
         status: reason_or_data.status
       };
-    } else {
-      return reason_or_data.error;
+    } else if(reason_or_data.statusText) { //TODO: Verify that removing (invalid?) reason_or_data.error case is ok/safe
+      return {
+        error: { msg : reason_or_data.statusText },
+        status: reason_or_data.status
+      };
     }
     return undefined;
+    //return 'Unable to extract error in function extractErrors()'; //??
   },
   destroy: function(name, id) {
     return this.sendDelete(this.urlOne(name, id));
@@ -168,18 +171,16 @@ export default Ember.Object.extend({
     var dataObject = {};
     dataObject[newName] = data;
     return this.send(this.urlOne(name, id), 'put', dataObject)
-    .then(function(data) {
-      return that.extractOne(name, data);
-    }, this.extractErrors);
+      .then(function(data) {
+        return that.extractOne(name, data);
+      }, this.extractErrors);
   },
   saveCreate: function(name, data) {
     var newName = this.singular(name);
-    var that = this;
     var dataObject = {};
     dataObject[newName] = data;
-    return this.send(this.urlMany(name), 'post', dataObject)
-    .then(function(data) {
-      return that.extractOne(name, data);
+    return this.send(this.urlMany(name), 'post', dataObject).then((data) => {
+      return this.extractOne(name, data);
     }, this.extractErrors);
   }
 });
