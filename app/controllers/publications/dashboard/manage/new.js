@@ -55,6 +55,9 @@ export default Ember.Controller.extend({
       this.send('pageIsDisabled', setImportData);
     },
     createPublication: function(model) {
+      if(!model) {
+        model = {};
+      }
       let saveAndEditDraft = new Promise((resolve, reject) => {
         this.store.save('draft', model).then((model) => {
           this.transitionToRoute('publications.dashboard.manage.show.edit', model.id).then(resolve, reject);
