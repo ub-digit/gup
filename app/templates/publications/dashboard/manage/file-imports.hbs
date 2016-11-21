@@ -97,18 +97,9 @@
                   </td>
                   <td><a href="{{record.doi_url}}">{{record.doi_url}}</a></td>
                   <td>
-                    {{#async-button
-                      type="button"
-                      class="btn btn-link"
-                      action=(action "importEndNoteRecord" record) as |component state|
-                    }}
-                      {{#if state.isPending}}
-                        <i class="fa fa-spinner fa-pulse fa-spin fa-fw"></i>
-                        {{t 'publications.dashboard.manage.fileImports.importingRecord'}}
-                      {{else}}
-                        {{t 'publications.dashboard.manage.fileImports.importRecord'}}
-                      {{/if}}
-                    {{/async-button}}
+                    <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
+                      {{t 'publications.dashboard.manage.fileImports.importRecord'}}
+                    </button>
                   </td>
                 </tr>
               {{/each}}

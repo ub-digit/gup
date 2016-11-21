@@ -74,6 +74,27 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       if (publication_id) {
         this.store.find('publication', publication_id).then(generalHandler);
       }
+    },
+    pageIsDisabled(transition) {
+      let controller = this.controllerFor('application');
+      controller.set('pageIsDisabled', true);
+      Ember.run.schedule('afterRender', this, function() {
+        $('#page-disabled-overlay').fadeTo(400, 0.25, () => {
+          controller.set('currentlyLoading', true);
+        });
+      });
+      //TODO: replace with bind thing, nicer?
+      //TODO: check what happens if promise bails, catch?
+      transition.then(() => {
+        Ember.run(() => {
+          controller.set('currentlyLoading', false);
+          $('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
+            Ember.run(() => {
+              controller.set('pageIsDisabled', false);
+            })
+          });
+        });
+      });
     }
   }
 });

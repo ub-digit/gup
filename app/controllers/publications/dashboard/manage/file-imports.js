@@ -77,7 +77,8 @@ export default Ember.Controller.extend({
       this.set('hasSuccessfullUpload', false);
     },
     importEndNoteRecord: function(record) {
-      return new Promise((resolve, reject) => {
+      let importRecordAndEdit = new Promise((resolve, reject) => {
+        Ember.run.later(() => {
         this.store.save('import_data', { datasource: 'endnote', sourceid: record.id }).then((model) => {
           if (model.error) {
             //Let our last resort error handler deal with this
@@ -85,8 +86,9 @@ export default Ember.Controller.extend({
           }
           else {
             this.store.save('draft', model).then((model) => {
-              this.transitionToRoute('publications.dashboard.manage.show.edit', model.id);
-              resolve();
+              // This is so sweet
+              // Second catch function needed? Check what happens with invalid id
+              this.transitionToRoute('publications.dashboard.manage.show.edit', model.id).then(resolve, resolve);
             }, (error) => {
               Ember.run(() => {
                 this.send('setMsgHeader', 'error', error.error.msg);
@@ -97,11 +99,13 @@ export default Ember.Controller.extend({
         }, (error) => {
           reject(error.error.msg);
         });
+        }, 1000);
       }).catch((reason) => {
         Ember.run(() => {
           this.send('setMsgHeader', 'error', reason);
         });
       });
+      this.send('pageIsDisabled', importRecordAndEdit);
     },
   }
 });
