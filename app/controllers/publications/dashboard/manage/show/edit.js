@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { validYear } from 'gup/lib/validations';
 
 export default Ember.Controller.extend({
-  session: Ember.inject.service('session'), 
+  session: Ember.inject.service('session'),
   publications: Ember.inject.controller(),
   manageController: Ember.inject.controller("publications.dashboard.manage"),
   selectedPublicationType: null,
@@ -13,8 +13,6 @@ export default Ember.Controller.extend({
   selectPublicationVisible: true,
   refValueBool: false,
   categoryObjectsList: Ember.A([]),
-
-
 
   createNewPublicationLink: function() {
     return Ember.Object.create({
@@ -112,7 +110,6 @@ export default Ember.Controller.extend({
       );
     });
   }),
-  //TODO: what is this in this context!?
   getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
     let fullObjectPubtype = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
     return fullObjectPubtype;
@@ -121,9 +118,9 @@ export default Ember.Controller.extend({
   scrollTop: function() {
     window.scroll(0,0);
   }.observes('selectPublicationVisible'),
-  
+
   updateModelWithCorrectPublicationType: function() {
-    this.set("publication.publication_type_id", this.get("getPublicationTypeObject.id"));
+    this.set('publication.publication_type_id', this.get('getPublicationTypeObject.id'));
   }.observes('selectedPublicationType'),
 
   /* author-block */
@@ -145,56 +142,38 @@ export default Ember.Controller.extend({
   },
 
   authorComponentDisabled: function() {
-    if (this.get('showRegisterNewAuthor')) {
-      return  false;
-    }
-    else {
-      return true;
-    }
+    return !this.get('showRegisterNewAuthor');
   }.property('showRegisterNewAuthor'),
 
   authorComponentIsVisible: function() {
-    if (this.get("isSelectedPublicationValid")) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return this.get('isSelectedPublicationValid');
   }.property('selectedPublicationType'),
 
   /* end author-block */
 
   isSelectedPublicationValid: function() {
-    if ((this.get("selectedPublicationType") !== "- Välj -") && (this.get("selectedPublicationType") !== null && this.get("selectedPublicationType") !== undefined)) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return !(this.get('selectedPublicationType') === '- Välj -' || Ember.isEmpty(this.get('selectedPublicationType')));
   }.property('selectedPublicationType'),
 
   actionButtonsAreVisible: function() {
-    if (this.get("isSelectedPublicationValid")) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return this.get('isSelectedPublicationValid');
   }.property('selectedPublicationType'),
 
+  //TODO: Replace with computed
   selectPublicationTypeIsVisible: function() {
-    if (!this.get("isSelectedPublicationValid")) {
-      this.set("selectPublicationVisible", true);
+    if (!this.get('isSelectedPublicationValid')) {
+      this.set('selectPublicationVisible', true);
       return true;
     }
     else {
-      this.set("selectPublicationVisible", false);
+      this.set('selectPublicationVisible', false);
       return false;
     }
   }.observes('selectedPublicationType'),
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
+  // TODO: Replace with computed
   changeRefValue: Ember.observer('refValueBool', function() {
       if (this.get("refValueBool")) {
         this.set("publication.ref_value", "ISREF");
@@ -202,16 +181,17 @@ export default Ember.Controller.extend({
       else {
         this.set("publication.ref_value", "NOTREF");
       }
-  }), 
+  }),
 
+  // TODO: Replace with computed
   refValueChanged: Ember.observer('publication.ref_value', function() {
-    if (this.get("publication.ref_value") == "ISREF") {
-      this.set("refValueBool", true);
+    if (this.get('publication.ref_value') == "ISREF") {
+      this.set('refValueBool', true);
     }
     else {
-      this.set("refValueBool", false);
+      this.set('refValueBool', false);
     }
-  }), 
+  }),
 
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
     return this.get("publicationTypes").findBy("code", this.get("selectedPublicationType"));
