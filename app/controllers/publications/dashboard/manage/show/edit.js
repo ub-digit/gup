@@ -160,7 +160,6 @@ export default Ember.Controller.extend({
     return this.get('isSelectedPublicationValid');
   }.property('selectedPublicationType'),
 
-  //TODO: Replace with computed
   selectPublicationTypeIsVisible: function() {
     if (!this.get('isSelectedPublicationValid')) {
       this.set('selectPublicationVisible', true);
@@ -174,7 +173,6 @@ export default Ember.Controller.extend({
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
-  // TODO: Replace with computed
   changeRefValue: Ember.observer('refValueBool', function() {
       if (this.get('refValueBool')) {
         this.set('publication.ref_value', 'ISREF');
@@ -184,9 +182,8 @@ export default Ember.Controller.extend({
       }
   }),
 
-  // TODO: Replace with computed
   refValueChanged: Ember.observer('publication.ref_value', function() {
-    if (this.get('publication.ref_value') == "ISREF") {
+    if (this.get('publication.ref_value') == 'ISREF') {
       this.set('refValueBool', true);
     }
     else {
