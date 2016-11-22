@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
 	isError: Ember.computed.equal('msgType', 'error'),
   showReviewCount: Ember.computed.gt('userdata.counts.review', 0),
   pageIsDisabled: false,
+  currentlyLoading: false,
 
 	actions: {
 		toggleLang: function() {

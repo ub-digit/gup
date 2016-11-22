@@ -41,33 +41,33 @@ export default Ember.Controller.extend({
         this.set('importData', model);
       };
       let errorHandler = (error) => {
-        this.set('error', error);
+        this.set('error', error.error);
         this.set('importData', null);
       };
-      let generalHandler = (model) => {
+      let setImportData = this.store.save('import_data', { datasource: this.get('selectedSource'), sourceid: this.get('sourceId') }).then((model) => {
         if (model.error) {
-          errorHandler(model.error);
+          errorHandler(model);
         }
         else {
           successHandler(model);
         }
-      };
-      return this.store.save('import_data', { datasource: this.get('selectedSource'), sourceid: this.get('sourceId') }).then(
-        generalHandler
-      );
+      }, errorHandler);
+      this.send('pageIsDisabled', setImportData);
     },
     createPublication: function(model) {
-      let publication = {};
-      if (model) {
-        publication = model;
+      if(!model) {
+        model = {};
       }
-      this.store.save('draft', publication).then(
-        (response) => {
-          this.transitionToRoute('publications.dashboard.manage.show.edit', response.id);
-        },
-        (error) => {
-        }
-      );
+      let saveAndEditDraft = new Promise((resolve, reject) => {
+        this.store.save('draft', model).then((model) => {
+          this.transitionToRoute('publications.dashboard.manage.show.edit', model.id).then(resolve, reject);
+        }, (error) => {
+          //TODO: This code has not been tested, simulate error and test!
+          this.set('error', error.error);
+          reject(error);
+        });
+      });
+      this.send('pageIsDisabled', saveAndEditDraft);
     }
   }
 });

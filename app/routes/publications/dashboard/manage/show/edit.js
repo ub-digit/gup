@@ -144,35 +144,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       }
     },
     // TODO: this should probably live in the controller?
-    // TODO: saveDraft and savePublish does almost the same thing
-    // should perhaps try to unify into one method, or break out common stuff
-    saveDraft: function(/*model*/) {
-      var successHandler = (model) => {
-        this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess'));
-        this.send('refreshModel', model.id);
-        this.transitionTo('publications.dashboard.manage.show', model.id);
-      };
-      var errorHandler = (reason) => {
-        this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError'));
-        this.controller.set('errors', reason.error.errors);
-        Ember.run.schedule('afterRender', function() {
-          // What happens here? Can be removed?
-          Ember.$('[data-toggle="popover"]').popover({
-            placement: 'top',
-            html: true
-          });
-        });
-        return false;
-      };
-      var generalHandler = (model) => {
-        if (model.error) {
-          errorHandler(model);
-        }
-        else {
-          successHandler(model);
-        }
-      };
-
+    savePublication: function(isDraft) {
       //TODO: Ok solution for now, can be solved more elegantly?
       this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
         return Ember.isPresent(link.get('url'));
@@ -183,74 +155,76 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         link.set('position', index);
       });
 
-      // TODO: this smells, can this be made feel less hackish?
-      this.get('controller').submitCallbacksRun().then(() => {
-        this.get('controller').formatAuthorsForServer();
-        this.store.save('draft', this.get('controller').get('publication')).then(generalHandler, errorHandler);
-      }, errorHandler); //Make sure this get passed errors object in correct format (think it does)
+      let savePublication = new Ember.RSVP.Promise((resolve, reject) => {
+        let successHandler = (model) => {
+          let message = isDraft ?
+            this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess') :
+            this.get('i18n').t('publications.dashboard.manage.show.edit.publishSuccess');
+          this.send('setMsgHeader', 'success', message);
+          this.send('refreshModel', model.id);
+          //TODO: Check why we do this, also on draft?
+          if (!isDraft) {
+            this.send('refreshUserdata');
+          }
+          return this.returnTo ? this.transitionTo(this.returnTo) : this.transitionTo('publications.dashboard.manage.show', model.id)
+        };
+
+        let errorHandler = (reason) => {
+          let message = isDraft ?
+            this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError') :
+            this.get('i18n').t('publications.dashboard.manage.show.edit.publishError');
+          this.send('setMsgHeader', 'error', message);
+          this.controller.set('errors', reason.error.errors);
+
+          if(!isDraft && this.controller.get('publication.draft_id')) {
+            this.controller.set('publication.id', this.controller.get('publication.draft_id'));
+            this.controller.set('publication.draft_id', null);
+          }
+
+          Ember.run.schedule('afterRender', () => {
+            Ember.$('[data-toggle="popover"]').popover({
+              placement: 'top',
+              html: true
+            });
+          });
+          return false; //Implications? Remove this?
+        };
+
+        let generalHandler = (model) => {
+          if (!model) {
+            this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
+            return;
+          }
+          if (model.error) {
+            return errorHandler(model);
+          }
+          else {
+            return successHandler(model);
+          }
+        };
+
+        this.get('controller').submitCallbacksRun().then(() => {
+          if (!isDraft && !this.controller.get('publication.published_at')) {
+            this.controller.set('publication.draft_id', this.controller.get('publication.id'));
+            this.controller.set('publication.id', null);
+          }
+          //TODO: consisistent use of either this.get('controller') or this.controller! Which is correct?
+          this.get('controller').formatAuthorsForServer();
+          let resource = isDraft ? 'draft' : 'published_publication';
+          this.store.save(resource, this.controller.get('publication'))
+            .then(generalHandler, errorHandler)
+            .then(resolve, reject);
+        }, (reason) => {
+          reject(reason); //??
+        });
+      });
+      this.send('pageIsDisabled', savePublication);
     },
-    savePublish: function(/*model*/) {
-      var successHandler = (model) => {
-        this.send('setMsgHeader', 'success', this.get('i18n').t('publications.dashboard.manage.show.edit.publishSuccess'));
-        this.send('refreshModel', model.id);
-        this.send('refreshUserdata');
-
-        if (this.returnTo) {
-          this.transitionTo(this.returnTo);
-        } else {
-          this.transitionTo('publications.dashboard.manage.show', model.id);
-        }
-      };
-
-      var errorHandler = (reason) => {
-        this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.publishError'));
-        this.controller.set('errors', reason.error.errors);
-
-        if (this.controller.get('publication.draft_id')) {
-          this.controller.set('publication.id', this.controller.get('publication.draft_id'));
-          this.controller.set('publication.draft_id', null);
-        }
-
-        Ember.run.schedule('afterRender', () => {
-          Ember.$('[data-toggle="popover"]').popover({
-            placement: 'top',
-            html: true
-          });
-        });
-        return false;
-      };
-
-      var generalHandler = (model) => {
-        if (!model) {
-          this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
-          return;
-        }
-        if (model.error) {
-          errorHandler(model);
-        }
-        else {
-          successHandler(model);
-        }
-      };
-
-      //TODO: Ok solution for now, can be solved more elegantly?
-      this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
-        return Ember.isPresent(link.get('url'));
-      }));
-
-      //TODO: OCD fix to prevent position gaps, later: refactor component to not use (position) interally and just set it here
-      this.get('controller.publication.publication_links').sortBy('position').forEach((link, index) => {
-        link.set('position', index);
-      });
-
-      this.get('controller').submitCallbacksRun().then(() => {
-        if (!this.controller.get('publication.published_at')) {
-          this.controller.set('publication.draft_id', this.controller.get('publication.id'));
-          this.controller.set('publication.id', null);
-        }
-        this.get('controller').formatAuthorsForServer();
-        this.store.save('published_publication', this.controller.get('publication')).then(generalHandler, errorHandler);
-      });
+    saveDraft: function() {
+      this.send('savePublication', true);
+    },
+    savePublish: function() {
+      this.send('savePublication', false);
     }
   }
 });
