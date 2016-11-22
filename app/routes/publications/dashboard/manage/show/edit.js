@@ -146,15 +146,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       this.send('refreshModel', this.controller.get('publication.id'));
     },
     cancelEdit: function() {
-      let transition = null;
       if (this.get('hasReturnTo')) {
-        transition = this.transitionTo(...this.get('returnToArguments'));
+        this.transitionTo(...this.get('returnToArguments'));
       } else if(this.get('controller').get('publication.process_state') === 'PREDRAFT') {
-        transition = this.transitionTo('publications.dashboard.manage.published');
+        this.transitionTo('publications.dashboard.manage.published');
       } else {
-        transition = this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
+        this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
       }
-      return transition;
     },
     // TODO: this should probably live in the controller?
     savePublication: function(isDraft) {
