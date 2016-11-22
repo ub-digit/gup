@@ -13,9 +13,11 @@
   {{#if fieldHelptext}}
     <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
   {{/if}}
-  {{#each authorArr as |item|}}
+  {{#each authorArr as |item index|}}
     {{author-row
         item=item
+        index=index
+        totalNumberOfItems=totalNumberOfItems
         setMsgHeader=setMsgHeader
         institutions=institutions
         removeAuthor=(action 'removeAuthorRow')

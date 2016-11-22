@@ -33,6 +33,13 @@ export default Ember.Component.extend({
       }
     }
   },
+
+  totalNumberOfItems: Ember.computed('authorArr.[]', function() {
+    //TODO: double check, array length javscript weirdness etc
+    return this.get('authorArr').length;
+  }),
+  
+  
   // Translates author header differently depending on publication type
   authorHeaderText: Ember.computed('selectedPublicationType', function(){
     var translation = this.get('i18n').t('components.authorBlock.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();

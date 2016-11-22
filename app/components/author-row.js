@@ -16,6 +16,22 @@ export default Ember.Component.extend({
     }
   },
   */
+
+  isFirst: Ember.computed('index', function() {
+  if (this.get("index") === 0) {
+    return "is-first";
+  }
+  return;
+  }),
+  
+  isLast: Ember.computed('index', 'totalNumberOfItems', function() {
+    if ((this.get("index")+1) === this.get('totalNumberOfItems')) {
+      return 'is-last';
+    }
+    return;
+  }),
+
+
   init : function() {
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise

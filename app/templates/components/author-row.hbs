@@ -157,7 +157,7 @@
       </div>
       <div class="col-xs-1 compensate-for-label-on-top">
         {{#unless isThisTheOnlyAuthorRow}}
-          <div class="sort-control">
+          <div class="sort-control {{isFirst}} {{isLast}}">
             <div class="sort-control-up">
               <a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
             </div>
