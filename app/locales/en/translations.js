@@ -310,6 +310,7 @@ export default {
           noPublicationsFound: 'No publications found'
         },
         fileImports: {
+          youHaveNoUploadedList: 'Du har inga uppladdade listor',
           title: 'Uploaded list',
           filenameHeader: 'Filnamne',
           importedDateHeader: 'Imported',

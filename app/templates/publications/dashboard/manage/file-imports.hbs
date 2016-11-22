@@ -115,6 +115,8 @@
       {{/collapsible-items}}
     </table>
   </div>
+{{else}}
+  {{no-result icon="fa-list" displaytext=(t 'publications.dashboard.manage.fileImports.youHaveNoUploadedList')}}
 {{/if}}
 {{outlet}}
 </div>
