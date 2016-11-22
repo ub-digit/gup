@@ -7,7 +7,7 @@ import ResetScroll from 'gup/mixins/resetscroll';
 export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
   i18n: Ember.inject.service(),
   titleToken: function() {
-    return this.get("i18n").t('publications.dashboard.manage.show.edit.title');
+    return this.get('i18n').t('publications.dashboard.manage.show.edit.title');
   },
   returnTo: null,
   beforeModel: function() {
@@ -18,7 +18,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.dashboard.manage.show');
     return Ember.RSVP.hash({
-      publication: this.store.find("publication", model.id),
+      publication: this.store.find('publication', model.id),
       publicationTypes: this.store.find('publication_type'),
       departments: this.store.find('department'),
       languages: this.store.find('language'),
@@ -59,11 +59,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
     controller.set('publicationTypes', models.publicationTypes);
 
-    if (models.publication.ref_value == "ISREF") {
-      controller.set("refValueBool", true);
+    if (models.publication.ref_value == 'ISREF') {
+      controller.set('refValueBool', true);
     }
     else {
-      controller.set("refValueBool", false);
+      controller.set('refValueBool', false);
     }
 
     var authors = null;
@@ -112,7 +112,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       // This needs to be reset if no suggestion was found, so that any previous suggestion is removed
       controller.set('suggestedPublicationType', null);
     }
-    controller.set("manageController.isNavVisible", false);
+    controller.set('manageController.isNavVisible', false);
   },
   resetController: function(controller, isExiting, transition) {
     if (isExiting) {
@@ -137,7 +137,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     cancelEdit: function() {
       if(this.returnTo) {
         this.transitionTo(this.returnTo);
-      } else if(this.get('controller').get('publication.process_state') === "PREDRAFT") {
+      } else if(this.get('controller').get('publication.process_state') === 'PREDRAFT') {
         this.transitionTo('publications.dashboard.manage.published');
       } else {
         this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
