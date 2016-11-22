@@ -1,5 +1,9 @@
 export default {
   components: {
+    publicationTypeItem: {
+      suggested: 'Föreslagen',
+      current: 'Vald'
+    },
     multipleItems: {
       addItemText: 'Lägg till',
       deleteItemText: 'Ta bort'

@@ -1,5 +1,9 @@
 export default {
   components: {
+    publicationTypeItem: {
+      suggested: 'Suggested',
+      current: 'Selected'
+    },
     multipleItems: {
       addItemText: 'Add new',
       deleteItemText: 'Remove'
