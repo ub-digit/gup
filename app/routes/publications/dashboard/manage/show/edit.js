@@ -10,12 +10,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     return this.get('i18n').t('publications.dashboard.manage.show.edit.title');
   },
   returnTo: null,
-  beforeModel: function() {
-    //TODO: replace with loading substate
-    //https://guides.emberjs.com/v2.8.0/routing/loading-and-error-substates/
+  beforeModel: function(transition) {
+    this.set('returnTo', transition.queryParams.returnTo);
+    this.set('returnToModels', transition.queryParams.returnToModels);
+    this.set('returnToQueryParams', transition.queryParams.returnToQueryParams);
   },
   model: function(params, transition) {
-    this.returnTo = transition.queryParams.returnTo;
     var model = this.modelFor('publications.dashboard.manage.show');
     return Ember.RSVP.hash({
       publication: this.store.find('publication', model.id),
@@ -130,18 +130,31 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     //TODO: temporary fix, this sucks:
     controller.set('categoryObjectsList', undefined);
   },
+  returnToArguments: Ember.computed('returnTo', 'returnToModels', 'returnToQueryParams', function() {
+    let args = [this.get('returnTo')];
+    if (Ember.isPresent(this.get('returnToModels'))) {
+      args.pushObject({ queryParams: this.get('returnToModels') });
+    }
+    if (Ember.isPresent(this.get('returnToQueryParams'))) {
+      args.pushObject({ queryParams: this.get('returnToQueryParams') });
+    }
+    return args;
+  }),
+  hasReturnTo: Ember.computed.notEmpty('returnTo'),
   actions: {
     willTransition: function() {
       this.send('refreshModel', this.controller.get('publication.id'));
     },
     cancelEdit: function() {
-      if(this.returnTo) {
-        this.transitionTo(this.returnTo);
+      let transition = null;
+      if (this.get('hasReturnTo')) {
+        transition = this.transitionTo(...this.get('returnToArguments'));
       } else if(this.get('controller').get('publication.process_state') === 'PREDRAFT') {
-        this.transitionTo('publications.dashboard.manage.published');
+        transition = this.transitionTo('publications.dashboard.manage.published');
       } else {
-        this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
+        transition = this.transitionTo('publications.dashboard.manage.show', this.controller.get('publication.id'));
       }
+      return transition;
     },
     // TODO: this should probably live in the controller?
     savePublication: function(isDraft) {
@@ -166,7 +179,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           if (!isDraft) {
             this.send('refreshUserdata');
           }
-          return this.returnTo ? this.transitionTo(this.returnTo) : this.transitionTo('publications.dashboard.manage.show', model.id)
+          return this.get('hasReturnTo') ?
+            this.transitionTo(...this.get('returnToArguments')) :
+            this.transitionTo('publications.dashboard.manage.show', model.id);
         };
 
         let errorHandler = (reason) => {

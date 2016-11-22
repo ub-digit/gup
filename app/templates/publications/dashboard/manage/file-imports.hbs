@@ -31,7 +31,6 @@
   </div>
 </div>
 
-
 {{#if model}}
   <div class="col-xs-12">
     <table class="table file-imports-files table-borderless table-responsive">
@@ -43,7 +42,7 @@
           <th></th>
         </tr>
       </thead>
-      {{#collapsible-items accordion=false tagName="tbody" items=model as |fileImport collapsibleItem|}}
+      {{#collapsible-items accordion=false tagName="tbody" items=model activeItems=fileImportActiveItems as |fileImport collapsibleItem|}}
         <tr class={{isOdd collapsibleItem.index "table-row-odd table-row-accented" "table-row-even"}}>
           <td class="collapsible-items-button-wrapper">
             <button
@@ -91,7 +90,11 @@
               </thead>
               <tbody>
               {{#each fileImport.endnote_records as |record|}}
-                <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
+                {{#highlightable-element
+                  tagName="tr"
+                  isHighlighted=(eq record.id isShowingRecordId)
+                  class=(concat "file-import-record" (if record.publication_id " file-import-publication-imported"))
+                }}
                   <td>
                     {{#if record.publication_id}}
                       {{#link-to 'publications.dashboard.manage.show' record.publication_id}}{{record.title}}{{/link-to}}
@@ -105,7 +108,7 @@
                       {{t 'publications.dashboard.manage.fileImports.importRecord'}}
                     </button>
                   </td>
-                </tr>
+                {{/highlightable-element}}
               {{/each}}
               </tbody>
             </table>
