@@ -8,14 +8,10 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('showonly', {path: 'showonly/:id'});
+  this.route('publication', {path: 'publication/:id'});
   this.route('publications', function() {
-    this.route('fileimport');
-    this.route('import');
-
-    this.route('create');
-    this.route('dashboard', function() {
-      this.route('manage', function() {
+    this.route('dashboard', {path: '/'}, function() {
+      this.route('manage', {path: '/'}, function() {
         this.route('start');
         this.route('drafts');
         this.route('search');
@@ -24,7 +20,7 @@ Router.map(function() {
         this.route('show', {path: 'show/:id'}, function() {
           this.route('edit');
         });
-        this.route('file_imports');
+        this.route('file_imports', {path: 'uploaded-lists'});
       });
       this.route("touched");
       this.route('review');
