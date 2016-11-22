@@ -13,10 +13,14 @@ export default Ember.Route.extend({
     controller.set('fileImportActiveItems', []);
     if (Ember.isPresent(this.get('isShowingRecordId'))) {
       let isShowingRecordId = parseInt(this.get('isShowingRecordId'));
+      // Or set this only if publication_id set to avoid extra logic in template?
       controller.set('isShowingRecordId', isShowingRecordId);
       let expandedFileImport = model.find((fileImport) => {
-        //let endnote_records = fileImport.get('endnote_records').map((record) => { return Ember.Object.create(record); });
-        return fileImport.get('endnote_records').findBy('id', isShowingRecordId) !== undefined;
+        let record = fileImport.get('endnote_records').findBy('id', isShowingRecordId);
+        // Only exand and highlight record if a draft/publication was actually created
+        // not if used cancelled (predraft)
+        // TODO: Convert to ember object in model()?
+        return record !== undefined && Ember.isPresent(record.publication_id);
       });
       if (Ember.isPresent(expandedFileImport)) {
         controller.get('fileImportActiveItems').pushObject(expandedFileImport);

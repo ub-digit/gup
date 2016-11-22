@@ -92,7 +92,7 @@
               {{#each fileImport.endnote_records as |record|}}
                 {{#highlightable-element
                   tagName="tr"
-                  isHighlighted=(eq record.id isShowingRecordId)
+                  isHighlighted=(and (eq record.id isShowingRecordId) record.publication_id)
                   class=(concat "file-import-record" (if record.publication_id " file-import-publication-imported"))
                 }}
                   <td>
