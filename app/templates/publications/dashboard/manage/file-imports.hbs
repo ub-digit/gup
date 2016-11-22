@@ -32,7 +32,7 @@
 </div>
 
 
-  {{#if model}}
+{{#if model}}
   <div class="col-xs-12">
     <table class="table file-imports-files table-borderless table-responsive">
       <thead>
@@ -94,7 +94,7 @@
                 <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
                   <td>
                     {{#if record.publication_id}}
-                      {{#link-to 'publications.dashboard.manage.show' publication.id}}{{record.title}}{{/link-to}}
+                      {{#link-to 'publications.dashboard.manage.show' record.publication_id}}{{record.title}}{{/link-to}}
                     {{else}}
                       {{record.title}}
                     {{/if}}
@@ -115,6 +115,6 @@
       {{/collapsible-items}}
     </table>
   </div>
-  {{/if}}
+{{/if}}
 {{outlet}}
 </div>
