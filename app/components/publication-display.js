@@ -14,6 +14,16 @@ export default Ember.Component.extend({
     return publicationType.code;
   },
 
+
+  getBaseUrlForIdentifier: Ember.computed('publication.publication_identifiers', function() {
+    var arr = this.get("publication.publication_identifiers");
+    var baseDOI = 'https://doi.org/';
+    var handle = 'http://hdl.handle.net/';
+    var libris = 'http://libris.kb.se/bib/';
+    var pubmed = 'https://www.ncbi.nlm.nih.gov/pubmed/';
+    return "baseUrl";
+  }), 
+
   isPatent: Ember.computed('publication.publication_type', function() {
     var code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['intellectual-property_patent']);

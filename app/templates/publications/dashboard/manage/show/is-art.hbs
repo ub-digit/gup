@@ -1,5 +1,4 @@
 
-
     {{#if allFieldObjects.author}}
       {{#if publication.authors}}
         {{publication-field-preview fieldLabel=allFieldObjects.author.label fieldValue=publication.authors type='authors'}}
@@ -105,5 +104,5 @@
     {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel') fieldValue=publication.id}}
 
     {{#if publication.publication_identifiers}}
-      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
+      {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='identifier'}}
     {{/if}}    

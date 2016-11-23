@@ -1,5 +1,19 @@
 <div class="row">
   <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12">
+ 
+              <div class="pull-left">
+              <label>{{t 'publications.dashboard.manage.published.sortByPreLabel'}}</label>
+               {{#x-select value=sort_by class="form-control"}}
+                  {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
+                    {{#each sortSelectValues as |selectValue|}}
+                      {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
+                    {{/each}}
+                {{/x-select}}
+              </div>
+          </div>
+        </div>
     {{#if model.length}}
       <div class="row number-of-results">
         <div class="col-xs-12 text-center">
@@ -9,7 +23,7 @@
         <div class="row">
           <div class="col-xs-12">
  
-            <div class="pull-right">
+            <div class="pull-left">
             <label>{{t 'publications.dashboard.manage.published.sortByPreLabel'}}</label>
              {{#x-select value=sort_by class="form-control"}}
                 {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
@@ -17,7 +31,6 @@
                     {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
                   {{/each}}
               {{/x-select}}
-              
             </div>
           </div>
         </div>

@@ -62,6 +62,9 @@ export default Ember.Controller.extend({
     return this.get("publicationsController.publicationTypes");
   }),
 
+
+
+
   getPublicationTypeObject: Ember.computed('model.publication_type', function(){
     return this.get("publicationsController.publicationTypes").findBy("id", this.get("model.publication_type_id"));
   }),

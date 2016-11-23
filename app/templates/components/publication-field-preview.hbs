@@ -9,6 +9,13 @@
         {{/each}}
       </ul>
 
+    {{else if isTypeIdentifier}}
+      <ul class="list-unstyled">
+        {{#each listValueArray as |listItem|}}
+          <li>{{listItem}}</li>
+        {{/each}}
+      </ul>
+
     {{else if isTypeLinks}}
       <ul class="list-unstyled">
       {{#each fieldValue as |link|}}
