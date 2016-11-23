@@ -87,7 +87,12 @@ export default Ember.Controller.extend({
             this.store.save('draft', model).then((model) => {
               // This is so sweet
               // Second catch function needed? Check what happens with invalid id
-              this.transitionToRoute('publications.dashboard.manage.show.edit', model.id).then(resolve, resolve);
+              this.transitionToRoute('publications.dashboard.manage.show.edit', model.id, {
+                queryParams: {
+                  returnTo: 'publications.dashboard.manage.file_imports',
+                  returnToQueryParams: { 'isShowingRecordId' : record.id }
+                }
+              }).then(resolve, resolve);
             }, (error) => {
               Ember.run(() => {
                 this.send('setMsgHeader', 'error', error.error.msg);

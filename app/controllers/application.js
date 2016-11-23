@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
   showReviewCount: Ember.computed.gt('userdata.counts.review', 0),
   pageIsDisabled: false,
   currentlyLoading: false,
-
 	actions: {
 		toggleLang: function() {
       if (this.get('i18n.locale') === 'sv') {

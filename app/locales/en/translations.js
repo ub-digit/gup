@@ -310,6 +310,7 @@ export default {
           noPublicationsFound: 'No publications found'
         },
         fileImports: {
+          youHaveNoUploadedList: 'Du har inga uppladdade listor',
           title: 'Uploaded list',
           filenameHeader: 'Filnamne',
           importedDateHeader: 'Imported',
@@ -330,7 +331,11 @@ export default {
           uploadCancelLabel: 'Cancel',
           uploadCloseLabel: 'Close',
           uploadAnotherFile: 'Upload another file',
-          successfulFileUpload: 'The file was successfully uploaded'
+          successfulFileUpload: 'The file was successfully uploaded',
+          possibleDuplicates: {
+            'one': 'Possible duplicate',
+            'other': 'Possible duplicates'
+          }
         },
         new: {
           title: "New publication",

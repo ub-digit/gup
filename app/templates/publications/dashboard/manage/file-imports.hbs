@@ -31,8 +31,7 @@
   </div>
 </div>
 
-
-  {{#if model}}
+{{#if model}}
   <div class="col-xs-12">
     <table class="table file-imports-files table-borderless table-responsive">
       <thead>
@@ -43,7 +42,7 @@
           <th></th>
         </tr>
       </thead>
-      {{#collapsible-items accordion=false tagName="tbody" items=model as |fileImport collapsibleItem|}}
+      {{#collapsible-items accordion=false tagName="tbody" items=model activeItems=fileImportActiveItems as |fileImport collapsibleItem|}}
         <tr class={{isOdd collapsibleItem.index "table-row-odd table-row-accented" "table-row-even"}}>
           <td class="collapsible-items-button-wrapper">
             <button
@@ -86,26 +85,48 @@
                 <tr>
                   <th>{{t 'publications.dashboard.manage.fileImports.publicationTitleHeader'}}</th>
                   <th>{{t 'publications.dashboard.manage.fileImports.publicationIdHeader'}}</th>
+                  <th></th>
                   <th>{{t 'publications.dashboard.manage.fileImports.importRecordStatusHeader'}}</th>
                 </tr>
               </thead>
               <tbody>
               {{#each fileImport.endnote_records as |record|}}
-                <tr class="file-import-publication {{if record.publication_id "file-import-publication-imported"}}" >
+                {{#highlightable-element
+                  tagName="tr"
+                  isHighlighted=(and (eq record.id isShowingRecordId) record.publication_id)
+                  class=(concat "file-import-record" (if record.publication_id " file-import-publication-imported"))
+                }}
                   <td>
                     {{#if record.publication_id}}
-                      {{#link-to 'publications.dashboard.manage.show' publication.id}}{{record.title}}{{/link-to}}
+                      {{#link-to 'publications.dashboard.manage.edit' record.publication_id}}{{record.title}}{{/link-to}}
                     {{else}}
                       {{record.title}}
                     {{/if}}
                   </td>
                   <td><a href="{{record.doi_url}}">{{record.doi_url}}</a></td>
                   <td>
-                    <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
-                      {{t 'publications.dashboard.manage.fileImports.importRecord'}}
-                    </button>
+                    {{#if record.duplicates_suggestions}}
+                      <p>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        {{t 'publications.dashboard.manage.fileImports.possibleDuplicates' count=record.duplicates_suggestions.length}}
+                      </p>
+                      <ul class="list-unstyle">
+                      {{#each record.duplicates_suggestions as |suggestion|}}
+                        <li>
+                          {{#link-to 'publications.dashboard.manage.show' suggestion.publication_id}}{{suggestion.title}}{{/link-to}}
+                        </li>
+                      {{/each}}
+                      </ul>
+                    {{/if}}
                   </td>
-                </tr>
+                  <td>
+                    {{#if (not record.publication_id)}}
+                      <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
+                        {{t 'publications.dashboard.manage.fileImports.importRecord'}}
+                      </button>
+                    {{/if}}
+                  </td>
+                {{/highlightable-element}}
               {{/each}}
               </tbody>
             </table>
@@ -115,6 +136,8 @@
       {{/collapsible-items}}
     </table>
   </div>
-  {{/if}}
+{{else}}
+  {{no-result icon="fa-list" displaytext=(t 'publications.dashboard.manage.fileImports.youHaveNoUploadedList')}}
+{{/if}}
 {{outlet}}
 </div>
