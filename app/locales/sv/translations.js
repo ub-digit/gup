@@ -331,7 +331,11 @@ export default {
           uploadCancelLabel: 'Avbryt',
           uploadCloseLabel: 'Stäng', //TODO: remove Label?
           uploadAnotherFile: 'Ladda upp ännu en fil',
-          successfulFileUpload: 'Filen har laddats upp'
+          successfulFileUpload: 'Filen har laddats upp',
+          possibleDuplicates: {
+            'one': 'Ev. dublett',
+            'other': 'Ev. dubletter'
+          }
         },
         new: {
           title: "Ny publikation",

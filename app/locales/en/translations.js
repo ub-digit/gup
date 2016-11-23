@@ -331,7 +331,11 @@ export default {
           uploadCancelLabel: 'Cancel',
           uploadCloseLabel: 'Close',
           uploadAnotherFile: 'Upload another file',
-          successfulFileUpload: 'The file was successfully uploaded'
+          successfulFileUpload: 'The file was successfully uploaded',
+          possibleDuplicates: {
+            'one': 'Possible duplicate',
+            'other': 'Possible duplicates'
+          }
         },
         new: {
           title: "New publication",
