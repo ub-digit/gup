@@ -11,6 +11,50 @@ export default Ember.Component.extend({
   isTypeAuthors: Ember.computed.equal('type', 'authors'),
 
   isTypeIdentifier: Ember.computed.equal('type', 'identifier'),
+  getCorrectBaseURL: function(listItem, listLabel, listValue) { 
+            var baseURLS = {DOI:'https://doi.org/', handle: 'http://hdl.handle.net/', 
+                                libris: 'http://libris.kb.se/bib/', pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/' }
+
+            var isPubmed = function(item) {
+              if (item.indexOf('Pubmed-ID') !== -1) {
+                return true;
+              }
+            }
+
+            var isDOI =  function(item) {
+              if (item.indexOf('DOI') !== -1) {
+                return true;
+              }
+            }
+
+            var isHandle =  function(item) {
+              if (item.indexOf('Handle-ID') !== -1) {
+                return true;
+              }
+            }
+
+            var isLibris =  function(item) {
+              if (item.indexOf('Libris-ID') !== -1) {
+                return true
+              }
+            }
+
+            if (isPubmed(listItem[listLabel])) {
+              return baseURLS.pubmed;
+            }
+            if (isDOI(listItem[listLabel])) {
+              return baseURLS.DOI;
+            }
+            if (isHandle(listItem[listLabel])) {
+              return baseURLS.handle;
+            }
+
+            if (isLibris(listItem[listLabel])) {
+              return baseURLS.libris;
+            }
+
+            return null;
+  }, 
 
 
   listValueArray: Ember.computed('fieldValue', 'listLabel', 'listValue', function() {
@@ -20,54 +64,12 @@ export default Ember.Component.extend({
 
 
     if (this.get("isTypeIdentifier")) {
-
+      var that = this;
       return this.get('fieldValue').map(function(listItem) {
-          var getCorrectBaseURL = function(listItem) { 
-            var baseURLS = {DOI:'https://doi.org/', handle: 'http://hdl.handle.net/', 
-                                libris: 'http://libris.kb.se/bib/', pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/' }
 
-            var isPubmed = function(item) {
-              if (item.indexOf('Pubmed-ID') !== -1) {
-                return baseURLS.pubmed;
-              }
-            }
-
-            var isDOI =  function(item) {
-              if (item.indexOf('DOI') !== -1) {
-                return baseURLS.DOI;
-              }
-            }
-
-            var isHandle =  function(item) {
-              if (item.indexOf('Handle-ID') !== -1) {
-                return baseURLS.handle;
-              }
-            }
-
-            var isLibris =  function(item) {
-              if (item.indexOf('Libris-ID') !== -1) {
-                return baseURLS.libris
-              }
-            }
-
-            if (isPubmed(listItem)) {
-              return baseURLS.pubmed + listItem;
-            }
-            if (isDOI(listItem)) {
-              return baseURLS.DOI + listItem;
-            }
-            if (isHandle(listItem)) {
-              return baseURLS.Handle + listItem;
-            }
-
-            if (isLibris(listItem)) {
-              return baseURLS.libris + listItem;
-            }
-
-            return null;
-          } 
-          if (getCorrectBaseURL(listItem[listLabel]) !== null) {
-            return Ember.String.htmlSafe(listItem[listLabel] + ': ' + "<a href='"+getCorrectBaseURL(listItem[listLabel]) + listItem[listValue] + "'>" + getCorrectBaseURL(listItem[listLabel]) + listItem[listValue] + "</a>");
+          var baseURL = that.getCorrectBaseURL(listItem, listLabel, listValue);
+          if (baseURL !== null) {
+            return Ember.String.htmlSafe(listItem[listLabel] + ': ' + "<a href='"+baseURL + listItem[listValue] + "'>" + baseURL + listItem[listValue] + "</a>");
           }
           else {
            return listItem[listLabel] + ': ' + listItem[listValue]; 
@@ -83,12 +85,6 @@ export default Ember.Component.extend({
         }
       });
     }
-  }),
-
-  listValueIdentifierArray: Ember.computed.equal('fieldValue', 'listLabel', 'listValue', function() {
-    var arr = this.get("fieldValue");
-    /// update with urls if possible
-    var test = "test";
   }),
 
 });
