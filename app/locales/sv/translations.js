@@ -194,8 +194,8 @@ export default {
         select_criteria: "Välj kriterier",
         export_csv: "Exportera till Excel",
         year: "År",
-        start_year: "Start",
-        end_year: "Slut",
+        start_year: "Startår (ex. 1999)",
+        end_year: "Slutår (ex. 2010)",
         include_as_column: "Kolumn",
         faculty: "Fakultet",
         select_faculty: "Välj fakultet",
@@ -208,7 +208,7 @@ export default {
         select_person: "Välj person",
         ref_value: "Refereegranskad",
         groupingHeader: 'Ordna efter (gruppering)',
-        clearBtn: 'Rensa',
+        clearBtn: 'Rensa filter',
       },
       manage: {
         _subnav: {
@@ -331,11 +331,7 @@ export default {
           uploadCancelLabel: 'Avbryt',
           uploadCloseLabel: 'Stäng', //TODO: remove Label?
           uploadAnotherFile: 'Ladda upp ännu en fil',
-          successfulFileUpload: 'Filen har laddats upp',
-          possibleDuplicates: {
-            'one': 'Ev. dublett',
-            'other': 'Ev. dubletter'
-          }
+          successfulFileUpload: 'Filen har laddats upp'
         },
         new: {
           title: "Ny publikation",
