@@ -26,6 +26,7 @@
           </li>
           <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'}}{{/link-to}}</li>
 
+          {{#if session.data.authenticated.can_administrate}}
           <li class="dropdown hidden-lg">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{t 'mainMenu.dropdownOther'}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -40,6 +41,7 @@
               {{/if}}
             </ul>
           </li>
+          {{/if}}
 
           <!-- put in dropdown on ipad breakpoint --> 
           {{#if session.data.authenticated.can_administrate}}
