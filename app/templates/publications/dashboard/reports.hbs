@@ -96,7 +96,7 @@
           <tbody>
             {{#each model.data as |row|}}
             <tr>
-              {{#each row as |col|}}
+              {{#each row.columns as |col|}}
               <td>{{col}}</td>
               {{/each}}
             </tr>
