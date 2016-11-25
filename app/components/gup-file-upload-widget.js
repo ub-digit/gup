@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   i18n: Ember.inject.service(),
-  fileUploadProgress: 0,
   errors: Ember.A([]),
   fileLabel: null,
   isShowingUploadModal: false,
@@ -14,7 +13,7 @@ export default Ember.Component.extend({
   submitButtonIsVisible: true,
   submitButtonIsDisabled: false,
   fileUploadIsVisible: true,
-  fileUploadProgress: null,
+  fileUploadProgress: null, // does it matter if it has null or 0?
   init: function() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('openModalLabel'))) {
@@ -52,9 +51,7 @@ export default Ember.Component.extend({
         if(Math.abs(bytes) < thresh) {
           return bytes + ' B';
         }
-        var units = si
-          ? ['kB','MB','GB','TB','PB','EB','ZB','YB']
-          : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
+        var units = si ? ['kB','MB','GB','TB','PB','EB','ZB','YB'] : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
         var u = -1;
         do {
           bytes /= thresh;
