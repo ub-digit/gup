@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   }
   return;
   }),
-  
+
   isLast: Ember.computed('index', 'totalNumberOfItems', function() {
     if ((this.get("index")+1) === this.get('totalNumberOfItems')) {
       return 'is-last';
