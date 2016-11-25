@@ -9,5 +9,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	},
 
 	setupController: function(controller) {
+		controller.set("isNavVisible", true);
 	}
 });

@@ -1,14 +1,19 @@
 import Ember from 'ember';
 
+
 export default Ember.Component.extend({
+  scroller: Ember.inject.service(),
+  
   isHighlighted: false,
+
   didInsertElement() {
-    if (this.get('isHighlighted')) {
       //Class binding with computed property instead?
-      Ember.$(this.element).addClass('highlighted-element-accented').fadeTo(500, 0.25).fadeTo(500, 1, function() {
+    if (this.get('isHighlighted')) {
+      this.get("scroller").scrollVertical('#' + this.get("element.id"), {duration: 300});
+      Ember.$(this.element).addClass('success').fadeTo(500, 0.25).fadeTo(500, 1, function() {
         Ember.run.later(() => {
-          Ember.$(this).removeClass('highlighted-element-accented');
-        }, 1000);
+          Ember.$(this).removeClass('success');
+        }, 5000);
       });
     }
   }

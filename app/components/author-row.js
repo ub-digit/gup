@@ -36,7 +36,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise
     this.set('createAuthor', (item) => {
-      return new Promise((resolve, reject) => {
+      return new Ember.RSVP.Promise((resolve, reject) => {
         this.store.save('person', {
           'first_name': item.newAuthorForm.get('firstName'),
           'last_name': item.newAuthorForm.get('lastName'),
@@ -57,7 +57,7 @@ export default Ember.Component.extend({
       if(this.get('isUnsaved')) {
         //TODO: user should be promted here!!
         // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
-        return new Promise((resolve, reject) => {
+        return new Ember.RSVP.Promise((resolve, reject) => {
           this.get('createAuthor')(this.get('item')).then((model) => {
             resolve();
           }, (reason) => {
@@ -65,7 +65,7 @@ export default Ember.Component.extend({
           });
         });
       }
-      return Promise.resolve();
+      return Ember.RSVP.Promise.resolve();
     });
   },
   // Helper

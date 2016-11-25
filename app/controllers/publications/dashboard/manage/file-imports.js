@@ -3,6 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
+  manageController: Ember.inject.controller("publications.dashboard.manage"),
   importDataBaseUrl: null,
   uploadImportDataFile: null,
   importDataFile: null,

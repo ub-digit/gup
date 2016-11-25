@@ -98,7 +98,7 @@
                 }}
                   <td>
                     {{#if record.publication_id}}
-                      {{#link-to 'publications.dashboard.manage.edit' record.publication_id}}{{record.title}}{{/link-to}}
+                      {{#link-to 'publications.dashboard.manage.show.edit' record.publication_id}}{{record.title}}{{/link-to}}
                     {{else}}
                       {{record.title}}
                     {{/if}}
@@ -124,6 +124,8 @@
                       <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
                         {{t 'publications.dashboard.manage.fileImports.importRecord'}}
                       </button>
+                    {{else}}
+                      {{record.process_state}}
                     {{/if}}
                   </td>
                 {{/highlightable-element}}

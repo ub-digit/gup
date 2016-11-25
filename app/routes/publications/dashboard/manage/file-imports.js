@@ -10,6 +10,7 @@ export default Ember.Route.extend({
   },
   setupController(controller, model) {
     this._super(...arguments);
+    controller.set("manageController.isNavVisible", true);
     controller.set('fileImportActiveItems', []);
     if (Ember.isPresent(this.get('isShowingRecordId'))) {
       let isShowingRecordId = parseInt(this.get('isShowingRecordId'));
