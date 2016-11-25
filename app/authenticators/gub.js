@@ -41,7 +41,6 @@ export default Base.extend({
 						token: token,
 						username: response.user.username,
 						name: response.user.name,
-						username: response.user.username,
 						userid: response.user.id,
             			can_delete_published : Ember.$.inArray('delete_published', response.user.role.rights) !== -1,
         				can_biblreview : Ember.$.inArray('biblreview', response.user.role.rights) !== -1,
