@@ -15,7 +15,7 @@ export default Ember.Route.extend({
     controller.set('departments', models.departments);
     controller.set('filter', {});
     controller.set('columns', {});
-    controller.set('model', {});
+    controller.set('model', null);
     var pubTypes = controller.get('publicationsController.publicationTypes').map(function(item) {
       return {
         name: item.name,
@@ -27,9 +27,9 @@ export default Ember.Route.extend({
   },
   actions: {
     createReport: function(filter, columns) {
-      var controller = this.controller;
-      this.store.save('report', {filter: filter, columns: columns}).then(function(model) {
-        controller.set('model', model);
+      this.store.save('report', {filter: filter, columns: columns}).then((model) => {
+        this.controller.set('reportRowsColumns', columns);
+        this.controller.set('model', model);
         window.scrollTo(0,0);
       });
     },
