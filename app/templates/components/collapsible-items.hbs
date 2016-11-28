@@ -1,10 +1,10 @@
-{{#each items as |item index|}}
+{{#each itemStates as |itemState index|}}
   {{!#collapsible-item tagName=itemTagName item=item activeItems=activeItems as |isActive|}}
   {{yield
-    item
+    itemState.item
     (hash
-      toggleIsActive=(action "toggleActiveItem" item)
-      isActive=(get itemIsActiveStates (concat '' (get item itemIdKey)))
+      toggleIsActive=(action "toggleActiveItem" itemState.item)
+      isActive=itemState.isActive
       index=index
     )
   }}

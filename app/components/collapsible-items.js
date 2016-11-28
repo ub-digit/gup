@@ -8,35 +8,11 @@ export default Ember.Component.extend({
   isActiveItem(item) {
     return this.get('activeItems').indexOf(item) !== -1;
   },
-  itemIsActiveStates: Ember.Object.create({}), //Object or not?
-  init() {
-    this._super(...arguments);
-    let rebuildItemIsActiveStates = () => {
-      let activeStates = this.get('itemIsActiveStates');
-      for (let item of this.get('items')) {
-        activeStates.set(item.get(this.get('itemIdKey')).toString(), this.isActiveItem(item));
-      }
-    };
-    let syncItemIsActiveStates = () => {
-      // Remove items no longer present
-      this.get('itemIsActiveStates').filter((_, itemId) => {
-        return !this.get('items').findBy(this.get('itemIdKey'), itemId);
-      })
-      .forEach((_, removedItemId) => {
-        this.set(removedItemId, undefined);
-      });
-      rebuildItemIsActiveStates();
-    };
-
-    // Set default values for active states
-    rebuildItemIsActiveStates();
-
-    // Add observers to sync active states
-    //this.addObserver('items.[]', syncItemIsActiveStates);
-    this.addObserver('items.[]', rebuildItemIsActiveStates);
-    this.addObserver('activeItems.[]', rebuildItemIsActiveStates);
-  },
-
+  itemStates: Ember.computed('items.[]', 'activeItems.[]', function() {
+    return this.get('items').map((item) => {
+      return Ember.Object.create({item: item, isActive: this.isActiveItem(item)});
+    });
+  }),
   actions: {
     toggleActiveItem(item) {
       if (this.get('accordion')) {
