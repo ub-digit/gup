@@ -78,7 +78,7 @@ export default Ember.Controller.extend({
       this.set('hasSuccessfullUpload', false);
     },
     importEndNoteRecord: function(record) {
-      let importRecordAndEdit = new Promise((resolve, reject) => {
+      let importRecordAndEdit = new Ember.RSVP.Promise((resolve, reject) => {
         this.store.save('import_data', { datasource: 'endnote', sourceid: record.id }).then((model) => {
           if (model.error) {
             //Let our last resort error handler deal with this

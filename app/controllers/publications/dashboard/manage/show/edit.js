@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
   submitCallbacks: Ember.A([]), // Hack
   // Run callbacks and collect promises to resolve on submit
   submitCallbacksRun: function() {
-    return Promise.all(this.get('submitCallbacks').map(function(callback) {
+    return Ember.RSVP.Promise.all(this.get('submitCallbacks').map(function(callback) {
       return callback();
     }));
   },
@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
       var pubSeries = this.get('publication.series');
       return this.get('series').filter(function(item) {
         if (!pubSeries) { return false; }
-        return pubSeries.contains(parseInt(item.id));
+        return pubSeries.includes(parseInt(item.id));
       });
     },
     set: function(key, value) {
@@ -51,7 +51,7 @@ export default Ember.Controller.extend({
       var pubProject = this.get('publication.project');
       return this.get('projects').filter(function(item) {
         if (!pubProject) { return false; }
-        return pubProject.contains(parseInt(item.id));
+        return pubProject.includes(parseInt(item.id));
       });
     },
     set: function(key, value){

@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   person: null,
   columns: {},
   filter: {},
+  model: null,
 
   yearRangeDepartments: Ember.computed('filter.{start_year,end_year}', function() {
     let startYear = this.get('filter.start_year') || '';
@@ -53,22 +54,6 @@ export default Ember.Controller.extend({
     return departments;
   }),
 
-  selectableFaculties: Ember.computed('yearRangeDepartments', 'publicationsController.faculties', function() {
-    // TODO: this could be computed prop for increased performance
-    let facultyIds = this.get('yearRangeDepartments').reduce((result, department) => {
-        result[department.faculty_id] = department.faculty_id;
-        return result;
-      }, []);
-    let faculties = this.get('publicationsController.faculties');
-    return facultyIds.map(function(id) {
-      //TODO: this could be made much faster by indexing faculties by id instead
-      return faculties.findBy('id', id) || Ember.Object.create({
-        id: id,
-        name: 'Unknown/Extern (id: ' + id + ')'
-      });
-    }); //.compact()?
-  }),
-
   columnArray: Ember.computed('columns.{year,faculty,department,publication_type,ref_value}', function() {
     var cArray = [];
     if(this.get('columns.year')) { cArray.push('year'); }
@@ -78,9 +63,9 @@ export default Ember.Controller.extend({
     if(this.get('columns.ref_value')) { cArray.push('ref_value'); }
     return cArray;
   }),
+
   filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,ref_value}','publicationTypes.@each.checked', 'person.identifiers', function() {
     var that = this;
-
     var publication_types = [];
     this.get('publicationTypes').forEach(function(item) {
       if(item.checked) {
@@ -93,7 +78,6 @@ export default Ember.Controller.extend({
         that.set('filter.persons', [identifier.value]);
       });
     }
-
     return this.get('filter');
   }),
 
@@ -111,5 +95,51 @@ export default Ember.Controller.extend({
     return ENV.APP.serviceURL + '/reports/' + report_name + '?token=' + token + '&' + report_data;
   }),
 
-  model: {},
+  reportRows: Ember.computed('model.data[]', 'reportRowsColumns', function() {
+    let rows = this.get('model.data');
+
+    if (Ember.isEmpty(rows)) {
+      return [];
+    }
+    let token = this.get("session.data.authenticated.token");
+    //TODO: Nicer way to bake url?
+    let url = ENV.APP.serviceURL + '/published_publications/?token=' + token + '&' + 'format=xls';
+    let columns = this.get('reportRowsColumns');
+    // TODO: put this somewhere else, or use lodash zipObject(?) "https://lodash.com/"
+    /*
+    let zipObject = function(keys, values) {
+      return keys.reduce(function(result, key, index) {
+        result[key] = values[index];
+        return result;
+      }, {});
+    };
+    */
+    return rows.map(function(row) {
+      let rowObject = Ember.Object.create();
+      rowObject.set('columns', row.map((item) => { return item[0]; }));
+      let columnsQuery = columns.reduce((query, column, index) => {
+        query += '&' + column + '=' + row[index][1];
+        return query;
+      }, '');
+      rowObject.set('xls_url', url + columnsQuery);
+      return rowObject;
+    });
+  }),
+
+  //Somehow this messes with vim auto-indent :(, so putting it last
+  selectableFaculties: Ember.computed('yearRangeDepartments', 'publicationsController.faculties', function() {
+    // TODO: this could be computed prop for increased performance
+    let facultyIds = this.get('yearRangeDepartments').reduce((result, department) => {
+      result[department.faculty_id] = department.faculty_id;
+      return result;
+    }, []);
+    let faculties = this.get('publicationsController.faculties');
+    return facultyIds.map(function(id) {
+      //TODO: this could be made much faster by indexing faculties by id instead
+      return faculties.findBy('id', id) || Ember.Object.create({
+        id: id,
+        name: 'Unknown/Extern (id: ' + id + ')'
+      });
+    });
+  }),
 });

@@ -58,7 +58,7 @@ export default Ember.Controller.extend({
       if(!model) {
         model = {};
       }
-      let saveAndEditDraft = new Promise((resolve, reject) => {
+      let saveAndEditDraft = new Ember.RSVP.Promise((resolve, reject) => {
         this.store.save('draft', model).then((model) => {
           this.transitionToRoute('publications.dashboard.manage.show.edit', model.id).then(resolve, reject);
         }, (error) => {
