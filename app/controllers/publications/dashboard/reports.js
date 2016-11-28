@@ -103,7 +103,7 @@ export default Ember.Controller.extend({
     }
     let token = this.get("session.data.authenticated.token");
     //TODO: Nicer way to bake url?
-    let url = ENV.APP.serviceURL + '/published_publications/?token=' + token + '&' + 'format=xls';
+    let url = ENV.APP.serviceURL + '/published_publications_xls/?token=' + token;
     let columns = this.get('reportRowsColumns');
     // TODO: put this somewhere else, or use lodash zipObject(?) "https://lodash.com/"
     /*

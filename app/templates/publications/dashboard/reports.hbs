@@ -84,25 +84,27 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      {{#if model}}
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              {{#each model.columns as |column|}}
-              <th>{{column}}</th>
-              {{/each}}
-            </tr>
-          </thead>
-          <tbody>
-            {{#each reportRows as |row|}}
-            <tr>
-              {{#each row.columns as |col|}}
-              <td>{{col}}</td>
-              {{/each}}
-            </tr>
+      {{#if reportRows}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            {{#each model.columns as |column|}}
+            <th>{{column}}</th>
             {{/each}}
-          </tbody>
-        </table>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each reportRows as |row|}}
+          <tr>
+            {{#each row.columns as |col|}}
+            <td>{{col}}</td>
+            {{/each}}
+            <td><a href="{{row.xls_url}}" style="color: #5cb85c;" title="{{t 'publications.dashboard.reports.export_csv'}}" class="pull-right"><i class="fa fa-table" aria-hidden='true'></i></a></td>{{!TODO: label/title accessibility, no hardcoded styles}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
       {{/if}}
     </div>
   </div>
