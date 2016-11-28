@@ -1,3 +1,13 @@
+<div class="gup-form">
+{{#if errors}}
+  <div class="row">
+    <div class="col-xs-12 col-sm-10">
+      <div class="gup-form-callout-warning">
+        <p>{{t 'publications.publicationtypes.form.generalErrorHeader'}} </p>
+      </div>
+    </div>
+  </div>
+{{/if}}
 {{#if selectPublicationVisible}}
   {{partial 'publications/publicationtypes/selector'}}
 {{else}}
@@ -336,3 +346,5 @@
   {{publication-identifier-block fieldHelptext="publications.publicationtypes.form.help.publicationIdentifiers.helptext" publicationIdentifiers=publication.publication_identifiers publicationIdentifierCodes=publicationIdentifierCodes}}
 
 {{/if}}
+
+</div>

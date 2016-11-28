@@ -3,6 +3,7 @@ import { validYear } from 'gup/lib/validations';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
+  scroller: Ember.inject.service(),
   publications: Ember.inject.controller(),
   manageController: Ember.inject.controller('publications.dashboard.manage'),
   selectedPublicationType: null,
@@ -117,8 +118,9 @@ export default Ember.Controller.extend({
   }),
 
   scrollTop: function() {
-    window.scroll(0,0);
-  }.observes('selectPublicationVisible'),
+    this.get("scroller").scrollVertical("body", {offset: -100, duration: 300});
+  }.observes('errors', 'selectPublicationVisible'),
+
 
   updateModelWithCorrectPublicationType: function() {
     this.set('publication.publication_type_id', this.get('getPublicationTypeObject.id'));

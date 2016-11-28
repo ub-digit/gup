@@ -24,19 +24,19 @@
     </div>
   {{/if}}
   {{#if isTypeText}}
-      {{input classBinding=":form-control" disabled=disabled value=value}}
+      {{input classBinding=":form-control fieldName" disabled=disabled value=value}}
   {{else}}
     {{#if isTypeISSN}}
-      {{input classBinding=":form-control" disabled=disabled value=value}}
+      {{input classBinding=":form-control fieldName" disabled=disabled value=value}}
     {{/if}}
     {{#if isTypeISBN}}
-      {{input classBinding=":form-control" value=value}}
+      {{input classBinding=":form-control fieldName" value=value}}
     {{/if}}
     {{#if isTypeDate}}
-      {{pikaday-input value=value class="form-control" format='YYYY-MM-DD' allowBlank=true firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut value))}}
+      {{pikaday-input value=value class="form-control fieldName" format='YYYY-MM-DD' allowBlank=true firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut value))}}
     {{/if}}
     {{#if isTypeTextarea}}
-      {{textarea classBinding=":form-control" value=value}}
+      {{textarea classBinding=":form-control fieldName" value=value}}
     {{/if}}
     {{#if isTypeCategorySelector}}
       {{category-selector categoryList=value categoryObjects=categoryObjects}}
@@ -52,7 +52,7 @@
       }}      
     {{/if}}
     {{#if isTypeSelect}}
-      {{#x-select value=value class="form-control"}}
+      {{#x-select value=value class="form-control fieldName"}}
       {{#if prompt}}{{#x-option}}{{prompt}}{{/x-option}}{{/if}}
         {{#each selectValues as |selectValue|}}
           {{#x-option value=selectValue.value}}{{selectValue.label}}{{/x-option}}
@@ -63,7 +63,7 @@
       <div class="form-inline">
         <div class="checkbox">
           <label>
-            {{input type="checkbox" checked=value}} {{t 'components.fieldComponent.aheadCheckbox'}}
+            {{input type="checkbox" checked=value class=fieldName}} {{t 'components.fieldComponent.aheadCheckbox'}}
           </label>
         </div>
       </div>
@@ -72,7 +72,7 @@
       <div class="form-inline">
         <div class="checkbox">
           <label>
-            {{input type="checkbox" checked=value}} {{label}}
+            {{input type="checkbox" checked=value class=fieldName}} {{label}}
           </label>
         </div>
       </div>
@@ -100,7 +100,7 @@
           query="queryJournals"
       }}
       {{else}}
-        {{input type="text" placeholder=(t fieldPlaceholder) class="form-control" value=sourcetitle}}
+        {{input type="text" placeholder=(t fieldPlaceholder) class="form-control fieldName" value=sourcetitle}}
       {{/if}}
       </div>
     {{/if}}

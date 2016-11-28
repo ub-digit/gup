@@ -415,6 +415,7 @@ export default {
         changePublicationTypeLink: 'Byt',
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
+        generalErrorHeader: 'Formuläret innehåller felaktigeheter. Var vänlig rätta till dessa och försök igen.',
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',
           authors: {
