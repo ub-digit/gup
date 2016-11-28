@@ -94,7 +94,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.data as |row|}}
+            {{#each reportRows as |row|}}
             <tr>
               {{#each row.columns as |col|}}
               <td>{{col}}</td>
@@ -103,9 +103,7 @@
             {{/each}}
           </tbody>
         </table>
-        
       {{/if}}
-      
     </div>
   </div>
 </div>
