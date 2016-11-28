@@ -191,7 +191,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           let message = isDraft ?
             this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError') :
             this.get('i18n').t('publications.dashboard.manage.show.edit.publishError');
-          this.send('setMsgHeader', 'error', message);
+        //  this.send('setMsgHeader', 'error', message);
           this.controller.set('errors', reason.error.errors);
 
           if(!isDraft && this.controller.get('publication.draft_id')) {

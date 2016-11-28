@@ -419,7 +419,7 @@ export default {
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
-        generalErrorHeader: 'Formuläret innehåller felaktigeheter. Var vänlig rätta till dessa och försök igen.',
+        generalErrorHeader: 'The form contain errors. Please correct these and try again.',
         help: {
           publicationLinks: 'Links should begin with http:// or https://',
           authors: {
