@@ -116,9 +116,10 @@ export default Ember.Controller.extend({
     */
     return rows.map(function(row) {
       let rowObject = Ember.Object.create();
-      rowObject.set('columns', row.map((item) => { return item[0]; }));
+      rowObject.set('columns', row.map((item) => { return Ember.typeOf(item) === 'array' ? item[0] : item; }));
       let columnsQuery = columns.reduce((query, column, index) => {
-        query += '&' + column + '=' + row[index][1];
+        let colValue = row[index];
+        query += '&' + column + '=' + (Ember.typeOf(colValue) === 'array' ? colValue[1] : colValue);
         return query;
       }, '');
       rowObject.set('xls_url', url + columnsQuery);
