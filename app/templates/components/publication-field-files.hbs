@@ -9,7 +9,7 @@
 	    	{{else}}
 	    	  <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>
                   {{#if listItem.deletable}}
-	    	    <a href="javascript:void()" {{action 'removeFile' listItem.id}} ><i class="fa fa-times" aria-hidden="true"></i></a>
+	    	    <a href="javascript:void(0);" {{action 'removeFile' listItem.id}} ><i class="fa fa-times" aria-hidden="true"></i></a>
                   {{/if}}
 	    	{{/if}}
 	    </span>

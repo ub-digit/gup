@@ -118,7 +118,7 @@ export default Ember.Controller.extend({
   }),
 
   scrollTop: function() {
-    this.get("scroller").scrollVertical("body", {offset: -100, duration: 300});
+    window.scrollTo(0, 0);
   }.observes('errors', 'selectPublicationVisible'),
 
 
