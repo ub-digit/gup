@@ -15,8 +15,14 @@
 		{{/if}}
 
 		{{#if messages.news_message.message}}
-			<h2>{{messages.news_message.start_date}}</h2>
-			  {{messages.news_message.message}}
+		<div class="row">
+			<div class="col-xs-12 news-flash">
+				<div class="alert alert-info" role="alert">
+					<p class="header">{{messages.news_message.start_date}}</p>
+				  	<p>{{messages.news_message.message}}</p>
+				</div>
+			</div>
+		</div>
 		{{/if}}
 
 		{{outlet}}
