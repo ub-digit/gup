@@ -80,6 +80,15 @@ export default Ember.Controller.extend({
     }
     return this.get('filter');
   }),
+  hasFilterData: Ember.computed('filterData', function() {
+    const filters = ['start_year', 'end_year', 'faculties', 'departments', 'publication_types', 'ref_value'];
+    for (let i in filters) {
+      if (Ember.isPresent(this.get('filterData.' + filters[i]))) {
+        return true;
+      }
+    }
+    return false;
+  }),
 
   csvUrl: Ember.computed('columnArray', 'filterData', function() {
     var that = this;
@@ -126,7 +135,7 @@ export default Ember.Controller.extend({
       return rowObject;
     });
   }),
-
+  hasReportRows: Ember.computed.notEmpty('reportRows'),
   //Somehow this messes with vim auto-indent :(, so putting it last
   selectableFaculties: Ember.computed('yearRangeDepartments', 'publicationsController.faculties', function() {
     // TODO: this could be computed prop for increased performance
