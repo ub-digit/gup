@@ -187,6 +187,9 @@ export default {
   },
   msgheader: {
   },
+  publication: {
+    not_found: "Publikationen kunde inte hittas"
+  },
   publications: {
     dashboard: {
       reports: {
