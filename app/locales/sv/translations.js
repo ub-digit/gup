@@ -220,9 +220,6 @@ export default {
         _actions: {
           registerNew: 'Registrera ny',
         },
-        fileImports: {
-          possibleDuplicates: 'Möjlig dublett!',
-        },
         drafts: {
           title: "Mina utkast",
           numberOfHits: 'Antal träffar',
@@ -338,6 +335,10 @@ export default {
           possibleDuplicates: {
             'one': 'Möjlig dublett',
             'other': 'Möjliga dubletter'
+          },
+          processState: {
+            DRAFT: 'Utkast',
+            PUBLISHED: 'Publicerad'
           }
         },
         new: {
