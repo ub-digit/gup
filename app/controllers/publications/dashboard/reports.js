@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
     return cArray;
   }),
 
-  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,ref_value}','publicationTypes.@each.checked', 'person.identifiers', function() {
+  filterData: Ember.computed('filter.{start_year,end_year,faculties,departments,publication_types,ref_value}', 'publicationTypes.@each.checked', 'person.identifiers', function() {
     var that = this;
     var publication_types = [];
     this.get('publicationTypes').forEach(function(item) {
@@ -80,6 +80,7 @@ export default Ember.Controller.extend({
     }
     return this.get('filter');
   }),
+
   hasFilterData: Ember.computed('filterData', function() {
     const filters = ['start_year', 'end_year', 'faculties', 'departments', 'publication_types', 'ref_value'];
     for (let i in filters) {
@@ -104,13 +105,38 @@ export default Ember.Controller.extend({
     return ENV.APP.serviceURL + '/reports/' + report_name + '?token=' + token + '&' + report_data;
   }),
 
-  reportRows: Ember.computed('model.data[]', 'reportRowsColumns', function() {
+  nonColumnFilters: Ember.computed('filterData', 'reportRowsColumns', function() {
+    let filters = {};
+    let columns = this.get('reportRowsColumns');
+    let filterData = this.get('filterData');
+
+    // Include year filters if year grouping not selected
+    if (columns.indexOf('year') === -1) {
+      if (Ember.isPresent(filterData.start_year)) {
+        filters.start_year = filterData.start_year;
+      }
+      if (Ember.isPresent(filterData.end_year)) {
+        filters.end_year = filterData.end_year;
+      }
+    }
+    if (columns.indexOf('faculty_id') === -1 && Ember.isPresent(filterData.faculties)) {
+      filters.faculty_id = filterData.faculties;
+    }
+    if (columns.indexOf('department_id') === -1 && Ember.isPresent(filterData.departments)) {
+      filters.department_id = filterData.departments;
+    }
+    return filters;
+  }),
+
+  hasNonColumnFilters: Ember.computed.notEmpty('nonColumnFilters'),
+
+  reportRows: Ember.computed('model.data[]', 'reportRowsColumns.[]', function() { //reportRowsColumns.[] can be removed?
     let rows = this.get('model.data');
 
     if (Ember.isEmpty(rows)) {
       return [];
     }
-    let token = this.get("session.data.authenticated.token");
+    let token = this.get('session.data.authenticated.token');
     //TODO: Nicer way to bake url?
     let url = ENV.APP.serviceURL + '/published_publications_xls/?token=' + token;
     let columns = this.get('reportRowsColumns');
@@ -123,7 +149,11 @@ export default Ember.Controller.extend({
       }, {});
     };
     */
-    return rows.map(function(row) {
+    if (this.get('hasNonColumnFilters')) {
+      url += '&' + Ember.$.param(this.get('nonColumnFilters'));
+    }
+    //TODO: filter data array and exclude??
+    return rows.map((row) => {
       let rowObject = Ember.Object.create();
       rowObject.set('columns', row.map((item) => { return Ember.typeOf(item) === 'array' ? item[0] : item; }));
       let columnsQuery = columns.reduce((query, column, index) => {
