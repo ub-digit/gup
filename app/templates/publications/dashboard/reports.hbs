@@ -104,7 +104,7 @@
             {{#each row.columns as |col|}}
             <td>{{col}}</td>
             {{/each}}
-            <td><a href="{{row.xls_url}}" style="color: #5cb85c;" title="{{t 'publications.dashboard.reports.export_csv'}}" class="pull-right"><i class="fa fa-table" aria-hidden='true'></i></a></td>{{!TODO: label/title accessibility, no hardcoded styles}}
+            <td><a href="{{row.xls_url}}" title="{{t 'publications.dashboard.reports.export_csv'}}" class="text-success pull-right"><i class="fa fa-table" aria-hidden='true'></i> </a></td>
           </tr>
           {{/each}}
         </tbody>
