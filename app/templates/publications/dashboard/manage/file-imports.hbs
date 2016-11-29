@@ -113,7 +113,7 @@
                       <ul class="list-unstyle">
                       {{#each record.duplicates_suggestions as |suggestion|}}
                         <li>
-                          {{#link-to 'publications.dashboard.manage.show' suggestion.publication_id}}{{suggestion.title}}{{/link-to}}
+                          {{#link-to 'publications.dashboard.manage.show' suggestion.publication_id}}{{suggestion.publication_title}}{{/link-to}}
                         </li>
                       {{/each}}
                       </ul>

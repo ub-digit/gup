@@ -220,6 +220,9 @@ export default {
         _actions: {
           registerNew: 'Registrera ny',
         },
+        fileImports: {
+          possibleDuplicates: 'Möjlig dublett!',
+        },
         drafts: {
           title: "Mina utkast",
           numberOfHits: 'Antal träffar',
@@ -331,7 +334,11 @@ export default {
           uploadCancelLabel: 'Avbryt',
           uploadCloseLabel: 'Stäng', //TODO: remove Label?
           uploadAnotherFile: 'Ladda upp ännu en fil',
-          successfulFileUpload: 'Filen har laddats upp'
+          successfulFileUpload: 'Filen har laddats upp',
+          possibleDuplicates: {
+            'one': 'Möjlig dublett',
+            'other': 'Möjliga dubletter'
+          }
         },
         new: {
           title: "Ny publikation",

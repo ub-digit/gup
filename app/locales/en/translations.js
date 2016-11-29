@@ -220,6 +220,9 @@ export default {
         _actions: {
           registerNew: 'New entry',
         },
+        fileImports: {
+          possibleDuplicates: 'Possible duplicate!',
+        },
         drafts: {
           title: "My drafts",
           numberOfHits: 'Number of hits',
