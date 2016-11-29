@@ -40,10 +40,6 @@
 
         {{publication-field-bibl-review fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
 
-        {{#if allFieldObjects.url}}
-          {{publication-field-bibl-review fieldLabel=allFieldObjects.url.label fieldValue=publication.url}}
-        {{/if}}
-
         {{#if publication.publication_identifiers}}
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
         {{/if}}
@@ -221,10 +217,6 @@
         {{/if}}
 
           {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_local.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
-
-        {{#if allFieldObjects.url}}
-          {{publication-field-compare fieldLabel=allFieldObjects.url.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.url fieldValue=publication.url}}
-        {{/if}}
 
         {{#if publication.publication_identifiers}}
           {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
