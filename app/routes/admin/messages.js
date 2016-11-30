@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   titleToken: function() {
     return this.get("i18n").t('admin.messages.title');
   },
-  model: function(params) {
+  model: function() {
     return Ember.RSVP.hash({
       news_message: this.store.find('message', 'NEWS'),
       alert_message: this.store.find('message', 'ALERT')
@@ -32,12 +32,11 @@ export default Ember.Route.extend({
   },
   actions: {
     saveMessage: function(model) {
-      var that = this;
       model.id = null;
-      this.store.save('message', model).then(function(data) {
-        that.send('setMsgHeader', 'success', that.get('i18n').t('admin.messages.saved'));
+      this.store.save('message', model).then(() => {
+        this.send('setMsgHeader', 'success', this.get('i18n').t('admin.messages.saved'));
       }, function(error) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('admin.messages.saveError'));
+        this.send('setMsgHeader', 'error', this.get('i18n').t('admin.messages.saveError'));
       });
     },
     deleteMessage: function(model) {

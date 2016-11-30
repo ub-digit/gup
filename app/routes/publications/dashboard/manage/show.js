@@ -3,10 +3,10 @@ import ResetScroll from 'gup/mixins/resetscroll';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
-    i18n: Ember.inject.service(),
-    titleToken: function() {
-     // return this.get("i18n").t('publications.dashboard.manage.show.title');
-    },
+  i18n: Ember.inject.service(),
+  titleToken: function() {
+    // return this.get("i18n").t('publications.dashboard.manage.show.title');
+  },
 
   beforeModel: function() {
     // TODO: loading substate instead (below should not work?)
@@ -15,7 +15,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
   model: function(params) {
     return this.store.find('publication', params.id);
   },
-
 
   setupController: function(controller, model) {
     controller.set("model", model);
@@ -29,10 +28,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,ResetScroll, {
     refreshModel: function(modelId) {
       this.refresh(modelId);
     },
-    error: function(reason) {
+    error: function() {
       this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.publicationNotFound'));
-//      this.transitionTo('publications.dashboard.manage.start');
-
+      // this.transitionTo('publications.dashboard.manage.start');
     }
   }
 });
