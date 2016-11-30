@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ENV from 'gup/config/environment';
 import { validYear } from 'gup/lib/validations';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
