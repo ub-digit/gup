@@ -167,6 +167,7 @@ export default {
   header: {
   },
   login: {
+    title_page: 'Logga in',
     header: 'Logga in',
     button: 'Logga in',
     username: 'x-konto',
