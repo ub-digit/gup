@@ -160,7 +160,7 @@ export default {
   },
   wildcard: {
     displaytext: '404 - page was not found',
-    linktext: 'Login here'
+    linktext: 'Go to startpage'
   },
   header: {
   },

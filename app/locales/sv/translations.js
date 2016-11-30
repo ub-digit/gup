@@ -161,7 +161,7 @@ export default {
 
   wildcard: {
     displaytext: '404 - vi kunde inte hitta sidan',
-    linktext: 'Logga in här'
+    linktext: 'Gå till startsidan'
   },
 
   header: {
