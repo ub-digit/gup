@@ -8,13 +8,12 @@ export default Ember.Route.extend({
 
   actions: {
     saveDepartment: function(model) {
-      var that = this;
       var controller = this.controller;
-	    var successHandler = function(data) {
-        that.transitionTo('admin.departments.index');
+	    var successHandler = () => {
+        this.transitionTo('admin.departments.index');
 	    };
-	    var errorHandler = function(reason) {
-	      that.send('setMsgHeader', 'error', reason.error.msg);
+	    var errorHandler = (reason) => {
+	      this.send('setMsgHeader', 'error', reason.error.msg);
 				controller.set('errors', reason.error.errors);
 	      Ember.run.later(function() {
 	        Ember.$('[data-toggle="popover"]').popover({
@@ -23,8 +22,6 @@ export default Ember.Route.extend({
 	        });
 	      });
 	    };
-
-      
 	    this.store.save('department', model).then(successHandler, errorHandler);
     }
   }
