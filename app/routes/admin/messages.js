@@ -35,19 +35,17 @@ export default Ember.Route.extend({
       model.id = null;
       this.store.save('message', model).then(() => {
         this.send('setMsgHeader', 'success', this.get('i18n').t('admin.messages.saved'));
-      }, function(error) {
+      }, () => {
         this.send('setMsgHeader', 'error', this.get('i18n').t('admin.messages.saveError'));
       });
     },
     deleteMessage: function(model) {
-      var that = this;
       model.id = null;
-      this.store.destroy('message', model.message_type).then(function(response){
-        that.send('setMsgHeader', 'success', that.get('i18n').t('admin.messages.deleted'));
-        that.refresh();
-      }, function(error) {
-        that.send('setMsgHeader', 'error', that.get('i18n').t('admin.messages.deleteError'));
-        console.log('delete error');
+      this.store.destroy('message', model.message_type).then(() => {
+        this.send('setMsgHeader', 'success', this.get('i18n').t('admin.messages.deleted'));
+        this.refresh();
+      }, () => {
+        this.send('setMsgHeader', 'error', this.get('i18n').t('admin.messages.deleteError'));
       });
     }
   }

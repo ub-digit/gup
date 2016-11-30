@@ -63,7 +63,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       let errorHandler = () => {
         this.controller.set('publication_id_error', this.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
       };
-      let generalHandler = () => {
+      let generalHandler = (model) => {
         if (model.error) {
           errorHandler();
         }
