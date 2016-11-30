@@ -55,16 +55,13 @@ export default Ember.Component.extend({
       this.send('setMsgHeader', type, msg);
     },
     approve: function(item) {
-      var that = this;
-      this.store.save('review_publication', {id: item.version_id}).then(
-          function(response) {
-            that.sendAction('setMsgHeader', 'success', that.get('i18n').t('components.reviewItem.approveSuccess'));
-            that.sendAction('refreshReviewCount');
-            that.set('isApproved', true);
-          },
-          function(reason) {
-            that.sendAction('setMsgHeader', 'error', that.get('i18n').t('components.reviewItem.approveError'));
-          });
+      this.store.save('review_publication', { id: item.version_id }).then(() => {
+        this.sendAction('setMsgHeader', 'success', this.get('i18n').t('components.reviewItem.approveSuccess'));
+        this.sendAction('refreshReviewCount');
+        this.set('isApproved', true);
+      },() => {
+        this.sendAction('setMsgHeader', 'error', this.get('i18n').t('components.reviewItem.approveError'));
+      });
     },
     reviewEdit: function(item) {
       this.sendAction('editItem', item, {returnTo: 'publications.dashboard.review'});
