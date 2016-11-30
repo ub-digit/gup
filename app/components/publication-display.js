@@ -13,7 +13,6 @@ export default Ember.Component.extend({
     return publicationType.code;
   },
 
-
   getBaseUrlForIdentifier: Ember.computed('publication.publication_identifiers', function() {
     //@ TODO: ??:
     /*
