@@ -9,6 +9,7 @@ export default Ember.Component.extend({
 
   init: function() {
     this._super(...arguments);
+    // TODO: this is never used? Needed?
     this.set('token', this.get('session.data.authenticated.token'));
   },
 
