@@ -11,13 +11,13 @@ export default Ember.Route.extend({
   setupController: function(controller, models) {
     controller.set("publication", models.publication);
     controller.set("publicationTypes", models.publicationTypes);
-
-
+    
     var publicationType = models.publicationTypes.findBy('id', models.publication.publication_type_id);
-    if (publicationType) {
+    if (!models.publication.error && publicationType) {
       controller.set('selectedPublicationType', publicationType.code);
     }
     else {
+      controller.set('publication', null);
       controller.set('selectedPublicationType', null);
     }
   }

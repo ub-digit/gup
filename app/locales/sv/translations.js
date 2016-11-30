@@ -187,6 +187,9 @@ export default {
   },
   msgheader: {
   },
+  publication: {
+    not_found: "Publikationen kunde inte hittas"
+  },
   publications: {
     dashboard: {
       reports: {
@@ -331,7 +334,15 @@ export default {
           uploadCancelLabel: 'Avbryt',
           uploadCloseLabel: 'Stäng', //TODO: remove Label?
           uploadAnotherFile: 'Ladda upp ännu en fil',
-          successfulFileUpload: 'Filen har laddats upp'
+          successfulFileUpload: 'Filen har laddats upp',
+          possibleDuplicates: {
+            'one': 'Möjlig dublett',
+            'other': 'Möjliga dubletter'
+          },
+          processState: {
+            DRAFT: 'Utkast',
+            PUBLISHED: 'Publicerad'
+          }
         },
         new: {
           title: "Ny publikation",

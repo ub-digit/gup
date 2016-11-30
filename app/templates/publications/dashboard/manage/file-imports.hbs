@@ -98,9 +98,11 @@
                 }}
                   <td>
                     {{#if record.publication_id}}
-                      {{#link-to 'publications.dashboard.manage.show.edit' record.publication_id}}{{record.title}}{{/link-to}}
+                      {{#link-to 'publications.dashboard.manage.show.edit' record.publication_id}}
+                        {{record.title}}
+                      {{/link-to}}
                     {{else}}
-                      {{record.title}}
+                      <span class="text-muted">{{record.title}}</span>
                     {{/if}}
                   </td>
                   <td><a href="{{record.doi_url}}">{{record.doi_url}}</a></td>
@@ -113,7 +115,7 @@
                       <ul class="list-unstyle">
                       {{#each record.duplicates_suggestions as |suggestion|}}
                         <li>
-                          {{#link-to 'publications.dashboard.manage.show' suggestion.publication_id}}{{suggestion.title}}{{/link-to}}
+                          {{#link-to 'publications.dashboard.manage.show' suggestion.publication_id}}{{suggestion.publication_title}}{{/link-to}}
                         </li>
                       {{/each}}
                       </ul>
@@ -125,7 +127,7 @@
                         {{t 'publications.dashboard.manage.fileImports.importRecord'}}
                       </button>
                     {{else}}
-                      {{record.process_state}}
+                      {{t (concat 'publications.dashboard.manage.fileImports.processState.' record.process_state)}}
                     {{/if}}
                   </td>
                 {{/highlightable-element}}

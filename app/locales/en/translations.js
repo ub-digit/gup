@@ -187,6 +187,9 @@ export default {
   },
   msgheader: {
   },
+  publication: {
+    not_found: "Publication could not be found"
+  },
   publications: {
     dashboard: {
       reports: {
@@ -335,6 +338,10 @@ export default {
           possibleDuplicates: {
             'one': 'Possible duplicate',
             'other': 'Possible duplicates'
+          },
+          processState: {
+            DRAFT: 'Draft',
+            PUBLISHED: 'Published'
           }
         },
         new: {
