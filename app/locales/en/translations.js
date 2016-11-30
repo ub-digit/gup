@@ -509,7 +509,7 @@ export default {
       query_person: 'Search for author',
       query_person_none: 'No records found',
       index: {
-        confirmDeletePerson: 'Are you sure you want to delete the record?',
+        confirmDeletePerson: 'Are you sure you want to delete the record?'
       },
       person: {
         personChangeWarningAfterEdit: 'The search results may have changed due to editing.',
