@@ -7,37 +7,26 @@ export default Ember.Component.extend({
   isTypeAuthors: Ember.computed.equal('type', 'authors'),
 
   isTypeIdentifier: Ember.computed.equal('type', 'identifier'),
-  getCorrectBaseURL: function(listItem, listLabel, listValue) {
-    var baseURLS = {
+  getCorrectBaseURL: function(listItem, listLabel) {
+    let baseURLS = {
       DOI: 'https://doi.org/',
       handle: 'http://hdl.handle.net/',
       libris: 'http://libris.kb.se/bib/',
       pubmed: 'https://www.ncbi.nlm.nih.gov/pubmed/'
     };
 
-    var isPubmed = function(item) {
-      if (item.indexOf('Pubmed-ID') !== -1) {
-        return true;
-      }
-    }
-
-    var isDOI =  function(item) {
-      if (item.indexOf('DOI') !== -1) {
-        return true;
-      }
-    }
-
-    var isHandle =  function(item) {
-      if (item.indexOf('Handle-ID') !== -1) {
-        return true;
-      }
-    }
-
-    var isLibris =  function(item) {
-      if (item.indexOf('Libris-ID') !== -1) {
-        return true
-      }
-    }
+    let isPubmed = function(item) {
+      return item.indexOf('Pubmed-ID') !== -1;
+    };
+    let isDOI = function(item) {
+      return item.indexOf('DOI') !== -1;
+    };
+    let isHandle = function(item) {
+      return item.indexOf('Handle-ID') !== -1;
+    };
+    let isLibris = function(item) {
+      return item.indexOf('Libris-ID') !== -1;
+    };
 
     if (isPubmed(listItem[listLabel])) {
       return baseURLS.pubmed;
@@ -48,27 +37,25 @@ export default Ember.Component.extend({
     if (isHandle(listItem[listLabel])) {
       return baseURLS.handle;
     }
-
     if (isLibris(listItem[listLabel])) {
       return baseURLS.libris;
     }
     return null;
   },
 
-
   listValueArray: Ember.computed('fieldValue', 'listLabel', 'listValue', function() {
-    var listValue = this.get('listValue');
-    var listLabel = this.get('listLabel');
+    let listValue = this.get('listValue');
+    let listLabel = this.get('listLabel');
 
-    if (this.get("isTypeIdentifier")) {
+    if (this.get('isTypeIdentifier')) {
       var that = this;
       return this.get('fieldValue').map(function(listItem) {
-        var baseURL = that.getCorrectBaseURL(listItem, listLabel, listValue);
+        var baseURL = that.getCorrectBaseURL(listItem, listLabel);
         if (baseURL !== null) {
           return Ember.String.htmlSafe(listItem[listLabel] + ': ' + "<a href='"+baseURL + listItem[listValue] + "'>" + baseURL + listItem[listValue] + "</a>");
         }
         else {
-          return listItem[listLabel] + ': ' + listItem[listValue]; 
+          return listItem[listLabel] + ': ' + listItem[listValue];
         }
       });
     }
