@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   titleToken: function() {
     return this.get("i18n").t('publications.dashboard.reports.title');
   },
-  model: function(params) {
+  model: function() {
     return Ember.RSVP.hash({
       departments: this.store.find('department')
     });

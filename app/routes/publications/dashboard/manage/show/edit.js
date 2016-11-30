@@ -20,7 +20,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this.set('returnToModels', transition.queryParams.returnToModels);
     this.set('returnToQueryParams', transition.queryParams.returnToQueryParams);
   },
-  model: function(params, transition) {
+  model: function() {
     var model = this.modelFor('publications.dashboard.manage.show');
     return Ember.RSVP.hash({
       publication: this.store.find('publication', model.id),
@@ -34,7 +34,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
   },
   afterModel: function(/*model, transition*/) {
   },
-
 
   setupController: function(controller, models) {
     this._super(...arguments);
@@ -63,13 +62,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     controller.set('languages', models.languages);
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
     controller.set('publicationTypes', models.publicationTypes);
-
-    if (models.publication.ref_value == 'ISREF') {
-      controller.set('refValueBool', true);
-    }
-    else {
-      controller.set('refValueBool', false);
-    }
+    controller.set('refValueBool', models.publication.ref_value === 'ISREF');
 
     var authors = null;
     if (models.publication) {
@@ -119,7 +112,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     }
     controller.set('manageController.isNavVisible', false);
   },
-  resetController: function(controller, isExiting, transition) {
+  resetController: function(controller, isExiting/*, transition*/) {
     if (isExiting) {
       // @TODO: replace exit-hook with this?
     }
@@ -188,10 +181,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         };
 
         let errorHandler = (reason) => {
+          /*
           let message = isDraft ?
             this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError') :
             this.get('i18n').t('publications.dashboard.manage.show.edit.publishError');
-        //  this.send('setMsgHeader', 'error', message);
+            this.send('setMsgHeader', 'error', message);
+          */
           this.controller.set('errors', reason.error.errors);
 
           if(!isDraft && this.controller.get('publication.draft_id')) {

@@ -8,28 +8,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get("i18n").t('publications.dashboard.touched.title');
   },
   queryParams:{
-      page:{refreshModel: true},
-      sort_by: {refreshModel: true}
+    page: { refreshModel: true },
+    sort_by: { refreshModel: true }
   },
-
-  beforeModel: function() {
-	},
-	afterModel: function(model, transition) {
-		this.controllerFor('application').set('currentList', transition.targetName);
-	},
+  afterModel: function(model, transition) {
+    this.controllerFor('application').set('currentList', transition.targetName);
+  },
   model: function(params) {
     if(!params.page) {
       params.page = 1;
-    }    
+    }
     params.registrator = 'logged_in_user';
     return  this.store.find("published_publication", params);
   },
   setupController: function(controller, model) {
     controller.set("model", model);
-    if (controller.get('sortSelectValues').length == 0) {
+    if (controller.get('sortSelectValues').length === 0) {
       controller.get("sortSelectValues").pushObjects([
-      {value: "pubyear", label: this.get("i18n").t('publications.dashboard.manage.published.sortByYearLabel')}, 
-      {value: 'title', label: this.get("i18n").t('publications.dashboard.manage.published.sortByTitleLabel')}]);
+          { value: "pubyear", label: this.get("i18n").t('publications.dashboard.manage.published.sortByYearLabel') },
+          { value: 'title', label: this.get("i18n").t('publications.dashboard.manage.published.sortByTitleLabel') }
+      ]);
     }
   }
 });

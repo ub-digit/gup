@@ -8,14 +8,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   returnTo: null,
   fileUploadProgress: 0,
-  fileUploadError: null, 
+  fileUploadError: null,
   assetData: null,
 
   //  queryParams: {
   //    other_version: { refreshModel: true }
   //  },
 
-  model: function(params, transition) {
+  model: function(params) {
     var model = this.modelFor('publications.dashboard.manage.show');
     if(params.other_version) {
       return Ember.RSVP.hash({
@@ -49,10 +49,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
   actions: {
-
     fetchVersion: function(publication_id, version_id) {
       var controller = this.get('controller');
-
       if(version_id) {
         this.store.find('publication', publication_id, {version_id: version_id}).then(function(data) {
           controller.set('otherPublication', data);
