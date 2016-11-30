@@ -144,7 +144,7 @@ export default Ember.Object.extend({
     list.error = this.extractErrors(data);
     return list;
   },
-  extractErrors: function(reason_or_data, tmp) {
+  extractErrors: function(reason_or_data) {
     if (reason_or_data.responseJSON) {
       return {
         error: reason_or_data.responseJSON.error,

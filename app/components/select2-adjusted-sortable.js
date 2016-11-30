@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Select2 from 'ember-select-2/components/select-2';
+import Select2 from './select-2';
 
 var get = Ember.get;
 var run = Ember.run;

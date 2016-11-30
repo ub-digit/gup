@@ -26,6 +26,9 @@
         <h3>{{t 'components.categorySelector.modalHeader'}} </h3>
       </div>
       <div class="modal-body">
+        {{#if error}}
+          <div class="alert alert-danger">{{error}}</div>
+        {{/if}}
         <p>
         <strong>{{t 'components.categorySelector.selectedCategories'}}</strong><br/>
           {{#each categoryObjects as |selectedCategory|}}
