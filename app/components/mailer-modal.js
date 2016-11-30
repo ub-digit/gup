@@ -3,35 +3,32 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   tagName: '',
+  setMsgHeaderAction: 'setMessage',
 
   didRender() {
-    let that = this;
-    Ember.$('#mailerModal').on('show.bs.modal', function (e) {
-      that.set("error", null);
-      that.set("hasSuccess", null);
-    })
+    Ember.$('#mailerModal').on('show.bs.modal', () => {
+      this.set('error', null);
+      this.set('hasSuccess', null);
+    });
   },
-
-  setMsgHeaderAction: 'setMessage',
 
   actions: {
     sendMail: function(){
-      this.set("error", null);
-      this.set("hasSuccess", null);
-      var that = this;
-      var publication = this.get('publication');
-      var message = this.get('message');
+      this.set('error', null);
+      this.set('hasSuccess', null);
+      let publication = this.get('publication');
+      let message = this.get('message');
 
-      var successHandler = function(model) {
-        that.set("hasSuccess", true);
-        that.set("message", '');
-        Ember.$('#mailerModal').modal('hide');   
-        that.sendAction("setMsgHeaderAction", 'success', that.get("i18n").t('components.mailerModal.successMessage'));     
-      }
-      var errorHandler = function(model) {
-        that.set("error", model.error);
+      let successHandler = () => {
+        this.set('hasSuccess', true);
+        this.set('message', '');
+        Ember.$('#mailerModal').modal('hide');
+        this.sendAction('setMsgHeaderAction', 'success', this.get('i18n').t('components.mailerModal.successMessage'));
       };
-      var generalHandler = function(model) {
+      let errorHandler = (model) => {
+        this.set('error', model.error.msg);
+      };
+      let generalHandler = (model) => {
         if (model.error) {
           errorHandler(model);
         }
@@ -39,7 +36,6 @@ export default Ember.Component.extend({
           successHandler(model);
         }
       };
-
       this.store.save('feedback_mail',{message: message, from: 'from_person', publication_id: publication.id}).then(generalHandler);
     }
   }
