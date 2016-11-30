@@ -202,8 +202,8 @@ export default {
         select_criteria: "Select criteria",
         export_csv: "Export to Excel",
         year: "Year",
-        start_year: "Startyear år ex. 1999",
-        end_year: "Endyear ex. 2014",
+        start_year: "Startyear e.g. 1999",
+        end_year: "Endyear e.g. 2014",
         include_as_column: "Column",
         faculty: "Faculty",
         select_faculty: "Select faculty",
@@ -313,12 +313,12 @@ export default {
           title: "Search",
           searchPublications: 'Search publications',
           searchBy: 'Search by title, author name or identifiers',
-          loading: "Sökning pågår...",
+          loading: "Searching...",
           numberOfHits: 'Number of hits',
           noPublicationsFound: 'No publications found'
         },
         fileImports: {
-          youHaveNoUploadedList: 'Du har inga uppladdade listor',
+          youHaveNoUploadedList: 'You have no uploaded lists',
           title: 'Uploaded list',
           filenameHeader: 'Filnamne',
           importedDateHeader: 'Imported',
@@ -512,28 +512,28 @@ export default {
         confirmDeletePerson: 'Are you sure you want to delete the record?'
       },
       person: {
-        personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
+        personChangeWarningAfterEdit: 'The search results may have changed due to the edit.',
         edit: {
           form: {
             labels: {
               id: 'Id:',
-              firstname: 'Förnamn:',
+              firstname: 'Firstname:',
               lastname: 'Efternamn:',
-              birthyear: 'Födelseår:',
-              xaccount: 'x-konto',
+              birthyear: 'Birthyear:',
+              xaccount: 'x-account',
               orcid: 'Orcid'
             },
             placeholders: {
               id: 'Id:',
-              firstname: 'Förnamn:',
-              lastname: 'Efternamn:',
-              birthyear: 'Födelseår:',
-              xaccount: 'x-konto',
+              firstname: 'Firstname:',
+              lastname: 'Lastname:',
+              birthyear: 'Birthyear::',
+              xaccount: 'x-account',
               orcid: 'Orcid'
             },
             actions: {
-              btnSave: 'Spara',
-              btnCancel: 'Avbryt'
+              btnSave: 'Save',
+              btnCancel: 'Cancel'
             },
           },
         },
