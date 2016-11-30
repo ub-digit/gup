@@ -158,6 +158,12 @@ export default {
     categoryItem: {
     },
   },
+
+  wildcard: {
+    displaytext: '404 - vi kunde inte hitta sidan',
+    linktext: 'Logga in här'
+  },
+
   header: {
   },
   login: {

@@ -158,6 +158,10 @@ export default {
     categoryItem: {
     },
   },
+  wildcard: {
+    displaytext: '404 - page was not found',
+    linktext: 'Login here'
+  },
   header: {
   },
   login: {
