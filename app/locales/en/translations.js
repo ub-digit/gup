@@ -519,7 +519,7 @@ export default {
               id: 'Id:',
               firstname: 'Firstname:',
               lastname: 'Lastname:',
-              birthyear: 'Birthyear:',
+              birthyear: 'Year of birth:',
               xaccount: 'x-account',
               orcid: 'Orcid'
             },
@@ -527,7 +527,7 @@ export default {
               id: 'Id:',
               firstname: 'Firstname:',
               lastname: 'Lastname:',
-              birthyear: 'Birthyear::',
+              birthyear: 'Year of birth:',
               xaccount: 'x-account',
               orcid: 'Orcid'
             },
