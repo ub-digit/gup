@@ -5,22 +5,14 @@ export default Ember.Component.extend({
   showMetaData: true,
 
   titleString: Ember.computed('item.title', function() {
-
     return this.get('item.title') || this.get('i18n').t('components.publicationListRow.noTitle');
-
   }),
 
-
-
   hasRefValue: Ember.computed('item.ref_value', function() {
-    if (this.get("item.ref_value") == "NA") {
-      return false;
-    }
-    return true;
+    return this.get('item.ref_value') !== 'NA';
   }),
 
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
-
     var i = this.get('item');
     var a = [];
 
@@ -30,7 +22,6 @@ export default Ember.Component.extend({
       case 'publication_editorial-letter':
       case 'publication_book-review':
       case 'publication_magazine-article':
-
         if (i.sourcetitle) {
           a.push(i.sourcetitle);
         }
@@ -43,13 +34,10 @@ export default Ember.Component.extend({
         if (i.sourcepages) {
           a.push(i.sourcepages);
         }
-
         break;
-
       case 'publication_book':
       case 'publication_doctoral-thesis':
       case 'publication_report':
-
         if (i.place) {
           a.push(i.place);
         }
@@ -59,13 +47,10 @@ export default Ember.Component.extend({
         if (i.pubyear) {
           a.push(i.pubyear);
         }
-
         break;
-
       case 'publication_book-chapter':
       case 'conference_paper':
       case 'conference_other':
-
         if (i.sourcetitle) {
           a.push(i.sourcetitle);
         }
@@ -78,7 +63,5 @@ export default Ember.Component.extend({
         break;
     }
     return a.join(', ');
-
   })
-
 });
