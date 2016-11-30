@@ -268,6 +268,7 @@ export default {
             epubAheadOfPrintSince: 'E-pub ahead of print',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
+              permalink: 'Link to publication',
               attachFile: 'Attach file',
               checkFile: 'Check your uploaded file',
               enterEmbargoDate: 'Enter an embargo date',

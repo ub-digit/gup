@@ -21,6 +21,7 @@
     <div class="col-xs-9">
       <nav id="publication-toolbar" class="pull-right">
         <ul class="list-inline">
+          <li>{{#link-to 'publication' model.id target="_blank"}}<i class="fa fa-link"></i> {{t 'publications.dashboard.manage.show.index._subnav.permalink'}} {{/link-to}}</li>
           <li>
             {{#gup-file-upload-widget
               id="gup-file-publication-upload"
