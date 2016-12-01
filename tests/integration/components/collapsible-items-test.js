@@ -26,7 +26,7 @@ test('it works', function(assert) {
 
   // Toggle visible
   this.$('.toggle-item-0').click();
-  assert.equal(this.$(":contains('Item 11')").length, 1, "First item expanded");
+  assert.equal(this.$(":contains('Item 1')").length, 1, "First item expanded");
 
   // Toggle hidden
   this.$('.toggle-item-0').click();
