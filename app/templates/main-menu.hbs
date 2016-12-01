@@ -4,7 +4,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-header">
       <div class="navbar-brand">
+      {{#if isEnglish}}
         <img alt="Gothenburg University Library" src="img/gub-textlogo-en.svg">
+      {{else}}
+        <img alt="Göteborgs universitetsbibliotek" src="img/gub-textlogo-sv.svg">
+      {{/if}}
       </div>
       <div class="navbar-appname">
         <span class="divider" />
