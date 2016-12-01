@@ -15,14 +15,22 @@ export default Ember.Controller.extend({
     if (lang === "en") {return true;}
     return false;
   }),
+
 	actions: {
-		toggleLang: function() {
-      if (this.get('i18n.locale') === 'sv') {
-        this.set('i18n.locale', 'en');
-        sessionStorage.setItem('lang', 'en');
-      } else {
-        this.set('i18n.locale', 'sv');
-        sessionStorage.setItem('lang', 'sv');
+		toggleLang: function(language) {
+      if (language) {
+        this.set('i18n.locale', language);
+      }
+      else {
+        if (this.get('i18n.locale') === 'sv') {
+          this.set('i18n.locale', 'en');
+          sessionStorage.setItem('lang', 'en');
+          this.set("lang", 'en');
+        } else {
+          this.set('i18n.locale', 'sv');
+          sessionStorage.setItem('lang', 'sv');
+          this.set("lang", 'sv');
+        }
       }
       Ember.run.later(function() {
         location.reload(true);

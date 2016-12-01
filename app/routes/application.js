@@ -9,17 +9,40 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   title: function(tokens) {
     return this.get('i18n').t('application.title') + ' - ' + tokens.join(' - ');
   },
-  beforeModel: function() {
-    var lang = 'sv'; /// change to default
-    if (sessionStorage.getItem('lang')) {
+  beforeModel: function(params) {
+    let lang = 'sv'; /// change to default
+
+    if (params.queryParams.lang) {
+      lang = params.queryParams.lang;
+    }
+    else if (sessionStorage.getItem('lang')) {
       lang = sessionStorage.getItem('lang');
     }
+
     this.set('i18n.locale', lang);
     sessionStorage.setItem('lang', lang);
+
     this._super();
   },
 
+
   actions: {
+
+    toggleLang: function() {
+      if (this.get('i18n.locale') === 'sv') {
+        this.set('i18n.locale', 'en');
+        this.set("lang", 'en');
+        sessionStorage.setItem('lang', 'en');
+      } else {
+        this.set('i18n.locale', 'sv');
+        sessionStorage.setItem('lang', 'sv');
+        this.set("lang", 'sv');
+      }
+      Ember.run.later(function() {
+        //location.reload(true);
+      });
+    },
+
     loading(transition) {
       let controller = this.controllerFor('application');
       controller.set('currentlyLoading', true);
