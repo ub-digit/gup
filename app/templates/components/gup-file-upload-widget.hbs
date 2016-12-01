@@ -1,5 +1,5 @@
 <button {{action "showUploadModal"}} type="button" class="btn btn-link"><i class="fa {{faIconClass}}" aria-hidden="true"></i> {{openModalLabel}}</button>
-{{#bs-modal open=isShowingUploadModal header=false footer=false closeAction=(action "didCancel")}}
+{{#bs-modal open=isShowingUploadModal header=false footer=false body=false closeAction=(action "didCancel")}}
   {{#bs-modal-header}}
     <h4 class="modal-title">{{modalTitle}}</h4>
   {{/bs-modal-header}}
