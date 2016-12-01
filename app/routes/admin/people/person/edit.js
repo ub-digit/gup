@@ -21,15 +21,13 @@ export default Ember.Route.extend({
   },
   actions: {
     savePerson: function(model) {
-      var that = this;
-      var controller = this.controller;
-	    var successHandler = function(data) {
+	    let successHandler = () => {
         sessionStorage.setItem('admin.people.changeWarning', true);
-        that.transitionTo('admin.people', {queryParams: {qp: sessionStorage.getItem('admin.people.lastQuery')}});
+        this.transitionTo('admin.people', {queryParams: {qp: sessionStorage.getItem('admin.people.lastQuery')}});
 	    };
-	    var errorHandler = function(reason) {
-	      that.send('setMsgHeader', 'error', reason.error.msg);
-				controller.set('errors', reason.error.errors);
+	    let errorHandler = (reason) => {
+	      this.send('setMsgHeader', 'error', reason.error.msg);
+				this.controller.set('errors', reason.error.errors);
 	      Ember.run.later(function() {
 	        Ember.$('[data-toggle="popover"]').popover({
 	          placement: 'top',
@@ -37,8 +35,7 @@ export default Ember.Route.extend({
 	        });
 	      });
 	    };
-
-      var person_data = {
+      let person_data = {
         id: model.id,
         first_name: model.first_name,
         last_name: model.last_name,
@@ -46,7 +43,6 @@ export default Ember.Route.extend({
 	      xaccount: model.xaccount,
         orcid: model.orcid
       };
-      
 	    this.store.save('person', person_data).then(successHandler, errorHandler);
     }
   }

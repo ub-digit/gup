@@ -2,42 +2,30 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 export default Ember.Component.extend({
-	session: Ember.inject.service('session'),
-	fileBaseUrl: ENV.APP.fileURL, 
+  session: Ember.inject.service('session'),
+  fileBaseUrl: ENV.APP.fileURL,
+  refreshModelAction: 'refreshModel',
+  setMsgHeaderAction: 'setMessage',
 
-	init: function() {
-		this._super(...arguments);
-		this.set("token", this.get("session.data.authenticated.token"));
-	},
+  init: function() {
+    this._super(...arguments);
+    // TODO: this is never used? Needed?
+    this.set('token', this.get('session.data.authenticated.token'));
+  },
 
-	refreshModelAction: 'refreshModel',
-	setMsgHeaderAction: 'setMessage',
-
-	actions: {
-		removeFile: function(id) {
-			var that = this;
-			var successHandler = function() {
-
-			}
-
-			var errorHandler = function() {
-
-			}
-			var generalHandler = function(model) {
-				//alert("this was generalHandler");
-				that.sendAction("refreshModelAction", that.get("publication.id"));
-				that.sendAction("setMsgHeaderAction", 'success', 'Filen har tagits bort');
-			};
-
-
- 			var result = window.confirm('Är du säker på att du vill ta bort filen?');
-			if (result == false) {
-				return;
-            }
-            else {
-            	// delete file
-            	this.store.destroy('asset_data',id).then(generalHandler);
-            }
-		}
-	}
+  actions: {
+    removeFile: function(id) {
+      let result = window.confirm('Är du säker på att du vill ta bort filen?'); // @FIXME Translation
+      if (!result) {
+        return;
+      }
+      else {
+        // Delete file
+        this.store.destroy('asset_data', id).then(() => {
+          this.sendAction('refreshModelAction', this.get('publication.id'));
+          this.sendAction('setMsgHeaderAction', 'success', 'Filen har tagits bort'); // @FIXME Translation
+        });
+      }
+    }
+  }
 });

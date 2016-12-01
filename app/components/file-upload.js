@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ENV from 'gup/config/environment';
 import EmberUploader from 'ember-uploader';
 
 export default EmberUploader.FileField.extend({

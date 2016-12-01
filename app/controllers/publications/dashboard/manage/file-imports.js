@@ -28,12 +28,9 @@ export default Ember.Controller.extend({
       this.set('uploadSubmitButtonIsDisabled', false);
       this.set('importDataFile', file);
     },
-    importDataFileUploadDidErr: function(errorResponse) {
-      this.send('resetFileImportUploadState');
-    },
     didSaveImportData: function(success, error) {
       this.set('uploadSubmitButtonIsDisabled', true);
-      this.get('uploadImportDataFile')(this.get('importDataFile')).then((response) => {
+      this.get('uploadImportDataFile')(this.get('importDataFile')).then(() => {
         this.set('uploadSubmitButtonIsVisible', false);
         this.set('uploadFileUploadIsVisible', false);
         this.set('uploadCancelButtonStyle', 'success');
@@ -51,14 +48,14 @@ export default Ember.Controller.extend({
       this.send('resetFileImportUploadState');
     },
     didDeleteFileImport: function(fileImport) {
-      return this.store.destroy('endnote_file', fileImport.get('id')).then((response) => {
+      return this.store.destroy('endnote_file', fileImport.get('id')).then(() => {
         this.send('refreshModel');
         this.send(
           'setMsgHeader',
           'success',
           this.get('i18n').t('publications.dashboard.manage.fileImports.deletionSuccess', { filename: fileImport.name })
         );
-      }, (errorResponse) => {
+      }, () => {
         //@TODO: Display backend error reason?
         this.send(
           'setMsgHeader',

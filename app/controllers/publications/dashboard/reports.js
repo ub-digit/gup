@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ENV from 'gup/config/environment';
 import { validYear } from 'gup/lib/validations';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
@@ -137,10 +138,10 @@ export default Ember.Controller.extend({
       return [];
     }
     let token = this.get('session.data.authenticated.token');
-    //TODO: Nicer way to bake url?
+    // @TODO: Use Ember.$.param instead
     let url = ENV.APP.serviceURL + '/published_publications_xls/?token=' + token;
     let columns = this.get('reportRowsColumns');
-    // TODO: put this somewhere else, or use lodash zipObject(?) "https://lodash.com/"
+    // @TODO: put this somewhere else, or use lodash zipObject(?) "https://lodash.com/"
     /*
     let zipObject = function(keys, values) {
       return keys.reduce(function(result, key, index) {
@@ -152,23 +153,24 @@ export default Ember.Controller.extend({
     if (this.get('hasNonColumnFilters')) {
       url += '&' + Ember.$.param(this.get('nonColumnFilters'));
     }
-    //TODO: filter data array and exclude??
-    return rows.map((row) => {
+    // @TODO: filter data array and exclude??
+    return rows.map((row, rowIndex) => {
       let rowObject = Ember.Object.create();
       rowObject.set('columns', row.map((item) => { return Ember.typeOf(item) === 'array' ? item[0] : item; }));
       let columnsQuery = columns.reduce((query, column, index) => {
         let colValue = row[index];
+        // @TODO: Use Ember.$.param instead
         query += '&' + column + '=' + (Ember.typeOf(colValue) === 'array' ? colValue[1] : colValue);
         return query;
       }, '');
-      rowObject.set('xls_url', url + columnsQuery);
+      rowObject.set('xls_url', url + columnsQuery + '&name_suffix=_' + row.get('lastObject') + '_' + rowIndex);
       return rowObject;
     });
   }),
   hasReportRows: Ember.computed.notEmpty('reportRows'),
   //Somehow this messes with vim auto-indent :(, so putting it last
   selectableFaculties: Ember.computed('yearRangeDepartments', 'publicationsController.faculties', function() {
-    // TODO: this could be computed prop for increased performance
+    // @TODO: this could be computed prop for increased performance
     let facultyIds = this.get('yearRangeDepartments').reduce((result, department) => {
       result[department.faculty_id] = department.faculty_id;
       return result;

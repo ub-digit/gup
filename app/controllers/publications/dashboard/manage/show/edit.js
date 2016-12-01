@@ -75,7 +75,7 @@ export default Ember.Controller.extend({
         if (Ember.isEmpty(categoryObject)) {
           this.store.find('category', item).then((response) => {
             this.categoryObjectsList.pushObject(response);
-          }, (error) => {
+          }, () => {
             //TODO: handle? propagate?
           });
         }
@@ -185,12 +185,7 @@ export default Ember.Controller.extend({
   }),
 
   refValueChanged: Ember.observer('publication.ref_value', function() {
-    if (this.get('publication.ref_value') == 'ISREF') {
-      this.set('refValueBool', true);
-    }
-    else {
-      this.set('refValueBool', false);
-    }
+    this.set('refValueBool', this.get('publication.ref_value') === 'ISREF');
   }),
 
   publicationTypeObject: Ember.computed('selectedPublicationType', function(){
@@ -278,7 +273,7 @@ export default Ember.Controller.extend({
     },
 
     // Dummy catcher for field-component without a surrounding field-group
-    countContent: function(field_name) {
+    countContent: function() {
       return false;
     },
   }

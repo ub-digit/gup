@@ -11,24 +11,23 @@ export default Ember.Route.extend({
   model: function(params) {
     return this.store.find("department", {search_term: params.qd});
   },
-  setupController: function(controller, model) {
+  setupController: function(controller) {
     this._super(...arguments);
     sessionStorage.setItem('admin.departments.lastQuery', controller.get('qd'));
     controller.set('query', controller.get('qd'));
   },
   actions: {
     setEndYear: function(model, newEndYear) {
-      var that = this;
       if(newEndYear) {
         Ember.set(model, 'end_year', parseInt(newEndYear));
       } else {
         Ember.set(model, 'end_year', null);
       }
-      this.store.save('department', model).then(function(data) {
+      this.store.save('department', model).then(() => {
         Ember.$('#setEndYearModal').modal('hide');
-      }, function() {
+      }, () => {
         Ember.set(model, 'end_year', null);
-        that.controller.set('modalError', that.get('i18n').t('admin.departments.index.saveError'));
+        this.controller.set('modalError', this.get('i18n').t('admin.departments.index.saveError'));
       });
     }
   }

@@ -270,6 +270,7 @@ export default {
             epubAheadOfPrintSince: 'E-pub ahead of print',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
+              permalink: 'Länka till publikationen',
               attachFile: 'Bifoga fil',
               checkFile: 'Kontrollera fil',
               enterEmbargoDate: 'Ange embargo',

@@ -1,27 +1,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
   isEditing: false,
+  error: null,
 
   initComponent: Ember.on('init', function() {
     this.set('filterString', '');
   }),
 
   updateCategories: Ember.observer('filterString', function() {
-    var that = this;
-
-    this.store.find('category', {query: this.get('filterString')}).then(function(response){
-      that.set('categories', response);
+    this.store.find('category', {query: this.get('filterString')}).then((response) => {
+      this.set('categories', response);
     },
-    function(error){
-      //console.log('error', error);
+    (error) => {
+      this.set('error', error.error.msg);
     }
     );
   }),
 
   actions: {
-    removeSelectedCategory: function(id){
+    removeSelectedCategory: function(id) {
       this.get('categoryList').removeObject(id);
     },
 
@@ -30,7 +28,6 @@ export default Ember.Component.extend({
       if (this.get('categoryList').indexOf(id) === -1){
         this.get('categoryList').pushObject(id);
       }
-
     },
 
     clearSearch: function() {

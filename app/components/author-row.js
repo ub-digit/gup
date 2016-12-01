@@ -58,11 +58,7 @@ export default Ember.Component.extend({
         //TODO: user should be promted here!!
         // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
         return new Ember.RSVP.Promise((resolve, reject) => {
-          this.get('createAuthor')(this.get('item')).then((model) => {
-            resolve();
-          }, (reason) => {
-            reject(reason);
-          });
+          this.get('createAuthor')(this.get('item')).then(resolve, reject);
         });
       }
       return Ember.RSVP.Promise.resolve();

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin'; //Remove?
+//import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   i18n: Ember.inject.service(),
@@ -10,7 +10,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     return this.get('i18n').t('application.title') + ' - ' + tokens.join(' - ');
   },
   beforeModel: function() {
-    var lang = "sv"; /// change to default
+    var lang = 'sv'; /// change to default
     if (sessionStorage.getItem('lang')) {
       lang = sessionStorage.getItem('lang');
     }
@@ -20,7 +20,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   actions: {
-    loading(transition, originRoute) {
+    loading(transition) {
       let controller = this.controllerFor('application');
       controller.set('currentlyLoading', true);
       transition.promise.finally(function() {
@@ -57,18 +57,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.controller.set('publication_id', null);
       this.controller.set('publication_id_error', null);
 
-      let successHandler = (model) => {
+      let successHandler = () => {
         this.transitionTo('publications.dashboard.manage.show', publication_id);
       };
-      let errorHandler = (model) => {
+      let errorHandler = () => {
         this.controller.set('publication_id_error', this.get('i18n').t('mainMenu.idMissing') + ': ' + publication_id);
       };
       let generalHandler = (model) => {
         if (model.error) {
-          errorHandler(model);
+          errorHandler();
         }
         else {
-          successHandler(model);
+          successHandler();
         }
       };
       if (publication_id) {
@@ -79,16 +79,16 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       let controller = this.controllerFor('application');
       controller.set('pageIsDisabled', true);
       Ember.run.schedule('afterRender', this, function() {
-        $('#page-disabled-overlay').fadeTo(400, 0.25, () => {
+        Ember.$('#page-disabled-overlay').fadeTo(400, 0.25, () => {
           controller.set('currentlyLoading', true);
         });
       });
       let enablePage = Ember.run.bind(this, function() {
         controller.set('currentlyLoading', false);
-        $('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
+        Ember.$('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
           Ember.run(() => {
             controller.set('pageIsDisabled', false);
-          })
+          });
         });
       });
       // Restore page both regardless of resolved or rejected
