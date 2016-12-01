@@ -1,9 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  items: null,
+  items: Ember.A([]),
   activeItems: Ember.A([]),
-  itemIdKey: 'id',
   accordion: false,
   isActiveItem(item) {
     return this.get('activeItems').indexOf(item) !== -1;
