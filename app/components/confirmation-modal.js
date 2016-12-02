@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   modalTitle: null,
   cancelText: null,
   confirmText: null,
+  usesTransition: true,
   init() {
     this._super(...arguments);
     if (Ember.isBlank(this.get('modalTitle'))) {

@@ -1,4 +1,4 @@
-{{#bs-modal open=isShowing title=modalTitle footer=false body=false}}
+{{#bs-modal open=isShowing title=modalTitle footer=false body=false usesTransition=usesTransition}}
   {{#bs-modal-body}}
     {{#if error}}<div class="alert alert-danger">{{error}}</div>{{/if}}
     {{yield}}
