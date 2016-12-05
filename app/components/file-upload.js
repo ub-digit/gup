@@ -18,7 +18,7 @@ export default EmberUploader.FileField.extend({
 
     this.set('uploadFile', (file) => {
       const token = this.get('session.data.authenticated.token');
-      if (!token) { Ember.RSVP.Promise.reject("Invalid token"); }
+      if (!token) { Ember.RSVP.Promise.reject('Invalid token'); }
 
       var preFilters = Ember.$.Callbacks();
 
@@ -26,7 +26,7 @@ export default EmberUploader.FileField.extend({
         if(!options.headers) {
           options.headers = {};
         }
-        options.headers['Authorization'] = "Token "+token;
+        options.headers['Authorization'] = "Token " + token;
         return options;
       };
 
