@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     if(!params.page) {
       params.page = 1;
     }
-    return  this.store.find('published_publication', params);
+    return  this.store.find('public_publication_list', params);
   },
   setupController: function(controller, model) {
     controller.set('model', model);
