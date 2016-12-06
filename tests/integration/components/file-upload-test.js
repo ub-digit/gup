@@ -30,7 +30,7 @@ moduleForComponent('file-upload', 'Integration | Component | file upload', {
     this._super(...arguments);
     server = new Pretender(function() {
       this.post('/file', function(request) {
-        return [200, {'Content-Type': 'application/json'}, JSON.stringify({success : true})]:
+        return [200, {'Content-Type': 'application/json'}, JSON.stringify({success : true})];
       });
     });
   },
