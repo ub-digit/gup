@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('publication', {path: 'publication/:id'});
+  this.route('publications_list', {path: 'publications-list'});
   this.route('publications', function() {
     this.route('dashboard', {path: '/'}, function() {
       this.route('manage', {path: '/'}, function() {

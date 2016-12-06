@@ -195,6 +195,16 @@ export default {
   publication: {
     not_found: "Publication could not be found"
   },
+
+  publications_list: {
+    title_page: 'List of publications',
+    numberOfHits: 'Number of publications',
+    sortByPreLabel: 'Sort',
+    zeroPublications: 'The list has no publications',
+    sortByYearLabel: 'Year',
+    sortByTitleLabel: 'Title (a-z)'
+  },
+
   publications: {
     dashboard: {
       reports: {

@@ -166,6 +166,8 @@ export default {
 
   header: {
   },
+
+
   login: {
     title_page: 'Logga in',
     header: 'Logga in',
@@ -197,6 +199,17 @@ export default {
   publication: {
     not_found: "Publikationen kunde inte hittas"
   },
+
+  publications_list: {
+    title_page: 'Publikationslista',
+    numberOfHits: 'Antal publikationer',
+    sortByPreLabel: 'Sortera',
+    zeroPublications: 'Listan saknar publikationer',
+    sortByYearLabel: 'År',
+    sortByTitleLabel: 'Titel (a-ö)'
+
+  },
+  
   publications: {
     dashboard: {
       reports: {
