@@ -15,6 +15,7 @@ export default Ember.Route.extend({
     department_id: { refreshModel: true },
     faculty_id: { refreshModel: true },
     serie_id: { refreshModel: true },
+    project_id: { refreshModel: true },
     publication_type: { refreshModel: true },
     ref_value: { refreshModel: true },
     start_year: { refreshModel: true },
