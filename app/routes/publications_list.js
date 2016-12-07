@@ -10,6 +10,7 @@ export default Ember.Route.extend({
     page: { refreshModel: true },
     sort_by: { refreshModel: true },
 
+    publication_id: { refreshModel: true },
     person_id: { refreshModel: true },
     department_id: { refreshModel: true },
     faculty_id: { refreshModel: true },
