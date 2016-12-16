@@ -8,7 +8,18 @@ export default Ember.Route.extend({
   },
   queryParams:{
     page: { refreshModel: true },
-    sort_by: { refreshModel: true }
+    sort_by: { refreshModel: true },
+
+    publication_id: { refreshModel: true },
+    person_id: { refreshModel: true },
+    department_id: { refreshModel: true },
+    faculty_id: { refreshModel: true },
+    serie_id: { refreshModel: true },
+    project_id: { refreshModel: true },
+    publication_type: { refreshModel: true },
+    ref_value: { refreshModel: true },
+    start_year: { refreshModel: true },
+    end_year: { refreshModel: true }
   },
   afterModel: function(model, transition) {
     this.controllerFor('application').set('currentList', transition.targetName);
