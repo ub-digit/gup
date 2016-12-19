@@ -89,6 +89,13 @@
       {{/if}}
     {{/if}}
 
+    {{#if allFieldObjects.pub_notes}}
+      {{#if publication.pub_notes}}
+        {{publication-field-preview fieldLabel=allFieldObjects.pub_notes.label fieldValue=publication.pub_notes}}
+      {{/if}}
+    {{/if}}
+
+
     {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIDLabel')  fieldValue=publication.id}}
 
     {{#if publication.publication_identifiers}}
