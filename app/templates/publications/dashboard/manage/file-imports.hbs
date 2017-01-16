@@ -43,7 +43,7 @@
         </tr>
       </thead>
       {{#collapsible-items accordion=false tagName="tbody" items=model activeItems=fileImportActiveItems as |fileImport collapsibleItem|}}
-        <tr class={{isOdd collapsibleItem.index "table-row-odd table-row-accented" "table-row-even"}}>
+        <tr class={{is-odd collapsibleItem.index "table-row-odd table-row-accented" "table-row-even"}}>
           <td class="collapsible-items-button-wrapper">
             <button
               {{action collapsibleItem.toggleIsActive}}
@@ -61,7 +61,7 @@
           <td>
             <h4>{{fileImport.name}}</h4>
           </td>
-          <td>{{formatDate fileImport.updated_at}}</td>
+          <td>{{format-date fileImport.updated_at}}</td>
           <td>
             {{#confirmation-modal-button class="pull-right" as |c|}}
               {{#c.button}}
