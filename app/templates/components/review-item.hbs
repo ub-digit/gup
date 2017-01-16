@@ -7,6 +7,12 @@
         <strong>{{t 'components.reviewItem.lastReview'}}</strong> {{format-date item.diff_since_review.reviewed_at}}
       </div>
     {{/if}}
+
+    {{#if item.biblreview_postponed_comment}}
+      <div class="alert alert-info">
+        <strong>{{t 'components.reviewItem.comment'}}</strong> {{item.biblreview_postponed_comment}}
+      </div>
+    {{/if}}
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">{{t 'components.reviewItem.reviewDetailsHeader'}}</h3>

@@ -85,6 +85,7 @@ export default {
     reviewItem: {
       reviewDetailsHeader: 'Review and appprove your publication:',
       lastReview: 'Approved:',
+      comment: 'Comment:',
       publicationType: 'Publication type:',
       contentType: 'Content type:',
       affiliation: 'Your affiliation:',

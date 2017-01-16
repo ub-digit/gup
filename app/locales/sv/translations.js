@@ -85,6 +85,7 @@ export default {
     reviewItem: {
       reviewDetailsHeader: 'Granska och godkänn följande:',
       lastReview: 'Senast granskad av dig:',
+      comment: 'Kommentar:',
       publicationType: 'Publikationstyp:',
       contentType: 'Innehållsmärkning:',
       affiliation: 'Din affiliering:',
