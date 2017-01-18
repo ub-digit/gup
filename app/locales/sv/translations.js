@@ -491,6 +491,9 @@ export default {
       id: 'Id',
       name_sv: 'Svenskt namn',
       name_en: 'Engelskt namn',
+      children_sv: 'Underliggande institutioner på svenska',
+      children_en: 'Underliggande institutioner på engelska',
+      no_children: 'Det saknas underliggande institutioner',
       start_year: 'Startår',
       end_year: 'Slutår',
       new: {

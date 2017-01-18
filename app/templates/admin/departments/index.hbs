@@ -84,15 +84,39 @@
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.name_sv'}}</label><br/>
-          {{current.name_sv}}
+          {{#if current.grandparent}}{{current.grandparent.name_sv}} / {{/if}}{{#if current.parent}}{{current.parent.name_sv}} / {{/if}}<i>{{current.name_sv}}</i>
           </div>
         </div>
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.name_en'}}</label><br/>
-          {{current.name_en}}
+          {{#if current.grandparent}}{{current.grandparent.name_en}} / {{/if}}{{#if current.parent}}{{current.parent.name_en}} / {{/if}}<i>{{current.name_en}}</i>
           </div>
         </div>
+        <div class="row bottom-spacing-20">
+          <div class="col-xs-12">
+          <label>{{t 'admin.departments.children_sv'}}</label><br/>
+          {{#each current.children as |child|}}
+            <span class="label label-default">{{child.name_sv}}</span>
+          {{else}}
+              {{t 'admin.departments.no_children'}}
+          {{/each}}
+
+     
+          </div>
+        </div>
+        <div class="row bottom-spacing-20">
+          <div class="col-xs-12">
+          <label>{{t 'admin.departments.children_en'}}</label><br/>
+            {{#each current.children as |child|}}
+              <span class="label label-default">{{child.name_en}}</span>
+            {{else}}
+              {{t 'admin.departments.no_children'}}
+            {{/each}}
+          </div>
+        </div>
+
+
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.start_year'}}</label><br/>
