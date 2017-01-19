@@ -534,6 +534,12 @@ export default {
       person: {
         personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
         edit: {
+          list: {
+            affiliations_heading: 'Affilieringar',
+            publications_heading: 'Publikationer',
+            lang_name_en: 'Engelska:',
+            lang_name_sv: 'Svenska:'
+          },
           form: {
             labels: {
               id: 'Id:',

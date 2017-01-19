@@ -529,6 +529,12 @@ export default {
       person: {
         personChangeWarningAfterEdit: 'The search results may have changed due to editing.',
         edit: {
+          list: {
+            affiliations_heading: 'Affiliations',
+            publications_heading: 'Publications',
+            lang_name_en: 'Engelska:',
+            lang_name_sv: 'Svenska:'
+          },
           form: {
             labels: {
               id: 'Id:',
