@@ -484,6 +484,7 @@ export default {
       btnEditEndYear: 'Edit end year ',
       modalHeader: 'Edit end year',
       id: 'ID',
+      faculty_header: 'Faculty',
       name_sv: 'Swedish name',
       name_en: 'English name',
       children_sv: 'Underliggande institutioner på svenska',

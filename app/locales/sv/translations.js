@@ -489,6 +489,7 @@ export default {
       btnEditEndYear: 'Redigera slutår',
       modalHeader: 'Sätt slutår',
       id: 'Id',
+      faculty_header: 'Fakultet',
       name_sv: 'Svenskt namn',
       name_en: 'Engelskt namn',
       children_sv: 'Underliggande institutioner på svenska',

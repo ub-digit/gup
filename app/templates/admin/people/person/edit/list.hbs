@@ -2,12 +2,6 @@
 	<div class="col-xs-12">
 	<h2>{{t 'admin.people.person.edit.list.affiliations_heading'}}</h2>
 	 {{#each person as |person| }}
-	 	<strong>{{t 'admin.people.person.edit.list.lang_name_en'}}</strong> 
-	 	{{#each person.departments_name_en as |department|}}
-	 		<span class="label label-default">{{department}}</span>
-	 	{{/each}}
-	 	<br><br>
-	 	<strong>{{t 'admin.people.person.edit.list.lang_name_sv'}}</strong>
 	 	{{#each person.departments_name_sv as |department|}}
 			<span class="label label-default">{{department}}</span>
 	 	{{/each}}
