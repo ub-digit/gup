@@ -84,26 +84,26 @@
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.faculty_header'}}</label><br/>
-            {{current.faculty.name_sv}}
+            {{current.faculty.name_sv}} ({{current.faculty.id}})
           </div>
         </div>
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.name_sv'}}</label><br/>
-          {{#if current.grandparent}}{{current.grandparent.name_sv}} / {{/if}}{{#if current.parent}}{{current.parent.name_sv}} / {{/if}}<i>{{current.name_sv}}</i>
+          {{#if current.grandparent}}{{current.grandparent.name_sv}} ({{current.grandparent.id}}) / {{/if}}{{#if current.parent}}{{current.parent.name_sv}} ({{current.parent.id}}) / {{/if}}<i>{{current.name_sv}} ({{current.id}})</i>
           </div>
         </div>
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.name_en'}}</label><br/>
-          {{#if current.grandparent}}{{current.grandparent.name_en}} / {{/if}}{{#if current.parent}}{{current.parent.name_en}} / {{/if}}<i>{{current.name_en}}</i>
+          {{#if current.grandparent}}{{current.grandparent.name_en}} ({{current.grandparent.id}})  / {{/if}}{{#if current.parent}}{{current.parent.name_en}} ({{current.parent.id}}) / {{/if}}<i>{{current.name_en}} ({{current.id}})</i>
           </div>
         </div>
         <div class="row bottom-spacing-20">
           <div class="col-xs-12">
           <label>{{t 'admin.departments.children_sv'}}</label><br/>
           {{#each current.children as |child|}}
-            <span class="label label-default">{{child.name_sv}}</span>
+            <span class="label label-default">{{child.name_sv}} ({{child.id}})</span>
           {{else}}
               {{t 'admin.departments.no_children'}}
           {{/each}}
@@ -115,7 +115,7 @@
           <div class="col-xs-12">
           <label>{{t 'admin.departments.children_en'}}</label><br/>
             {{#each current.children as |child|}}
-              <span class="label label-default">{{child.name_en}}</span>
+              <span class="label label-default">{{child.name_en}} ({{child.id}})</span>
             {{else}}
               {{t 'admin.departments.no_children'}}
             {{/each}}
