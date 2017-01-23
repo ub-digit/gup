@@ -277,6 +277,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
+            postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               permalink: 'Link to publication',
