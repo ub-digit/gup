@@ -90,14 +90,20 @@ export default Ember.Controller.extend({
     });
   }),
 
+
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
+    
+    this.get("institutions").forEach((item) => {
+      item.children = null;
+    });
+
     var publicationYear = parseInt(this.get('publication.pubyear'));
     // If no valid year, return all departments
     // (this may not be a good idea)
     if (!validYear(publicationYear.toString())) {
       return this.get('institutions');
     }
-    return this.get('institutions').filter(function(department) {
+   return this.get('institutions').filter(function(department) {
       // TODO: Warning if wrong type?
       // TODO: This is perhaps not the place to check types,
       // assume correct types?
@@ -111,6 +117,7 @@ export default Ember.Controller.extend({
         department.end_year >= publicationYear
       );
     });
+   
   }),
   getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
     let fullObjectPubtype = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
