@@ -56,9 +56,9 @@
     {{/if}}
 
     {{#if publication.files }}
-      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files}}
+      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files processState=publication.process_state}}
     {{/if}}
-    
+
     {{#if publication.category_objects}}
     {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
     {{/if}}

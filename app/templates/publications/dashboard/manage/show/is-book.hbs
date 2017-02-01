@@ -64,13 +64,13 @@
     {{/if}}
 
     {{#if publication.files }}
-      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files}}
+      {{publication-field-files fieldLabel=(t 'components.publicationDisplay.filesLabel')  fieldValue=publication.files processState=publication.process_state}}
     {{/if}}
     {{#if allFieldObjects.project}}
       {{#if publication.project}}
         {{publication-field-preview fieldLabel=allFieldObjects.project.label fieldValue=publication.project_objects listValue='title' type='list'}}
       {{/if}}
-    {{/if}} 
+    {{/if}}
 
     {{#if publication.category_objects}}
     {{publication-field-preview fieldLabel=allFieldObjects.category_hsv_local.label fieldValue=publication.category_objects listValue='name_path' type='list'}}

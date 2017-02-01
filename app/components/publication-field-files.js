@@ -11,7 +11,15 @@ export default Ember.Component.extend({
     this._super(...arguments);
     // TODO: this is never used? Needed?
     this.set('token', this.get('session.data.authenticated.token'));
+
   },
+
+  published: Ember.computed('processState', function() {
+    if (this.get('processState') == 'DRAFT' || this.get('processState') == 'PREDRAFT') {
+      return false;
+    }
+    return true;
+  }),
 
   actions: {
     removeFile: function(id) {

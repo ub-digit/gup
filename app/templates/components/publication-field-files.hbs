@@ -5,12 +5,16 @@
 	    <li class={{if listItem.visible_after "hasEmbargo"}}>
 	    <span class="label label-primary">
 	    	{{#if listItem.visible_after}}
-	    		{{listItem.name}} <span class="small">(Embargo {{listItem.visible_after}})</span> 
+	    		{{listItem.name}} <span class="small">(Embargo {{listItem.visible_after}})</span>
 	    	{{else}}
-	    	  <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>
-                  {{#if listItem.deletable}}
+	    	  {{#if published}}
+	    	    <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}">{{listItem.name}}</a>
+          {{else}}
+          	<a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>
+           {{/if}}
+          {{#if listItem.deletable}}
 	    	    <a href="javascript:void(0);" {{action 'removeFile' listItem.id}} ><i class="fa fa-times" aria-hidden="true"></i></a>
-                  {{/if}}
+          {{/if}}
 	    	{{/if}}
 	    </span>
 	   	</li>
