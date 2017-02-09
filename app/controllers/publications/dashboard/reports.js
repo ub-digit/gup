@@ -35,13 +35,18 @@ export default Ember.Controller.extend({
 
   selectableDepartments: Ember.computed('yearRangeDepartments', 'filter.{faculties}', function() {
     let departments = this.get('yearRangeDepartments');
+    departments.forEach((item) => {
+      item.children = null;
+    });
 
+    // remove here
     if (Ember.isPresent(this.get('filter.faculties'))) {
       let facultyId = this.get('filter.faculties');
       departments = departments.filter((item) => {
         return facultyId === item.faculty_id;
       });
     }
+
 
     if (Ember.isPresent(this.get('filter.departments'))) {
       let selectable_selected_departments = this.get('filter.departments').filter((department_id) => {

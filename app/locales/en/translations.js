@@ -85,6 +85,7 @@ export default {
     reviewItem: {
       reviewDetailsHeader: 'Review and appprove your publication:',
       lastReview: 'Approved:',
+      comment: 'Comment:',
       publicationType: 'Publication type:',
       contentType: 'Content type:',
       affiliation: 'Your affiliation:',
@@ -276,6 +277,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
+            postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               permalink: 'Link to publication',
@@ -483,8 +485,12 @@ export default {
       btnEditEndYear: 'Edit end year ',
       modalHeader: 'Edit end year',
       id: 'ID',
+      faculty_header: 'Faculty',
       name_sv: 'Swedish name',
       name_en: 'English name',
+      children_sv: 'Underliggande institutioner på svenska',
+      children_en: 'Underliggande institutioner på engelska',
+      no_children: 'Det saknas underliggande institutioner',
       start_year: 'Start year',
       end_year: 'End year',
       new: {
@@ -525,6 +531,12 @@ export default {
       person: {
         personChangeWarningAfterEdit: 'The search results may have changed due to editing.',
         edit: {
+          list: {
+            affiliations_heading: 'Affiliations',
+            publications_heading: 'Publications',
+            lang_name_en: 'Engelska:',
+            lang_name_sv: 'Svenska:'
+          },
           form: {
             labels: {
               id: 'Id:',

@@ -42,7 +42,8 @@ export default Ember.Component.extend({
           'last_name': item.newAuthorForm.get('lastName'),
           'year_of_birth': item.newAuthorForm.get('year_of_birth'),
           'xaccount': item.newAuthorForm.get('xaccount'),
-          'orcid': item.newAuthorForm.get('orcid')
+          'orcid': item.newAuthorForm.get('orcid'),
+          'skip_update_search_engine': item.newAuthorForm.get('skip_update_search_engine'),
         }).then((model) => {
           item.set('selectedAuthor', model);
           item.set('transformedToNewAuthor', false);
@@ -58,7 +59,9 @@ export default Ember.Component.extend({
         //TODO: user should be promted here!!
         // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
         return new Ember.RSVP.Promise((resolve, reject) => {
-          this.get('createAuthor')(this.get('item')).then(resolve, reject);
+          let item = this.get('item');
+          item.newAuthorForm.set('skip_update_search_engine', true);
+          this.get('createAuthor')(item).then(resolve, reject);
         });
       }
       return Ember.RSVP.Promise.resolve();

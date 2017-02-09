@@ -128,8 +128,8 @@
           {{#if model.published_at}}<dt>{{t 'publications.dashboard.manage.show.index.meta.updatedAt'}}</dt><dd>{{format-date model.updated_at}}</dd>{{/if}}
             {{#if model.version_updated_by}}<dt>{{t 'publications.dashboard.manage.show.index.meta.updatedBy'}}</dt><dd>{{model.version_updated_by}}</dd>{{/if}}
               {{#if model.published_at}}<dt>{{t 'publications.dashboard.manage.show.index.meta.publishedAt'}}</dt><dd>{{format-date model.published_at}}</dd>{{/if}}
-                {{#if model.biblreview_postponed_until}}<dt>{{t 'publications.dashboard.manage.show.index.meta.reviewStart'}}</dt><dd>{{format-date model.biblreview_postponed_until}}</dd>{{/if}}
-                  {{#if model.biblreview_postpone_comment}}<dt>{{t 'publications.dashboard.manage.show.index.meta.delayComment'}}</dt><dd>{{model.biblreview_postpone_comment}}</dd>{{/if}}
+                {{#if model.biblreview_postponed_until}}<dt>{{t 'publications.dashboard.manage.show.index.meta.reviewStart'}} </dt><dd> {{format-date model.biblreview_postponed_until}}</dd>{{/if}}
+                  {{#if model.biblreview_postponed_comment}}<dt>{{t 'publications.dashboard.manage.show.index.meta.delayComment'}}</dt><dd>{{model.biblreview_postponed_comment}}</dd>{{/if}}
                     {{#if model.biblreviewed_by}}<dt>{{t 'publication.labels.reviewedBy'}}</dt><dd>{{model.biblreviewed_by}}</dd>{{/if}}
                       {{#if model.biblreviewed_at}}<dt>{{t 'publications.dashboard.manage.show.index.meta.reviewedAt'}}</dt><dd>{{format-date model.biblreviewed_at}}</dd>{{/if}}
                       {{else}}

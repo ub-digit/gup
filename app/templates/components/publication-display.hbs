@@ -8,7 +8,15 @@
       <div class="alert alert-warning">
       {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
       </div>
+    {{/if}}    
+
+    {{#if publication.biblreview_postponed_comment}}
+      <div class="alert alert-warning">
+      {{t 'publications.dashboard.manage.show.index.postponed_comment'}} {{publication.biblreview_postponed_comment}}
+      </div>
     {{/if}}
+
+
     <table class="table table-striped table-bordered">
       <tbody>
 
@@ -340,13 +348,12 @@
   {{else if isPreviewMode}}
       <div class="publication-display-top-meta lead">
       {{publication.publication_type_label}} {{#if hasRefValue}}, {{publication.ref_value_label}}{{/if}}
-
+      </div>
       {{#if publication.epub_ahead_of_print}}
         <div class="alert alert-warning">
         {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
         </div>
       {{/if}}
-      </div>
     
     <dl class="dl-horizontal">
       {{#if isArticleConf}}
