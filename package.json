@@ -58,5 +58,7 @@
     "emberx-select": "2.2.2",
     "loader.js": "^4.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ember-cli": "^2.11.0"
+  }
 }

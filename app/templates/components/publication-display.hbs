@@ -178,18 +178,18 @@
           <th>
             {{t 'components.publicationDisplay.currentVersion'}},
             {{format-date publication.version_created_at}}
-            {{#if publication.version_created_by}}
-              {{t 'components.publicationDisplay.versionBy'}} {{publication.version_created_by}}
+            {{#if publication.version_updated_by}}
+              {{t 'components.publicationDisplay.versionBy'}} {{publication.version_updated_by}}
             {{/if}}
           </th>
           <th>
-            {{#x-select value=other_version action='fetchVersion' class="form-control"}}
+            {{#x-select identifier_valuee=other_version action='fetchVersion' class="form-control"}}
             {{#x-option}}{{t 'components.publicationDisplay.selectVersion'}}{{/x-option}}
               {{#each comparableVersions as |version|}}
               {{#x-option value=version.item.id}}
                 {{t 'components.publicationDisplay.version'}} {{version.index}},
-                {{format-date version.item.created_at}}{{#if version.item.created_by}},
-                  {{t 'components.publicationDisplay.versionBy'}} {{version.item.created_by}}
+                {{format-date version.item.updated_at}}{{#if version.item.updated_by}},
+                  {{t 'components.publicationDisplay.versionBy'}} {{version.item.updated_by}}
                 {{/if}}
               {{/x-option}}
               {{/each}}
