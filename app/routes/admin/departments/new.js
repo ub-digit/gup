@@ -9,10 +9,10 @@ export default Ember.Route.extend({
   actions: {
     saveDepartment: function(model) {
       var controller = this.controller;
-	    var successHandler = () => {
+	    let successHandler = () => {
         this.transitionTo('admin.departments.index');
 	    };
-	    var errorHandler = (reason) => {
+	    let errorHandler = (reason) => {
 	      this.send('setMsgHeader', 'error', reason.error.msg);
 				controller.set('errors', reason.error.errors);
 	      Ember.run.later(function() {
@@ -22,7 +22,17 @@ export default Ember.Route.extend({
 	        });
 	      });
 	    };
-	    this.store.save('department', model).then(successHandler, errorHandler);
+      let generalHandler = (model) => {
+              console.log(model);
+
+        if (model.error) {
+          errorHandler(model);
+        }
+        else {
+          successHandler(model);
+        }
+      };
+	    this.store.save('department', model).then(generalHandler);
     }
   }
 });

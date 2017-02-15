@@ -35,6 +35,14 @@ export default Ember.Route.extend({
 	        });
 	      });
 	    };
+      let generalHandler = (model) => {
+        if (model.error) {
+          errorHandler(model);
+        }
+        else {
+          successHandler(model);
+        }
+      };
       let person_data = {
         id: model.id,
         first_name: model.first_name,
@@ -43,7 +51,7 @@ export default Ember.Route.extend({
 	      xaccount: model.xaccount,
         orcid: model.orcid
       };
-	    this.store.save('person', person_data).then(successHandler, errorHandler);
+	    this.store.save('person', person_data).then(generalHandler);
     }
   }
 });
