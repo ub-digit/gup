@@ -61,8 +61,8 @@ export default Ember.Component.extend({
     return arr.indexOf(code) !== -1;
   }),
 
-  hasRefValue: Ember.computed('publication.ref_value', function() {
-    return this.get('publication.ref_value') !== 'NA';
+  isRef: Ember.computed('publication.ref_value', function() {
+    return this.get('publication.ref_value') === 'ISREF';
   }),
 
   allFieldObjects: Ember.computed('publicationType.all_fields', function( ) {

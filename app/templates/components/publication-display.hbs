@@ -8,7 +8,7 @@
       <div class="alert alert-warning">
       {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
       </div>
-    {{/if}}    
+    {{/if}}
 
     {{#if publication.biblreview_postponed_comment}}
       <div class="alert alert-warning">
@@ -52,7 +52,7 @@
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
         {{/if}}
 
- 
+
 
         {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
 
@@ -347,14 +347,14 @@
     </table>
   {{else if isPreviewMode}}
       <div class="publication-display-top-meta lead">
-      {{publication.publication_type_label}} {{#if hasRefValue}}, {{publication.ref_value_label}}{{/if}}
+      {{publication.publication_type_label}} {{#if isRef}}, {{publication.ref_value_label}}{{/if}}
       </div>
       {{#if publication.epub_ahead_of_print}}
         <div class="alert alert-warning">
         {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
         </div>
       {{/if}}
-    
+
     <dl class="dl-horizontal">
       {{#if isArticleConf}}
         {{partial "publications/dashboard/manage/show/is-article-conf"}}
@@ -363,7 +363,7 @@
       {{#if isThesis}}
         {{partial "publications/dashboard/manage/show/is-thesis"}}
       {{/if}}
-      
+
       {{#if isBook}}
         {{partial "publications/dashboard/manage/show/is-book"}}
       {{/if}}
