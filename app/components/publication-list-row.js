@@ -8,8 +8,8 @@ export default Ember.Component.extend({
     return this.get('item.title') || this.get('i18n').t('components.publicationListRow.noTitle');
   }),
 
-  hasRefValue: Ember.computed('item.ref_value', function() {
-    return this.get('item.ref_value') !== 'NA';
+  isRef: Ember.computed('item.ref_value', function() {
+    return this.get('item.ref_value') === 'ISREF';
   }),
 
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
