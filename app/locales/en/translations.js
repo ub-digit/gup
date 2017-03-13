@@ -184,6 +184,7 @@ export default {
     dropdownOther: "Other",
     admin: 'Admin',
     reports: 'Stats and reports',
+    publications_list: 'Publication-lists',
     lang: 'Svenska',
     logOut: 'Logout',
     idMissing: 'Missing ID'

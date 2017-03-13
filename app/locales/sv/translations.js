@@ -188,6 +188,7 @@ export default {
     dropdownOther: "Övrigt",
     admin: 'Admin',
     reports: 'Statistik',
+    publications_list: 'Publikationslistor',
     lang: 'English',
     logOut: 'Logga ut',
     idMissing: 'Ogiltigt ID'
