@@ -454,7 +454,7 @@ export default {
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',
           authors: {
-            helptext: 'Här skriver du in samtliga författare i samma ordningsföljd som i originalpublikationen. För GU-författare skriver du in fullständigt namn samt anger institution, för övriga författare räcker det med efternamn samt förnamnets första bokstav. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+            helptext: 'Ange samtliga författare i ordningsföljd enligt originalpublikationen. För GU-författare skriv fullständigt namn samt <strong>den affiliering som angivits i publikationen</strong>. För övriga författare är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
           },
           category_hsv_local: {
             helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
