@@ -32,6 +32,7 @@ export default Ember.Route.extend({
   },
   setupController: function(controller, model) {
     controller.set('model', model);
+
     if (controller.get('sortSelectValues').length === 0) {
       controller.get('sortSelectValues').pushObjects([
           { value: 'pubyear', label: this.get("i18n").t('publications_list.sortByYearLabel') },

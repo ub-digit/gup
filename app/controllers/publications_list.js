@@ -13,7 +13,38 @@ export default Ember.Controller.extend({
     serie_id: null,
     project_id: null,
     publication_type: null,
-    ref_value: null,
+    ref_value: 'NOTREF',
     start_year: null,
-    end_year: null
+    end_year: null,
+    
+    
+    isRef: false,
+    base_start_year: 1942,
+    base_end_year: new Date().getFullYear() + 10,
+
+    isRefValueChanged: Ember.observer('ref_value', function() {
+      if (this.get("ref_value") === 'NOTREF'){
+        this.set("isRef", false);
+      }
+      else {
+        this.set("isRef", true);
+      }
+    }),
+
+    isRefChanged: Ember.observer('isRef', function() {
+      if (this.get("isRef")) {
+        this.set("ref_value", "ISREF");
+      }
+      else {
+        this.set("ref_value", "NOTREF");
+      }
+    }),
+
+    rangeYear: Ember.computed('base_start_year', 'base_end_year', function() {
+      let arr = [];
+      for (var i = this.get("base_start_year"); i < this.get("base_end_year"); i++) {
+          arr[i] = i.toString();
+      }
+      return arr;
+    })
 });
