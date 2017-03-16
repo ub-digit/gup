@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     serie_id: null,
     project_id: null,
     publication_type: null,
-    ref_value: 'NOTREF',
+    ref_value: null,
     start_year: null,
     end_year: null,
     
@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
     selectedAuthors: [],
     isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
     base_start_year: 1942,
-    base_end_year: new Date().getFullYear() + 10,
+    base_end_year: null,
 
     selectedDepartmentsChanged: Ember.observer('selectedDepartments', function() {
       this.formatForQueryStr('department_id', this.get('selectedDepartments'));
@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
     }),
 
     isRefValueChanged: Ember.observer('ref_value', function() {
-      if (this.get("ref_value") === 'NOTREF'){
+      if (this.get("ref_value") !== 'ISREF'){
         this.set("isRef", false);
       }
       else {
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
         this.set("ref_value", "ISREF");
       }
       else {
-        this.set("ref_value", "NOTREF");
+        this.set("ref_value", null);
       }
     }),
 
