@@ -184,6 +184,7 @@ export default {
     dropdownOther: "Other",
     admin: 'Admin',
     reports: 'Stats and reports',
+    publications_list: 'Publication-lists',
     lang: 'Svenska',
     logOut: 'Logout',
     idMissing: 'Missing ID'
@@ -203,7 +204,12 @@ export default {
     sortByPreLabel: 'Sort',
     zeroPublications: 'The list has no publications',
     sortByYearLabel: 'Year',
-    sortByTitleLabel: 'Title (a-z)'
+    sortByTitleLabel: 'Title (a-z)',
+    startYearLabel: 'Startår',
+    endYearLabel: 'Slutår',
+    onlyRefLabel: 'Endast referee-granskade',
+    searchAuthorLabel: 'Sök författare',
+    searchDepartmentLabel: 'Sök institution'
   },
 
   publications: {
