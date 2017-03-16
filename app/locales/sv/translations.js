@@ -208,8 +208,12 @@ export default {
     sortByPreLabel: 'Sortera',
     zeroPublications: 'Listan saknar publikationer',
     sortByYearLabel: 'År',
-    sortByTitleLabel: 'Titel (a-ö)'
-
+    sortByTitleLabel: 'Titel (a-ö)',
+    startYearLabel: 'Startår',
+    endYearLabel: 'Slutår',
+    onlyRefLabel: 'Endast referee-granskade',
+    searchAuthorLabel: 'Sök författare',
+    searchDepartmentLabel: 'Sök institution'
   },
   
   publications: {

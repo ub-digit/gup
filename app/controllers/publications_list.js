@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   	sortSelectValues: Ember.A([]), 
   	sort_by: 'pubyear',
   	publication_id: null, 
-    person_id: null,
+    person_id: "",
     department_id: null,
     faculty_id: null,
     serie_id: null,
@@ -17,10 +17,20 @@ export default Ember.Controller.extend({
     start_year: null,
     end_year: null,
     
-    
-    isRef: false,
+    selectedDepartments: [],
+    selectedAuthors: [],
+    isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
     base_start_year: 1942,
     base_end_year: new Date().getFullYear() + 10,
+
+    selectedDepartmentsChanged: Ember.observer('selectedDepartments', function() {
+      this.formatForQueryStr('department_id', this.get('selectedDepartments'));
+    }),
+
+
+    selectedAuthorsChanged: Ember.observer('selectedAuthors', function() {
+      this.formatForQueryStr('person_id', this.get('selectedAuthors'));
+    }),
 
     isRefValueChanged: Ember.observer('ref_value', function() {
       if (this.get("ref_value") === 'NOTREF'){
@@ -43,8 +53,38 @@ export default Ember.Controller.extend({
     rangeYear: Ember.computed('base_start_year', 'base_end_year', function() {
       let arr = [];
       for (var i = this.get("base_start_year"); i < this.get("base_end_year"); i++) {
-          arr[i] = i.toString();
+          arr[i] = i.toString(); 
       }
       return arr;
-    })
+    }),
+
+
+
+    formatForQueryStr(name, selectedValues) {
+      // takes array and formats to semicolon separated string. Removes trailing ; in naiv way maybe change
+      let that = this;
+      this.set(name, "");
+      selectedValues.forEach(function(item) {
+        if (that.get(name).indexOf(item.id + ";") === -1) {
+          that.set(name, that.get(name) + item.id + ";");
+        }        
+      });
+      // remove trailing ; in string as its gets added in loop above
+      if (this.get(name)) {
+        if (this.get(name).endsWith(';')) {
+          this.set(name, this.get(name).slice(0,-1));
+        }
+      }
+    },
+
+    actions: {
+      searchAuthor(term) {
+        return this.store.find('person_record', {search_term: term});
+      },
+      searchDepartment(term) {
+        return this.store.find('department', {search_term: term});
+      }
+
+
+    }
 });

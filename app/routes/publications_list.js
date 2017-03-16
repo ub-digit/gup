@@ -28,10 +28,40 @@ export default Ember.Route.extend({
     if(!params.page) {
       params.page = 1;
     }
-    return  this.store.find('public_publication_list', params);
+    let strSolrFormat = "";
+    if (params.person_id && params.person_id.length) {
+      strSolrFormat = params.person_id.replace(/;/g, " OR ");
+    }
+    this.set("selectedDepartmentIDS", null);
+    if (params.department_id && params.department_id.length) {
+      // add selected departments to selected departemts
+      let arr = params.department_id.split(';');
+      this.set("selectedDepartmentIDS", arr);
+    }
+
+    return Ember.RSVP.hash({
+      publicList: this.store.find('public_publication_list', params), 
+      departments: this.store.find('department'),
+      selectedAuthors:  this.store.find('person_record', {search_term: "id:("+strSolrFormat+")"})
+    });
   },
   setupController: function(controller, model) {
-    controller.set('model', model);
+    controller.set('model', model.publicList);
+    controller.set('departments', model.departments);
+    if (controller.get('selectedAuthors').length === 0) {
+        controller.set('selectedAuthors', model.selectedAuthors);   
+    } 
+
+    if (controller.get('selectedDepartments').length === 0) {
+      let departmentsArr = [];
+      if (this.get('selectedDepartmentIDS')) {
+        this.get('selectedDepartmentIDS').forEach(function(id) {
+          departmentsArr.pushObject(controller.get("departments").findBy('id', parseInt(id)));
+        })
+        controller.set('selectedDepartments', departmentsArr);
+      }
+      departmentsArr = [];
+    }
 
     if (controller.get('sortSelectValues').length === 0) {
       controller.get('sortSelectValues').pushObjects([

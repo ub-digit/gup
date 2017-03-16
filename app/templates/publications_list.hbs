@@ -1,34 +1,59 @@
 <div class="gup-published">
   <div class="gup-published-filter">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="time-range row">
-        <div class="col-sm-2 col-sm-offset-6">
-          <label>
-          Endast referee-granskade
-          {{input type="checkbox" name="isRef" checked=isRef}}
-          </label>
-        </div>
-        <div class="col-sm-2">
-          <label>Startår</label>
-          {{#x-select value=start_year class="form-control start"}}
-            {{#each rangeYear as |year|}}
-              {{#x-option value=year}}{{year}}{{/x-option}}
-            {{/each}}
-          {{/x-select}}
-        </div>
+    <div class="row bottom-spacing-10">
+      <div class="col-xs-12">
+        <div class="gup-published-filter-time-range row">
+          <div class="col-sm-3">
+            <label>{{t 'publications_list.startYearLabel'}}<</label>
+            {{#x-select value=start_year class="form-control start"}}
+              {{#each rangeYear as |year|}}
+                {{#x-option value=year}}{{year}}{{/x-option}}
+              {{/each}}
+            {{/x-select}}
+          </div>
+          <div class="col-sm-3">
+            <label>{{t 'publications_list.endYearLabel'}}<</label>
+            {{#x-select value=end_year class="form-control end"}}
+              {{#each rangeYear as |year|}}
+                {{#x-option value=year}}{{year}}{{/x-option}}
+              {{/each}}
+            {{/x-select}}
+          </div>
 
-        <div class="col-sm-2">
-          <label>Slutår</label>
-          {{#x-select value=end_year class="form-control end"}}
-            {{#each rangeYear as |year|}}
-              {{#x-option value=year}}{{year}}{{/x-option}}
-            {{/each}}
-          {{/x-select}}
+          <div class="col-sm-6 ref-value">
+              <label>
+              {{t 'publications_list.onlyRefLabel'}}
+              {{input type="checkbox" name="isRef" checked=isRef}}
+              </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>{{t 'publications_list.searchAuthorLabel'}}<</label>
+            {{#power-select-multiple
+              search=(action "searchAuthor")
+              selected=selectedAuthors
+              onchange=(action (mut selectedAuthors))
+              as |person|
+            }}
+              {{person.full_name}} {{#if person.xaccount}}({{person.xaccount}}){{/if}}
+            {{/power-select-multiple}}
+          </div>
+          <div class="col-sm-6">
+            <label>{{t 'publications_list.searchDepartmentLabel'}}</label>
+            {{#power-select-multiple 
+              options=departments
+              searchField="name"
+              selected=selectedDepartments
+              onchange=(action (mut selectedDepartments))
+              as |department|
+            }}
+              {{department.name}}
+            {{/power-select-multiple}}
+          </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
