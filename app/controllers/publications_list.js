@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
   	page: 1,
   	queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year'],
   	sortSelectValues: Ember.A([]), 
@@ -21,7 +22,22 @@ export default Ember.Controller.extend({
     selectedAuthors: [],
     isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
     base_start_year: 1942,
-    base_end_year: null,
+    base_end_year: null, // is set in setupController
+    
+
+    resultIsVisible: Ember.computed("person_id", "department_id", "ref_value", "start_year", "end_year", function() {
+      if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
+        return true;
+      }
+      return false;
+    }),
+
+    getLink: Ember.computed("session", function() {
+      if (this.get("session.isAuthenticated")) {
+        return "publications.dashboard.manage.show";
+      }
+      return "publication";
+    }),
 
     selectedDepartmentsChanged: Ember.observer('selectedDepartments', function() {
       this.formatForQueryStr('department_id', this.get('selectedDepartments'));

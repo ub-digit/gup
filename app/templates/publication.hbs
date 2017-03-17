@@ -1,5 +1,9 @@
 {{#if publication}}
-
+<div class="row">
+  <div class="col-xs-12">
+    {{#link-to "publications.dashboard.manage.show" publication class="pull-right"}}<i class="fa fa-lock" aria-hidden="true"></i> {{t 'publication.linkToHandlePublication'}}{{/link-to}}
+  </div>
+</div>
 <div class="row">
       <div class="col-xs-12">
         {{publication-display publication=publication allPublicationTypes=publicationTypes publicationType=getPublicationTypeObject mode='preview'}}

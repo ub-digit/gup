@@ -57,6 +57,7 @@
           </div>
     </div>
   </div>
+  {{#if resultIsVisible}}
   <div class="row">
     <div class="col-xs-12">
       {{#if model.length}}
@@ -81,7 +82,7 @@
         <ul class="list-unstyled dashboard-list">
           {{#each model as |item|}}
             <li>
-              {{publication-list-row item=item link='publication'}}
+              {{publication-list-row item=item link=getLink}}
             </li>
           {{/each}}
         </ul>
@@ -95,4 +96,5 @@
       {{/if}}
     </div>
   </div>
+  {{/if}}
 </div>
