@@ -195,7 +195,7 @@ export default {
   msgheader: {
   },
   publication: {
-    linkToHandlePublication: "Hantera (kräver inlogging)",
+    linkToHandlePublication: "Handle (need login)",
     not_found: "Publication could not be found"
   },
 
@@ -206,11 +206,11 @@ export default {
     zeroPublications: 'The list has no publications',
     sortByYearLabel: 'Year',
     sortByTitleLabel: 'Title (a-z)',
-    startYearLabel: 'Startår',
-    endYearLabel: 'Slutår',
-    onlyRefLabel: 'Endast referee-granskade',
-    searchAuthorLabel: 'Sök författare',
-    searchDepartmentLabel: 'Sök institution'
+    startYearLabel: 'Startyear',
+    endYearLabel: 'Endyear',
+    onlyRefLabel: 'Only referee',
+    searchAuthorLabel: 'Search author',
+    searchDepartmentLabel: 'Search institution'
   },
 
   publications: {

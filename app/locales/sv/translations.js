@@ -212,7 +212,7 @@ export default {
     sortByTitleLabel: 'Titel (a-ö)',
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
-    onlyRefLabel: 'Endast referee-granskade',
+    onlyRefLabel: 'Endast refereegranskade publikationer',
     searchAuthorLabel: 'Sök författare',
     searchDepartmentLabel: 'Sök institution'
   },
