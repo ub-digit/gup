@@ -199,6 +199,7 @@ export default {
   msgheader: {
   },
   publication: {
+    linkToHandlePublication: "Hantera (kräver inlogging)",
     not_found: "Publikationen kunde inte hittas"
   },
 
