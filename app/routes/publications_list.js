@@ -40,7 +40,7 @@ export default Ember.Route.extend({
     }
 
     return Ember.RSVP.hash({
-      publicList: this.store.find('public_publication_list', params), 
+      publicList: this.store.find('public_publication_list', params),
       departments: this.store.find('department'),
       selectedAuthors:  this.store.find('person_record', {search_term: "id:("+strSolrFormat+")"})
     });
@@ -50,8 +50,8 @@ export default Ember.Route.extend({
     controller.set('model', model.publicList);
     controller.set('departments', model.departments);
     if (controller.get('selectedAuthors').length === 0) {
-        controller.set('selectedAuthors', model.selectedAuthors);   
-    } 
+        controller.set('selectedAuthors', model.selectedAuthors);
+    }
 
     if (controller.get('selectedDepartments').length === 0) {
       let departmentsArr = [];
@@ -67,7 +67,8 @@ export default Ember.Route.extend({
     if (controller.get('sortSelectValues').length === 0) {
       controller.get('sortSelectValues').pushObjects([
           { value: 'pubyear', label: this.get("i18n").t('publications_list.sortByYearLabel') },
-          { value: 'title', label: this.get("i18n").t('publications_list.sortByTitleLabel') }
+          { value: 'title', label: this.get("i18n").t('publications_list.sortByTitleLabel') },
+          { value: 'pubtype', label: this.get("i18n").t('publications_list.sortByPubTypeLabel') }
       ]);
     }
   }

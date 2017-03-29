@@ -206,6 +206,7 @@ export default {
     zeroPublications: 'The list has no publications',
     sortByYearLabel: 'Year',
     sortByTitleLabel: 'Title (a-z)',
+    sortByPubTypeLabel: 'Publication type (a-z)',
     startYearLabel: 'Startyear',
     endYearLabel: 'Endyear',
     onlyRefLabel: 'Only referee',
