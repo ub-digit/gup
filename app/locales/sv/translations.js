@@ -210,13 +210,14 @@ export default {
     zeroPublications: 'Listan saknar publikationer',
     sortByYearLabel: 'År',
     sortByTitleLabel: 'Titel (a-ö)',
+    sortByPubTypeLabel: 'Publikationstyp (a-ö)',
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
     searchAuthorLabel: 'Sök författare',
     searchDepartmentLabel: 'Sök institution'
   },
-  
+
   publications: {
     dashboard: {
       reports: {
