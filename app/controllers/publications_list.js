@@ -25,6 +25,10 @@ export default Ember.Controller.extend({
     base_end_year: null, // is set in setupController
     
 
+    resetPaging: Ember.observer("selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
+      this.set("page", 1);
+    }),
+
     resultIsVisible: Ember.computed("person_id", "department_id", "ref_value", "start_year", "end_year", function() {
       if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
         return true;
