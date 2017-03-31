@@ -41,7 +41,7 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       publicList: this.store.find('public_publication_list', params),
-      departments: this.store.find('department'),
+      departments: this.store.find('department', {brief: true }),
       selectedAuthors:  this.store.find('person_record', {search_term: "id:("+strSolrFormat+")"})
     });
   },
