@@ -207,6 +207,7 @@ export default {
     sortByYearLabel: 'Year',
     sortByTitleLabel: 'Title (a-z)',
     sortByPubTypeLabel: 'Publication type (a-z)',
+    sortByFirstAuthorLabel: 'Author name',
     startYearLabel: 'Startyear',
     endYearLabel: 'Endyear',
     onlyRefLabel: 'Only referee',

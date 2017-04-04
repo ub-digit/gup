@@ -211,6 +211,7 @@ export default {
     sortByYearLabel: 'År',
     sortByTitleLabel: 'Titel (a-ö)',
     sortByPubTypeLabel: 'Publikationstyp (a-ö)',
+    sortByFirstAuthorLabel: 'Författarnamn',
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
