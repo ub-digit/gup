@@ -68,7 +68,8 @@ export default Ember.Route.extend({
       controller.get('sortSelectValues').pushObjects([
           { value: 'pubyear', label: this.get("i18n").t('publications_list.sortByYearLabel') },
           { value: 'title', label: this.get("i18n").t('publications_list.sortByTitleLabel') },
-          { value: 'pubtype', label: this.get("i18n").t('publications_list.sortByPubTypeLabel') }
+          { value: 'pubtype', label: this.get("i18n").t('publications_list.sortByPubTypeLabel') },
+          { value: 'first_author', label: this.get("i18n").t('publications_list.sortByFirstAuthorLabel') }
       ]);
     }
   }
