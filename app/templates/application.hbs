@@ -8,8 +8,11 @@
 	<div class="container">
 		{{#if messages.alert_message.message}}
 		<div class="row">
-			<div class="col-xs-12">
-			  <div class="alert alert-warning alert-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{messages.alert_message.message}}</div>
+			<div class="col-xs-12 news-flash">
+			  <div class="alert alert-warning alert-message">
+			    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+			    <p class="news-text">{{messages.alert_message.message}}</p>
+			  </div>
 			</div>
 		</div>
 		{{/if}}
@@ -19,7 +22,7 @@
 			<div class="col-xs-12 news-flash">
 				<div class="alert alert-info" role="alert">
 					<p class="header">{{messages.news_message.start_date}}</p>
-				  	<p>{{messages.news_message.message}}</p>
+				  <p class="news-text">{{messages.news_message.message}}</p>
 				</div>
 			</div>
 		</div>
