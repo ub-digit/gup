@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   },
 
   published: Ember.computed('processState', function() {
-    if (this.get('processState') == 'DRAFT' || this.get('processState') == 'PREDRAFT') {
+    if (this.get('processState') === 'DRAFT' || this.get('processState') === 'PREDRAFT') {
       return false;
     }
     return true;
