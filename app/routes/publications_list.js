@@ -58,7 +58,7 @@ export default Ember.Route.extend({
       if (this.get('selectedDepartmentIDS')) {
         this.get('selectedDepartmentIDS').forEach(function(id) {
           departmentsArr.pushObject(controller.get("departments").findBy('id', parseInt(id)));
-        })
+        });
         controller.set('selectedDepartments', departmentsArr);
       }
       departmentsArr = [];
