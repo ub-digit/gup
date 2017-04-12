@@ -25,9 +25,6 @@ export default Ember.Route.extend({
 	      person : this.store.find('person_record', {search_term: params.person_id, ignore_affiliation: false}),
 	      model: this.store.find('public_publication_list', params)
     	});
-
-		myPerson = this.store.find('person', params.person_id);
-		return this.store.find('public_publication_list', params);
 	},
 	setupController: function(controller, model) {
 		this.controller.set("model", model.model);
