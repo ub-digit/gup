@@ -91,7 +91,7 @@ export default Ember.Controller.extend({
       });
       // remove trailing ; in string as its gets added in loop above
       if (this.get(name)) {
-        if (this.get(name).endsWith(';')) {
+        if (this.get(name).match(".*;$")) {
           this.set(name, this.get(name).slice(0,-1));
         }
       }
