@@ -13,7 +13,7 @@
       <span style="color:#bbbb00" class="fa fa-exclamation-triangle"></span>
     {{/if}}
   </label>
-  {{#if fieldHelptext}} 
+  {{#if fieldHelptext}}
     <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
   {{/if}}
   {{#if errors}}
@@ -33,7 +33,7 @@
       {{input classBinding=":form-control fieldName" value=value}}
     {{/if}}
     {{#if isTypeDate}}
-      {{pikaday-input value=value class="form-control fieldName" format='YYYY-MM-DD' allowBlank=true firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut value))}}
+      {{pikaday-input value=value class="form-control fieldName" format='YYYY-MM-DD' useUTC=true allowBlank=true firstDay=1 placeholder="YYYY-MM-DD" onSelection=(action (mut value))}}
     {{/if}}
     {{#if isTypeTextarea}}
       {{textarea classBinding=":form-control fieldName" value=value}}
@@ -49,7 +49,7 @@
           optionLabelSelectedPath="title"
           optionLabelPath="title"
           optionDescriptionPath="null"
-      }}      
+      }}
     {{/if}}
     {{#if isTypeSelect}}
       {{#x-select value=value class="form-control fieldName"}}
