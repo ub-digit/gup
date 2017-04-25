@@ -6,18 +6,22 @@
     {{/if}}
 
     {{#if allFieldObjects.dissopponent}}
-      {{#if publication.dissdate}}
+      {{#if publication.dissopponent}}
         {{publication-field-preview fieldLabel=allFieldObjects.dissopponent.label fieldValue=publication.dissopponent}}
       {{/if}}
     {{/if}}
 
+    {{#if allFieldObjects.dissdate}}
+      {{#if publication.dissdate}}
+        {{publication-field-preview fieldLabel=allFieldObjects.dissdate.label fieldValue=(format-date publication.dissdate 'YYYY-MM-DD')}}
+      {{/if}}
+    {{/if}}
 
     {{#if allFieldObjects.pubyear}}
       {{#if publication.pubyear}}
         {{publication-field-preview fieldLabel=allFieldObjects.pubyear.label fieldValue=publication.pubyear}}
       {{/if}}
     {{/if}}
-
 
     {{#if allFieldObjects.extent}}
       {{#if publication.extent}}
