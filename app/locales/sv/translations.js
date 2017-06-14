@@ -222,6 +222,8 @@ export default {
   publications: {
     dashboard: {
       reports: {
+        filter: "Filter",
+        description: "Här får du statistik för publikationer med affiliering till Göteborgs Universitet. Markera önskade urvalskriterier. För utskrift ange Exportera till Excel.",
         title: "Rapporter",
         select_criteria: "Välj kriterier",
         export_csv: "Exportera till Excel",

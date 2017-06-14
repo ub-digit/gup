@@ -218,6 +218,8 @@ export default {
   publications: {
     dashboard: {
       reports: {
+        filter: "Filter",
+        description: "Here you can get statistical data about publications affiliated to University of Gothenburg. Please select filter and sorting. Choose Export to Excel for printing.",
         title: "Stats and reports",
         select_criteria: "Select criteria",
         export_csv: "Export to Excel",
