@@ -8,6 +8,7 @@
 
     {{#if allFieldObjects.pubyear}}
       {{#if publication.pubyear}}
+        <meta name="citation_publication_date" content="{{publication.pubyear}}">
         {{publication-field-preview fieldLabel=allFieldObjects.pubyear.label fieldValue=publication.pubyear}}
       {{/if}}
     {{/if}}
