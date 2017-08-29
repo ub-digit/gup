@@ -16,9 +16,16 @@
     {{#if publication.sourcetitle}}
       <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
       <dd>
-        {{publication.sourcetitle}}
+        {{publication.sourcetitle}},
+        {{#if publication.sourcevolume}}
+          {{publication.sourcevolume}}
+        {{/if}}
+        {{#if publication.sourceissue}}
+         ({{publication.sourceissue}}),
+        {{/if}}
+
         {{#if publication.sourcepages}}
-          <strong>|</strong> {{publication.sourcepages}}
+          ({{publication.sourcepages}})
         {{/if}}
       </dd>
     {{/if}}

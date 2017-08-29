@@ -13,18 +13,22 @@
     {{/if}}
 
     {{#if publication.sourcetitle}}
-      <dt>{{t 'components.publicationDisplay.publishedInLabel'}} </dt>
+      <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
       <dd>
-        {{publication.sourcetitle}}
-        {{#if publication.sourcepages}}
-          <strong>|</strong> {{publication.sourcepages}}
+        {{publication.sourcetitle}},
+        {{#if publication.sourcevolume}}
+          {{publication.sourcevolume}}
+        {{/if}}
+        {{#if publication.sourceissue}}
+         ({{publication.sourceissue}}),
         {{/if}}
 
         {{#if publication.sourcepages}}
-          {{publication.sourcepages}}
+          ({{publication.sourcepages}})
         {{/if}}
       </dd>
     {{/if}}
+
 
 
     {{#if allFieldObjects.artwork_type}}
@@ -85,6 +89,7 @@
         {{publication-field-preview fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
       {{/if}}
     {{/if}}
+
 
     {{#if allFieldObjects.publanguage}}
       {{#if publication.publanguage}}
