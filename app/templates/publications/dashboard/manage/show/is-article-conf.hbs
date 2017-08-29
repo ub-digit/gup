@@ -16,21 +16,16 @@
     {{#if publication.sourcetitle}}
       <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
       <dd>
-        {{publication.sourcetitle}}
+        {{publication.sourcetitle}},
         {{#if publication.sourcevolume}}
-          <strong>|</strong> {{publication.sourcevolume}}
-          {{#if publications.sourceissue}}
-           ({{publications.sourceissue}})
-          {{/if}}
-          {{#if publication.sourcevolume }}
-            {{#if publication.sourcepages}}
-            <strong>|</strong> ({{publication.sourcepages}})
-            {{/if}}
-          {{else}}
-            {{#if publication.sourcepages}}
-              {{publication.sourcepages}}
-            {{/if}}
-          {{/if}}
+          {{publication.sourcevolume}}
+        {{/if}}
+        {{#if publication.sourceissue}}
+         ({{publication.sourceissue}}),
+        {{/if}}
+
+        {{#if publication.sourcepages}}
+          ({{publication.sourcepages}})
         {{/if}}
       </dd>
     {{/if}}
@@ -101,6 +96,10 @@
       {{/if}}
     {{/if}}
 
+    {{#if allFieldObjects.publanguage}}
+        {{publication-field-preview fieldLabel=allFieldObjects.publanguage.label fieldValue=publication.publanguage_label}}
+    {{/if}}
+
     {{#if allFieldObjects.pub_notes}}
       {{#if publication.pub_notes}}
         {{publication-field-preview fieldLabel=allFieldObjects.pub_notes.label fieldValue=publication.pub_notes}}
@@ -113,6 +112,8 @@
     {{#if publication.publication_identifiers}}
       {{publication-field-preview fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='identifier'}}
     {{/if}}
+
+
 
 
 
