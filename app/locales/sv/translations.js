@@ -138,6 +138,9 @@ export default {
       suggestedDepartments: {
         label: 'Förslag på instutitioner'
       },
+      invalidSelectedDepartments: {
+        label: 'Ej längre valbara',
+      },
       selectInstitutions: {
         label: 'Välj institutioner',
         placeholder: 'Välj institutioner',

@@ -138,6 +138,9 @@ export default {
       suggestedDepartments: {
         label: 'Suggested departments'
       },
+      invalidSelectedDepartments: {
+        label: 'No longer selectable'
+      },
       selectInstitutions: {
         label: 'Select departments',
         placeholder: 'Select departments',

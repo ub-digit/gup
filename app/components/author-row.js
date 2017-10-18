@@ -32,7 +32,7 @@ export default Ember.Component.extend({
   }),
 
 
-  init : function() {
+  init: function() {
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise
     this.set('createAuthor', (item) => {
@@ -54,6 +54,9 @@ export default Ember.Component.extend({
       });
     });
 
+    //TODO: Forgotten how to Ember, is this correct or should be property on object sent to extend??
+    this.set('invalidSelectedDepartments', Ember.A([]));
+
     this.get('submitCallbacks').addObject(() => {
       if(this.get('isUnsaved')) {
         //TODO: user should be promted here!!
@@ -69,16 +72,57 @@ export default Ember.Component.extend({
   },
   // Helper
   // Could be generalized, with dynamic prop and made global helper
-  getDepartmentIds : function(departments) {
+  getDepartmentIds: function(departments) {
     return departments.reduce(function(result, department) {
       result[department.id] = department.id; //TODO: or null?
       return result;
     }, []);
   },
 
-  departmentIds : Ember.computed('institutions.[]', function() {
+  departmentIds: Ember.computed('institutions.[]', function() {
     //TODO: or this.get(?
     return this.getDepartmentIds(this.get('institutions'));
+  }),
+
+  departmentsChanged: Ember.observer('institutions.[]', function() {
+    // First check if there are any department values to possibly restore
+    if(Ember.isPresent(this.get('invalidSelectedDepartments'))) {
+      // Restore all departments no longer invalid
+      let invalid_selected_departments = this.get('invalidSelectedDepartments').filter((department) => {
+        let restored_department = this.get('institutions').findBy('id', department.id);
+        if(restored_department) {
+          this.get('item.selectedInstitution').pushObject(restored_department);
+          return false;
+        }
+        return true;
+      });
+      if(invalid_selected_departments.length < this.get('invalidSelectedDepartments').length) {
+        this.set('invalidSelectedDepartments', invalid_selected_departments);
+      }
+    }
+
+    // Are any of the selected institutions no longer within the selectable institutions
+    let department_ids = this.get('departmentIds');
+    let removed_departments = [];
+    let valid_selected_departments = this.get('item.selectedInstitution').filter((department) => {
+      if(department_ids[department.id] === undefined) {
+        removed_departments.push(department);
+        return false;
+      }
+      return true;
+    });
+    this.set('item.selectedInstitution', valid_selected_departments);
+
+    removed_departments.forEach((department) => {
+      let active_years = "";
+      if(department.start_year || department.end_year) {
+        active_years =
+          " (" + (department.start_year || '?') + " - " + (department.end_year || "")  + ")";
+      }
+      // Create peudo department objects since we loose reference to "real" department object
+      // if removed for selectable department we can later retrieve the department by id if appears again
+      this.get('invalidSelectedDepartments').pushObject({id: department.id, info: department.name + active_years});
+    });
   }),
 
   validDepartmentSuggestions: Ember.computed('item.selectedAuthor', 'departmentIds', function() {
@@ -148,6 +192,9 @@ export default Ember.Component.extend({
   }.observes('item.transformedToNewAuthor'),
   */
   actions: {
+    authorInstitutionsChanged: function(institutions) {
+      this.set('item.selectedInstitution', institutions);
+    },
     setMsgHeader: function(type, msg) {
       this.sendAction('setMsgHeader', type, msg);
     },

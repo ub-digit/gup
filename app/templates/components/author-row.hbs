@@ -124,17 +124,32 @@
                   </div>
                 </div>
                 <label>{{t 'components.authorRow.selectInstitutions.label'}}</label>
-                {{select2-adjusted-sortable
-                  content=institutions
-                  optionLabelPath="name"
-                  value=item.selectedInstitution
+                {{#power-select-multiple
+                  options=institutions
+                  selected=item.selectedInstitution
                   placeholder=(t 'components.authorRow.selectInstitutions.placeholder')
                   allowClear=true
-                  multiple=true
-                  id=item.id
+                  onchange=(action "authorInstitutionsChanged")
+                  searchField="name" as |institution|
                 }}
+                  {{institution.name}}
+                {{/power-select-multiple}}
               </div>
             </div>
+            {{#if invalidSelectedDepartments}}
+            <div class="row">
+              <div class="col-xs-7 col-xs-offset-5">
+                <label>{{t 'components.authorRow.invalidSelectedDepartments.label'}}</label>
+                  <div class="alert alert-danger">
+                    <ul class="list-unstyled">
+                      {{#each invalidSelectedDepartments as |department|}}
+                        <li>{{ department.info }}</li>
+                      {{/each}}
+                    </ul>
+                  </div>
+              </div>
+            </div>
+            {{/if}}
             {{#if nonSelectedValidDepartmentSuggestions}}
             <div class="row">
               <div class="col-xs-7 col-xs-offset-5">
