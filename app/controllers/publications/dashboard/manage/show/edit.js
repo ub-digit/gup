@@ -14,6 +14,8 @@ export default Ember.Controller.extend({
   selectPublicationVisible: true,
   refValueBool: false,
   categoryObjectsList: Ember.A([]),
+  hasInvalidSelectedDepartmentItems: false,
+  isShowingInvalidSelectedDepartmentsConfirmation: false,
 
   createNewPublicationLink: function() {
     return Ember.Object.create({
@@ -81,7 +83,6 @@ export default Ember.Controller.extend({
         }
       });
     }
-
     // Remove objects which are no longer part of category list
     this.get('categoryObjectsList').forEach((item) => {
       if (this.get('publication.category_hsv_local').indexOf(item.id) === -1) {
@@ -90,9 +91,7 @@ export default Ember.Controller.extend({
     });
   }),
 
-
   publicationYearDepartments: Ember.computed('publication.pubyear', 'institutions', function() {
-    
     this.get("institutions").forEach((item) => {
       item.children = null;
     });
@@ -117,7 +116,6 @@ export default Ember.Controller.extend({
         department.end_year >= publicationYear
       );
     });
-   
   }),
   getPublicationTypeObject: Ember.computed('selectedPublicationType', 'publicationTypes', function() {
     let fullObjectPubtype = this.get('publicationTypes').findBy('code', this.get('selectedPublicationType'));
@@ -283,5 +281,33 @@ export default Ember.Controller.extend({
     countContent: function() {
       return false;
     },
+
+    invalidSelectedDepartmentItemsChanged: function(items) {
+      this.set('hasInvalidSelectedDepartmentItems', Ember.isPresent(items));
+    },
+
+    saveDraft: function() {
+      this.send('savePublication', true);
+    },
+    savePublish: function() {
+      this.send('savePublication', false);
+    },
+
+    maybeSave: function(saveAction) {
+      if(this.get('hasInvalidSelectedDepartmentItems')) {
+        this.set('saveAction', saveAction);
+        this.set('isShowingInvalidSelectedDepartmentsConfirmation', true);
+      }
+      else {
+        this.set('isShowingInvalidSelectedDepartmentsConfirmation', false);
+        saveAction();
+      }
+    },
+    maybeSaveAction: function() {
+      this.get('saveAction')();
+      // TODO: Not needed right now, refactor confirmation-modal not to set this internally since bad ember practice
+      // and uncomment this line?
+      //this.set('isShowingInvalidSelectedDepartmentsConfirmation', false);
+    }
   }
 });

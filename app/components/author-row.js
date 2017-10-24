@@ -85,20 +85,21 @@ export default Ember.Component.extend({
   }),
 
   departmentsChanged: Ember.observer('institutions.[]', function() {
-    // First check if there are any department values to possibly restore
-    if(Ember.isPresent(this.get('invalidSelectedDepartments'))) {
-      // Restore all departments no longer invalid
-      let invalid_selected_departments = this.get('invalidSelectedDepartments').filter((department) => {
-        let restored_department = this.get('institutions').findBy('id', department.id);
-        if(restored_department) {
-          this.get('item.selectedInstitution').pushObject(restored_department);
-          return false;
-        }
-        return true;
-      });
-      if(invalid_selected_departments.length < this.get('invalidSelectedDepartments').length) {
-        this.set('invalidSelectedDepartments', invalid_selected_departments);
+    // Restore all departments no longer invalid
+    let invalid_selected_departments_was_present = Ember.isPresent(this.get('invalidSelectedDepartments'));
+    let restored_departments = [];
+    let invalid_selected_departments = this.get('invalidSelectedDepartments').filter((department) => {
+      let restored_department = this.get('institutions').findBy('id', department.id);
+      if(restored_department) {
+        restored_departments.push(restored_department);
+        return false;
       }
+      return true;
+    });
+
+    if(Ember.isPresent(restored_departments)) {
+      this.get('item.selectedInstitution').pushObjects(restored_departments);
+      this.set('invalidSelectedDepartments', invalid_selected_departments);
     }
 
     // Are any of the selected institutions no longer within the selectable institutions
@@ -123,6 +124,21 @@ export default Ember.Component.extend({
       // if removed for selectable department we can later retrieve the department by id if appears again
       this.get('invalidSelectedDepartments').pushObject({id: department.id, info: department.name + active_years});
     });
+
+    let invalid_selected_deparments_is_present = Ember.isPresent(this.get('invalidSelectedDepartments'));
+    if(invalid_selected_departments_was_present) {
+      if(!invalid_selected_deparments_is_present) {
+        this.get('onInvalidSelectedDepartmentsEmpty')();
+      }
+    }
+    else if(invalid_selected_deparments_is_present) {
+      this.get('onInvalidSelectedDepartmentsPresent')();
+    }
+    /*
+    if(Ember.isPresent(restored_departments) || Ember.isPresent(removed_departments)) {
+      this.get('invalidSelectedDepartmentsChanged')(this.get('invalidSelectedDepartments'));
+    }
+    */
   }),
 
   validDepartmentSuggestions: Ember.computed('item.selectedAuthor', 'departmentIds', function() {

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
-  newAuthorStub : function () {
+  newAuthorStub: function () {
     // Create closure so that this will be re-eveluated on every call.
     // If we did not do this, generation of unique id would fail plus we
     // really need a fresh object or we keep overwriting the same one
@@ -20,6 +20,8 @@ export default Ember.Component.extend({
       })
     });
   },
+  invalidSelectedDepartmentItems: Ember.A([]),
+
   init: function() {
     this._super(...arguments);
     if (this.get('authorArr').length === 0) {
@@ -38,8 +40,7 @@ export default Ember.Component.extend({
     //TODO: double check, array length javscript weirdness etc
     return this.get('authorArr').length;
   }),
-  
-  
+
   // Translates author header differently depending on publication type
   authorHeaderText: Ember.computed('selectedPublicationType', function(){
     var translation = this.get('i18n').t('components.authorBlock.authorHeaderTextStrong.' + this.get('selectedPublicationType.code')).toString();
@@ -61,6 +62,10 @@ export default Ember.Component.extend({
 
   isThisTheOnlyAuthorRow: Ember.computed('authorArr.[]', function() {
     return this.get('authorArr').length === 1;
+  }),
+
+  invalidSelectedDepartmentsRowsCount: Ember.computed('invalidSelectedDepartmentItems.[]', function() {
+    return this.get('invalidSelectedDepartmentItems.length');
   }),
 
   actions: {
@@ -105,13 +110,26 @@ export default Ember.Component.extend({
       this.get('authorArr').addObject(this.newAuthorStub());
     },
     removeAuthorRow: function(id) {
-      this.get('authorArr').removeObject(this.get('authorArr').findBy('id', id));
+      let item = this.get('authorArr').findBy('id', id);
+      this.get('authorArr').removeObject(item);
+      // This case easy to miss, better/safer way to handle? Observer on remove only?
+      this.get('invalidSelectedDepartmentItems').removeObject(item);
     },
     queryAuthorsResult: function(result) {
       let selected_authors_ids = this.get('authorArr').mapBy('selectedAuthor.id').compact();
       return result.filter(function(item) {
         return selected_authors_ids.indexOf(item.id) === -1;
       });
+    },
+    invalidSelectedDepartmentsPresent: function(item) {
+      this.get('invalidSelectedDepartmentItems').addObject(item);
+      this.get('invalidSelectedDepartmentItemsChanged')(this.get('invalidSelectedDepartmentItems'));
+      //this.sendAction('invalidSelectedDepartmentItemsChanged', this.get('invalidSelectedDepartmentItems'));
+    },
+    invalidSelectedDepartmentsEmpty: function(item) {
+      this.get('invalidSelectedDepartmentItems').removeObject(item);
+      this.get('invalidSelectedDepartmentItemsChanged')(this.get('invalidSelectedDepartmentItems'));
+      //this.sendAction('invalidSelectedDepartmentItemsChanged', this.get('invalidSelectedDepartmentItems'));
     }
   }
 });

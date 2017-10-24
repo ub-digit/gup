@@ -13,6 +13,9 @@
   {{#if fieldHelptext}}
     <span id={{GUID}} class="help-block">{{linkify (t fieldHelptext)}}</span>
   {{/if}}
+  {{#if invalidSelectedDepartmentsRowsCount}}
+  <div class="alert alert-warning">{{t 'components.authorBlock.invalidSelectedInstitutionsWarning' count=invalidSelectedDepartmentsRowsCount}}</div>
+  {{/if}}
   {{#each authorArr as |item index|}}
     {{author-row
         item=item
@@ -26,6 +29,8 @@
         moveDown=(action 'moveDown')
         queryAuthorsResult=(action 'queryAuthorsResult')
         submitCallbacks=submitCallbacks
+        onInvalidSelectedDepartmentsEmpty=(action 'invalidSelectedDepartmentsEmpty' item)
+        onInvalidSelectedDepartmentsPresent=(action 'invalidSelectedDepartmentsPresent' item)
     }}
   {{/each}}
   <div class="row">
