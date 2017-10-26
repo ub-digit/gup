@@ -4,14 +4,22 @@
   </div>
 </div>
 {{#if actionButtonsAreVisible}}
+  {{#confirmation-modal
+    isShowing=isShowingInvalidSelectedDepartmentsConfirmation
+    confirmText=(t 'publications.dashboard.manage.show.edit.invalidSelectedInstitutionsWarningConfirm')
+    cancelText=(t 'publications.dashboard.manage.show.edit.invalidSelectedInstitutionsWarningCancel')
+    didConfirm=(action 'maybeSaveAction')
+  }}
+    {{ t 'publications.dashboard.manage.show.edit.invalidSelectedInstitutionsWarning' }}
+  {{/confirmation-modal}}
   <div class="row">
     <div class="col-xs-12">
       <div class="pull-right">
         <button type="button" class='btn btn-link' {{action 'cancelEdit'}}>{{t 'publications.dashboard.manage.show.edit.btnCancel'}}</button>
         {{#unless publication.published_at}}
-          <button type="button" class='btn btn-primary' {{action 'saveDraft' model}}>{{t 'publications.dashboard.manage.show.edit.btnSaveDraft'}}</button>
+          <button type="button" class='btn btn-primary' {{action 'maybeSave' (action 'saveDraft')}}>{{t 'publications.dashboard.manage.show.edit.btnSaveDraft'}}</button>
         {{/unless}}
-        <button type="button" class='btn btn-success' {{action 'savePublish' publication}}>{{t 'publications.dashboard.manage.show.edit.btnSaveAndPublish'}}</button>
+        <button type="button" class='btn btn-success' {{action 'maybeSave' (action 'savePublish')}}>{{t 'publications.dashboard.manage.show.edit.btnSaveAndPublish'}}</button>
       </div>
     </div>
   </div>

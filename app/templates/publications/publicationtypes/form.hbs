@@ -55,7 +55,7 @@
 
   {{#if authorComponentIsVisible}}
     <span class="form-group {{if errors.author 'has-error'}}">
-      {{author-block errors=errors.authors  fieldHelptext="publications.publicationtypes.form.help.authors.helptext" authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+      {{author-block errors=errors.authors fieldHelptext="publications.publicationtypes.form.help.authors.helptext" invalidSelectedDepartmentItemsChanged=(action "invalidSelectedDepartmentItemsChanged") authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
     </span>
   {{/if}}
 
@@ -64,7 +64,7 @@
 {{#field-group}}
   <!-- Dissertaion fields -->
 
-  <div id="diss-date" class="row">  
+  <div id="diss-date" class="row">
     <div class="col-md-9">
       <span class="form-group {{if errors.dissdate 'has-error'}}">
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="dissdate" type="date" errors=errors.dissdate value=publication.dissdate}}

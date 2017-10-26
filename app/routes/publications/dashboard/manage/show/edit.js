@@ -232,12 +232,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         });
       });
       this.send('pageIsDisabled', savePublication);
-    },
-    saveDraft: function() {
-      this.send('savePublication', true);
-    },
-    savePublish: function() {
-      this.send('savePublication', false);
     }
   }
 });
