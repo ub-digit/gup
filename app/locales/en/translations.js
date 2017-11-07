@@ -31,8 +31,8 @@ export default {
     authorBlock: {
       btnAddNewAuthor: 'Add new author',
       invalidSelectedInstitutionsWarning: {
-        'one': '<strong>{{count}}</strong> author has departments no longer selectable since publication year has been changed. A previously selected department will be restored if the publication year is altered making it selectable again.',
-        'other': '<strong>{{count}}</strong> authors has departments no longer selectable since publication year has been changed. A previously selected department will be restored if the publication year is altered making it selectable again.',
+        'one': 'One or more authors have departments no longer selectable since publication year has been changed.',
+        'other': 'One or more authors have departments no longer selectable since publication year has been changed.',
       },
       mandatory: '(mandatory)',
       authorHeaderTextStrong: {
@@ -143,7 +143,7 @@ export default {
         label: 'Suggested departments'
       },
       invalidSelectedDepartments: {
-        label: 'No longer selectable'
+        label: 'Departments no longer selectable this year'
       },
       selectInstitutions: {
         label: 'Select departments',
@@ -283,7 +283,7 @@ export default {
             publishError: 'The record could not be published.',
             systemError: 'A system error has occured',
             approveSuccess: 'Record approved.',
-            invalidSelectedInstitutionsWarning: 'One or more authors have removed instututions not selectable for the current publication year. Do you want to save anyway?',
+            invalidSelectedInstitutionsWarning: 'Authors\' departments have been changed. Do you want to save anyway?',
             invalidSelectedInstitutionsWarningConfirm: 'Save',
             invalidSelectedInstitutionsWarningCancel: 'Continue editing'
           },
