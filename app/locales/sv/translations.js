@@ -30,7 +30,7 @@ export default {
     },
     authorBlock: {
       btnAddNewAuthor: 'Lägg till författare',
-      invalidSelectedInstitutionsWarning: '<strong>{{count}}</strong> författare har instutitioner som inte längre ar valbara på grund av att publikationsår har ändrats. En tidigare vald instutition kommer återställas för aktuell författare om pulikationsår ändras så den åter igen blir valbar.',
+      invalidSelectedInstitutionsWarning: 'En eller flera författare har institutioner som inte längre är valbara på grund av att publikationsår har ändrats. ',
       mandatory: '(obligatoriskt)',
       authorHeaderTextStrong: {
         'default': 'Författare',
@@ -140,7 +140,7 @@ export default {
         label: 'Förslag på instutitioner'
       },
       invalidSelectedDepartments: {
-        label: 'Ej längre valbara',
+        label: 'Institutioner ej längre valbara detta år',
       },
       selectInstitutions: {
         label: 'Välj institutioner',
@@ -182,6 +182,7 @@ export default {
     password: 'Lösenord',
     passwordPlaceholder: 'Lösenord',
     loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
+    extraLoginMessage: ''
   },
   mainMenu: {
     applicationName: 'GUP',
@@ -284,7 +285,7 @@ export default {
             publishError: 'Posten kunde inte publiceras.',
             systemError: 'Ett systemfel har inträffat',
             approveSuccess: 'Posten har godkänts.',
-            invalidSelectedInstitutionsWarning: 'En eller flera författare har borttagna institutioner ej valbara for aktuellt publikationsår. Vill du spara ändå?',
+            invalidSelectedInstitutionsWarning: 'Institutionen för en eller flera författare har ändrats. Vill du spara ändå?',
             invalidSelectedInstitutionsWarningConfirm: 'Spara',
             invalidSelectedInstitutionsWarningCancel: 'Återgå'
           },
