@@ -182,6 +182,7 @@ export default {
     password: 'Lösenord',
     passwordPlaceholder: 'Lösenord',
     loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
+    extraLoginMessage: ''
   },
   mainMenu: {
     applicationName: 'GUP',

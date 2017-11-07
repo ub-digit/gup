@@ -181,6 +181,7 @@ export default {
     password: 'Password',
     passwordPlaceholder: 'Password',
     loginError: "Wrong x-account or password. Please try again.",
+    extraLoginMessage: ''
   },
   mainMenu: {
     applicationName: 'GUP',
