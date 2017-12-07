@@ -6,19 +6,19 @@
 
     </div>
     <div class="col-xs-12">
-      {{#if showExtraData}}
-        <p>
-          {{#if item.pubyear}}
-            <div><strong>{{t 'components.publicationListRow.publicationYear'}}:</strong> {{item.pubyear}}</div>
-          {{/if}}
-          {{#if item.sourcetitle}}
-            <div><strong>{{t 'components.publicationListRow.publishedInLabel'}}:</strong> {{item.sourcetitle}}</div>
-          {{/if}}
-          {{#if item.authors}}
+      <p>
+        {{#if showExtraData}}
+            {{#if item.pubyear}}
+              <div><strong>{{t 'components.publicationListRow.publicationYear'}}:</strong> {{item.pubyear}}</div>
+            {{/if}}
+            {{#if item.sourcetitle}}
+              <div><strong>{{t 'components.publicationListRow.publishedInLabel'}}:</strong> {{item.sourcetitle}}</div>
+            {{/if}}
+        {{/if}}
+        {{#if item.authors}}
             <div><strong>{{t 'components.publicationListRow.authorLabel'}}:</strong> {{#if item.authors}} {{format-authors item.authors}}{{/if}}</div>
-          {{/if}}
-        </p>
-      {{/if}}
+        {{/if}}
+      </p>
       {{#if showMetaData}}
       <table class="table">
         <tr>
