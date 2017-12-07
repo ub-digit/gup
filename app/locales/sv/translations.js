@@ -107,6 +107,8 @@ export default {
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',
+      publishedInLabel: 'Publicerad i',
+      authorLabel: 'Författare',
       publicationID: "Publikationens id",
       publicationType: "Publikationstyp",
       publicationYear: "Publikationsår",
