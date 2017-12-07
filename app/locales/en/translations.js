@@ -110,6 +110,8 @@ export default {
     },
     publicationListRow: {
       noTitle: '-- Missing title --',
+      publishedInLabel: 'Published in',
+      authorLabel: 'Authors',
       publicationID: "Publication ID",
       publicationType: "Publication type",
       publicationYear: "Publication year",
