@@ -12,14 +12,25 @@
               <div><strong>{{t 'components.publicationListRow.publicationYear'}}:</strong> {{item.pubyear}}</div>
             {{/if}}
             {{#if item.sourcetitle}}
-              <div><strong>{{t 'components.publicationListRow.publishedInLabel'}}:</strong> {{item.sourcetitle}}</div>
+              <div><strong>{{t 'components.publicationListRow.publishedInLabel'}}:</strong> {{item.sourcetitle}}
+                {{item.sourcetitle}},
+                {{#if item.sourcevolume}}
+                  {{item.sourcevolume}}
+                {{/if}}
+                {{#if item.sourceissue}}
+                 ({{item.sourceissue}}),
+                {{/if}}
+                {{#if item.sourcepages}}
+                  ({{item.sourcepages}})
+                {{/if}}
+              </div>
             {{/if}}
         {{/if}}
         {{#if item.authors}}
             <div><strong>{{t 'components.publicationListRow.authorLabel'}}:</strong> {{#if item.authors}} {{format-authors item.authors}}{{/if}}</div>
         {{/if}}
       </p>
-      {{#if showMetaData}}
+      {{#if showMetaData}}  
       <table class="table">
         <tr>
           <th>{{t 'components.publicationListRow.publicationID'}}:</th><td>{{item.id}}</td>
