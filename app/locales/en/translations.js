@@ -87,7 +87,7 @@ export default {
       successMessage: 'Message sent.',
     },
     reviewItem: {
-      reviewDetailsHeader: 'Review and appprove your publication:',
+      reviewDetailsHeader: 'Review and approve your publication:',
       lastReview: 'Approved:',
       comment: 'Comment:',
       publicationType: 'Publication type:',
@@ -135,7 +135,7 @@ export default {
         placeholder: 'Select author name',
         typeaheadSearchingText: 'Searching',
         typeaheadNoMatchesText: 'No matching names found',
-        didNotFindPersonText: 'If you did not find the correct name, please create a new one.',
+        didNotFindPersonText: 'Cannot find the author?',
         formatInputTooShortText: 'Enter at least 3 characters',
         btnCreateNew: 'Create new',
       },
@@ -216,11 +216,11 @@ export default {
     sortByTitleLabel: 'Title',
     sortByPubTypeLabel: 'Publication type',
     sortByFirstAuthorLabel: 'Author name',
-    startYearLabel: 'Startyear',
-    endYearLabel: 'Endyear',
-    onlyRefLabel: 'Only referee',
+    startYearLabel: 'Start year',
+    endYearLabel: 'End year',
+    onlyRefLabel: 'Only peer reviewed publications',
     searchAuthorLabel: 'Search author',
-    searchDepartmentLabel: 'Search institution'
+    searchDepartmentLabel: 'Search department'
   },
 
   publications: {
@@ -232,8 +232,8 @@ export default {
         select_criteria: "Select criteria",
         export_csv: "Export to Excel",
         year: "Year",
-        start_year: "Startyear e.g. 1999",
-        end_year: "Endyear e.g. 2014",
+        start_year: "Start year e.g. 2004",
+        end_year: "End year e.g. 2014",
         include_as_column: "Column",
         faculty: "Faculty",
         select_faculty: "Select faculty",
@@ -253,7 +253,7 @@ export default {
           published: 'My publications',
           drafts: 'My drafts',
           search: 'Search',
-          file_import: 'Uploaded lists',
+          file_import: 'Import from reference lists',
         },
         _actions: {
           registerNew: 'New entry',
@@ -307,8 +307,8 @@ export default {
               checkFile: 'Check your uploaded file',
               enterEmbargoDate: 'Enter an embargo date',
               showAfter: 'Display file only after',
-              approveAgreement: 'I approve the agreement', //Approve of? Confirm?
-              readAgreement: 'Read agreement (new window)',
+              approveAgreement: 'I accept the agreement for electronic publishing.', //Approve of? Confirm?
+              readAgreement: 'Read the agreement (new window)',
 
               edit: 'Edit',
               delete: 'Delete',
@@ -353,7 +353,7 @@ export default {
           noPublicationsFound: 'No publications found'
         },
         fileImports: {
-          youHaveNoUploadedList: 'You have no uploaded lists',
+          youHaveNoUploadedList: 'You have no uploaded reference lists. Start by uploading a file.',
           title: 'Uploaded list',
           filenameHeader: 'Filnamne',
           importedDateHeader: 'Imported',
@@ -450,7 +450,7 @@ export default {
     publicationtypes: {
       selector: {
         selectorHeading: "Select publication type",
-        btnCancel: 'Cancle',
+        btnCancel: 'Cancel',
         publicationtype: {
           all: 'All',
           articles: 'Articles',
@@ -462,7 +462,7 @@ export default {
       },
       form: {
         publicationType: 'Publication type',
-        refereeLable: 'Peer reviewed',
+        refereeLable: 'peer reviewed',
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
