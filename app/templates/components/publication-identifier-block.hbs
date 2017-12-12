@@ -28,7 +28,7 @@
       <tr>
         <td>
         {{#x-select value=identifierCode class="form-control"}}
-          {{#x-option}}Välj typ{{/x-option}}
+          {{#x-option}}{{t 'components.publicationIdentifierBlock.prompt'}}{{/x-option}}
           {{#each publicationIdentifierCodes as |identifier|}}
             {{#x-option value=identifier.code}}{{identifier.label}}{{/x-option}}
           {{/each}}
