@@ -22,6 +22,7 @@ export default {
       unknownError: 'Something went wrong'
     },
     publicationIdentifierBlock: {
+      prompt: 'Choose type',
       label: 'Identifier',
       code: 'Type',
       value: 'Value',
@@ -104,6 +105,7 @@ export default {
     publicationtypeItem: {
     },
     fieldComponent: {
+      mandatory: '(mandatory)',
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
       aheadCheckbox: 'Mark if publication is Epub ahead of print',
