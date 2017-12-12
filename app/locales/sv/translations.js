@@ -22,6 +22,7 @@ export default {
       unknownError: 'Något gick fel'
     },
     publicationIdentifierBlock: {
+      prompt: 'Välj typ',
       label: 'Identifikatorer',
       code: 'Typ',
       value: 'Värde',
@@ -101,6 +102,7 @@ export default {
     publicationtypeItem: {
     },
     fieldComponent: {
+      mandatory: '(obligatoriskt)',
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
       aheadCheckbox: 'Ange om publikationen är en Epub ahead of print',
