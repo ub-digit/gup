@@ -134,9 +134,9 @@ export default {
         placeholder: 'Välj författare',
         typeaheadSearchingText: 'Söker författare',
         typeaheadNoMatchesText: 'Hittade inga författare',
-        didNotFindPersonText: 'Hittar du inte den du söker?',
+        didNotFindPersonText: 'Finns inte författaren?',
         formatInputTooShortText: 'Ange minst 3 tecken',
-        btnCreateNew: 'Skapa ny',
+        btnCreateNew: 'Skapa en ny',
       },
       suggestedDepartments: {
         label: 'Förslag på instutitioner'
@@ -256,7 +256,7 @@ export default {
           published: 'Mina publikationer',
           drafts: 'Mina utkast',
           search: 'Sök',
-          file_import: 'Uppladdade listor',
+          file_import: 'Importera från referenslistor',
         },
         _actions: {
           registerNew: 'Registrera ny',
@@ -308,10 +308,10 @@ export default {
               permalink: 'Länka till publikationen',
               attachFile: 'Bifoga fil',
               checkFile: 'Kontrollera fil',
-              enterEmbargoDate: 'Ange embargo',
+              enterEmbargoDate: 'Ange embargotid',
               showAfter: 'Visa offentligt först efter',
-              approveAgreement: 'Jag godkänner avtalet',
-              readAgreement: 'läs avtalet (nytt fönster)',
+              approveAgreement: 'Jag har läst avtalet för elektronisk publicering och godkänner det.',
+              readAgreement: 'Läs avtalet (nytt fönster)',
 
               edit: 'Redigera',
               delete: 'Radera',
@@ -356,7 +356,7 @@ export default {
           noPublicationsFound: 'Inga publikationer hittades'
         },
         fileImports: {
-          youHaveNoUploadedList: 'Du har inga uppladdade listor',
+          youHaveNoUploadedList: 'Du har inga uppladdade referenslistor. Börja med att ladda upp en fil.',
           title: 'Uppladdade listor',
           filenameHeader: 'Filnamn',
           importedDateHeader: 'Importerad', //TODO: should be created/uploaded?
@@ -465,7 +465,7 @@ export default {
       },
       form: {
         publicationType: 'Publikationstyp',
-        refereeLable: 'Refereegranskad',
+        refereeLable: 'refereegranskad',
         changePublicationTypeLink: 'Byt',
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
