@@ -12,6 +12,11 @@ export default Ember.Component.extend({
     return this.get('item.ref_value') === 'ISREF';
   }),
 
+  getLowercaseRefValue: Ember.computed('item.ref_value_label', function() {
+    return this.get('item.ref_value_label').toLowerCase();
+  }),
+
+
   bibliographicInfoString: Ember.computed('item.publication_type', function() {
     var i = this.get('item');
     var a = [];
