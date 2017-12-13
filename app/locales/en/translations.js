@@ -461,7 +461,7 @@ export default {
           books: 'Books, chapters and reports',
           conference: 'Conference contributions',
           artworks: 'Artistic works',
-          other: 'Other',
+          other: 'Miscellaneous',
         },
       },
       form: {
@@ -478,6 +478,9 @@ export default {
           },
           category_hsv_local: {
             helptext: 'Please add at least one subject category. For more information please see:  http://www.ub.gu.se/publicera/',
+          },
+          project: {
+            helptext: 'Please add the project name if this publication is part of an EU-funded research project.'
           },
           pub_notes: {
             helptext: 'Here you can add information that does not fit into one of the other fields. Please notice that this information will be publicly displayed.',

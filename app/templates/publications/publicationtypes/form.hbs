@@ -282,7 +282,7 @@
   <div class="row">
     <div class="col-md-9">
       <span class="form-group {{if errors.project 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" type="multiselect"  errors=errors.project selectValues=projects value=selectedProjects}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="project" fieldHelptext="publications.publicationtypes.form.help.project.helptext" type="multiselect"  errors=errors.project selectValues=projects value=selectedProjects}}
       </span>
     </div>
   </div>
