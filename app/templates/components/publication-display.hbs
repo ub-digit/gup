@@ -349,7 +349,7 @@
     </table>
   {{else if isPreviewMode}}
       <div class="publication-display-top-meta lead">
-      {{publication.publication_type_label}} {{#if isRef}}, {{publication.ref_value_label}}{{/if}}
+      {{publication.publication_type_label}}{{#if isRef}}, {{getLowercaseRefValue}}{{/if}}
       </div>
       {{#if publication.epub_ahead_of_print}}
         <div class="alert alert-warning">

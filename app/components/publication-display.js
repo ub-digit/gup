@@ -13,6 +13,10 @@ export default Ember.Component.extend({
     return publicationType.code;
   },
 
+  getLowercaseRefValue: Ember.computed('publication.ref_value_label', function() {
+    return this.get('publication.ref_value_label').toLowerCase();
+  }),
+
   getBaseUrlForIdentifier: Ember.computed('publication.publication_identifiers', function() {
     //@ TODO: ??:
     /*

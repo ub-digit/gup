@@ -480,6 +480,9 @@ export default {
           category_hsv_local: {
             helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
           },
+          project: {
+            helptext: 'Om publikationen är en del av ett forskningsprojekt som finansieras av EU skriver du in projektnamnet här.'
+          },
           pub_notes: {
             helptext: 'Här skriver du endast in information som inte passar i något annat fält. Observera att denna text är synlig för de som söker fram publikationen.'
           },
