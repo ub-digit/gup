@@ -121,7 +121,7 @@
                       </ul>
                     {{/if}}
                   </td>
-                  <td>
+                  <td class="publication-link">
                     {{#if (not record.publication_id)}}
                       <button {{action "importEndNoteRecord" record}} type="button" class="btn btn-link">
                         {{t 'publications.dashboard.manage.fileImports.importRecord'}}
