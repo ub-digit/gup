@@ -127,7 +127,7 @@
                         {{t 'publications.dashboard.manage.fileImports.importRecord'}}
                       </button>
                     {{else}}
-                      {{t (concat 'publications.dashboard.manage.fileImports.processState.' record.process_state)}}
+                      {{#link-to 'publications.dashboard.manage.show' record.publication_id}}{{t (concat 'publications.dashboard.manage.fileImports.processState.' record.process_state)}}{{/link-to}}
                     {{/if}}
                   </td>
                 {{/highlightable-element}}
