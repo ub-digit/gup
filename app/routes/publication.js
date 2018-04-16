@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  titleToken: function(model) {
+    return model.publication.title;
+  },
   model: function(params) {
     return Ember.RSVP.hash({
       publicationTypes: this.store.find('publication_type'),
