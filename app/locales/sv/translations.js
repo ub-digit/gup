@@ -203,7 +203,7 @@ export default {
     idMissing: 'Ogiltigt ID'
   },
   application: {
-    title: "GUP",
+    title: "Göteborgs universitets publikationer"
   },
   msgheader: {
   },

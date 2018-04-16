@@ -7,7 +7,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service('session'),
 
   title: function(tokens) {
-    return this.get('i18n').t('application.title') + ' - ' + tokens.join(' - ');
+    return  tokens.join(' - ') + ' - ' + this.get('i18n').t('application.title');
   },
   beforeModel: function(params) {
     let lang = 'sv'; /// change to default
