@@ -202,7 +202,7 @@ export default {
     idMissing: 'Missing ID'
   },
   application: {
-    title: "GUP",
+    title: "Gothenburg university publications",
   },
   msgheader: {
   },
