@@ -33,12 +33,16 @@ export default Select2.extend({
     */
 
     var selector = '.' + this.get('cssClass');
-    Ember.$(selector).find('.select2-drop').append('<div class="select2-footer"><p>' + this.get('didNotFindWhatYouWereLookingForStr') + '</p><button id="toggleBtn" class="btn btn-primary">'+ this.get('btnText') + '</button></div>');
-    Ember.$(selector).find("#toggleBtn").bind('click', () => {
-      Ember.run(() => {
-        // Close dropdown
-        this.set('zeroResult', true);
+    var that = this;
+    Ember.run.schedule('afterRender',  () => {
+      Ember.$(selector).find('.select2-drop').append('<div class="select2-footer"><i class="fa fa-info-circle"></i> ' + that.get('didNotFindWhatYouWereLookingForStr') + ' <a href="javascript:void()" id="toggleBtn">'+ that.get('btnText') + '</a></div>');
+      Ember.$(selector).find("#toggleBtn").bind('click', () => {
+        Ember.run(() => {
+          // Close dropdown
+          this.set('zeroResult', true);
+        });
       });
     });
+
   },
 });
