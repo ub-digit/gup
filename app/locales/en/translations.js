@@ -141,7 +141,7 @@ export default {
         typeaheadNoMatchesText: 'No matching names found',
         didNotFindPersonText: 'Cannot find the author?',
         formatInputTooShortText: 'Enter at least 3 characters',
-        btnCreateNew: 'Create new',
+        btnCreateNew: 'Create new author',
       },
       suggestedDepartments: {
         label: 'Suggested departments'

@@ -33,7 +33,7 @@ export default Select2.extend({
     */
 
     var selector = '.' + this.get('cssClass');
-    Ember.$(selector).find('.select2-drop').append('<div class="select2-footer"><p>' + this.get('didNotFindWhatYouWereLookingForStr') + '</p><button id="toggleBtn" class="btn btn-primary">'+ this.get('btnText') + '</button></div>');
+    Ember.$(selector).find('.select2-drop').append('<div class="select2-footer"><i class="fa fa-info-circle"></i> ' + this.get('didNotFindWhatYouWereLookingForStr') + ' <a href="javascript:void()" id="toggleBtn">'+ this.get('btnText') + '</a></div>');
     Ember.$(selector).find("#toggleBtn").bind('click', () => {
       Ember.run(() => {
         // Close dropdown
