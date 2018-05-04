@@ -79,6 +79,10 @@ export default Ember.Component.extend({
     }, []);
   },
 
+  getCssId: Ember.computed('item', function() {
+    return "_" + this.get('item.id');
+  }),
+
   departmentIds: Ember.computed('institutions.[]', function() {
     //TODO: or this.get(?
     return this.getDepartmentIds(this.get('institutions'));
