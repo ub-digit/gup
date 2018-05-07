@@ -159,15 +159,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           let authors = this.get('controller.authorArr');
           let authorAffiliated = authors.find((author) => {
             let validInstitutions = author.get("selectedInstitution").filter((item, index) => {
-                if (item.id === 666) {
-                  return false;
-                }
-                return true;
+              return (item.id !== 666);
             });
-            if (validInstitutions.length > 0) {
-              return true;
-            }
-            return false;
+            return (validInstitutions.length > 0) 
           });
           if (!authorAffiliated) {
             let continueSave = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirm'));
