@@ -290,7 +290,8 @@ export default {
             approveSuccess: 'Record approved.',
             invalidSelectedInstitutionsWarning: 'Authors\' departments have been changed. Do you want to save anyway?',
             invalidSelectedInstitutionsWarningConfirm: 'Save',
-            invalidSelectedInstitutionsWarningCancel: 'Continue editing'
+            invalidSelectedInstitutionsWarningCancel: 'Continue editing',
+            confirm: 'No affiliation on author(s). Continue anyway?'
           },
           index: {
             errorMissingPublication: 'Missing publication',
