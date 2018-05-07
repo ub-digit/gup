@@ -291,7 +291,8 @@ export default {
             approveSuccess: 'Posten har godkänts.',
             invalidSelectedInstitutionsWarning: 'Institutionen för en eller flera författare har ändrats. Vill du spara ändå?',
             invalidSelectedInstitutionsWarningConfirm: 'Spara',
-            invalidSelectedInstitutionsWarningCancel: 'Återgå'
+            invalidSelectedInstitutionsWarningCancel: 'Återgå',
+            confirm: 'Saknar affiliering på författare. Fortsätt ändå?'
           },
           index: {
             errorMissingPublication: 'Publikationen saknas',

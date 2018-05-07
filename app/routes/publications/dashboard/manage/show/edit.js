@@ -154,6 +154,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     },
     // TODO: this should probably live in the controller?
     savePublication: function(isDraft) {
+        if (!isDraft) {
+          // check to see if trying to save a publication with no affiliations
+          let authors = this.get('controller.authorArr');
+          let authorAffiliated = authors.find((author) => {
+            let validInstitutions = author.get("selectedInstitution").filter((item, index) => {
+              return (item.id !== 666);
+            });
+            return (validInstitutions.length > 0) 
+          });
+          if (!authorAffiliated) {
+            let continueSave = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirm'));
+            if (!continueSave) {
+              return;
+            }
+          }
+        }
       //TODO: Ok solution for now, can be solved more elegantly?
       this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
         return Ember.isPresent(link.get('url'));
