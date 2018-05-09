@@ -54,8 +54,6 @@ export default Ember.Component.extend({
       });
     });
 
-
-
     //TODO: Forgotten how to Ember, is this correct or should be property on object sent to extend??
     this.set('invalidSelectedDepartments', Ember.A([]));
 
@@ -214,7 +212,6 @@ export default Ember.Component.extend({
   }.observes('item.transformedToNewAuthor'),
   */
 
-
   transformedNewAuthorTriggered: function() {
     // create new author
       this.get('item').set('newAuthorForm', Ember.Object.create({
@@ -225,7 +222,6 @@ export default Ember.Component.extend({
         orcid: ''
       }))
   }.observes('item.transformedToNewAuthor'),
-
 
   actions: {
     authorInstitutionsChanged: function(institutions) {
