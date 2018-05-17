@@ -214,7 +214,6 @@ export default Ember.Component.extend({
   }.observes('item.transformedToNewAuthor'),
   */
 
-
   transformedNewAuthorTriggered: function() {
     // create new author
       this.get('item').set('newAuthorForm', Ember.Object.create({
@@ -225,7 +224,6 @@ export default Ember.Component.extend({
         orcid: ''
       }))
   }.observes('item.transformedToNewAuthor'),
-
 
   actions: {
     authorInstitutionsChanged: function(institutions) {
