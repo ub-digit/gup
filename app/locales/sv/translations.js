@@ -292,7 +292,7 @@ export default {
             invalidSelectedInstitutionsWarning: 'Institutionen för en eller flera författare har ändrats. Vill du spara ändå?',
             invalidSelectedInstitutionsWarningConfirm: 'Spara',
             invalidSelectedInstitutionsWarningCancel: 'Återgå',
-            confirm: 'Saknar affiliering på författare. Fortsätt ändå?'
+            confirm: 'Du har inte lagt till någon GU-institution till författare. Vill du spara ändå?'
           },
           index: {
             errorMissingPublication: 'Publikationen saknas',

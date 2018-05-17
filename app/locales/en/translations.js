@@ -291,7 +291,7 @@ export default {
             invalidSelectedInstitutionsWarning: 'Authors\' departments have been changed. Do you want to save anyway?',
             invalidSelectedInstitutionsWarningConfirm: 'Save',
             invalidSelectedInstitutionsWarningCancel: 'Continue editing',
-            confirm: 'No affiliation on author(s). Continue anyway?'
+            confirm: 'You have not affiliated any author to a department at GU. Do you still want to save?'
           },
           index: {
             errorMissingPublication: 'Missing publication',
