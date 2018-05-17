@@ -54,6 +54,8 @@ export default Ember.Component.extend({
       });
     });
 
+
+
     //TODO: Forgotten how to Ember, is this correct or should be property on object sent to extend??
     this.set('invalidSelectedDepartments', Ember.A([]));
 
