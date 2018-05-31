@@ -303,7 +303,7 @@ export default Ember.Component.extend({
     toggleAddAffiliation: function() {
       this.toggleProperty('addAffiliation');
       Ember.run.schedule('afterRender', () => {
-        var obj = this.$('.'+ this.get('item.id')).first();
+        var obj = this.$('.'+ this.get('getCssId')).first();
         obj.select2('open');
       });
     },
