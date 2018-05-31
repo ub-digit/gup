@@ -222,7 +222,7 @@ export default Ember.Component.extend({
         year_of_birth: '',
         xaccount: '',
         orcid: ''
-      }))
+      }));
   }.observes('item.transformedToNewAuthor'),
 
   actions: {

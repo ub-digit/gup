@@ -158,10 +158,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           // check to see if trying to save a publication with no affiliations
           let authors = this.get('controller.authorArr');
           let authorAffiliated = authors.find((author) => {
-            let validInstitutions = author.get("selectedInstitution").filter((item, index) => {
+            let validInstitutions = author.get("selectedInstitution").filter((item) => {
               return (item.id !== 666);
             });
-            return (validInstitutions.length > 0) 
+            return (validInstitutions.length > 0);
           });
           if (!authorAffiliated) {
             let continueSave = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirm'));

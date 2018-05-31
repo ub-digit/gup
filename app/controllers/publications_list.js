@@ -5,9 +5,9 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   	page: 1,
   	queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year'],
-  	sortSelectValues: Ember.A([]), 
+  	sortSelectValues: Ember.A([]),
   	sort_by: 'pubyear',
-  	publication_id: null, 
+  	publication_id: null,
     person_id: "",
     department_id: null,
     faculty_id: null,
@@ -17,24 +17,24 @@ export default Ember.Controller.extend({
     ref_value: null,
     start_year: null,
     end_year: null,
-    
+
     selectedDepartments: [],
     selectedAuthors: [],
     isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
     base_start_year: 1942,
     base_end_year: null, // is set in setupController
-    
+
 
     resetPaging: Ember.observer("selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
       this.set("page", 1);
     }),
 
     resultIsVisible: Ember.computed("person_id", "department_id", "ref_value", "start_year", "end_year", function() {
-      return true; // simple fix for now. We need to always display results from start for indexing in google scholar 
-      if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
-        return true;
-      }
-      return false;
+      return true; // simple fix for now. We need to always display results from start for indexing in google scholar
+      //if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
+      //  return true;
+      //}
+      //return false;
     }),
 
     getLink: Ember.computed("session", function() {
@@ -74,7 +74,7 @@ export default Ember.Controller.extend({
     rangeYear: Ember.computed('base_start_year', 'base_end_year', function() {
       let arr = [];
       for (var i = this.get("base_start_year"); i < this.get("base_end_year"); i++) {
-          arr[i] = i.toString(); 
+          arr[i] = i.toString();
       }
       return arr;
     }),
@@ -88,7 +88,7 @@ export default Ember.Controller.extend({
       selectedValues.forEach(function(item) {
         if (that.get(name).indexOf(item.id + ";") === -1) {
           that.set(name, that.get(name) + item.id + ";");
-        }        
+        }
       });
       // remove trailing ; in string as its gets added in loop above
       if (this.get(name)) {
