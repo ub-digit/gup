@@ -49,7 +49,7 @@ export default Ember.Route.extend({
     controller.set("base_end_year" ,new Date().getFullYear() + 10);
     controller.set('model', model.publicList);
     controller.set('departments', model.departments);
-    if (controller.get('selectedAuthors').length === 0) {
+    if ((controller.get('selectedAuthors').length === 0) && (model.selectedAuthors.length !== 0)) {
         controller.set('selectedAuthors', model.selectedAuthors);
     }
 
