@@ -8,7 +8,6 @@
 	    		{{listItem.name}} <span class="small">(Embargo {{listItem.visible_after}})</span>
 	    	{{else}}
 	    	  {{#if published}}
-            <meta name="citation_pdf_url" content="{{fileBaseUrl}}/{{listItem.id}}.pdf">
 	    	    <a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}">{{listItem.name}}</a>
           {{else}}
           	<a target="_blank" href="{{fileBaseUrl}}/{{listItem.id}}?token={{token}}">{{listItem.name}}</a>

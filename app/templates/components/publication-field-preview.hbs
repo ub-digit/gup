@@ -26,17 +26,16 @@
     {{else if isTypeAuthors}}
       <div class="publication-field-preview-authors">
       {{#each fieldValue as |author|}}
-        <meta name="citation_author" content="{{author.first_name}} {{author.last_name}}">
         <div class="publication-field-preview-authors-row">
         {{author.first_name}} {{author.last_name}}
           {{#if author.departments}}
-          <strong>|</strong>      
+          <strong>|</strong>
             {{#each author.departments as |department|}}
             <span class="label label-default">{{department.name}}</span>
             {{/each}}
           {{/if}}
         </div>
-        
+
         {{/each}}
       </div>
 
