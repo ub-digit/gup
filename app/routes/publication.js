@@ -33,7 +33,7 @@ export default Ember.Route.extend({
   setHeadTags: function(models) {
     var headTags = [];
 
-    headTags.push({type: 'link', attrs: {name: 'canonical', content: ENV.APP.publicationURL + '/' + models.publication.id}});
+    headTags.push({type: 'link', attrs: {rel: 'canonical', content: ENV.APP.publicationURL + '/' + models.publication.id}});
     if (models.publication.keywords) {
       headTags.push({type: 'meta', attrs: {name: 'keywords', content: models.publication.keywords}});
     }
