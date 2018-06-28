@@ -13,7 +13,10 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(models) {
-    this.setHeadTags(models);
+    // Set head tags only when publication exists
+    if (models.publication.id) {
+      this.setHeadTags(models);
+    }
   },
 
   setupController: function(controller, models) {
@@ -45,18 +48,24 @@ export default Ember.Route.extend({
     if (models.publication.publanguage) {
       headTags.push({type: 'meta', attrs: {name: 'citation_language', content: models.publication.publanguage}});
     }
-    models.publication.publication_identifiers.forEach(function (identifierObj) {
-      if (identifierObj.identifier_code === 'doi') {
-        headTags.push({type: 'meta', attrs: {name: 'citation_doi', content: identifierObj.identifier_value}});
-      }
-    });
-    models.publication.authors.forEach(function (authorObj) {
-      var authorName = [authorObj.first_name, authorObj.last_name].join(" ").trim();
-      headTags.push({type: 'meta', attrs: {name: 'citation_author', content: authorName}});
-    });
-    models.publication.files.forEach(function (fileObj) {
-      headTags.push({type: 'meta', attrs: {name: 'citation_pdf_url', content: ENV.APP.fileURL + '/'+ fileObj.id}});
-    });
+    if (models.publication.publication_identifiers) {
+      models.publication.publication_identifiers.forEach(function (identifierObj) {
+        if (identifierObj.identifier_code === 'doi') {
+          headTags.push({type: 'meta', attrs: {name: 'citation_doi', content: identifierObj.identifier_value}});
+        }
+      });
+    }
+    if (models.publication.authors) {
+      models.publication.authors.forEach(function (authorObj) {
+        var authorName = [authorObj.first_name, authorObj.last_name].join(" ").trim();
+        headTags.push({type: 'meta', attrs: {name: 'citation_author', content: authorName}});
+      });
+    }
+    if (models.publication.files) {
+      models.publication.files.forEach(function (fileObj) {
+        headTags.push({type: 'meta', attrs: {name: 'citation_pdf_url', content: ENV.APP.fileURL + '/'+ fileObj.id}});
+      });
+    }
 
     this.set('headTags', headTags);
   }
