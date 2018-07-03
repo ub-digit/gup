@@ -186,7 +186,7 @@ export default {
     password: 'Lösenord',
     passwordPlaceholder: 'Lösenord',
     loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
-    extraLoginMessage: ''
+    extraLoginMessage: 'Vi upplever problem med inloggningen till GUP och rekommenderar att byta lösenord till medarbetarportalen.<br/>Se nyheten på GU:s webb: https://medarbetarportalen.gu.se/aktuellt/nyheter-detalj/paminnelse-om-losenordsbyte-.cid1573123'
   },
   mainMenu: {
     applicationName: 'GUP',
