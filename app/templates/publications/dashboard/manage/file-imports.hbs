@@ -83,6 +83,7 @@
             <table class="table table-responsive">
               <thead>
                 <tr>
+                  <th></th>
                   <th>{{t 'publications.dashboard.manage.fileImports.publicationTitleHeader'}}</th>
                   <th>{{t 'publications.dashboard.manage.fileImports.publicationIdHeader'}}</th>
                   <th></th>
@@ -96,6 +97,7 @@
                   isHighlighted=(and (eq record.id isShowingRecordId) record.publication_id)
                   class=(concat "file-import-record" (if record.publication_id " file-import-publication-imported"))
                 }}
+                  <td><p>{{record.id}}</p></td>
                   <td>
                     {{#if record.publication_id}}
                       {{#link-to 'publications.dashboard.manage.show.edit' record.publication_id}}
