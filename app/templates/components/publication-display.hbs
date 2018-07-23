@@ -1,9 +1,11 @@
 <!-- T_YES-READY -->
 
 <div class="publication-display">
-<meta name="citation_title" content="{{publication.title}}">
-  <h2>{{publication.title}}</h2>
-  <h3 class="small">{{publication.alt_title}}</h3>
+  <h1>{{publication.title}}</h1>
+
+  {{#if publication.alt_title}}
+    <h2>{{publication.alt_title}}</h2>
+  {{/if}}
 
   {{#if isReviewMode}}
     {{#if publication.epub_ahead_of_print}}
