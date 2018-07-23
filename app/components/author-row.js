@@ -214,7 +214,6 @@ export default Ember.Component.extend({
   }.observes('item.transformedToNewAuthor'),
   */
 
-
   transformedNewAuthorTriggered: function() {
     // create new author
       this.get('item').set('newAuthorForm', Ember.Object.create({
@@ -223,9 +222,8 @@ export default Ember.Component.extend({
         year_of_birth: '',
         xaccount: '',
         orcid: ''
-      }))
+      }));
   }.observes('item.transformedToNewAuthor'),
-
 
   actions: {
     authorInstitutionsChanged: function(institutions) {
@@ -305,7 +303,7 @@ export default Ember.Component.extend({
     toggleAddAffiliation: function() {
       this.toggleProperty('addAffiliation');
       Ember.run.schedule('afterRender', () => {
-        var obj = this.$('.'+ this.get('item.id')).first();
+        var obj = this.$('.'+ this.get('getCssId')).first();
         obj.select2('open');
       });
     },
