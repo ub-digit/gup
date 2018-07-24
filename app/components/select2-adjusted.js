@@ -36,6 +36,9 @@ export default Select2.extend({
     var that = this;
     Ember.run.schedule('afterRender',  () => {
       Ember.$(selector).find('.select2-drop').append('<div class="select2-footer"><i class="fa fa-info-circle"></i> ' + that.get('didNotFindWhatYouWereLookingForStr') + ' <a href="javascript:void()" id="toggleBtn">'+ that.get('btnText') + '</a></div>');
+      if (this.get("defaultQuery")) {
+        Ember.$(selector).select2('open');
+      }
       Ember.$(selector).find("#toggleBtn").bind('click', () => {
         Ember.run(() => {
           // Close dropdown
