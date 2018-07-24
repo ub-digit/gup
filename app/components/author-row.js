@@ -302,10 +302,11 @@ export default Ember.Component.extend({
 
     toggleAddAffiliation: function() {
       this.toggleProperty('addAffiliation');
-      Ember.run.schedule('afterRender', () => {
+      // moved this into select2_adjusted.js because of a bug not adding our custom code if this was used
+   /*   Ember.run.schedule('afterRender', () => {
         var obj = this.$('.'+ this.get('getCssId')).first();
         obj.select2('open');
-      });
+      });*/
     },
     toggleAddNewAuthor: function(item) {
       item.toggleProperty('transformedToNewAuthor');
