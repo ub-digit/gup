@@ -6,4 +6,4 @@ Disallow: /admin/*
 Allow: /publication/*
 Allow: /publications/list*
 
-Sitemap: http://www.example.com/sitemap.xml
+Sitemap: https://gup.ub.gu.se/sitemaps.xml
