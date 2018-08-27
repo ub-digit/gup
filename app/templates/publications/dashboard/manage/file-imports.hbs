@@ -91,13 +91,13 @@
                 </tr>
               </thead>
               <tbody>
-              {{#each fileImport.endnote_records as |record|}}
+              {{#each fileImport.endnote_records as |record index|}}
                 {{#highlightable-element
                   tagName="tr"
                   isHighlighted=(and (eq record.id isShowingRecordId) record.publication_id)
                   class=(concat "file-import-record" (if record.publication_id " file-import-publication-imported"))
                 }}
-                  <td><p>{{record.id}}</p></td>
+                  <td><p>{{one-index index}}</p></td>
                   <td>
                     {{#if record.publication_id}}
                       {{#link-to 'publications.dashboard.manage.show.edit' record.publication_id}}
