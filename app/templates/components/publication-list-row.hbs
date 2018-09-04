@@ -51,6 +51,11 @@
         <tr>
         <th>{{t 'components.publicationListRow.publicationYear'}}:</th><td>{{item.pubyear}}</td>
         </tr>
+        {{#if item.sourcetitle}}
+        <tr>
+        <th>{{t 'components.publicationListRow.publishedInLabel'}}:</th><td>{{item.sourcetitle}}</td>
+        </tr>
+        {{/if}}
       </table>
       {{/if}}
     </div>
