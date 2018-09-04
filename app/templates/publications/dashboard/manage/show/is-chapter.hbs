@@ -17,7 +17,7 @@
       <dd>
         {{publication.sourcetitle}},
         {{#if publication.sourcevolume}}
-          {{publication.sourcevolume}}
+          {{publication.sourcevolume}}{{#if publication.sourcepages}},{{/if}}
         {{/if}}
         {{#if publication.sourceissue}}
          ({{publication.sourceissue}}),

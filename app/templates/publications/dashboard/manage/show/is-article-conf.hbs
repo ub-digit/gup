@@ -17,10 +17,10 @@
       <dd>
         {{publication.sourcetitle}},
         {{#if publication.sourcevolume}}
-          {{publication.sourcevolume}}
+          {{publication.sourcevolume}},
         {{/if}}
         {{#if publication.sourceissue}}
-         ({{publication.sourceissue}}),
+         ({{publication.sourceissue}}){{#if publication.sourcepages}},{{/if}}
         {{/if}}
 
         {{#if publication.sourcepages}}
