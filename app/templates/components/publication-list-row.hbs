@@ -25,12 +25,22 @@
             {{/if}}
         {{/if}}
         {{#if item.authors}}
-            <div><strong>{{t 'components.publicationListRow.authorLabel'}}:</strong> {{#if item.authors}} {{format-authors item.authors}}{{/if}}</div>
+            <div><strong>{{t 'components.publicationListRow.authorLabel'}}:</strong> 
+              {{#if item.authors}} {{format-authors item.authors 0 10}}{{/if}}
+                {{#if allowToggleAuthors}}
+                  {{#unless showMoreAuthors}}
+                    <a href="javascript:void();" {{action 'toggleAuthors'}}>et al.</a>
+                  {{/unless}}
+                {{/if}}
+                {{#if showMoreAuthors}}
+                  {{#if item.authors}} {{format-authors item.authors 10}}{{/if}}   
+                {{/if}}
+          </div>
         {{/if}}
       </p>
       {{#if showMetaData}}
       <table class="table">
-        <tr>
+        <tr class="hidden">
           <th>{{t 'components.publicationListRow.publicationID'}}:</th><td>{{item.id}}</td>
         </tr>
         <tr>
