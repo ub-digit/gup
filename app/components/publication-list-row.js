@@ -3,6 +3,13 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
   showMetaData: true,
+  showMoreAuthors: false,
+  allowToggleAuthors:  Ember.computed("item.authors", function() {
+    if (this.get("item.authors").length > 10) {
+      return true;
+    }
+    return false;
+  }),
 
   titleString: Ember.computed('item.title', function() {
     return this.get('item.title') || this.get('i18n').t('components.publicationListRow.noTitle');
@@ -68,5 +75,11 @@ export default Ember.Component.extend({
         break;
     }
     return a.join(', ');
-  })
+  }),
+
+  actions: {
+    toggleAuthors: function() {
+      this.set('showMoreAuthors', true);
+    }
+  }
 });
