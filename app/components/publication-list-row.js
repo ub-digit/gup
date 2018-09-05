@@ -78,7 +78,7 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    toggleAuthors: function() {
+    showAllAuthors: function() {
       this.set('showMoreAuthors', true);
     }
   }

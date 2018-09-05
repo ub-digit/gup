@@ -29,7 +29,7 @@
               {{#if item.authors}} {{format-authors item.authors 0 10}}{{/if}}
                 {{#if allowToggleAuthors}}
                   {{#unless showMoreAuthors}}
-                    <a href="javascript:void();" {{action 'toggleAuthors'}}>et al.</a>
+                    <a href="javascript:void();" {{action 'showAllAuthors'}}>et al.</a>
                   {{/unless}}
                 {{/if}}
                 {{#if showMoreAuthors}}
