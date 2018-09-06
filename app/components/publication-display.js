@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     return "baseUrl";
   }),
 
-  getPublishedInStr: Ember.computed('publication.publication_type', function(){
+  getPublishedInStr: Ember.computed('publication.id', function(){
     let arr = [];
     arr.push(this.get("publication.sourcetitle"));
     let sourceissue_str = null;
