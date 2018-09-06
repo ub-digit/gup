@@ -29,6 +29,20 @@ export default Ember.Component.extend({
     return "baseUrl";
   }),
 
+  getPublishedInStr: Ember.computed('publication.id', function(){
+    let arr = [];
+    arr.push(this.get("publication.sourcetitle"));
+    let sourceissue_str = null;
+    if (this.get("publication.sourceissue")) {
+      sourceissue_str = " (" + this.get("publication.sourceissue") + ")"
+    }
+    let sourceissue_and_pages_str = this.get("publication.sourcevolume") + sourceissue_str;
+    arr.push(sourceissue_and_pages_str);
+    arr.push(this.get("publication.sourcepages"));
+    arr.push(this.get("publication.article_number"));
+    return arr.compact().join(', ');
+  }),
+
   isPatent: Ember.computed('publication.publication_type', function() {
     let code = this.getCodeForPublicationType(this.get("publication.publication_type_id"));
     let arr = Ember.A(['intellectual-property_patent']);

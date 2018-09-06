@@ -30,6 +30,8 @@ export default Ember.Controller.extend({
     return false;
   }),
 
+
+ 
  deletePublication: function(id) {
     var that = this;
     this.store.destroy('publication', id).then(function() {
