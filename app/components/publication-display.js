@@ -32,12 +32,17 @@ export default Ember.Component.extend({
   getPublishedInStr: Ember.computed('publication.id', function(){
     let arr = [];
     arr.push(this.get("publication.sourcetitle"));
-    let sourceissue_str = null;
+    let sourceissue_str = "";
     if (this.get("publication.sourceissue")) {
       sourceissue_str = " (" + this.get("publication.sourceissue") + ")"
     }
-    let sourceissue_and_pages_str = this.get("publication.sourcevolume") + sourceissue_str;
-    arr.push(sourceissue_and_pages_str);
+    let sourceissue_and_pages_str = "";
+    if (this.get("publication.sourcevolume")) {
+      this.get("publication.sourcevolume") + sourceissue_str;
+    }
+    if (sourceissue_and_pages_str !== "") {
+      arr.push(sourceissue_and_pages_str);
+    }
     arr.push(this.get("publication.sourcepages"));
     arr.push(this.get("publication.article_number"));
     return arr.compact().join(', ');
