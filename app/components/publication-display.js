@@ -38,7 +38,7 @@ export default Ember.Component.extend({
     }
     let sourceissue_and_pages_str = "";
     if (this.get("publication.sourcevolume")) {
-      this.get("publication.sourcevolume") + sourceissue_str;
+      sourceissue_and_pages_str = this.get("publication.sourcevolume") + sourceissue_str;
     }
     if (sourceissue_and_pages_str !== "") {
       arr.push(sourceissue_and_pages_str);
