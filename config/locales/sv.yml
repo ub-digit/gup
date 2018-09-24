@@ -1,0 +1,328 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+sv:
+  users:
+    errors:
+      not_found: "Användaren hittades inte"
+
+  faculty:
+    unspecified: "Ingen fakultet"
+    not_found: "Fakulteten hittades inte"
+
+  reports:
+    columns:
+      faculty_id: "Fakultet"
+      department_id: "Institution"
+      count: "Antal"
+      person_id: "Person"
+      publication_type_id: "Publikationstyp"
+      ref_value: "Refereegranskad"
+      year: "År"
+    ref_values:
+      ISREF: "Refereegranskad"
+      OTHER: "Ej refereegranskad"
+
+  publications_xls:
+    sheet_name: "GUP publikationer"
+    columns:
+      id: "Publikations-ID"
+      title: "Titel"
+      authors_and_departments: "Författare och instutition"
+      publication_type: "Publikationstyp"
+      ref_value: "Innehållsmärkning"
+      publication_year: "Publikationsår"
+      source_title: "Publicerad i"
+      source_volume: "Volym"
+      source_issue: "Nummer"
+      source_pages: "Sidor"
+      issn: "ISSN"
+      eissn: "E-ISSN"
+      links: "Länkar"
+      projects: "Projekt"
+      keywords: "Nyckelord"
+      identifiers: "Identifikatorer"
+
+  publication_types:
+    errors:
+      not_found: "Publikationstypen hittades inte"
+
+  ref_values:
+    ISREF: "Refereegranskad"
+    NOTREF: "Ej refereegranskad"
+    NA: "Inte applicerbart"
+
+  fields:
+    journal_id: "tidskrifts-id"
+    sourcechooser: "Välj från lista"
+    sourcetitle: "Publicerad i"
+    sourcevolume: "Volym"
+    sourceissue: "Nummer"
+    sourcepages: "Sidor"
+    isbn: "ISBN"
+    issn: "ISSN"
+    eissn: "E-ISSN"
+    epub_ahead_of_print: "Epub ahead of print"
+    article_number: "Artikelnummer"
+    title: "Titel"
+    alt_title: "Alternativ titel"
+    abstract: "Sammanfattning"
+    pubyear: "Publikationsår"
+    publanguage: "Språk"
+    category_hsv_local: "Ämnesord"
+    url: "Fulltextlänk"
+    extid: "Identifikatorer"
+    links: "Extern länk"
+    keywords: "Nyckelord"
+    project: "Projekt"
+    pub_notes: "Ytterligare information"
+    author: "Författare"
+    author_publication_edited-book: "Redaktör"
+    author_publication_journal-issue: "Redaktör"
+    author_conference_proceeding: "Redaktör"
+    author_publication_textcritical-edition: "Redaktör"
+    dissdate: "Datum för examination"
+    disstime: "Tidpunkt för examination"
+    disslocation: "Lokal"
+    dissopponent: "Opponent"
+    extent: "Antal sidor"
+    publisher: "Förlag"
+    place: "Förlagsort"
+    series: "Serie"
+    editor: "Redaktör"
+    patent_applicant: "Sökande"
+    patent_application_number: "Patentets ansökningsnummer"
+    patent_application_date: "Patentets ansökningsdatum"
+    patent_number: "Patentnummer"
+    patent_date: "Patentets publikationsdatum"
+    artwork_type: "Typ av arbete"
+
+  publications:
+    errors:
+      # general errors
+      not_found: "Publikationen hittades inte"
+      no_data: "Ingen data"
+      create_error: "Det gick inte att skapa publikationen"
+      update_error: "Det gick inte att uppdatera publikationen"
+      publish_error: "Det gick inte att publicera publikationen"
+      delete_error: "Det gick inte att radera publikationen"
+      already_published: "Det är inte tillåtet att publicera en redan publicerad publikation"
+      set_to_draft_error: "Det gick inte att ändra denna publikation till ett utkast"
+      cannot_delete_published: "Kan inte radera publikation som publicerats"
+      unknown_publication_type: "Okänd publikationstyp"
+      cannot_review_bibl: "Det gick inte att godkänna publikationen"
+      cannot_delay_bibl_review_time: "Det gick inte att sätta en ny tidpunkt för bibliografisk gransking"
+      cannot_delay_bibl_review_time_param_error: "Det gick inte att sätta en ny tidpunkt för bibliografisk gransking p.g.a ogiltiga parametrar"
+
+      # import errors
+      not_found_in_pubmed: "Identifikatorn hittades inte i Pubmed"
+      not_found_in_gupea: "Identifikatorn hittades inte i GUPEA"
+      not_found_in_scopus: "Identifikatorn hittades inte i Scopus"
+      not_found_in_libris: "Identifikatorn hittades inte i Libris"
+      no_datasource: "Det finns ingen datakälla med detta värde"
+      no_data_in_file: "Filen innehåller ingen data"
+      invalid_file: "Filen innehåller data i ett felaktigt format"
+      unsupported_endnote_version: "Filen innehåller data som är skapad från en Endnote-version som inte stöds."
+      nonunique_author: "Författaren \"%{author_presentation}\" förekommer mer än en gång."
+      nonunique_nonexistant_author: "En författare (som ej existerar) förekommer mer än en gång."
+
+  publication_identifiers:
+    errors:
+      create_error: "Identifieraren kunde inte skapas"
+  publication_links:
+    errors:
+      create_error: "Länken kunde inte skapas"
+
+  people:
+    errors:
+      not_found: "Personen hittades inte"
+      create_error: "Det gick inte att lägga till personen"
+      update_error: "Det gick inte att uppdatera personen"
+
+  affiliations:
+    errors:
+      no_person_id: "Person-id saknades"
+
+
+  sources:
+    errors:
+      not_found: "Källan hittades inte"
+      create_error: "Det gick inte att lägga till källa"
+      update_error: "Det gick inte att uppdatera källa"
+
+  departments:
+    errors:
+      invalid: "Institutionen är inte giltig"
+      end_year_invalid: "Slutår ej giltigt"
+
+  asset_data:
+    errors:
+      file_format_not_allowed: "Otillåtet filformat"
+      create_error: "Det gick inte att lägga till fil"
+      file_not_found: "Det gick inte att hitta filen"
+      cannot_show_file: "Det gick inte att visa filen"
+      not_found: "Filen hittades inte"
+      update_error: "Det gick inte att updatera filen"
+      delete_error: "Det gick inte att radera filen"
+      terms_not_accepted_error: "Du måste godkänna avtalet"
+
+  endnote_files:
+    errors:
+      file_format_not_allowed: "Otillåtet filformat"
+      create_error: "Det gick inte att lägga till fil"
+      file_not_found: "Det gick inte att hitta filen"
+      cannot_show_file: "Det gick inte att visa filen"
+      not_found: "Filen hittades inte"
+      update_error: "Det gick inte att updatera filen"
+      delete_error: "Det gick inte att radera filen"
+      no_data_in_file: "Det saknas data i filen"
+      invalid_file: "Ogiltig fil"
+      unsupported_endnote_version: "EndNote-versionen stöds ej"
+      create_record_error: "Det gick inte att lägga till EndNote-post"
+
+  # Fields
+  activerecord:
+    attributes:
+
+      access_token:
+        user_id: "Användar-id"
+        username: "Användarnamn"
+      alternative_name:
+        person: "Person"
+        first_name: "Förnamn"
+        last_name: "Efternamn"
+      publication:
+        pubid: "Pubid"
+      publication_version:
+        pubyear: "Publiceringsår"
+        title: "Titel"
+        publication_type: "Publikationstyp"
+      source:
+        nane: "Namn"
+      user:
+        username: "Användarnamn"
+        first_name: "Förnamn"
+        last_name: "Efternamn"
+        role: "Roll"
+
+
+    # Activerecord validation error message
+    errors:
+
+      messages:
+        record_invalid: "Ogiltig registrering"
+
+      models:
+
+        # AccessToken model error messages
+        access_token:
+            user_id:
+              blank_when_username_blank: "Användar-id är obligatoriskt när användarnamn inte finns"
+            username:
+              blank_when_user_id_blank: "Användarnamn är obligatoriskt när användar-id inte finns"
+
+        # AlternativeName model error messages
+        alternative_name:
+            person:
+              blank: "Person är obligatoriskt"
+            first_name:
+              blank: "Förnamn är obligatoriskt"
+            last_name:
+              blank: "Efternamn är obligatoriskt"
+
+        # Departments2people2publication model error messages
+        departments2people2publication:
+          attributes:
+            department:
+              pubyear_outside_department_year_limits: "Publiceringsår måste vara inom institutionens start- och slutår"
+            people2publication:
+              blank: "Person är obligatoriskt"
+            position:
+              blank: "Position är obligatoriskt"
+              taken: "Position måste vara unikt" # för en people2publication
+
+        # Identifier model error messages
+        identifier:
+          attributes:
+            value:
+              blank: "Värde är obligatoriskt"
+
+        # People2publication model error messages
+        people2publication:
+          attributes:
+            publication:
+              blank: "Publications är obligatoriskt"
+            person:
+              blank: "Person är obligatoriskt"
+            position:
+              blank: "Position är obligatoriskt"
+              taken: "Position måste vara unikt" # för en publication
+
+        # Publication model error messages
+        publication_version:
+          field_not_allowed: "Fältet %{field_name} är inte tillåtet för publikationstypen %{publication_type}"
+          field_required: "Fältet är obligatoriskt"
+          attributes:
+            title:
+              blank: "Namn är obligatoriskt"
+            pubyear:
+              blank: "Publiceringsår är obligatoriskt"
+              no_numerical: "Publiceringsår måste vara numeriskt"
+              without_limits: "Publiceringsår måste vara inom rimliga gränser"
+            publication_type:
+              blank: "Publikationstyp är obligatoriskt"
+
+
+
+        # Source model error messages
+        source:
+          attributes:
+            name:
+              blank: "Namn är obligatoriskt"
+              taken: "Namnet måste vara unikt"
+
+        # User model error messages
+        user:
+          attributes:
+            username:
+              blank: "Användarnamn är obligatoriskt"
+              no_numeric: "Användarnamn får inte vara numeriskt"
+              alphanumeric: "Användarnamn får endast innehålla alfa-numeriska tecken."
+
+            first_name:
+              blank: "Förnamn är obligatoriskt"
+            last_name:
+              blank: "Efternamn är obligatoriskt"
+            role:
+              blank: "Roll är obligatoriskt"
+              invalid: "Rollen finns inte konfigurerad"
+
+        # Department model error messages
+        department:
+          attributes:
+            name_sv:
+              blank: "Namn på svenska är obligatoriskt"
+            name_en:
+              blank: "Namn på engelska är obligatoriskt"
+            start_year:
+              blank: "Startår måste anges"
+            end_year:
+              without_limits: "Slutår måste anges inom vettigt intervall"
