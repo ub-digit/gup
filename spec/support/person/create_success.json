@@ -1,0 +1,10 @@
+{
+    "person": {
+        "id": 10,
+        "year_of_birth": 1917,
+        "first_name": "Nisse",
+        "last_name": "Hult",
+        "identifiers": [],
+        "alternative_names": []
+    }
+}

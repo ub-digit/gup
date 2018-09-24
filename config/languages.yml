@@ -1,0 +1,157 @@
+languages:
+  -
+    en: English
+    sv: Engelska
+    code: en
+  -
+    en: Swedish
+    sv: Svenska
+    code: sv
+  -
+    en: Arabic
+    sv: Arabiska
+    code: ar
+  -
+    en: Bosnian
+    sv: Bosniska
+    code: bs
+  -
+    en: Bulgarian
+    sv: Bulgariska
+    code: bg
+  -
+    en: Chinese(Mandarin)
+    sv: Kinesiska (Mandarin)
+    code: zh
+  -
+    en: Croatian
+    sv: Kroatiska
+    code: hr
+  -
+    en: Czech
+    sv: Tjeckiska
+    code: cs
+  -
+    en: Danish
+    sv: Danska
+    code: da
+  -
+    en: Dutch
+    sv: Nederländska
+    code: nl
+  -
+    en: Esperanto
+    sv: Esperanto
+    code: eo
+  -
+    en: Finnish
+    sv: Finska
+    code: fi
+  -
+    en: French
+    sv: Franska
+    code: fr
+  -
+    en: German
+    sv: Tyska
+    code: de
+  -
+    en: Greek
+    sv: Grekiska
+    code: el
+  -
+    en: Hebrew
+    sv: Hebreiska
+    code: he
+  -
+    en: Hungarian
+    sv: Ungerska
+    code: hu
+  -
+    en: Icelandic
+    sv: Isländska
+    code: is
+  -
+    en: Italian
+    sv: Italienska
+    code: it
+  -
+    en: Japanese
+    sv: Japanska
+    code: ja
+  -
+    en: Korean
+    sv: Koreanska
+    code: ko
+  -
+    en: Latin
+    sv: Latin
+    code: la
+  -
+    en: Latvian
+    sv: Lettiska
+    code: lv
+  -
+    en: Norwegian
+    sv: Norska
+    code: "no"
+  -
+    en: Polish
+    sv: Polska
+    code: pl
+  -
+    en: Portugese
+    sv: Portugisiska
+    code: pt
+  -
+    en: Romanian
+    sv: Rumänska
+    code: ro
+  -
+    en: Russian
+    sv: Ryska
+    code: ru
+  -
+    en: Serbian
+    sv: Serbiska
+    code: sr
+  -
+    en: Slovak
+    sv: Slovakiska
+    code: sk
+  -
+    en: Slovenian
+    sv: Slovenska
+    code: sl
+  -
+    en: Spanish
+    sv: Spanska
+    code: es
+  -
+    en: Turkish
+    sv: Turkiska
+    code: tr
+  -
+    en: Ukranian
+    sv: Ukrainska
+    code: uk
+  -
+    en: Other
+    sv: Övrigt
+    code: other
+
+# Put code mappings here between occuring versions in imported publications that do not correlate to 2 char standard
+language_code_map:
+  eng: en
+  swe: sv
+  English: en
+  Swedish: sv
+  Czech: cs
+  German: de
+  Norwegian: "no"
+  Portuguese: pt
+  Spanish: es
+  dan: da
+  ice: is
+  nor: "no"
+  pol: pl

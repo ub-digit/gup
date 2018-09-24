@@ -1,0 +1,327 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  users:
+    errors:
+      not_found: "User not found"
+
+  faculty:
+    unspecified: "No faculty specified"
+    not_found: "Faculty not found"
+
+  reports:
+    columns:
+      faculty_id: "Faculty"
+      department_id: "Department"
+      count: "Count"
+      person_id: "Person"
+      publication_type_id: "Publication type"
+      ref_value: "Content type"
+      year: "Year"
+    ref_values:
+      ISREF: "Reviewed"
+      OTHER: "Not reviewed"
+
+  publications_xls:
+    sheet_name: "GUP publications"
+    columns:
+      id: "Publication-ID"
+      title: "Title"
+      authors_and_departments: "Authors and institutions"
+      publication_type: "Publicationtype"
+      ref_value: "????"
+      publication_year: "Publication year"
+      source_title: "Published in"
+      source_volume: "Volyme"
+      source_issue: "Issue"
+      source_pages: "Pages"
+      issn: "ISSN"
+      eissn: "E-ISSN"
+      links: "Links"
+      projects: "Project"
+      keywords: "Keywords"
+      identifiers: "Identifiers"
+
+
+
+  publication_types:
+    errors:
+      not_found: "Publication type not found"
+
+  ref_values:
+    ISREF: "Reviewed"
+    NOTREF: "Not reviewed"
+    NA: "Not applicable"
+
+  fields:
+    journal_id: "source id"
+    sourcechooser: "Choose from list"
+    sourcetitle: "Published in"
+    sourcevolume: "Volume"
+    sourceissue: "Issue"
+    sourcepages: "Pages"
+    isbn: "ISBN"
+    issn: "ISSN"
+    eissn: "E-ISSN"
+    epub_ahead_of_print: "Epub ahead of print"
+    article_number: "Article number"
+    title: "Title"
+    alt_title: "Alternative title"
+    abstract: "Abstract"
+    pubyear: "Publication year"
+    publanguage: "Language"
+    category_hsv_local: "Categories"
+    url: "Full text link"
+    extid: "Identifiers"
+    links: "External link"
+    keywords: "Keywords"
+    project: "Project"
+    pub_notes: "Other information"
+    author: "Authors"
+    author_publication_edited-book: "Editor"
+    author_publication_journal-issue: "Editor"
+    author_conference_proceeding: "Editor"
+    author_publication_textcritical-edition: "Editor"
+    dissdate: "Examination date"
+    disstime: "Examination time"
+    disslocation: "Location"
+    dissopponent: "Opponent"
+    extent: "Number of pages"
+    publisher: "Publisher"
+    place: "Publisher location"
+    series: "Series"
+    editor: "Editor"
+    patent_applicant: "Patent applicant"
+    patent_application_number: "Patent application number"
+    patent_application_date: "Patent application date"
+    patent_number: "Patent number"
+    patent_date: "Patentet publication date"
+    artwork_type: "Artwork type"
+
+
+  publications:
+    # general errors
+    errors:
+      not_found: "Publication not found"
+      no_data: "No data"
+      create_error: "Could not create publication"
+      update_error: "Could not update publication"
+      publish_error: "Could not publish publication"
+      delete_error: "Could not delete publication"
+      already_published: "Could not publish an already published publication"
+      set_to_draft_error: "Could not set publication to draft"
+      cannot_delete_published: "Cannot delete publication that has been published"
+      unknown_publication_type: "Unknown publication type"
+      cannot_review_bibl: "Error approve publication"
+      cannot_delay_bibl_review_time: "Error setting review time"
+      cannot_delay_bibl_review_time_param_error: "Error setting review time due to parameter error"
+
+      # import errors
+      not_found_in_pubmed: "The identifier was not found in Pubmed"
+      not_found_in_gupea: "The identifier was not found in GUPEA"
+      not_found_in_scopus: "The identifier was not found in Scopus"
+      not_found_in_libris: "The identifier was not found in Libris"
+      no_datasource: "Given datasource is not configured"
+      no_data_in_file: "The file contains no data"
+      invalid_file: "File is invalid"
+      unsupported_endnote_version: "File is created by an unsupported EndNote version"
+      nonunique_author: "The author \"%{author_presentation}\" is present more than once."
+      nonunique_nonexistant_author: "An author (that does not exist) is present more than once."
+
+  publication_identifiers:
+    errors:
+      create_error: "Could not create publication identifier"
+  publication_links:
+    errors:
+      create_error: "Could not create publication links"
+
+  people:
+    errors:
+      not_found: "Could not find person"
+      create_error: "Could not create person"
+      update_error: "Could not update person"
+
+  affiliations:
+    errors:
+      no_person_id: "No person identifiers was given"
+
+  sources:
+    errors:
+      not_found: "Source not found"
+      create_error: "Could not create source"
+      update_error: "Could not update source"
+
+  departments:
+    errors:
+      invalid: "Faculty is invalid"
+      end_year_invalid: "End year is invalid"
+
+  asset_data:
+    errors:
+      file_format_not_allowed: "File format not allowed"
+      create_error: "Could not create file"
+      file_not_found: "Could not find the file"
+      cannot_show_file: "Cannot show file"
+      not_found: "Could not find file"
+      update_error: "Could not update file"
+      delete_error: "Could not delete file"
+      terms_not_accepted_error: "You must agree to the terms and conditions"
+
+  endnote_files:
+    errors:
+      file_format_not_allowed: "File format not allowed"
+      create_error: "Could not create file"
+      file_not_found: "Could not find the file"
+      cannot_show_file: "Cannot show file"
+      not_found: "Could not find file"
+      update_error: "Could not update file"
+      delete_error: "Could not delete file"
+      no_data_in_file: "No data in file"
+      invalid_file: "Invalid file"
+      unsupported_endnote_version: "Unsupported EndNote version"
+      create_record_error: "Could not create EndNote record"
+
+  # Fields
+  activerecord:
+    attributes:
+
+      access_token:
+        user_id: "User id"
+        username: "Username"
+      alternative_name:
+        person: "Person"
+        first_name: "First name"
+        last_name: "Last name"
+      publication:
+        pubid: "Pubid"
+        title: "Title"
+        pubyear: "Publication year"
+        publication_type: "Publication type"
+      source:
+        nane: "Name"
+      user:
+        user_name: "Username"
+        first_name: "First name"
+        last_name: "Last name"
+        role: "Role"
+
+
+    # Activerecord validation error message
+    errors:
+
+      models:
+
+        # AccessToken model error messages
+        access_token:
+            user_id:
+              blank_when_username_blank: "Cannot be blank when username is blank"
+            username:
+              blank_when_user_id_blank: "Cannot be blank when user_id is blank"
+
+        # AlternativeName model error messages
+        alternative_name:
+            person:
+              blank: "Person is required"
+            first_name:
+              blank: "First name is required"
+            last_name:
+              blank: "Last name is required"
+
+        # Departments2people2publication model fields
+        departments2people2publication:
+          attributes:
+            department:
+              pubyear_outside_department_year_limits: "Pubyear must be within year limits of the department"
+            people2publication:
+              blank: "Person is required"
+            position:
+              blank: "Position is required"
+              taken: "Position must be unique" # for a people2publication
+
+        # Identifier model error messages
+        identifier:
+          attributes:
+            value:
+              blank: "Value is required"
+
+        # People2publication model error messages
+        people2publication:
+          attributes:
+            publication:
+              blank: "Publication is required"
+            person:
+              blank: "Person is required"
+            position:
+              blank: "Position is required"
+              taken: "Position must be unique" # for a publication
+
+        # Publication model error messages
+        publication:
+          field_not_allowed: "Field %{field_name} not allowed for publication type %{publication_type}"
+          field_required: "Field %{field_name} is required for publication type %{publication_type}"
+          attributes:
+            pubid:
+              blank: "Pubid is required"
+              unique_unless_deleted: "Pubid should be unique unless publication is deleted"
+            title:
+              blank: "Title is required"
+            pubyear:
+              blank: "Publication year is required"
+              no_numerial: "Publication year must be numerical"
+              without_limits: "Publication year must be within reasonable limits"
+            title:
+              blank: "Publication type is required"
+
+        # Source model error messages
+        source:
+          attributes:
+            name:
+              blank: "Name is required"
+              taken: "Name must be unique"
+
+        # User model error messages
+        user:
+          attributes:
+            user_name:
+              blank: "Username is required"
+              numeric: "Username cannot be numeric"
+              alphanumeric: "Username must be alpha-numeric only"
+
+            first_name:
+              blank: "First name is required"
+            last_name:
+              blank: "Last name is required"
+            role:
+              blank: "Role is required"
+              invalid: "Role does not exist in config"
+
+        # Department model error messages
+        department:
+          attributes:
+            name_sv:
+              blank: "Swedish name is required"
+            name_en:
+              blank: "English name is required"
+            start_year:
+              blank: "Start year is required"
+            end_year:
+              without_limits: "End year must be given within reasonable limits"
