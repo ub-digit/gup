@@ -41,9 +41,6 @@ set :deploy_to, deploy_config['path']
 #set :branch, 'EXPERIMENT'
 set :branch, ENV['branch'] || 'master'
 
-
-after "deploy:finishing", "extra_cmds:create_version_file"
-
 set :default_env, {
     "PATH" => deploy_config['nvm_path'] + ":$PATH"
 }
