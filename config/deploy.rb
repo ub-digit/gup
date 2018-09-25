@@ -2,10 +2,10 @@
 lock '3.4.1'
 
 # Set the application name
-set :application, 'gup-server'
+set :application, 'gup'
 
 # Set the repository link
-set :repo_url, 'https://github.com/ub-digit/gup-server.git'
+set :repo_url, 'https://github.com/ub-digit/gup.git'
 
 # Set tmp directory on remote host - Default value: '/tmp , which often will not allow files to be executed
 set :tmp_dir, '/home/apps/tmp'
