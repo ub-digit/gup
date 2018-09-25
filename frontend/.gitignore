@@ -23,7 +23,6 @@ tmp
 /libpeerconnection.log
 npm-debug.log
 testem.log
-config/environment.js
 .DS_Store
 deploy.sh
 .last.servername
