@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     get "affiliations" => "affiliations#affiliations_for_actor"
     get "journals" => "journals#search"
     get "public_publication_lists" => "published_publications#index_public"
-  
+
   end
 
   get "oai" => "oai/oai#index"
@@ -57,5 +57,7 @@ Rails.application.routes.draw do
   get "guresearch/gup/lists/publications/departments/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'departments' }
   get "guresearch/gup/lists/publications/people/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'people' }
   get "guresearch/gup/lists/publications/series/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'series' }
+
+  mount_ember_app :frontend, to: "/"
 end
 

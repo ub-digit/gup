@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { validYear } from 'gup/lib/validations';
+import { validYear } from 'frontend/lib/validations';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),

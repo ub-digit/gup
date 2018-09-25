@@ -5,9 +5,9 @@
     <div class="navbar-header">
       <div class="navbar-brand">
       {{#if isEnglish}}
-        <img alt="Gothenburg University Library" src="img/gub-textlogo-en.svg">
+        <img alt="Gothenburg University Library" src="/img/gub-textlogo-en.svg">
       {{else}}
-        <img alt="Göteborgs universitetsbibliotek" src="img/gub-textlogo-sv.svg">
+        <img alt="Göteborgs universitetsbibliotek" src="/img/gub-textlogo-sv.svg">
       {{/if}}
       </div>
       <div class="navbar-appname">
@@ -47,7 +47,7 @@
           </li>
           {{/if}}
 
-          <!-- put in dropdown on ipad breakpoint --> 
+          <!-- put in dropdown on ipad breakpoint -->
           {{#if session.data.authenticated.can_administrate}}
             <li class="visible-lg" title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
           {{/if}}
@@ -57,13 +57,13 @@
           {{#if session.data.authenticated.can_administrate}}
             <li class="visible-lg" title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
           {{/if}}
-          <!-- end --> 
-          
+          <!-- end -->
+
         {{/if}}
         <li title={{t 'mainMenu.publications_list'}}>{{#link-to 'publications_list'}}{{t 'mainMenu.publications_list'}}{{/link-to}}</li>
       </ul>
     </div>
-    
+
     <div class="navbar-sub">
 
       <ul class="nav navbar-nav navbar-right">
@@ -76,7 +76,7 @@
           <ul class="dropdown-menu">
             <li><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}} </a></li>
           </ul>
-        </li>{{/if}}      
+        </li>{{/if}}
       </ul>
     </div>
   </div><!-- /.container -->
