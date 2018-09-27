@@ -33,7 +33,6 @@ group :test do
 end
 
 gem "ember-cli-rails"
-gem 'jquery-rails'
 
 gem 'activeresource'
 
