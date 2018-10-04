@@ -25,7 +25,7 @@ module.exports = function(environment) {
   ENV.APP.publicationURL = '/publication';
   ENV.APP.serviceURL = '/v1';
   ENV.APP.authenticationBaseURL = '/session';
-  ENV.APP.fileURL = '/v1/asset_data';
+  ENV.APP.fileURL = '/file';
 
   // File in public/ directory
   ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';

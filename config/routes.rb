@@ -44,11 +44,13 @@ Rails.application.routes.draw do
     get "affiliations" => "affiliations#affiliations_for_actor"
     get "journals" => "journals#search"
     get "public_publication_lists" => "published_publications#index_public"
-
   end
 
   get "oai" => "oai/oai#index"
   get "rss" => "rss/rss#index"
+
+  get "/json/publications/list" =>  "published_publications#index_public"
+  get "file" => "v1/asset_data#get"
 
   # GU Research paths, keep the old scigloo paths
   get "guresearch/lists/publications/guresearch/xml/index.xsql" => "guresearch/general#list_publications"
@@ -57,6 +59,13 @@ Rails.application.routes.draw do
   get "guresearch/gup/lists/publications/departments/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'departments' }
   get "guresearch/gup/lists/publications/people/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'people' }
   get "guresearch/gup/lists/publications/series/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'series' }
+
+  get "lists/publications/guresearch/xml/index.xsql" => "guresearch/general#list_publications"
+  get "lists/publications/guresearch/xml/researchers.xsql" => "guresearch/general#list_researchers"
+  get "solr/publications/scigloo" => "guresearch/general#wrap_solr_request"
+  get "gup/lists/publications/departments/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'departments' }
+  get "gup/lists/publications/people/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'people' }
+  get "gup/lists/publications/series/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'series' }
 
   mount_ember_app :frontend, to: "/"
 end
