@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get "oai" => "oai/oai#index"
   get "rss" => "rss/rss#index"
 
-  get "/json/publications/list" =>  "published_publications#index_public"
+  get "json/publications/list" =>  "v1/published_publications#index_public"
   get "file" => "v1/asset_data#get"
 
   # GU Research paths, keep the old scigloo paths
