@@ -50,8 +50,10 @@ Rails.application.routes.draw do
   get "rss" => "rss/rss#index"
 
   get "json/publications/list" =>  "v1/published_publications#index_public"
-  get "file" => "v1/asset_data#get"
-
+  post "file" => "v1/asset_data#create"
+  get "file" => "v1/asset_data#show"
+  put "file" => "v1/asset_data#update"
+  delete "file" => "v1/asset_data#destroy"
   # GU Research paths, keep the old scigloo paths
   get "guresearch/lists/publications/guresearch/xml/index.xsql" => "guresearch/general#list_publications"
   get "guresearch/lists/publications/guresearch/xml/researchers.xsql" => "guresearch/general#list_researchers"
