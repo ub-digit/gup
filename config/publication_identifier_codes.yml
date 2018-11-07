@@ -1,0 +1,28 @@
+---
+
+publication_identifier_codes:
+  -
+    code: doi
+    rule: "10.1214/ECP.v20-4328"
+    label: DOI
+  -
+    code: isi-id
+    rule: "000358294500016"
+    label: ISI-ID
+  -
+    code: pubmed
+    rule: "25972573"
+    label: Pubmed-ID
+  -
+    code: scopus-id
+    rule: "24924529689"
+    label: Scopus-ID
+  -
+    code: handle
+    rule: "2077/38761"
+    label: Handle-ID
+  -
+    code: libris-id
+    rule: "16559180"
+    label: Libris-ID
+

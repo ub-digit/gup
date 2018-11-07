@@ -1,0 +1,84 @@
+
+<nav class="navbar navbar-default navbar-fixed-top gub-header {{if isViewModeAdvanced 'advanced-view'}}" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-header">
+      <div class="navbar-brand">
+      {{#if isEnglish}}
+        <img alt="Gothenburg University Library" src="/img/gub-textlogo-en.svg">
+      {{else}}
+        <img alt="Göteborgs universitetsbibliotek" src="/img/gub-textlogo-sv.svg">
+      {{/if}}
+      </div>
+      <div class="navbar-appname">
+        <span class="divider" />
+        {{#link-to 'publications.dashboard.manage.published'}}
+        {{t 'mainMenu.applicationName'}}
+        {{/link-to}}
+      </div>
+
+
+      <ul class="nav navbar-nav">
+        {{#if session.isAuthenticated}}
+          <li title={{t 'mainMenu.publications'}}>{{#link-to 'publications.dashboard.manage'}}{{t 'mainMenu.publications'}}{{/link-to}}</li>
+          <li title={{t 'mainMenu.forReview'}}>
+            {{#link-to 'publications.dashboard.review'}}{{t 'mainMenu.forReview'}}
+            {{#if showReviewCount}}
+              <span class="badge badge-red">{{userdata.counts.review}}</span>
+            {{/if}}
+            {{/link-to}}
+          </li>
+          <li title={{t 'mainMenu.reports'}}>{{#link-to 'publications.dashboard.reports'}}{{t 'mainMenu.reports'}}{{/link-to}}</li>
+
+          {{#if session.data.authenticated.can_administrate}}
+          <li class="dropdown hidden-lg">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{t 'mainMenu.dropdownOther'}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {{#if session.data.authenticated.can_administrate}}
+                <li title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab-dropdown'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
+              {{/if}}
+              {{#if session.data.authenticated.can_biblreview}}
+                <li title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview' (query-params page='1' pubyear='0' pubtype=null faculty=null only_delayed='false')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
+              {{/if}}
+              {{#if session.data.authenticated.can_administrate}}
+                <li title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
+              {{/if}}
+            </ul>
+          </li>
+          {{/if}}
+
+          <!-- put in dropdown on ipad breakpoint -->
+          {{#if session.data.authenticated.can_administrate}}
+            <li class="visible-lg" title={{t 'mainMenu.admin'}}>{{#link-to 'admin' id='admin-tab'}}{{t 'mainMenu.admin'}}{{/link-to}}</li>
+          {{/if}}
+          {{#if session.data.authenticated.can_biblreview}}
+            <li class="visible-lg" title={{t 'mainMenu.forBReview'}}>{{#link-to 'publications.dashboard.biblreview' (query-params page='1' pubyear='0' pubtype=null faculty=null only_delayed='false')}}{{t 'mainMenu.forBReview'}}{{/link-to}}</li>
+          {{/if}}
+          {{#if session.data.authenticated.can_administrate}}
+            <li class="visible-lg" title={{t 'mainMenu.registeredOrEditedByMe' }}>{{#link-to 'publications.dashboard.touched' (query-params page='1')}}  {{t 'mainMenu.registeredOrEditedByMe'}}{{/link-to}}</li>
+          {{/if}}
+          <!-- end -->
+
+        {{/if}}
+        <li title={{t 'mainMenu.publications_list'}}>{{#link-to 'publications_list'}}{{t 'mainMenu.publications_list'}}{{/link-to}}</li>
+      </ul>
+    </div>
+
+    <div class="navbar-sub">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="javascript:void(0)" {{action 'toggleLang'}}>{{t 'mainMenu.lang'}}</a>
+        </li>
+        {{#if session.isAuthenticated}}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{session.data.authenticated.username}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)" class="logout-link" {{action 'invalidateSession'}}>{{t 'mainMenu.logOut'}} </a></li>
+          </ul>
+        </li>{{/if}}
+      </ul>
+    </div>
+  </div><!-- /.container -->
+</nav>
+

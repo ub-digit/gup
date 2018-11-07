@@ -7,3 +7,4 @@ Allow: /publication/*
 Allow: /publications/list*
 
 Sitemap: https://gup.ub.gu.se/sitemaps.xml
+

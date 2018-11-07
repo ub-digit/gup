@@ -1,0 +1,9 @@
+# http://www.robotstxt.org
+User-agent: *
+Disallow: /publications/*
+Disallow: /login
+Disallow: /admin/*
+Allow: /publication/*
+Allow: /publications/list*
+
+Sitemap: https://gup.ub.gu.se/sitemaps.xml
