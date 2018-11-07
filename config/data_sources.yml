@@ -1,0 +1,17 @@
+data_sources:
+  -
+    code: gupea
+    label: "GUPEA-ID"
+  -
+    code: pubmed
+    label: "Pubmed-ID"
+  -
+    code: scopus
+    label: "DOI"
+  -
+    code: libris
+    label: "ISBN"
+  -
+    code: scigloo
+    label: "Scigloo"
+    
