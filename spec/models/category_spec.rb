@@ -54,7 +54,7 @@ RSpec.describe Category, type: :model do
         it "should return a concatenation of name_path and name in english" do
           category = build(:category, name_en: "English name", en_name_path: "Parent|Parent2")
 
-          expect(category.name_path).to eq "Parent|Parent2|English name"
+          expect(category.name_path).to eq "Parent | Parent2 | English name"
         end
       end
       context "where name_path does not exist" do
@@ -73,7 +73,7 @@ RSpec.describe Category, type: :model do
         it "should return a concatenation of name_path and name in swedish" do
           category = build(:category, name_sv: "Svenskt namn", sv_name_path: "Foralder|Foralder2")
 
-          expect(category.name_path).to eq "Foralder|Foralder2|Svenskt namn"
+          expect(category.name_path).to eq "Foralder | Foralder2 | Svenskt namn"
         end
       end
       context "where name_path does not exist" do
@@ -96,7 +96,7 @@ RSpec.describe Category, type: :model do
         it "should return a concatenation of name_path and name in english" do
           category = build(:category, name_en: "English name", en_name_path: "Parent|Parent2", name_sv: "Svenskt namn", sv_name_path: "Foralder|Foralder2")
 
-          expect(category.name_path).to eq "Parent|Parent2|English name"
+          expect(category.name_path).to eq "Parent | Parent2 | English name"
         end
       end
       context "where name_path does not exist" do
@@ -120,7 +120,7 @@ RSpec.describe Category, type: :model do
         expect(json[:id]).to eq 123
         expect(json[:svepid]).to eq 234
         expect(json[:name]).to eq "English name"
-        expect(json[:name_path]).to eq "Parent|Parent2|English name"
+        expect(json[:name_path]).to eq "Parent | Parent2 | English name"
         expect(json[:node_type]).to eq "Type1"
         expect(json[:children]).to eq []
         expect(json['name_en']).to be nil
@@ -135,7 +135,7 @@ RSpec.describe Category, type: :model do
         json = category.as_json
 
         expect(json[:id]).to eq 123
-        expect(json[:name_path]).to eq "Parent|Parent2|English name"
+        expect(json[:name_path]).to eq "Parent | Parent2 | English name"
         expect(json['name_en']).to eq "English name"
       end
     end

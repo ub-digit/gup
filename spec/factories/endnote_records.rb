@@ -8,9 +8,14 @@ FactoryGirl.define do
     n
   end
 
+  sequence :endnote_record_extid do |n|
+    "WOS:n"
+  end
+
   factory :endnote_record do
     id {generate :endnote_record_id}
     checksum {generate :endnote_record_checksum}
+    extid {generate :endnote_record_extid}
     username 'test_key_user'
 
     trait :article do
@@ -27,7 +32,6 @@ FactoryGirl.define do
       sourcepages "10-16"
       publisher "the publisher"
       place "the place"
-      #extent ""
       doi '11.1111/111-1-1111-1111-1'
       doi_url 'https://doi.org/11.1111/111-1-1111-1111-1'
       xml = "<xml></xml>"
