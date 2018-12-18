@@ -53,7 +53,9 @@ class PublicationType < ActiveRecord::Base
         publication_version.errors.add(field.name.to_sym, :field_required, :field_name => name, :publication_type => self.code)
       end
     end
-
+    if valid_ref_values.include? ('NA') 
+      publication_version.ref_value = 'NA'
+    end
     # Validate ref_value
     if !valid_ref_values.include? (publication_version.ref_value)
       publication_version.errors.add(:ref_value, "Not a valid ref_value for publication_type, valid values are: #{valid_ref_values}")
