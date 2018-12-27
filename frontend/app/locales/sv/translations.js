@@ -382,8 +382,8 @@ export default {
           uploadAnotherFile: 'Ladda upp ännu en fil',
           successfulFileUpload: 'Filen har laddats upp',
           possibleDuplicates: {
-            'one': 'Möjlig dublett',
-            'other': 'Möjliga dubletter'
+            'one': 'Möjlig dubblett',
+            'other': 'Möjliga dubbletter'
           },
           processState: {
             DRAFT: 'Utkast',
