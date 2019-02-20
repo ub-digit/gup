@@ -131,7 +131,10 @@ export default {
       lastname: 'Family name:',
       birthyear: 'Year of birth:',
       xaccount: 'x-account',
-      orcid: 'Orcid',
+      orcid: {
+        label: 'Orcid',
+        placeholder: 'e.g. 0000-0002-3843-3472',
+      },
       btnSave: 'Save',
       btnCancel: 'Cancel',
       selectAuthor: {
