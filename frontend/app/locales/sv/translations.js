@@ -128,7 +128,10 @@ export default {
       lastname: 'Efternamn:',
       birthyear: 'Födelseår:',
       xaccount: 'x-konto',
-      orcid: 'Orcid',
+      orcid: {
+        label: 'Orcid',
+        placeholder: 't ex 0000-0002-3843-3472',
+      },
       btnSave: 'Spara',
       btnCancel: 'Avbryt',
       selectAuthor: {
