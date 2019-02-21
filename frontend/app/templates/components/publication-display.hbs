@@ -3,9 +3,11 @@
 <div class="publication-display">
   <h1>{{publication.title}}</h1>
 
-  {{#if publication.alt_title}}
-    <h2>{{publication.alt_title}}</h2>
-  {{/if}}
+  {{#unless isReviewMode}}
+    {{#if publication.alt_title}}
+      <h2>{{publication.alt_title}}</h2>
+    {{/if}}
+  {{/unless}}
 
   {{#if isReviewMode}}
     {{#if publication.epub_ahead_of_print}}
