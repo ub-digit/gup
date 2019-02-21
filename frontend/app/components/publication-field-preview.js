@@ -52,7 +52,7 @@ export default Ember.Component.extend({
       return this.get('fieldValue').map(function(listItem) {
         var baseURL = that.getCorrectBaseURL(listItem, listLabel);
         if (baseURL !== null) {
-          return Ember.String.htmlSafe(listItem[listLabel] + ': ' + "<a href='"+baseURL + listItem[listValue] + "'>" + baseURL + listItem[listValue] + "</a>");
+          return Ember.String.htmlSafe(listItem[listLabel] + ': ' + "<a target='_blank' href='"+baseURL + listItem[listValue] + "'>" + baseURL + listItem[listValue] + "</a>");
         }
         else {
           return listItem[listLabel] + ': ' + listItem[listValue];
