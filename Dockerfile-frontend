@@ -1,0 +1,14 @@
+FROM node:6
+
+COPY frontend/package.json /apps/
+WORKDIR /apps
+ENV PATH=/apps/bin:$PATH
+
+RUN set -ex \
+  && npm install -g ember-cli \
+  && npm install -g bower \
+  && npm install -g phantomjs-prebuilt \
+  && npm install -g check-dependencies
+
+USER node
+CMD ["ember", "server", "--live-reload-port", "35730"]

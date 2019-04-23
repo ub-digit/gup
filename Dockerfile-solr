@@ -1,0 +1,15 @@
+FROM solr:5
+
+RUN precreate-core gup-publications \
+ && precreate-core gup-people \
+ && precreate-core gup-journals \
+ && precreate-core gup-guresearch
+
+COPY solr/postgresql-42.2.5.jar /opt/solr/server/lib/
+COPY solr/default/conf/solrconfig.xml solr/gup-publications/conf/schema.xml solr/gup-publications/conf/dataimportconfig.xml /opt/solr/server/solr/mycores/gup-publications/conf/
+COPY solr/default/conf/solrconfig.xml solr/gup-people/conf/schema.xml solr/gup-people/conf/dataimportconfig.xml /opt/solr/server/solr/mycores/gup-people/conf/
+COPY solr/default/conf/solrconfig.xml solr/gup-journals/conf/schema.xml solr/gup-journals/conf/dataimportconfig.xml /opt/solr/server/solr/mycores/gup-journals/conf/
+COPY solr/default/conf/solrconfig.xml solr/gup-guresearch/conf/schema.xml solr/gup-guresearch/conf/dataimportconfig.xml /opt/solr/server/solr/mycores/gup-guresearch/conf/
+COPY solr/full-reindex.sh /opt/solr/bin/
+
+ 

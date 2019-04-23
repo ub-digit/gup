@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Use this version of ruby (rvm will use this line)
-ruby "2.3.1"
+# ruby "2.3.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -31,8 +31,6 @@ end
 group :test do
   gem 'webmock'
 end
-
-gem "ember-cli-rails"
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'rack-cors'
