@@ -1,0 +1,33 @@
+version: '3'
+services:
+  gup_backend:
+    image: "gup-backend:dev"
+    depends_on:
+     - gup_database
+     - gup_solr
+    ports:
+     - "6310:3000"
+    volumes:
+     - ${GUP_REPO:-.}:/apps/
+  gup_frontend:
+    image: "gup-frontend:dev"
+    depends_on:
+     - gup_backend
+    ports:
+     - "6311:4200"
+     - "35730:35730"
+    volumes:
+     - ${GUP_REPO:-.}/frontend:/apps/
+    user: $UID
+  gup_database:
+    image: "postgres:11"
+    environment:
+        POSTGRES_USER: "gup"
+        POSTGRES_PASSWORD: "gupPW"
+        POSTGRES_DB: "gup"
+  gup_solr:
+    image: "gup-solr:dev"
+    depends_on:
+     - gup_database
+    
+    

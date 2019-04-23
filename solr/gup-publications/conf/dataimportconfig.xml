@@ -1,0 +1,50 @@
+<dataConfig>
+<dataSource driver="org.postgresql.Driver" url="jdbc:postgresql://gup_database:5432/gup" user="gup" password="gupPW" encoding="UTF-8"/>
+  <document name="publications">
+    <entity name="publication" pk="id" query="SELECT p.id, 
+                  p.current_version_id,
+                  pv.title, 
+                  pv.alt_title,
+                  pv.isbn,
+                  pv.issn,
+                  pv.eissn,
+                  pv.article_number
+                  FROM publications p
+                  LEFT JOIN publication_versions pv ON pv.id = p.current_version_id 
+                  WHERE p.deleted_at IS NULL
+                  AND p.published_at IS NOT NULL">
+      <field column="id" name="id" />
+      <field column="current_version_id" name="current_version_id" />
+      <field column="title" name="title" />
+      <field column="alt_title" name="alt_title" />
+
+      <field column="isbn" name="publication_identifiers" />
+      <field column="issn" name="publication_identifiers" />
+      <field column="eissn" name="publication_identifiers" />
+      <field column="article_number" name="publication_identifiers" />
+
+      <entity name="people" pk="person_id" join="zipper" query="SELECT p.id AS person_id, 
+                               p.first_name || ' ' || p.last_name AS author_full_name,
+                               i1.value AS author_xaccount,
+                               i2.value AS author_orcid                               
+                               FROM people p 
+                               JOIN people2publications p2p ON p2p.person_id = p.id
+                               LEFT JOIN identifiers i1 ON p.id = i1.person_id AND i1.source_id = (SELECT id FROM sources WHERE name = 'xkonto'::text)
+                               LEFT JOIN identifiers i2 ON p.id = i2.person_id AND i2.source_id = (SELECT id FROM sources WHERE name = 'orcid'::text)
+                               WHERE p2p.publication_version_id = '${publication.current_version_id}'">
+        <field column="author_full_name" name="authors_full_name" />
+        <field column="author_xaccount" name="authors_xaccount" />
+        <field column="author_orcid" name="authors_orcid" />
+      </entity>  
+
+      <entity name="identifiers" pk="id" join="zipper" query="SELECT pi.id AS id, 
+                               pi.identifier_value AS publication_identifier
+                               FROM publication_identifiers pi
+                               JOIN publication_versions pv ON pv.id = pi.publication_version_id
+                               WHERE pv.id = '${publication.current_version_id}'">
+        <field column="publication_identifier" name="publication_identifiers" />
+      </entity>      
+
+    </entity>
+  </document>
+</dataConfig>

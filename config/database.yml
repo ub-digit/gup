@@ -1,0 +1,23 @@
+default: &default
+  host: gup_database
+  port: 5432
+  pool: 100
+  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  database: gup
+  template: template0
+  username: gup
+  password: gupPW
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+
+staging:
+  <<: *default
+
+lab:
+  <<: *default

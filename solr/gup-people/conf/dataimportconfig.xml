@@ -1,0 +1,104 @@
+<dataConfig>
+<dataSource driver="org.postgresql.Driver" url="jdbc:postgresql://gup_database:5432/gup" user="gup" password="gupPW" encoding="UTF-8"/>
+  <document name="people">
+    <entity name="person" pk="id" query="SELECT
+      p.id,
+      p.year_of_birth,
+      p.first_name,
+      p.last_name,
+      p.first_name || ' ' || p.last_name AS full_name,
+      p.created_at,
+      p.updated_at,
+      p.created_by,
+      p.updated_by,
+      i1.value AS xaccount,
+      i2.value AS orcid,
+      CASE
+        WHEN active.id IS NULL
+        THEN false
+        ELSE true
+      END AS has_active_publications,
+      CASE
+        WHEN affiliated.id IS NULL
+        THEN false
+        ELSE true
+      END AS has_affiliations
+      FROM people p
+        LEFT JOIN identifiers i1 ON p.id = i1.person_id AND i1.source_id = (SELECT id FROM sources WHERE name = 'xkonto'::text)
+        LEFT JOIN identifiers i2 ON p.id = i2.person_id AND i2.source_id = (SELECT id FROM sources WHERE name = 'orcid'::text)
+
+        LEFT JOIN (SELECT DISTINCT ptmp.id FROM people ptmp
+          JOIN people2publications p2p ON p2p.person_id = ptmp.id
+          JOIN publications publ ON publ.current_version_id = p2p.publication_version_id) active ON active.id = p.id
+
+        LEFT JOIN (SELECT DISTINCT ptmp2.id FROM people ptmp2
+          JOIN people2publications p2p ON p2p.person_id = ptmp2.id
+          JOIN publications publ ON publ.current_version_id = p2p.publication_version_id
+          JOIN departments2people2publications d2p2p2 ON d2p2p2.people2publication_id = p2p.id
+          JOIN departments d ON d.id = d2p2p2.department_id
+          WHERE publ.deleted_at IS NULL
+          AND publ.published_at IS NOT NULL
+          AND d.is_internal = true) affiliated ON affiliated.id = p.id
+
+      WHERE p.deleted_at IS NULL ORDER BY p.id">
+
+      <field column="id" name="id" />
+      <field column="year_of_birth" name="year_of_birth" />
+      <field column="first_name" name="first_name" />
+      <field column="last_name" name="last_name" />
+      <field column="full_name" name="full_name" />
+      <field column="created_at" name="created_at" />
+      <field column="updated_at" name="updated_at" />
+      <field column="created_by" name="created_by" />
+      <field column="updated_by" name="updated_by" />
+      <field column="xaccount" name="xaccount" />
+      <field column="orcid" name="orcid" />
+      <field column="has_active_publications" name="has_active_publications" />
+      <field column="has_affiliations" name="has_affiliations" />
+
+      <entity
+        name="identifiers"
+        pk="person_id"
+        query="SELECT person_id, value AS identifier FROM identifiers ORDER BY person_id"
+        cacheKey="person_id"
+        cacheLookup="person.id"
+        join="zipper">
+        <field column="identifier" name="identifiers" />
+      </entity>
+
+      <entity
+        name="alternative_names"
+        pk="person_id"
+        query="SELECT person_id, first_name || ' ' || last_name AS alternative_names FROM alternative_names ORDER BY person_id"
+        cacheKey="person_id"
+        cacheLookup="person.id"
+        join="zipper">
+        <field column="alternative_names" name="alternative_names" />
+      </entity>
+
+      <entity name="departments" pk="person_id" query="SELECT DISTINCT
+        p2p.person_id AS person_id,
+        d.id,
+        d.name_en,
+        d.name_sv,
+        COALESCE(d.start_year, -1) AS start_year,
+        COALESCE(d.end_year, -1) AS end_year
+        FROM departments d
+          INNER JOIN departments2people2publications d2p2p ON d.id = d2p2p.department_id
+          INNER JOIN people2publications p2p ON d2p2p.people2publication_id = p2p.id
+          INNER JOIN publications p ON p2p.publication_version_id = p.current_version_id
+        WHERE p.deleted_at IS NULL
+        ORDER BY p2p.person_id"
+        cacheKey="person_id"
+        cacheLookup="person.id"
+        join="zipper">
+        <!-- AND p2p.person_id = '${person.id}'">-->
+        <field column="id" name="departments_id" />
+        <field column="name_en" name="departments_name_en" />
+        <field column="name_sv" name="departments_name_sv" />
+        <field column="start_year" name="departments_start_year" />
+        <field column="end_year" name="departments_end_year" />
+      </entity>
+    </entity>
+  </document>
+</dataConfig>
