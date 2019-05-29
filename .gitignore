@@ -11,11 +11,12 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+# Ignore all logfiles and tempfiles on backend.
+backend/log/*.log
+backend/tmp
+backend/vendor/bundle/
 
-config/database.yml
+#config/database.yml
 *~
 \#*#
 .#*
@@ -30,7 +31,7 @@ config/database.yml
 #Ignore nbproject
 nbproject/
 
-config/config_secret.yml
+#config/config_secret.yml
 config/passwd
 config/deploy.yml
 # Ignore generated css etc.

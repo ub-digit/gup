@@ -1,0 +1,29 @@
+FROM ruby:2.4
+
+COPY Gemfile Gemfile.lock /apps/
+WORKDIR /apps/
+
+RUN apt-get update \
+ && apt-get -y install locales \
+ 						sudo \
+ 						vim \
+ && apt-get clean \
+ && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+ && locale-gen en_US.UTF-8
+
+RUN useradd -m -d /apps -s /bin/bash apps \
+	&& echo "apps ALL=(root) NOPASSWD:ALL" >> /etc/sudoers  \
+	&& chmod 0440 /etc/sudoers \
+	&& chown -R apps:apps /apps \
+ 	&& touch /var/tmp/gup_auth_override.enable \
+	&& bundle install
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV RAILS_LOG_TO_STDOUT=true
+
+#USER apps
+#RUN echo "alias ll='ls -al'" >> ~/.bashrc
+WORKDIR /apps/application
+
+CMD ["bundle", "exec", "rails", "server", "-p", "3000", "-b", "0.0.0.0"]

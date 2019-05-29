@@ -1,0 +1,48 @@
+FROM node:6
+
+COPY package.json bower.json /apps/
+WORKDIR /apps
+ENV PATH=/apps/bin:$PATH
+
+RUN apt-get update \
+ && apt-get -y install locales \
+ 						sudo \
+ 						vim \
+ 						mc \
+ && apt-get clean \
+ && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+ && locale-gen en_US.UTF-8
+
+RUN set -ex \
+  && npm install -g ember-cli \
+  && npm install -g bower \
+  && npm install -g phantomjs-prebuilt \
+  && npm install -g check-dependencies
+
+RUN adduser node sudo
+RUN chown -R node:node /apps
+
+#RUN useradd -m -d /apps -s /bin/bash apps \
+	#&& echo "apps ALL=(root) NOPASSWD:ALL" >> /etc/sudoers  \
+	#&& chmod 0440 /etc/sudoers \
+	#&& chown -R apps:apps /apps
+
+#USER apps
+#RUN npm install \
+#	&& bower install
+
+#USER apps
+USER node
+
+#RUN npm install \
+#	&& bower install \
+#	&& echo "alias ll='ls -al'" >> ~/.bashrc
+
+WORKDIR /apps/application
+
+#CMD ["ember", "server", "--live-reload-port", "35730"]
+#CMD npm install --prefix /apps/ \
+#	&& echo '{"directory" : "/apps/bower_components"}' > .bowerrc \
+CMD npm install \
+	&& bower install \
+	&& ember s --live-reload-port 35730

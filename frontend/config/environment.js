@@ -22,13 +22,13 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.APP.publicationURL = '/publication';
-  ENV.APP.serviceURL = '/v1';
-  ENV.APP.authenticationBaseURL = '/session';
-  ENV.APP.fileURL = '/file';
+  ENV.APP.publicationURL = 'http://localhost:6310/publication';
+  ENV.APP.serviceURL = 'http://localhost:6310/v1';
+  ENV.APP.authenticationBaseURL = 'http://localhost:6310/session';
+  ENV.APP.fileURL = 'http://localhost:6310/file';
 
   // File in public/ directory
-  ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';
+  ENV.APP.licenceURL = 'http://localhost:6310/license_Dnr-A_85_592_10.pdf';
   ENV.APP.licenceCode = 'A 85 592 10';
 
   if (environment === 'development') {

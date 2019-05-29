@@ -1,0 +1,12 @@
+CREATE ROLE gup LOGIN SUPERUSER;
+ALTER ROLE gup WITH PASSWORD 'md5d47bbb7234fb20819eb5967acf013fc2';
+ALTER ROLE gup VALID UNTIL 'infinity';
+
+CREATE DATABASE "gup"
+  WITH OWNER = gup
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'sv_SE.UTF-8'
+       LC_CTYPE = 'sv_SE.UTF-8'
+       CONNECTION LIMIT = -1;
+

@@ -1,0 +1,51 @@
+FROM ubuntu:18.04
+
+#RUN echo "alias ll='ls -al'" >> ~/.bashrc
+
+RUN apt-get update \
+	&& apt-get install -y mc \
+						  vim \
+						  sudo \
+						  locales \
+						  lsof \
+	&& apt-get clean \
+	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& locale-gen en_US.UTF-8
+
+RUN useradd -m -d /apps -s /bin/bash apps \
+	&& echo "apps ALL=(root) NOPASSWD:ALL" >> /etc/sudoers  \
+	&& chmod 0440 /etc/sudoers \
+	&& chown -R apps:apps /apps
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+
+USER apps
+WORKDIR /apps/
+RUN echo "alias ll='ls -al'" >> ~/.bashrc
+
+COPY postgresql-42.2.5.jar jdk-10.0.2_linux-x64_bin.tar.gz solr-5.3.1.tgz /apps/
+
+RUN tar -xvzf jdk-10.0.2_linux-x64_bin.tar.gz \
+	&& sudo mv jdk-10.0.2 /opt/ \
+	&& tar -xvzf solr-5.3.1.tgz \
+	&& sudo mv solr-5.3.1 /opt/
+
+USER root
+WORKDIR /opt/
+RUN ln -s jdk-10.0.2/ java_current \
+	&& ln -s solr-5.3.1 solr \
+	&& echo "export JAVA_HOME=/opt/java_current" >> /etc/profile \
+	&& echo "export PATH=/opt/java_current/bin:$PATH" >> /etc/profile \
+	&& cp /apps/postgresql-42.2.5.jar /opt/solr/dist/
+
+USER apps
+WORKDIR /apps
+
+CMD sudo su \
+	&& . /etc/profile \
+	&& cd /opt/solr \
+	&& mkdir /opt/solr/server/logs/ \
+	&& touch /opt/solr/server/logs/solr.log \
+	&& bin/solr start -a "-Djetty.host=127.0.0.1" \
+	&& bash -l
