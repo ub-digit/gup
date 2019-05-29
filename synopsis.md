@@ -146,3 +146,5 @@ docker run --name gup_solr -it gup-solr-dev:release-2019-05-13-001 bash -l
 docker run --name gup_solr --add-host=gup_database:130.241.17.142 -it gup-solr-dev:release-2019-05-13-001
 
 curl http://localhost:8983/solr/gup-journals/dataimport?command=full-import
+
+
