@@ -68,3 +68,21 @@ Om man vill hämta ner images lokalt kan man göra det. Glöm inte att ändra ta
     docker pull docker.ub.gu.se/gup-frontend:dev-2019-05-001
     docker pull docker.ub.gu.se/gup-solr:dev-2019-05-001
     docker pull docker.ub.gu.se/gup-database:dev-2019-05-001
+
+
+
+
+
+
+
+
+sudo find . -type f -size +100000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }' 
+
+./db/gup-production.dmp: 295M						/database/
+./solr/jdk-10.0.2_linux-x64_bin.tar.gz: 339M		/solr/
+./solr/jdk-8u212-linux-x64.tar.gz: 186M				/solr/
+./solr/solr-5.3.1.tgz: 129M							/solr/
+
+root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup
+
+pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
