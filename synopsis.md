@@ -1,3 +1,8 @@
+Ställ dig i ditt utcheckade och från config-repositoriet förberedda gup-arkiv.
+
+FRONTEND=$(pwd)/frontend
+BACKEND=$(pwd)/backend
+
 time ./buildEmAll.sh
 docker login docker.ub.gu.se
 #docker build --tag=docker.ub.gu.se/koha2pg:2019-04-23.002 
