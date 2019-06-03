@@ -29,6 +29,7 @@ Databasavbilden har en dump av databasen i sig. Den ligger i roten och heter ```
 ```
 pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
 ```
+Denna fil måste du lägga in i containern efter att du startat ```gup_database```, men innan du kört ```./prepare.sh```.
 
 ## Starta servrarna ##
 Du måste börja med att ta upp databasen och populera denna:
@@ -54,9 +55,9 @@ Sen kan du surfa in till localhost:6311
 För att få ett bash-skal in i någon av servrarna använder du nedanstående kommandon:
 ```
 $ docker-compose exec gup_frontend bash
-docker-compose exec gup_backend bash
-docker-compose exec gup_database bash
-docker-compose exec gup_solr bash
+$ docker-compose exec gup_backend bash
+$ docker-compose exec gup_database bash
+$ docker-compose exec gup_solr bash
 ```
 
 Vill du stoppa alla servrar?
