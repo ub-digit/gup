@@ -4,15 +4,13 @@
 Du behöver ha docker-compose installerat. Du behöver också ha gup-arkivet utcheckat och står i dess rot, hädanefter kallat gup-roten.
 
 ```database.yml```-filen som skall användas i en utvecklingsmiljö är den som är incheckad i gup-repot och skall innehålla följande information:
-
 ```
 host: gup_database
 username: gup
 password: gupPW
 ```
 
-Du behöver också ha UID exporterad och sökvägarna till bak- och framända i variablerna BACKEND respektive FRONTEND 
-
+Du behöver också ha UID exporterad för att UID skall finnas som miljövariabel och docker-compose skall kunna köras som rätt användare.
 ```
 $ export UID
 ```
@@ -43,7 +41,7 @@ $ docker-compose up -d
 Sen kan du surfa in till localhost:6311
 
 ## Drift & Underhåll ##
-För att få ett bash-skal in i någon av servrarna använder du nedanstående kommandon:
+För att få ett bash-skal in i någon av containrarna använder du något av nedanstående kommandon:
 ```
 $ docker-compose exec gup_frontend bash
 $ docker-compose exec gup_backend bash
@@ -75,7 +73,7 @@ $ docker inspect gup_gup_solr_1
 
 
 ## Ombyggnation ##
-Om man behöver bygga om en eller flera images kan man köra respektive build-skriptet i respektive katalog. Man måste först då ändra tagnamnet i byggskriptet. Detta taggnamn behöver också ändras i docker-compose.yml. Vill man bygga om samtliga images kan man använda <code>buildEmAll.sh</code>code> i rotkatalogen.
+Om man behöver bygga om en eller flera images kan man köra respektive build-skriptet i respektive katalog. Man måste först då ändra tagnamnet i byggskriptet. Detta taggnamn behöver också ändras i docker-compose.yml. Vill man bygga om samtliga images kan man använda <code>buildEmAll.sh</code> i rotkatalogen.
 
 Den/de images som har byggts om behöver sen pushas upp till servern. Glöm inte att ändra taggarna.
 ```
@@ -98,4 +96,6 @@ Imagen har en dump av databasen i sig. Den ligger i roten och heter ```gup-produ
 ```
 pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
 ```
-Denna fil måste du lägga in i containern efter att du startat ```gup_database```, men innan du kört ```./prepare.sh```.
+Du måste ersätta den befintliga dumpfilen med den nya i containern och den måste ha exakt samma namn (<code>gup-production.dmp</code>) för att prepare-skriptet skall fungera. 
+
+Du måste lägga in den i containern efter att du startat containern ```gup_database```, men innan du kört ```./prepare.sh``` då prepare-skriptet använder just den dumpfilen.
