@@ -1,7 +1,9 @@
 # GUP dockerified #
 
 ## Förberedelser ##
-Du behöver ha gup-arkivet utcheckat och förberett medelst information från config-repositoriet. Notera att database.yml skall innehålla följande information:
+Du behöver ha docker-compose installerat. Du behöver också ha gup-arkivet utcheckat och står i dess rot, hädanefter kallat gup-roten.
+
+```database.yml```-filen som skall användas i en utvecklingsmiljö är den som är incheckad i gup-repot och skall innehålla följande information:
 
 ```
 host: gup_database
@@ -13,23 +15,12 @@ Du behöver också ha UID exporterad och sökvägarna till bak- och framända i 
 
 ```
 $ export UID
-$ FRONTEND=$(pwd)/frontend
-$ BACKEND=$(pwd)/backend
 ```
 
 Du behöver också vara inloggad på vår docker-server:
 ```
 $ docker login docker.ub.gu.se
 ```
-
-Detta och nedanstående förutsätter att du står i gup-roten.
-
-### Databasen ###
-Databasavbilden har en dump av databasen i sig. Den ligger i roten och heter ```gup-production.dmp```. Denna fil ligger även uppbackad på Laban på ```root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup/database/gup-production.dmp```. Om du vill ha mera aktuella data kan du ta en ny dump som du sen lägger in i containern i dess ställe:
-```
-pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
-```
-Denna fil måste du lägga in i containern efter att du startat ```gup_database```, men innan du kört ```./prepare.sh```.
 
 ## Starta servrarna ##
 Du måste börja med att ta upp databasen och populera denna:
@@ -101,3 +92,10 @@ $ docker pull docker.ub.gu.se/gup-frontend:dev-2019-05-001
 $ docker pull docker.ub.gu.se/gup-solr:dev-2019-05-001
 $ docker pull docker.ub.gu.se/gup-database:dev-2019-05-001
 ```
+
+## Databasen ##
+Imagen har en dump av databasen i sig. Den ligger i roten och heter ```gup-production.dmp```. Denna fil ligger även uppbackad på Laban på ```root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup/database/gup-production.dmp```. Om du vill ha mera aktuella data kan du ta en ny dump som du sen lägger in i containern i dess ställe:
+```
+pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
+```
+Denna fil måste du lägga in i containern efter att du startat ```gup_database```, men innan du kört ```./prepare.sh```.
