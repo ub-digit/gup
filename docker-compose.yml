@@ -9,6 +9,7 @@ services:
      - "6310:3000"
     volumes:
      - ${GUP_REPO:-.}/backend:/apps/application/
+     - ${GUP_REPO:-.}/files:/files/
   gup_frontend:
     image: "docker.ub.gu.se/gup-frontend:dev-2019-05-001"
     depends_on:
@@ -18,11 +19,16 @@ services:
      - "35730:35730"
     volumes:
      - ${GUP_REPO:-.}/frontend:/apps/application/
+     - ${GUP_REPO:-.}/files:/files/
     user: $UID
   gup_database:
     image: "docker.ub.gu.se/gup-database:dev-2019-05-001"
+    volumes:
+    - ${GUP_REPO:-.}/files:/files/
   gup_solr:
     image: "docker.ub.gu.se/gup-solr:dev-2019-05-001"
+    volumes:
+    - ${GUP_REPO:-.}/files:/files/
     depends_on:
      - gup_database
 

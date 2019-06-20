@@ -20,6 +20,8 @@ Du behöver också vara inloggad på vår docker-server:
 $ docker login docker.ub.gu.se
 ```
 
+Det finns en katalog ```files``` som monteras i alla fyra containrar som ```/files```. Där kan du lägga filer som du vill flytta in i en container, exempelvis en ny databasdump, förändrade solrkonfigurationsfiler, etc.
+
 ## Starta servrarna ##
 Du måste börja med att starta database-containern (och därmed databasen):
 ```
@@ -57,14 +59,19 @@ $ docker-compose exec gup_solr bash
 Detta kan du vilja göra om du exempelvis lägger till ett gem och behöver bygga om manuellt. Notera att ändringar i containern bara lever så länge containern lever. Om du vill göra någon ändring som skall bestå behöver du bygga en ny image.
 
 
-Vill du stoppa alla servrar?
+Vill du stoppa alla containrar?
 ```
 $ docker-compose stop
 ```
 
-Vill du ta bort alla stoppade servrar?
+Vill du ta bort alla stoppade containrar?
 ```
 $ docker-compose rm
+```
+
+Vill du både stoppa och ta bort alla containrar kan man göra det med ett kommando:
+```
+$ docker-compose down
 ```
 
 För att titta på loggarna
@@ -102,8 +109,18 @@ $ docker pull docker.ub.gu.se/gup-database:dev-2019-05-001
 ## Databasen ##
 Imagen har en dump av databasen i sig. Den ligger i roten och heter ```gup-production.dmp```. Denna fil ligger även uppbackad på Laban på ```root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup/database/gup-production.dmp```. Om du vill ha mera aktuell data kan du ta en ny dump som du sen lägger in i containern i dess ställe:
 ```
-pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
+pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "files/gup-production.dmp"
 ```
 Du måste ersätta den befintliga dumpfilen med den nya i containern och den måste ha exakt samma namn (<code>gup-production.dmp</code>) för att prepare-skriptet skall fungera. 
 
 Du måste lägga in den i containern efter att du startat containern ```gup_database```, men innan du kört ```./prepare.sh``` då prepare-skriptet använder just den dumpfilen.
+
+Då skulle ovan instruktion att starta och populera databasen kunna ersättas med:
+```
+$ pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "files/gup-production.dmp"
+$ docker-compose up -d gup_database
+$ docker-compose exec gup_database bash
+$ cp /files/gup-production.dmp .
+$ exit
+$ docker-compose exec gup_database ./prepare.sh
+```

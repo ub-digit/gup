@@ -52,5 +52,6 @@ doc/app/
 #Ignore code climate coverage directory
 /coverage
 
-# Ignore database-dump
-db/gup-production.dmp
+# Ignore files directory
+files/
+
