@@ -19,10 +19,3 @@ test:
   username: gup
   password: gupPW
   <<: *default
-
-original:
-  host: 130.241.17.142
-  username: gup
-  password: borrningpagar
-  database: gup
-  <<: *default
