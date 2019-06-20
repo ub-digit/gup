@@ -1,9 +1,9 @@
-# GUP dockerified #
+# GUP dockerized #
 
 ## Förberedelser ##
 Du behöver ha docker-compose installerat. Du behöver också ha gup-arkivet utcheckat och står i dess rot, hädanefter kallat gup-roten.
 
-```database.yml```-filen som skall användas i en utvecklingsmiljö är den som är incheckad i gup-repot och skall innehålla följande information:
+```backend/config/database.yml```-filen som skall användas i en utvecklingsmiljö är den som är incheckad i gup-repot och skall innehålla följande information:
 ```
 host: gup_database
 username: gup
