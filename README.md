@@ -21,9 +21,12 @@ $ docker login docker.ub.gu.se
 ```
 
 ## Starta servrarna ##
-Du måste börja med att starta database-containern (och därmed databasen) och populera databasen:
+Du måste börja med att starta database-containern (och därmed databasen):
 ```
 $ docker-compose up -d gup_database
+```
+Det tar någon sekund innan databasen kommer igång, sen kan du populera databasen:
+```
 $ docker-compose exec gup_database ./prepare.sh
 ```
 Sen behöver du starta solr-containern och börja in indexering:
