@@ -21,24 +21,27 @@ $ docker login docker.ub.gu.se
 ```
 
 ## Starta servrarna ##
-Du måste börja med att ta upp databasen och populera denna:
+Du måste börja med att starta database-containern (och därmed databasen) och populera databasen:
 ```
 $ docker-compose up -d gup_database
 $ docker-compose exec gup_database ./prepare.sh
 ```
-
-Sen behöver du ta upp solr och börja in indexering:
+Sen behöver du starta solr-containern och börja in indexering:
 ```
 $ docker-compose up -d gup_solr
 $ docker-compose exec gup_solr bin/full-reindex.sh
 ```
+Själva indexeringen tar cirka en timme, och det är först när indexeringen är färdig som GUP använder indexet (den har inget index i imagen) och därmed fullt ut går att använda.
 
-Sen tar du upp resten:
+Sen startar du resterande containrar:
 ```
 $ docker-compose up -d
 ```
 
-Sen kan du surfa in till localhost:6311
+Backend och frontend byggs vid uppstart så det tar några minuter för dessa att komma upp. Detta kan du se i loggarna, se nedan.
+
+Nu är utvecklingsmiljön startad och du kan nå den på localhost:6311. Ändrar du i koden lokalt på din maskin kan du se dessa ändringar och sen checka in dessa ändringar.
+
 
 ## Drift & Underhåll ##
 För att få ett bash-skal in i någon av containrarna använder du något av nedanstående kommandon:
@@ -48,6 +51,8 @@ $ docker-compose exec gup_backend bash
 $ docker-compose exec gup_database bash
 $ docker-compose exec gup_solr bash
 ```
+Detta kan du vilja göra om du exempelvis lägger till ett gem och behöver bygga om manuellt. Notera att ändringar i containern bara lever så länge containern lever. Om du vill göra någon ändring som skall bestå behöver du bygga en ny image.
+
 
 Vill du stoppa alla servrar?
 ```
@@ -92,7 +97,7 @@ $ docker pull docker.ub.gu.se/gup-database:dev-2019-05-001
 ```
 
 ## Databasen ##
-Imagen har en dump av databasen i sig. Den ligger i roten och heter ```gup-production.dmp```. Denna fil ligger även uppbackad på Laban på ```root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup/database/gup-production.dmp```. Om du vill ha mera aktuella data kan du ta en ny dump som du sen lägger in i containern i dess ställe:
+Imagen har en dump av databasen i sig. Den ligger i roten och heter ```gup-production.dmp```. Denna fil ligger även uppbackad på Laban på ```root@130.241.16.50:/netapp/digit/dig/data-source/data/digit-share/docker/gup/database/gup-production.dmp```. Om du vill ha mera aktuell data kan du ta en ny dump som du sen lägger in i containern i dess ställe:
 ```
 pg_dump -v  -Upostgres -dgup -h app-production-1.ub.gu.se --schema='public' --format=c -f "gup-production.dmp"
 ```
