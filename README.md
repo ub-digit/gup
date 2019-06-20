@@ -27,13 +27,16 @@ Du måste börja med att starta database-containern (och därmed databasen):
 ```
 $ docker-compose up -d gup_database
 ```
-Det tar någon sekund innan databasen kommer igång, sen kan du populera databasen:
+Det tar någon sekund innan databasen kommer igång. Sen kan du populera databasen:
 ```
 $ docker-compose exec gup_database ./prepare.sh
 ```
-Sen behöver du starta solr-containern och börja in indexering:
+Sen behöver du starta solr-containern:
 ```
 $ docker-compose up -d gup_solr
+```
+Det tar någon sekund innan solr kommer igång. Sen kan du starta en indexering:
+```
 $ docker-compose exec gup_solr bin/full-reindex.sh
 ```
 Själva indexeringen tar cirka en timme, och det är först när indexeringen är färdig som GUP använder indexet (den har inget index i imagen) och därmed fullt ut går att använda.
