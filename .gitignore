@@ -53,5 +53,5 @@ doc/app/
 /coverage
 
 # Ignore files directory
-files/
+#files/
 
