@@ -386,5 +386,33 @@ class OaiDocuments
        'conference_proceeding' => ['pro', 'vet', 'conference/proceeding'],
        'publication_working-paper' => ['ovr', 'vet', 'publication/working-paper']}
     end
+
+
+
+    def self.create_complete_record publication
+      record_prefix = APP_CONFIG['oai_settings']['record_prefix']
+
+      "<record>" + 
+      "<header>" +
+      "<identifier>#{record_prefix}/#{publication.id}</identifier>" +
+      "<datestamp>#{publication.updated_at.xmlschema}</datestamp>" +
+      "</header>" +
+      "<metadata>" +
+      "#{create_record publication}" +
+      "</metadata>" +
+      "</record>"
+    end
+
+    def self.create_deleted_record publication_id
+      record_prefix = APP_CONFIG['oai_settings']['record_prefix']
+
+      "<record>" +
+      "<header status=\"deleted\">" +
+      "<identifier>#{record_prefix}/#{publication.id}</identifier>" +
+      "<datestamp>#{Publication.find_by_id(publication_id).updated_at.xmlschema}</datestamp>" +
+      "</header>" +
+      "</record>"
+    end
+
   end
 end

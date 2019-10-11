@@ -56,16 +56,18 @@ class PublicationSearchEngine < SearchEngine
     # Try to delete document from index 
     search_engine.delete_from_index(ids: publication.id)
     document = create_document publication
-    search_engine.add(data: document)
+    #search_engine.add(data: document)
   ensure
-    search_engine.commit
+    #search_engine.commit
+    MessageQueue.send_to_queue publication, 'update'
   end
 
   def self.delete_from_search_engine_do publication_id
     search_engine = PublicationSearchEngine.new
-    search_engine.delete_from_index(ids: publication_id)
+    #search_engine.delete_from_index(ids: publication_id)
   ensure
-    search_engine.commit
+    #search_engine.commit
+    MessageQueue.send_to_queue publication, 'delete'
   end
 
   def self.create_document publication
@@ -81,4 +83,4 @@ class PublicationSearchEngine < SearchEngine
     }
   end
 
-end
+ end
