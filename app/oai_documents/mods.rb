@@ -392,6 +392,7 @@ class OaiDocuments
     def self.create_complete_record publication
       record_prefix = APP_CONFIG['oai_settings']['record_prefix']
 
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
       "<record>" + 
       "<header>" +
       "<identifier>#{record_prefix}/#{publication.id}</identifier>" +
@@ -406,6 +407,7 @@ class OaiDocuments
     def self.create_deleted_record publication_id
       record_prefix = APP_CONFIG['oai_settings']['record_prefix']
 
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
       "<record>" +
       "<header status=\"deleted\">" +
       "<identifier>#{record_prefix}/#{publication.id}</identifier>" +
