@@ -24,6 +24,14 @@ class Publication < ActiveRecord::Base
   end
 
 
+  scope :oai_selection, -> do
+    if (APP_CONFIG['oai_settings']['scope'] && APP_CONFIG['oai_settings']['scope'].eql?('full'))
+      where.not(published_at: nil)
+    else
+      where.not(published_at: nil).where(id: Publication.joins(current_version: {people2publications: {departments2people2publications: :department}}).where("departments.is_internal IS true").distinct.select(:id))
+    end
+  end
+
   #scope :non_external, -> { joins(current_version: {people2publications: {departments2people2publications: :department}})
   #      .where("departments.is_internal IS true").distinct}
   scope :non_external, -> { where(id: Publication.joins(current_version: {people2publications: {departments2people2publications: :department}})
