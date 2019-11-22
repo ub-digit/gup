@@ -24,7 +24,11 @@ end
 
 server deploy_config['host'], user: deploy_config['user'], roles: ['app', 'db', 'web'], port: deploy_config['port']
 
-set :deploy_to, deploy_config['path']
+def path_suffix
+  (ENV['oai_scope'] && ENV['oai_scope'].eql?('full')) ? '-full-oai' : ''
+end
+
+set :deploy_to, deploy_config['path'] + path_suffix
 # Forces user to assign a valid tag for deploy
 #def get_tag
 #  all_tags = `git tag`.split("\n")
