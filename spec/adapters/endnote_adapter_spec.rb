@@ -39,7 +39,7 @@ RSpec.describe EndnoteAdapter, :type => :model do
       it "should return an item with publication_identifiers" do
         item = EndnoteAdapter.find_by_id(@endnote_record.id)
         expect(item.publication_identifiers).to_not be nil
-        expect(item.publication_identifiers.count).to eq 1
+        expect(item.publication_identifiers.count).to eq 2
         expect(item.publication_identifiers.first[:identifier_code]).to include('doi')
         expect(item.publication_identifiers.first[:identifier_value]).to include("#{@endnote_record.doi}")
       end
@@ -107,14 +107,14 @@ RSpec.describe EndnoteAdapter, :type => :model do
   end
 
   describe "add_identifier" do
-    context "for an endnote_record with one identifier" do
+    context "for an endnote_record with one identifier excl extid" do
       it "should add the identifier" do
         rec = create(:endnote_record)
         item = EndnoteAdapter.find_by_id(rec.id)
         item.add_identifier(:value_1, :code_1)
-        expect(item.publication_identifiers.count).to eq 1
-        expect(item.publication_identifiers.first[:identifier_code]).to be(:code_1)
-        expect(item.publication_identifiers.first[:identifier_value]).to be(:value_1)
+        expect(item.publication_identifiers.count).to eq 2
+        expect(item.publication_identifiers.last[:identifier_code]).to be(:code_1)
+        expect(item.publication_identifiers.last[:identifier_value]).to be(:value_1)
       end
     end
     context "for an endnote_record with many identifiers" do
@@ -124,15 +124,15 @@ RSpec.describe EndnoteAdapter, :type => :model do
         item.add_identifier(:value_1, :code_1)
         item.add_identifier(:value_2, :code_2)
         item.add_identifier(:value_3, :code_3)
-        expect(item.publication_identifiers.count).to eq 3
+        expect(item.publication_identifiers.count).to eq 4
       end
     end
-    context "for an endnote_record with empty identifier" do
+    context "for an endnote_record with empty identifier excl extid" do
       it "should not add the identifier" do
         rec = create(:endnote_record)
         item = EndnoteAdapter.find_by_id(rec.id)
         item.add_identifier('', :code_1)
-        expect(item.publication_identifiers.count).to eq 0
+        expect(item.publication_identifiers.count).to eq 1
       end
     end
   end
