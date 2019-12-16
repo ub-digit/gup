@@ -15,7 +15,6 @@
 /log/*.log
 /tmp
 
-config/database.yml
 *~
 \#*#
 .#*
@@ -30,7 +29,6 @@ config/database.yml
 #Ignore nbproject
 nbproject/
 
-config/config_secret.yml
 config/passwd
 config/deploy.yml
 # Ignore generated css etc.
