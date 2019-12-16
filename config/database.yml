@@ -1,0 +1,24 @@
+default: &default
+  host: db
+  port: 5432
+  pool: 10
+  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV["GUP_DB"] %>
+  template: template0
+  username: <%= ENV["GUP_DB_USER"] %>
+  password: <%= ENV["GUP_DB_PASSWORD"] %>
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  pool: 100
+
+staging:
+  <<: *default
+
+lab:
+  <<: *default
