@@ -32,6 +32,13 @@ module.exports = function(environment) {
   ENV.APP.licenceCode = 'A 85 592 10';
 
   if (environment === 'development') {
+    let develBaseURL = 'http://localhost:' + process.env.GUP_SERVICE_PORT;
+    ENV.APP.publicationURL = develBaseURL + ENV.APP.publicationURL;
+    ENV.APP.serviceURL = develBaseURL + ENV.APP.serviceURL;
+    ENV.APP.authenticationBaseURL = develBaseURL + ENV.APP.authenticationBaseURL;
+    ENV.APP.fileURL = develBaseURL + ENV.APP.fileURL;
+
+    ENV.APP.licenceURL = develBaseURL + ENV.APP.licenceURL;
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -48,5 +55,6 @@ module.exports = function(environment) {
      'report-uri': "/"
     };
   }
+
   return ENV;
 };
