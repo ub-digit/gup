@@ -32,8 +32,6 @@ group :test do
   gem 'webmock'
 end
 
-gem "ember-cli-rails"
-
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'rack-cors'
 
