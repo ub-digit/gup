@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="people" version="1.5">
+  <field name="_root_" type="text_general" indexed="true" stored="false"/>
+  <field name="_version_" type="long" indexed="true" stored="true"/>
+
+  <field name="id" type="int" indexed="true" stored="true"/>
+  <field name="current_version_id" type="int" indexed="true" stored="true"/>
+  <field name="title" type="text_word_lim" indexed="true" stored="true"/>
+  <field name="alt_title" type="text_word_lim" indexed="true" stored="true"/>
+  <field name="authors_full_name" type="text_word_lim" indexed="true" stored="true" multiValued="true"/>
+  <field name="authors_xaccount" type="text_general" indexed="true" stored="true" multiValued="true"/>
+  <field name="authors_orcid" type="text_general" indexed="true" stored="true" multiValued="true"/>
+  <field name="publication_identifiers" type="text_general" indexed="true" stored="true" multiValued="true"/>
+
+
+  <field name="all" type="text_word_lim" indexed="true" stored="false" multiValued="true"/>
+
+  <copyField source="title" dest="all" />
+  <copyField source="alt_title" dest="all" />
+  <copyField source="authors_full_name" dest="all" />
+  <copyField source="authors_xaccount" dest="all" />
+  <copyField source="authors_orcid" dest="all" />
+
+
+  <uniqueKey>id</uniqueKey>
+
+  <defaultSearchField>all</defaultSearchField>
+  <solrQueryParser defaultOperator="AND"/>
+
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+  <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+  <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
+  <fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
+  <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
+  <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+  <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+  <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="year" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="text_word_lim" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.WordDelimiterFilterFactory" splitOnCaseChange="0" preserveOriginal="1"/>      
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.WordDelimiterFilterFactory" splitOnCaseChange="0" preserveOriginal="1"/>      
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+
+
+</schema>
