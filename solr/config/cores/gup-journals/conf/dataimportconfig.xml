@@ -1,0 +1,32 @@
+<dataConfig>
+  <dataSource driver="org.postgresql.Driver" url="${gup_db_url}" user="${gup_db_user}" password="${gup_db_password}" encoding="UTF-8"/>
+  <document name="journals">
+    <entity name="journal"
+            pk="id"
+            query="SELECT id, title, abbreviation, publisher, place, start_year, end_year, source, updated_at FROM journals ORDER BY id">
+
+      <field column="id" name="id" />
+      <field column="title" name="title" />
+      <field column="abbreviation" name="abbreviation" />
+      <field column="publisher" name="publisher" />
+      <field column="place" name="place" />
+      <field column="start_year" name="start_year" />
+      <field column="end_year" name="end_year" />
+      <field column="source" name="source" />
+      <field column="updated_at" name="updated_at" />
+
+      <entity name="identifiers"
+              pk="journal_id"
+              transformer="TemplateTransformer"
+              cacheKey="journal_id"
+              cacheLookup="journal.id"
+              join="zipper"
+              query="SELECT journal_id, identifier_type, value as identifier FROM journal_identifiers ORDER BY journal_id">
+
+        <field column="identifier" name="identifiers" />
+        <field column="journal_identifier_mapping" template="${identifiers.identifier_type}:${identifiers.identifier}" />
+      </entity>
+
+    </entity>
+  </document>
+</dataConfig>
