@@ -13,7 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+tmp
 
 *~
 \#*#
@@ -22,9 +22,6 @@
 
 # Ignore Aptana .project files.
 .project
-
-# Ignore all vim and vi backup files.
-*.sw*
 
 #Ignore nbproject
 nbproject/
@@ -49,3 +46,27 @@ doc/app/
 #Ignore code climate coverage directory
 /coverage
 
+#Ignore database dumps
+*.sql.gz
+
+## VIM:
+
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~

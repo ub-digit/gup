@@ -1,10 +1,10 @@
-version: '3.7'
 # try messing with stdin_open and tty to find out correct setting
+version: '3.7'
 services:
   frontend:
-    image: docker.ub.gu.se/ember-dev:latest
+    image: docker.ub.gu.se/ember-dev:3.14.0
     volumes:
-      - ./frontend:/usr/src/app
+      - ../frontend:/usr/src/app
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc
     stdin_open: true
@@ -17,3 +17,6 @@ services:
       - 7020:7020
       # Tests in browser
       - 7357:7357
+  solr:
+    ports:
+      - ${GUP_SOLR_PORT}:8983
