@@ -1,0 +1,66 @@
+version: '3.7'
+services:
+  frontend:
+    image: docker.ub.gu.se/gup-frontend:${GIT_REVISION}
+    environment:
+      - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
+      - GUP_SERVICE_PORT=${GUP_SERVICE_PORT}
+    ports:
+      - ${GUP_FRONTEND_PORT}:8080
+  backend:
+    image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
+    depends_on:
+      - db
+    environment:
+      - GUP_ENVIRONMENT=${GUP_ENVIRONMENT}
+      - GUP_DB=${GUP_DB}
+      - GUP_DB_USER=${GUP_DB_USER}
+      - GUP_DB_PASSWORD=${GUP_DB_PASSWORD}
+      - GUP_TEST_USER_API_KEY=${GUP_TEST_USER_API_KEY}
+      - GUP_SCOPUS_API_KEY=${GUP_SCOPUS_API_KEY}
+      - GUP_MAIL_SMTP_HOST=${GUP_MAIL_SMTP_HOST}
+      - GUP_MAIL_FROM=${GUP_MAIL_FROM}
+      - GUP_MAIL_TO=${GUP_MAIL_TO}
+      - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_SERVICE_PORT}
+      - GUP_REPOSITORY_NAME=${GUP_REPOSITORY_NAME}
+      - GUP_OAI_REPOSITORY_NAME=${GUP_OAI_REPOSITORY_NAME}
+      - GUP_OAI_REPOSITORY_URL=http://localhost:${GUP_SERVICE_PORT}/oai
+      - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
+      - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
+      - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
+    networks:
+      - backend
+    ports:
+      - ${GUP_SERVICE_PORT}:3000
+  db:
+    image: postgres:9.4
+    restart: always
+    environment:
+      - POSTGRES_DB=${GUP_DB}
+      - POSTGRES_USER=${GUP_DB_USER}
+      - POSTGRES_PASSWORD=${GUP_DB_PASSWORD}
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    volumes:
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-initdb.d:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  solr:
+    image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
+    environment:
+      - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/${GUP_DB}
+      - GUP_SOLR_DATA_IMPORT_DB_USER=${GUP_DB_USER}
+      - GUP_SOLR_DATA_IMPORT_DB_PASSWORD=${GUP_DB_PASSWORD}
+    networks:
+      - backend
+    depends_on:
+      - db
+networks:
+  backend:
+
+volumes:
+  dbdata:
