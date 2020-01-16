@@ -37,7 +37,7 @@ RUN curl -O https://jdbc.postgresql.org/download/postgresql-42.2.6.jar
 
 WORKDIR /opt/solr
 
-COPY --from=release /root/release/solr/config /opt/solr/gup-config
+COPY --from=release --chown=solr:solr /root/release/solr/config $GUP_SOLR_CONF_PATH
 
 RUN ls "$GUP_SOLR_CONF_PATH/cores" | xargs -I{ precreate-core { "$GUP_SOLR_CONF_PATH/cores/"{
 

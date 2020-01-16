@@ -5,8 +5,6 @@ services:
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SERVICE_PORT=${GUP_SERVICE_PORT}
-    ports:
-      - ${GUP_FRONTEND_PORT}:8080
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:

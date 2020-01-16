@@ -1,24 +1,20 @@
-FROM ruby:2.3.1
+FROM alpine:latest AS release
+RUN apk add --no-cache git
 
 ARG GIT_REVISION
 ARG GIT_REPO_URL
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    locales \
-    #postgresql-client \
-    git \
-  && rm -rf /var/lib/apt/lists/* \
-  && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
-  && locale-gen en_US.UTF-8
-
-WORKDIR /usr/src/app
+WORKDIR /root/
 
 RUN set -ex \
-  && git clone $GIT_REPO_URL repo -b $GIT_REVISION --depth 1
+  && git clone $GIT_REPO_URL release -b $GIT_REVISION --depth 1
 
-WORKDIR /usr/src/app/repo
+FROM docker.ub.gu.se/rails:ruby-2.3.1
+
+COPY --from=release /root/release /usr/src/app
+
 RUN bundle install
 
 EXPOSE 3000
+
 CMD ["sh", "-c", "rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
