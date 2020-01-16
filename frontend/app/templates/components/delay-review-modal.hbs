@@ -2,7 +2,7 @@
 <!-- S_YES-READY -->
 <!-- Button-->
 {{#if isDelayed}}
-<span title="{{publication.biblreview_postpone_comment}}">{{t 'components.delayReviewModal.reviewPostponedUntil'}}<strong>{{startDate}}</strong></span>
+<span title="{{publication.biblreview_postpone_comment}}">{{t 'components.delayReviewModal.reviewPostponedUntil'}} <strong>{{startDate}}</strong></span>
 {{else}}
 <a href="javascript:void();" class={{buttonClass}} data-toggle="modal" data-target="#delayReviewModal">
   <i class="fa fa-clock-o"></i> {{t 'components.delayReviewModal.delay'}}

@@ -242,12 +242,8 @@ class Publication < ActiveRecord::Base
   end
 
   def set_postponed_until(postponed_until:, postponed_by:, epub_ahead_of_print: nil, comment:nil)
-    postpone_dates.each do |postpone_object|
-      if !postpone_object.deleted_at
-        if !postpone_object.update_attributes(deleted_at: DateTime.now, deleted_by: postponed_by)
-          return false
-        end
-      end
+    if !delete_postpone_dates(postponed_by: postponed_by)
+      return false
     end
     if !postpone_dates.create(postponed_until: postponed_until, created_by: postponed_by, updated_by: postponed_by, comment: comment)
       return false
@@ -255,6 +251,17 @@ class Publication < ActiveRecord::Base
     if epub_ahead_of_print
       if !update_attribute(:epub_ahead_of_print, epub_ahead_of_print)
         return false
+      end
+    end
+    return true
+  end
+
+  def delete_postpone_dates(postponed_by:)
+    postpone_dates.each do |postpone_object|
+      if !postpone_object.deleted_at
+        if !postpone_object.update_attributes(deleted_at: DateTime.now, deleted_by: postponed_by)
+          return false
+        end
       end
     end
     return true
