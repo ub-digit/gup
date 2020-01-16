@@ -3,20 +3,79 @@ version: '3.7'
 services:
   frontend:
     image: docker.ub.gu.se/ember-dev:3.14.0
-    volumes:
-      - ../frontend:/usr/src/app
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc
     stdin_open: true
     # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
     tty: true
     ports:
+      # TODO: Change production image to 4200 instead of 8080
+      # so dont have to override here
       # server
-      - 4200:4200
+      - ${GUP_FRONTEND_PORT}:4200
       # livereload
       - 7020:7020
       # Tests in browser
       - 7357:7357
+    volumes:
+      - ../frontend:/home/node/app
+  backend:
+    image: docker.ub.gu.se/rails:ruby-2.3.1
+    depends_on:
+      - db
+    networks:
+      - backend
+    ports:
+      - ${GUP_SERVICE_PORT}:3000
+    volumes:
+      - ../:/usr/src/app
+    command: ["sh", "-c", "bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
   solr:
     ports:
       - ${GUP_SOLR_PORT}:8983
+    volumes:
+      - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
+
+      # gup-guresearch
+      - >
+        ../solr/config/cores/gup-guresearch/conf/dataimportconfig.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/dataimportconfig.xml
+      - >
+        ../solr/config/cores/gup-guresearch/conf/schema.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/schema.xml
+      - >
+        ../solr/config/solrconfig.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/solrconfig.xml
+
+      # gup-people
+      - >
+        ../solr/config/cores/gup-people/conf/dataimportconfig.xml
+        :/opt/solr/server/solr/mycores/gup-people/conf/dataimportconfig.xml
+      - >
+        ../solr/config/cores/gup-people/conf/schema.xml
+        :/opt/solr/server/solr/mycores/gup-people/conf/schema.xml
+      - >
+        ../solr/config/solrconfig.xml
+        :/opt/solr/server/solr/mycores/gup-people/conf/solrconfig.xml
+
+      # gup-journals
+      - >
+        ../solr/config/cores/gup-journals/conf/dataimportconfig.xml
+        :/opt/solr/server/solr/mycores/gup-journals/conf/dataimportconfig.xml
+      - >
+        ../solr/config/cores/gup-journals/conf/schema.xml
+        :/opt/solr/server/solr/mycores/gup-journals/conf/schema.xml
+      - >
+        ../solr/config/solrconfig.xml
+        :/opt/solr/server/solr/mycores/gup-journals/conf/solrconfig.xml
+
+      # gup-publications
+      - >
+        ../solr/config/cores/gup-publications/conf/dataimportconfig.xml
+        :/opt/solr/server/solr/mycores/gup-publications/conf/dataimportconfig.xml
+      - >
+        ../solr/config/cores/gup-publications/conf/schema.xml
+        :/opt/solr/server/solr/mycores/gup-publications/conf/schema.xml
+      - >
+        ../solr/config/solrconfig.xml
+        :/opt/solr/server/solr/mycores/gup-publications/conf/solrconfig.xml
