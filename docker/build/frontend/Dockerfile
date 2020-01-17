@@ -18,8 +18,6 @@ USER node
 
 COPY --from=release --chown=node:node /root/release/frontend /home/node/app
 
-WORKDIR /home/node/app
-
 RUN set -ex \
   && npm install \
   && bower install \

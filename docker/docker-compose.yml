@@ -31,7 +31,7 @@ services:
     ports:
       - ${GUP_SERVICE_PORT}:3000
   db:
-    image: postgres:9.4
+    image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     restart: always
     environment:
       - POSTGRES_DB=${GUP_DB}
@@ -39,14 +39,10 @@ services:
       - POSTGRES_PASSWORD=${GUP_DB_PASSWORD}
     command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     volumes:
-      - ./postgres.conf:/etc/postgresql/postgresql.conf
       - ./postgres-initdb.d:/docker-entrypoint-initdb.d
       - dbdata:/var/lib/postgresql/data
     networks:
       - backend
-    deploy:
-      placement:
-        constraints: [node.role == manager]
   solr:
     image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
