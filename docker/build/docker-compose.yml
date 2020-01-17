@@ -21,3 +21,10 @@ services:
       args:
         - GIT_REPO_URL=${GIT_REPO_URL}
         - GIT_REVISION=${GIT_REVISION}
+  postgres:
+    image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
+    build:
+      context: ./postgres
+      args:
+        - GIT_REPO_URL=${GIT_REPO_URL}
+        - GIT_REVISION=${GIT_REVISION}

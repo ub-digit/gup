@@ -9,10 +9,8 @@ WORKDIR /root/
 RUN set -ex \
   && git clone $GIT_REPO_URL release -b $GIT_REVISION --depth 1
 
-FROM docker.ub.gu.se/rails:ruby-2.3.1
+WORKDIR release/solr/config
 
-COPY --from=release /root/release /usr/src/app
+FROM postgres:9.4
 
-RUN bundle install
-
-CMD ["sh", "-c", "rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
+COPY --from=release /root/release/docker/build/postgres/postgres.conf /etc/postgresql/postgresql.conf

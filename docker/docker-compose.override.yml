@@ -30,6 +30,10 @@ services:
     volumes:
       - ../:/usr/src/app
     command: ["sh", "-c", "bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
+  db:
+    image: postgres:9.4
+    volumes:
+      - ./build/postgres/postgres.conf:/etc/postgresql/postgresql.conf
   solr:
     ports:
       - ${GUP_SOLR_PORT}:8983
