@@ -58,6 +58,7 @@ class PublicationSearchEngine < SearchEngine
     document = create_document publication
     search_engine.add(data: document)
   ensure
+    MessageQueue.send_update_to_queue publication
     search_engine.commit
   end
 
@@ -65,6 +66,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine = PublicationSearchEngine.new
     search_engine.delete_from_index(ids: publication_id)
   ensure
+    MessageQueue.send_delete_to_queue publication_id
     search_engine.commit
   end
 
