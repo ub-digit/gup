@@ -1,0 +1,4 @@
+---
+gup_solr_port: 8989
+gup_frontend_port: 8181
+gup_backend_port: 3111

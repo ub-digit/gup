@@ -70,3 +70,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+# Remove this later and replace with ansible vault variables instead
+ansible/vars/docker_credentials.yml
