@@ -4,7 +4,7 @@ services:
     image: docker.ub.gu.se/gup-frontend:${GIT_REVISION}
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
-      - GUP_SERVICE_PORT=${GUP_FRONTEND_PORT}
+      - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
@@ -19,17 +19,17 @@ services:
       - GUP_MAIL_SMTP_HOST=${GUP_MAIL_SMTP_HOST}
       - GUP_MAIL_FROM=${GUP_MAIL_FROM}
       - GUP_MAIL_TO=${GUP_MAIL_TO}
-      - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_FRONTEND_PORT}
+      - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_BACKEND_PORT}
       - GUP_REPOSITORY_NAME=${GUP_REPOSITORY_NAME}
       - GUP_OAI_REPOSITORY_NAME=${GUP_OAI_REPOSITORY_NAME}
-      - GUP_OAI_REPOSITORY_URL=http://localhost:${GUP_FRONTEND_PORT}/oai
+      - GUP_OAI_REPOSITORY_URL=http://localhost:${GUP_BACKEND_PORT}/oai
       - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
       - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
     networks:
       - backend
     ports:
-      - ${GUP_FRONTEND_PORT}:3000
+      - ${GUP_BACKEND_PORT}:3000
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     restart: always
