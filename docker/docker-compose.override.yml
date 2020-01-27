@@ -25,8 +25,6 @@ services:
       - db
     networks:
       - backend
-    ports:
-      - ${GUP_FRONTEND_PORT}:3000
     volumes:
       - ../:/usr/src/app
     command: ["sh", "-c", "bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
