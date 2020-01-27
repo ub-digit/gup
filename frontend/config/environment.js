@@ -31,29 +31,43 @@ module.exports = function(environment) {
   ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';
   ENV.APP.licenceCode = 'A 85 592 10';
 
-  if (environment === 'development') {
-    let develBaseURL = 'http://localhost:' + process.env.GUP_SERVICE_PORT;
-    ENV.APP.publicationURL = develBaseURL + ENV.APP.publicationURL;
-    ENV.APP.serviceURL = develBaseURL + ENV.APP.serviceURL;
-    ENV.APP.authenticationBaseURL = develBaseURL + ENV.APP.authenticationBaseURL;
-    ENV.APP.fileURL = develBaseURL + ENV.APP.fileURL;
+  let baseURL = null;
+  let hostName = null;
 
-    ENV.APP.licenceURL = develBaseURL + ENV.APP.licenceURL;
+  if (environment === 'development') {
+    hostName = 'localhost';
+    baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.contentSecurityPolicy = {
-     'default-src': "'none'",
-     'script-src': "'self' my-own-hostname",
-     'font-src': "'self' fonts.gstatic.com",
-     'img-src': "'self'",
-     'style-src': "'self' fonts.googleapis.com",
-     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-     'report-uri': "/"
-    };
+  }
+  else if (environment === 'lab') {
+    let hostName = '130.241.35.164';
+    let baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
+  }
+
+  if (baseURL) {
+    ENV.APP.publicationURL = baseURL + ENV.APP.publicationURL;
+    ENV.APP.serviceURL = baseURL + ENV.APP.serviceURL;
+    ENV.APP.authenticationBaseURL = baseURL + ENV.APP.authenticationBaseURL;
+    ENV.APP.fileURL = baseURL + ENV.APP.fileURL;
+    ENV.APP.licenceURL = baseURL + ENV.APP.licenceURL;
+  }
+
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'font-src': "'self' fonts.gstatic.com",
+    'img-src': "'self'",
+    'style-src': "'self' fonts.googleapis.com",
+    'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+    'report-uri': "/"
+  };
+
+  if (hostName) {
+    ENV.contentSecurityPolicy['script-src'] = "'self' " + hostName;
   }
 
   return ENV;
