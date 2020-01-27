@@ -45,8 +45,8 @@ module.exports = function(environment) {
 
   }
   else if (environment === 'lab') {
-    let hostName = '130.241.35.164';
-    let baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
+    hostName = '130.241.35.164';
+    baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
   }
 
   if (baseURL) {
