@@ -27,7 +27,7 @@ services:
       - backend
     volumes:
       - ../:/usr/src/app
-    command: ["sh", "-c", "bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
+    command: ["sh", "-c", "touch /var/tmp/gup_auth_override.enable && bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
   db:
     image: postgres:9.4
     volumes:
