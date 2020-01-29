@@ -71,7 +71,7 @@
                   - "{{ gup_frontend_port }}:8080"
               backend:
                 environment:
-                  - "GUP_ENVIRONMENT={{ gup_environment  }}"
+                  - "GUP_ENVIRONMENT={{ gup_environment }}"
                   - "GUP_DB={{ gup_db }}"
                   - "GUP_DB_USER={{ gup_db_user }}"
                   - "GUP_DB_PASSWORD={{ gup_db_password }}"
@@ -81,5 +81,14 @@
                 ports:
                   - "{{ gup_backend_port }}:3000"
               solr:
+                environment:
+                  - "GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/{{ gup_db }}"
+                  - "GUP_SOLR_DATA_IMPORT_DB_USER={{ gup_db_user }}"
+                  - "GUP_SOLR_DATA_IMPORT_DB_PASSWORD={{ gup_db_password }}"
                 ports:
                   - "{{ gup_solr_port }}:8983"
+              db:
+                environment:
+                  - "POSTGRES_DB={{ gup_db }}"
+                  - "POSTGRES_USER={{ gup_db_user}}"
+                  - "POSTGRES_PASSWORD={{ gup_db_password }}"
