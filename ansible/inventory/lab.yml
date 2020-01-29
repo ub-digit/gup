@@ -8,7 +8,7 @@ all:
       hosts:
         utv02:
       vars:
-        deploy_git_revision: docker-friendly-config
+        deploy_git_revision: docker-friendly-config-v1
         gup_environment: lab
         gup_db: gup_db
         gup_db_user: gup_user
