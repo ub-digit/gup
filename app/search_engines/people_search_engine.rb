@@ -92,6 +92,7 @@ class PeopleSearchEngine < SearchEngine
       year_of_birth: person.year_of_birth,
       first_name: person.first_name,
       last_name: person.last_name,
+      full_name: person.first_name.nil? ? + person.last_name : person.first_name + " " + person.last_name,
       created_at: person.created_at,
       updated_at: person.updated_at,
       created_by: person.created_by,
