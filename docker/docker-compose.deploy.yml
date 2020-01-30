@@ -7,3 +7,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+networks:
+  backend:
+    driver: overlay
+    attachable: true
+

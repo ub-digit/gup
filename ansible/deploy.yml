@@ -92,3 +92,25 @@
                   - "POSTGRES_DB={{ gup_db }}"
                   - "POSTGRES_USER={{ gup_db_user}}"
                   - "POSTGRES_PASSWORD={{ gup_db_password }}"
+
+    - name: Run rails migrations
+      docker_container:
+        name: gup_db_migrate
+        image: "docker.ub.gu.se/gup-backend:{{ deploy_git_revision }}"
+        command: "rake db:migrate"
+        env:
+          RAILS_ENV: "{{ gup_environment }}" # RAILS_ENV instead of GUP_ENVIRONMENT for rake
+          GUP_DB: "{{ gup_db }}"
+          GUP_DB_USER: "{{ gup_db_user }}"
+          GUP_DB_PASSWORD: "{{ gup_db_password }}"
+          GUP_SECRET_KEY_BASE: "{{ gup_secret_key_base }}"
+        state: started
+        auto_remove: no
+        detach: no
+        cleanup: yes
+        networks:
+          - name: gup_backend
+      register: rails_db_migrate_result
+
+    - debug:
+        var: rails_db_migrate_result.ansible_facts.docker_container.Output
