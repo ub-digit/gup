@@ -23,10 +23,14 @@ services:
     user: $UID
   gup_database:
     image: "docker.ub.gu.se/gup-database:dev-2019-05-001"
+    ports:
+        - "6312:5432"
     volumes:
     - ${GUP_REPO:-.}/files:/files/
   gup_solr:
     image: "docker.ub.gu.se/gup-solr:dev-2019-05-001"
+    ports:
+        - "6313:8983"
     volumes:
     - ${GUP_REPO:-.}/files:/files/
     depends_on:
