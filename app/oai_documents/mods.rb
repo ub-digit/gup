@@ -375,7 +375,7 @@ class OaiDocuments
        'other' => ['ovr', 'vet', 'publication/other'],
        'publication_review-article' => ['for', 'ref', 'publication/review-article'],
        'artistic-work_scientific_and_development' => ['kfu', 'vet', 'artistic-work'], # ?????
-       'publication_textcritical-edition' => ['sam', 'vet', 'publication/edited-book'],
+       'publication_textcritical-edition' => ['ovr', 'vet', 'publication/critical-edition'],
        'publication_textbook' => ['bok', 'vet', 'publication/book'],
        'artistic-work_original-creative-work' => ['kfu', 'vet', 'artistic-work/original-creative-work'],
        'publication_editorial-letter' => ['art', 'vet', 'publication/editorial-letter'],
