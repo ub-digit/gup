@@ -99,4 +99,16 @@ namespace :publication do
       f.write("</sitemapindex>\n")
     end
   end
+
+  desc "Creates OAI docments"
+  task :create_oai_documents => :environment do
+    Publication.published.non_deleted.order('id desc').each_with_index do |publication, index|
+      puts "Publication #{index} with id: #{publication.id}"
+      begin
+        publication.update_oai_documents
+      rescue  => error
+        puts "error: #{error.inspect}: #{error.backtrace}"
+      end
+    end
+  end
 end

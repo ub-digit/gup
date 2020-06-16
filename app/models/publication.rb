@@ -6,6 +6,10 @@ class Publication < ActiveRecord::Base
   belongs_to :current_version, class_name: "PublicationVersion", foreign_key: "current_version_id"
   has_many :departments, :through => :current_version
 
+  has_many :oai_documents2publications
+  has_many :oai_documents, :through => :oai_documents2publications
+
+
   belongs_to :publications_view, class_name: "PublicationsView", foreign_key: "id"
 
   #scope :department_id, -> (department_id) { includes(:departments).where(:'departments.id' => department_id) }
@@ -26,9 +30,9 @@ class Publication < ActiveRecord::Base
 
   scope :oai_selection, -> do
     if (APP_CONFIG['oai_settings']['scope'] && APP_CONFIG['oai_settings']['scope'].eql?('full'))
-      where.not(published_at: nil)
+      where(id: Publication.joins(:oai_documents2publications).where.not(published_at: nil).where('oai_documents2publications.oai_set_id = ?', OaiSet.find_by_name('all')).distinct.select(:id))
     else
-      where.not(published_at: nil).where(id: Publication.joins(current_version: {people2publications: {departments2people2publications: :department}}).where("departments.is_internal IS true").distinct.select(:id))
+      where(id: Publication.joins(:oai_documents2publications).where.not(published_at: nil).where('oai_documents2publications.oai_set_id = ?', OaiSet.find_by_name('non_external')).distinct.select(:id))
     end
   end
 
@@ -268,11 +272,43 @@ class Publication < ActiveRecord::Base
   end
 
   def to_oai_dc
-    OaiDocuments::DC.create_record self
+    oai_documents2publications.where(oai_metadata_format_id: OaiMetadataFormat.find_by_name('oai_dc').id).first.oai_document.document
   end
 
   def to_mods
-    OaiDocuments::MODS.create_record self
+    oai_documents2publications.where(oai_metadata_format_id: OaiMetadataFormat.find_by_name('mods').id).first.oai_document.document
+  end
+
+  def update_oai_documents
+    self.delete_oai_documents
+    non_external = self.is_non_external?
+    OaiMetadataFormat.all.each do |mf|
+      if mf.name.eql?('mods')
+        document = OaiDocuments::MODS.create_record self
+        od = OaiDocument.create(document: document)
+        OaiDocuments2publication.create(publication_id: self.id, oai_set_id: OaiSet.find_by_name('all').id, oai_metadata_format_id: OaiMetadataFormat.find_by_name('mods').id, oai_document_id: od.id)
+        if non_external
+          OaiDocuments2publication.create(publication_id: self.id, oai_set_id: OaiSet.find_by_name('non_external').id, oai_metadata_format_id: OaiMetadataFormat.find_by_name('mods').id, oai_document_id: od.id)
+        end
+      elsif mf.name.eql?('oai_dc')
+        document = OaiDocuments::DC.create_record self
+        od = OaiDocument.create(document: document)
+        OaiDocuments2publication.create(publication_id: self.id, oai_set_id: OaiSet.find_by_name('all').id, oai_metadata_format_id: OaiMetadataFormat.find_by_name('oai_dc').id, oai_document_id: od.id)
+        if non_external
+          OaiDocuments2publication.create(publication_id: self.id, oai_set_id: OaiSet.find_by_name('non_external').id, oai_metadata_format_id: OaiMetadataFormat.find_by_name('oai_dc').id, oai_document_id: od.id)
+        end
+      end
+    end
+  end
+
+  def delete_oai_documents
+    oai2ps = OaiDocuments2publication.where(publication_id: self.id)
+    OaiDocument.where(id: oai2ps.pluck(:oai_document_id)).destroy_all
+    OaiDocuments2publication.where(id: oai2ps.pluck(:id)).destroy_all
+  end
+
+  def is_non_external?
+    self.departments.pluck(:is_internal).include?(true)
   end
 
   #
