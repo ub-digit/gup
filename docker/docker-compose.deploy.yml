@@ -3,6 +3,8 @@ services:
   frontend:
     ports:
       - ${GUP_FRONTEND_PORT}:8080
+  backend:
+    endpoint_mode: dnsrr
   db:
     deploy:
       placement:
@@ -11,4 +13,3 @@ networks:
   backend:
     driver: overlay
     attachable: true
-
