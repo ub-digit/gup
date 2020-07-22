@@ -45,7 +45,7 @@ module.exports = function(environment) {
 
   }
   else if (environment === 'lab') {
-    hostName = '130.241.35.164';
+    hostName = 'api.gup-lab.ub.gu.se';
     baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
   }
 
