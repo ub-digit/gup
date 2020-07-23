@@ -48,7 +48,7 @@
 
     - name: Set target deploy stage name
       set_fact:
-        stage_name: "{{ inventory_file | splitext | first }}"
+        stage_name: "{{ inventory_file | basename | splitext | first }}"
 
     - name: Copy deploy .env file to server
       template:
