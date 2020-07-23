@@ -46,6 +46,10 @@
       set_fact:
         deploy_local_username: "{{ local_username_result.stdout }}"
 
+    - name: Set target deploy stage name
+      set_fact:
+        stage_name: "{{ inventory_file | splitext | first }}"
+
     - name: Copy deploy .env file to server
       template:
         src: deploy_env.j2
@@ -57,7 +61,7 @@
       docker_stack:
         state: present
         with_registry_auth: yes
-        name: gup
+        name: "{{ 'gup_' ~ stage_name }}"
         compose:
           - /opt/gup-docker-deploy/docker-compose.yml
           - /opt/gup-docker-deploy/docker-compose.deploy.yml
@@ -65,13 +69,13 @@
             services:
               frontend:
                 environment:
-                  - "EMBER_ENVIRONMENT={{ gup_environment }}"
+                  - "EMBER_ENVIRONMENT={{ stage_name }}"
                   - "GUP_SERVICE_PORT={{ gup_backend_port }}"
                 ports:
                   - "{{ gup_frontend_port }}:8080"
               backend:
                 environment:
-                  - "GUP_ENVIRONMENT={{ gup_environment }}"
+                  - "GUP_ENVIRONMENT={{ stage_name }}"
                   - "GUP_DB={{ gup_db }}"
                   - "GUP_DB_USER={{ gup_db_user }}"
                   - "GUP_DB_PASSWORD={{ gup_db_password }}"
@@ -99,7 +103,7 @@
         image: "docker.ub.gu.se/gup-backend:{{ deploy_git_revision }}"
         command: "rake db:migrate"
         env:
-          RAILS_ENV: "{{ gup_environment }}" # RAILS_ENV instead of GUP_ENVIRONMENT for rake
+          RAILS_ENV: "{{ stage_name }}" # RAILS_ENV instead of GUP_ENVIRONMENT for rake
           GUP_DB: "{{ gup_db }}"
           GUP_DB_USER: "{{ gup_db_user }}"
           GUP_DB_PASSWORD: "{{ gup_db_password }}"
