@@ -3,7 +3,12 @@ services:
   frontend:
     ports:
       - ${GUP_FRONTEND_PORT}:8080
+    networks:
+      - haproxy
+    endpoint_mode: dnsrr
   backend:
+    networks:
+      - haproxy
     endpoint_mode: dnsrr
   db:
     deploy:
