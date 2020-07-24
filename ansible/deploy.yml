@@ -71,8 +71,8 @@
                 environment:
                   - "EMBER_ENVIRONMENT={{ stage_name }}"
                   - "GUP_SERVICE_PORT={{ gup_backend_port }}"
-                ports:
-                  - "{{ gup_frontend_port }}:8080"
+#                ports:
+#                  - "{{ gup_frontend_port }}:8080"
               backend:
                 environment:
                   - "GUP_ENVIRONMENT={{ stage_name }}"
@@ -82,15 +82,15 @@
                   - "GUP_SCOPUS_API_KEY={{ gup_scopus_api_key }}"
                   - "GUP_MQ_API_KEY={{ gup_mq_api_key }}"
                   - "GUP_SECRET_KEY_BASE={{ gup_secret_key_base }}"
-                ports:
-                  - "{{ gup_backend_port }}:3000"
+#                ports:
+#                  - "{{ gup_backend_port }}:3000"
               solr:
                 environment:
                   - "GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/{{ gup_db }}"
                   - "GUP_SOLR_DATA_IMPORT_DB_USER={{ gup_db_user }}"
                   - "GUP_SOLR_DATA_IMPORT_DB_PASSWORD={{ gup_db_password }}"
-                ports:
-                  - "{{ gup_solr_port }}:8983"
+#                ports:
+#                  - "{{ gup_solr_port }}:8983"
               db:
                 environment:
                   - "POSTGRES_DB={{ gup_db }}"
