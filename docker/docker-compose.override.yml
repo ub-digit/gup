@@ -25,6 +25,8 @@ services:
       - db
     networks:
       - backend
+    ports:
+      - ${GUP_BACKEND_PORT}:3000
     volumes:
       - ../:/usr/src/app
     command: ["sh", "-c", "touch /var/tmp/gup_auth_override.enable && bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]

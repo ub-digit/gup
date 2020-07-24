@@ -29,8 +29,6 @@ services:
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
     networks:
       - backend
-    ports:
-      - ${GUP_BACKEND_PORT}:3000
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     restart: always
