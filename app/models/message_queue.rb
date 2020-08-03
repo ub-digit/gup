@@ -1,7 +1,7 @@
 require 'mods.rb'
 class MessageQueue
   def self.send_update_to_queue publication
-    return if !APP_CONFIG.key?('my_settings') || !APP_CONFIG['mq_settings']['enable']
+    return if !APP_CONFIG.key?('mq_settings') || !APP_CONFIG['mq_settings']['enable']
     document = OaiDocuments::MODS.create_complete_record publication
     begin
       RestClient.post "#{APP_CONFIG['mq_settings']['base_url']}?api_key=#{APP_CONFIG['mq_settings']['api_key']}", document
@@ -11,7 +11,7 @@ class MessageQueue
   end
 
   def self.send_delete_to_queue publication_id
-    return if !APP_CONFIG.key?('my_settings') || !APP_CONFIG['mq_settings']['enable']
+    return if !APP_CONFIG.key?('mq_settings') || !APP_CONFIG['mq_settings']['enable']
     document = OaiDocuments::MODS.create_deleted_record publication_id
     begin
       RestClient.post "#{APP_CONFIG['mq_settings']['base_url']}?api_key=#{APP_CONFIG['mq_settings']['api_key']}", document
