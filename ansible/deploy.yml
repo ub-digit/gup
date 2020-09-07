@@ -113,7 +113,7 @@
         detach: no
         cleanup: yes
         networks:
-          - name: gup_backend
+          - name: "{{ 'gup_' ~ stage_name ~ '_backend' }}"
       register: rails_db_migrate_result
 
     - debug:
