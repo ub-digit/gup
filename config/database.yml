@@ -1,6 +1,6 @@
 default: &default
-  host: db
-  port: 5432
+  host: <%= ENV["GUP_DB_HOST"] %>
+  port: <%= ENV["GUP_DB_PORT"] %>
   pool: 10
   timeout: 5000
   adapter: postgresql
