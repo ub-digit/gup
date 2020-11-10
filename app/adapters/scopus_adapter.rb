@@ -146,7 +146,7 @@ class ScopusAdapter
   def self.find id
 
     headers = {"X-ELS-APIKey" => APIKEY, "X-ELS-ResourceVersion" => "XOCS", "Accept" => "application/atom+xml"}
-    response = RestClient.get "http://api.elsevier.com/content/search/index:SCOPUS?count=1&start=0&view=COMPLETE&query=DOI(#{id})", headers
+    response = RestClient.get "https://api.elsevier.com/content/search/index:SCOPUS?count=1&start=0&view=COMPLETE&query=DOI(#{id})", headers
 
     #puts response
     #puts response.code
