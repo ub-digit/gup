@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  frontend:
+#    ports:
+#      - ${GUP_FRONTEND_PORT}:8080
+    networks:
+      - haproxy_haproxy
+#   deploy:
+#      endpoint_mode: dnsrr
+  backend:
+    networks:
+      - haproxy_haproxy
+#    deploy:
+#      endpoint_mode: dnsrr
+  db:
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+networks:
+  backend:
+    driver: overlay
+    attachable: true
+#haproxy_services?
+  haproxy_haproxy:
+    external: true

@@ -1,0 +1,17 @@
+all:
+  hosts:
+    utv02:
+      ansible_host: 130.241.35.164
+      ansible_user: dockeruser
+  children:
+    gup_deploy_swarm_managers:
+      hosts:
+        utv02:
+      vars:
+        deploy_git_revision: docker-friendly-config-v1
+        gup_db: gup_db
+        gup_db_user: gup_user
+        gup_db_password: gup_pass
+        gup_scopus_api_key: <scopus_key>
+        gup_mq_api_key: <mq_key>
+        gup_secret_key_base: 29f01727314845cd7351aace2c4453e28cb95089dadafb49e299e5750e382c303d483d25c2854832fe274d6d27e09442fce906c2621e311ff650fd79644c8ea8

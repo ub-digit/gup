@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="journals" version="1.5">
+  <field name="_root_" type="text_general" indexed="true" stored="false"/>
+  <field name="_version_" type="long" indexed="true" stored="true"/>
+
+  <field name="id" type="int" indexed="true" stored="true" required="true" />
+  <field name="title" type="string" indexed="true" stored="true" />
+  <field name="abbreviation" type="string" indexed="true" stored="true" />
+  <field name="identifiers" type="string" indexed="true" stored="true" multiValued="true" />
+  <field name="journal_identifier_mapping" type="string" indexed="true" stored="true" multiValued="true" />
+  <field name="publisher" type="string" indexed="true" stored="true" />
+  <field name="place" type="string" indexed="true" stored="true" />
+  <field name="start_year" type="int" indexed="true" stored="true" />
+  <field name="end_year" type="int" indexed="true" stored="true" />
+  <field name="updated_at" type="date" indexed="true" stored="true" />
+  <field name="source" type="string" indexed="true" stored="true" />
+
+  <field name="all" type="text_edgengram" indexed="true" stored="true" multiValued="true"/>
+
+  <copyField source="id" dest="all" />
+  <copyField source="title" dest="all" />
+  <copyField source="identifiers" dest="all" />
+  <copyField source="abbreviation" dest="all" />
+
+  <uniqueKey>id</uniqueKey>
+
+  <defaultSearchField>all</defaultSearchField>
+  <solrQueryParser defaultOperator="AND"/>
+
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+  <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="text_edgengram" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="100"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>  
+</schema>

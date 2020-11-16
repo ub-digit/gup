@@ -57,9 +57,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     concurrent-ruby (1.0.5)
@@ -71,12 +68,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
-    ember-cli-rails (0.10.0)
-      cocaine (~> 0.5.8)
-      ember-cli-rails-assets (~> 0.6.2)
-      html_page (~> 0.1.0)
-      railties (>= 3.2)
-    ember-cli-rails-assets (0.6.2)
     erubis (2.7.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
@@ -90,7 +81,6 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashdiff (0.3.7)
-    html_page (0.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.9.3)
@@ -233,7 +223,6 @@ DEPENDENCIES
   capistrano-rvm
   codeclimate-test-reporter
   database_cleaner
-  ember-cli-rails
   factory_girl_rails (~> 4.0)
   jbuilder (~> 2.0)
   mime-types (< 3.0)

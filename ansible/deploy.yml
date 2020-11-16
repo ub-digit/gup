@@ -1,0 +1,120 @@
+---
+- hosts: gup_deploy_swarm_managers
+  become: true
+  vars_files:
+    - vars/docker_credentials.yml # Replace with vault variables
+  tasks:
+    - name: Log into Docker
+      docker_login:
+        registry: docker.ub.gu.se
+        username: "{{ ub__docker_username }}"
+        password: "{{ ub__docker_password }}"
+        state: present
+        reauthorize: yes
+        debug: yes
+
+    # Variable for gup-docker-deploy?
+    - name: Ensure remote working directory exists
+      file:
+        path: /opt/gup-docker-deploy
+        state: directory
+
+    - name: Copy compose files to server
+      copy:
+        src: "{{ playbook_dir }}/../docker/{{ item }}"
+        dest: "/opt/gup-docker-deploy/{{ item }}"
+      loop:
+        - docker-compose.yml
+        - docker-compose.deploy.yml
+
+    - name: Ensure database initialization directory exists
+      file:
+        path: /opt/gup-docker-deploy/postgres-initdb.d
+        state: directory
+
+    - name: Copy database dump if exists
+      copy: src="{{ item }}" dest=/opt/gup-docker-deploy/postgres-initdb.d
+      with_fileglob: postgres-initdb.d/*.gz
+
+    # Revisions log instead
+    - name: Get local username from whoami
+      become: false
+      local_action: command whoami
+      register: local_username_result
+
+    - name: Set local username fact
+      set_fact:
+        deploy_local_username: "{{ local_username_result.stdout }}"
+
+    - name: Set target deploy stage name
+      set_fact:
+        stage_name: "{{ inventory_file | basename | splitext | first }}"
+
+    - name: Copy deploy .env file to server
+      template:
+        src: deploy_env.j2
+        dest: "/opt/gup-docker-deploy/.env"
+
+    - name: Deploy container stack from compose file
+      environment:
+        GIT_REVISION: "{{ deploy_git_revision }}"
+      docker_stack:
+        state: present
+        with_registry_auth: yes
+        name: "{{ 'gup_' ~ stage_name }}"
+        compose:
+          - /opt/gup-docker-deploy/docker-compose.yml
+          - /opt/gup-docker-deploy/docker-compose.deploy.yml
+          - version: '3.7'
+            services:
+              frontend:
+                environment:
+                  - "EMBER_ENVIRONMENT={{ stage_name }}"
+                  - "GUP_SERVICE_PORT={{ gup_backend_port }}"
+#                ports:
+#                  - "{{ gup_frontend_port }}:8080"
+              backend:
+                environment:
+                  - "GUP_ENVIRONMENT={{ stage_name }}"
+                  - "GUP_DB={{ gup_db }}"
+                  - "GUP_DB_USER={{ gup_db_user }}"
+                  - "GUP_DB_PASSWORD={{ gup_db_password }}"
+                  - "GUP_SCOPUS_API_KEY={{ gup_scopus_api_key }}"
+                  - "GUP_MQ_API_KEY={{ gup_mq_api_key }}"
+                  - "GUP_SECRET_KEY_BASE={{ gup_secret_key_base }}"
+#                ports:
+#                  - "{{ gup_backend_port }}:3000"
+              solr:
+                environment:
+                  - "GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/{{ gup_db }}"
+                  - "GUP_SOLR_DATA_IMPORT_DB_USER={{ gup_db_user }}"
+                  - "GUP_SOLR_DATA_IMPORT_DB_PASSWORD={{ gup_db_password }}"
+#                ports:
+#                  - "{{ gup_solr_port }}:8983"
+              db:
+                environment:
+                  - "POSTGRES_DB={{ gup_db }}"
+                  - "POSTGRES_USER={{ gup_db_user}}"
+                  - "POSTGRES_PASSWORD={{ gup_db_password }}"
+
+    - name: Run rails migrations
+      docker_container:
+        name: gup_db_migrate
+        image: "docker.ub.gu.se/gup-backend:{{ deploy_git_revision }}"
+        command: "rake db:migrate"
+        env:
+          RAILS_ENV: "{{ stage_name }}" # RAILS_ENV instead of GUP_ENVIRONMENT for rake
+          GUP_DB: "{{ gup_db }}"
+          GUP_DB_USER: "{{ gup_db_user }}"
+          GUP_DB_PASSWORD: "{{ gup_db_password }}"
+          GUP_SECRET_KEY_BASE: "{{ gup_secret_key_base }}"
+        state: started
+        auto_remove: no
+        detach: no
+        cleanup: yes
+        networks:
+          - name: "{{ 'gup_' ~ stage_name ~ '_backend' }}"
+      register: rails_db_migrate_result
+
+    - debug:
+        var: rails_db_migrate_result.ansible_facts.docker_container.Output
