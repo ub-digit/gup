@@ -1,12 +1,18 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.11.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
+
+gem 'puma', '~> 4.3'
+
+# https://github.com/rails/sprockets-rails/issues/444
+gem "sprockets", "< 4"
+
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'rspec-rails', '~> 3.1'
