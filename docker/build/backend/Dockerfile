@@ -9,7 +9,7 @@ WORKDIR /root/
 RUN set -ex \
   && git clone $GIT_REPO_URL release -b $GIT_REVISION --depth 1
 
-FROM docker.ub.gu.se/rails:ruby-2.3.1
+FROM docker.ub.gu.se/rails:ruby-2.4.10
 
 COPY --from=release /root/release /usr/src/app
 
