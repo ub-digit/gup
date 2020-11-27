@@ -7,7 +7,11 @@ if Rails.env == 'test'
   secret_config = YAML.load_file("#{Rails.root}/config/config_secret.test.yml")
   data_sources_config = YAML.load_file("#{Rails.root}/config/data_sources_test.yml")
 else
-  secret_config = YAML.load_file("#{Rails.root}/config/config_secret.yml")
+  # TODO: Hack, enable erb for all configs or set in config.rb?
+  require "erb"
+  require "yaml"
+  yaml = Pathname.new("#{Rails.root}/config/config_secret.yml")
+  secret_config = YAML.load(ERB.new(yaml.read).result(binding))
 end
 
 config = main_config
