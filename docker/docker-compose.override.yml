@@ -3,40 +3,18 @@ version: '3.7'
 services:
   frontend:
     image: docker.ub.gu.se/ember-dev:3.14.0
-    # Keep the stdin open, so we can attach to our app container's process
-    # and do things such as debugging, etc
-    stdin_open: true
-    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
-    tty: true
-    ports:
-      # TODO: Change production image to 4200 instead of 8080
-      # so dont have to override here
-      # server
-      - ${GUP_FRONTEND_PORT}:4200
-      # livereload
-      - 7020:7020
-      # Tests in browser
-      - 7357:7357
     volumes:
       - ../frontend:/home/node/app
   backend:
     image: docker.ub.gu.se/rails:ruby-2.5.8
-    depends_on:
-      - db
-    networks:
-      - backend
-    ports:
-      - ${GUP_BACKEND_PORT}:3000
     volumes:
       - ../:/usr/src/app
-    command: ["sh", "-c", "touch /var/tmp/gup_auth_override.enable && bundle install && rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
+    command: ["sh", "-c", "touch /var/tmp/gup_auth_override.enable && bundle install && rails server -b 0.0.0.0"]
   db:
     image: postgres:9.4
     volumes:
       - ./build/postgres/postgres.conf:/etc/postgresql/postgresql.conf
   solr:
-    ports:
-      - ${GUP_SOLR_PORT}:8983
     volumes:
       - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
 
