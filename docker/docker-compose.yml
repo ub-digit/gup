@@ -5,12 +5,28 @@ services:
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
+    # Keep the stdin open, so we can attach to our app container's process
+    # and do things such as debugging, etc
+    stdin_open: true
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
+    tty: true
+    ports:
+      # TODO: Change production image to 4200 instead of 8080
+      # so dont have to override here
+      # server
+      - ${GUP_FRONTEND_PORT}:4200
+      # livereload
+      - 7020:7020
+      # Tests in browser
+      - 7357:7357
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
       - db
     environment:
-      - GUP_ENVIRONMENT=${GUP_ENVIRONMENT}
+      - RAILS_ENV=${GUP_ENVIRONMENT}
+      - RACK_ENV=${GUP_ENVIRONMENT}
+      - RAILS_PORT=${GUP_RAILS_PORT}
       - GUP_SECRET_KEY_BASE=${GUP_SECRET_KEY_BASE}
       - GUP_DB_HOST=${GUP_DB_HOST}
       - GUP_DB_PORT=${GUP_DB_PORT}
@@ -31,6 +47,8 @@ services:
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
     networks:
       - backend
+    ports:
+      - ${GUP_BACKEND_PORT}:${GUP_RAILS_PORT}
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     restart: always
@@ -54,6 +72,8 @@ services:
       - backend
     depends_on:
       - db
+    ports:
+      - ${GUP_SOLR_PORT}:8983
 networks:
   backend:
 
