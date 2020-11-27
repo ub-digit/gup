@@ -12,6 +12,8 @@ services:
     environment:
       - GUP_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SECRET_KEY_BASE=${GUP_SECRET_KEY_BASE}
+      - GUP_DB_HOST=${GUP_DB_HOST}
+      - GUP_DB_PORT=${GUP_DB_PORT}
       - GUP_DB=${GUP_DB}
       - GUP_DB_USER=${GUP_DB_USER}
       - GUP_DB_PASSWORD=${GUP_DB_PASSWORD}
