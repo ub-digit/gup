@@ -171,7 +171,14 @@ job "gup" {
 
     service {
       name = "gup-frontend-[[.deploy.stage]]"
+
       port = "frontend"
+
+      tags = ["haproxy"]
+
+      meta {
+        hostname = "gup-[[.deploy.stage]].ub.gu.se"
+      }
     }
 
     task "frontend" {
@@ -179,7 +186,7 @@ job "gup" {
 
       env {
         EMBER_ENVIRONMENT = "[[.deploy.stage]]"
-        GUP_SERVICE_PORT = 8080 #??
+        GUP_SERVICE_HOSTNAME = "api.gup-[[.deploy.stage]].ub.gu.se"
       }
 
       config {
@@ -211,6 +218,12 @@ job "gup" {
     service {
       name = "gup-api-[[.deploy.stage]]"
       port = "api" # Need to prefix with service name and stage, think this might be global?
+
+      tags = ["haproxy"]
+
+      meta {
+        hostname = "api.gup-[[.deploy.stage]].ub.gu.se"
+      }
 
       connect {
         sidecar_service {
