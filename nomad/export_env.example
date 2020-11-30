@@ -1,0 +1,5 @@
+export NOMAD_TOKEN="<nomad bootstrap token (secret id)>"
+export NOMAD_CACERT="certs/nomad-ca.pem"
+export NOMAD_CLIENT_CERT="certs/client.pem"
+export NOMAD_CLIENT_KEY="certs/client-key.pem"
+export NOMAD_ADDR="https://130.241.35.163:4646"

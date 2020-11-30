@@ -1,0 +1,4 @@
+---
+service: "db-migrate"
+command: "rake db:migrate"
+append_stage: "false"

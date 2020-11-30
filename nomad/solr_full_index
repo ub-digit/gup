@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source validate_stage.sh
+
+levant render \
+  -var-file=vars/$1.yml \
+  -var-file=vars/gup.yml \
+  -var-file=vars/secrets.yml \
+  -var-file=vars/solr_full_index.yml \
+  templates/gup-bash-template.nomad > jobs/gup-solr-full-index.nomad \
+  && nomad job run jobs/gup-solr-full-index.nomad
