@@ -29,13 +29,13 @@ job "gup" {
     volume "postgres" {
       type = "host"
       read_only = false
-      source = "gup-postgres"
+      source = "gup-[[.deploy.stage]]-postgres"
     }
 
     volume "postgres-initdb" {
       type = "host"
       read_only = true
-      source = "gup-postgres-initdb"
+      source = "gup-[[.deploy.stage]]-postgres-initdb"
     }
 
     service {
