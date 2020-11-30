@@ -1,0 +1,4 @@
+---
+deploy:
+  stage: staging
+  git_revision: nomad-friendly-config-v14

@@ -1,0 +1,4 @@
+---
+service: "publications-create-lists"
+command: "rake publication:create_lists"
+append_stage: "true"

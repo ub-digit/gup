@@ -1,0 +1,4 @@
+---
+service: "publications-create-sitemaps"
+command: "rake publication:create_sitemaps"
+append_stage: "true"
