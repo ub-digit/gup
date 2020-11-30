@@ -1,0 +1,3 @@
+#!/bin/bash
+levant render -var-file=vars/gup.yml -var-file=vars/secrets.yml templates/gup-template.nomad > jobs/gup.nomad
+levant render -var-file=vars/gup.yml -var-file=vars/secrets.yml templates/gup-db-migrate-template.nomad > jobs/gup-db-migrate.nomad

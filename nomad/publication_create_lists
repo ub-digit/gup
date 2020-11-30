@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source validate_stage.sh
+
+levant render \
+  -var-file=vars/$1.yml \
+  -var-file=vars/gup.yml \
+  -var-file=vars/secrets.yml \
+  -var-file=vars/publication_create_lists.yml \
+  templates/gup-bash-template.nomad > jobs/gup-publication-create-lists.nomad \
+  && nomad job run jobs/gup-publication-create-lists.nomad
