@@ -2,3 +2,5 @@
 deploy:
   stage: production
   git_revision: nomad-friendly-config-v14
+  frontend_hostname: gup.ub.gu.se
+  api_hostname: api.gup.ub.gu.se
