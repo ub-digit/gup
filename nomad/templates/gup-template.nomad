@@ -177,7 +177,7 @@ job "gup" {
       tags = ["haproxy"]
 
       meta {
-        hostname = "gup-[[.deploy.stage]].ub.gu.se"
+        hostname = "[[.deploy.frontend_hostname]]"
       }
     }
 
@@ -186,7 +186,8 @@ job "gup" {
 
       env {
         EMBER_ENVIRONMENT = "[[.deploy.stage]]"
-        GUP_SERVICE_HOSTNAME = "api.gup-[[.deploy.stage]].ub.gu.se"
+        GUP_SERVICE_HOSTNAME = "[[.deploy.api_hostname]]"
+
       }
 
       config {
@@ -222,7 +223,7 @@ job "gup" {
       tags = ["haproxy"]
 
       meta {
-        hostname = "api.gup-[[.deploy.stage]].ub.gu.se"
+        hostname = "[[.deploy.api_hostname]]"
       }
 
       connect {
