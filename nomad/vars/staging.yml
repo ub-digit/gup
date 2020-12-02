@@ -2,3 +2,5 @@
 deploy:
   stage: staging
   git_revision: nomad-friendly-config-v14
+  frontend_hostname: gup-staging.ub.gu.se
+  api_hostname: api.gup-staging.ub.gu.se
