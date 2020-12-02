@@ -3,9 +3,8 @@
 source validate_stage.sh
 
 levant render \
-  -var-file=vars/$1.yml \
   -var-file=vars/gup.yml \
   -var-file=vars/secrets.yml \
-  -var-file=vars/secrets.yml \
+  -var-file=vars/$1.yml \
   templates/gup-template.nomad > jobs/gup.nomad \
   && nomad job run jobs/gup.nomad
