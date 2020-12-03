@@ -1,7 +1,6 @@
 version: '3.7'
 services:
   frontend:
-    image: docker.ub.gu.se/gup-frontend:${GIT_REVISION}
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
@@ -10,17 +9,7 @@ services:
     stdin_open: true
     # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
     tty: true
-    ports:
-      # TODO: Change production image to 4200 instead of 8080
-      # so dont have to override here
-      # server
-      - ${GUP_FRONTEND_PORT}:4200
-      # livereload
-      - 7020:7020
-      # Tests in browser
-      - 7357:7357
   backend:
-    image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
       - db
     environment:
@@ -52,7 +41,6 @@ services:
     ports:
       - ${GUP_BACKEND_PORT}:${GUP_RAILS_PORT}
   db:
-    image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     restart: always
     environment:
       - POSTGRES_DB=${GUP_DB}
@@ -65,7 +53,6 @@ services:
     networks:
       - backend
   solr:
-    image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
       - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/${GUP_DB}
       - GUP_SOLR_DATA_IMPORT_DB_USER=${GUP_DB_USER}
