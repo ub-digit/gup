@@ -3,6 +3,13 @@ version: '3.7'
 services:
   frontend:
     image: docker.ub.gu.se/ember-dev:3.14.0
+    ports:
+      # server
+      - ${GUP_FRONTEND_PORT}:4200
+      # livereload
+      - 7020:7020
+      # Tests in browser
+      - 7357:7357
     volumes:
       - ../frontend:/home/node/app
   backend:
