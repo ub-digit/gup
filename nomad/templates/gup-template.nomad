@@ -28,7 +28,7 @@ job "gup" {
     volume "postgres" {
       type = "host"
       read_only = false
-      source = "gup-[[.deploy.stage]]-postgres"
+      source = "gup-[[.deploy.stage]]-postgres" #-data?
     }
 
     volume "postgres-initdb" {
@@ -241,6 +241,12 @@ job "gup" {
   group "backend" {
     count = 1
 
+    volume "uploads" {
+      type = "host"
+      read_only = false
+      source = "gup-[[.deploy.stage]]-backend-uploads"
+    }
+
     network {
       mode = "bridge"
       port "api" {
@@ -285,6 +291,12 @@ job "gup" {
 
     task "api" {
       driver = "docker"
+
+      volume_mount {
+        volume = "uploads"
+        destination = "/opt/gup-uploads"
+        read_only = false
+      }
 
       # GUP_SECRET_KEY_BASE??
       env {
