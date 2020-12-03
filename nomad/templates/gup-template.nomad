@@ -25,7 +25,6 @@ job "gup" {
       mode = "bridge"
     }
 
-    # TODO: Per stage volumes
     volume "postgres" {
       type = "host"
       read_only = false
@@ -104,11 +103,29 @@ job "gup" {
       #}
     }
 
-    #volume "solr" {
-    #  type = "host"
-    #  read_only = false
-    #  source = "gup-solr-[[.deploy.stage]]"
-    #}
+    volume "gup-guresearch-data" {
+      type = "host"
+      read_only = false
+      source = "gup-[[.deploy.stage]]-solr-gup-guresearch-data"
+    }
+
+    volume "gup-journals-data" {
+      type = "host"
+      read_only = false
+      source = "gup-[[.deploy.stage]]-solr-gup-journals-data"
+    }
+
+    volume "gup-people-data" {
+      type = "host"
+      read_only = false
+      source = "gup-[[.deploy.stage]]-solr-gup-people-data"
+    }
+
+    volume "gup-publications-data" {
+      type = "host"
+      read_only = false
+      source = "gup-[[.deploy.stage]]-solr-gup-publications-data"
+    }
 
     service {
       name = "gup-solr-[[.deploy.stage]]"
@@ -128,20 +145,35 @@ job "gup" {
     task "solr" {
       driver = "docker"
 
+      volume_mount {
+        volume = "gup-guresearch-data"
+        destination = "/opt/solr/server/solr/mycores/gup-guresearch/data"
+        read_only = false
+      }
+
+      volume_mount {
+        volume = "gup-journals-data"
+        destination = "/opt/solr/server/solr/mycores/gup-journals/data"
+        read_only = false
+      }
+
+      volume_mount {
+        volume = "gup-people-data"
+        destination = "/opt/solr/server/solr/mycores/gup-people/data"
+        read_only = false
+      }
+
+      volume_mount {
+        volume = "gup-publications-data"
+        destination = "/opt/solr/server/solr/mycores/gup-publications/data"
+        read_only = false
+      }
+
       env {
         GUP_SOLR_DATA_IMPORT_DB_URL = "jdbc:postgresql://${NOMAD_UPSTREAM_ADDR_gup-postgres-[[.deploy.stage]]}/[[.env.gup_db]]"
         GUP_SOLR_DATA_IMPORT_DB_USER = "[[.env.gup_db_user]]"
         GUP_SOLR_DATA_IMPORT_DB_PASSWORD = "[[.env.gup_db_password]]"
       }
-
-      # Not using volume right now since not sure where to mount
-      # Probably something like /opt/solr/server/solr/mycores/gup-guresearch/data etc
-      # Will thus need multiple volumes
-      #volume_mount {
-      #  volume = "solr"
-      #  destination = "???"
-      #  read_only = false
-      #}
 
       config {
         image = "docker.ub.gu.se/gup-solr:[[.deploy.git_revision]]"
