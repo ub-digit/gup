@@ -160,7 +160,7 @@ job "gup" {
   }
 
   group "frontend" {
-    count = 1
+    count = 2
 
     network {
       mode = "bridge"
@@ -228,6 +228,7 @@ job "gup" {
 
       connect {
         sidecar_service {
+          tags = ["sidecar-proxy"]
           proxy {
             upstreams {
               destination_name = "gup-postgres-[[.deploy.stage]]"
