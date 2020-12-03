@@ -1,6 +1,6 @@
 ---
 deploy:
   stage: lab
-  git_revision: nomad-friendly-config-v14
+  git_revision: nomad-friendly-config-v15
   frontend_hostname: gup-lab.ub.gu.se
   api_hostname: api.gup-lab.ub.gu.se
