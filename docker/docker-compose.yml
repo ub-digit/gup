@@ -53,6 +53,7 @@ services:
     networks:
       - backend
   solr:
+    image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
       - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/${GUP_DB}
       - GUP_SOLR_DATA_IMPORT_DB_USER=${GUP_DB_USER}

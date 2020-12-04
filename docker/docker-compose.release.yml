@@ -10,5 +10,3 @@ services:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
-  solr:
-    image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
