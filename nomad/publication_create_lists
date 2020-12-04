@@ -1,11 +1,13 @@
 #!/bin/bash
 
 source validate_stage.sh
+source validate_periodic.sh
 
 levant render \
+  -var "periodic=$PERIODIC" \
   -var-file=vars/gup.yml \
   -var-file=vars/secrets.yml \
   -var-file=vars/publication_create_lists.yml \
   -var-file=vars/$1.yml \
-  templates/gup-bash-template.nomad > jobs/gup-publication-create-lists.nomad \
-  && nomad job run jobs/gup-publication-create-lists.nomad
+  templates/gup-bash-template.nomad > jobs/${PERIODIC_PREFIX}gup-publication-create-lists.nomad \
+  && nomad job run jobs/${PERIODIC_PREFIX}gup-publication-create-lists.nomad

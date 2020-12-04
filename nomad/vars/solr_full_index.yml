@@ -2,3 +2,4 @@
 service: "solr-full-index"
 command: "./solr/scripts/solr_full_index.sh"
 append_stage: "false"
+cron: "0 5,17,23 * * *"
