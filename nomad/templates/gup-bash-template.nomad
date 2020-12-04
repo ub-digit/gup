@@ -1,4 +1,13 @@
+[[ if .periodic | parseBool ]]
+job "gup-[[.service]]-periodic" {
+  periodic {
+    cron = "[[.cron]]"
+    prohibit_overlap = true
+  }
+[[ else ]]
 job "gup-[[.service]]-[[ timeNow ]]" {
+[[ end ]]
+
   datacenters = ["gubdc1"]
   type = "batch"
 
