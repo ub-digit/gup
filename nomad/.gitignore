@@ -1,6 +1,6 @@
-certs
+certs/*
 !certs/.gitkeep
-jobs
+jobs/*
 !jobs/.gitkeep
 vars/secrets.yml
 export_env
