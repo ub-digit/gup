@@ -16,7 +16,7 @@ services:
     image: docker.ub.gu.se/rails:ruby-2.5.8
     volumes:
       - ../:/usr/src/app
-    command: ["sh", "-c", "touch /var/tmp/gup_auth_override.enable && bundle install && rails server -b 0.0.0.0"]
+    command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
   db:
     image: postgres:9.4
     volumes:

@@ -14,5 +14,3 @@ FROM docker.ub.gu.se/rails:ruby-2.5.8
 COPY --from=release /root/release /usr/src/app
 
 RUN bundle install
-
-CMD ["sh", "-c", "rails server -b 0.0.0.0 -e $GUP_ENVIRONMENT"]
