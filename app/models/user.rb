@@ -40,13 +40,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Auth override-file
+  # Auth override
   def auth_override_present?
-    if File.exist?(APP_CONFIG['override_file'])
-      return true
-    else
-      return false
-    end
+    return APP_CONFIG['auth_override']
   end
   
   # Authenticate user

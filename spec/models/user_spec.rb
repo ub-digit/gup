@@ -70,36 +70,27 @@ RSpec.describe User, :type => :model do
           .to_return(body: {auth: {yesno: false }}.to_json)
       end
 
-      it "should check for override file" do
-        user = User.new(username: "xtest", first_name: "Test", last_name: "User", role: "ADMIN")
-        FileUtils.rm_f(APP_CONFIG['override_file'])
-        expect(user.auth_override_present?).to be_falsey
-        FileUtils.touch(APP_CONFIG['override_file'])
-        expect(user.auth_override_present?).to_not be_falsey
-        FileUtils.rm_f(APP_CONFIG['override_file'])
-      end
-      
       it "should prevent authentication for usernames not starting with x" do
         user = User.new(username: "12345", first_name: "Test", last_name: "User", role: "ADMIN")
         expect(user.authenticate("irrelevant-password")).to be_falsey
       end
       
-      it "should accept authentication for an xaccount regardless of password if override file is in place" do
+      it "should accept authentication for an xaccount regardless of password if auth override is true" do
         user = User.new(username: "xtest", first_name: "Test", last_name: "User", role: "ADMIN")
-        FileUtils.touch(APP_CONFIG['override_file'])
+        APP_CONFIG['auth_override'] = true
         expect(user.authenticate("wrong-password")).to_not be_falsey
-        FileUtils.rm_f(APP_CONFIG['override_file'])
+        APP_CONFIG['auth_override'] = false
       end
       
-      it "should accept authentication for an xaccount with proper password if override file is not in place" do
+      it "should accept authentication for an xaccount with proper password if auth override is false" do
         user = User.new(username: "xvalid", first_name: "Test", last_name: "User", role: "ADMIN")
-        FileUtils.rm_f(APP_CONFIG['override_file'])
+        APP_CONFIG['auth_override'] = false
         expect(user.authenticate("fake_valid_password")).to_not be_falsey
       end
 
-      it "should deny authentication for an xaccount with improper password if override file is not in place" do
+      it "should deny authentication for an xaccount with improper password if auth override is false" do
         user = User.new(username: "xvalid", first_name: "Test", last_name: "User", role: "ADMIN")
-        FileUtils.rm_f(APP_CONFIG['override_file'])
+        APP_CONFIG['auth_override'] = false
         expect(user.authenticate("fake_invalid_password")).to be_falsey
       end
     end
