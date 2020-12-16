@@ -3,21 +3,5 @@
 ports:
   gup_solr_port: 8983
   gup_frontend_port: 8080 # Pass to container? Only needed if running dev container in nomad
-  gup_backend_port: 3000
+  gup_rails_port: 3000
   gup_postgres_port: 5432
-env:
-  gup_secret_key_base: 123abc
-  gup_test_user_api_key: an-api-key
-  gup_scopus_api_key:
-  gup_mail_smtp_host: smtp.example.com
-  gup_mail_from: noreply@example.com
-  gup_mail_to: gup@example.com
-  gup_repository_name: "Gothenburg University Publications (GUP) - devel"
-  gup_oai_repository_name: "gup - devel"
-  gup_oai_record_prefix: aoi:gup.localhost
-  gup_mq_base_url:
-  gup_mq_api_key:
-  gup_db: gup_db
-  gup_db_user: gup_user
-  gup_db_password: gup_pass
-  secret_key_base:
