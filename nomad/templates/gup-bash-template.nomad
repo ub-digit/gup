@@ -11,6 +11,11 @@ job "gup-[[.service]]-[[ timeNow ]]" {
   datacenters = ["gubdc1"]
   type = "batch"
 
+  vault {
+    policies = ["nomad-server"]
+    change_mode = "restart"
+  }
+
   group "[[.service]]" {
     count = 1
 
@@ -39,14 +44,36 @@ job "gup-[[.service]]-[[ timeNow ]]" {
 
     task "[[.service]]"  {
       driver = "docker"
-      # GUP_SECRET_KEY_BASE??
-      env {
-        RAILS_ENV = "[[.deploy.stage]]"  # RAILS_ENV instead of GUP_ENVIRONMENT for rake
-        GUP_DB_HOST = "${NOMAD_UPSTREAM_IP_gup-postgres-[[.deploy.stage]]}"
-        GUP_DB_PORT = "${NOMAD_UPSTREAM_PORT_gup-postgres-[[.deploy.stage]]}"
-        GUP_DB = "[[.env.gup_db]]"
-        GUP_DB_USER = "[[.env.gup_db_user]]"
-        GUP_DB_PASSWORD = "[[.env.gup_db_password]]"
+
+      template {
+        data = <<EOF
+RAILS_ENV = "[[.deploy.stage]]"
+RAILS_PORT = "[[.ports.gup_rails_port]]"
+{{with secret "secret/apps/gup/[[.deploy.stage]]"}}
+GUP_SECRET_KEY_BASE = "{{.Data.data.secret_key_base}}"
+GUP_DB_HOST = "${NOMAD_UPSTREAM_IP_gup-postgres-[[.deploy.stage]]}"
+GUP_DB_PORT = "${NOMAD_UPSTREAM_PORT_gup-postgres-[[.deploy.stage]]}"
+GUP_DB = "{{.Data.data.db_name}}"
+GUP_DB_USER = "{{.Data.data.db_user}}"
+GUP_DB_PASSWORD = "{{.Data.data.db_password}}"
+GUP_SOLR_HOST = "${NOMAD_UPSTREAM_IP_gup-solr-[[.deploy.stage]]}"
+GUP_SOLR_PORT = "${NOMAD_UPSTREAM_PORT_gup-solr-[[.deploy.stage]]}"
+GUP_TEST_USER_API_KEY = "{{.Data.data.test_user_api_key}}"
+GUP_SCOPUS_API_KEY = "{{.Data.data.scopus_api_key}}"
+GUP_MAIL_SMTP_HOST = "{{.Data.data.mail_smtp_host}}"
+GUP_MAIL_FROM = "{{.Data.data.mail_from}}"
+GUP_MAIL_TO = "{{.Data.data.mail_to}}"
+GUP_PUBLIC_BASE_URL = "${NOMAD_ADDR_api}"
+GUP_REPOSITORY_NAME = "{{.Data.data.repository_name}}"
+GUP_OAI_REPOSITORY_NAME = "{{.Data.data.oai_repository_name}}"
+GUP_OAI_REPOSITORY_URL = "${NOMAD_ADDR_api}/oai"
+GUP_OAI_RECORD_PREFIX = "{{.Data.data.oai_record_prefix}}"
+GUP_MQ_BASE_URL = "{{.Data.data.mq_base_url}}"
+GUP_MQ_API_KEY = "{{.Data.data.mq_api_key}}"
+{{end}}
+EOF
+        destination = "secrets/config.env"
+        env = true
       }
 
       config {
