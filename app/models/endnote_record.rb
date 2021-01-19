@@ -14,7 +14,7 @@ class EndnoteRecord < ActiveRecord::Base
   validates :checksum, presence: true
   validates :checksum, uniqueness: true
 
-  DOI_URL_PREFIX = 'http://dx.doi.org/'
+  DOI_URL_PREFIX = 'https://dx.doi.org/'
   PERIODICAL_TYPES = [5, 17, 19, 23, 47]
   MONOGRAPH_TYPES = [6, 25, 27, 28, 32]
   PATENT_TYPES = [25]
@@ -41,6 +41,7 @@ class EndnoteRecord < ActiveRecord::Base
       sourceissue: sourceissue,
       sourcevolume: sourcevolume,
       sourcepages: sourcepages,
+      article_number: article_number,
       issn: issn,
       publisher: publisher,
       place: place,
@@ -51,6 +52,8 @@ class EndnoteRecord < ActiveRecord::Base
       patent_number: patent_number,
       doi: doi,
       doi_url: doi_url,
+      pubmed_id: pubmed_id,
+      scopus_id: scopus_id,
       extid: extid,
       xml: xml,
       checksum: checksum,
@@ -119,7 +122,7 @@ class EndnoteRecord < ActiveRecord::Base
     if MONOGRAPH_TYPES.include?(ref_type)
       endnote_record.isbn = xml.search('./isbn/style').text
     else
-      endnote_record.issn = xml.search('./isbn/style').text
+      endnote_record.issn = EndnoteRecord.fix_issn(xml.search('./isbn/style').text) if xml.search('./isbn/style').text.present?
     end
 
     if MONOGRAPH_TYPES.include?(ref_type)
@@ -131,7 +134,9 @@ class EndnoteRecord < ActiveRecord::Base
       endnote_record.sourcevolume = xml.search('./volume/style').text
       endnote_record.sourceissue = xml.search('./number/style').text
       endnote_record.sourcepages = xml.search('./pages/style').text
+      endnote_record.article_number = xml.search('./custom7/style').text
     end
+
 
     if xml.search('./electronic-resource-num/style').text.present?
       #endnote_record.doi_url = DOI_URL_PREFIX + xml.search('./electronic-resource-num/style').text
@@ -140,7 +145,25 @@ class EndnoteRecord < ActiveRecord::Base
     end
 
     endnote_record.extid = xml.search('./accession-num/style').text
-    return endnote_record
 
+    endnote_record.pubmed_id = xml.search('./label/style').text
+
+    xml.search('./urls/related-urls/url/style').map do |url|
+      if url.text.include?("eid=2-s2.0-")
+        endnote_record.scopus_id = url.text[/\?eid=2-s2.0-(\d*?)\W/m, 1]
+      end
+    end
+
+    return endnote_record
   end
+
+  # Some issn data is delivered with unwanted info and without hyphen char
+  def self.fix_issn str
+    return str if str.length == 9 && str[4] == '-'
+    str.sub!("(ISSN)", "")
+    str.strip!
+    return str.insert(4, '-') if str.length == 8
+    return str
+  end
+
 end

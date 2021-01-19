@@ -410,7 +410,7 @@ export default {
             importConfirmation: {
               header: 'Vill du importera följande post:',
               title: 'Titel:',
-              author: 'Författare:',
+              pubyear: 'Publikationsår:',
               btnImport: 'Importera',
               duplicateMessage: 'Posten verkar redan vara publicerad!'
             },

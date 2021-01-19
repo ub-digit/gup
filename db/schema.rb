@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324074749) do
+ActiveRecord::Schema.define(version: 20210119085030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,9 @@ ActiveRecord::Schema.define(version: 20170324074749) do
     t.text     "doi"
     t.integer  "rec_number"
     t.text     "db_id"
+    t.text     "article_number"
+    t.text     "pubmed_id"
+    t.text     "scopus_id"
   end
 
   add_index "endnote_records", ["checksum"], name: "index_endnote_records_on_checksum", using: :btree
