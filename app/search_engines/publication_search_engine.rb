@@ -51,6 +51,23 @@ class PublicationSearchEngine < SearchEngine
     end
   end
 
+    def self.update_search_engine_for_publication_list publications
+    if Rails.env == "test"
+      publications.each do |publication|
+        self.update_search_engine_do publication
+      end
+    else
+      Thread.new {
+        ActiveRecord::Base.connection_pool.with_connection do
+          publications.each do |publication|
+            self.update_search_engine_do publication
+          end
+        end
+      }
+    end
+  end
+
+
   def self.update_search_engine_do publication
     search_engine = PublicationSearchEngine.new
     # Try to delete document from index 
