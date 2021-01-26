@@ -108,6 +108,7 @@ class V1::PeopleController < V1::V1Controller
           # Reload object before update search engine
           person.reload
           PeopleSearchEngine.update_search_engine([].push(person))
+          PublicationSearchEngine.update_search_engine_for_publication_list(person.publications.published.non_deleted)
         end
 
         @response[:person] = person
