@@ -409,7 +409,7 @@ export default {
             importConfirmation: {
               header: 'Do you want to import this publication:',
               title: 'Title:',
-              author: 'Authors:',
+              pubyear: 'Publication year:',
               btnImport: 'Import',
               duplicateMessage: 'This record may already be registered!'
             },

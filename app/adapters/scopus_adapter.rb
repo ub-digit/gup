@@ -44,7 +44,7 @@ class ScopusAdapter
       sourcepages: sourcepages,
       issn: issn,
       eissn: eissn,
-      links: doi_url,
+      publication_links: @publication_links,
       extid: extid,
       xml: xml,
       datasource: datasource,
@@ -111,14 +111,16 @@ class ScopusAdapter
 
 
     @title = xml.search('//entry/title').text
-    @issn = xml.search('//entry/issn').text
-    @eissn = xml.search('//entry/eIssn').text    
+    @issn = fix_issn(xml.search('//entry/issn').text) if xml.search('//entry/issn').text.present?
+    @eissn = fix_issn(xml.search('//entry/eIssn').text) if xml.search('//entry/eIssn').text.present?
     @sourcetitle = xml.search('//entry/publicationName').text
     @sourcevolume = xml.search('//entry/volume').text
     @sourcepages =xml.search('//entry/pageRange').text
 
     @extid = xml.search('//entry/identifier').text
-    @doi_url = DOI_URL_PREFIX + xml.search('//entry/doi').text
+
+
+    @publication_links = [{url: DOI_URL_PREFIX + xml.search('//entry/doi').text, position: 1}]
 
     # Parse publication_identifiers
     @publication_identifiers = []
@@ -162,7 +164,18 @@ class ScopusAdapter
     puts "Error in ScopusAdapter: #{error}"
     return nil  
   end
+
 private
+
+  # Some issn data is delivered with unwanted info and without hyphen char
+  def fix_issn str
+    return str if str.length == 9 && str[4] == '-'
+    str.sub!("(ISSN)", "")
+    str.strip!
+    return str.insert(4, '-') if str.length == 8
+    return str
+  end
+
   def force_utf8(str)
     if !str.force_encoding("UTF-8").valid_encoding?
       str = str.force_encoding("ISO-8859-1").encode("UTF-8")

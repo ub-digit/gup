@@ -3,7 +3,8 @@ class EndnoteAdapter
     :language, :issn, :author, :sourcetitle, :sourcevolume, :sourceissue,
     :sourcepages, :publisher, :place, :extent, :isbn, :patent_applicant,
     :patent_date, :patent_number, :extid, :doi, :doi_url, :pmid, :xml,
-    :datasource, :sourceid, :publication_identifiers, :publication_links
+    :datasource, :sourceid, :publication_identifiers, :publication_links,
+    :article_number, :pubmed_id, :scopus_id
 
     # As of EndNote XML v17
     PUBLICATION_TYPES = {
@@ -56,10 +57,12 @@ class EndnoteAdapter
     @sourcevolume = rec.sourcevolume
     @sourceissue = rec.sourceissue
     @sourcepages = rec.sourcepages
+    @article_number = rec.article_number
     @doi = rec.doi
     @doi_url = rec.doi_url
     add_identifier(@doi, 'doi')
-    add_identifier(@pubmed, 'pubmed')
+    add_identifier(rec.pubmed_id, 'pubmed')
+    add_identifier(rec.scopus_id, 'scopus-id')
     add_identifier(rec.extid.split(':').last, 'isi-id')
     add_publication_link(@doi_url, 1)
     @xml = rec.xml
@@ -119,6 +122,7 @@ class EndnoteAdapter
       sourcevolume: sourcevolume,
       sourceissue: sourceissue,
       sourcepages: sourcepages,
+      article_number: article_number,
       isbn: isbn,
       issn: issn,
       publication_links: publication_links,
