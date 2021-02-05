@@ -8,5 +8,15 @@ services:
       - ${GUP_FRONTEND_PORT}:8080
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
+    volumes:
+      - ./gup-uploads:/opt/gup-uploads
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  solr:
+    volumes:
+      - ./gup-guresearch:/opt/solr/server/solr/mycores/gup-guresearch/data
+      - ./gup-journals:/opt/solr/server/solr/mycores/gup-journals/data
+      - ./gup-people:/opt/solr/server/solr/mycores/gup-people/data
+      - ./gup-publications:/opt/solr/server/solr/mycores/gup-publications/data

@@ -21,6 +21,7 @@ services:
     image: postgres:9.4
     volumes:
       - ./build/postgres/postgres.conf:/etc/postgresql/postgresql.conf
+      - dbdata:/var/lib/postgresql/data # Use named volume for dev
   solr:
     volumes:
       - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
@@ -68,3 +69,5 @@ services:
       - >
         ../solr/config/solrconfig.xml
         :/opt/solr/server/solr/mycores/gup-publications/conf/solrconfig.xml
+volumes:
+  dbdata:
