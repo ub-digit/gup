@@ -10,7 +10,7 @@ services:
       - ${GUP_FRONTEND_PORT}:8080
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
-    envionment:
+    environment:
       - GUP_HOSTNAME=${BACKEND_HOSTNAME}
     volumes:
       - ./gup-uploads:/opt/gup-uploads
