@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
   else {
     hostName = process.env.GUP_SERVICE_HOSTNAME;
-    baseURL = 'http://' + hostName;
+    baseURL = 'https://' + hostName;
   }
 
   if (baseURL) {
