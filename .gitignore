@@ -73,3 +73,5 @@ tags
 
 # Remove this later and replace with ansible vault variables instead
 ansible/vars/docker_credentials.yml
+
+vendor/bundle
