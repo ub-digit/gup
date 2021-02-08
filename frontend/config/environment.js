@@ -44,7 +44,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
   }
-  else if (environment === 'lab') {
+  else {
     hostName = process.env.GUP_SERVICE_HOSTNAME;
     baseURL = 'http://' + hostName;
   }
