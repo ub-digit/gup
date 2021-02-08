@@ -3,6 +3,8 @@ version: '3.7'
 services:
   frontend:
     image: docker.ub.gu.se/ember-dev:3.14.0
+    environment:
+      - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
     ports:
       # server
       - ${GUP_FRONTEND_PORT}:4200
@@ -14,9 +16,8 @@ services:
       - ../frontend:/home/node/app
   backend:
     image: docker.ub.gu.se/rails:ruby-2.5.8
-    envionment:
-      - GUP_OAI_REPOSITORY_URL=http://localhost:${GUP_BACKEND_PORT}/oai
-      - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_BACKEND_PORT}
+    environment:
+      - GUP_HOSTNAME=localhost:${GUP_BACKEND_PORT}
     volumes:
       - ../:/usr/src/app
     command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

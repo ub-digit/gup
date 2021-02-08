@@ -3,7 +3,6 @@ services:
   frontend:
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
-      - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc
     stdin_open: true
