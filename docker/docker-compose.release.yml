@@ -41,6 +41,7 @@ services:
       - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
       - GUP_HOSTNAME=${BACKEND_FULL_HOSTNAME}
+      - GUP_OAI_SCOPE=full
     networks:
       - backend
     ports:
