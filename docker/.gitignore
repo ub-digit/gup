@@ -1,0 +1,7 @@
+gup-uploads
+postgres-initdb.d/*
+postgres-initdb.d/.gitkeep
+gup-guresearch
+gup-journals
+gup-people
+gup-publications
