@@ -14,6 +14,37 @@ services:
       - GUP_HOSTNAME=${BACKEND_HOSTNAME}
     volumes:
       - ./gup-uploads:/opt/gup-uploads
+  backend_full:
+    image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
+    depends_on:
+      - db
+    environment:
+      - RAILS_ENV=${GUP_ENVIRONMENT}
+      - RAILS_PORT=${GUP_RAILS_PORT}
+      - GUP_AUTH_OVERRIDE=${GUP_AUTH_OVERRIDE}
+      - GUP_SECRET_KEY_BASE=${GUP_SECRET_KEY_BASE}
+      - GUP_DB_HOST=${GUP_DB_HOST}
+      - GUP_DB_PORT=${GUP_DB_PORT}
+      - GUP_DB=${GUP_DB}
+      - GUP_DB_USER=${GUP_DB_USER}
+      - GUP_DB_PASSWORD=${GUP_DB_PASSWORD}
+      - GUP_SOLR_HOST=solr
+      - GUP_SOLR_PORT=8983
+      - GUP_TEST_USER_API_KEY=${GUP_TEST_USER_API_KEY}
+      - GUP_SCOPUS_API_KEY=${GUP_SCOPUS_API_KEY}
+      - GUP_MAIL_SMTP_HOST=${GUP_MAIL_SMTP_HOST}
+      - GUP_MAIL_FROM=${GUP_MAIL_FROM}
+      - GUP_MAIL_TO=${GUP_MAIL_TO}
+      - GUP_REPOSITORY_NAME=${GUP_REPOSITORY_NAME}
+      - GUP_OAI_REPOSITORY_NAME=${GUP_OAI_REPOSITORY_NAME}
+      - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
+      - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
+      - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
+      - GUP_HOSTNAME=${BACKEND_FULL_HOSTNAME}
+    networks:
+      - backend
+    ports:
+      - ${GUP_BACKEND_FULL_PORT}:${GUP_RAILS_PORT}
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     volumes:
