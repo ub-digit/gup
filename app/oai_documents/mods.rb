@@ -113,7 +113,7 @@ class OaiDocuments
         if publication.current_version.people2publications
           publication.current_version.people2publications.each do |p2p|
             person_identifier = p2p.person.get_identifier(source: 'xkonto') ? p2p.person.get_identifier(source: 'xkonto') : p2p.person.id
-            xml.tag!("name", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu.se', 'xlink:href' => person_identifier) do
+            xml.tag!("name", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu', 'xlink:href' => person_identifier) do
               xml.tag!("namePart", p2p.person.first_name, 'type' => 'given') unless !p2p.person.first_name
               xml.tag!("namePart", p2p.person.last_name, 'type' => 'family') unless !p2p.person.last_name
               xml.tag!("namePart", p2p.person.year_of_birth, 'type' => 'date') unless !p2p.person.year_of_birth
