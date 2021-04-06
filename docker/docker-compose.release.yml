@@ -13,7 +13,7 @@ services:
     environment:
       - GUP_HOSTNAME=${BACKEND_HOSTNAME}
     volumes:
-      - ./gup-uploads:/opt/gup-uploads
+      - ${GUP_BACKEND_UPLOADS_VOLUME_SOURCE}:/opt/gup-uploads
   backend_full:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
@@ -49,10 +49,10 @@ services:
   db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ${GUP_DB_VOLUME_SOURCE}:/var/lib/postgresql/data
   solr:
     volumes:
-      - ./gup-guresearch:/opt/solr/server/solr/mycores/gup-guresearch/data
-      - ./gup-journals:/opt/solr/server/solr/mycores/gup-journals/data
-      - ./gup-people:/opt/solr/server/solr/mycores/gup-people/data
-      - ./gup-publications:/opt/solr/server/solr/mycores/gup-publications/data
+      - ${GUP_SOLR_GURESEARCH_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-guresearch/data
+      - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
+      - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
+      - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
