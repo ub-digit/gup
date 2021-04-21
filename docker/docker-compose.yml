@@ -8,6 +8,7 @@ services:
     stdin_open: true
     # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
     tty: true
+    restart: always
   backend:
     depends_on:
       - db
@@ -37,8 +38,8 @@ services:
       - backend
     ports:
       - ${GUP_BACKEND_PORT}:${GUP_RAILS_PORT}
-  db:
     restart: always
+  db:
     environment:
       - POSTGRES_DB=${GUP_DB}
       - POSTGRES_USER=${GUP_DB_USER}
@@ -48,6 +49,7 @@ services:
       - ./postgres-initdb.d:/docker-entrypoint-initdb.d
     networks:
       - backend
+    restart: always
   solr:
     image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
@@ -60,5 +62,6 @@ services:
       - db
     ports:
       - ${GUP_SOLR_PORT}:8983
+    restart: always
 networks:
   backend:
