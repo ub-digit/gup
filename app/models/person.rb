@@ -51,7 +51,7 @@ class Person < ActiveRecord::Base
 
   # Returns all departments affiliated to this person
   def get_all_departments
-    Department.joins(departments2people2publications: {people2publication: {publication_version: :publication}}).where("people2publications.person_id = ?", self.id).where("publications.deleted_at IS NULL").distinct
+    Department.joins(departments2people2publications: {people2publication: {publication_version: :publication}}).where("people2publications.person_id = ?", self.id).where("publications.deleted_at IS NULL").where("publications.current_version_id = people2publications.publication_version_id").distinct
   end
 
   # Returns all people based on identifier for source
