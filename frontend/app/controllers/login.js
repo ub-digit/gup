@@ -12,8 +12,5 @@ export default Ember.Controller.extend({
         this.set('errorMessage', reason.error || reason);
       });
     },
-    authenticationSucceeded: function() {
-		alert("hello");
-    }
   }
 });
