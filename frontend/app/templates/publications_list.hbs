@@ -1,3 +1,6 @@
+{{#unless session.isAuthenticated}}
+{{#link-to "login" class="pull-right"}}<i class="fa fa-lock" aria-hidden="true"></i> {{t 'login.button'}}{{/link-to}}
+{{/unless}}
 <div class="gup-published">
   <div class="gup-published-filter">
     <div class="row bottom-spacing-10">
@@ -45,7 +48,7 @@
           </div>
           <div class="col-sm-6">
             <label>{{t 'publications_list.searchDepartmentLabel'}}</label>
-            {{#power-select-multiple 
+            {{#power-select-multiple
               options=departments
               searchField="name"
               selected=selectedDepartments
@@ -90,7 +93,7 @@
           <div class="col-xs-12">
             {{pagination-pager pagination=model.meta.pagination}}
           </div>
-        </div>            
+        </div>
       {{else}}
         {{no-result displaytext=(t 'publications_list.zeroPublications')}}
       {{/if}}

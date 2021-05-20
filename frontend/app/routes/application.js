@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 //import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Ember.Route.extend (ApplicationRouteMixin,{
   i18n: Ember.inject.service(),
   session: Ember.inject.service('session'),
 
@@ -25,9 +25,25 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this._super();
   },
 
-
+  sessionAuthenticated() { // https://github.com/simplabs/ember-simple-auth/issues/1618
+    if (this.get('session.previousRouteName')) {
+      this.transitionTo(this.get('session.previousRouteName'));
+    } else {
+      this._super(...arguments);
+    }
+  },
   actions: {
 
+    willTransition(transition) {
+      if (window.location.pathname !== "/login") {
+        this.set('session.previousRouteName', window.location.pathname + "/" + window.location.search);
+      }
+      transition.then(() => { // https://github.com/simplabs/ember-simple-auth/issues/1618 (modified above to add queryparams)
+        if (window.location.pathname !== '/login') {
+          this.set('session.previousRouteName', window.location.pathname);
+        }
+      });
+    },
     toggleLang: function() {
       if (this.get('i18n.locale') === 'sv') {
         this.set('i18n.locale', 'en');
