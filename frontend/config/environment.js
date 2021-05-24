@@ -53,7 +53,7 @@ module.exports = function(environment) {
     ENV.APP.publicationURL = baseURL + ENV.APP.publicationURL;
     ENV.APP.serviceURL = baseURL + ENV.APP.serviceURL;
     ENV.APP.authenticationBaseURL = baseURL + ENV.APP.authenticationBaseURL;
-    ENV.APP.fileURL = baseURL + ENV.APP.fileURL;
+    ENV.APP.fileURL = /*baseURL + */ ENV.APP.fileURL;
     ENV.APP.licenceURL = baseURL + ENV.APP.licenceURL;
   }
 
