@@ -1,15 +1,17 @@
 version: '3.7'
 services:
   frontend:
+    restart: always
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
+      - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc
     stdin_open: true
     # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
     tty: true
-    restart: always
   backend:
+    restart: always
     depends_on:
       - db
     environment:
@@ -39,12 +41,15 @@ services:
       - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
       - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
+      - GUP_PUBLIC_BASE_URL=${GUP_PUBLIC_BASE_URL}
+      - GUP_HOSTNAME=${BACKEND_OAI_HOSTNAME}
+      - LOG_FILE_PATH=${LOG_FILE_PATH}
     networks:
       - backend
     ports:
       - ${GUP_BACKEND_PORT}:${GUP_RAILS_PORT}
-    restart: always
   db:
+    restart: always
     environment:
       - POSTGRES_DB=${GUP_DB}
       - POSTGRES_USER=${GUP_DB_USER}
@@ -54,8 +59,8 @@ services:
       - ./postgres-initdb.d:/docker-entrypoint-initdb.d
     networks:
       - backend
-    restart: always
   solr:
+    restart: always
     image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
       - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/${GUP_DB}
@@ -67,6 +72,5 @@ services:
       - db
     ports:
       - ${GUP_SOLR_PORT}:8983
-    restart: always
 networks:
   backend:

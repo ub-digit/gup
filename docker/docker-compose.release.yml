@@ -11,9 +11,10 @@ services:
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     environment:
-      - GUP_HOSTNAME=${BACKEND_HOSTNAME}
+      - GUP_HOSTNAME=${BACKEND_OAI_HOSTNAME}
     volumes:
       - ${GUP_BACKEND_UPLOADS_VOLUME_SOURCE}:/opt/gup-uploads
+      - ${GUP_BACKEND_SITEMAPS_DIR}:/apps/gup/sitemaps
   backend_full:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
@@ -40,7 +41,8 @@ services:
       - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
       - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
-      - GUP_HOSTNAME=${BACKEND_FULL_HOSTNAME}
+      - GUP_HOSTNAME=${BACKEND_OAI_FULL_HOSTNAME}
+      - GUP_PUBLIC_BASE_URL=${GUP_PUBLIC_BASE_URL}
       - GUP_OAI_SCOPE=full
     networks:
       - backend
@@ -56,3 +58,12 @@ services:
       - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
+  static:
+    image: ${GUP_STATIC_RUNNING_IMAGE} 
+    restart: always
+    ports:
+      - ${GUP_STATIC_ACCESS_PORT}:80
+    volumes:
+      - "${GUP_STATIC_APACHE_SITE}:/etc/apache2/sites-enabled"
+      - "${GUP_BACKEND_SITEMAPS_DIR}:/var/www/sitemaps"
+
