@@ -20,6 +20,7 @@ export default Ember.Controller.extend({
 
     selectedDepartments: [],
     selectedAuthors: [],
+    selectedPublicationTypes: [],
     isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
     base_start_year: 1942,
     base_end_year: null, // is set in setupController
@@ -42,6 +43,10 @@ export default Ember.Controller.extend({
         return "publications.dashboard.manage.show";
       }
       return "publication";
+    }),
+
+    selectedPublicationTypesChanged: Ember.observer('selectedPublicationTypes', function() {
+      this.formatForQueryStr('publication_type', this.get('selectedPublicationTypes'));
     }),
 
     selectedDepartmentsChanged: Ember.observer('selectedDepartments', function() {

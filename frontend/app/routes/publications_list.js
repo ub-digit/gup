@@ -38,10 +38,15 @@ export default Ember.Route.extend({
       let arr = params.department_id.split(';');
       this.set("selectedDepartmentIDS", arr);
     }
-
+    this.set("selectedPublicationTypeIDS", null)
+    if (params.publication_type && params.publication_type.length ) {
+      let arr = params.publication_type.split(';');
+      this.set('selectedPublicationTypeIDS', arr);
+    }
     return Ember.RSVP.hash({
       publicList: this.store.find('public_publication_list', params),
       departments: this.store.find('department', {brief: true }),
+      publicationTypes: this.store.find('publication_type'),
       selectedAuthors:  this.store.find('person_record', {search_term: "id:("+strSolrFormat+")"})
     });
   },
@@ -49,6 +54,7 @@ export default Ember.Route.extend({
     controller.set("base_end_year" ,new Date().getFullYear() + 10);
     controller.set('model', model.publicList);
     controller.set('departments', model.departments);
+    controller.set('publicationTypes', model.publicationTypes);
     if ((controller.get('selectedAuthors').length === 0) && (model.selectedAuthors.length !== 0)) {
         controller.set('selectedAuthors', model.selectedAuthors);
     }
@@ -62,6 +68,17 @@ export default Ember.Route.extend({
         controller.set('selectedDepartments', departmentsArr);
       }
       departmentsArr = [];
+    }
+
+    if (controller.get('selectedPublicationTypes').length === 0) {
+      let publicationTypeArr = [];
+      if (this.get('selectedPublicationTypeIDS')) {
+        this.get('selectedPublicationTypeIDS').forEach(function(id) {
+          publicationTypeArr.pushObject(controller.get("publicationTypes").findBy('id', parseInt(id)));
+        });
+        controller.set('selectedPublicationTypes', publicationTypeArr);
+      }
+      publicationTypeArr = [];
     }
 
     if (controller.get('sortSelectValues').length === 0) {

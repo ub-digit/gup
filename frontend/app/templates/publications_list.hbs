@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+          <div class="col-sm-6">
             <label>{{t 'publications_list.searchAuthorLabel'}}<</label>
             {{#power-select-multiple
               search=(action "searchAuthor")
@@ -56,6 +56,20 @@
               as |department|
             }}
               {{department.name}}
+            {{/power-select-multiple}}
+          </div>
+    </div>
+    <div class="row">
+          <div class="col-sm-6">
+            <label>Publikationstyp</label>
+            {{#power-select-multiple
+              options=publicationTypes
+              searchField="name"
+              selected=selectedPublicationTypes
+              onchange=(action (mut selectedPublicationTypes))
+              as |publication_type|
+            }}
+              {{publication_type.name}}
             {{/power-select-multiple}}
           </div>
     </div>
