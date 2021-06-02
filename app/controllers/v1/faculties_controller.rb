@@ -1,5 +1,6 @@
 class V1::FacultiesController < V1::V1Controller
-  
+  before_filter :validate_access, except: [:index]
+
   api :GET, '/faculties', 'Returns a list of all configurated faculties'
   def index
     faculties = Faculty.all
@@ -7,7 +8,7 @@ class V1::FacultiesController < V1::V1Controller
       @response[:faculties] = faculties.order(name_en: :asc)
     else
       @response[:faculties] = faculties.order(name_sv: :asc)
-    end    
+    end
     render_json
   end
 end
