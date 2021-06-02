@@ -228,7 +228,12 @@ export default {
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
     searchAuthorLabel: 'Sök författare',
-    searchDepartmentLabel: 'Sök institution'
+    searchDepartmentLabel: 'Sök institution',
+    selectFacultyLabel: 'Välj fakultet',
+    selectFacultyDropdown: 'Välj fakultet',
+    searchPublicationsType: 'Sök publikationstyp',
+    searchProject: 'Sök projekt',
+    searchSerie: 'Sök serie'
   },
 
   publications: {

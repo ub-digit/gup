@@ -227,7 +227,13 @@ export default {
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
     searchAuthorLabel: 'Search author',
-    searchDepartmentLabel: 'Search department'
+    searchDepartmentLabel: 'Search department',
+    selectFacultyLabel: 'Select faculty',
+    selectFacultyDropdown: 'Select Faculty',
+    searchPublicationsType: 'Search publicationtypes',
+    searchProject: 'Search project',
+    searchSerie: 'Search serie'
+
   },
 
   publications: {

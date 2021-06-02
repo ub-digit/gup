@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { validYear } from 'frontend/lib/validations';
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
@@ -18,6 +19,9 @@ export default Ember.Controller.extend({
     start_year: null,
     end_year: null,
 
+    selectedFacultyID: null,
+    selectedSeries: [],
+    selectedProjects: [],
     selectedDepartments: [],
     selectedAuthors: [],
     selectedPublicationTypes: [],
@@ -26,11 +30,11 @@ export default Ember.Controller.extend({
     base_end_year: null, // is set in setupController
 
 
-    resetPaging: Ember.observer("selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
+    resetPaging: Ember.observer("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
       this.set("page", 1);
     }),
 
-    resultIsVisible: Ember.computed("person_id", "department_id", "ref_value", "start_year", "end_year", function() {
+    resultIsVisible: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
       return true; // simple fix for now. We need to always display results from start for indexing in google scholar
       //if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
       //  return true;
@@ -43,6 +47,18 @@ export default Ember.Controller.extend({
         return "publications.dashboard.manage.show";
       }
       return "publication";
+    }),
+
+    selectedFacultyChanged: Ember.observer('selectedFacultyID', function(){
+      this.set('faculty_id', this.get('selectedFacultyID'));
+    }),
+
+    selectedSeriesChanged: Ember.observer('selectedSeries', function(){
+      this.formatForQueryStr('serie_id', this.get('selectedSeries'));
+    }),
+
+    selectedProjectsChanged: Ember.observer('selectedProjects', function(){
+      this.formatForQueryStr('project_id', this.get('selectedProjects'));
     }),
 
     selectedPublicationTypesChanged: Ember.observer('selectedPublicationTypes', function() {
@@ -67,6 +83,71 @@ export default Ember.Controller.extend({
       }
     }),
 
+    yearRangeDepartments: Ember.computed('start_year', 'end_year', function() {
+      let startYear = this.get('start_year') || '';
+      let endYear = this.get('end_year') || '';
+      let validStartYear = validYear(startYear);
+      let validEndYear = validYear(endYear);
+      let departments = this.get('departments');
+      if (validStartYear) {
+        startYear = parseInt(startYear);
+        departments = departments.filter((item) => {
+          return !Ember.isPresent(item.end_year) || item.end_year >= startYear;
+        });
+      }
+      if (validEndYear) {
+        endYear = parseInt(endYear);
+        departments = departments.filter((item) => {
+          return !Ember.isPresent(item.start_year) || item.start_year <= endYear;
+        });
+      }
+      return departments;
+    }),
+
+
+    selectableFaculties: Ember.computed('yearRangeDepartments', function() {
+      // @TODO: this could be computed prop for increased performance
+      let facultyIds = this.get('yearRangeDepartments').reduce((result, department) => {
+        result[department.faculty_id] = department.faculty_id;
+        return result;
+      }, []);
+      let faculties = this.get('faculties');
+      return facultyIds.map(function(id) {
+        //TODO: this could be made much faster by indexing faculties by id instead
+        return faculties.findBy('id', id) || Ember.Object.create({
+          id: id,
+          name: 'Unknown/Extern (id: ' + id + ')'
+        });
+      });
+    }),
+
+    selectableDepartments: Ember.computed('yearRangeDepartments', 'selectedFacultyID', function() {
+      let departments = this.get('yearRangeDepartments');
+      departments.forEach((item) => {
+        item.children = null;
+      });
+
+      // remove here
+      if (Ember.isPresent(this.get('selectedFacultyID'))) {
+        let facultyId = this.get('selectedFacultyID');
+        departments = departments.filter((item) => {
+          return facultyId === item.faculty_id;
+        });
+      }
+
+
+      if (Ember.isPresent(this.get('selectedDepartments'))) {
+        let selectable_selected_departments = this.get('selectedDepartments').filter((department) => {
+          return department.faculty_id === this.get("selectedFacultyID");
+        });
+        //If one or more selected department no longer among selectable, set new valid filtered selection
+        if (this.get('selectedDepartments').length !== selectable_selected_departments.length) {
+          this.set('selectedDepartments', selectable_selected_departments);
+        }
+      }
+      return departments;
+    }),
+
     isRefChanged: Ember.observer('isRef', function() {
       if (this.get("isRef")) {
         this.set("ref_value", "ISREF");
@@ -87,7 +168,7 @@ export default Ember.Controller.extend({
 
 
     formatForQueryStr(name, selectedValues) {
-      // takes array and formats to semicolon separated string. Removes trailing ; in naiv way maybe change
+      // takes array and formats to semicolon separated string. Removes trailing ; in naive way maybe change
       let that = this;
       this.set(name, "");
       selectedValues.forEach(function(item) {
