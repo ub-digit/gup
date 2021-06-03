@@ -33,7 +33,7 @@ export default Ember.Route.extend({
       strSolrFormat = params.person_id.replace(/;/g, " OR ");
     }
 
-
+    this.set("selectedFacultyID", null);
     if (params.faculty_id) {
       this.set("selectedFacultyID", params.faculty_id);
     }
