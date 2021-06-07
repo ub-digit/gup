@@ -215,6 +215,7 @@ export default {
   },
 
   publications_list: {
+    header_text: "Filter publicationlist",
     title_page: 'List of publications',
     numberOfHits: 'Number of publications',
     sortByPreLabel: 'Sort',
@@ -226,14 +227,13 @@ export default {
     startYearLabel: 'Start year',
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
-    searchAuthorLabel: 'Search author',
-    searchDepartmentLabel: 'Search department',
-    selectFacultyLabel: 'Select faculty',
+    searchAuthorLabel: 'Author',
+    searchDepartmentLabel: 'Department',
+    selectFacultyLabel: 'Faculty',
     selectFacultyDropdown: 'Select Faculty',
-    searchPublicationsType: 'Search publicationtypes',
-    searchProject: 'Search project',
-    searchSerie: 'Search serie'
-
+    searchPublicationsType: 'Publicationtype',
+    searchProject: 'Project (EU-funded)',
+    searchSerie: 'Serie (GU)'
   },
 
   publications: {

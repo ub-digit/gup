@@ -1,3 +1,4 @@
+<h1>{{t 'publications_list.header_text'}}</h1>
 {{#unless session.isAuthenticated}}
 {{#link-to "login" class="pull-right"}}<i class="fa fa-lock" aria-hidden="true"></i> {{t 'login.button'}}{{/link-to}}
 {{/unless}}
@@ -36,28 +37,16 @@
     </div>
     <div class="row bottom-spacing-10">
           <div class="col-sm-6">
-            <label for="faculty-filter-select">{{t 'publications_list.selectFacultyLabel'}}</label>
-            {{#x-select value=selectedFacultyID class="form-control" id="faculty-filter-select"}}
-            {{#x-option}}{{t 'publications_list.selectFacultyDropdown'}}{{/x-option}}
-              {{#each selectableFaculties as |selectValue|}}
-              {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
-              {{/each}}
-            {{/x-select}}
-          </div>
-          <div class="col-sm-6">
-            <label>{{t 'publications_list.searchDepartmentLabel'}}</label>
+            <label>{{t 'publications_list.searchAuthorLabel'}}</label>
             {{#power-select-multiple
-              options=selectableDepartments
-              searchField="name"
-              selected=selectedDepartments
-              onchange=(action (mut selectedDepartments))
-              as |department|
+              search=(action "searchAuthor")
+              selected=selectedAuthors
+              onchange=(action (mut selectedAuthors))
+              as |person|
             }}
-              {{department.name}}
+              {{person.full_name}} {{#if person.xaccount}}({{person.xaccount}}){{/if}}
             {{/power-select-multiple}}
           </div>
-    </div>
-    <div class="row bottom-spacing-10">
           <div class="col-sm-6">
             <label>{{t 'publications_list.searchPublicationsType'}}</label>
             {{#power-select-multiple
@@ -70,17 +59,28 @@
               {{publication_type.name}}
             {{/power-select-multiple}}
           </div>
+    </div>
+    <div class="row bottom-spacing-10">
           <div class="col-sm-6">
-            <label>{{t 'publications_list.searchProject'}}</label>
+            <label>{{t 'publications_list.searchDepartmentLabel'}}</label>
             {{#power-select-multiple
-              options=projects
-              searchField="title"
-              selected=selectedProjects
-              onchange=(action (mut selectedProjects))
-              as |project|
+              options=selectableDepartments
+              searchField="name"
+              selected=selectedDepartments
+              onchange=(action (mut selectedDepartments))
+              as |department|
             }}
-              {{project.title}}
+              {{department.name}}
             {{/power-select-multiple}}
+          </div>
+          <div class="col-sm-6">
+            <label for="faculty-filter-select">{{t 'publications_list.selectFacultyLabel'}}</label>
+            {{#x-select value=selectedFacultyID class="form-control" id="faculty-filter-select"}}
+            {{#x-option}}{{t 'publications_list.selectFacultyDropdown'}}{{/x-option}}
+              {{#each selectableFaculties as |selectValue|}}
+              {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
+              {{/each}}
+            {{/x-select}}
           </div>
     </div>
     <div class="row">
@@ -97,19 +97,19 @@
             {{/power-select-multiple}}
           </div>
           <div class="col-sm-6">
-            <label>{{t 'publications_list.searchAuthorLabel'}}<</label>
+            <label>{{t 'publications_list.searchProject'}}</label>
             {{#power-select-multiple
-              search=(action "searchAuthor")
-              selected=selectedAuthors
-              onchange=(action (mut selectedAuthors))
-              as |person|
+              options=projects
+              searchField="title"
+              selected=selectedProjects
+              onchange=(action (mut selectedProjects))
+              as |project|
             }}
-              {{person.full_name}} {{#if person.xaccount}}({{person.xaccount}}){{/if}}
+              {{project.title}}
             {{/power-select-multiple}}
           </div>
     </div>
-
-  </div>
+</div>
   {{#if resultIsVisible}}
   <div class="row">
     <div class="col-xs-12">

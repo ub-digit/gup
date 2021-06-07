@@ -216,6 +216,7 @@ export default {
   },
 
   publications_list: {
+    header_text: "Filtrera publikationslistan",
     title_page: 'Publikationslista',
     numberOfHits: 'Antal publikationer',
     sortByPreLabel: 'Sortera',
@@ -227,13 +228,13 @@ export default {
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
-    searchAuthorLabel: 'Sök författare',
-    searchDepartmentLabel: 'Sök institution',
-    selectFacultyLabel: 'Välj fakultet',
+    searchAuthorLabel: 'Författare',
+    searchDepartmentLabel: 'Institution',
+    selectFacultyLabel: 'Fakultet',
     selectFacultyDropdown: 'Välj fakultet',
-    searchPublicationsType: 'Sök publikationstyp',
-    searchProject: 'Sök projekt',
-    searchSerie: 'Sök serie'
+    searchPublicationsType: 'Publikationstyp',
+    searchProject: 'Projekt (EU-finansierat)',
+    searchSerie: 'Serie (GU)'
   },
 
   publications: {
