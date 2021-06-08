@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'frontend/config/environment';
 import { validYear } from 'frontend/lib/validations';
 
 export default Ember.Controller.extend({
@@ -40,6 +41,15 @@ export default Ember.Controller.extend({
       //  return true;
       //}
       //return false;
+    }),
+
+    getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function(){
+      return ENV.APP.serviceURL + "/" + "sortby=" + this.get("sort_by") + "&publication_id=" + this.get("publication_id") +
+          "&" + "person_id=" + this.get("person_id") + "&" + "department_id=" + this.get("department_id")  +
+          "&" + "faculty_id=" + this.get("faculty_id") + "&" + "serie_id=" + this.get("serie_id")
+          + "&" + "project_id=" + this.get("project_id") + "&" + "publication_type=" + this.get("publication_type")
+          + "&" + "ref_value=" + this.get("ref_value") + "&" + "start_year=" + this.get("start_year")
+          + "&" + "end_year=" + this.get("end_year") + "&" + "format=ris";
     }),
 
     getLink: Ember.computed("session", function() {
