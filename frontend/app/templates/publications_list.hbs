@@ -120,7 +120,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-6">
             <form class="form-inline">
               <label>{{t 'publications_list.sortByPreLabel'}}</label>
                {{#x-select value=sort_by class="form-control"}}
@@ -130,6 +130,9 @@
                     {{/each}}
                 {{/x-select}}
             </form>
+          </div>
+          <div class="col-xs-6">
+            <a class="btn btn-success pull-right" href="https://gup-server.ub.gu.se/v1/reports/report-2021-06-08_1006?token=c1630767a4c679de46200a837bc03df3&amp;report%5Bfilter%5D%5Bfaculties%5D=&amp;report%5Bfilter%5D%5Bstart_year%5D=1"><i class="fa fa-table" aria-hidden="true"></i> Exportera till Endnote</a>
           </div>
         </div>
         <ul class="list-unstyled dashboard-list">
