@@ -234,7 +234,8 @@ export default {
     selectFacultyDropdown: 'Välj fakultet',
     searchPublicationsType: 'Publikationstyp',
     searchProject: 'Projekt (EU-finansierat)',
-    searchSerie: 'Serie (GU)'
+    searchSerie: 'Serie (GU)',
+    export_as_ris: 'Exportera till Endnote'
   },
 
   publications: {

@@ -233,7 +233,9 @@ export default {
     selectFacultyDropdown: 'Select Faculty',
     searchPublicationsType: 'Publicationtype',
     searchProject: 'Project (EU-funded)',
-    searchSerie: 'Serie (GU)'
+    searchSerie: 'Serie (GU)',
+    export_as_ris: 'Export to Endnote'
+
   },
 
   publications: {
