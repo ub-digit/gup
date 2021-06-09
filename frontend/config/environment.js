@@ -26,6 +26,7 @@ module.exports = function(environment) {
   ENV.APP.serviceURL = '/v1';
   ENV.APP.authenticationBaseURL = '/session';
   ENV.APP.fileURL = '/file';
+  ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS = process.env.GUP_MAX_NUMBER_OF_POSTS_RIS;
 
   // File in public/ directory
   ENV.APP.licenceURL = '/license_Dnr-A_85_592_10.pdf';

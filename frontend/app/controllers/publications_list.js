@@ -52,6 +52,16 @@ export default Ember.Controller.extend({
           + "&" + "end_year=" + this.get("end_year") + "&" + "format=ris";
     }),
 
+    getMaxNumberOfDownloads: Ember.computed('model', function() {
+      return ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS;
+    }),
+
+    disableDownloadAsEndnote: Ember.computed("model.meta.query.total", function(){
+      if (this.get("model.meta.query.total") > parseInt(ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS)) {
+        return true;
+      }
+      return false;
+    }),
     getLink: Ember.computed("session", function() {
       if (this.get("session.isAuthenticated")) {
         return "publications.dashboard.manage.show";

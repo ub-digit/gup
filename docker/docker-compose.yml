@@ -5,6 +5,7 @@ services:
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
+      - GUP_MAX_NUMBER_OF_POSTS_RIS=${GUP_MAX_NUMBER_OF_POSTS_RIS}
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc
     stdin_open: true
@@ -43,6 +44,7 @@ services:
       - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
       - GUP_PUBLIC_BASE_URL=${GUP_PUBLIC_BASE_URL}
       - GUP_HOSTNAME=${BACKEND_OAI_HOSTNAME}
+      - GUP_MAX_NUMBER_OF_POSTS_RIS=${GUP_MAX_NUMBER_OF_POSTS_RIS}
       - LOG_FILE_PATH=${LOG_FILE_PATH}
     networks:
       - backend

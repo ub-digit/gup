@@ -132,7 +132,7 @@
             </form>
           </div>
           <div class="col-xs-6">
-            <a class="btn btn-success pull-right" target="_bland" href="{{getDownloadLink}}"><i class="fa fa-table" aria-hidden="true"></i> {{t 'publications_list.export_as_ris'}}</a>
+            <a class="btn btn-success pull-right {{if disableDownloadAsEndnote 'disabled'}}"  target="_bland" href="{{if disableDownloadAsEndnote '#' getDownloadLink}}"><i class="fa fa-table" aria-hidden="true"></i> {{t 'publications_list.export_as_ris'}} (max {{getMaxNumberOfDownloads}})</a><div class="pull-right"></div>
           </div>
         </div>
         <ul class="list-unstyled dashboard-list">
