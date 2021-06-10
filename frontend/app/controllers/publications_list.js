@@ -44,12 +44,19 @@ export default Ember.Controller.extend({
     }),
 
     getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function(){
-      return ENV.APP.serviceURL + "/" + "sortby=" + this.get("sort_by") + "&publication_id=" + this.get("publication_id") +
-          "&" + "person_id=" + this.get("person_id") + "&" + "department_id=" + this.get("department_id")  +
-          "&" + "faculty_id=" + this.get("faculty_id") + "&" + "serie_id=" + this.get("serie_id")
-          + "&" + "project_id=" + this.get("project_id") + "&" + "publication_type=" + this.get("publication_type")
-          + "&" + "ref_value=" + this.get("ref_value") + "&" + "start_year=" + this.get("start_year")
-          + "&" + "end_year=" + this.get("end_year") + "&" + "format=ris";
+      return ENV.APP.serviceURL + "/public_publication_lists"
+          + "?sortby=" + this.get("sort_by")
+          + "&publication_id=" + ((this.get("publication_id")) ? this.get("publication_id") : '')
+          + "&person_id=" + ((this.get("person_id")) ? this.get("person_id") : '')
+          + "&department_id=" + ((this.get("department_id")) ? this.get("department_id") : '')
+          + "&faculty_id=" + ((this.get("faculty_id")) ? this.get("faculty_id") : '')
+          + "&serie_id=" + ((this.get("serie_id")) ? this.get("serie_id") : '' )
+          + "&project_id=" + ((this.get("project_id")) ? this.get("project_id") : '')
+          + "&publication_type=" + ((this.get("publication_type")) ? this.get("publication_type") : '')
+          + "&ref_value=" + ((this.get("ref_value")) ? this.get("ref_value") : '')
+          + "&start_year=" + ((this.get("start_year")) ? this.get("start_year") : '')
+          + "&end_year=" + ((this.get("end_year")) ? this.get("end_year") : '')
+          + "&output=ris";
     }),
 
     getMaxNumberOfDownloads: Ember.computed('model', function() {

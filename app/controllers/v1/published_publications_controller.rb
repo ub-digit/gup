@@ -132,6 +132,13 @@ class V1::PublishedPublicationsController < ApplicationController
     # Get sort order params
     sort_order = get_sort_order
 
+    if params[:output] && params[:output].eql?("ris")
+      ris_document = publications.map{|p|p.to_ris}.join("\n")
+      send_data ris_document, :filename => "result.ris", type: "plain/text", disposition: "attachment"
+      #render plain: ris_document
+      return
+    end
+
     @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true})
     render_json(200)
   end

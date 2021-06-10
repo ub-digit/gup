@@ -138,6 +138,69 @@ class Publication < ActiveRecord::Base
     result
   end
 
+  def to_ris
+    cv = self.current_version
+
+    fields = []
+    fields << {'TY' => ris_publication_type_mapping[cv.publication_type.code]}
+    fields << {'TI' => cv.title} if cv.title
+    fields << {'A1' => [cv.authors[0].last_name, cv.authors[0].first_name].compact.join(", ")} if cv.authors[0]
+    cv.authors[1..-1].map{|a|fields << {'AU' => [a.last_name, a.first_name].compact.join(", ")}}
+    fields << {'PY' => cv.pubyear} if cv.pubyear
+    fields << {'LA' => cv.publanguage} if cv.publanguage
+    fields << {'DO' => cv.publication_identifiers.where( identifier_code: "doi")[0].identifier_value} if cv.publication_identifiers.where( identifier_code: "doi")[0]
+    fields << {'SN' => [cv.issn, cv.eissn, cv.isbn].compact.join(" ")} if cv.issn || cv.eissn || cv.isbn
+    cv.keywords.split(",").map{|kw|fields << {'KW' => kw.strip}} if cv.keywords
+
+    fields << {'JF' => cv.sourcetitle} if cv.sourcetitle
+    fields << {'VL' => ris_reference(cv)} if cv.sourcevolume
+    fields << {'PB' => cv.publisher} if cv.publisher
+    fields << {'N2' => cv.abstract} if cv.abstract
+    fields << {'UR' => cv.url} if cv.url
+
+    fields << {'ER' => nil}
+
+    fields.map{|f|f.map{|k,v|"#{k} - #{v}"}}.join("\n")
+  end
+
+  def ris_reference cv
+    return nil if !cv.sourcevolume
+    ref = cv.sourcevolume
+    ref = ref + ":#{cv.sourceissue}" if cv.sourceissue
+    ref = ref + ", s. #{cv.sourcepages}" if cv.sourcepages
+    return ref
+  end
+
+  def ris_publication_type_mapping
+    {'conference_other' => 'CPAPER',
+     'conference_paper' => 'CPAPER',
+     'conference_poster' => 'CPAPER',
+     'publication_journal-article' => 'JOUR',
+     'publication_magazine-article' => 'JOUR',
+     'publication_edited-book' => 'BOOK',
+     'publication_book' => 'BOOK',
+     'publication_book-chapter' => 'CHAP',
+     'intellectual-property_patent' => 'GEN',
+     'publication_report' => 'BOOK',
+     'publication_doctoral-thesis' => 'BOOK',
+     'publication_book-review' => 'JOUR',
+     'publication_licentiate-thesis' => 'BOOK',
+     'other' => 'GEN',
+     'publication_review-article' => 'JOUR',
+     'artistic-work_scientific_and_development' => 'GEN',
+     'publication_textcritical-edition' => 'JOUR',
+     'publication_textbook' => 'BOOK',
+     'artistic-work_original-creative-work' => 'GEN',
+     'publication_editorial-letter' => 'JOUR',
+     'publication_report-chapter' => 'CHAP',
+     'publication_newspaper-article' => 'JOUR',
+     'publication_encyclopedia-entry' => 'CHAP',
+     'publication_journal-issue' => 'JFULL',
+     'conference_proceeding' => 'CONF',
+     'publication_working-paper' => 'JOUR',}
+  end
+
+
 
   def update_search_engine
     # Update index on delete only here
