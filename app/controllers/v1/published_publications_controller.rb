@@ -133,7 +133,7 @@ class V1::PublishedPublicationsController < ApplicationController
     sort_order = get_sort_order
 
     if params[:output] && params[:output].eql?("ris")
-      ris_document = publications.map{|p|p.to_ris}.join("\n")
+      ris_document = publications.map{|p|p.to_ris}.join("\r\n\r\n")
       send_data ris_document, :filename => "result.ris", type: "plain/text", disposition: "attachment"
       #render plain: ris_document
       return

@@ -145,7 +145,7 @@ class Publication < ActiveRecord::Base
     fields << {'TY' => ris_publication_type_mapping[cv.publication_type.code]}
     fields << {'TI' => cv.title} if cv.title
     fields << {'A1' => [cv.authors[0].last_name, cv.authors[0].first_name].compact.join(", ")} if cv.authors[0]
-    cv.authors[1..-1].map{|a|fields << {'AU' => [a.last_name, a.first_name].compact.join(", ")}}
+    cv.authors[1..-1].map{|a|fields << {'AU' => [a.last_name, a.first_name].compact.join(", ")}} if cv.authors[1..-1]
     fields << {'PY' => cv.pubyear} if cv.pubyear
     fields << {'LA' => cv.publanguage} if cv.publanguage
     fields << {'DO' => cv.publication_identifiers.where( identifier_code: "doi")[0].identifier_value} if cv.publication_identifiers.where( identifier_code: "doi")[0]
@@ -160,7 +160,7 @@ class Publication < ActiveRecord::Base
 
     fields << {'ER' => nil}
 
-    fields.map{|f|f.map{|k,v|"#{k} - #{v}"}}.join("\n")
+    fields.map{|f|f.map{|k,v|"#{k}  - #{v}"}}.join("\r\n")
   end
 
   def ris_reference cv
@@ -188,7 +188,7 @@ class Publication < ActiveRecord::Base
      'other' => 'GEN',
      'publication_review-article' => 'JOUR',
      'artistic-work_scientific_and_development' => 'GEN',
-     'publication_textcritical-edition' => 'JOUR',
+     'publication_textcritical-edition' => 'BOOK',
      'publication_textbook' => 'BOOK',
      'artistic-work_original-creative-work' => 'GEN',
      'publication_editorial-letter' => 'JOUR',
@@ -197,7 +197,7 @@ class Publication < ActiveRecord::Base
      'publication_encyclopedia-entry' => 'CHAP',
      'publication_journal-issue' => 'JFULL',
      'conference_proceeding' => 'CONF',
-     'publication_working-paper' => 'JOUR',}
+     'publication_working-paper' => 'BOOK',}
   end
 
 
