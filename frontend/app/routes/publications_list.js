@@ -52,7 +52,7 @@ export default Ember.Route.extend({
       let arr = params.department_id.split(';');
       this.set("selectedDepartmentIDS", arr);
     }
-    this.set("selectedPublicationTypeIDS", null)
+    this.set("selectedPublicationTypeIDS", null);
     if (params.publication_type && params.publication_type.length ) {
       let arr = params.publication_type.split(';');
       this.set('selectedPublicationTypeIDS', arr);

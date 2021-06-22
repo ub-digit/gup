@@ -63,12 +63,10 @@ export default Ember.Controller.extend({
       return ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS;
     }),
 
-    disableDownloadAsEndnote: Ember.computed("model.meta.query.total", function(){
-      if (this.get("model.meta.query.total") > parseInt(ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS)) {
-        return true;
-      }
-      return false;
+    disableDownloadAsEndnote: Ember.computed("model.meta.query.total", function() {
+      return this.get("model.meta.query.total") > parseInt(ENV.APP.GUP_MAX_NUMBER_OF_POSTS_RIS);
     }),
+
     getLink: Ember.computed("session", function() {
       if (this.get("session.isAuthenticated")) {
         return "publications.dashboard.manage.show";
@@ -95,7 +93,6 @@ export default Ember.Controller.extend({
     selectedDepartmentsChanged: Ember.observer('selectedDepartments', function() {
       this.formatForQueryStr('department_id', this.get('selectedDepartments'));
     }),
-
 
     selectedAuthorsChanged: Ember.observer('selectedAuthors', function() {
       this.formatForQueryStr('person_id', this.get('selectedAuthors'));
@@ -130,7 +127,6 @@ export default Ember.Controller.extend({
       }
       return departments;
     }),
-
 
     selectableFaculties: Ember.computed('yearRangeDepartments', function() {
       // @TODO: this could be computed prop for increased performance
@@ -218,7 +214,5 @@ export default Ember.Controller.extend({
       searchDepartment(term) {
         return this.store.find('department', {search_term: term});
       }
-
-
     }
 });

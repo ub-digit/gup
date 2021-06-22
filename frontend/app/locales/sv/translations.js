@@ -235,7 +235,7 @@ export default {
     searchPublicationsType: 'Publikationstyp',
     searchProject: 'Projekt (EU-finansierat)',
     searchSerie: 'Serie (GU)',
-    export_as_ris: 'Exportera till Endnote'
+    export_as_ris: 'Ladda ner träfflistan (.ris)'
   },
 
   publications: {
