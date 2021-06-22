@@ -113,6 +113,8 @@ export default Ember.Controller.extend({
       let validStartYear = validYear(startYear);
       let validEndYear = validYear(endYear);
       let departments = this.get('departments');
+
+      // TODO: Validations not needed
       if (validStartYear) {
         startYear = parseInt(startYear);
         departments = departments.filter((item) => {
@@ -146,6 +148,8 @@ export default Ember.Controller.extend({
 
     selectableDepartments: Ember.computed('yearRangeDepartments', 'selectedFacultyID', function() {
       let departments = this.get('yearRangeDepartments');
+
+      // TODO: Should document: why do we do this?
       departments.forEach((item) => {
         item.children = null;
       });
@@ -158,16 +162,17 @@ export default Ember.Controller.extend({
         });
       }
 
-
       if (Ember.isPresent(this.get('selectedDepartments'))) {
         let selectable_selected_departments = this.get('selectedDepartments').filter((department) => {
-          return department.faculty_id === this.get("selectedFacultyID");
+          return departments.findBy('id', department.id);
         });
         //If one or more selected department no longer among selectable, set new valid filtered selection
         if (this.get('selectedDepartments').length !== selectable_selected_departments.length) {
           this.set('selectedDepartments', selectable_selected_departments);
         }
       }
+
+
       return departments;
     }),
 
@@ -188,23 +193,9 @@ export default Ember.Controller.extend({
       return arr;
     }),
 
-
-
     formatForQueryStr(name, selectedValues) {
-      // takes array and formats to semicolon separated string. Removes trailing ; in naive way maybe change
-      let that = this;
-      this.set(name, "");
-      selectedValues.forEach(function(item) {
-        if (that.get(name).indexOf(item.id + ";") === -1) {
-          that.set(name, that.get(name) + item.id + ";");
-        }
-      });
-      // remove trailing ; in string as its gets added in loop above
-      if (this.get(name)) {
-        if (this.get(name).match(".*;$")) {
-          this.set(name, this.get(name).slice(0,-1));
-        }
-      }
+      // takes array and formats to semicolon separated string
+      this.set(name, selectedValues.mapBy("id").join(";"));
     },
 
     actions: {
