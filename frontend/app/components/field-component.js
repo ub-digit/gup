@@ -236,8 +236,6 @@ export default Ember.Component.extend({
       this.set('journal_id',journal.id);
   }),
 
-
-
   actions: {
     queryJournals: function(query, deferred) {
       this.store.find('journal', { search_term: query.term })
