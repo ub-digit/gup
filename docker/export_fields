@@ -1,0 +1,3 @@
+#!/bin/bash
+docker-compose exec db psql -hlocalhost gup_db gup_user -c "Copy (SELECT pt.code AS  publicatoin_type, f.name AS field_name, fpt.rule as rule FROM fields2publication_types fpt JOIN fields f ON fpt.field_id = f.id JOIN publication_types pt ON fpt.publication_type_id = pt.id ORDER BY pt.code, f.name) TO '/tmp/tmp.cvs' WITH CSV DELIMITER ',';" > /dev/null
+docker-compose exec db cat /tmp/tmp.cvs
