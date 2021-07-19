@@ -456,6 +456,7 @@ publication_working-paper,category_hsv_local,R
 publication_working-paper,extent,O
 publication_working-paper,extid,O
 publication_working-paper,isbn,O
+publication_working-paper,issn,O
 publication_working-paper,keywords,O
 publication_working-paper,place,O
 publication_working-paper,project,O
