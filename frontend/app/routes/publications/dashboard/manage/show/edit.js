@@ -152,22 +152,23 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     },
     // TODO: this should probably live in the controller?
     savePublication: function(isDraft) {
-        if (!isDraft) {
-          // check to see if trying to save a publication with no affiliations
-          let authors = this.get('controller.authorArr');
-          let authorAffiliated = authors.find((author) => {
-            let validInstitutions = author.get("selectedInstitution").filter((item) => {
-              return (item.id !== 666);
-            });
-            return (validInstitutions.length > 0);
+
+      if (!isDraft) {
+        // check to see if trying to save a publication with no affiliations
+        let authors = this.get('controller.authorArr');
+        let authorAffiliated = authors.find((author) => {
+          let validInstitutions = author.get("selectedInstitution").filter((item) => {
+            return (item.id !== 666);
           });
-          if (!authorAffiliated) {
-            let continueSave = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirm'));
-            if (!continueSave) {
-              return;
-            }
+          return (validInstitutions.length > 0);
+        });
+        if (!authorAffiliated) {
+          let continueSave = confirm(this.get('i18n').t('publications.dashboard.manage.show.edit.confirm'));
+          if (!continueSave) {
+            return;
           }
         }
+      }
       //TODO: Ok solution for now, can be solved more elegantly?
       this.set('controller.publication.publication_links', this.get('controller.publication.publication_links').filter((link) => {
         return Ember.isPresent(link.get('url'));
@@ -179,6 +180,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       });
 
       let savePublication = new Ember.RSVP.Promise((resolve, reject) => {
+
         let successHandler = (model) => {
           let message = isDraft ?
             this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftSuccess') :
@@ -189,19 +191,27 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           if (!isDraft) {
             this.send('refreshUserdata');
           }
-          return this.get('hasReturnTo') ?
+
+          this.get('hasReturnTo') ?
             this.transitionTo(...this.get('returnToArguments')) :
             this.transitionTo('publications.dashboard.manage.show', model.id);
+          resolve();
         };
 
-        let errorHandler = (reason) => {
-          /*
-          let message = isDraft ?
-            this.get('i18n').t('publications.dashboard.manage.show.edit.saveDraftError') :
-            this.get('i18n').t('publications.dashboard.manage.show.edit.publishError');
-            this.send('setMsgHeader', 'error', message);
-          */
-          this.controller.set('errors', reason.error.errors);
+        let errorHandler = (errors) => {
+
+          // If js error
+          if (typeof errors === 'object' && 'message' in errors) {
+            errors = errors.message;
+          }
+
+          if (typeof errors == 'string') {
+            this.send('setMsgHeader', 'error', errors);
+          }
+          else {
+            // Assume errors = model.error.errors
+            this.controller.set('errors', errors);
+          }
 
           if(!isDraft && this.controller.get('publication.draft_id')) {
             this.controller.set('publication.id', this.controller.get('publication.draft_id'));
@@ -214,22 +224,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
               html: true
             });
           });
-          return false; //Implications? Remove this?
+          reject();
         };
 
-        let generalHandler = (model) => {
-          if (!model) {
-            this.send('setMsgHeader', 'error', this.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
-            return;
-          }
-          if (model.error) {
-            return errorHandler(model);
-          }
-          else {
-            return successHandler(model);
-          }
-        };
-
+        //TODO: remove submitCallbacksRun and use .all here instead for clarity?
         this.get('controller').submitCallbacksRun().then(() => {
           if (!isDraft && !this.controller.get('publication.published_at')) {
             this.controller.set('publication.draft_id', this.controller.get('publication.id'));
@@ -239,11 +237,18 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
           this.get('controller').formatAuthorsForServer();
           let resource = isDraft ? 'draft' : 'published_publication';
           this.store.save(resource, this.controller.get('publication'))
-            .then(generalHandler, errorHandler)
-            .then(resolve, reject);
-        }, (reason) => {
-          reject(reason); //??
-        });
+            .then((model) => {
+              if (!model) {
+                errorHandler(this.get('i18n').t('publications.dashboard.manage.show.edit.systemError'));
+              }
+              else if (model.error) {
+                return errorHandler(model.error.errors);
+              }
+              else {
+                return successHandler(model);
+              }
+            }, errorHandler);
+        }, errorHandler);
       });
       this.send('pageIsDisabled', savePublication);
     }

@@ -114,24 +114,30 @@ export default Ember.Route.extend (ApplicationRouteMixin,{
         this.store.find('publication', publication_id).then(generalHandler);
       }
     },
-    pageIsDisabled(transition) {
+    pageIsDisabled(promise) {
       let controller = this.controllerFor('application');
       controller.set('pageIsDisabled', true);
+
       Ember.run.schedule('afterRender', this, function() {
+        let promisePending = true;
         Ember.$('#page-disabled-overlay').fadeTo(400, 0.25, () => {
-          controller.set('currentlyLoading', true);
+          if (promisePending) {
+            controller.set('currentlyLoading', true);
+          }
         });
-      });
-      let enablePage = Ember.run.bind(this, function() {
-        controller.set('currentlyLoading', false);
-        Ember.$('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
-          Ember.run(() => {
-            controller.set('pageIsDisabled', false);
+        let enablePage = function() {
+          promisePending = false;
+          controller.set('currentlyLoading', false);
+          //afterRender once again to be safe/correct?
+          Ember.$('#page-disabled-overlay').stop(true, false).fadeTo(200, 1, () => {
+            Ember.run(() => {
+              controller.set('pageIsDisabled', false);
+            });
           });
-        });
+        };
+        // Restore page both regardless of resolved or rejected
+        promise.then(enablePage, enablePage);
       });
-      // Restore page both regardless of resolved or rejected
-      transition.then(enablePage, enablePage);
     }
   }
 });

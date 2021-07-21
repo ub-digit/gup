@@ -18,14 +18,14 @@ export default Ember.Component.extend({
   */
 
   isFirst: Ember.computed('index', function() {
-  if (this.get("index") === 0) {
-    return "is-first";
+  if (this.get('index') === 0) {
+    return 'is-first';
   }
   return;
   }),
 
   isLast: Ember.computed('index', 'totalNumberOfItems', function() {
-    if ((this.get("index")+1) === this.get('totalNumberOfItems')) {
+    if ((this.get('index') + 1) === this.get('totalNumberOfItems')) {
       return 'is-last';
     }
     return;
@@ -36,38 +36,32 @@ export default Ember.Component.extend({
     this._super(...arguments);
     // Helper function for persisting new author items, returns promise
     this.set('createAuthor', (item) => {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        this.store.save('person', {
-          'first_name': item.newAuthorForm.get('firstName'),
-          'last_name': item.newAuthorForm.get('lastName'),
-          'year_of_birth': item.newAuthorForm.get('year_of_birth'),
-          'xaccount': item.newAuthorForm.get('xaccount'),
-          'orcid': item.newAuthorForm.get('orcid'),
-          'skip_update_search_engine': item.newAuthorForm.get('skip_update_search_engine'),
-        }).then((model) => {
-          item.set('selectedAuthor', model);
-          item.set('transformedToNewAuthor', false);
-          resolve(model); //Passing item, model or nothing here the right thing to do?
-        }, (reason) => {
-          reject(reason);
-        });
-      });
+      return this.store.save('person', {
+        'first_name': item.newAuthorForm.get('firstName'),
+        'last_name': item.newAuthorForm.get('lastName'),
+        'year_of_birth': item.newAuthorForm.get('year_of_birth'),
+        'xaccount': item.newAuthorForm.get('xaccount'),
+        'orcid': item.newAuthorForm.get('orcid'),
+        'skip_update_search_engine': item.newAuthorForm.get('skip_update_search_engine'),
+      }).then((model) => {
+        item.set('selectedAuthor', model);
+        item.set('transformedToNewAuthor', false);
+      })
     });
-
-
 
     //TODO: Forgotten how to Ember, is this correct or should be property on object sent to extend??
     this.set('invalidSelectedDepartments', Ember.A([]));
 
     this.get('submitCallbacks').addObject(() => {
-      if(this.get('isUnsaved')) {
-        //TODO: user should be promted here!!
-        // You have created a new Author, but not saved: "Save", "Discard", "Cancel"?
-        return new Ember.RSVP.Promise((resolve, reject) => {
-          let item = this.get('item');
-          item.newAuthorForm.set('skip_update_search_engine', true);
-          this.get('createAuthor')(item).then(resolve, reject);
-        });
+      if (this.get('isUnsaved') || this.get('isUnsavedImported')) {
+        //TODO: promt user if isUnsaved? "Save", "Discard", "Cancel"?
+        let item = this.get('item');
+        if (this.get('isUnsavedImported')) {
+          item.newAuthorForm.set('firstName', item.get('importedAuthorFirstName'));
+          item.newAuthorForm.set('lastName', item.get('importedAuthorLastName'));
+        }
+        item.newAuthorForm.set('skip_update_search_engine', true);
+        return this.get('createAuthor')(item);
       }
       return Ember.RSVP.Promise.resolve();
     });
@@ -196,9 +190,13 @@ export default Ember.Component.extend({
     return this.get('item.importedAuthorName') && !this.get('addAffiliation');
   }),
 
-  //TODO: little bit uncertain about dependant properties
-  isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', 'isImportedExternal', function() {
-    return (this.get('item.transformedToNewAuthor') || this.get('isImportedExternal')) && !Ember.isBlank(this.get('item.newAuthorForm.lastName'));
+  isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', function() {
+    return this.get('item.transformedToNewAuthor') && !Ember.isBlank(this.get('item.newAuthorForm.lastName'));
+  }),
+
+  isUnsavedImported: Ember.computed('isUnsaved', 'item.selectedAuthor', 'item.importedAuthorName', function() {
+    //TODO check for lastname or see where is set
+    return !this.get('isUnsaved') && !Ember.isPresent(this.get('item.selectedAuthor')) && this.get('item.importedAuthorName');
   }),
 
   //isEmpty: Ember.computed('item.
@@ -216,13 +214,13 @@ export default Ember.Component.extend({
 
   transformedNewAuthorTriggered: function() {
     // create new author
-      this.get('item').set('newAuthorForm', Ember.Object.create({
-        firstName: '',
-        lastName: '',
-        year_of_birth: '',
-        xaccount: '',
-        orcid: ''
-      }));
+    this.get('item').set('newAuthorForm', Ember.Object.create({
+      firstName: '',
+      lastName: '',
+      year_of_birth: '',
+      xaccount: '',
+      orcid: ''
+    }));
   }.observes('item.transformedToNewAuthor'),
 
   actions: {
@@ -239,18 +237,6 @@ export default Ember.Component.extend({
         var departments = [];
         if (Ember.isArray(doc.departments_id)) {
           departments = doc.departments_id.map((department_id, index) => {
-            //TODO: Remove this
-            if(
-                !doc['departments_end_year'] ||
-                !doc['departments_end_year'][index] ||
-                !doc['departments_start_year'] ||
-                !doc['departments_start_year'][index] ||
-                !doc['departments_name_' + locale] ||
-                !doc['departments_name_' + locale][index]
-              ) {
-              console.dir(doc);
-              throw "Invalid department format for author";
-            }
             let start_year = doc['departments_start_year'][index];
             let end_year = doc['departments_end_year'][index];
             return {
