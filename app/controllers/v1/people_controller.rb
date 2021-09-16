@@ -144,6 +144,25 @@ class V1::PeopleController < V1::V1Controller
     end
   end
 
+  # People affiliated with GU but without x-account
+  def researchers_without_xaccount()
+    last_month = Time.now - 1.month
+    #People.
+  end
+
+  api :GET, '/people/:id', 'Returns a single person object'
+  def show
+    personid = params[:id]
+    person = Person.find_by_id(personid)
+    if person.present?
+      @response[:person] = person
+    else
+      error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "people.errors.not_found"}: #{params[:id]}")
+    end
+    render_json
+  end
+
+
   private
 
   def permitted_params
