@@ -213,10 +213,19 @@ export default Ember.Component.extend({
   */
 
   transformedNewAuthorTriggered: function() {
+    let defaultFirstName = '';
+    let defaultLastName = '';
+    // This means we are opening "Add new author" form
+    // set imported author first and last name to imported author if any
+    if (this.get('item.transformedToNewAuthor')) {
+      defaultFirstName = this.get('item.importedAuthorFirstName');
+      defaultLastName = this.get('item.importedAuthorLastName');
+    }
+
     // create new author
     this.get('item').set('newAuthorForm', Ember.Object.create({
-      firstName: '',
-      lastName: '',
+      firstName: defaultFirstName,
+      lastName: defaultLastName,
       year_of_birth: '',
       xaccount: '',
       orcid: ''
@@ -288,11 +297,6 @@ export default Ember.Component.extend({
 
     toggleAddAffiliation: function() {
       this.toggleProperty('addAffiliation');
-      // moved this into select2_adjusted.js because of a bug not adding our custom code if this was used
-   /*   Ember.run.schedule('afterRender', () => {
-        var obj = this.$('.'+ this.get('getCssId')).first();
-        obj.select2('open');
-      });*/
     },
     toggleAddNewAuthor: function(item) {
       item.toggleProperty('transformedToNewAuthor');
