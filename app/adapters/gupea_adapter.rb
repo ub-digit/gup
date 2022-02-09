@@ -19,6 +19,11 @@ class GupeaAdapter
     "other" => "other"
   }
 
+  GUPEA_BASE_URL = APP_CONFIG['datasources']['gupea']['base_url']
+  GUPEA_IDENTIFIER_PREFIX = APP_CONFIG['datasources']['gupea']['identifier_prefix']
+
+
+
   include ActiveModel::Serialization
   include ActiveModel::Validations
 
@@ -128,9 +133,7 @@ class GupeaAdapter
 
 
   def self.find id
-  	response = RestClient.get "http://gupea.ub.gu.se/dspace-oai/request?verb=GetRecord&metadataPrefix=scigloo&identifier=oai:gupea.ub.gu.se:2077/#{id}"
-  	# response
-  	#puts response.code
+    response = RestClient.get "#{GUPEA_BASE_URL}/?verb=GetRecord&metadataPrefix=scigloo&identifier=#{GUPEA_IDENTIFIER_PREFIX}:2077/#{id}"
     item = self.new handle_suffix:id, xml: response
     item.datasource = 'gupea'
     item.sourceid = id
