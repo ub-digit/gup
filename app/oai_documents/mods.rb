@@ -112,11 +112,19 @@ class OaiDocuments
         #### Creator Count ####
         if publication.current_version.people2publications
           publication.current_version.people2publications.each do |p2p|
-            person_identifier = p2p.person.get_identifier(source: 'xkonto') ? p2p.person.get_identifier(source: 'xkonto') : p2p.person.id
-            xml.tag!("name", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu', 'xlink:href' => person_identifier) do
-              xml.tag!("namePart", p2p.person.first_name, 'type' => 'given') unless !p2p.person.first_name
-              xml.tag!("namePart", p2p.person.last_name, 'type' => 'family') unless !p2p.person.last_name
-              xml.tag!("namePart", p2p.person.year_of_birth, 'type' => 'date') unless !p2p.person.year_of_birth
+
+            affiliation_data = create_affiliation_data(p2p)
+            person_identifier = p2p.person.get_identifier(source: 'xkonto')
+
+            if affiliation_data && !affiliation_data.empty? && person_identifier
+              name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu'}
+            else
+              name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal'}
+            end
+            xml.tag!("name", name_attributes) do
+              xml.tag!("namePart", p2p.person.first_name, 'type' => 'given') if p2p.person.first_name
+              xml.tag!("namePart", p2p.person.last_name, 'type' => 'family') if p2p.person.last_name
+              xml.tag!("namePart", p2p.person.year_of_birth, 'type' => 'date') if p2p.person.year_of_birth
               xml.tag!("role") do
                 # Role depends on publication type
                 role = get_role(local_publication_type_code)
@@ -124,9 +132,13 @@ class OaiDocuments
               end
               # Get orcid
               orcid = p2p.person.get_identifier(source: 'orcid')
-              xml.tag!("description", orcid, 'xsi:type' => 'identifierDefinition', 'type' => 'orcid') unless !orcid
+              xml.tag!("nameIdentifier", orcid, 'type' => 'orcid') if orcid
+
+              if affiliation_data && !affiliation_data.empty? && person_identifier
+                xml.tag!("nameIdentifier", person_identifier, 'type' => 'gu')
+              end
+
               # Affiliations for this creator
-              affiliation_data = create_affiliation_data(p2p)
               if affiliation_data
                 affiliation_data.each do |affiliation|
                   xml.tag!("affiliation", affiliation[:value], 'lang' => affiliation[:lang], 'authority' => affiliation[:authority], 'xsi:type' => 'mods:stringPlusLanguagePlusAuthority', 'valueURI' => affiliation[:valueURI])
