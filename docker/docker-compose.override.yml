@@ -75,3 +75,4 @@ services:
         :/opt/solr/server/solr/mycores/gup-publications/conf/solrconfig.xml
 volumes:
   dbdata:
+    name: gup
