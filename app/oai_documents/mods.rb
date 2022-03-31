@@ -116,7 +116,7 @@ class OaiDocuments
             affiliation_data = create_affiliation_data(p2p)
             person_identifier = p2p.person.get_identifier(source: 'xkonto')
 
-            if affiliation_data && !affiliation_data.empty? && person_identifier
+            if person_identifier
               name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu'}
             else
               name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal'}
@@ -133,10 +133,7 @@ class OaiDocuments
               # Get orcid
               orcid = p2p.person.get_identifier(source: 'orcid')
               xml.tag!("nameIdentifier", orcid, 'type' => 'orcid') if orcid
-
-              if affiliation_data && !affiliation_data.empty? && person_identifier
-                xml.tag!("nameIdentifier", person_identifier, 'type' => 'gu')
-              end
+              xml.tag!("nameIdentifier", person_identifier, 'type' => 'gu') if person_identifier
 
               # Affiliations for this creator
               if affiliation_data
