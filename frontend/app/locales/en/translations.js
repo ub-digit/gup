@@ -319,7 +319,6 @@ export default {
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
               permalink: 'Link to publication',
-              attachFile: 'Attach file',
               checkFile: 'Check your uploaded file',
               enterEmbargoDate: 'Enter an embargo date',
               showAfter: 'Display file only after',
