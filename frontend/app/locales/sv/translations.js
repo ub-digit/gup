@@ -319,7 +319,6 @@ export default {
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
               permalink: 'Länka till publikationen',
-              attachFile: 'Bifoga fil',
               checkFile: 'Kontrollera fil',
               enterEmbargoDate: 'Ange embargotid',
               showAfter: 'Visa offentligt först efter',
