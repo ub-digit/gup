@@ -29,9 +29,6 @@ class OaiDocuments
         xml.tag!("recordInfo") do
           xml.tag!("recordContentSource", APP_CONFIG['oai_settings']['record_content_source'])
         end
-        # Flag publication as non-validated if not bibliographic reviewed
-        xml.tag!("note", "not verified at registration", 'type' => 'verificationStatus') unless !publication.current_version.biblreviewed_at
-
 
         #### Record Identifiers ###
         xml.tag!("identifier", utilities.get_uri_identifier(publication.id), 'type' => 'uri')
