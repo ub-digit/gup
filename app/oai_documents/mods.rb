@@ -7,8 +7,8 @@ class OaiDocuments
                'xmlns' => 'http://www.loc.gov/mods/v3',
                'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-               'version' => '3.5',
-               'xsi:schemaLocation' => %{http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd}) do
+               'version' => '3.7',
+               'xsi:schemaLocation' => %{http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-7.xsd}) do
 
         # Get the publication type code in the local repository
         if publication.current_version.publication_type && publication.current_version.publication_type.code
@@ -29,9 +29,6 @@ class OaiDocuments
         xml.tag!("recordInfo") do
           xml.tag!("recordContentSource", APP_CONFIG['oai_settings']['record_content_source'])
         end
-        # Flag publication as non-validated if not bibliographic reviewed
-        xml.tag!("note", "not verified at registration", 'type' => 'verificationStatus') unless !publication.current_version.biblreviewed_at
-
 
         #### Record Identifiers ###
         xml.tag!("identifier", utilities.get_uri_identifier(publication.id), 'type' => 'uri')
