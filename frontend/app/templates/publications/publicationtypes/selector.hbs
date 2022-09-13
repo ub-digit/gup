@@ -65,15 +65,13 @@
       {{publicationtype-item publicationTypes=publicationTypes code='conference_proceeding'}}
     </div>
     {{/if}}
-    {{#if session.data.authenticated.can_administrate}}
-      {{#if showPublicationTypeGroupArtworks}}
-      <div class="row">
-        <div class="col-xs-12">
-          <h3>{{t 'publications.publicationtypes.selector.publicationtype.artworks'}}</h3>
-            {{publicationtype-item publicationTypes=publicationTypes code='artistic-work_original-creative-work' onlyAdmin=true}}
-        </div>
+    {{#if showPublicationTypeGroupArtworks}}
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>{{t 'publications.publicationtypes.selector.publicationtype.artworks'}}</h3>
       </div>
-      {{/if}}
+      {{publicationtype-item publicationTypes=publicationTypes code='artistic-work_original-creative-work'}}
+    </div>
     {{/if}}
     {{#if showPublicationTypeGroupOther}}
     <div class="row">
