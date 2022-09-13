@@ -27,7 +27,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
       languages: this.store.find('language'),
       series: this.store.find('serie'),
       projects: this.store.find('project'),
-      publicationIdentifierCodes: this.store.find('publication_identifier_code')
+      publicationIdentifierCodes: this.store.find('publication_identifier_code'),
+      artworkTypes: this.store.find('artwork_type'),
     });
   },
   afterModel: function(/*model, transition*/) {
@@ -61,6 +62,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     controller.set('publicationIdentifierCodes', models.publicationIdentifierCodes);
     controller.set('publicationTypes', models.publicationTypes);
     controller.set('refValueBool', models.publication.ref_value === 'ISREF');
+    controller.set('artworkTypes', models.artworkTypes);
 
     var authors = null;
     if (models.publication) {
