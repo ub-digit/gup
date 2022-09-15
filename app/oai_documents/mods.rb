@@ -93,6 +93,12 @@ class OaiDocuments
         content_type_code = get_content_type_code(local_publication_type_code, local_content_type)
         output_code = get_output_code(local_publication_type_code)
         xml.tag!("genre", output_code, 'authority' => 'kb.se', 'type' => 'outputType')
+
+        # Special handling for publication on artistic basis, see section 10.2.2 in Swepub MODS format specification 3.0
+        if publication.current_version.artistic_basis
+          xml.tag!("genre", "artistic work", 'authority' => 'kb.se', 'type' => 'outputType')
+        end
+
         xml.tag!("genre", publication_type_code, 'authority' => 'svep', 'type' => 'publicationType')
         xml.tag!("genre", content_type_code, 'authority' => 'svep', 'type' => 'contentType')
 

@@ -144,6 +144,7 @@ export default Ember.Component.extend({
   isTypeSelect: Ember.computed.equal('type', 'select'),
   isTypeAheadOfPrint: Ember.computed.equal('type', 'ahead'),
   isTypeRef: Ember.computed.equal('type','ref'), 
+  isTypeArtistic: Ember.computed.equal('type','artistic'),
 
 	showWarningSymbol: Ember.computed('isValidISSN', 'isValidISBN', function() {
 		if(!this.get('isValidISSN')) {

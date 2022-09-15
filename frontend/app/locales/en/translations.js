@@ -109,6 +109,7 @@ export default {
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
       aheadCheckbox: 'Mark if publication is Epub ahead of print',
+      artisticCheckbox: 'Ange om publikationen är gjord på konstnärlig grund',
     },
     publicationListRow: {
       noTitle: '-- Missing title --',
@@ -315,6 +316,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
+            artistic: 'Publikationen är gjord på konstnärlig grund',
             postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
