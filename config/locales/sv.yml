@@ -114,6 +114,7 @@ sv:
     patent_number: "Patentnummer"
     patent_date: "Patentets publikationsdatum"
     artwork_type: "Typ av arbete"
+    artistic_basis: "Konstnärlig grund"
 
   publications:
     errors:

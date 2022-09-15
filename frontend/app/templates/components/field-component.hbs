@@ -68,6 +68,15 @@
         </div>
       </div>
     {{/if}}
+    {{#if isTypeArtistic}}
+      <div class="form-inline">
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" checked=value class=fieldName}} {{t 'components.fieldComponent.artisticCheckbox'}}
+          </label>
+        </div>
+      </div>
+    {{/if}}
     {{#if isTypeRef}}
       <div class="form-inline">
         <div class="checkbox">

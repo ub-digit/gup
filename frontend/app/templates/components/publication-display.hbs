@@ -16,12 +16,17 @@
       </div>
     {{/if}}
 
+    {{#if publication.artistic_basis}}
+      <div class="alert alert-warning">
+      {{t 'publications.dashboard.manage.show.index.artistic'}}
+      </div>
+    {{/if}}
+
     {{#if publication.biblreview_postponed_comment}}
       <div class="alert alert-warning">
       {{t 'publications.dashboard.manage.show.index.postponed_comment'}} {{publication.biblreview_postponed_comment}}
       </div>
     {{/if}}
-
 
     <table class="table table-striped table-bordered">
       <tbody>
@@ -57,8 +62,6 @@
         {{#if publication.publication_identifiers}}
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
         {{/if}}
-
-
 
         {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
 
@@ -246,6 +249,10 @@
           {{publication-field-compare fieldLabel=allFieldObjects.keywords.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.keywords fieldValue=publication.keywords}}
         {{/if}}
 
+        {{#if allFieldObjects.artistic_basis}}
+          {{publication-field-compare fieldLabel=allFieldObjects.artistic_basis.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artistic_basis fieldValue=publication.artistic_basis}}
+        {{/if}}
+
         {{#if allFieldObjects.project}}
           {{publication-field-compare fieldLabel=allFieldObjects.project.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.project_objects listValue='title' type='list' fieldValue=publication.project_objects listValue='title' type='list'}}
         {{/if}}
@@ -360,7 +367,11 @@
         {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
         </div>
       {{/if}}
-
+      {{#if publication.artistic_basis}}
+        <div class="alert alert-warning">
+        {{t 'publications.dashboard.manage.show.index.artistic'}}
+        </div>
+      {{/if}}
     <dl class="dl-horizontal">
       {{#if isArticleConf}}
         {{partial "publications/dashboard/manage/show/is-article-conf"}}
