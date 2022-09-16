@@ -19,7 +19,8 @@ export default Ember.Route.extend({
     publication_type: { refreshModel: true },
     ref_value: { refreshModel: true },
     start_year: { refreshModel: true },
-    end_year: { refreshModel: true }
+    end_year: { refreshModel: true },
+    only_artistic: { refreshModel: true },
   },
   afterModel: function(model, transition) {
     this.controllerFor('application').set('currentList', transition.targetName);

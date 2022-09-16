@@ -87,6 +87,7 @@ class Publication < ActiveRecord::Base
     includes({:current_version => :projects2publications})
       .where(:'projects2publications.project_id' => project_ids)
   end
+  scope :artistic_basis, -> { includes(:current_version).where(:'publication_versions.artistic_basis' => true) }
 
   nilify_blanks :types => [:text]
 
