@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :publication_records
     resources :person_records
     resources :endnote_files
+    resources :artwork_types
 
     get "affiliations" => "affiliations#affiliations_for_actor"
     get "journals" => "journals#search"

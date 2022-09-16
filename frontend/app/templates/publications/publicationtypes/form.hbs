@@ -95,11 +95,19 @@
       </span>
     </div>
   </div>
-
 {{/field-group}}
 
 {{#field-group}}
+  <div id="artwork-type" class="row">
+    <div class="col-md-6">
+      <span class="form-group {{if errors.artwork_type 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="select"  errors=errors.artwork_type value=publication.artwork_type selectValues=artworkTypes}}
+      </span>
+    </div>
+  </div>
+{{/field-group}}
 
+{{#field-group}}
   <div class="row">
     <div class="col-md-9 ">
       <span class="form-group {{if errors.sourcetitle 'has-error'}}">
@@ -300,14 +308,6 @@
     <div class="col-md-9">
       <span class="form-group {{if errors.pub_notes 'has-error'}}">
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" fieldHelptext="publications.publicationtypes.form.help.pub_notes.helptext" type="textarea" errors=errors.pub_notes value=publication.pub_notes}}
-      </span>
-    </div>
-  </div>
-
-  <div id="artwork-type" class="row">
-    <div class="col-md-9">
-      <span class="form-group {{if errors.artwork_type 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text"  errors=errors.artwork_type value=publication.artwork_type}}
       </span>
     </div>
   </div>
