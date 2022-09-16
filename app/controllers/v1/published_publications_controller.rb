@@ -240,6 +240,7 @@ class V1::PublishedPublicationsController < ApplicationController
     if params[:end_year].present? and params[:end_year].is_a? String and params[:end_year].to_i.to_s == params[:end_year]
       publications = publications.end_year(params[:end_year].to_i)
     end
+    publications = publications.artistic_basis if params[:only_artistic] && params[:only_artistic].eql?('true')
     publications
   end
 

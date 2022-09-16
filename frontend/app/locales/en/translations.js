@@ -228,6 +228,7 @@ export default {
     startYearLabel: 'Start year',
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
+    onlyArtisticLabel: 'Endast publikationer på konstnärlig grund',
     searchAuthorLabel: 'Author',
     searchDepartmentLabel: 'Department',
     selectFacultyLabel: 'Faculty',
