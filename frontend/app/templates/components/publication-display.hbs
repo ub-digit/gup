@@ -69,6 +69,10 @@
           {{publication-field-bibl-review fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
         {{/if}}
 
+        {{#if allFieldObjects.artistic_basis}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.artistic_basis.label fieldValue=publication.artistic_basis}}
+        {{/if}}
+
         {{#if allFieldObjects.project}}
           {{publication-field-bibl-review fieldLabel=allFieldObjects.project.label fieldValue=publication.project_objects listValue='title' type='list'}}
         {{/if}}
@@ -360,16 +364,11 @@
     </table>
   {{else if isPreviewMode}}
       <div class="publication-display-top-meta lead">
-      {{publication.publication_type_label}}{{#if isRef}}, {{getLowercaseRefValue}}{{/if}}
+      {{publication.publication_type_label}}{{#if isRef}}, {{getLowercaseRefValue}}{{/if}}{{#if isArtisticBasis}} ({{t 'publications.dashboard.manage.show.index.artistic'}}){{/if}}
       </div>
       {{#if publication.epub_ahead_of_print}}
         <div class="alert alert-warning">
         {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
-        </div>
-      {{/if}}
-      {{#if publication.artistic_basis}}
-        <div class="alert alert-warning">
-        {{t 'publications.dashboard.manage.show.index.artistic'}}
         </div>
       {{/if}}
     <dl class="dl-horizontal">
