@@ -109,6 +109,7 @@ export default {
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
       aheadCheckbox: 'Mark if publication is Epub ahead of print',
+      refCheckbox: 'Mark if publication is peer reviewed',
     },
     publicationListRow: {
       noTitle: '-- Missing title --',
@@ -477,7 +478,7 @@ export default {
       },
       form: {
         publicationType: 'Publication type',
-        refereeLable: 'peer reviewed',
+        refereeLable: 'Peer reviewed',
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',

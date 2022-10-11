@@ -106,6 +106,7 @@ export default {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
       aheadCheckbox: 'Ange om publikationen är en Epub ahead of print',
+      refCheckbox: 'Ange om publikationen är refereegranskad',
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',
@@ -477,7 +478,7 @@ export default {
       },
       form: {
         publicationType: 'Publikationstyp',
-        refereeLable: 'refereegranskad',
+        refereeLable: 'Refereegranskad',
         changePublicationTypeLink: 'Byt',
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
