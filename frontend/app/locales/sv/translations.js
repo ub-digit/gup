@@ -106,7 +106,7 @@ export default {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
       aheadCheckbox: 'Ange om publikationen är en Epub ahead of print',
-      artisticCheckbox: 'Ange om publikationen är gjord på konstnärlig grund',
+      artisticCheckbox: 'Ange om publikationen är gjord inom konstnärlig forskning',
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',
@@ -229,7 +229,7 @@ export default {
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
-    onlyArtisticLabel: 'Endast publikationer på konstnärlig grund',
+    onlyArtisticLabel: 'Endast publikationer inom konstnärlig forskning',
     searchAuthorLabel: 'Författare',
     searchDepartmentLabel: 'Institution',
     selectFacultyLabel: 'Fakultet',
@@ -317,7 +317,7 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            artistic: 'Publikationen är gjord på konstnärlig grund',
+            artistic: 'Inom konstnärlig forskning',
             postponed_comment: 'Posten är fördröjd:',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {

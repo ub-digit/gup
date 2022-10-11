@@ -109,7 +109,7 @@ export default {
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
       aheadCheckbox: 'Mark if publication is Epub ahead of print',
-      artisticCheckbox: 'Ange om publikationen är gjord på konstnärlig grund',
+      artisticCheckbox: 'Mark if publication is within artistic research',
     },
     publicationListRow: {
       noTitle: '-- Missing title --',
@@ -228,7 +228,7 @@ export default {
     startYearLabel: 'Start year',
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
-    onlyArtisticLabel: 'Endast publikationer på konstnärlig grund',
+    onlyArtisticLabel: 'Only publications within artistic research',
     searchAuthorLabel: 'Author',
     searchDepartmentLabel: 'Department',
     selectFacultyLabel: 'Faculty',
@@ -317,7 +317,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            artistic: 'Publikationen är gjord på konstnärlig grund',
+            artistic: 'Within artistic research',
             postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
