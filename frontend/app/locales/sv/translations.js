@@ -230,11 +230,7 @@ export default {
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
-<<<<<<< HEAD
-    onlyArtisticLabel: 'Endast publikationer på konstnärlig grund',
-=======
     onlyArtisticLabel: 'Endast publikationer inom konstnärlig forskning',
->>>>>>> add-markup-artistic-basis
     searchAuthorLabel: 'Författare',
     searchDepartmentLabel: 'Institution',
     selectFacultyLabel: 'Fakultet',
@@ -322,11 +318,7 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-<<<<<<< HEAD
-            artistic: 'Publikationen är gjord på konstnärlig grund',
-=======
             artistic: 'Inom konstnärlig forskning',
->>>>>>> add-markup-artistic-basis
             postponed_comment: 'Posten är fördröjd:',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {

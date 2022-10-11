@@ -229,11 +229,7 @@ export default {
     startYearLabel: 'Start year',
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
-<<<<<<< HEAD
-    onlyArtisticLabel: 'Endast publikationer på konstnärlig grund',
-=======
     onlyArtisticLabel: 'Only publications within artistic research',
->>>>>>> add-markup-artistic-basis
     searchAuthorLabel: 'Author',
     searchDepartmentLabel: 'Department',
     selectFacultyLabel: 'Faculty',
@@ -322,11 +318,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-<<<<<<< HEAD
-            artistic: 'Publikationen är gjord på konstnärlig grund',
-=======
             artistic: 'Within artistic research',
->>>>>>> add-markup-artistic-basis
             postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
