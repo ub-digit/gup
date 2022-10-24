@@ -124,7 +124,7 @@
   <div id="made-public-in" class="row">
     <div class="col-md-9">
       <span class="form-group {{if errors.made_public_in 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="made_public_in" type="text" errors=errors.made_public_in value=publication.made_public_in}}
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="made_public_in" type="text" fieldHelptext="publications.publicationtypes.form.help.made_public_in.helptext" errors=errors.made_public_in value=publication.made_public_in}}
       </span>
     </div>
   </div>

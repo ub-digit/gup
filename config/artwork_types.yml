@@ -23,3 +23,7 @@ artwork_types:
     en: "Digital artifacts"
     sv: "Digitala artefakter"
     code: digital_artifacts
+  -
+    en: "Other"
+    sv: "Övrigt"
+    code: other
