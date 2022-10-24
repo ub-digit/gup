@@ -115,7 +115,7 @@ sv:
     patent_date: "Patentets publikationsdatum"
     artwork_type: "Typ av arbete"
     artistic_basis: "Konstnärlig forskning"
-    made_public_in: "Offentliggjord i"
+    made_public_in: "Offentliggjord"
 
   publications:
     errors:
