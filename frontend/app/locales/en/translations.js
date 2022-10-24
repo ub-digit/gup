@@ -115,7 +115,7 @@ export default {
     publicationListRow: {
       noTitle: '-- Missing title --',
       publishedInLabel: 'Published in',
-      madePublicInLabel: 'Made public in',
+      madePublicInLabel: 'Made public',
       authorLabel: 'Authors',
       publicationID: "Publication ID",
       publicationType: "Publication type",
@@ -507,6 +507,9 @@ export default {
           },
           publisher: {
             placeholder: 'E.g. "Journal of testing" or ISSN 1234-5678',
+          },
+          made_public_in: {
+            helptext: 'Location, organisation and date',
           },
         },
       },

@@ -112,7 +112,7 @@ export default {
     publicationListRow: {
       noTitle: '-- Titel saknas --',
       publishedInLabel: 'Publicerad i',
-      madePublicInLabel: 'Offentliggjord i',
+      madePublicInLabel: 'Offentliggjord',
       authorLabel: 'Författare',
       publicationID: "Publikationens id",
       publicationType: "Publikationstyp",
@@ -507,6 +507,9 @@ export default {
           },
           publisher: {
             placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
+          },
+          made_public_in: {
+            helptext: 'Plats, organisation och datum',
           },
         }
       },
