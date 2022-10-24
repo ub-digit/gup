@@ -125,6 +125,14 @@
           {{publication-field-bibl-review fieldLabel=allFieldObjects.extent.label fieldValue=publication.extent}}
         {{/if}}
 
+        {{#if allFieldObjects.sourcetitle}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.sourcetitle.label fieldValue=publication.sourcetitle}}
+        {{/if}}
+
+        {{#if allFieldObjects.made_public_in}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.made_public_in.label fieldValue=publication.made_public_in}}
+        {{/if}}
+
         {{#if allFieldObjects.publisher}}
           {{publication-field-bibl-review fieldLabel=allFieldObjects.publisher.label fieldValue=publication.publisher}}
         {{/if}}
@@ -174,7 +182,7 @@
         {{/if}}
 
         {{#if allFieldObjects.artwork_type}}
-          {{publication-field-bibl-review fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type_label}}
         {{/if}}
 
         {{#if publication.files }}
@@ -313,6 +321,10 @@
           {{publication-field-compare fieldLabel=allFieldObjects.publisher.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publisher fieldValue=publication.publisher}}
         {{/if}}
 
+        {{#if allFieldObjects.made_public_in}}
+          {{publication-field-compare fieldLabel=allFieldObjects.made_public_in.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.made_public_in fieldValue=publication.made_public_in}}
+        {{/if}}
+
         {{#if allFieldObjects.place}}
           {{publication-field-compare fieldLabel=allFieldObjects.place.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.place fieldValue=publication.place}}
         {{/if}}
@@ -358,7 +370,7 @@
         {{/if}}
 
         {{#if allFieldObjects.artwork_type}}
-          {{publication-field-compare fieldLabel=allFieldObjects.artwork_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artwork_type fieldValue=publication.artwork_type}}
+          {{publication-field-compare fieldLabel=allFieldObjects.artwork_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artwork_type_label fieldValue=publication.artwork_type_label}}
         {{/if}}
       </tbody>
     </table>

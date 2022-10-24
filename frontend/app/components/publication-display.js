@@ -88,7 +88,7 @@ export default Ember.Component.extend({
     return this.get('publication.ref_value') === 'ISREF';
   }),
 
-  isArtisticBasis: Ember.computed('publication.artistik_basis', function() {
+  isArtisticBasis: Ember.computed('publication.artistic_basis', function() {
     return this.get('publication.artistic_basis');
   }),
 

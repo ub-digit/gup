@@ -180,6 +180,10 @@ export default Ember.Controller.extend({
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
+  refInfoTextVisible: Ember.computed('selectedPublicationType', function() {
+      return this.get('selectedPublicationType') === 'artistic-work_original-creative-work';
+  }),
+
   changeRefValue: Ember.observer('refValueBool', function() {
       if (this.get('refValueBool')) {
         this.set('publication.ref_value', 'ISREF');

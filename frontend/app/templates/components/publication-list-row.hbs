@@ -56,6 +56,12 @@
         <th>{{t 'components.publicationListRow.publishedInLabel'}}:</th><td>{{item.sourcetitle}}</td>
         </tr>
         {{/if}}
+        {{#if item.made_public_in}}
+        <tr>
+        <th>{{t 'components.publicationListRow.madePublicInLabel'}}:</th><td>{{item.made_public_in}}</td>
+        </tr>
+        {{/if}}
+
       </table>
       {{/if}}
     </div>

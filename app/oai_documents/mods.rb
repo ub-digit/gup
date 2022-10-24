@@ -189,10 +189,10 @@ class OaiDocuments
 
         #### Source ####
         # Only for non-monographs
-        if publication.current_version.sourcetitle && !utilities.is_monography?(local_publication_type_code)
+        if (publication.current_version.sourcetitle || publication.current_version.made_public_in) && !utilities.is_monography?(local_publication_type_code)
           xml.tag!("relatedItem", 'type' => 'host') do
             xml.tag!("titleInfo") do
-              xml.tag!("title", publication.current_version.sourcetitle)
+              xml.tag!("title", publication.current_version.sourcetitle ? publication.current_version.sourcetitle : publication.current_version.made_public_in)
             end
             xml.tag!("identifier", publication.current_version.issn, 'type' => 'issn') unless !publication.current_version.issn
             xml.tag!("identifier", publication.current_version.eissn, 'type' => 'issn') unless !publication.current_version.eissn

@@ -61,6 +61,7 @@ class PublicationVersion < ActiveRecord::Base
       result["publanguage_label"] = publanguage_label
       result["publication_identifiers"] = publication_identifiers
       result["publication_links"] = publication_links
+      result["artwork_type_label"] = artwork_type_label
   end
 
     if options[:include_authors]
@@ -162,5 +163,16 @@ class PublicationVersion < ActiveRecord::Base
       return publanguage
     end
   end
+
+  # Returns a locale determined label for chosen language
+  def artwork_type_label
+     at = ArtworkType.find_by_code(self.artwork_type)
+    if at
+      return at[:label]
+    else
+      return artwork_type
+    end
+  end
+
 
 end
