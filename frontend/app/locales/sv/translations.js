@@ -483,7 +483,7 @@ export default {
       form: {
         publicationType: 'Publikationstyp',
         refereeLable: 'Refereegranskad',
-        refArtExtraInfo: 'Sakkunniggranskade konstnärliga arbeten innefattar offentliggjorda konstnärliga projekt, framträdanden eller produktioner som genomförts med direkt stöd från internationell, statlig, regional, kommunal eller tredje part. Direkt stöd avser antingen ekonomiskt stöd, tydlig urvalsprocess, officiell inbjudan, offentlig utgivning eller beställningsverk.',
+        refArtExtraInfo: 'Refereegranskade konstnärliga arbeten innefattar offentliggjorda konstnärliga projekt, framträdanden eller produktioner som genomförts med direkt stöd från internationell, statlig, regional, kommunal eller tredje part. Direkt stöd avser antingen ekonomiskt stöd, tydlig urvalsprocess, officiell inbjudan, offentlig utgivning eller beställningsverk.',
         changePublicationTypeLink: 'Byt',
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
