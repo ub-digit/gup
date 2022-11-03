@@ -184,6 +184,15 @@ export default Ember.Controller.extend({
       return this.get('selectedPublicationType') === 'artistic-work_original-creative-work';
   }),
 
+  getAuthorsHelptext: Ember.computed('selectedPublicationType', function() {
+      if (this.get('selectedPublicationType') === 'artistic-work_original-creative-work') {
+        return "publications.publicationtypes.form.help.authors.helptext.artistic";
+      }
+      else {
+        return "publications.publicationtypes.form.help.authors.helptext.general";
+      }
+  }),
+
   changeRefValue: Ember.observer('refValueBool', function() {
       if (this.get('refValueBool')) {
         this.set('publication.ref_value', 'ISREF');

@@ -491,7 +491,10 @@ export default {
         help: {
           publicationLinks: 'Links should begin with http:// or https://',
           authors: {
-            helptext: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+            helptext: {
+              general: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+              artistic: 'Please register all authors. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+            },
           },
           category_hsv_local: {
             helptext: 'Please add at least one subject category. For more information please see:  http://www.ub.gu.se/publicera/',
