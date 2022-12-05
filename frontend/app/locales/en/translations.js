@@ -109,10 +109,13 @@ export default {
       radioLabel1: 'Select a journal',
       radioLabel2: 'Enter as free text',
       aheadCheckbox: 'Mark if publication is Epub ahead of print',
+      artisticCheckbox: 'Mark if publication is artistic work',
+      refCheckbox: 'Mark if publication is peer reviewed',
     },
     publicationListRow: {
       noTitle: '-- Missing title --',
       publishedInLabel: 'Published in',
+      madePublicInLabel: 'Made public',
       authorLabel: 'Authors',
       publicationID: "Publication ID",
       publicationType: "Publication type",
@@ -227,6 +230,7 @@ export default {
     startYearLabel: 'Start year',
     endYearLabel: 'End year',
     onlyRefLabel: 'Only peer reviewed publications',
+    onlyArtisticLabel: 'Only artistic work',
     searchAuthorLabel: 'Author',
     searchDepartmentLabel: 'Department',
     selectFacultyLabel: 'Faculty',
@@ -315,6 +319,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
+            artistic: 'Within artistic research',
             postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
@@ -477,7 +482,8 @@ export default {
       },
       form: {
         publicationType: 'Publication type',
-        refereeLable: 'peer reviewed',
+        refereeLable: 'Peer reviewed',
+        refArtExtraInfo: 'Peer-reviewed artistic work includes public artistic projects, performances or productions carried out with direct international, state-run, regional or municipal support, or support from a third party. Direct support refers to either financial support, clear selection process, official invitation, public production, or commissioned work.',
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
@@ -485,7 +491,10 @@ export default {
         help: {
           publicationLinks: 'Links should begin with http:// or https://',
           authors: {
-            helptext: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+            helptext: {
+              general: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+              artistic: 'Please register all authors. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+            },
           },
           category_hsv_local: {
             helptext: 'Please add at least one subject category. For more information please see:  http://www.ub.gu.se/publicera/',
@@ -501,6 +510,9 @@ export default {
           },
           publisher: {
             placeholder: 'E.g. "Journal of testing" or ISSN 1234-5678',
+          },
+          made_public_in: {
+            helptext: 'Location, organisation and date',
           },
         },
       },

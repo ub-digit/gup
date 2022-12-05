@@ -106,10 +106,13 @@ export default {
       radioLabel1: 'Välj från lista',
       radioLabel2: 'Ange som fritext',
       aheadCheckbox: 'Ange om publikationen är en Epub ahead of print',
+      artisticCheckbox: 'Ange om publikationen är konstnärligt arbete',
+      refCheckbox: 'Ange om publikationen är refereegranskad',
     },
     publicationListRow: {
       noTitle: '-- Titel saknas --',
       publishedInLabel: 'Publicerad i',
+      madePublicInLabel: 'Offentliggjord',
       authorLabel: 'Författare',
       publicationID: "Publikationens id",
       publicationType: "Publikationstyp",
@@ -228,6 +231,7 @@ export default {
     startYearLabel: 'Startår',
     endYearLabel: 'Slutår',
     onlyRefLabel: 'Endast refereegranskade publikationer',
+    onlyArtisticLabel: 'Endast konstnärligt arbete',
     searchAuthorLabel: 'Författare',
     searchDepartmentLabel: 'Institution',
     selectFacultyLabel: 'Fakultet',
@@ -315,6 +319,7 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
+            artistic: 'Inom konstnärlig forskning',
             postponed_comment: 'Posten är fördröjd:',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
@@ -477,7 +482,8 @@ export default {
       },
       form: {
         publicationType: 'Publikationstyp',
-        refereeLable: 'refereegranskad',
+        refereeLable: 'Refereegranskad',
+        refArtExtraInfo: 'Refereegranskade konstnärliga arbeten innefattar offentliggjorda konstnärliga projekt, framträdanden eller produktioner som genomförts med direkt stöd från internationell, statlig, regional, kommunal eller tredje part. Direkt stöd avser antingen ekonomiskt stöd, tydlig urvalsprocess, officiell inbjudan, offentlig utgivning eller beställningsverk.',
         changePublicationTypeLink: 'Byt',
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
@@ -485,7 +491,10 @@ export default {
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',
           authors: {
-            helptext: 'Ange samtliga författare i ordningsföljd enligt originalpublikationen. För GU-författare skriv fullständigt namn samt <strong>den affiliering som angivits i publikationen</strong>. För övriga författare är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+            helptext: {
+              general: 'Ange samtliga författare i ordningsföljd enligt originalpublikationen. För GU-författare skriv fullständigt namn samt <strong>den affiliering som angivits i publikationen</strong>. För övriga författare är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+              artistic: 'Författare avser här Upphovsperson. Ange samtliga upphovspersoner. För upphovspersoner vid GU skriv fullständigt namn samt affiliering . För övriga upphovspersoner är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
+            },
           },
           category_hsv_local: {
             helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
@@ -501,6 +510,9 @@ export default {
           },
           publisher: {
             placeholder: 'T ex "Journal of testing" eller ISSN 1234-5678',
+          },
+          made_public_in: {
+            helptext: 'Plats, organisation och datum',
           },
         }
       },

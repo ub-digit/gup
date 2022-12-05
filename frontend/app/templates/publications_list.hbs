@@ -37,6 +37,17 @@
     </div>
     <div class="row bottom-spacing-10">
           <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6 artistic-value">
+              <label>
+              {{t 'publications_list.onlyArtisticLabel'}}
+              {{input type="checkbox" name="isArtistic" checked=isArtistic}}
+              </label>
+          </div>
+    </div>
+
+    <div class="row bottom-spacing-10">
+          <div class="col-sm-6">
             <label>{{t 'publications_list.searchAuthorLabel'}}</label>
             {{#power-select-multiple
               search=(action "searchAuthor")

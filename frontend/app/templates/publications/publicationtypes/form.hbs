@@ -21,10 +21,15 @@
 
   {{#if refValueSelectionVisible}}
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-9">
         <span class="form-group {{if errors.ref_value 'has-error'}}">
           {{field-component selectedPublicationType=getPublicationTypeObject fieldName="ref_value" type="ref"  errors=errors.ref_value value=refValueBool label=(t 'publications.publicationtypes.form.refereeLable')}}
         </span>
+        {{#if refInfoTextVisible}}
+        <div class="alert alert-info">
+          <span>{{t 'publications.publicationtypes.form.refArtExtraInfo'}}</span>
+        </div>
+        {{/if}}
       </div>
     </div>
   {{/if}}
@@ -55,7 +60,7 @@
 
   {{#if authorComponentIsVisible}}
     <span class="form-group {{if errors.author 'has-error'}}">
-      {{author-block errors=errors.authors fieldHelptext="publications.publicationtypes.form.help.authors.helptext" invalidSelectedDepartmentItemsChanged=(action "invalidSelectedDepartmentItemsChanged") authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
+      {{author-block errors=errors.authors fieldHelptext=getAuthorsHelptext invalidSelectedDepartmentItemsChanged=(action "invalidSelectedDepartmentItemsChanged") authorArr=authorArr selectedPublicationType=getPublicationTypeObject arrOfAuthorsFromImport=arrOfAuthorsFromImport institutions=publicationYearDepartments defaultInstitution=defaultInstitution submitCallbacks=submitCallbacks}}
     </span>
   {{/if}}
 
@@ -95,15 +100,31 @@
       </span>
     </div>
   </div>
-
 {{/field-group}}
 
 {{#field-group}}
+  <div id="artwork-type" class="row">
+    <div class="col-md-6">
+      <span class="form-group {{if errors.artwork_type 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="select"  errors=errors.artwork_type value=publication.artwork_type selectValues=artworkTypes}}
+      </span>
+    </div>
+  </div>
+{{/field-group}}
 
+{{#field-group}}
   <div class="row">
     <div class="col-md-9 ">
       <span class="form-group {{if errors.sourcetitle 'has-error'}}">
         {{field-component selectedPublicationType=getPublicationTypeObject fieldPlaceholder='publications.publicationtypes.form.help.publisher.placeholder' fieldName="sourcetitle" type="journal" issn=publication.issn eissn=publication.eissn  journal_id=publication.journal_id sourcetitle=publication.sourcetitle errors=errors.sourcetitle }}
+      </span>
+    </div>
+  </div>
+
+  <div id="made-public-in" class="row">
+    <div class="col-md-9">
+      <span class="form-group {{if errors.made_public_in 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="made_public_in" type="text" fieldHelptext="publications.publicationtypes.form.help.made_public_in.helptext" errors=errors.made_public_in value=publication.made_public_in}}
       </span>
     </div>
   </div>
@@ -275,6 +296,15 @@
       </span>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <span class="form-group {{if errors.artistic_basis 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artistic_basis" type="artistic"  errors=errors.artistic_basis value=publication.artistic_basis}}
+      </span>
+    </div>
+  </div>
+
 {{/field-group}}
 
 {{#field-group}}
@@ -291,14 +321,6 @@
     <div class="col-md-9">
       <span class="form-group {{if errors.pub_notes 'has-error'}}">
         {{field-component selectedPublicationType=getPublicationTypeObject fieldName="pub_notes" fieldHelptext="publications.publicationtypes.form.help.pub_notes.helptext" type="textarea" errors=errors.pub_notes value=publication.pub_notes}}
-      </span>
-    </div>
-  </div>
-
-  <div id="artwork-type" class="row">
-    <div class="col-md-9">
-      <span class="form-group {{if errors.artwork_type 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="artwork_type" type="text"  errors=errors.artwork_type value=publication.artwork_type}}
       </span>
     </div>
   </div>

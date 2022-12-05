@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
   session: Ember.inject.service('session'),
   	page: 1,
-  	queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year'],
+  	queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year', 'only_artistic'],
   	sortSelectValues: Ember.A([]),
   	sort_by: 'pubyear',
   	publication_id: null,
@@ -19,6 +19,7 @@ export default Ember.Controller.extend({
     ref_value: null,
     start_year: null,
     end_year: null,
+    only_artistic: false,
 
     selectedFacultyID: null,
     selectedSeries: [],
@@ -27,15 +28,16 @@ export default Ember.Controller.extend({
     selectedAuthors: [],
     selectedPublicationTypes: [],
     isRef: false, // translate to ISREF/NOTREF in queryparam ref_value
+    isArtistic: false,
     base_start_year: 1942,
     base_end_year: null, // is set in setupController
 
 
-    resetPaging: Ember.observer("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
+    resetPaging: Ember.observer("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function() {
       this.set("page", 1);
     }),
 
-    resultIsVisible: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function() {
+    resultIsVisible: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function() {
       return true; // simple fix for now. We need to always display results from start for indexing in google scholar
       //if (this.get("person_id") || this.get("department_id") || this.get("ref_value") || this.get("start_year") || this.get("end_year")) {
       //  return true;
@@ -43,7 +45,7 @@ export default Ember.Controller.extend({
       //return false;
     }),
 
-    getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", function(){
+    getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function(){
       return ENV.APP.serviceURL + "/public_publication_lists"
           + "?sortby=" + this.get("sort_by")
           + "&publication_id=" + ((this.get("publication_id")) ? this.get("publication_id") : '')
@@ -56,6 +58,7 @@ export default Ember.Controller.extend({
           + "&ref_value=" + ((this.get("ref_value")) ? this.get("ref_value") : '')
           + "&start_year=" + ((this.get("start_year")) ? this.get("start_year") : '')
           + "&end_year=" + ((this.get("end_year")) ? this.get("end_year") : '')
+          + "&only_artistic=" + ((this.get("only_artistic")) ? this.get("only_artistic") : '')
           + "&output=ris";
     }),
 
@@ -105,6 +108,10 @@ export default Ember.Controller.extend({
       else {
         this.set("isRef", true);
       }
+    }),
+
+    isArtisticValueChanged: Ember.observer('isArtistic', function() {
+      this.set('only_artistic', this.get('isArtistic'));
     }),
 
     yearRangeDepartments: Ember.computed('start_year', 'end_year', function() {

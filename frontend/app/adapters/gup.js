@@ -31,7 +31,8 @@ export default Ember.Object.extend({
     published_publication: {path: 'published_publications', singular: 'publication', plural: 'publications'},
     review_publication: {path: 'review_publications', singular: 'publication', plural: 'publications'},
     biblreview_publication: {path: 'biblreview_publications', singular: 'publication', plural: 'publications'},
-    public_publication_list: {path: 'public_publication_lists', singular: 'publication', plural: 'publications'}
+    public_publication_list: {path: 'public_publication_lists', singular: 'publication', plural: 'publications'},
+    artwork_type: {path: 'artwork_types'}
   },
 
   getLocale: function() {

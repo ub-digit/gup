@@ -11,18 +11,17 @@
       {{/if}}
     {{/if}}
 
-    {{#if publication.sourcetitle}}
-      <dt>{{t 'components.publicationDisplay.publishedInLabel'}}</dt>
-      <dd>
-        {{getPublishedInStr}}
-      </dd>
-    {{/if}}
 
+    {{#if allFieldObjects.made_public_in}}
+      {{#if publication.made_public_in}}
+        {{publication-field-preview fieldLabel=allFieldObjects.made_public_in.label fieldValue=publication.made_public_in}}
+      {{/if}}
+    {{/if}}
 
 
     {{#if allFieldObjects.artwork_type}}
       {{#if publication.artwork_type}}
-        {{publication-field-preview fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type}}
+        {{publication-field-preview fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type_label}}
       {{/if}}
     {{/if}}
 

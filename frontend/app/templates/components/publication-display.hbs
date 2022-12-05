@@ -16,12 +16,17 @@
       </div>
     {{/if}}
 
+    {{#if publication.artistic_basis}}
+      <div class="alert alert-warning">
+      {{t 'publications.dashboard.manage.show.index.artistic'}}
+      </div>
+    {{/if}}
+
     {{#if publication.biblreview_postponed_comment}}
       <div class="alert alert-warning">
       {{t 'publications.dashboard.manage.show.index.postponed_comment'}} {{publication.biblreview_postponed_comment}}
       </div>
     {{/if}}
-
 
     <table class="table table-striped table-bordered">
       <tbody>
@@ -58,12 +63,14 @@
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
         {{/if}}
 
-
-
         {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
 
         {{#if allFieldObjects.keywords}}
           {{publication-field-bibl-review fieldLabel=allFieldObjects.keywords.label fieldValue=publication.keywords}}
+        {{/if}}
+
+        {{#if allFieldObjects.artistic_basis}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.artistic_basis.label fieldValue=publication.artistic_basis}}
         {{/if}}
 
         {{#if allFieldObjects.project}}
@@ -118,6 +125,10 @@
           {{publication-field-bibl-review fieldLabel=allFieldObjects.extent.label fieldValue=publication.extent}}
         {{/if}}
 
+        {{#if allFieldObjects.made_public_in}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.made_public_in.label fieldValue=publication.made_public_in}}
+        {{/if}}
+
         {{#if allFieldObjects.publisher}}
           {{publication-field-bibl-review fieldLabel=allFieldObjects.publisher.label fieldValue=publication.publisher}}
         {{/if}}
@@ -167,7 +178,7 @@
         {{/if}}
 
         {{#if allFieldObjects.artwork_type}}
-          {{publication-field-bibl-review fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type}}
+          {{publication-field-bibl-review fieldLabel=allFieldObjects.artwork_type.label fieldValue=publication.artwork_type_label}}
         {{/if}}
 
         {{#if publication.files }}
@@ -246,6 +257,10 @@
           {{publication-field-compare fieldLabel=allFieldObjects.keywords.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.keywords fieldValue=publication.keywords}}
         {{/if}}
 
+        {{#if allFieldObjects.artistic_basis}}
+          {{publication-field-compare fieldLabel=allFieldObjects.artistic_basis.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artistic_basis fieldValue=publication.artistic_basis}}
+        {{/if}}
+
         {{#if allFieldObjects.project}}
           {{publication-field-compare fieldLabel=allFieldObjects.project.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.project_objects listValue='title' type='list' fieldValue=publication.project_objects listValue='title' type='list'}}
         {{/if}}
@@ -302,6 +317,10 @@
           {{publication-field-compare fieldLabel=allFieldObjects.publisher.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publisher fieldValue=publication.publisher}}
         {{/if}}
 
+        {{#if allFieldObjects.made_public_in}}
+          {{publication-field-compare fieldLabel=allFieldObjects.made_public_in.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.made_public_in fieldValue=publication.made_public_in}}
+        {{/if}}
+
         {{#if allFieldObjects.place}}
           {{publication-field-compare fieldLabel=allFieldObjects.place.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.place fieldValue=publication.place}}
         {{/if}}
@@ -347,20 +366,19 @@
         {{/if}}
 
         {{#if allFieldObjects.artwork_type}}
-          {{publication-field-compare fieldLabel=allFieldObjects.artwork_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artwork_type fieldValue=publication.artwork_type}}
+          {{publication-field-compare fieldLabel=allFieldObjects.artwork_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.artwork_type_label fieldValue=publication.artwork_type_label}}
         {{/if}}
       </tbody>
     </table>
   {{else if isPreviewMode}}
       <div class="publication-display-top-meta lead">
-      {{publication.publication_type_label}}{{#if isRef}}, {{getLowercaseRefValue}}{{/if}}
+      {{publication.publication_type_label}}{{#if isRef}}, {{getLowercaseRefValue}}{{/if}}{{#if isArtisticBasis}} ({{t 'publications.dashboard.manage.show.index.artistic'}}){{/if}}
       </div>
       {{#if publication.epub_ahead_of_print}}
         <div class="alert alert-warning">
         {{t 'publications.dashboard.manage.show.index.epubAheadOfPrintSince'}}
         </div>
       {{/if}}
-
     <dl class="dl-horizontal">
       {{#if isArticleConf}}
         {{partial "publications/dashboard/manage/show/is-article-conf"}}

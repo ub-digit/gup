@@ -1,0 +1,29 @@
+artwork_types:
+  -
+    en: "Concert, performances, workshops"
+    sv: "Konsert, framträdanden, workshops"
+    code: concert_performances_workshops
+  -
+    en: "Published music, sound art"
+    sv: "Publicerad musik och ljudkonst"
+    code: published_music_sound_art
+  -
+    en: "Film, video, radio"
+    sv: "Film, video och radio"
+    code: film_video_radio
+  -
+    en: "Exhibitions, events festivals"
+    sv: "Utställningar, events och festivaler"
+    code: exhibitions_events_festivals
+  -
+    en: "Physical artifacts"
+    sv: "Fysiska artefakter"
+    code: physical_artifacts
+  -
+    en: "Digital artifacts"
+    sv: "Digitala artefakter"
+    code: digital_artifacts
+  -
+    en: "Other"
+    sv: "Övrigt"
+    code: other

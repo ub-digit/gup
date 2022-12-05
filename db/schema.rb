@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210119085030) do
+ActiveRecord::Schema.define(version: 20221022081031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -425,6 +425,8 @@ ActiveRecord::Schema.define(version: 20210119085030) do
     t.datetime "updated_at",                null: false
     t.integer  "publication_type_id"
     t.string   "ref_value"
+    t.boolean  "artistic_basis"
+    t.text     "made_public_in"
   end
 
   add_index "publication_versions", ["created_by"], name: "index_publication_versions_on_created_by", using: :btree

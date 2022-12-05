@@ -116,7 +116,8 @@ en:
     patent_number: "Patent number"
     patent_date: "Patentet publication date"
     artwork_type: "Artwork type"
-
+    artistic_basis: "Artistic research"
+    made_public_in: "Made public"
 
   publications:
     # general errors
