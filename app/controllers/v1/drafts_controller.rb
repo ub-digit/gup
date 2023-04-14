@@ -53,6 +53,42 @@ class V1::DraftsController < V1::V1Controller
     end
   end
 
+  api :POST, '/drafts', 'Creates a new publication, and returns the created object'
+  def create_admin
+    params[:publication] = {} if !params[:publication]
+
+    params[:publication][:created_by] = params[:username]
+    params[:publication][:updated_by] = params[:username]
+
+    if params[:publication][:xml]
+      params[:publication][:xml] = params[:publication][:xml].strip
+    end
+
+    create_basic_data
+    Publication.transaction do
+      begin
+        pub = Publication.build_new(permitted_params(params))
+        if pub.save_new
+          pub.update_attribute(:process_state, "DRAFT")
+          @response[:publication] = pub.as_json
+        else
+          raise (V1::ControllerError.new(
+            code: ErrorCodes::VALIDATION_ERROR,
+            errors: { publication: pub.errors.values },
+          ))
+        end
+        create_publication_identifiers!(publication_version: pub.current_version)
+        create_publication_links!(publication_version: pub.current_version)
+      rescue V1::ControllerError => error
+        message = error.message.present? ? error.message : "#{I18n.t "publications.errors.create_error"}"
+        error_msg(error.code, message, error.errors)
+        render_json
+        raise ActiveRecord::Rollback
+      end
+      render_json(201)
+    end
+  end
+
   api :PUT, '/drafts/:id', 'Updates any value of a publication object'
   desc "Used for updating a publication object which is not yet published (draft)"
   def update
