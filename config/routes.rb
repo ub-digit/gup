@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     resources :publications, param: :id
     resources :drafts
+    post "drafts_admin" => "drafts#create_admin"
     resources :published_publications
     get "published_publications_xls" => "published_publications#xls"
     resources :review_publications
