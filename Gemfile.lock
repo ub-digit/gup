@@ -35,8 +35,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     apipie-rails (0.5.18)
       rails (>= 4.1)
     arel (6.0.4)
@@ -114,7 +114,7 @@ GEM
       faraday
       faraday_middleware
     pg (0.21.0)
-    public_suffix (4.0.6)
+    public_suffix (5.0.0)
     puma (4.3.6)
       nio4r (~> 2.0)
     rack (1.6.13)
