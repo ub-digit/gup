@@ -241,17 +241,11 @@
           {{publication-field-compare fieldLabel=allFieldObjects.publanguage.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publanguage_label fieldValue=publication.publanguage_label}}
         {{/if}}
 
-          {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_local.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
+        {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_local.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
 
-        {{#if publication.publication_identifiers}}
-          {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
-        {{/if}}
+        {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers}}
 
-        {{#if allFieldObjects.links}}
-          {{publication-field-compare fieldLabel=allFieldObjects.links.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.links fieldValue=publication.links}}
-        {{/if}}
-
-        {{publication-field-compare  fieldLabel=(t 'components.publicationDisplay.linksLabel') fieldValue=publication.publication_links type="links"}}
+        {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.linksLabel') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_links fieldValue=publication.publication_links type="links"}}
 
         {{#if allFieldObjects.keywords}}
           {{publication-field-compare fieldLabel=allFieldObjects.keywords.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.keywords fieldValue=publication.keywords}}

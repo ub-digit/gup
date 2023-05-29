@@ -23,6 +23,11 @@ export default Ember.Component.extend({
       rightValue = JSON.stringify(rightValue);
     }
     
+    if(type === 'links') {
+      leftValue = JSON.stringify(leftValue);
+      rightValue = JSON.stringify(rightValue);
+    }
+
     if(type === 'list') {
       leftValue = JSON.stringify(this.get('listValueArray'));
       rightValue = JSON.stringify(this.get('listOtherValueArray'));
