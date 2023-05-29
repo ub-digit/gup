@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "drafts_admin" => "drafts#create_admin"
     resources :published_publications
     get "published_publications_xls" => "published_publications#xls"
+    put "published_publications_admin/:id" => "published_publications#update_admin"
     resources :review_publications
     resources :biblreview_publications
     resources :publication_types
