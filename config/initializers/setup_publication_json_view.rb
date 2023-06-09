@@ -106,8 +106,10 @@ def setup_publication_json_views
                'version_created_by', pv.created_by,
                'version_updated_at', pv.updated_at,
                'version_updated_by', pv.updated_by,
-               'publication_identifiers', pi.identifiers,
-               'authors', a.authors
+               'publication_identifiers', COALESCE(pi.identifiers, '[]'),
+               'authors', a.authors,
+               'source', 'gup',
+               'attended', true
              ) AS publication
         FROM publications pub
         JOIN publication_versions pv
