@@ -79,6 +79,9 @@ class V1::DraftsController < V1::V1Controller
         end
         create_publication_identifiers!(publication_version: pub.current_version)
         create_publication_links!(publication_version: pub.current_version)
+
+        create_authors_admin!(publication_version: pub.current_version)
+
       rescue V1::ControllerError => error
         message = error.message.present? ? error.message : "#{I18n.t "publications.errors.create_error"}"
         error_msg(error.code, message, error.errors)
@@ -86,6 +89,42 @@ class V1::DraftsController < V1::V1Controller
         raise ActiveRecord::Rollback
       end
       render_json(201)
+    end
+  end
+
+  def create_authors_admin!(publication_version:)
+    if params[:publication][:authors]
+      params[:publication][:authors].each_with_index do |author, index|
+        if author[:person] && author[:person][0]
+          person = author[:person][0]
+          p = Person.new({first_name: person[:first_name], last_name: person[:last_name]})
+          if p.save
+            person[:identifiers].each do |identifier|
+              pi = Identifier.create({person_id: p.id, source_id: Source.find_by_name(identifier[:type]).id, value: identifier[:value]})
+              if pi.errors.any?
+                raise (V1::ControllerError.new(
+                  code: ErrorCodes::VALIDATION_ERROR,
+                  errors: { authors: pi.errors.values }
+                ))
+              end
+            end
+            p2p = People2publication.create({publication_version_id: publication_version.id, person_id: p.id, position: index + 1, reviewed_at: nil, reviewed_publication_version_id: nil})
+            if p2p.errors.any?
+              raise (V1::ControllerError.new(
+                code: ErrorCodes::VALIDATION_ERROR,
+                errors: { authors: p2p.errors.values }
+              ))
+            end
+            d2p2p = Departments2people2publication.create({people2publication_id: p2p.id, department_id: Department.find_by_name_en('Import').id, position: 0})
+            if d2p2p.errors.any?
+              raise (V1::ControllerError.new(
+                code: ErrorCodes::VALIDATION_ERROR,
+                errors: { authors: d2p2p.errors.values }
+              ))
+            end
+          end
+        end
+      end
     end
   end
 

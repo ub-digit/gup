@@ -120,7 +120,8 @@ class V1::PublicationsController < ApplicationController
       # TODO: Remove default scope
       person = Person.unscoped.where(id: p2p.person_id).first.as_json
 
-      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).order("departments2people2publications.position asc")
+      # Hack for GUP Admin, exclude Import affiliated Departments
+      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).where("departments.name_en != ?", "Import").order("departments2people2publications.position asc")
       person['departments'] = departments.as_json(skip_children: true)
 
       presentation_string = Person.where(id: p2p.person_id).first.presentation_string(departments.map{|d| I18n.locale == :en ? d.name_en : d.name_sv}.uniq[0..1])
