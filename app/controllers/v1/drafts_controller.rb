@@ -55,6 +55,7 @@ class V1::DraftsController < V1::V1Controller
 
   api :POST, '/drafts', 'Creates a new publication, and returns the created object'
   def create_admin
+
     params[:publication] = {} if !params[:publication]
 
     params[:publication][:created_by] = params[:username]
@@ -78,6 +79,7 @@ class V1::DraftsController < V1::V1Controller
           ))
         end
         create_publication_identifiers!(publication_version: pub.current_version)
+        prepare_doi_link
         create_publication_links!(publication_version: pub.current_version)
 
         create_authors_admin!(publication_version: pub.current_version)
@@ -91,6 +93,20 @@ class V1::DraftsController < V1::V1Controller
       render_json(201)
     end
   end
+
+  def prepare_doi_link
+    params[:publication][:publication_links] = [] if !params[:publication][:publication_links]
+
+    if params[:publication][:publication_identifiers]
+      params[:publication][:publication_identifiers].each do |publication_identifier|
+        if publication_identifier[:identifier_code].eql?('doi')
+          doi_url_prefix = 'https://doi.org/'
+          params[:publication][:publication_links] << {url: doi_url_prefix + publication_identifier[:identifier_value]}
+        end
+      end
+    end
+  end
+
 
   def create_authors_admin!(publication_version:)
     if params[:publication][:authors]
