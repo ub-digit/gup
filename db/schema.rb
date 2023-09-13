@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221022081031) do
+ActiveRecord::Schema.define(version: 20230912115323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -440,9 +440,10 @@ ActiveRecord::Schema.define(version: 20221022081031) do
     t.datetime "deleted_at"
     t.integer  "current_version_id"
     t.datetime "epub_ahead_of_print"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.text     "process_state"
+    t.integer  "replaced_by_publication_id"
   end
 
   add_index "publications", ["current_version_id"], name: "index_publications_on_current_version_id", using: :btree
@@ -483,6 +484,33 @@ ActiveRecord::Schema.define(version: 20221022081031) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tmp_affiliated_person_ids", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "tmp_delete_person_ids", id: false, force: :cascade do |t|
+    t.integer "id_from_people"
+  end
+
+  create_table "tmp_delete_person_ids_2", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "tmp_delete_persons", id: false, force: :cascade do |t|
+    t.integer "id_from_people"
+    t.integer "id_from_people2publications"
+    t.text    "xkonto"
+    t.text    "orcid"
+    t.text    "cid"
+  end
+
+  create_table "tmp_delete_persons_2", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.text    "xkonto"
+    t.text    "orcid"
+    t.text    "cid"
+  end
+
   create_table "users", force: :cascade do |t|
     t.text     "username"
     t.text     "first_name"
@@ -494,5 +522,16 @@ ActiveRecord::Schema.define(version: 20221022081031) do
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
-  add_foreign_key "publication_links", "publication_versions"
+  add_foreign_key "access_tokens", "users", name: "fk_user_id", on_delete: :cascade
+  add_foreign_key "asset_data", "publications", name: "fk_publication_id", on_delete: :cascade
+  add_foreign_key "categories2publications", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
+  add_foreign_key "departments2people2publications", "people2publications", name: "fk_people2publication_id", on_delete: :cascade
+  add_foreign_key "endnote_file_records", "endnote_records", name: "fk_endnote_record_id", on_delete: :cascade
+  add_foreign_key "endnote_records", "publications", name: "fk_publication_id", on_delete: :cascade
+  add_foreign_key "people2publications", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
+  add_foreign_key "projects2publications", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
+  add_foreign_key "publication_identifiers", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
+  add_foreign_key "publication_links", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
+  add_foreign_key "publication_versions", "publications", name: "fk_publication_id", on_delete: :cascade
+  add_foreign_key "series2publications", "publication_versions", name: "fk_publication_version_id", on_delete: :cascade
 end
