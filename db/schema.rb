@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221022081031) do
+ActiveRecord::Schema.define(version: 20230912115323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -440,9 +440,10 @@ ActiveRecord::Schema.define(version: 20221022081031) do
     t.datetime "deleted_at"
     t.integer  "current_version_id"
     t.datetime "epub_ahead_of_print"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.text     "process_state"
+    t.integer  "replaced_by_publication_id"
   end
 
   add_index "publications", ["current_version_id"], name: "index_publications_on_current_version_id", using: :btree
