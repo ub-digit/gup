@@ -201,6 +201,7 @@ class V1::PublishedPublicationsController < ApplicationController
 
   def update_admin
     id = params[:id]
+    id_to_be_deleted = params[:gup_id]
     publication = Publication.find_by_id(id)
     if publication
       if publication.is_published?
@@ -209,7 +210,7 @@ class V1::PublishedPublicationsController < ApplicationController
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
         params[:publication][:authors] = people_for_publication(publication_version_id: publication.current_version_id)
         params[:publication][:updated_by] = params[:username]
-        publish_publication(publication: publication)
+        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted)
       else
         error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
         render_json
@@ -291,7 +292,7 @@ class V1::PublishedPublicationsController < ApplicationController
     publications
   end
 
-  def publish_publication(publication:)
+  def publish_publication(publication:, id_to_be_deleted: nil)
 
     if publication
       publication_version_old = publication.current_version
@@ -404,6 +405,22 @@ class V1::PublishedPublicationsController < ApplicationController
               sourceid: publication_version_new.sourceid,
               feedback_hash: {publication_id: publication.id})
           end
+
+          if id_to_be_deleted.present?
+            publication_to_be_deleted = Publication.find_by_id(id_to_be_deleted)
+            if publication_to_be_deleted.blank?
+              error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "publications.errors.not_found"}: #{publication_to_be_deleted}")
+              render_json
+              return
+            end
+            if publication_to_be_deleted.update_attributes({:deleted_at, DateTime.now, replaced_by_publication_id: publication.id})
+              render_json
+            else
+              error_msg(ErrorCodes::VALIDATION_ERROR,"#{I18n.t "publications.errors.delete_error"}: #{publication_to_be_deleted}")
+              render_json
+            end
+          end
+
           render_json(200)
         else
           error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "publications.errors.publish_error"}", publication.errors)

@@ -10,6 +10,12 @@ class V1::PublicationsController < ApplicationController
     id = params[:id]
     version_id = params[:version_id]
     publication = Publication.find_by_id(id)
+
+    # Check if publication is deleted and there is a reference to another
+    if publication && publication.deleted_at && publication.replaced_by_publication_id.present?
+      publication = Publication.find_by_id(publication.replaced_by_publication_id)
+    end
+
     if publication.present? && publication.published_at.nil?
       if !publication.current_version.updated_by.eql?(@current_user.username)
         publication = nil
