@@ -19,7 +19,7 @@ class GupAdmin
 
   def self.delete_from_index publication_id
     return if !APP_CONFIG.key?('gup_admin_settings') || !APP_CONFIG['gup_admin_settings']['enable']
-    RestClient.delete "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/#{publication_id}?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}"
+    RestClient.delete "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/gup_#{publication_id}?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}"
   end
 
   def self.index_all opts = {}
