@@ -76,7 +76,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine.add(data: document)
   ensure
     MessageQueue.send_update_to_queue publication
-    GupAdmin.put_to_index(publication.id)
+#    GupAdmin.put_to_index(publication.id)
     search_engine.commit
   end
 
