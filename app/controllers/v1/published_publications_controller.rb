@@ -423,6 +423,7 @@ class V1::PublishedPublicationsController < ApplicationController
           raise ActiveRecord::Rollback
         end
       end
+      # TODO! This needs error handling, or saving a publication will cause GUP to crash.
       GupAdmin.put_to_index(publication.id)
     else
       error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "publications.errors.not_found"}: #{params[:id]}")
