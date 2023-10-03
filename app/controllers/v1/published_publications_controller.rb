@@ -424,7 +424,11 @@ class V1::PublishedPublicationsController < ApplicationController
         end
       end
       # TODO! This needs error handling, or saving a publication will cause GUP to crash.
-      GupAdmin.put_to_index(publication.id)
+      Thread.new {
+        ActiveRecord::Base.connection_pool.with_connection do
+          GupAdmin.put_to_index(publication.id)
+        end
+      }
     else
       error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "publications.errors.not_found"}: #{params[:id]}")
       render_json
