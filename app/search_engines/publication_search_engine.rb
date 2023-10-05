@@ -60,7 +60,7 @@ class PublicationSearchEngine < SearchEngine
       Thread.new {
         ActiveRecord::Base.connection_pool.with_connection do
           publications.each do |publication|
-            self.update_search_engine_do publication
+            self.update_search_engine_do publication, true
           end
         end
       }
@@ -68,7 +68,7 @@ class PublicationSearchEngine < SearchEngine
   end
 
 
-  def self.update_search_engine_do publication
+  def self.update_search_engine_do publication, push_to_gup_admin = false
     search_engine = PublicationSearchEngine.new
     # Try to delete document from index 
     search_engine.delete_from_index(ids: publication.id)
@@ -76,6 +76,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine.add(data: document)
   ensure
     MessageQueue.send_update_to_queue publication
+    GupAdmin.put_to_index(publication.id) if push_to_gup_admin
     search_engine.commit
   end
 
@@ -84,6 +85,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine.delete_from_index(ids: publication_id)
   ensure
     MessageQueue.send_delete_to_queue publication_id
+    GupAdmin.delete_from_index(publication_id)
     search_engine.commit
   end
 

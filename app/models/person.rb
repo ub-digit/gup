@@ -103,6 +103,9 @@ class Person < ActiveRecord::Base
   def identifier_string
     str = ""
     identifiers.each do |identifier|
+
+      # Hack for GUP Admin, exclude source scopus-author-id in presentation
+      next if ["scopus-auth-id"].include?(identifier.source.name)
       if !str.blank?
         str += ", "
       end

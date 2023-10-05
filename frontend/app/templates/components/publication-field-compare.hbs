@@ -54,6 +54,12 @@
         <li>{{listItem}}</li>
       {{/each}}
     </ul>
+  {{else if isTypeLinks}}
+      <ul class="list-unstyled">
+      {{#each otherFieldValue as |link|}}
+        <li><a href="{{link.url}}" target="_blank">{{link.url}}</a></li>
+      {{/each}}
+      </ul>
   {{else if isTypeAuthors}}
     <ul class="list-unstyled">
     {{#each otherFieldValue as |author|}}

@@ -160,6 +160,7 @@ class V1::PublishedPublicationsController < ApplicationController
       if publication
         if publication.is_draft? || publication.is_predraft?
           publication.published_at = DateTime.now
+          params[:publication] = publication.attributes_indifferent.merge(params[:publication])
           publish_publication(publication: publication)
         else
           error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{draft_id} is not a draft")
@@ -184,6 +185,7 @@ class V1::PublishedPublicationsController < ApplicationController
     publication = Publication.find_by_id(id)
     if publication
       if publication.is_published?
+        params[:publication] = publication.attributes_indifferent.merge(params[:publication])
         publish_publication(publication: publication)
       else
         error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
@@ -197,7 +199,53 @@ class V1::PublishedPublicationsController < ApplicationController
     end
   end
 
+  def update_admin
+    id = params[:id]
+    id_to_be_deleted = params[:gup_id]
+    publication = Publication.find_by_id(id)
+    if publication
+      if publication.is_published?
+        params[:publication] = publication.attributes_indifferent.merge(params[:publication])
+        params[:publication][:publication_links] = merge_publication_links(publication)
+        params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
+        params[:publication][:authors] = people_for_publication(publication_version_id: publication.current_version_id)
+        params[:publication][:updated_by] = params[:username]
+        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted)
+      else
+        error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
+        render_json
+        return
+      end
+    else
+      error_msg(ErrorCodes::OBJECT_ERROR, "Could not find publication with id #{id}")
+      render_json
+      return
+    end
+  end
+
   private
+  def merge_publication_identifiers(publication)
+    existing = publication.current_version.publication_identifiers.map{|p|{identifier_code: p.identifier_code, identifier_value: p.identifier_value}}
+    incoming = params[:publication][:publication_identifiers].map{|p|{identifier_code: p[:identifier_code], identifier_value: p[:identifier_value]}}
+    existing.each do |existing_identifier|
+      if !incoming.any?{|incoming_identifier|incoming_identifier[:identifier_code].eql?(existing_identifier[:identifier_code])}
+        incoming << existing_identifier
+      end
+    end
+
+    return incoming
+  end
+ 
+  def merge_publication_links(publication)
+    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, position: p.position}}
+    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], position: p[:position]}}
+    existing.each do |existing_link|
+      if !incoming.any?{|incoming_link|incoming_link[:url].eql?(existing_link[:url])}
+        incoming << existing_link
+      end
+    end
+    return incoming
+  end
 
   def authors_departments_column_value(people2publications)
     people2publications.map do |p2p|
@@ -244,13 +292,12 @@ class V1::PublishedPublicationsController < ApplicationController
     publications
   end
 
-  def publish_publication(publication:)
+  def publish_publication(publication:, id_to_be_deleted: nil)
 
     if publication
       publication_version_old = publication.current_version
-      params[:publication] = publication.attributes_indifferent.merge(params[:publication])
       params[:publication][:created_by] = publication_version_old.created_by
-      params[:publication][:updated_by] = @current_user.username
+      params[:publication][:updated_by] = @current_user.username if params[:publication][:updated_by].nil?
 
       # Reset the bibl review info
       params[:publication][:biblreviewed_at] = nil
@@ -358,6 +405,17 @@ class V1::PublishedPublicationsController < ApplicationController
               sourceid: publication_version_new.sourceid,
               feedback_hash: {publication_id: publication.id})
           end
+
+          if id_to_be_deleted.present?
+            publication_to_be_deleted = Publication.find_by_id(id_to_be_deleted)
+            if publication_to_be_deleted.blank?
+              error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "publications.errors.not_found"}: #{publication_to_be_deleted}")
+              render_json
+              raise ActiveRecord::Rollback
+            end
+            publication_to_be_deleted.update_attributes({deleted_at: DateTime.now, replaced_by_publication_id: publication.id})
+          end
+
           render_json(200)
         else
           error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "publications.errors.publish_error"}", publication.errors)
@@ -365,6 +423,12 @@ class V1::PublishedPublicationsController < ApplicationController
           raise ActiveRecord::Rollback
         end
       end
+      # TODO! This needs error handling, or saving a publication will cause GUP to crash.
+      Thread.new {
+        ActiveRecord::Base.connection_pool.with_connection do
+          GupAdmin.put_to_index(publication.id)
+        end
+      }
     else
       error_msg(ErrorCodes::OBJECT_ERROR, "#{I18n.t "publications.errors.not_found"}: #{params[:id]}")
       render_json

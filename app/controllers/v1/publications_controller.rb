@@ -10,6 +10,12 @@ class V1::PublicationsController < ApplicationController
     id = params[:id]
     version_id = params[:version_id]
     publication = Publication.find_by_id(id)
+
+    # Check if publication is deleted and there is a reference to another
+    if publication && publication.deleted_at && publication.replaced_by_publication_id.present?
+      publication = Publication.find_by_id(publication.replaced_by_publication_id)
+    end
+
     if publication.present? && publication.published_at.nil?
       if !publication.current_version.updated_by.eql?(@current_user.username)
         publication = nil
@@ -120,7 +126,8 @@ class V1::PublicationsController < ApplicationController
       # TODO: Remove default scope
       person = Person.unscoped.where(id: p2p.person_id).first.as_json
 
-      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).order("departments2people2publications.position asc")
+      # Hack for GUP Admin, exclude Import affiliated Departments
+      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).where("departments.name_en != ?", "Import").order("departments2people2publications.position asc")
       person['departments'] = departments.as_json(skip_children: true)
 
       presentation_string = Person.where(id: p2p.person_id).first.presentation_string(departments.map{|d| I18n.locale == :en ? d.name_en : d.name_sv}.uniq[0..1])
