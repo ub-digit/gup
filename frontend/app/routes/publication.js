@@ -12,10 +12,15 @@ export default Ember.Route.extend({
     });
   },
 
-  afterModel: function(models) {
+  afterModel: function(models, transition) {
     // Set head tags only when publication exists
     if (models.publication.id) {
       this.setHeadTags(models);
+    }
+    // Dunderhack - if post id has been changed and redirected to another post update history manually
+    const id = parseInt(transition.params.publication.id);
+    if (models.publication.id !== id) {
+      window.history.replaceState( {} , 'publication', `/publication/${models.publication.id}` );
     }
   },
 
