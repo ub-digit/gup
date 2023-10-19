@@ -83,7 +83,7 @@ def setup_publication_json_views
                'title', pv.title,
                'alt_title', pv.alt_title,
                'abstract', pv.abstract,
-               'pubyear', pv.pubyear,
+               'pubyear', pv.pubyear::text,
                'publanguage', pv.publanguage,
                'url', pv.url,
                'keywords', pv.keywords,
