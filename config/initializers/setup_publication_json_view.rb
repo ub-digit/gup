@@ -34,6 +34,19 @@ def setup_publication_json_views
         GROUP BY p.id
       ;
       
+      DROP VIEW IF EXISTS v_positions CASCADE;
+      CREATE OR REPLACE VIEW v_positions AS
+      SELECT pub.id AS publication_id,
+            p2p.person_id AS person_id,
+            json_agg(json_build_object('position', p2p.position)) AS position
+        FROM publications pub
+        JOIN publication_versions pv
+          ON pub.current_version_id = pv.id
+        JOIN people2publications p2p
+          ON pv.id = p2p.publication_version_id
+      GROUP BY pub.id, p2p.person_id
+      ;
+
       DROP VIEW IF EXISTS v_affiliations CASCADE;
       CREATE OR REPLACE VIEW v_affiliations AS
       SELECT pub.id AS publication_id,
@@ -56,6 +69,7 @@ def setup_publication_json_views
       SELECT pub.id AS publication_id,
              json_agg(json_build_object(
                 'person', p.person,
+                'position', pos.position,
                 'affiliations', a.affiliations
               )) AS authors
         FROM publications pub
@@ -65,6 +79,8 @@ def setup_publication_json_views
           ON pub.id = a.publication_id
         JOIN v_people p
           ON a.person_id = p.person_id
+        JOIN v_positions pos
+          ON pub.id = pos.publication_id AND pos.person_id = p.person_id
       GROUP BY pub.id
       ;
       
@@ -83,7 +99,7 @@ def setup_publication_json_views
                'title', pv.title,
                'alt_title', pv.alt_title,
                'abstract', pv.abstract,
-               'pubyear', pv.pubyear,
+               'pubyear', pv.pubyear::text,
                'publanguage', pv.publanguage,
                'url', pv.url,
                'keywords', pv.keywords,
