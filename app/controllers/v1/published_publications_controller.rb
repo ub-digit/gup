@@ -210,7 +210,7 @@ class V1::PublishedPublicationsController < ApplicationController
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
         params[:publication][:authors] = people_for_publication(publication_version_id: publication.current_version_id)
         params[:publication][:updated_by] = params[:username]
-        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted)
+        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted, biblreviewed_at: publication.current_version_id.biblreviewed_at, biblreviewed_by: publication.current_version_id.biblreviewed_by)
       else
         error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
         render_json
@@ -292,7 +292,7 @@ class V1::PublishedPublicationsController < ApplicationController
     publications
   end
 
-  def publish_publication(publication:, id_to_be_deleted: nil)
+  def publish_publication(publication:, id_to_be_deleted: nil, biblreviewed_at: nil, biblreviewed_by: nil)
 
     if publication
       publication_version_old = publication.current_version
@@ -300,8 +300,8 @@ class V1::PublishedPublicationsController < ApplicationController
       params[:publication][:updated_by] = @current_user.username if params[:publication][:updated_by].nil?
 
       # Reset the bibl review info
-      params[:publication][:biblreviewed_at] = nil
-      params[:publication][:biblreviewed_by] = nil
+      params[:publication][:biblreviewed_at] = biblreviewed_at
+      params[:publication][:biblreviewed_by] = biblreviewed_by
       params[:publication][:biblreview_postponed_until] = DateTime.now
       params[:publication][:biblreview_postpone_comment] = nil
 
