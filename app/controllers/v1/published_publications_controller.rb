@@ -210,7 +210,7 @@ class V1::PublishedPublicationsController < ApplicationController
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
         params[:publication][:authors] = people_for_publication(publication_version_id: publication.current_version_id)
         params[:publication][:updated_by] = params[:username]
-        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted, biblreviewed_at: publication.current_version_id.biblreviewed_at, biblreviewed_by: publication.current_version_id.biblreviewed_by)
+        publish_publication(publication: publication, id_to_be_deleted: id_to_be_deleted, biblreviewed_at: publication.current_version.biblreviewed_at, biblreviewed_by: publication.current_version.biblreviewed_by)
       else
         error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
         render_json
