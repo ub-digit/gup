@@ -19,6 +19,15 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       defaultLocale: 'sv'
+    },
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'gub-oauth2': {
+          apiKey: process.env.GUP_OAUTH2_CLIENT_ID,
+          scope: 'user'
+        }
+      }
     }
   };
 
@@ -33,30 +42,32 @@ module.exports = function(environment) {
   ENV.APP.licenceCode = 'A 85 592 10';
 
   let baseURL = null;
-  let hostName = null;
+  let frontendBaseURL = null;
+  let redirectUri = null;
 
   if (environment === 'development') {
+    frontendBaseURL = `http://localhost:${process.env.GUP_FRONTEND_PORT}`;
     hostName = 'localhost';
-    baseURL = 'http://' + hostName + ':' + process.env.GUP_SERVICE_PORT;
+    baseURL = `http://${hostName}:${process.env.GUP_SERVICE_PORT}`;
     // ENV.APP.LOG_RESOLVER = true;
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
-
   }
   else {
     hostName = process.env.GUP_SERVICE_HOSTNAME;
     baseURL = 'https://' + hostName;
+    frontendBaseURL = `https://${process.env.GUP_FRONTEND_HOSTNAME}`;
   }
 
-  if (baseURL) {
-    ENV.APP.publicationURL = baseURL + ENV.APP.publicationURL;
-    ENV.APP.serviceURL = baseURL + ENV.APP.serviceURL;
-    ENV.APP.authenticationBaseURL = baseURL + ENV.APP.authenticationBaseURL;
-    ENV.APP.fileURL = /*baseURL + */ ENV.APP.fileURL;
-    ENV.APP.licenceURL = baseURL + ENV.APP.licenceURL;
-  }
+  ENV.APP.publicationURL = baseURL + ENV.APP.publicationURL;
+  ENV.APP.serviceURL = baseURL + ENV.APP.serviceURL;
+  ENV.APP.authenticationBaseURL = baseURL + ENV.APP.authenticationBaseURL;
+  ENV.APP.fileURL = /*baseURL + */ ENV.APP.fileURL;
+  ENV.APP.licenceURL = baseURL + ENV.APP.licenceURL;
+  ENV.torii.providers['gub-oauth2'].tokenExchangeUri = ENV.APP.authenticationBaseURL;
+  ENV.torii.providers['gub-oauth2'].redirectUri = `${frontendBaseURL}/torii/redirect.html`;
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
@@ -67,9 +78,7 @@ module.exports = function(environment) {
     'report-uri': "/"
   };
 
-  if (hostName) {
-    ENV.contentSecurityPolicy['script-src'] = "'self' " + hostName;
-  }
+  ENV.contentSecurityPolicy['script-src'] = "'self' " + hostName;
 
   return ENV;
 };

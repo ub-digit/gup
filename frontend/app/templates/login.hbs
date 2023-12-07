@@ -13,9 +13,14 @@
   <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
     <form {{action 'authenticate' on='submit'}} role="form">
       <div class="row info-box-body">
-        {{#if errorMessage}}
+        {{#if invalidCredentials}}
           <div class="alert alert-danger col-xs-12">
           {{t 'login.loginError'}}
+          </div>
+        {{/if}}
+        {{#if errorMessage}}
+          <div class="alert alert-danger col-xs-12">
+            {{errorMessage}}
           </div>
         {{/if}}
         <div class="form-group">
@@ -27,8 +32,11 @@
           {{input value=password classBinding=":form-control" placeholder=(t 'login.passwordPlaceholder') type='password'}}
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">{{t 'login.button'}}</button>
+          <button class="btn btn-primary" type="submit" disabled={{loginDisabled}}>{{t 'login.button'}}</button>
           {{#if application.casLoginUrl}}<a href="{{application.casLoginUrl}}">{{t 'login.casLogin'}}</a>{{/if}}
+          {{#unless loginDisabled}}
+            <a href="javascript:void()" onclick={{action "authenticateOAuth2" bubbles=false}}>Login with github</a>
+          {{/unless}}
         </div>
       </div>
     </form>

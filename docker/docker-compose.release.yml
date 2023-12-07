@@ -4,6 +4,7 @@ services:
     image: docker.ub.gu.se/gup-frontend:${GIT_REVISION}
     environment:
       - GUP_SERVICE_HOSTNAME=${BACKEND_HOSTNAME}
+      - GUP_FRONTEND_HOSTNAME=${FRONTEND_HOSTNAME}
     ports:
       # Port differs in release image for ember
       # TODO: Change so nginx listens at 4200 instead to we don't need this?
