@@ -5,6 +5,7 @@ services:
     image: docker.ub.gu.se/ember-dev:3.14.0
     environment:
       - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
+      - GUP_FRONTEND_PORT=${GUP_FRONTEND_PORT}
     ports:
       # server
       - ${GUP_FRONTEND_PORT}:4200

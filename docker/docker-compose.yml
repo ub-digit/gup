@@ -2,6 +2,8 @@ version: '3.7'
 services:
   frontend:
     restart: always
+    env_file:
+      - secrets.env
     environment:
       - EMBER_ENVIRONMENT=${GUP_ENVIRONMENT}
       - GUP_SERVICE_PORT=${GUP_BACKEND_PORT}
@@ -13,6 +15,8 @@ services:
     tty: true
   backend:
     restart: always
+    env_file:
+      - secrets.env
     depends_on:
       - db
     environment:

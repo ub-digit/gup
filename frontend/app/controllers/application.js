@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import ENV from 'frontend/config/environment';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
   session : Ember.inject.service('session'),
+  config: ENV.torii.providers['gub-oauth2'], //TODO: Why do we need this, do we need this?
 
 	queryParams: ['lang'],
 	lang : null,
