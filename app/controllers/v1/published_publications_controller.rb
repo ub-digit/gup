@@ -227,15 +227,14 @@ class V1::PublishedPublicationsController < ApplicationController
   def merge_publication_identifiers(publication)
     existing = publication.current_version.publication_identifiers.map{|p|{identifier_code: p.identifier_code, identifier_value: p.identifier_value}}
     incoming = params[:publication][:publication_identifiers].map{|p|{identifier_code: p[:identifier_code], identifier_value: p[:identifier_value]}}
-    existing.each do |existing_identifier|
-      if !incoming.any?{|incoming_identifier|incoming_identifier[:identifier_code].eql?(existing_identifier[:identifier_code])}
-        incoming << existing_identifier
+    incoming.each do |incoming_identifier|
+      if !existing.any?{|existing_identifier|existing_identifier[:identifier_code].eql?(incoming_identifier[:identifier_code])}
+      existing << incoming_identifier
       end
     end
-
-    return incoming
+    return existing
   end
- 
+
   def merge_publication_links(publication)
     existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, position: p.position}}
     incoming = params[:publication][:publication_links].map{|p|{url: p[:url], position: p[:position]}}
