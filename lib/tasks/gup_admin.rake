@@ -110,12 +110,12 @@ namespace :gup_admin do
       end
       if row["doi-number-of-matches"] == 0 && row["isi-id-number-of-matches"] == 1
         wos_match_with_doi += 1
-        create_post_and_delete_row(post_file_line, "wos", row["isi-id"], row["isi-id-matched-publication-id"].first, base_url, user)
+        create_post_and_delete_row(post_file_line, "WOS", row["isi-id"], row["isi-id-matched-publication-id"].first, base_url, user)
       end
 
       if row["doi-number-of-matches"] == 1 && row["isi-id-number-of-matches"] == 0
         doi_match += 1
-        create_post_and_delete_row(post_file_line, "wos", row["isi-id"], row["doi-matched-publication-id"].first, base_url, user)
+        create_post_and_delete_row(post_file_line, "WOS", row["isi-id"], row["doi-matched-publication-id"].first, base_url, user)
       end
       if row["doi-number-of-matches"] == 1 && row["isi-id-number-of-matches"] == 1
         both_match += 1
