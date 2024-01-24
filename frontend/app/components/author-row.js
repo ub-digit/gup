@@ -60,6 +60,7 @@ export default Ember.Component.extend({
           item.newAuthorForm.set('firstName', item.get('importedAuthorFirstName'));
           item.newAuthorForm.set('lastName', item.get('importedAuthorLastName'));
         }
+        // TODO: Why do we do this?
         item.newAuthorForm.set('skip_update_search_engine', true);
         return this.get('createAuthor')(item);
       }
@@ -178,16 +179,53 @@ export default Ember.Component.extend({
   }),
 
   // Used to signal select2-adjusted component to set a default query string
-  setDefaultQuery: Ember.computed('item.importedAuthorName', function() {
-    return Ember.isPresent(this.get('item.importedAuthorName'));
+  setDefaultQuery: Ember.computed(
+    'item.importedAuthorName',
+    'item.selectedInstitution',
+    'item.selectedAuthor.last_name',
+    'item.newAuthorForm.lastName',
+    function() {
+      return Ember.isEmpty(this.get('item.newAuthorForm.lastName')) && (
+        Ember.isPresent(this.get('item.importedAuthorName')) || (
+          Ember.isEmpty(this.get('item.selectedInstitution')) &&
+          Ember.isPresent(this.get('item.selectedAuthor.last_name'))
+        )
+      );
+    }
+  ),
+
+  defaultQuery: Ember.computed(
+    'item.importedAuthorLastName',
+    'item.selectedInstitution',
+    'item.selectedAuthor.last_name',
+    'item.newAuthorForm.lastName',
+    function() {
+      if (Ember.isEmpty(this.get('item.newAuthorForm.lastName'))) {
+        if(Ember.isPresent(this.get('item.importedAuthorName'))) {
+          return this.get('item.importedAuthorName');
+        }
+        else if (
+          Ember.isEmpty(this.get('item.selectedInstitution')) &&
+          Ember.isPresent(this.get('item.selectedAuthor.last_name'))
+        ) {
+          return this.get('item.selectedAuthor.last_name');
+        }
+      }
+    }
+  ),
+
+  importedAuthorName: Ember.computed('item.importedAuthorName', 'item.selectedInstitution', 'item.selectedAuthor.presentation_string', function() {
+    if (Ember.isPresent(this.get('item.importedAuthorName'))) {
+      return this.get('item.importedAuthorName');
+    }
+    else if (Ember.isEmpty(this.get('item.selectedInstitution'))) {
+      console.log('author', this.get('item.selectedAuthor.presentation_string'));
+      return this.get('item.selectedAuthor.presentation_string');
+    }
   }),
 
-  showInputFields: Ember.computed('item.importedAuthorName', 'addAffiliation', function() {
-    return (this.get('item.importedAuthorName') && this.get('addAffiliation')) || !this.get('item.importedAuthorName');
-  }),
-
-  isImportedExternal: Ember.computed('item.importedAuthorName', 'addAffiliation', function() {
-    return this.get('item.importedAuthorName') && !this.get('addAffiliation');
+  isImportedExternal: Ember.computed('importedAuthorName', 'addAffiliation', function() {
+    return this.get('importedAuthorName') && !this.get('addAffiliation');
   }),
 
   isUnsaved: Ember.computed('item.transformedToNewAuthor', 'item.newAuthorForm.lastName', function() {
@@ -213,31 +251,14 @@ export default Ember.Component.extend({
   */
 
   transformedNewAuthorTriggered: function() {
-    let defaultFirstName = '';
-    let defaultLastName = '';
-    // This means we are opening "Add new author" form
-    // set imported author first and last name to imported author if any
     if (this.get('item.transformedToNewAuthor')) {
-      defaultFirstName = this.get('item.importedAuthorFirstName');
-      defaultLastName = this.get('item.importedAuthorLastName');
+      this.send('showAddNewAuthorForm');
     }
-
-    // create new author
-    this.get('item').set('newAuthorForm', Ember.Object.create({
-      firstName: defaultFirstName,
-      lastName: defaultLastName,
-      year_of_birth: '',
-      xaccount: '',
-      orcid: ''
-    }));
   }.observes('item.transformedToNewAuthor'),
 
   actions: {
     authorInstitutionsChanged: function(institutions) {
       this.set('item.selectedInstitution', institutions);
-    },
-    setMsgHeader: function(type, msg) {
-      this.sendAction('setMsgHeader', type, msg);
     },
     queryAuthors: function(query, deferred) {
       //TODO: This utility function should be accessible to other classes
@@ -295,15 +316,39 @@ export default Ember.Component.extend({
       this.sendAction('removeAuthor', id);
     },
 
-    toggleAddAffiliation: function() {
-      this.toggleProperty('addAffiliation');
+    showAddAffiliation: function() {
+      this.set('addAffiliation', true);
     },
-    toggleAddNewAuthor: function(item) {
-      item.toggleProperty('transformedToNewAuthor');
+
+    showAddNewAuthorForm: function() { // TODO: item not used here
+      // create new author
+      this.set('item.newAuthorForm', Ember.Object.create({
+        // set imported author first and last name to imported author if any
+        firstName: this.get('item.importedAuthorFirstName'),
+        lastName: this.get('item.importedAuthorLastName'),
+        year_of_birth: '',
+        xaccount: '',
+        orcid: ''
+      }));
+      this.get('item').set('transformedToNewAuthor', true);
     },
+
+    cancelAddNewAuthorForm: function(item) { // TODO: item not used here
+      this.get('item').set('transformedToNewAuthor', false);
+      // Reset form
+      this.set('item.newAuthorForm', Ember.Object.create({
+        firstName: '',
+        lastName: '',
+        year_of_birth: '',
+        xaccount: '',
+        orcid: ''
+      }));
+    },
+
     createAuthor: function(item) {
+      // TODO: Should validate required properties (lastName)!?
       this.get('createAuthor')(item).catch((reason) => {
-        this.send('setMsgHeader', 'error', reason.error.msg);
+        this.sendAction('setMsgHeader', 'error', reason.error.msg);
         this.set('errors', reason.error.errors);
         //TODO: fix, schedule after render instead?
         Ember.run.later(function() {

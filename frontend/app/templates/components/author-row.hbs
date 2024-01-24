@@ -4,8 +4,8 @@
     <div class="dotted-line"></div>
     {{#if isImportedExternal}}
       <div class="col-xs-10 imported-author">
-        <p><strong>{{item.importedAuthorName}}</strong>
-        (Extern) <a href="javascript:void()" {{action 'toggleAddAffiliation'}}>{{t 'components.authorRow.addAffiliation'}}</a>
+        <p><strong>{{importedAuthorName}}</strong>
+        (Extern) <a href="javascript:void()" {{action 'showAddAffiliation'}}>{{t 'components.authorRow.addAffiliation'}}</a>
         </p>
       </div>
       <div class="col-xs-1">
@@ -24,8 +24,8 @@
         {{/unless}}
       </div>
     {{else}}
-      {{#if item.importedAuthorName}}
-        <p><strong>{{item.importedAuthorName}}</strong></p>
+      {{#if importedAuthorName}}
+        <p><strong>{{importedAuthorName}}</strong></p>
       {{/if}}
       <div class="col-xs-10">
         {{#if item.transformedToNewAuthor}}
@@ -88,12 +88,11 @@
               </div>
               <div class="btn-toolbar">
                 <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'components.authorRow.btnSave'}}</button>
-                <button {{action 'toggleAddNewAuthor' item}}class="btn btn-danger">{{t 'components.authorRow.btnCancel'}}</button>
+                <button {{action 'cancelAddNewAuthorForm' item}}class="btn btn-danger">{{t 'components.authorRow.btnCancel'}}</button>
               </div>
             </div>
           </div>
         {{else}}
-          {{#if showInputFields}}
             <div class="row">
               <div class="col-xs-5">
                 <label>{{t 'components.authorRow.selectAuthor.label'}}</label>
@@ -103,7 +102,7 @@
                     btnText=(t 'components.authorRow.selectAuthor.btnCreateNew')
                     value=item.selectedAuthor
                     setDefaultQuery=setDefaultQuery
-                    defaultQuery=item.importedAuthorLastName
+                    defaultQuery=defaultQuery
                     optionLabelPath="presentation_string"
                     typeaheadSearchingText=(t 'components.authorRow.selectAuthor.typeaheadSearchingText')
                     typeaheadNoMatchesText=(t 'components.authorRow.selectAuthor.typeaheadNoMatchesText')
@@ -164,7 +163,6 @@
               </div>
             </div>
             {{/if}}
-          {{/if}}
         {{/if}}
       </div>
       <div class="col-xs-1 compensate-for-label-on-top">
