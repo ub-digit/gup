@@ -219,7 +219,6 @@ export default Ember.Component.extend({
       return this.get('item.importedAuthorName');
     }
     else if (Ember.isEmpty(this.get('item.selectedInstitution'))) {
-      console.log('author', this.get('item.selectedAuthor.presentation_string'));
       return this.get('item.selectedAuthor.presentation_string');
     }
   }),
