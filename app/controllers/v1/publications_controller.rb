@@ -39,23 +39,21 @@ class V1::PublicationsController < ApplicationController
       @response[:publication][:authors] = people_for_publication(publication_version_id: publication_version.id)
       authors_from_import = []
       if @response[:publication][:authors].empty? && publication_version.xml.present? && !publication_version.xml.nil?
-        # Do the authorstring
-        xml = Nokogiri::XML(publication_version.xml).remove_namespaces!
         datasource = publication_version.datasource
         if datasource.nil?
-          # Do nothing
+          # Is from gup-admin, temporary imported authors hack
+          authors_from_import = JSON.parse(publication_version.xml)
         else
+          # Parse from adapter
+          xml = Nokogiri::XML(publication_version.xml).remove_namespaces!
           adapter = ImportManager.find_adapter(datasource: datasource)
-          authors_from_import += adapter.authors(xml)
+          authors_from_import = adapter.authors(xml)
         end
       end
       if publication_version.publication_type.blank? && publication_version.xml.present? && !publication_version.xml.nil?
-        # Do the authorstring
-        xml = Nokogiri::XML(publication_version.xml).remove_namespaces!
         datasource = publication_version.datasource
-        if datasource.nil?
-          # Do nothing
-        else
+        unless datasource.nil?
+          xml = Nokogiri::XML(publication_version.xml).remove_namespaces!
           adapter = ImportManager.find_adapter(datasource: datasource)
           publication_type_suggestion = adapter.publication_type_suggestion(xml)
         end

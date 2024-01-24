@@ -61,8 +61,15 @@ class V1::DraftsController < V1::V1Controller
     params[:publication][:created_by] = params[:username]
     params[:publication][:updated_by] = params[:username]
 
-    if params[:publication][:xml]
-      params[:publication][:xml] = params[:publication][:xml].strip
+    if params[:publication][:authors]
+      # Temporary hack for gup-admin
+      params[:publication][:xml] = JSON.generate(
+        params[:publication][:authors].map do |author|
+          if author[:person] && author[:person][0]
+            author[:person][0]
+          end
+        end.compact
+      )
     end
 
     create_basic_data
@@ -82,8 +89,7 @@ class V1::DraftsController < V1::V1Controller
         prepare_doi_link
         create_publication_links!(publication_version: pub.current_version)
 
-        create_authors_admin!(publication_version: pub.current_version)
-
+        #create_authors_admin!(publication_version: pub.current_version)
       rescue V1::ControllerError => error
         message = error.message.present? ? error.message : "#{I18n.t "publications.errors.create_error"}"
         error_msg(error.code, message, error.errors)
