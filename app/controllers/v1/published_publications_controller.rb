@@ -204,7 +204,7 @@ class V1::PublishedPublicationsController < ApplicationController
     id_to_be_deleted = params[:gup_id]
     publication = Publication.find_by_id(id)
     if publication
-      if publication.is_published?
+      if publication.is_published? && !publication.is_deleted?
         params[:publication] = publication.attributes_indifferent.merge(params[:publication])
         params[:publication][:publication_links] = merge_publication_links(publication)
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
