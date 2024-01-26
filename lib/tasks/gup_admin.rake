@@ -142,7 +142,7 @@ namespace :gup_admin do
     where p.deleted_at is null
     and p.published_at is not null
     and pi.identifier_code = ?
-    and pi.identifier_value = ?"
+    and lower(pi.identifier_value) = lower(?)"
 
     value = data[identifier_code]
     res = Publication.find_by_sql([sql, identifier_code, value])
