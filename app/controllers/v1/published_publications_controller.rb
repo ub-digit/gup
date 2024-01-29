@@ -516,8 +516,8 @@ class V1::PublishedPublicationsController < ApplicationController
     if department_list.present?
       department_list.each.with_index do |d2p2p, j|
         d2p2p_obj = Departments2people2publication.create({people2publication_id: p2p_obj.id, department_id: d2p2p[:id], position: j + 1})
-        if d2p2p_obj.errors
-          error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "publications.errors.publish_error"}", d2p2p_obj.errors)
+        if !d2p2p_obj.valid?
+          error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "publications.errors.publish_error"}", d2p2p_obj.errors.full_messages)
           render_json
           raise ActiveRecord::Rollback
         end
