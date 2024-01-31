@@ -336,8 +336,8 @@ class V1::PublishedPublicationsController < ApplicationController
               Series2publication.create(publication_version_id: publication_version_new.id, serie_id: serie)
             end
           end
-          if params[:publication][:category_hsv_local].present?
-            params[:publication][:category_hsv_local].each do |category|
+          if params[:publication][:category_hsv_11].present?
+            params[:publication][:category_hsv_11].each do |category|
               Categories2publication.create(publication_version_id: publication_version_new.id, category_id: category)
             end
           end

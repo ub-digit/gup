@@ -11,5 +11,5 @@ class V1::V1Controller < ApplicationController
     end
   end
 
-  before_filter :validate_access
+#  before_filter :validate_access
 end
