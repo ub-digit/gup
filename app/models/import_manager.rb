@@ -3,7 +3,6 @@ class ImportManager
     "pubmed" => PubmedAdapter,
     "libris" => LibrisAdapter,
     "scopus" => ScopusAdapter,
-    "scigloo" => SciglooAdapter,
     "gupea" => GupeaAdapter,
     "endnote" => EndnoteAdapter
   }
