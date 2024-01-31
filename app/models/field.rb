@@ -5,7 +5,7 @@ class Field < ActiveRecord::Base
   validates_uniqueness_of :name
 
   # Series and Projects are handled separately, and not part of allowed associations
-  ARRAY_FIELDS = ['category_hsv_local']
+  ARRAY_FIELDS = ['category_hsv_11']
 
   def label(publication_type: nil)
     if publication_type && I18n.exists?("fields.#{name}_#{publication_type}")
