@@ -70,6 +70,15 @@ class OaiDocuments
             xml.tag!("topic", category.svepid)
           end
         end unless !hsv_11_categories
+        # Keep old category delivery
+        hsv_11_categories.each do |category|
+          xml.tag!("subject", 'lang' => 'swe', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
+            xml.tag!("topic", category.name_sv)
+          end
+          xml.tag!("subject", 'lang' => 'eng', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
+            xml.tag!("topic", category.name_en)
+          end
+        end unless !hsv_11_categories
         # Keywords
         publication.current_version.keywords.split(",").each do |keyword|
           xml.tag!("subject") do
