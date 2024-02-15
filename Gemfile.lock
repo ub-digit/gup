@@ -201,6 +201,8 @@ GEM
     sshkit (1.21.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    strip_attributes (1.13.0)
+      activemodel (>= 3.0, < 8.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.8)
@@ -244,6 +246,7 @@ DEPENDENCIES
   shoulda (~> 3.5.0)
   spreadsheet
   sprockets (< 4)
+  strip_attributes
   webmock
   will_paginate (~> 3.0.5)
 
