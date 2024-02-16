@@ -66,10 +66,16 @@ class OaiDocuments
         # Only deliver HSV_11 categories, mapped from HSV_LOCAL_12
         hsv_11_categories = Category.where(id: publication.current_version.categories.where(category_type: "HSV_LOCAL_12").map{|c| c.mapping_id})
         hsv_11_categories.each do |category|
-          xml.tag!("subject", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'lang' => 'swe', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
+          xml.tag!("classification", 'authority' => 'ssif') do
+            xml.tag!("topic", category.svepid)
+          end
+        end unless !hsv_11_categories
+        # Keep old category delivery
+        hsv_11_categories.each do |category|
+          xml.tag!("subject", 'lang' => 'swe', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
             xml.tag!("topic", category.name_sv)
           end
-          xml.tag!("subject", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'lang' => 'eng', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
+          xml.tag!("subject", 'lang' => 'eng', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
             xml.tag!("topic", category.name_en)
           end
         end unless !hsv_11_categories
@@ -99,7 +105,6 @@ class OaiDocuments
           xml.tag!("genre", "artistic work", 'authority' => 'kb.se', 'type' => 'outputType')
         end
 
-        xml.tag!("genre", publication_type_code, 'authority' => 'svep', 'type' => 'publicationType')
         xml.tag!("genre", content_type_code, 'authority' => 'svep', 'type' => 'contentType')
 
 
@@ -120,9 +125,9 @@ class OaiDocuments
             person_identifier = p2p.person.get_identifier(source: 'xkonto')
 
             if person_identifier
-              name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal', 'authority' => 'gu'}
+              name_attributes = {'type' => 'personal', 'authority' => 'gu'}
             else
-              name_attributes = {'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'personal'}
+              name_attributes = {'type' => 'personal'}
             end
             xml.tag!("name", name_attributes) do
               xml.tag!("namePart", p2p.person.first_name, 'type' => 'given') if p2p.person.first_name
@@ -147,27 +152,6 @@ class OaiDocuments
             end
           end
           xml.tag!("note", publication.current_version.get_no_of_authors, 'type' => 'creatorCount')
-        end
-
-        # Organisations
-        if publication.current_version.departments
-          publication.current_version.departments.uniq.each do |department|
-            next if department.is_external?
-            xml.tag!("name", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'corporate', 'lang' => 'swe', 'authority' => 'gu.se', 'xlink:href' => department.id.to_s) do
-              xml.tag!("namePart", APP_CONFIG['university']['name_sv'])
-              if department.faculty_id
-                xml.tag!("namePart", Faculty.find_by_id(department.faculty_id).name_sv)
-              end
-              xml.tag!("namePart", department.name_sv)
-            end
-            xml.tag!("name", 'xmlns:xlink' => 'http://www.w3.org/1999/xlink', 'type' => 'corporate', 'lang' => 'eng', 'authority' => 'gu.se', 'xlink:href' => department.id.to_s) do
-              xml.tag!("namePart", APP_CONFIG['university']['name_en'])
-              if department.faculty_id
-                xml.tag!("namePart", Faculty.find_by_id(department.faculty_id).name_en)
-              end
-              xml.tag!("namePart", department.name_en)
-            end
-          end
         end
 
 
