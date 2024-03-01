@@ -63,22 +63,20 @@ class OaiDocuments
 
         #### Subjects and Keywords ####
         # Subjects
-        # Only deliver HSV_11 categories, mapped from HSV_LOCAL_12
-        hsv_11_categories = Category.where(id: publication.current_version.categories.where(category_type: "HSV_LOCAL_12").map{|c| c.mapping_id})
-        hsv_11_categories.each do |category|
+        publication.current_version.categories.where(category_type: "HSV_11").each do |category|
           xml.tag!("classification", 'authority' => 'ssif') do
             xml.tag!("topic", category.svepid)
           end
-        end unless !hsv_11_categories
+        end
         # Keep old category delivery
-        hsv_11_categories.each do |category|
+        publication.current_version.categories.where(category_type: "HSV_11").each do |category|
           xml.tag!("subject", 'lang' => 'swe', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
             xml.tag!("topic", category.name_sv)
           end
           xml.tag!("subject", 'lang' => 'eng', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
             xml.tag!("topic", category.name_en)
           end
-        end unless !hsv_11_categories
+        end
         # Keywords
         publication.current_version.keywords.split(",").each do |keyword|
           xml.tag!("subject") do

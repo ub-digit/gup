@@ -64,15 +64,15 @@ export default Ember.Controller.extend({
     }
   }),
 
-  updateCategoryObjects: Ember.observer('publication.category_hsv_local.[]', function(){
+  updateCategoryObjects: Ember.observer('publication.category_hsv_11.[]', function(){
     // Create list if it doesn\t exist
     if (this.get('categoryObjectsList') === undefined) {
       this.set('categoryObjectsList', Ember.A([]));
     }
 
     // Fetch objects if they aren't loaded
-    if (this.get('publication.category_hsv_local')) {
-      this.get('publication.category_hsv_local').forEach((item) => {
+    if (this.get('publication.category_hsv_11')) {
+      this.get('publication.category_hsv_11').forEach((item) => {
         let categoryObject = this.get('categoryObjectsList').findBy('id', item);
         if (Ember.isEmpty(categoryObject)) {
           this.store.find('category', item).then((response) => {
@@ -85,7 +85,7 @@ export default Ember.Controller.extend({
     }
     // Remove objects which are no longer part of category list
     this.get('categoryObjectsList').forEach((item) => {
-      if (this.get('publication.category_hsv_local').indexOf(item.id) === -1) {
+      if (this.get('publication.category_hsv_11').indexOf(item.id) === -1) {
         this.get('categoryObjectsList').removeObject(item);
       }
     });
