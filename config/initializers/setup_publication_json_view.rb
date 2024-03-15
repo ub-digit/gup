@@ -51,7 +51,7 @@ def setup_publication_json_views
       CREATE OR REPLACE VIEW v_publications_v_affiliations AS
       SELECT pub.id AS publication_id,
              p2p.person_id AS person_id,
-             json_agg(json_build_object('department', d.name_sv)) AS affiliations
+             json_agg(json_build_object('department_id', d.id, 'name_sv', d.name_sv, 'name_en', d.name_en)) AS affiliations
         FROM publications pub
         JOIN publication_versions pv
           ON pub.current_version_id = pv.id
@@ -82,6 +82,21 @@ def setup_publication_json_views
         JOIN v_publications_v_positions pos
           ON pub.id = pos.publication_id AND pos.person_id = p.person_id
       GROUP BY pub.id
+      ;
+
+      DROP VIEW IF EXISTS v_publications_v_publication_categories CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_publication_categories AS
+      SELECT pub.id AS publication_id,
+             json_agg(json_build_object('category_id', c.id, 'svep_id', c.svepid, 'name_sv', c.name_sv, 'name_en', name_en)) AS categories
+        FROM publications pub
+        JOIN publication_versions pv
+          ON pub.current_version_id = pv.id
+        JOIN categories2publications c2p
+          ON c2p.publication_version_id = pv.id
+        JOIN categories c
+          ON c.id = c2p.category_id
+       WHERE c.category_type = 'HSV_11'
+    GROUP BY pub.id
       ;
       
       DROP VIEW IF EXISTS v_publications CASCADE;
@@ -124,6 +139,7 @@ def setup_publication_json_views
                'version_updated_by', pv.updated_by,
                'publication_identifiers', COALESCE(pi.identifiers, '[]'),
                'authors', a.authors,
+               'categories', COALESCE(pc.categories, '[]'),
                'source', 'gup',
                'attended', true
              ) AS publication
@@ -136,6 +152,8 @@ def setup_publication_json_views
           ON pub.id = a.publication_id
         LEFT JOIN v_publications_v_publication_identifiers pi
           ON pub.id = pi.publication_id
+        LEFT JOIN v_publications_v_publication_categories pc
+          ON pub.id = pc.publication_id
         WHERE pub.deleted_at IS NULL
         AND pub.published_at IS NOT NULL
       ;
