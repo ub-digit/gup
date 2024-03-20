@@ -76,7 +76,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine.add(data: document)
   ensure
     MessageQueue.send_update_to_queue publication
-    GupAdmin.put_to_index(publication.id) if push_to_gup_admin
+    GupAdminPublication.put_to_index(publication.id) if push_to_gup_admin
     search_engine.commit
   end
 
@@ -85,7 +85,7 @@ class PublicationSearchEngine < SearchEngine
     search_engine.delete_from_index(ids: publication_id)
   ensure
     MessageQueue.send_delete_to_queue publication_id
-    GupAdmin.delete_from_index(publication_id)
+    GupAdminPublication.delete_from_index(publication_id)
     search_engine.commit
   end
 

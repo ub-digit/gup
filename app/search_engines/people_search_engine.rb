@@ -61,6 +61,7 @@ class PeopleSearchEngine < SearchEngine
     # Add the list of documents to index
     search_engine.add(data: document_list)
   ensure
+    person_list.each{|person|GupAdminPerson.put_to_index(person.id)}
     search_engine.commit
   end
 
@@ -68,6 +69,7 @@ class PeopleSearchEngine < SearchEngine
     search_engine = PeopleSearchEngine.new
     search_engine.delete_from_index(ids: person_id)
   ensure
+    GupAdminPerson.put_to_index(person_id)
     search_engine.commit
   end
 

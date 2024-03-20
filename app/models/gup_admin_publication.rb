@@ -1,4 +1,4 @@
-class GupAdmin
+class GupAdminPublication
   def self.get_document publication_id
     id = publication_id.to_i
     row = ActiveRecord::Base.connection.exec_query("SELECT publication FROM v_publications where publication_id = #{id}").rows[0][0]
@@ -14,7 +14,7 @@ class GupAdmin
   def self.put_to_index publication_id
     should_abort = !APP_CONFIG.key?('gup_admin_settings') || !APP_CONFIG['gup_admin_settings']['enable']
     return if should_abort
-    document = GupAdmin.get_document publication_id
+    document = GupAdminPublication.get_document publication_id
     RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document + '}').to_json ,  content_type: :json
   end
 
@@ -25,7 +25,7 @@ class GupAdmin
   end
 
   def self.index_all opts = {}
-    documents = GupAdmin.get_documents opts
+    documents = GupAdminPublication.get_documents opts
     documents.each do |document|
       RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[0] + '}').to_json ,  content_type: :json
     end
