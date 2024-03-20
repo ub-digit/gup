@@ -7,5 +7,5 @@ echo "# ${date}, starting"
 echo "$DELIM"
 for core in gup-guresearch gup-people gup-publications gup-journals
 do
-  curl "http://localhost:8983/solr/${core}/dataimport?command=full-import"
+  curl "http://localhost:8989/solr/${core}/dataimport?command=full-import"
 done
