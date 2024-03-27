@@ -319,7 +319,7 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            artistic: 'Inom konstnärlig forskning',
+            artistic: 'Inom konstnärligt arbete',
             postponed_comment: 'Posten är fördröjd:',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
