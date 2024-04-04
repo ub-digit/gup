@@ -5,7 +5,7 @@ namespace :gup_admin do
     offset = ENV['OFFSET']
     exit if limit.blank? || offset.blank?
 
-    GupAdminPublication.index_all limit: limit.to_i, offset:offset.to_i
+    GupAdminPublication.index_all limit: limit.to_i, offset: offset.to_i
   end
 
   desc "Put persons to GUP admin index manager"
@@ -14,7 +14,7 @@ namespace :gup_admin do
     offset = ENV['OFFSET']
     exit if limit.blank? || offset.blank?
 
-    GupAdminPerson.index_all limit: limit.to_i, offset:offset.to_i
+    GupAdminPerson.index_all limit: limit.to_i, offset: offset.to_i
   end
 
 
