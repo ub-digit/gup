@@ -5,7 +5,7 @@ class GupAdminPublication
   end
 
   def self.get_documents opts
-    sql = "SELECT publication FROM v_publications order by publication_id desc"
+    sql = "SELECT publication_id, publication FROM v_publications order by publication_id desc"
     sql = sql + " limit #{opts[:limit].to_i}" if opts[:limit]
     sql = sql + " offset #{opts[:offset].to_i}" if opts[:offset]
 
@@ -26,8 +26,9 @@ class GupAdminPublication
 
   def self.index_all opts = {}
     documents = GupAdminPublication.get_documents opts
-    documents.each do |document|
-      RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[0] + '}').to_json ,  content_type: :json
+    documents.each_with_index do |document, index|
+      puts "Index: #{index}, Publication id: #{document[0]}"
+      RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[1] + '}').to_json ,  content_type: :json
     end
   end
 end
