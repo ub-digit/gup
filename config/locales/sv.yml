@@ -87,7 +87,7 @@ sv:
     abstract: "Sammanfattning"
     pubyear: "Publikationsår"
     publanguage: "Språk"
-    category_hsv_local: "Ämnesord"
+    category_hsv_11: "Ämnesord"
     url: "Fulltextlänk"
     extid: "Identifikatorer"
     links: "Extern länk"
@@ -114,7 +114,7 @@ sv:
     patent_number: "Patentnummer"
     patent_date: "Patentets publikationsdatum"
     artwork_type: "Typ av arbete"
-    artistic_basis: "Konstnärlig forskning"
+    artistic_basis: "Konstnärligt arbete"
     made_public_in: "Offentliggjord"
 
   publications:
