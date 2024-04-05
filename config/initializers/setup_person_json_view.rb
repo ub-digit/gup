@@ -11,7 +11,8 @@ def setup_person_json_views
                 WHEN s.name = 'cid' THEN 'CID'
                 WHEN s.name = 'scopus-auth-id' THEN 'SCOPUS_AUTHOR_ID'
                 WHEN s.name = 'wos-researcher-id' THEN 'WOS_RESEARCHER_ID'
-                ELSE 'OTHER'
+                WHEN s.name = 'pop-id' THEN 'POP_ID'
+                ELSE UPPER(REPLACE(s.name, '-', '_'))
               END,
              'value',
              i.value)) AS identifiers
