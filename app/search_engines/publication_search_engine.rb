@@ -75,18 +75,42 @@ class PublicationSearchEngine < SearchEngine
     document = create_document publication
     search_engine.add(data: document)
   ensure
-    MessageQueue.send_update_to_queue publication
-    GupAdminPublication.put_to_index(publication.id) if push_to_gup_admin
-    search_engine.commit
+    begin
+      MessageQueue.send_update_to_queue publication
+    rescue => e
+      log_exception(e, "MQ")
+    end
+    begin
+      GupAdminPublication.put_to_index(publication.id) if push_to_gup_admin
+    rescue => e
+      log_exception(e, "GUPADMIN")
+    end
+    begin
+      search_engine.commit
+    rescue => e
+      log_exception(e, "SOLR")
+    end
   end
 
   def self.delete_from_search_engine_do publication_id
     search_engine = PublicationSearchEngine.new
     search_engine.delete_from_index(ids: publication_id)
   ensure
-    MessageQueue.send_delete_to_queue publication_id
-    GupAdminPublication.delete_from_index(publication_id)
-    search_engine.commit
+    begin
+      MessageQueue.send_delete_to_queue publication_id
+    rescue => e
+      log_exception(e, "MQ")
+    end
+    begin
+      GupAdminPublication.delete_from_index(publication_id)
+    rescue => e
+      log_exception(e, "GUPADMIN")
+    end
+    begin
+      search_engine.commit
+    rescue => e
+      log_exception(e, "SOLR")
+    end
   end
 
   def self.create_document publication
@@ -102,4 +126,9 @@ class PublicationSearchEngine < SearchEngine
     }
   end
 
+  def self.log_exception(error, service)
+    logger.error "Exception from #{service}"
+    logger.error error.message
+    logger.error error.backtrace.join("\n")
+  end
 end
