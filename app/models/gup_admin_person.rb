@@ -13,7 +13,7 @@ class GupAdminPerson
   end
 
   def self.put_to_index person_id
-    should_abort = !APP_CONFIG.key?('gup_admin_settings') || !APP_CONFIG['gup_admin_settings']['enable']
+    should_abort = !APP_CONFIG.key?('gup_admin_settings') || !APP_CONFIG['gup_admin_settings'].key?('person') || !APP_CONFIG['gup_admin_settings']['person']['enable']
     return if should_abort
     document = GupAdminPerson.get_document person_id
     RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document + '}').to_json ,  content_type: :json
