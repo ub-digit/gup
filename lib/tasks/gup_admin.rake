@@ -1,12 +1,22 @@
 namespace :gup_admin do
   desc "Put publications to GUP admin index manager"
-  task :index_all => :environment do
+  task :index_all_publications => :environment do
     limit = ENV['LIMIT']
     offset = ENV['OFFSET']
     exit if limit.blank? || offset.blank?
 
-    GupAdmin.index_all limit: limit.to_i, offset:offset.to_i
+    GupAdminPublication.index_all limit: limit.to_i, offset: offset.to_i
   end
+
+  desc "Put persons to GUP admin index manager"
+  task :index_all_persons => :environment do
+    limit = ENV['LIMIT']
+    offset = ENV['OFFSET']
+    exit if limit.blank? || offset.blank?
+
+    GupAdminPerson.index_all limit: limit.to_i, offset: offset.to_i
+  end
+
 
   desc "Match publications with scopus documents"
   task :match_publications => :environment do
