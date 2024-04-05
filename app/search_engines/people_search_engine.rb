@@ -61,16 +61,32 @@ class PeopleSearchEngine < SearchEngine
     # Add the list of documents to index
     search_engine.add(data: document_list)
   ensure
-    person_list.each{|person|GupAdminPerson.put_to_index(person.id)}
-    search_engine.commit
+    begin
+      person_list.each{|person|GupAdminPerson.put_to_index(person.id)}
+    rescue => e
+      log_exception(e, "GUPADMIN")
+    end
+    begin
+      search_engine.commit
+    rescue => e
+      log_exception(e, "SOLR")
+    end
   end
 
   def self.delete_from_search_engine_do person_id
     search_engine = PeopleSearchEngine.new
     search_engine.delete_from_index(ids: person_id)
   ensure
-    GupAdminPerson.put_to_index(person_id)
-    search_engine.commit
+    begin
+      GupAdminPerson.put_to_index(person_id)
+    rescue => e
+      log_exception(e, "GUPADMIN")
+    end
+    begin
+      search_engine.commit
+    rescue => e
+      log_exception(e, "SOLR")
+    end
   end
 
   def self.create_document person
@@ -106,5 +122,11 @@ class PeopleSearchEngine < SearchEngine
       has_active_publications: person.has_active_publications?,
       has_affiliations: person.has_affiliations?
     })
+  end
+
+  def self.log_exception(error, service)
+    Rails.logger.error "Exception from #{service}"
+    Rails.logger.error error.message
+    Rails.logger.error error.backtrace.join("\n")
   end
 end
