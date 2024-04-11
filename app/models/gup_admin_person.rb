@@ -5,7 +5,7 @@ class GupAdminPerson
   end
 
   def self.get_documents opts
-    sql = "SELECT person FROM v_people where deleted_at is null order by person_id asc"
+    sql = "SELECT person_id, person FROM v_people where deleted_at is null order by person_id asc"
     sql = sql + " limit #{opts[:limit].to_i}" if opts[:limit]
     sql = sql + " offset #{opts[:offset].to_i}" if opts[:offset]
 
@@ -25,8 +25,9 @@ class GupAdminPerson
 
   def self.index_all opts = {}
     documents = GupAdminPerson.get_documents opts
-    documents.each do |document|
-      RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[0] + '}').to_json ,  content_type: :json
+    documents.each_with_index do |document, index|
+      puts "Index: #{index}, Person id: #{document[0]}"
+      RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[1] + '}').to_json ,  content_type: :json
     end
   end
 end
