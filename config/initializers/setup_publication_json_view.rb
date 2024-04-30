@@ -115,6 +115,18 @@ def setup_publication_json_views
         GROUP BY pub.id
       ;
 
+      DROP VIEW IF EXISTS v_publications_v_files CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_files AS
+      SELECT pub.id AS publication_id,
+              json_agg(json_build_object('file_id', ad.id, 'filename', ad.name, 'content_type', ad.content_type, 'accepted', ad.accepted, 'checksum', ad.checksum, 'visible_after', ad.visible_after)) AS files
+        FROM publications pub
+        JOIN asset_data ad
+          ON pub.id = ad.publication_id
+          WHERE ad.deleted_at IS NULL
+        GROUP BY pub.id
+      ;
+
+
       DROP VIEW IF EXISTS v_publications CASCADE;
       CREATE OR REPLACE VIEW v_publications AS
       SELECT pub.id AS publication_id,
@@ -160,6 +172,7 @@ def setup_publication_json_views
                'authors', a.authors,
                'categories', COALESCE(pc.categories, '[]'),
                'series', COALESCE(s.series, '[]'),
+               'files', COALESCE(f.files, '[]'),
                'source', 'gup',
                'attended', true
              ) AS publication
@@ -176,6 +189,8 @@ def setup_publication_json_views
           ON pub.id = pc.publication_id
         LEFT JOIN v_publications_v_series s
           ON pub.id = s.publication_id
+        LEFT JOIN v_publications_v_files f
+          ON pub.id = f.publication_id
         WHERE pub.deleted_at IS NULL
         AND pub.published_at IS NOT NULL
       ;
