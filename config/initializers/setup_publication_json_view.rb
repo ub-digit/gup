@@ -51,7 +51,7 @@ def setup_publication_json_views
       CREATE OR REPLACE VIEW v_publications_v_affiliations AS
       SELECT pub.id AS publication_id,
              p2p.person_id AS person_id,
-             json_agg(json_build_object('department_id', d.id, 'name_sv', d.name_sv, 'name_en', d.name_en)) AS affiliations
+             json_agg(json_build_object('department_id', d.id, 'name_sv', d.name_sv, 'name_en', d.name_en, 'faculty_id', f.id, 'faculty_name_sv', f.name_sv, 'faculty_name_en', f.name_en)) AS affiliations
         FROM publications pub
         JOIN publication_versions pv
           ON pub.current_version_id = pv.id
@@ -61,6 +61,8 @@ def setup_publication_json_views
           ON p2p.id = d2p2p.people2publication_id
         JOIN departments d
           ON d2p2p.department_id = d.id
+        JOIN faculties f
+          ON d.faculty_id = f.id
        GROUP BY pub.id, p2p.person_id
       ;
       
@@ -87,7 +89,7 @@ def setup_publication_json_views
       DROP VIEW IF EXISTS v_publications_v_publication_categories CASCADE;
       CREATE OR REPLACE VIEW v_publications_v_publication_categories AS
       SELECT pub.id AS publication_id,
-             json_agg(json_build_object('category_id', c.id, 'svep_id', c.svepid, 'name_sv', c.name_sv, 'name_en', name_en)) AS categories
+             json_agg(json_build_object('category_id', c.id, 'svep_id', c.svepid, 'name_sv', c.name_sv, 'name_en', c.name_en)) AS categories
         FROM publications pub
         JOIN publication_versions pv
           ON pub.current_version_id = pv.id
@@ -99,6 +101,32 @@ def setup_publication_json_views
     GROUP BY pub.id
       ;
       
+      DROP VIEW IF EXISTS v_publications_v_series CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_series AS
+      SELECT pub.id AS publication_id,
+              json_agg(json_build_object('series_id', s.id, 'title', s.title, 'issn', s.issn, 'listplace', s2p.serie_listplace, 'part', s2p.serie_part)) AS series
+        FROM publications pub
+        JOIN publication_versions pv
+          ON pub.current_version_id = pv.id
+        JOIN series2publications s2p
+          ON s2p.publication_version_id = pv.id
+        JOIN series s
+          ON s.id = s2p.serie_id
+        GROUP BY pub.id
+      ;
+
+      DROP VIEW IF EXISTS v_publications_v_files CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_files AS
+      SELECT pub.id AS publication_id,
+              json_agg(json_build_object('file_id', ad.id, 'filename', ad.name, 'content_type', ad.content_type, 'accepted', ad.accepted, 'checksum', ad.checksum, 'visible_after', ad.visible_after)) AS files
+        FROM publications pub
+        JOIN asset_data ad
+          ON pub.id = ad.publication_id
+          WHERE ad.deleted_at IS NULL
+        GROUP BY pub.id
+      ;
+
+
       DROP VIEW IF EXISTS v_publications CASCADE;
       CREATE OR REPLACE VIEW v_publications AS
       SELECT pub.id AS publication_id,
@@ -130,7 +158,10 @@ def setup_publication_json_views
                'publisher', pv.publisher,
                'place', pv.place,
                'isbn', pv.isbn,
+               'made_public_in', pv.made_public_in,
+               'artistic_basis', pv.artistic_basis,
                'publication_type_id', pv.publication_type_id,
+               'publication_type_code', pt.code,
                'publication_type_label', pt.label_sv,
                'ref_value', pv.ref_value,
                'version_created_at', pv.created_at,
@@ -140,6 +171,8 @@ def setup_publication_json_views
                'publication_identifiers', COALESCE(pi.identifiers, '[]'),
                'authors', a.authors,
                'categories', COALESCE(pc.categories, '[]'),
+               'series', COALESCE(s.series, '[]'),
+               'files', COALESCE(f.files, '[]'),
                'source', 'gup',
                'attended', true
              ) AS publication
@@ -154,6 +187,10 @@ def setup_publication_json_views
           ON pub.id = pi.publication_id
         LEFT JOIN v_publications_v_publication_categories pc
           ON pub.id = pc.publication_id
+        LEFT JOIN v_publications_v_series s
+          ON pub.id = s.publication_id
+        LEFT JOIN v_publications_v_files f
+          ON pub.id = f.publication_id
         WHERE pub.deleted_at IS NULL
         AND pub.published_at IS NOT NULL
       ;
