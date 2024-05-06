@@ -61,7 +61,7 @@ def setup_publication_json_views
           ON p2p.id = d2p2p.people2publication_id
         JOIN departments d
           ON d2p2p.department_id = d.id
-        JOIN faculties f
+        LEFT JOIN faculties f
           ON d.faculty_id = f.id
        GROUP BY pub.id, p2p.person_id
       ;
