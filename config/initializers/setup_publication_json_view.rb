@@ -126,6 +126,20 @@ def setup_publication_json_views
         GROUP BY pub.id
       ;
 
+      DROP VIEW IF EXISTS v_publications_v_affiliated_publications CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_affiliated_publications AS
+      SELECT DISTINCT pub.id AS publication_id
+      FROM publications pub
+      JOIN publication_versions pv
+      ON pub.current_version_id = pv.id
+      JOIN people2publications p2p
+      ON pv.id = p2p.publication_version_id
+      JOIN departments2people2publications d2p2p
+      ON p2p.id = d2p2p.people2publication_id
+      JOIN departments d
+      ON d2p2p.department_id = d.id
+      WHERE d.is_internal IS true
+      ;
 
       DROP VIEW IF EXISTS v_publications CASCADE;
       CREATE OR REPLACE VIEW v_publications AS
@@ -174,7 +188,8 @@ def setup_publication_json_views
                'series', COALESCE(s.series, '[]'),
                'files', COALESCE(f.files, '[]'),
                'source', 'gup',
-               'attended', true
+               'attended', true,
+               'affiliated', CASE WHEN pub.id IN (SELECT publication_id FROM v_affiliated_publications) THEN true ELSE false END
              ) AS publication
         FROM publications pub
         JOIN publication_versions pv
@@ -191,6 +206,8 @@ def setup_publication_json_views
           ON pub.id = s.publication_id
         LEFT JOIN v_publications_v_files f
           ON pub.id = f.publication_id
+        LEFT JOIN v_publications_v_affiliated_publications ap
+          ON pub.id = ap.publication_id
         WHERE pub.deleted_at IS NULL
         AND pub.published_at IS NOT NULL
       ;
