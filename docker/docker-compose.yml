@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   gup-frontend:
     restart: always
@@ -49,6 +49,7 @@ services:
       - GUP_ADMIN_API_KEY=${GUP_ADMIN_API_KEY}
       - GUP_ADMIN_PUBLICATION_ENABLE=${GUP_ADMIN_PUBLICATION_ENABLE}
       - GUP_ADMIN_PERSON_ENABLE=${GUP_ADMIN_PERSON_ENABLE}
+      - GUP_OAI_SCOPE=${GUP_OAI_SCOPE}
     networks:
       - gup
     ports:
