@@ -52,6 +52,7 @@ class PubmedAdapter
     xml.search('//MedlineCitation/Article/AuthorList/Author').map do |author|
       first_name = author.search('ForeName').text
       last_name = author.search('LastName').text
+      next if last_name.blank?
       affiliation = author.search('Affiliation').text
       authors << {
         first_name: first_name,
