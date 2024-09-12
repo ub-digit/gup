@@ -37,8 +37,8 @@ class Department < ActiveRecord::Base
       created_by: created_by,
       updated_by: updated_by,
       staffnotes: staffnotes,
-      palassoid: palassoid,
-      kataguid: kataguid,
+      orgdbid: orgdbid,
+      orgnr: orgnr,
       is_internal: is_internal
     })
 

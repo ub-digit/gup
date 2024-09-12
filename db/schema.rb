@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230912115323) do
+ActiveRecord::Schema.define(version: 20240912070336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,9 +96,9 @@ ActiveRecord::Schema.define(version: 20230912115323) do
     t.text     "created_by"
     t.text     "updated_by"
     t.text     "staffnotes"
-    t.text     "palassoid"
-    t.text     "kataguid"
+    t.text     "orgnr"
     t.boolean  "is_internal",   default: true
+    t.text     "orgdbid"
   end
 
   add_index "departments", ["end_year"], name: "index_departments_on_end_year", using: :btree
