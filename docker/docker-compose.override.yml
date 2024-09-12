@@ -30,17 +30,6 @@ services:
     volumes:
       - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
 
-      # gup-guresearch
-      - >
-        ../solr/config/cores/gup-guresearch/conf/dataimportconfig.xml
-        :/opt/solr/server/solr/mycores/gup-guresearch/conf/dataimportconfig.xml
-      - >
-        ../solr/config/cores/gup-guresearch/conf/schema.xml
-        :/opt/solr/server/solr/mycores/gup-guresearch/conf/schema.xml
-      - >
-        ../solr/config/solrconfig.xml
-        :/opt/solr/server/solr/mycores/gup-guresearch/conf/solrconfig.xml
-
       # gup-people
       - >
         ../solr/config/cores/gup-people/conf/dataimportconfig.xml
