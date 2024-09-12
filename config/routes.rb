@@ -57,19 +57,5 @@ Rails.application.routes.draw do
   get "file/:id" => "v1/asset_data#show"
   put "file" => "v1/asset_data#update"
   delete "file/:id" => "v1/asset_data#destroy"
-  # GU Research paths, keep the old scigloo paths
-  get "guresearch/lists/publications/guresearch/xml/index.xsql" => "guresearch/general#list_publications"
-  get "guresearch/lists/publications/guresearch/xml/researchers.xsql" => "guresearch/general#list_researchers"
-  get "guresearch/solr/publications/scigloo" => "guresearch/general#wrap_solr_request"
-  get "guresearch/gup/lists/publications/departments/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'departments' }
-  get "guresearch/gup/lists/publications/people/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'people' }
-  get "guresearch/gup/lists/publications/series/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'series' }
-
-  get "lists/publications/guresearch/xml/index.xsql" => "guresearch/general#list_publications"
-  get "lists/publications/guresearch/xml/researchers.xsql" => "guresearch/general#list_researchers"
-  get "solr/publications/scigloo" => "guresearch/general#wrap_solr_request"
-  get "gup/lists/publications/departments/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'departments' }
-  get "gup/lists/publications/people/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'people' }
-  get "gup/lists/publications/series/xml/index.xsql" => "guresearch/general#list_publications_special", :defaults => { :param_type => 'series' }
 end
 

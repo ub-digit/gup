@@ -9,7 +9,7 @@ namespace :people do
       .where("created_at >= '#{start_date}'")
       .where("created_at < '#{end_date}'")
       .where("id NOT IN (SELECT person_id FROM identifiers WHERE source_id = 1)")
-      .where("id IN (SELECT person_id FROM people2publications p2p JOIN departments2people2publications d2p2p ON d2p2p.people2publication_id=p2p.id WHERE d2p2p.department_id <> 666)")
+      .where("id IN (SELECT person_id FROM people2publications p2p JOIN departments2people2publications d2p2p ON d2p2p.people2publication_id=p2p.id WHERE d2p2p.department_id <> 666 AND d2p2p.department_id <> 667)")
 
     last_month = Time.now - 1.month
     last_month = last_month.month

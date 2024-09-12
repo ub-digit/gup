@@ -35,7 +35,7 @@ class OaiDocuments
        'handle' => 'hdl',
        'doi' => 'doi',
        'scopus-id' => 'scopus',
-       'libris-id' => 'libris'}
+       'libris-id' => 'se-libr'}
     end
     
     def monographs

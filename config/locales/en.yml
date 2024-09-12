@@ -89,7 +89,7 @@ en:
     abstract: "Abstract"
     pubyear: "Publication year"
     publanguage: "Language"
-    category_hsv_local: "Categories"
+    category_hsv_11: "Categories"
     url: "Full text link"
     extid: "Identifiers"
     links: "External link"
@@ -116,7 +116,7 @@ en:
     patent_number: "Patent number"
     patent_date: "Patentet publication date"
     artwork_type: "Artwork type"
-    artistic_basis: "Artistic research"
+    artistic_basis: "Artistic work"
     made_public_in: "Made public"
 
   publications:

@@ -319,7 +319,7 @@ export default {
             approvePublicationError: 'Publikationen kunde inte godkännas.',
             confirmDeletePublication: 'Är du säker på att du vill ta bort publikationen?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            artistic: 'Inom konstnärlig forskning',
+            artistic: 'Inom konstnärligt arbete',
             postponed_comment: 'Posten är fördröjd:',
             saveAssetDataSuccess: 'Filen sparades',
             _subnav: {
@@ -496,7 +496,7 @@ export default {
               artistic: 'Författare avser här Upphovsperson. Ange samtliga upphovspersoner. För upphovspersoner vid GU skriv fullständigt namn samt affiliering . För övriga upphovspersoner är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',
             },
           },
-          category_hsv_local: {
+          category_hsv_11: {
             helptext: 'Välj minst en ämneskategori för din publikation. För mer information se http://www.ub.gu.se/publicera/'
           },
           project: {

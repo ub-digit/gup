@@ -319,7 +319,7 @@ export default {
             approvePublicationError: 'Publication could not be apprved.',
             confirmDeletePublication: 'Are your sure you want to delete the publication?',
             epubAheadOfPrintSince: 'E-pub ahead of print',
-            artistic: 'Within artistic research',
+            artistic: 'Within artistic work',
             postponed_comment: 'The publication is delayed:',
             saveAssetDataSuccess: 'The file was successfully saved',
             _subnav: {
@@ -492,11 +492,11 @@ export default {
           publicationLinks: 'Links should begin with http:// or https://',
           authors: {
             helptext: {
-              general: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
+              general: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and <strong>the affiliation as it’s indicated in the publication</strong>. For other authors, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
               artistic: 'Please register all authors. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
             },
           },
-          category_hsv_local: {
+          category_hsv_11: {
             helptext: 'Please add at least one subject category. For more information please see:  http://www.ub.gu.se/publicera/',
           },
           project: {

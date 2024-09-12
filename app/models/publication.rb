@@ -105,6 +105,10 @@ class Publication < ActiveRecord::Base
     published_at.present?
   end
 
+  def is_deleted?
+    deleted_at.present?
+  end
+
   def current_process_state
     return "PREDRAFT" if self.is_predraft?
     return "DRAFT" if self.is_draft?

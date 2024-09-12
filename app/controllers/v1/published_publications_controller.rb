@@ -204,7 +204,7 @@ class V1::PublishedPublicationsController < ApplicationController
     id_to_be_deleted = params[:gup_id]
     publication = Publication.find_by_id(id)
     if publication
-      if publication.is_published?
+      if publication.is_published? && !publication.is_deleted?
         params[:publication] = publication.attributes_indifferent.merge(params[:publication])
         params[:publication][:publication_links] = merge_publication_links(publication)
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
@@ -227,15 +227,14 @@ class V1::PublishedPublicationsController < ApplicationController
   def merge_publication_identifiers(publication)
     existing = publication.current_version.publication_identifiers.map{|p|{identifier_code: p.identifier_code, identifier_value: p.identifier_value}}
     incoming = params[:publication][:publication_identifiers].map{|p|{identifier_code: p[:identifier_code], identifier_value: p[:identifier_value]}}
-    existing.each do |existing_identifier|
-      if !incoming.any?{|incoming_identifier|incoming_identifier[:identifier_code].eql?(existing_identifier[:identifier_code])}
-        incoming << existing_identifier
+    incoming.each do |incoming_identifier|
+      if !existing.any?{|existing_identifier|existing_identifier[:identifier_code].eql?(incoming_identifier[:identifier_code])}
+      existing << incoming_identifier
       end
     end
-
-    return incoming
+    return existing
   end
- 
+
   def merge_publication_links(publication)
     existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, position: p.position}}
     incoming = params[:publication][:publication_links].map{|p|{url: p[:url], position: p[:position]}}
@@ -337,8 +336,8 @@ class V1::PublishedPublicationsController < ApplicationController
               Series2publication.create(publication_version_id: publication_version_new.id, serie_id: serie)
             end
           end
-          if params[:publication][:category_hsv_local].present?
-            params[:publication][:category_hsv_local].each do |category|
+          if params[:publication][:category_hsv_11].present?
+            params[:publication][:category_hsv_11].each do |category|
               Categories2publication.create(publication_version_id: publication_version_new.id, category_id: category)
             end
           end
@@ -426,7 +425,7 @@ class V1::PublishedPublicationsController < ApplicationController
       # TODO! This needs error handling, or saving a publication will cause GUP to crash.
       Thread.new {
         ActiveRecord::Base.connection_pool.with_connection do
-          GupAdmin.put_to_index(publication.id)
+          GupAdminPublication.put_to_index(publication.id)
         end
       }
     else
@@ -516,7 +515,12 @@ class V1::PublishedPublicationsController < ApplicationController
     department_list = p2p[:departments2people2publications]
     if department_list.present?
       department_list.each.with_index do |d2p2p, j|
-        Departments2people2publication.create({people2publication_id: p2p_obj.id, department_id: d2p2p[:id], position: j + 1})
+        d2p2p_obj = Departments2people2publication.create({people2publication_id: p2p_obj.id, department_id: d2p2p[:id], position: j + 1})
+        if !d2p2p_obj.valid?
+          error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "publications.errors.publish_error"}", d2p2p_obj.errors.full_messages)
+          render_json
+          raise ActiveRecord::Rollback
+        end
       end
     end
   end

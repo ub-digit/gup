@@ -1,7 +1,7 @@
 class V1::ImportsController < V1::V1Controller
 
   api :POST, '/imports', 'Returns a non persisted publication object based on data imported from a given data source.'
-  #param :datasource, ['pubmed', 'gupea', 'scopus', 'libris', 'scigloo'], :desc => 'Declares which data source should be used to import data from.', :required => true
+  #param :datasource, ['pubmed', 'gupea', 'scopus', 'libris'], :desc => 'Declares which data source should be used to import data from.', :required => true
   #param :sourceid, String, :desc => 'The identifier used to import publication data from given data source.', :required => true
   def create
     datasource = params[:publication][:datasource]

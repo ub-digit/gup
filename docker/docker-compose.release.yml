@@ -55,7 +55,6 @@ services:
       - ${GUP_DB_VOLUME_SOURCE}:/var/lib/postgresql/data
   solr:
     volumes:
-      - ${GUP_SOLR_GURESEARCH_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-guresearch/data
       - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
