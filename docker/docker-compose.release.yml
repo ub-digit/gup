@@ -10,8 +10,6 @@ services:
       - ${GUP_FRONTEND_PORT}:8080
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
-    environment:
-      - GUP_HOSTNAME=${BACKEND_OAI_HOSTNAME}
     volumes:
       - ${GUP_BACKEND_UPLOADS_VOLUME_SOURCE}:/opt/gup-uploads
       - ${GUP_BACKEND_SITEMAPS_DIR}:/apps/gup/sitemaps
@@ -58,7 +56,7 @@ services:
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
   static:
-    image: ${GUP_STATIC_RUNNING_IMAGE} 
+    image: ${GUP_STATIC_RUNNING_IMAGE}
     restart: always
     ports:
       - ${GUP_STATIC_ACCESS_PORT}:80
