@@ -85,7 +85,7 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
       return
     end
 
-    if publication.current_version.update_attributes(biblreviewed_at: DateTime.now, biblreviewed_by: @current_user.username) && publication.update_attributes(epub_ahead_of_print: nil) && publication.delete_postpone_dates(postponed_by: @current_user.username)
+    if publication.current_version.update_attributes(biblreviewed_at: DateTime.now, biblreviewed_by: @current_user.username) && publication.delete_postpone_dates(postponed_by: @current_user.username)
       @response[:publication] = publication.as_json
       render_json
     else
