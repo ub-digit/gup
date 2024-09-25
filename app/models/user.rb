@@ -40,11 +40,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  ### Can be removed
   # Auth override
   def auth_override_present?
     return APP_CONFIG['auth_override']
   end
 
+  ### Can be removed
   # Authenticate user
   def authenticate(provided_password)
     # Check if we have id. If we do not have id, the user does not exist locally,

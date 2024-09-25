@@ -18,15 +18,15 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      defaultLocale: 'sv'
+      defaultLocale: 'sv',
+      'gub-oauth2': {}
     },
     torii: {
       sessionServiceName: 'session',
       providers: {
         'gub-oauth2': {
           apiKey: process.env.GUP_OAUTH2_CLIENT_ID,
-          scope: 'user'
-        }
+          scope: 'openid profile email'        }
       }
     }
   };
@@ -68,6 +68,7 @@ module.exports = function(environment) {
   ENV.APP.licenceURL = baseURL + ENV.APP.licenceURL;
   ENV.torii.providers['gub-oauth2'].tokenExchangeUri = ENV.APP.authenticationBaseURL;
   ENV.torii.providers['gub-oauth2'].redirectUri = `${frontendBaseURL}/torii/redirect.html`;
+  ENV.APP['gub-oauth2'].authorizeUri = process.env.GUP_OAUTH2_AUTHORIZE_ENDPOINT;
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
