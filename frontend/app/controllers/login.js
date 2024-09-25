@@ -22,11 +22,12 @@ export default Ember.Controller.extend({
     },
 
     authenticateOAuth2() {
+      console.log(this.get('session'));
       this.set('invalidCredentials', false); //Or skip this??
       this.set('loginDisabled', true);
       this.get('session').authenticate('authenticator:torii', 'gub')
       .catch((reason) => {
-        this.set('errorMessage', reason.error.msg);
+        this.set('errorMessage', reason);
       })
       .finally(() => {
         this.set('loginDisabled', false);
