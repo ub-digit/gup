@@ -35,7 +35,7 @@
           <button class="btn btn-primary" type="submit" disabled={{loginDisabled}}>{{t 'login.button'}}</button>
           {{#if application.casLoginUrl}}<a href="{{application.casLoginUrl}}">{{t 'login.casLogin'}}</a>{{/if}}
           {{#unless loginDisabled}}
-            <a href="javascript:void()" onclick={{action "authenticateOAuth2" bubbles=false}}>Login with github</a>
+            <a href="javascript:void()" onclick={{action "authenticateOAuth2" bubbles=false}}>Login with Oauth2</a>
           {{/unless}}
         </div>
       </div>
