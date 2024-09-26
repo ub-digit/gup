@@ -83,7 +83,7 @@ class SessionController < ApplicationController
             render json: token_response(user, token_object.token)
           else
             error = "Account not allowed"
-            render json: {error: {code: "AUTH_ERROR", msg: error}}, status: 401
+            render json: {error: {code: "AUTH_ERROR", msg: error}}, status: 403
           end
         rescue JWT::DecodeError
           render json: {error: {code: "AUTH_ERROR", msg: "Invalid token"}}, status: 401
@@ -143,7 +143,7 @@ class SessionController < ApplicationController
               render json: token_response(user, token_object.token)
             else
               error = "Account not allowed"
-              render json: {error: { code: "AUTH_ERROR", msg: error}}, status: 401
+              render json: {error: { code: "AUTH_ERROR", msg: error}}, status: 403
             end
           else
             error = "Invalid user data from Github"

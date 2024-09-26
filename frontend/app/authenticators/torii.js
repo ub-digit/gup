@@ -3,6 +3,7 @@ import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
 import config from 'frontend/config/environment';
 
 export default ToriiAuthenticator.extend({
+  i18n: Ember.inject.service(),
   torii: Ember.inject.service(),
   ajax: Ember.inject.service(),
 
@@ -20,6 +21,7 @@ export default ToriiAuthenticator.extend({
   },
 
   authenticate() {
+    let i18n = this.get('i18n');
     const ajax = this.get('ajax');
     const tokenExchangeUri = config.torii.providers['gub-oauth2'].tokenExchangeUri;
 
@@ -45,7 +47,12 @@ export default ToriiAuthenticator.extend({
           provider: data.provider
         };
       }).catch((error) => {
-        throw error.errors[0].detail;
+        if (error.errors[0].status === '403') {
+          throw i18n.t('login.loginNotAllowed');
+        }
+        else {
+          throw i18n.t('login.loginGeneralError');
+        }
       });
     });
   }
