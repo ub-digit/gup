@@ -191,7 +191,9 @@ export default {
     usernamePlaceholder: 'x-konto',
     password: 'Lösenord',
     passwordPlaceholder: 'Lösenord',
-    loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
+    loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.", // TO be removed
+    loginNotAllowed: "Du har inte behörighet att logga in.",
+    loginGeneralError: "Ett okänt fel har inträffat. Vänligen försök igen.",
     extraLoginMessage: 'Vi upplever problem med inloggningen till GUP och rekommenderar att byta lösenord till medarbetarportalen.<br/>Se nyheten på GU:s webb: https://medarbetarportalen.gu.se/aktuellt/nyheter-detalj/paminnelse-om-losenordsbyte-.cid1573123'
   },
   mainMenu: {
