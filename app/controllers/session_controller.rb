@@ -2,21 +2,7 @@ class SessionController < ApplicationController
 
   # Create a session, with a newly generated access token
   def create
-  
-    # Can be removed
-    if params[:username]
-      error = nil
-      user = User.find_by_username(params[:username])
-      if !user
-        user = User.new(username: params[:username], role: "USER")
-      end
-      token = user.authenticate(params[:password])
-      if token
-        render json: token_response(user, token)
-      else
-        render json: {error: { code: "AUTH_ERROR", msg: error}}, status: 401
-      end
-    elsif params[:code]
+    if params[:code]
       body = {
         "client_id" => APP_CONFIG['oauth2']['client_id'],
         "client_secret" => APP_CONFIG['oauth2']['client_secret'],

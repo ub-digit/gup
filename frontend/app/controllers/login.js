@@ -6,24 +6,10 @@ export default Ember.Controller.extend({
   application: Ember.inject.controller(),
 
   errorMessage: false,
-  invalidCredentials: false,
   loginDisabled: false,
 
   actions: {
-    authenticate() {
-      let { identification, password } = this.getProperties('identification', 'password');
-      this.get('session').authenticate(
-        'authenticator:gub',
-        { identification: identification, password: password }
-      ).catch((reason) => {
-        //this.set('invalidCredentials', reason.error || reason);
-        this.set('invalidCredentials', true);
-      });
-    },
-
     authenticateOAuth2() {
-      console.log(this.get('session'));
-      this.set('invalidCredentials', false); //Or skip this??
       this.set('loginDisabled', true);
       this.get('session').authenticate('authenticator:torii', 'gub')
       .catch((reason) => {

@@ -54,6 +54,10 @@ export default ToriiAuthenticator.extend({
           throw i18n.t('login.loginGeneralError');
         }
       });
+    }).catch((error) => {
+      // Here we can handle errors from the authentication process where the user cancels the login
+      // (e.g. Error: remote was closed, authorization was denied, or an authentication message otherwise not received before the window closed.)
+      throw i18n.t('login.loginExternalError');
     });
   }
 

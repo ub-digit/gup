@@ -186,13 +186,10 @@ export default {
     title_page: 'Login',
     header: 'Sign in',
     button: 'Sign in',
-    username: 'x-account',
-    usernamePlaceholder: 'x-account',
-    password: 'Password',
-    passwordPlaceholder: 'Password',
     loginError: "Wrong x-account or password. Please try again.", // To be removed
     loginNotAllowed: "You are not allowed to log in.",
     loginGeneralError: "Something went wrong. Please try again.",
+    loginExternalError: "The Login process was interrupted. Please try again.",
     extraLoginMessage: 'If you experience problems with logging in into GUP, please change your password to the staff portal first.<br/>https://medarbetarportalen.gu.se/aktuellt/nyheter-detalj/paminnelse-om-losenordsbyte-.cid1573123?languageId=100001&skipSSOCheck=true'
   },
   mainMenu: {
