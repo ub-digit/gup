@@ -185,8 +185,8 @@ export default {
   login: {
     title_page: 'Login',
     header: 'Sign in',
-    button: 'Sign in',
-    loginError: "Wrong x-account or password. Please try again.", // To be removed
+    heading: "Log in with GU account",
+    body: "For employees at GU with an x-account.",
     loginNotAllowed: "You are not allowed to log in.",
     loginGeneralError: "Something went wrong. Please try again.",
     loginExternalError: "The Login process was interrupted. Please try again.",

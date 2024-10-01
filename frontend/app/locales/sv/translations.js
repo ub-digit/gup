@@ -186,8 +186,8 @@ export default {
   login: {
     title_page: 'Logga in',
     header: 'Logga in',
-    button: 'Logga in',
-    loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.", // TO be removed
+    heading: "Logga in med GU-konto",
+    body: "För anställda vid GU med ett x-konto.",
     loginNotAllowed: "Du har inte behörighet att logga in.",
     loginGeneralError: "Ett okänt fel har inträffat. Vänligen försök igen.",
     loginExternalError: "Inloggningen avbröts. Vänligen försök igen.",
