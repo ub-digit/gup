@@ -7,19 +7,6 @@ export default ToriiAuthenticator.extend({
   torii: Ember.inject.service(),
   ajax: Ember.inject.service(),
 
-  restore: function(properties) {
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-      Ember.$.ajax({
-        type: 'GET',
-        url: config.APP.authenticationBaseURL+'/'+properties.token
-      }).then(function() {
-        resolve(properties);
-      }, function() {
-        reject();
-      });
-    });
-  },
-
   authenticate() {
     let i18n = this.get('i18n');
     const ajax = this.get('ajax');
