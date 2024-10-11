@@ -15,26 +15,26 @@ export default Ember.Route.extend({
         Ember.set(model, 'orcid', identifier.value);
       }
     });
-		controller.set('errors', {});
+    controller.set('errors', {});
     controller.set('lastQuery', sessionStorage.getItem('admin.people.lastQuery'));
     controller.set('model', model);
   },
   actions: {
     savePerson: function(model) {
-	    let successHandler = () => {
+      let successHandler = () => {
         sessionStorage.setItem('admin.people.changeWarning', true);
         this.transitionTo('admin.people', {queryParams: {qp: sessionStorage.getItem('admin.people.lastQuery')}});
-	    };
-	    let errorHandler = (reason) => {
-	      this.send('setMsgHeader', 'error', reason.error.msg);
-				this.controller.set('errors', reason.error.errors);
-	      Ember.run.later(function() {
-	        Ember.$('[data-toggle="popover"]').popover({
-	          placement: 'top',
-	          html: true
-	        });
-	      });
-	    };
+      };
+      let errorHandler = (reason) => {
+        this.send('setMsgHeader', 'error', reason.error.msg);
+        this.controller.set('errors', reason.error.errors);
+        Ember.run.later(function() {
+          Ember.$('[data-toggle="popover"]').popover({
+            placement: 'top',
+            html: true
+          });
+        });
+      };
       let generalHandler = (model) => {
         if (model.error) {
           errorHandler(model);
@@ -48,10 +48,10 @@ export default Ember.Route.extend({
         first_name: model.first_name,
         last_name: model.last_name,
         year_of_birth: model.year_of_birth,
-	      xaccount: model.xaccount,
+        xaccount: model.xaccount,
         orcid: model.orcid
       };
-	    this.store.save('person', person_data).then(generalHandler);
+      this.store.save('person', person_data).then(generalHandler);
     }
   }
 });
