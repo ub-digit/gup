@@ -33,14 +33,7 @@ export default ToriiAuthenticator.extend({
           can_administrate : Ember.$.inArray('administrate', response.user.role.rights) !== -1,
           provider: data.provider
         };
-      }).catch((error) => {
-        if (error.errors[0].status === '403') {
-          throw i18n.t('login.loginNotAllowed');
-        }
-        else {
-          throw i18n.t('login.loginGeneralError');
-        }
-      });
+      })
     });
   }
 
