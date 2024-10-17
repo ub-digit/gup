@@ -31,4 +31,29 @@ class GupAdminPublication
       RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + document[1] + '}').to_json ,  content_type: :json
     end
   end
+
+  def self.sync_updated opts
+    days = opts[:days]
+    sql = "SELECT publication_id, publication FROM v_publications WHERE publication_id IN (SELECT id from publications WHERE published_at IS NOT NULL AND deleted_at IS NULL AND updated_at > ?) ORDER BY publication_id DESC"
+    sql_executable = ActiveRecord::Base.send(:sanitize_sql_array, [sql, days.days.ago])
+    rows = ActiveRecord::Base.connection.exec_query(sql_executable).rows
+    total = rows.count
+    rows.each_with_index do |row, index|
+      puts "Update: #{index} of #{total}, Publication id: #{row[0]}"
+      RestClient.put "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}", JSON.parse('{"data":' + row[1] + '}').to_json ,  content_type: :json
+    end
+  end
+
+  def self.sync_deleted opts
+    days = opts[:days]
+    sql = "SELECT id from publications WHERE published_at IS NOT NULL AND deleted_at > ? ORDER BY id DESC"
+    sql_executable = ActiveRecord::Base.send(:sanitize_sql_array, [sql, days.days.ago])
+    rows = ActiveRecord::Base.connection.exec_query(sql_executable, [days.days.ago]).rows
+    total = rows.count
+    rows.each_with_index do |row, index|
+      puts "Delete: #{index} of #{total}, Publication id: #{row[0]}"
+      RestClient.delete "#{APP_CONFIG['gup_admin_settings']['base_url']}/publications/gup_#{row[0]}?api_key=#{APP_CONFIG['gup_admin_settings']['api_key']}"
+    end
+  end
+
 end
