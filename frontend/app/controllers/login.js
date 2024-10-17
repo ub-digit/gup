@@ -12,8 +12,8 @@ export default Ember.Controller.extend({
     authenticateOAuth2() {
       this.set('loginDisabled', true);
       this.get('session').authenticate('authenticator:torii', 'gub')
-      .catch((reason) => {
-        this.set('errorMessage', reason);
+      .catch(() => {
+        this.set('errorMessage', this.get('i18n').t('login.loginExternalError'));
       })
       .finally(() => {
         this.set('loginDisabled', false);
