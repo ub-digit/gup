@@ -5,8 +5,6 @@ export default Ember.Route.extend({
   titleToken: function() {
     return this.get("i18n").t('publications.dashboard.manage.start.title');
   },
-  beforeModel: function() {
-	},
   model: function() {
     return Ember.RSVP.hash({
       news_message: this.store.find('message', 'NEWS'),
@@ -18,9 +16,9 @@ export default Ember.Route.extend({
     this._super(...arguments);
     this.controller.set('messages', model);
   },
-	afterModel: function(model, transition) {
-      this.controllerFor('application').set('currentList', transition.targetName);
-      this.controllerFor('application').set('publication_id_error', null);
-      this.controllerFor('publications.dashboard.manage.start').set('publication_id', null);
-	}
+  afterModel: function(model, transition) {
+    this.controllerFor('application').set('currentList', transition.targetName);
+    this.controllerFor('application').set('publication_id_error', null);
+    this.controllerFor('publications.dashboard.manage.start').set('publication_id', null);
+  }
 });

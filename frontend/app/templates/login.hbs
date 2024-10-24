@@ -1,5 +1,4 @@
 <div class="container">
-
 <!--
   <div class="row">
     <div class="col-xs-12 news-flash">
@@ -9,28 +8,41 @@
     </div>
   </div>
 -->
-
-  <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
-    <form {{action 'authenticate' on='submit'}} role="form">
-      <div class="row info-box-body">
-        {{#if errorMessage}}
-          <div class="alert alert-danger col-xs-12">
-          {{t 'login.loginError'}}
+  <div class="login-wrapper">
+    <div class="row">
+      <div class="gu-account-login">
+        <a href="javascript:void()" onclick={{action "authenticateOAuth2" bubbles=false}} id="gu-account-login-link">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="gu-login-logo {{i18n.locale}}"></div>
+              <div class="gu-login-text">
+                <div class="gu-login-heading">{{t 'login.heading'}}</div>
+                <div class="gu-login-body">{{t 'login.body'}}</div>
+              </div>
+              <div class="gu-login-arrow">
+                <svg width="15px" height="24px" viewBox="0 0 15 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <desc></desc>
+                  <defs></defs>
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="FontAwesome" font-size="25" font-weight="normal" opacity="0.329999983">
+                    <g id="Logga-in-Copy-11" transform="translate(-714.000000, -264.000000)" fill="#C3C3C3">
+                      <g id="Group-7" transform="translate(450.000000, 199.000000)">
+                        <text id="">
+                          <tspan x="263.142857" y="87"></tspan>
+                        </text>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
           </div>
-        {{/if}}
-        <div class="form-group">
-          <label for="identification">{{t 'login.username'}}</label>
-          {{input value=identification classBinding=":form-control" placeholder=(t 'login.usernamePlaceholder')}}
-        </div>
-        <div class="form-group">
-          <label for="password">{{t 'login.password'}}</label>
-          {{input value=password classBinding=":form-control" placeholder=(t 'login.passwordPlaceholder') type='password'}}
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">{{t 'login.button'}}</button>
-          {{#if application.casLoginUrl}}<a href="{{application.casLoginUrl}}">{{t 'login.casLogin'}}</a>{{/if}}
-        </div>
+        </a>
       </div>
-    </form>
+    </div>
+    <div class="alternative-wrapper">
+      {{#if errorMessage}}
+        <div class="alert alert-danger col-xs-12">{{errorMessage}}</div>
+      {{/if}}
+    </div>
   </div>
 </div>

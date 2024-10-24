@@ -1,12 +1,14 @@
 import Ember from 'ember';
+import ENV from 'frontend/config/environment';
 
 export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
   session : Ember.inject.service('session'),
+  config: ENV.torii.providers['gub-oauth2'], //TODO: Why do we need this, do we need this?
 
-	queryParams: ['lang'],
-	lang : null,
-	isError: Ember.computed.equal('msgType', 'error'),
+  queryParams: ['lang'],
+  lang : null,
+  isError: Ember.computed.equal('msgType', 'error'),
   showReviewCount: Ember.computed.gt('userdata.counts.review', 0),
   pageIsDisabled: false,
   currentlyLoading: false,
@@ -16,8 +18,8 @@ export default Ember.Controller.extend({
     return false;
   }),
 
-	actions: {
-		toggleLang: function(language) {
+  actions: {
+    toggleLang: function(language) {
       if (language) {
         this.set('i18n.locale', language);
       }
@@ -35,6 +37,6 @@ export default Ember.Controller.extend({
       Ember.run.later(function() {
         location.reload(true);
       });
-		},
-	}
+    },
+  }
 });

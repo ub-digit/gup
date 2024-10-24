@@ -75,3 +75,6 @@ tags
 ansible/vars/docker_credentials.yml
 
 vendor/bundle
+
+# Docker secrets env-file
+docker/secrets.env

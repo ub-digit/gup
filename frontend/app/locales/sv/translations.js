@@ -186,12 +186,11 @@ export default {
   login: {
     title_page: 'Logga in',
     header: 'Logga in',
-    button: 'Logga in',
-    username: 'x-konto',
-    usernamePlaceholder: 'x-konto',
-    password: 'Lösenord',
-    passwordPlaceholder: 'Lösenord',
-    loginError: "Fel användarnamn eller lösenord. Vänligen försök igen.",
+    heading: "Logga in med GU-konto",
+    body: "För anställda vid GU med ett x-konto.",
+    loginNotAllowed: "Du har inte behörighet att logga in.",
+    loginGeneralError: "Ett okänt fel har inträffat. Vänligen försök igen.",
+    loginExternalError: "Inloggningen avbröts. Vänligen försök igen.",
     extraLoginMessage: 'Vi upplever problem med inloggningen till GUP och rekommenderar att byta lösenord till medarbetarportalen.<br/>Se nyheten på GU:s webb: https://medarbetarportalen.gu.se/aktuellt/nyheter-detalj/paminnelse-om-losenordsbyte-.cid1573123'
   },
   mainMenu: {
@@ -537,6 +536,10 @@ export default {
       btnEditEndYear: 'Redigera slutår',
       modalHeader: 'Sätt slutår',
       id: 'Id',
+      orgdbid: 'Orgdbid',
+      no_orgdbid: '<i>Saknas</i>',
+      orgnr: 'Orgnr',
+      no_orgnr: '<i>Saknas</i>',
       faculty_header: 'Fakultet',
       name_sv: 'Svenskt namn',
       name_en: 'Engelskt namn',

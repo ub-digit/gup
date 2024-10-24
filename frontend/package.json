@@ -58,7 +58,8 @@
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
     "emberx-select": "2.2.2",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.0.1",
+    "torii": "0.10.1"
   },
   "dependencies": {
     "ember-cli": "2.11.0"

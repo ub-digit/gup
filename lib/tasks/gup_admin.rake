@@ -17,6 +17,19 @@ namespace :gup_admin do
     GupAdminPerson.index_all limit: limit.to_i, offset: offset.to_i
   end
 
+  desc "Sync updated publications with GUP admin"
+  task :sync_updated_publications => :environment do
+    days = ENV['DAYS']
+    exit if days.blank?
+    GupAdminPublication.sync_updated days: days.to_i
+  end
+
+  desc "Sync deleted publications with GUP admin"
+  task :sync_deleted_publications => :environment do
+    days = ENV['DAYS']
+    exit if days.blank?
+    GupAdminPublication.sync_deleted days: days.to_i
+  end
 
   desc "Match publications with scopus documents"
   task :match_publications => :environment do

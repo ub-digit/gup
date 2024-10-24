@@ -23,6 +23,8 @@
     <thead>
       <tr>
         <th>{{t 'admin.departments.id'}}</th>
+        <th>{{t 'admin.departments.orgdbid'}}</th>
+        <th>{{t 'admin.departments.orgnr'}}</th>
         <th>{{t 'admin.departments.name_sv'}}</th>
         <th>{{t 'admin.departments.name_en'}}</th>
         <th>{{t 'admin.departments.start_year'}}</th>
@@ -34,6 +36,8 @@
       {{#each model as |dep|}}
       <tr>
         <td>{{dep.id}}</td>
+        <td>{{dep.orgdbid}}</td>
+        <td>{{dep.orgnr}}</td>
         <td>{{dep.name_sv}}</td>
         <td>{{dep.name_en}}</td>
         <td>{{dep.start_year}}</td>
@@ -79,6 +83,18 @@
           <div class="col-xs-12">
           <label>{{t 'admin.departments.id'}}</label><br/>
           {{current.id}}
+          </div>
+        </div>
+        <div class="row bottom-spacing-20">
+          <div class="col-xs-12">
+          <label>{{t 'admin.departments.orgdbid'}}</label><br/>
+          {{#if current.orgdbid}}{{current.orgdbid}}{{else}}{{t 'admin.departments.no_orgdbid'}}{{/if}}
+          </div>
+        </div>
+        <div class="row bottom-spacing-20">
+          <div class="col-xs-12">
+          <label>{{t 'admin.departments.orgnr'}}</label><br/>
+          {{#if current.orgnr}}{{current.orgnr}}{{else}}{{t 'admin.departments.no_orgnr'}}{{/if}}
           </div>
         </div>
         <div class="row bottom-spacing-20">

@@ -40,33 +40,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  ### Can be removed
   # Auth override
   def auth_override_present?
     return APP_CONFIG['auth_override']
-  end
-  
-  # Authenticate user
-  def authenticate(provided_password)
-    # Check if we have id. If we do not have id, the user does not exist locally,
-    # and should only be allowed if starting with 'x'
-    return false if !self.id && !self.username[/^x/]
-
-    # If in dev mode, return token
-    if Rails.env != 'production' && (ENV['DEVEL_AUTO_AUTH'] == "OK" || auth_override_present?)
-      token_object = AccessToken.generate_token(self)
-      return token_object.token
-    end
-
-    uri = URI(APP_CONFIG['external_auth_url'] + "/" + self.username)
-    params = { :password => provided_password }
-    uri.query = URI.encode_www_form(params)
-    res = Net::HTTP.get_response(uri)
-    json_response = JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
-    if(json_response["auth"]["yesno"])
-      token_object = AccessToken.generate_token(self)
-      return token_object.token
-    end
-    false
   end
 
   # Returns user ids if username has a valid identifier

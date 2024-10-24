@@ -3,12 +3,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-
-	beforeModel: function() {
-    	this.transitionTo('publications.dashboard.manage.published');
-	},
-
-	setupController: function(controller) {
-		controller.set("isNavVisible", true);
-	}
+  beforeModel: function() {
+    this.transitionTo('publications.dashboard.manage.published');
+  },
+  setupController: function(controller) {
+    controller.set("isNavVisible", true);
+  }
 });

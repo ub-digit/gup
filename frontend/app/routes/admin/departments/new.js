@@ -9,21 +9,21 @@ export default Ember.Route.extend({
   actions: {
     saveDepartment: function(model) {
       var controller = this.controller;
-	    let successHandler = () => {
+      let successHandler = () => {
         this.transitionTo('admin.departments.index');
-	    };
-	    let errorHandler = (reason) => {
-	      this.send('setMsgHeader', 'error', reason.error.msg);
-				controller.set('errors', reason.error.errors);
-	      Ember.run.later(function() {
-	        Ember.$('[data-toggle="popover"]').popover({
-	          placement: 'top',
-	          html: true
-	        });
-	      });
-	    };
+      };
+      let errorHandler = (reason) => {
+        this.send('setMsgHeader', 'error', reason.error.msg);
+        controller.set('errors', reason.error.errors);
+        Ember.run.later(function() {
+          Ember.$('[data-toggle="popover"]').popover({
+            placement: 'top',
+            html: true
+          });
+        });
+      };
       let generalHandler = (model) => {
-              console.log(model);
+        console.log(model);
 
         if (model.error) {
           errorHandler(model);
@@ -32,7 +32,7 @@ export default Ember.Route.extend({
           successHandler(model);
         }
       };
-	    this.store.save('department', model).then(generalHandler);
+      this.store.save('department', model).then(generalHandler);
     }
   }
 });
