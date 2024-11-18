@@ -185,7 +185,7 @@ export default {
 
   login: {
     title_page: 'Logga in',
-    header: 'Logga in',
+    button: 'Logga in',
     heading: "Logga in med GU-konto",
     body: "För anställda vid GU med ett x-konto.",
     loginNotAllowed: "Du har inte behörighet att logga in.",

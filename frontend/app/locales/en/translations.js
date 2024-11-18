@@ -184,7 +184,7 @@ export default {
   },
   login: {
     title_page: 'Login',
-    header: 'Sign in',
+    button: 'Log in',
     heading: "Log in with GU account",
     body: "For employees at GU with an x-account.",
     loginNotAllowed: "You are not allowed to log in.",
