@@ -15,6 +15,8 @@ class Person < ActiveRecord::Base
   default_scope { where(deleted_at: nil) }
   validates_presence_of :last_name
 
+  strip_attributes only: [:first_name, :last_name]
+
   #after_save :update_search_engine, on: :create
   #after_save :update_search_engine, on: :update
 
