@@ -162,6 +162,13 @@ class V1::PeopleController < V1::V1Controller
     render_json
   end
 
+  api :GET, '/people/get_next_id', 'Returns a new person id using nextval from the sequence people_id_seq'
+  def get_next_id
+    # Get the next available id by using the sequence
+    next_id = ActiveRecord::Base.connection.execute("SELECT nextval('people_id_seq')").first['nextval']
+    @response[:id] = next_id
+    render_json
+  end
 
   private
 
