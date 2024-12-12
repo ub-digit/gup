@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   isApproved: false,
 
   diffCategories: Ember.computed('item.category_objects', function() {
-    var oldCategories = this.get('item.diff_since_review.category_hsv_11.from') || [];
+    var oldCategories = this.get('item.diff_since_review.category_current_type.from') || [];
     var newCategories = this.get('item.category_objects');
     var a = [];
 

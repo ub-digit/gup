@@ -87,7 +87,7 @@ sv:
     abstract: "Sammanfattning"
     pubyear: "Publikationsår"
     publanguage: "Språk"
-    category_hsv_11: "Ämnesord"
+    category_current_type: "Ämnesord"
     url: "Fulltextlänk"
     extid: "Identifikatorer"
     links: "Extern länk"

@@ -275,8 +275,8 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <span class="form-group {{if errors.category_hsv_11 'has-error'}}">
-        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_hsv_11" type="category-selector" fieldHelptext="publications.publicationtypes.form.help.category_hsv_11.helptext" errors=errors.category_hsv_11 value=publication.category_hsv_11 categoryObjects=categoryObjectsList}}
+      <span class="form-group {{if errors.category_current_type 'has-error'}}">
+        {{field-component selectedPublicationType=getPublicationTypeObject fieldName="category_current_type" type="category-selector" fieldHelptext="publications.publicationtypes.form.help.category_current_type.helptext" errors=errors.category_current_type value=publication.category_current_type categoryObjects=categoryObjectsList}}
       </span>
     </div>
   </div>

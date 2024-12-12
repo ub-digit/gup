@@ -97,7 +97,7 @@ def setup_publication_json_views
           ON c2p.publication_version_id = pv.id
         JOIN categories c
           ON c.id = c2p.category_id
-       WHERE c.category_type = 'HSV_11'
+       WHERE c.category_type = 'SSIF_25'
     GROUP BY pub.id
       ;
       
