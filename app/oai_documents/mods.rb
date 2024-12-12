@@ -63,13 +63,13 @@ class OaiDocuments
 
         #### Subjects and Keywords ####
         # Subjects
-        publication.current_version.categories.where(category_type: "HSV_11").each do |category|
+        publication.current_version.categories.where(category_type: "SSIF_25").each do |category|
           xml.tag!("classification", 'authority' => 'ssif') do
             xml.tag!("topic", category.svepid)
           end
         end
         # Keep old category delivery
-        publication.current_version.categories.where(category_type: "HSV_11").each do |category|
+        publication.current_version.categories.where(category_type: "SSIF_25").each do |category|
           xml.tag!("subject", 'lang' => 'swe', 'authority' => 'uka.se', 'xlink:href' => category.svepid) do
             xml.tag!("topic", category.name_sv)
           end

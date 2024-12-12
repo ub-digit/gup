@@ -51,7 +51,7 @@
 
         <dt>{{t 'components.reviewItem.categories'}}</dt>
 
-        {{#if item.diff_since_review.category_hsv_11}}
+        {{#if item.diff_since_review.category_current_type}}
           {{#each diffCategories as |category|}}
             {{#if category.added}}
               <dd class="text-success">{{category.name_path}}<span class="badge review-badge">{{t 'components.reviewItem.addedObject'}}</span></dd>

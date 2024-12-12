@@ -57,7 +57,7 @@
           {{publication-field-bibl-review fieldLabel=allFieldObjects.publanguage.label fieldValue=publication.publanguage_label}}
         {{/if}}
 
-        {{publication-field-bibl-review fieldLabel=allFieldObjects.category_hsv_11.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
+        {{publication-field-bibl-review fieldLabel=allFieldObjects.category_current_type.label fieldValue=publication.category_objects listValue='name_path' type='list'}}
 
         {{#if publication.publication_identifiers}}
           {{publication-field-bibl-review fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') fieldValue=publication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list'}}
@@ -241,7 +241,7 @@
           {{publication-field-compare fieldLabel=allFieldObjects.publanguage.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publanguage_label fieldValue=publication.publanguage_label}}
         {{/if}}
 
-        {{publication-field-compare fieldLabel=allFieldObjects.category_hsv_11.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
+        {{publication-field-compare fieldLabel=allFieldObjects.category_current_type.label otherIsSelected=otherIsSelected otherFieldValue=otherPublication.category_objects listValue='name_path' type='list' fieldValue=publication.category_objects listValue='name_path' type='list'}}
 
         {{publication-field-compare fieldLabel=(t 'components.publicationDisplay.publicationIdentifier.label') otherIsSelected=otherIsSelected otherFieldValue=otherPublication.publication_identifiers listLabel='identifier_label' listValue='identifier_value' type='list' fieldValue=publication.publication_identifiers}}
 

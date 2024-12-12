@@ -212,13 +212,13 @@ class V1::DraftsController < V1::V1Controller
               end
             end
 
-            if params[:publication][:category_hsv_11].present?
-              params[:publication][:category_hsv_11].each do |category|
+            if params[:publication][:category_current_type].present?
+              params[:publication][:category_current_type].each do |category|
                 record = Categories2publication.create(publication_version_id: publication_version_new.id, category_id: category)
                 if record.errors.any?
                   raise (V1::ControllerError.new(
                     code: ErrorCodes::VALIDATION_ERROR,
-                    errors: { category_hsv_11: record.errors.values }
+                    errors: { category_current_type: record.errors.values }
                   ))
                 end
               end
