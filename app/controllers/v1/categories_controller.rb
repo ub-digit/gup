@@ -7,12 +7,11 @@ class V1::CategoriesController < V1::V1Controller
 
     if query.present?
       categories = categories.find_by_query(query: query).as_json({light: true})
-      @response[:categories] = categories.as_json({light: true})
     else
       categories = categories.where(parent_id: nil)
-      @response[:categories] = categories
     end
 
+    @response[:categories] = categories
     render_json
   end
 
