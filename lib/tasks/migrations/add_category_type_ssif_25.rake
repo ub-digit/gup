@@ -32,8 +32,8 @@ namespace :gup_migrations do
       # Check if there is a value in column A
       if xlsx.cell(line, 'A').present?
         area_code = xlsx.cell(line, 'A')
-        area_name_sv = xlsx.cell(line, 'D')
-        area_name_en = xlsx.cell(line, 'E')
+        area_name_sv = xlsx.cell(line, 'D').strip
+        area_name_en = xlsx.cell(line, 'E').strip
         puts area_code
         c = Category.new({node_type: 'root', node_level: 0, svepid: area_code, name_sv: area_name_sv, name_en: area_name_en}.merge(basic_data))
         pp c
@@ -41,8 +41,8 @@ namespace :gup_migrations do
         area_id = c.id
       elsif xlsx.cell(line, 'B').present?
         group_code = xlsx.cell(line, 'B')
-        group_name_sv = xlsx.cell(line, 'D')
-        group_name_en = xlsx.cell(line, 'E')
+        group_name_sv = xlsx.cell(line, 'D').strip
+        group_name_en = xlsx.cell(line, 'E').strip
         puts area_code
         puts group_code
         c = Category.new({node_type: 'intermediate', node_level: 1, svepid: group_code, parent_id: area_id, name_sv: group_name_sv, name_en: group_name_en, sv_name_path: area_name_sv, en_name_path: area_name_en}.merge(basic_data))
@@ -51,8 +51,8 @@ namespace :gup_migrations do
         group_id = c.id
       elsif xlsx.cell(line, 'C').present?
         subject_code = xlsx.cell(line, 'C')
-        subject_name_sv = xlsx.cell(line, 'D')
-        subject_name_en = xlsx.cell(line, 'E')
+        subject_name_sv = xlsx.cell(line, 'D').strip
+        subject_name_en = xlsx.cell(line, 'E').strip
         puts area_code
         puts group_code
         puts subject_code
