@@ -18,6 +18,7 @@ services:
       - ${GUP_BACKEND_SITEMAPS_DIR}:/apps/gup/sitemaps
   gup-backend_full:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
+    restart: always
     depends_on:
       - db
     environment:
@@ -55,6 +56,7 @@ services:
       - ${GUP_DB_VOLUME_SOURCE}:/var/lib/postgresql/data
   gup-solr:
     volumes:
+#     - ${GUP_SOLR_GURESEARCH_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-guresearch/data
       - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
