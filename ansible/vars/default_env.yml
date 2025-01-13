@@ -6,7 +6,7 @@ GUP_BACKEND_FULL_PORT: '127.0.0.1:{{ backend_full_host_port }}'
 GUP_SOLR_PORT: '127.0.0.1:{{ solr_host_port }}'
 BACKEND_HOSTNAME: '{{ backend_hostname }}'
 FRONTEND_HOSTNAME: '{{ frontend_hostname }}'
-ENVIRONMENT: production
+GUP_ENVIRONMENT: production
 
 GUP_AUTH_OVERRIDE: "false"
 
