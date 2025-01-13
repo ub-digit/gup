@@ -21,11 +21,12 @@ services:
     restart: always
     depends_on:
       - db
+    env_file:
+      - secrets.env
     environment:
       - RAILS_ENV=${GUP_ENVIRONMENT}
       - RAILS_PORT=${GUP_RAILS_PORT}
       - GUP_AUTH_OVERRIDE=${GUP_AUTH_OVERRIDE}
-      - GUP_SECRET_KEY_BASE=${GUP_SECRET_KEY_BASE}
       - GUP_DB_HOST=${GUP_DB_HOST}
       - GUP_DB_PORT=${GUP_DB_PORT}
       - GUP_DB=${GUP_DB}
