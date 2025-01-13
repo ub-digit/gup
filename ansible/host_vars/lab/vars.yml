@@ -1,0 +1,14 @@
+---
+git_revision: add-new-category-002
+docker_git_revision: ansible-deploy
+docker_command: ./docker-compose-release.sh
+apache_static_image: docker.ub.gu.se/gup-static:release-2021.05.001
+apache_static_host_port: 30196
+frontend_host_port: 30190
+backend_host_port: 30191
+backend_full_host_port: 30195
+solr_host_port: 30193
+backend_hostname: "{{ app_name }}-server-lab.ub.gu.se"
+frontend_hostname: "{{ app_name }}-lab.ub.gu.se"
+
+gup_admin_oai_uri: https://gup-admin.ub.gu.se/oai 
