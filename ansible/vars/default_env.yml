@@ -45,4 +45,3 @@ GUP_OAUTH2_PROVIDER: gu
 GUP_OAUTH2_AUTHORIZE_ENDPOINT: https://idp.auth.gu.se/adfs/oauth2/authorize/
 GUP_OAUTH2_TOKEN_ENDPOINT: https://idp.auth.gu.se/adfs/oauth2/token/
 GUP_OAUTH2_USER_ENDPOINT: https://idp.auth.gu.se/adfs/userinfo
-GUP_OAUTH2_CLIENT_ID: s0xTTZsDLLStDS3ecLN65dpOHoT5gCxCztqYyLu
