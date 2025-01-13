@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    Alias /sitemaps.xml /var/www/sitemaps/sitemaps.xml
+    Alias /sitemaps /var/www/sitemaps/sitemaps
+
+    <Directory /var/www/sitemaps>
+      Require all granted
+      AllowOverride all
+      Options -MultiViews +Indexes
+    </Directory>
+</VirtualHost>

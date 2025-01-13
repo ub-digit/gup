@@ -1,0 +1,16 @@
+---
+docker_git_repo_url: https://github.com/ub-digit/gup.git
+docker_directory: './docker' # Default is './docker'
+app_name: gup
+data_dir: /data/gup-ansible
+# TODO: Use relative paths to gup data directory?
+backend_uploads_data_dir: /data/gup-ansible/uploads
+backend_sitemaps_data_dir: /data/gup-ansible/sitemaps
+backend_db_data_dir: /data/gup-ansible/db-postgres-data
+solr_data_dir: /data/gup-ansible/solr
+#solr_guresearch_data_dir: /data/gup-ansible/solr/guresearch #Is this used?
+solr_journals_data_dir: /data/gup-ansible/solr/journals
+solr_people_data_dir: /data/gup-ansible/solr/people
+solr_publications_data_dir: /data/gup-ansible/solr/publications
+
+apache_static_sites_dir: /data/gup-ansible/apache-static-sites

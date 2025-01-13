@@ -1,0 +1,48 @@
+---
+GIT_REVISION: '{{ git_revision }}'
+GUP_FRONTEND_PORT: '127.0.0.1:{{ frontend_host_port }}'
+GUP_BACKEND_PORT: '127.0.0.1:{{ backend_host_port }}'
+GUP_BACKEND_FULL_PORT: '127.0.0.1:{{ backend_full_host_port }}'
+GUP_SOLR_PORT: '127.0.0.1:{{ solr_host_port }}'
+BACKEND_HOSTNAME: '{{ backend_hostname }}'
+FRONTEND_HOSTNAME: '{{ frontend_hostname }}'
+ENVIRONMENT: production
+
+GUP_AUTH_OVERRIDE: "false"
+
+GUP_GUPEA_OAI_BASE_URL: https://gupea.ub.gu.se/dspace-oai/request
+GUP_GUPEA_OAI_METADATA_PREFIX: scigloo
+GUP_GUPEA_OAI_IDENTIFIER_PREFIX: oai:gupea.ub.gu.se
+
+GUP_ADMIN_ENABLE: "true"
+GUP_ADMIN_PERSON_ENABLE: "true"
+GUP_ADMIN_PUBLICATION_ENABLE: "true"
+
+GUP_DB_HOST: db
+GUP_DB_PORT: 5432
+GUP_DB: gup_db
+GUP_DB_USER: gup_user
+GUP_DB_PASSWORD: gup_pass
+GUP_MAX_NUMBER_OF_POSTS_RIS: 10000
+GUP_PUBLIC_BASE_URL: "https://{{ frontend_hostname }}"
+
+BACKEND_OAI_HOSTNAME: "{{ frontend_hostname }}"
+BACKEND_OAI_FULL_HOSTNAME: "{{ frontend_hostname }}"
+
+GUP_BACKEND_UPLOADS_VOLUME_SOURCE: "{{ backend_uploads_data_dir }}"
+GUP_BACKEND_SITEMAPS_DIR: "{{ backend_sitemaps_data_dir }}"
+GUP_DB_VOLUME_SOURCE: "{{ backend_db_data_dir }}"
+#GUP_SOLR_GURESEARCH_VOLUME_SOURCE: "{{ solr_guresearch_data_dir }}" #Is this used?
+GUP_SOLR_JOURNALS_VOLUME_SOURCE: "{{ solr_journals_data_dir }}"
+GUP_SOLR_PEOPLE_VOLUME_SOURCE: "{{ solr_people_data_dir }}"
+GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE: "{{ solr_publications_data_dir }}"
+
+GUP_STATIC_RUNNING_IMAGE: "{{ apache_static_image }}"
+GUP_STATIC_ACCESS_PORT: "127.0.0.1:{{ apache_static_host_port }}"
+GUP_STATIC_APACHE_SITE: "{{ apache_static_sites_dir }}"
+
+GUP_OAUTH2_PROVIDER: gu
+GUP_OAUTH2_AUTHORIZE_ENDPOINT: https://idp.auth.gu.se/adfs/oauth2/authorize/
+GUP_OAUTH2_TOKEN_ENDPOINT: https://idp.auth.gu.se/adfs/oauth2/token/
+GUP_OAUTH2_USER_ENDPOINT: https://idp.auth.gu.se/adfs/userinfo
+GUP_OAUTH2_CLIENT_ID: s0xTTZsDLLStDS3ecLN65dpOHoT5gCxCztqYyLu
