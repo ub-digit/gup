@@ -10,5 +10,4 @@ backend_full_host_port: 30195
 solr_host_port: 30193
 backend_hostname: "{{ app_name }}-server-lab.ub.gu.se"
 frontend_hostname: "{{ app_name }}-lab.ub.gu.se"
-
-gup_admin_oai_uri: https://gup-admin.ub.gu.se/oai 
+gup_admin_oai_uri: https://gup-admin.ub.gu.se/oai
