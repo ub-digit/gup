@@ -1,0 +1,13 @@
+---
+git_revision: release-2024.12.001
+docker_git_revision: ansible-deploy
+docker_command: ./docker-compose-release.sh
+apache_static_image: docker.ub.gu.se/gup-static:release-2021.05.001
+apache_static_host_port: 10196
+frontend_host_port: 10190
+backend_host_port: 10191
+backend_full_host_port: 10195
+solr_host_port: 10193
+backend_hostname: "{{ app_name }}-server.ub.gu.se"
+frontend_hostname: "{{ app_name }}.ub.gu.se"
+gup_admin_oai_uri: https://gup-admin.ub.gu.se/oai
