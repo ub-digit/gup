@@ -47,7 +47,7 @@ class PublicationType < ActiveRecord::Base
       if value.blank?
         if field.name == "author" && value.nil? && publication_version.authors.present?
           next
-        elsif field.name == "category_ssif_25" && value.nil? && publication_version.categories.present?
+        elsif field.name == "category_current_type" && value.nil? && publication_version.categories.present?
           next
         end
         publication_version.errors.add(field.name.to_sym, :field_required, :field_name => name, :publication_type => self.code)
