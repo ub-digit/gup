@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
     }),
 
     getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function(){
-      return ENV.APP.serviceURL + "/public_publication_lists"
+      return encodeURI(ENV.APP.serviceURL + "/public_publication_lists"
           + "?sortby=" + this.get("sort_by")
           + "&publication_id=" + ((this.get("publication_id")) ? this.get("publication_id") : '')
           + "&person_id=" + ((this.get("person_id")) ? this.get("person_id") : '')
@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
           + "&start_year=" + ((this.get("start_year")) ? this.get("start_year") : '')
           + "&end_year=" + ((this.get("end_year")) ? this.get("end_year") : '')
           + "&only_artistic=" + ((this.get("only_artistic")) ? this.get("only_artistic") : '')
-          + "&output=ris";
+          + "&output=ris");
     }),
 
     getMaxNumberOfDownloads: Ember.computed('model', function() {
