@@ -89,7 +89,7 @@ en:
     abstract: "Abstract"
     pubyear: "Publication year"
     publanguage: "Language"
-    category_hsv_11: "Categories"
+    category_current_type: "Categories"
     url: "Full text link"
     extid: "Identifiers"
     links: "External link"

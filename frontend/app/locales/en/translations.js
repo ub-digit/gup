@@ -495,7 +495,7 @@ export default {
               artistic: 'Please register all authors. If the author is affiliated to GU, register family name and first name and if the author is not affiliated to GU, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
             },
           },
-          category_hsv_11: {
+          category_current_type: {
             helptext: 'Please add at least one subject category. For more information please see:  http://www.ub.gu.se/publicera/',
           },
           project: {

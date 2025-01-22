@@ -1,6 +1,6 @@
 class PublicationVersion < ActiveRecord::Base
   attr_accessor :author
-  attr_accessor :category_hsv_11
+  attr_accessor :category_current_type
   belongs_to :publication
   belongs_to :publication_type
   has_many :publication_identifiers, autosave: true
@@ -50,9 +50,9 @@ class PublicationVersion < ActiveRecord::Base
     end
 
     if !options[:brief]
-      # Show only HSV_11
-      result["category_hsv_11"] = categories.where(category_type: "HSV_11").pluck(:id)
-      result["category_objects"] = categories.where(category_type: "HSV_11").as_json(light: true)
+      # Show only SSIF_25
+      result["category_current_type"] = categories.where(category_type: "SSIF_25").pluck(:id)
+      result["category_objects"] = categories.where(category_type: "SSIF_25").as_json(light: true)
 
       result["project"] = self.projects.pluck(:id)
       result["project_objects"] = projects.as_json
@@ -119,8 +119,8 @@ class PublicationVersion < ActiveRecord::Base
   end
 
   def category_svep_ids
-    # Only include HSV_11 categories
-    categories.where(category_type: "HSV_11").pluck(:svepid)
+    # Only include SSIF_25 categories
+    categories.where(category_type: "SSIF_25").pluck(:svepid)
   end
 
   # Returns array with differing attributes used for review
@@ -131,7 +131,7 @@ class PublicationVersion < ActiveRecord::Base
     end
 
     unless (self.category_svep_ids & other.category_svep_ids == self.category_svep_ids) && (other.category_svep_ids & self.category_svep_ids == other.category_svep_ids)
-      diff[:category_hsv_11] = {from: other.categories, to:  self.categories}
+      diff[:category_current_type] = {from: other.categories, to:  self.categories}
     end
 
     if self.ref_value != other.ref_value

@@ -91,7 +91,7 @@ export default Ember.Component.extend({
 
   isVisible: Ember.computed('getRule', 'fieldName', function() {
 
-    if (this.get('fieldName') === 'ref_value' || this.get('fieldName') === 'category_hsv_11') {
+    if (this.get('fieldName') === 'ref_value' || this.get('fieldName') === 'category_current_type') {
       return true;
     }
 
