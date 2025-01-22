@@ -46,14 +46,15 @@ export default Ember.Controller.extend({
     }),
 
     getDownloadLink: Ember.computed("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function(){
+      // Some of the parameters may contain multiple values separated by semicolon and must be encoded, otherwise the server will not be able to parse the query string correctly
       return ENV.APP.serviceURL + "/public_publication_lists"
           + "?sortby=" + this.get("sort_by")
-          + "&publication_id=" + ((this.get("publication_id")) ? this.get("publication_id") : '')
-          + "&person_id=" + ((this.get("person_id")) ? this.get("person_id") : '')
-          + "&department_id=" + ((this.get("department_id")) ? this.get("department_id") : '')
-          + "&faculty_id=" + ((this.get("faculty_id")) ? this.get("faculty_id") : '')
-          + "&serie_id=" + ((this.get("serie_id")) ? this.get("serie_id") : '' )
-          + "&project_id=" + ((this.get("project_id")) ? this.get("project_id") : '')
+          + "&publication_id=" + ((this.get("publication_id")) ? encodeURIComponent(this.get("publication_id")) : '')
+          + "&person_id=" + ((this.get("person_id")) ? encodeURIComponent(this.get("person_id")) : '')
+          + "&department_id=" + ((this.get("department_id")) ? encodeURIComponent(this.get("department_id")) : '')
+          + "&faculty_id=" + ((this.get("faculty_id")) ? encodeURIComponent(this.get("faculty_id")) : '')
+          + "&serie_id=" + ((this.get("serie_id")) ? encodeURIComponent(this.get("serie_id")) : '' )
+          + "&project_id=" + ((this.get("project_id")) ? encodeURIComponent(this.get("project_id")) : '')
           + "&publication_type=" + ((this.get("publication_type")) ? this.get("publication_type") : '')
           + "&ref_value=" + ((this.get("ref_value")) ? this.get("ref_value") : '')
           + "&start_year=" + ((this.get("start_year")) ? this.get("start_year") : '')
