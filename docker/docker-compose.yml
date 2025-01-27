@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  frontend:
+  gup-frontend:
     restart: always
     env_file:
       - secrets.env
@@ -15,12 +15,12 @@ services:
     stdin_open: true
     # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container
     tty: true
-  backend:
+  gup-backend:
     restart: always
     env_file:
       - secrets.env
     depends_on:
-      - db
+      - gup-db
     environment:
       - RAILS_ENV=${GUP_ENVIRONMENT}
       - RAILS_PORT=${GUP_RAILS_PORT}
@@ -31,8 +31,8 @@ services:
       - GUP_DB=${GUP_DB}
       - GUP_DB_USER=${GUP_DB_USER}
       - GUP_DB_PASSWORD=${GUP_DB_PASSWORD}
-      - GUP_SOLR_HOST=solr
-      - GUP_SOLR_PORT=8983
+      - GUP_SOLR_HOST=${GUP_SOLR_HOST}
+      - GUP_SOLR_PORT=${GUP_SOLR_PORT}
       - GUP_TEST_USER_API_KEY=${GUP_TEST_USER_API_KEY}
       - GUP_SCOPUS_API_KEY=${GUP_SCOPUS_API_KEY}
       - GUP_GUPEA_OAI_BASE_URL=${GUP_GUPEA_OAI_BASE_URL}
@@ -60,10 +60,10 @@ services:
       - GUP_OAUTH2_TOKEN_ENDPOINT=${GUP_OAUTH2_TOKEN_ENDPOINT}
       - GUP_OAUTH2_USER_ENDPOINT=${GUP_OAUTH2_USER_ENDPOINT}
     networks:
-      - backend
+      - gup
     ports:
       - ${GUP_BACKEND_PORT}:${GUP_RAILS_PORT}
-  db:
+  gup-db:
     restart: always
     environment:
       - POSTGRES_DB=${GUP_DB}
@@ -73,19 +73,21 @@ services:
     volumes:
       - ./postgres-initdb.d:/docker-entrypoint-initdb.d
     networks:
-      - backend
-  solr:
+      - gup
+  gup-solr:
     restart: always
     image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
     environment:
-      - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://db:5432/${GUP_DB}
+      - GUP_SOLR_DATA_IMPORT_DB_URL=jdbc:postgresql://${GUP_DB_HOST}:${GUP_DB_PORT}/${GUP_DB}
       - GUP_SOLR_DATA_IMPORT_DB_USER=${GUP_DB_USER}
       - GUP_SOLR_DATA_IMPORT_DB_PASSWORD=${GUP_DB_PASSWORD}
     networks:
-      - backend
+      - gup
     depends_on:
-      - db
+      - gup-db
     ports:
       - ${GUP_SOLR_PORT}:8983
 networks:
-  backend:
+  gup:
+    name: gup
+    driver: bridge

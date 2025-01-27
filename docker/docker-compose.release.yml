@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  frontend:
+  gup-frontend:
     image: docker.ub.gu.se/gup-frontend:${GIT_REVISION}
     environment:
       - GUP_SERVICE_HOSTNAME=${BACKEND_HOSTNAME}
@@ -9,7 +9,7 @@ services:
       # Port differs in release image for ember
       # TODO: Change so nginx listens at 4200 instead to we don't need this?
       - ${GUP_FRONTEND_PORT}:8080
-  backend:
+  gup-backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     environment:
       - GUP_HOSTNAME=${BACKEND_OAI_HOSTNAME}
@@ -17,7 +17,7 @@ services:
     volumes:
       - ${GUP_BACKEND_UPLOADS_VOLUME_SOURCE}:/opt/gup-uploads
       - ${GUP_BACKEND_SITEMAPS_DIR}:/apps/gup/sitemaps
-  backend_full:
+  gup-backend_full:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     depends_on:
       - db
@@ -50,17 +50,17 @@ services:
       - backend
     ports:
       - ${GUP_BACKEND_FULL_PORT}:${GUP_RAILS_PORT}
-  db:
+  gup-db:
     image: docker.ub.gu.se/gup-postgres:${GIT_REVISION}
     volumes:
       - ${GUP_DB_VOLUME_SOURCE}:/var/lib/postgresql/data
-  solr:
+  gup-solr:
     volumes:
       - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data
-  static:
-    image: ${GUP_STATIC_RUNNING_IMAGE} 
+  gup-static:
+    image: ${GUP_STATIC_RUNNING_IMAGE}
     restart: always
     ports:
       - ${GUP_STATIC_ACCESS_PORT}:80
