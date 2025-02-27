@@ -1,5 +1,4 @@
 # try messing with stdin_open and tty to find out correct setting
-version: '3.7'
 services:
   gup-frontend:
     image: docker.ub.gu.se/ember-dev:3.14.0
