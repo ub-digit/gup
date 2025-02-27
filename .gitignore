@@ -81,3 +81,4 @@ vendor/bundle
 
 # Docker secrets env-file
 docker/secrets.env
+docker/.env
