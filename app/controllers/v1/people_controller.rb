@@ -57,8 +57,15 @@ class V1::PeopleController < V1::V1Controller
     person = Person.find_by_id(person_id)
 
     # If person is not found, create a new person object with the given id, this is called from Gup Admin
-    # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint, otherwise the sequence will be out of sync
+    # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint before calling this endpoint
     if person.nil?
+      # To aviod sequence out of sync, we need to make a  check that the id is below the current sequence value
+      max_id = ActiveRecord::Base.connection.execute("SELECT last_value FROM people_id_seq").first['last_value']
+      if person_id.to_i > max_id.to_i
+        error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "people.errors.update_error"}: #{params[:id]}", "Person id is out of sync with sequence")
+        render_json
+        return
+      end
       person = Person.new({id: person_id})
     end
 
