@@ -18,6 +18,8 @@ services:
     image: docker.ub.gu.se/rails:ruby-2.5.8
     environment:
       - GUP_HOSTNAME=localhost:${GUP_BACKEND_PORT}
+      - DEV_ALLOW_ALL_ACCOUNTS=${DEV_ALLOW_ALL_ACCOUNTS}
+      - DEV_OVERRIDE_ADMIN=${DEV_OVERRIDE_ADMIN}
     volumes:
       - ../:/usr/src/app
     command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
