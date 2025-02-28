@@ -56,6 +56,12 @@ class V1::PeopleController < V1::V1Controller
     person_id = params[:id]
     person = Person.find_by_id(person_id)
 
+    # If person is not found, create a new person object with the given id, this is called from Gup Admin
+    # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint, otherwise the sequence will be out of sync
+    if person.nil?
+      person = Person.new({id: person_id})
+    end
+
     # Super ugly hack, since front-end cannot send query params on save/update
     skip_update_search_engine = false
     if params[:person][:skip_update_search_engine]
@@ -63,47 +69,40 @@ class V1::PeopleController < V1::V1Controller
       params[:person].delete :skip_update_search_engine
     end
 
-    if person.present?
-# --------------------------------------------------       #
-      if params[:person] && params[:person][:xaccount]
-        xaccount_source = Source.find_by_name("xkonto")
+    if person.update_attributes(permitted_params)
+      if person.present?
+        if params[:person] && params[:person][:xaccount]
+          xaccount_source = Source.find_by_name("xkonto")
 
-        # Find any identifier of type "xkonto"
-        old_xaccount = person.identifiers.find { |i| i.source_id == xaccount_source.id }
-        if old_xaccount
-          if params[:person][:xaccount].present?
-            old_xaccount.update_attribute(:value, params[:person][:xaccount])
+          # Find any identifier of type "xkonto"
+          old_xaccount = person.identifiers.find { |i| i.source_id == xaccount_source.id }
+          if old_xaccount
+            if params[:person][:xaccount].present?
+              old_xaccount.update_attribute(:value, params[:person][:xaccount])
+            else
+              old_xaccount.destroy
+            end
           else
-            old_xaccount.destroy
+            person.identifiers.create(source_id: xaccount_source.id, value: params[:person][:xaccount])
           end
-        else
-          person.identifiers.create(source_id: xaccount_source.id, value: params[:person][:xaccount])
         end
 
-        params[:person].delete(:xaccount)
-      end
-# --------------------------------------------------       #
-      if params[:person] && params[:person][:orcid]
-        orcid_source = Source.find_by_name("orcid")
+        if params[:person] && params[:person][:orcid]
+          orcid_source = Source.find_by_name("orcid")
 
-        # Find any identifier of type "orcid"
-        old_orcid = person.identifiers.find { |i| i.source_id == orcid_source.id }
-        if old_orcid
-          if params[:person][:orcid].present?
-            old_orcid.update_attribute(:value, params[:person][:orcid])
+          # Find any identifier of type "orcid"
+          old_orcid = person.identifiers.find { |i| i.source_id == orcid_source.id }
+          if old_orcid
+            if params[:person][:orcid].present?
+              old_orcid.update_attribute(:value, params[:person][:orcid])
+            else
+              old_orcid.destroy
+            end
           else
-            old_orcid.destroy
+            person.identifiers.create(source_id: orcid_source.id, value: params[:person][:orcid])
           end
-        else
-          person.identifiers.create(source_id: orcid_source.id, value: params[:person][:orcid])
         end
 
-        params[:person].delete(:orcid)
-      end
-# --------------------------------------------------       #
-
-
-      if person.update_attributes(permitted_params)
         if !skip_update_search_engine
           # Reload object before update search engine
           person.reload
@@ -173,7 +172,7 @@ class V1::PeopleController < V1::V1Controller
   private
 
   def permitted_params
-    params.require(:person).permit(:first_name, :last_name, :year_of_birth, :identifiers, :alternative_names, :xaccount, :orcid)
+    params.require(:person).permit(:first_name, :last_name, :year_of_birth, :identifiers, :alternative_names)
   end
 
   # Returns a list of departments that given person id has a relation to
