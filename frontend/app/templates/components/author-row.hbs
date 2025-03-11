@@ -5,20 +5,30 @@
     {{#if isImportedExternal}}
       <div class="col-xs-10 imported-author">
         <p><strong>{{importedAuthorName}}</strong>
-        (Extern) <a href="javascript:void()" {{action 'showAddAffiliation'}}>{{t 'components.authorRow.addAffiliation'}}</a>
+          (Extern)
+          <a href="javascript:void()" {{action "showAddAffiliation"}}>{{t
+              "components.authorRow.addAffiliation"
+            }}</a>
         </p>
       </div>
       <div class="col-xs-1">
-        <button class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
+        <button
+          class="btn btn-danger {{if isThisTheOnlyAuthorRow 'disabled'}}"
+          {{action "remove" item.id}}
+        ><i class="fa fa-trash-o"></i></button>
       </div>
-      <div class="col-xs-1 ">
+      <div class="col-xs-1">
         {{#unless isThisTheOnlyAuthorRow}}
           <div class="sort-control">
             <div class="sort-control-up">
-              <a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
+              <a href="javascript:void()" {{action "moveUpOne" item.id}}><i
+                  class="fa fa-chevron-up"
+                ></i></a>
             </div>
             <div class="sort-control-down">
-              <a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
+              <a href="javascript:void()" {{action "moveDownOne" item.id}}><i
+                  class="fa fa-chevron-down"
+                ></i></a>
             </div>
           </div>
         {{/unless}}
@@ -28,154 +38,224 @@
         <p><strong>{{importedAuthorName}}</strong></p>
       {{/if}}
       <div class="col-xs-10">
-      {{#if item.transformedToNewAuthor}}
-        <div class="row bottom-spacing-20">
-          <div class="col-xs-12">
-            <div class="row bottom-spacing-20">
-              <div class="col-xs-6">
-                <span class="form-group {{if errors.first_name 'has-error'}}">
-                  <label class="control-label">
-                    {{#if errors.first_name}}
-                      {{error-feedback errors.first_name}}
-                    {{/if}} {{t 'components.authorRow.firstname'}}
-                  </label>
-                  {{input type="text" class="form-control" value=item.newAuthorForm.firstName placeholder=(t 'components.authorRow.firstname')}}
-                </span>
+        {{#if item.transformedToNewAuthor}}
+          <div class="row bottom-spacing-20">
+            <div class="col-xs-12">
+              <div class="row bottom-spacing-20">
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.first_name 'has-error'}}">
+                    <label class="control-label">
+                      {{#if errors.first_name}}
+                        {{error-feedback errors.first_name}}
+                      {{/if}}
+                      {{t "components.authorRow.firstname"}}
+                    </label>
+                    {{input
+                      type="text"
+                      class="form-control"
+                      value=item.newAuthorForm.firstName
+                      placeholder=(t "components.authorRow.firstname")
+                    }}
+                  </span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.last_name 'has-error'}}">
+                    <label class="control-label">
+                      {{#if errors.last_name}}
+                        {{error-feedback errors.last_name}}
+                      {{/if}}
+                      {{t "components.authorRow.lastname"}}
+                      <span style="color:red">*</span>
+                    </label>
+                    {{input
+                      type="text"
+                      class="form-control"
+                      value=item.newAuthorForm.lastName
+                      placeholder=(t "components.authorRow.lastname")
+                    }}
+                  </span>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <span class="form-group {{if errors.last_name 'has-error'}}">
-                  <label class="control-label">
-                    {{#if errors.last_name}}
-                      {{error-feedback errors.last_name}}
-                    {{/if}} {{t 'components.authorRow.lastname'}} <span style="color:red">*</span>
-                  </label>
-                  {{input type="text" class="form-control" value=item.newAuthorForm.lastName placeholder=(t 'components.authorRow.lastname')}}
-                </span>
-              </div>
-            </div>
-            <div class="row bottom-spacing-20">
-              <div class="col-xs-3">
-                <span class="form-group {{if errors.birthyear 'has-error'}}">
-                  <label class="control-label">
-                    {{#if errors.year_of_birth}}
-                      {{error-feedback errors.year_of_birth}}
-                    {{/if}} {{t 'components.authorRow.birthyear'}}
-                  </label>
-                  {{input type="text" class="form-control" value=item.newAuthorForm.year_of_birth placeholder=(t 'components.authorRow.birthyear')}}
-                </span>
-              </div>
+              <div class="row bottom-spacing-20">
+                <div class="col-xs-3">
+                  <span class="form-group {{if errors.birthyear 'has-error'}}">
+                    <label class="control-label">
+                      {{#if errors.year_of_birth}}
+                        {{error-feedback errors.year_of_birth}}
+                      {{/if}}
+                      {{t "components.authorRow.birthyear"}}
+                    </label>
+                    {{input
+                      type="text"
+                      class="form-control"
+                      value=item.newAuthorForm.year_of_birth
+                      placeholder=(t "components.authorRow.birthyear")
+                    }}
+                  </span>
+                </div>
 
-              <div class="col-xs-3">
-                <span class="form-group {{if errors.xaccount 'has-error'}}">
-                  <label class="control-label">
-                    {{#if errors.xaccount}}
-                      {{error-feedback errors.xaccount}}
-                    {{/if}} {{t 'components.authorRow.xaccount'}}
-                  </label>
-                  {{input type="text" class="form-control" value=item.newAuthorForm.xaccount placeholder=(t 'components.authorRow.xaccount')}}
-                </span>
+                <div class="col-xs-3 hidden">
+                  <span class="form-group {{if errors.xaccount 'has-error'}}">
+                    <label class="control-label">
+                      {{#if errors.xaccount}}
+                        {{error-feedback errors.xaccount}}
+                      {{/if}}
+                      {{t "components.authorRow.xaccount"}}
+                    </label>
+                    {{input
+                      type="text"
+                      class="form-control"
+                      value=item.newAuthorForm.xaccount
+                      placeholder=(t "components.authorRow.xaccount")
+                    }}
+                  </span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="form-group {{if errors.orcid 'has-error'}}">
+                    <label class="control-label">
+                      {{#if errors.orcid}}
+                        {{error-feedback errors.orcid}}
+                      {{/if}}
+                      {{t "components.authorRow.orcid.label"}}
+                    </label>
+                    {{input
+                      type="text"
+                      class="form-control"
+                      value=item.newAuthorForm.orcid
+                      placeholder=(t "components.authorRow.orcid.placeholder")
+                    }}
+                  </span>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <span class="form-group {{if errors.orcid 'has-error'}}">
-                  <label class="control-label">
-                    {{#if errors.orcid}}
-                      {{error-feedback errors.orcid}}
-                    {{/if}} {{t 'components.authorRow.orcid.label'}}
-                  </label>
-                  {{input type="text" class="form-control" value=item.newAuthorForm.orcid placeholder=(t 'components.authorRow.orcid.placeholder')}}
-                </span>
+              <div class="btn-toolbar">
+                <button
+                  type="submit"
+                  {{action "createAuthor" item}}
+                  class="btn btn-success"
+                >{{t "components.authorRow.btnSave"}}</button>
+                <button
+                  {{action "cancelAddNewAuthorForm" item}}
+                  class="btn btn-danger"
+                >{{t "components.authorRow.btnCancel"}}</button>
               </div>
-            </div>
-            <div class="btn-toolbar">
-              <button type="submit"  {{action 'createAuthor' item}} class="btn btn-success">{{t 'components.authorRow.btnSave'}}</button>
-              <button {{action 'cancelAddNewAuthorForm' item}}class="btn btn-danger">{{t 'components.authorRow.btnCancel'}}</button>
             </div>
           </div>
-        </div>
-      {{else}}
-        <div class="row">
-          <div class="col-xs-5">
-            <label>{{t 'components.authorRow.selectAuthor.label'}}</label>
-            {{select2-adjusted
-                placeholder=(t 'components.authorRow.selectAuthor.placeholder')
-                didNotFindWhatYouWereLookingForStr = (t 'components.authorRow.selectAuthor.didNotFindPersonText')
-                btnText=(t 'components.authorRow.selectAuthor.btnCreateNew')
+        {{else}}
+          <div class="row">
+            <div class="col-xs-5">
+              <label>{{t "components.authorRow.selectAuthor.label"}}</label>
+              {{select2-adjusted
+                placeholder=(t "components.authorRow.selectAuthor.placeholder")
+                didNotFindWhatYouWereLookingForStr=(t
+                  "components.authorRow.selectAuthor.didNotFindPersonText"
+                )
+                btnText=(t "components.authorRow.selectAuthor.btnCreateNew")
                 value=item.selectedAuthor
                 setDefaultQuery=setDefaultQuery
                 defaultQuery=defaultQuery
                 optionLabelPath="presentation_string"
-                typeaheadSearchingText=(t 'components.authorRow.selectAuthor.typeaheadSearchingText')
-                typeaheadNoMatchesText=(t 'components.authorRow.selectAuthor.typeaheadNoMatchesText')
-                formatInputTooShort=(t 'components.authorRow.selectAuthor.formatInputTooShortText')
+                typeaheadSearchingText=(t
+                  "components.authorRow.selectAuthor.typeaheadSearchingText"
+                )
+                typeaheadNoMatchesText=(t
+                  "components.authorRow.selectAuthor.typeaheadNoMatchesText"
+                )
+                formatInputTooShort=(t
+                  "components.authorRow.selectAuthor.formatInputTooShortText"
+                )
                 minimumInputLength=3
-                query=(action 'queryAuthors')
+                query=(action "queryAuthors")
                 allowClear=true
                 zeroResult=item.transformedToNewAuthor
                 cssClass=getCssId
-            }}
-          </div>
-          <div class="col-xs-7">
-            <div class="how-to-sort">
-              <a href="javascript:void();">{{t 'components.authorRow.selectInstitutions.sortingLink'}}</a>
-              <div class="outer-wrapper">
-                <div class="message">
+              }}
+            </div>
+            <div class="col-xs-7">
+              <div class="how-to-sort">
+                <a href="javascript:void();">{{t
+                    "components.authorRow.selectInstitutions.sortingLink"
+                  }}</a>
+                <div class="outer-wrapper">
+                  <div class="message">
+                  </div>
                 </div>
               </div>
+              <label>{{t
+                  "components.authorRow.selectInstitutions.label"
+                }}</label>
+              {{#power-select-multiple
+                options=institutions
+                selected=item.selectedInstitution
+                placeholder=(t
+                  "components.authorRow.selectInstitutions.placeholder"
+                )
+                allowClear=true
+                onchange=(action "authorInstitutionsChanged")
+                searchField="name"
+                as |institution|
+              }}
+                {{institution.name}}
+              {{/power-select-multiple}}
             </div>
-            <label>{{t 'components.authorRow.selectInstitutions.label'}}</label>
-            {{#power-select-multiple
-              options=institutions
-              selected=item.selectedInstitution
-              placeholder=(t 'components.authorRow.selectInstitutions.placeholder')
-              allowClear=true
-              onchange=(action "authorInstitutionsChanged")
-              searchField="name" as |institution|
-            }}
-              {{institution.name}}
-            {{/power-select-multiple}}
           </div>
-        </div>
-        {{#if invalidSelectedDepartments}}
-          <div class="row">
-            <div class="col-xs-7 col-xs-offset-5">
-              <label>{{t 'components.authorRow.invalidSelectedDepartments.label'}}</label>
+          {{#if invalidSelectedDepartments}}
+            <div class="row">
+              <div class="col-xs-7 col-xs-offset-5">
+                <label>{{t
+                    "components.authorRow.invalidSelectedDepartments.label"
+                  }}</label>
                 <div class="alert alert-danger">
                   <ul class="list-unstyled">
                     {{#each invalidSelectedDepartments as |department|}}
-                      <li>{{ department.info }}</li>
+                      <li>{{department.info}}</li>
                     {{/each}}
                   </ul>
                 </div>
+              </div>
             </div>
-          </div>
-        {{/if}}
-        {{#if nonSelectedValidDepartmentSuggestions}}
-          <div class="row">
-            <div class="col-xs-7 col-xs-offset-5">
-              <label>{{t 'components.authorRow.suggestedDepartments.label'}}</label>
+          {{/if}}
+          {{#if nonSelectedValidDepartmentSuggestions}}
+            <div class="row">
+              <div class="col-xs-7 col-xs-offset-5">
+                <label>{{t
+                    "components.authorRow.suggestedDepartments.label"
+                  }}</label>
                 <ul class="list-unstyled">
-                {{#each nonSelectedValidDepartmentSuggestions as |suggestion|}}
-                  <li>
-                    <button class="btn btn-link" {{action 'addInstitution' suggestion.department}}><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ suggestion.name }}</button>
-                  </li>
-                {{/each}}
+                  {{#each
+                    nonSelectedValidDepartmentSuggestions
+                    as |suggestion|
+                  }}
+                    <li>
+                      <button
+                        class="btn btn-link"
+                        {{action "addInstitution" suggestion.department}}
+                      ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        {{suggestion.name}}</button>
+                    </li>
+                  {{/each}}
                 </ul>
+              </div>
             </div>
-          </div>
+          {{/if}}
         {{/if}}
-      {{/if}}
       </div>
       <div class="col-xs-1 compensate-for-label-on-top">
-        <button class="btn btn-danger" {{action 'remove' item.id}}><i class="fa fa-trash-o"></i></button>
+        <button class="btn btn-danger" {{action "remove" item.id}}><i
+            class="fa fa-trash-o"
+          ></i></button>
       </div>
       <div class="col-xs-1 compensate-for-label-on-top">
         {{#unless isThisTheOnlyAuthorRow}}
           <div class="sort-control {{isFirst}} {{isLast}}">
             <div class="sort-control-up">
-              <a href="javascript:void()" {{action 'moveUpOne' item.id}}><i class="fa fa-chevron-up"></i></a>
+              <a href="javascript:void()" {{action "moveUpOne" item.id}}><i
+                  class="fa fa-chevron-up"
+                ></i></a>
             </div>
             <div class="sort-control-down">
-              <a href="javascript:void()" {{action 'moveDownOne' item.id}}><i class="fa fa-chevron-down"></i></a>
+              <a href="javascript:void()" {{action "moveDownOne" item.id}}><i
+                  class="fa fa-chevron-down"
+                ></i></a>
             </div>
           </div>
         {{/unless}}
