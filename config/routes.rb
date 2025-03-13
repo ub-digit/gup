@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :imports
     resources :asset_data
     resources :publication_records
-    resources :person_records
+    resources :person_gup_admin_records
     resources :endnote_files
     resources :artwork_types
 
