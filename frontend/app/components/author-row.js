@@ -383,9 +383,13 @@ export default Ember.Component.extend({
                   year_str += " - " + department.end_year;
                 }
               }
+              let department_name = department.name_sv;
+              if (this.get("i18n.locale") === "en") {
+                department_name = department.name_en;
+              }
               departments_str +=
                 "<span class='department_name'>" +
-                department.name_sv +
+                department_name +
                 "</span>" +
                 "<span> (" +
                 "<span class='department_year'>" +
