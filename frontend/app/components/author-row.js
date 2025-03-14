@@ -46,6 +46,9 @@ export default Ember.Component.extend({
           ),
         })
         .then((model) => {
+          if (model.error) {
+            return Ember.RSVP.reject(model);
+          }
           item.set("selectedAuthor", model);
           item.set("transformedToNewAuthor", false);
         });
@@ -85,7 +88,10 @@ export default Ember.Component.extend({
   },
   selectedAuthorChanged: Ember.observer("item.selectedAuthor", function () {
     // set selectedInstitution to departments of selected author
-    if (this.get("item.selectedAuthor")) {
+    if (
+      this.get("item.selectedAuthor") &&
+      this.get("item.selectedAuthor.departments")
+    ) {
       // find first department in list of departmentIDs
       this.get("item.selectedAuthor.departments").forEach((department) => {
         if (this.get("departmentIds")[department.id] !== undefined) {
@@ -464,8 +470,12 @@ export default Ember.Component.extend({
         "item.newAuthorForm",
         Ember.Object.create({
           // set imported author first and last name to imported author if any
-          firstName: this.get("item.importedAuthorFirstName"),
-          lastName: this.get("item.importedAuthorLastName"),
+          firstName: this.get("item.importedAuthorFirstName")
+            ? this.get("item.importedAuthorFirstName")
+            : "",
+          lastName: this.get("item.importedAuthorLastName")
+            ? this.get("item.importedAuthorLastName")
+            : "",
           year_of_birth: "",
           xaccount: "",
           orcid: "",
@@ -493,15 +503,15 @@ export default Ember.Component.extend({
     createAuthor: function (item) {
       // TODO: Should validate required properties (lastName)!?
       this.get("createAuthor")(item).catch((reason) => {
-        this.sendAction("setMsgHeader", "error", reason.error.msg);
+        //this.sendAction("setMsgHeader", "error", reason.error.msg);
         this.set("errors", reason.error.errors);
         //TODO: fix, schedule after render instead?
-        Ember.run.later(function () {
+        /*         Ember.run.later(function () {
           Ember.$('[data-toggle="popover"]').popover({
             placement: "top",
             html: true,
           });
-        });
+        }); */
       });
     },
     addInstitution: function (institution) {
