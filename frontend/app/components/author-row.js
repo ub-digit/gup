@@ -83,6 +83,18 @@ export default Ember.Component.extend({
       return result;
     }, []);
   },
+  selectedAuthorChanged: Ember.observer("item.selectedAuthor", function () {
+    // set selectedInstitution to departments of selected author
+    if (this.get("item.selectedAuthor")) {
+      // find first department in list of departmentIDs
+      this.get("item.selectedAuthor.departments").forEach((department) => {
+        if (this.get("departmentIds")[department.id] !== undefined) {
+          this.set("item.selectedInstitution", [department]);
+          return;
+        }
+      });
+    }
+  }),
 
   getCssId: Ember.computed("item", function () {
     return "_" + this.get("item.id");
