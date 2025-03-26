@@ -27,7 +27,7 @@ class GupAdminPerson
     documents = GupAdminPerson.get_documents opts
     documents.each_with_index do |document, index|
       puts "Index: #{index}, Person id: #{document[0]}"
-      RestClient.put "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}", JSON.parse('{"data":' + document[1] + '}').to_json ,  content_type: :json
+      RestClient.put "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}&initial_load=true", JSON.parse('{"data":' + document[1] + '}').to_json ,  content_type: :json
     end
   end
 
