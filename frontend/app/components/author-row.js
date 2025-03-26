@@ -379,10 +379,8 @@ export default Ember.Component.extend({
               item.departments_id.forEach((department_id, index) => {
                 departments.push({
                   id: department_id,
-                  name_sv: item.departments_name_sv[index],
-                  name_en: item.departments_name_en[index],
-                  start_year: item.departments_start_year[index],
-                  end_year: item.departments_end_year[index],
+                  name_sv: item.departments_presentation_name_sv[index],
+                  name_en: item.departments_presentation_name_en[index],
                 });
               });
             }
@@ -390,16 +388,6 @@ export default Ember.Component.extend({
             departments.forEach((department, index) => {
               if (index > 2) {
                 return;
-              }
-              let year_str = "";
-              if (department.start_year !== null) {
-                year_str += department.start_year;
-                if (
-                  department.end_year !== null &&
-                  department.end_year !== -1
-                ) {
-                  year_str += " - " + department.end_year;
-                }
               }
               let department_name = department.name_sv;
               if (this.get("i18n.locale") === "en") {
@@ -409,11 +397,6 @@ export default Ember.Component.extend({
                 "<span class='department_name'>" +
                 department_name +
                 "</span>" +
-                "<span> (" +
-                "<span class='department_year'>" +
-                year_str +
-                "</span>" +
-                "<span>)</span>" +
                 "<br/>";
             });
             item.presentation_string = Ember.String.htmlSafe(
