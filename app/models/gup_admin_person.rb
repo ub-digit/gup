@@ -61,26 +61,58 @@ class GupAdminPerson
     return result
   end
 
-  def self.get_department_data departments
-    # Get a list of org db ids
-    org_db_ids = departments.map { |department| department['orgdb_id'] }
-    pp org_db_ids
-    puts "org_db_ids" + org_db_ids.to_s
+  def self.get_department_data person_departments
+    departments_hash = {}
+    Department.where(orgdbid: org_db_ids).each do |department|
+      departments_hash[department.orgdbid] = department
+    end
+    person_departments_sorted = person_departments.map do |person_department|
+      if departments_hash[person_department['orgdb_id']]
+        department = departments_hash[person_department['orgdb_id']]
+        {department_id: department.id,
+         department_name_sv: department.name_sv,
+         department_name_en: department.name_en,
+         department_start_year: department.start_year, 
+         department_end_year: department.end_year
+         person_department_enddate: person_department['end_date'].nil? ? "9999-12-31" : person_department['end_date'],
+         department_presentation_name_sv: department.presentation_name(department_name_sv, person_department['start_date'], person_department['end_date']),
+         department_presentation_name_en: department.presentation_name(department_name_en, person_department['start_date'], person_department['end_date'])
+        }
+      else
+        nil
+      end
+    end.compact.sort_by { |d| d[:person_department_enddate] }.reverse
+
     departments_id = []
     departments_name_sv = []
     departments_name_en = []
     departments_start_year = []
     departments_end_year = []
-    Department.where(orgdbid: org_db_ids.uniq).compact.each do |department|
-      puts department.name_sv
-      puts department.end_year
-      departments_id << department.id
-      departments_name_sv << department.name_sv
-      departments_name_en << department.name_en
-      departments_start_year << department.start_year
-      departments_end_year << (department.end_year.nil? ? -1 : department.end_year)
+    departments_presentation_name_sv = []
+    departments_presentation_name_en = []
+    person_departments_sorted.map do |department|
+      departments_id << department[:department_id]
+      departments_name_sv << department[:department_name_sv]
+      departments_name_en << department[:department_name_en]
+      departments_start_year << department[:department_start_year]
+      departments_end_year << department[:department_end_year]
+      departments_presentation_name_sv << department[:department_presentation_name_sv]
+      departments_presentation_name_en << department[:department_presentation_name_en]
     end
-    return {departments_id: departments_id, departments_name_sv: departments_name_sv, departments_name_en: departments_name_en, departments_start_year: departments_start_year, departments_end_year: departments_end_year}
+    return {departments_id: departments_id, departments_name_sv: departments_name_sv, departments_name_en: departments_name_en, departments_start_year: departments_start_year, departments_end_year: departments_end_year, departments_presentation_name_sv: departments_presentation_name_sv, departments_presentation_name_en: departments_presentation_name_en}
+  end
+
+  def self.presentation_name(name, start_date, end_date)
+    if start_date.nil? && end_date.nil?
+      return name
+    end
+    if !start_date.nil? && end_date.nil?
+      return "#{name} (#{start_date} - )"
+    end
+    if start_date.nil? && !end_date.nil?
+      return "#{name} (- #{end_date})"
+    end
+    return "#{name} (#{start_date} - #{end_date})"
   end
 
   def self.get_primary_person_data names
