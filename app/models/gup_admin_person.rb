@@ -63,6 +63,10 @@ class GupAdminPerson
 
   def self.get_department_data person_departments
     departments_hash = {}
+    org_db_ids = person_departments.map { |d| d['orgdb_id'] }.compact
+    if org_db_ids.empty? 
+      return {departments_id: [], departments_name_sv: [], departments_name_en: [], departments_start_year: [], departments_end_year: [], departments_presentation_name_sv: [], departments_presentation_name_en: []}
+    end
     Department.where(orgdbid: org_db_ids).each do |department|
       departments_hash[department.orgdbid] = department
     end
@@ -73,10 +77,10 @@ class GupAdminPerson
          department_name_sv: department.name_sv,
          department_name_en: department.name_en,
          department_start_year: department.start_year, 
-         department_end_year: department.end_year
+         department_end_year: department.end_year,
          person_department_enddate: person_department['end_date'].nil? ? "9999-12-31" : person_department['end_date'],
-         department_presentation_name_sv: department.presentation_name(department_name_sv, person_department['start_date'], person_department['end_date']),
-         department_presentation_name_en: department.presentation_name(department_name_en, person_department['start_date'], person_department['end_date'])
+         department_presentation_name_sv: self.presentation_name(department.name_sv, person_department['start_date'], person_department['end_date']),
+         department_presentation_name_en: self.presentation_name(department.name_en, person_department['start_date'], person_department['end_date'])
         }
       else
         nil
