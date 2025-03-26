@@ -93,10 +93,10 @@ export default Ember.Component.extend({
       this.get("item.selectedAuthor.departments")
     ) {
       // find first department in list of departmentIDs
-      this.get("item.selectedAuthor.departments").forEach((department) => {
+      this.get("item.selectedAuthor.departments").every((department) => {
         if (this.get("departmentIds")[department.id] !== undefined) {
           this.set("item.selectedInstitution", [department]);
-          return;
+          return false;
         }
       });
     }
