@@ -32,7 +32,8 @@ class GupAdminPerson
   end
 
   def self.search query
-    response = RestClient.get "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/persons?query=#{query}&api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}"
+    encoded_query = URI.encode(query) # encode the query
+    response = RestClient.get "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/persons?query=#{encoded_query}&api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}"
     if response.code != 200
       # TBD More error handling
       return nil
