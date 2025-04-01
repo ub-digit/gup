@@ -68,7 +68,11 @@ class GupAdminPerson
     if org_db_ids.empty? 
       return {departments_id: [], departments_name_sv: [], departments_name_en: [], departments_start_year: [], departments_end_year: [], departments_presentation_name_sv: [], departments_presentation_name_en: []}
     end
-    Department.where(orgdbid: org_db_ids).each do |department|
+    # Get the departments from the database,
+    # if there are multiple rows for the orgdbid,
+    # the one with the latest end_year shall override the others
+    # If there is no end year for a department, consider it as the latest
+    Department.where(orgdbid: org_db_ids).order("COALESCE(end_year, '9999') asc").each do |department|
       departments_hash[department.orgdbid] = department
     end
     person_departments_sorted = person_departments.map do |person_department|
