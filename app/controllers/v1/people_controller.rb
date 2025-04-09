@@ -102,6 +102,39 @@ class V1::PeopleController < V1::V1Controller
               end
             end
           end
+        # This block can be deleted when the person admin page in frontend is removed
+        else
+          if params[:person] && params[:person][:xaccount]
+            xaccount_source = Source.find_by_name("xkonto")
+
+            # Find any identifier of type "xkonto"
+            old_xaccount = person.identifiers.find { |i| i.source_id == xaccount_source.id }
+            if old_xaccount
+              if params[:person][:xaccount].present?
+                old_xaccount.update_attribute(:value, params[:person][:xaccount])
+              else
+                old_xaccount.destroy
+              end
+            else
+              person.identifiers.create(source_id: xaccount_source.id, value: params[:person][:xaccount])
+            end
+          end
+
+          if params[:person] && params[:person][:orcid]
+            orcid_source = Source.find_by_name("orcid")
+
+            # Find any identifier of type "orcid"
+            old_orcid = person.identifiers.find { |i| i.source_id == orcid_source.id }
+            if old_orcid
+              if params[:person][:orcid].present?
+                old_orcid.update_attribute(:value, params[:person][:orcid])
+              else
+                old_orcid.destroy
+              end
+            else
+              person.identifiers.create(source_id: orcid_source.id, value: params[:person][:orcid])
+            end
+          end
         end
 
         if !skip_update_search_engine
