@@ -78,35 +78,60 @@ class V1::PeopleController < V1::V1Controller
 
     if person.update_attributes(permitted_params)
       if person.present?
-        if params[:person] && params[:person][:xaccount]
-          xaccount_source = Source.find_by_name("xkonto")
-
-          # Find any identifier of type "xkonto"
-          old_xaccount = person.identifiers.find { |i| i.source_id == xaccount_source.id }
-          if old_xaccount
-            if params[:person][:xaccount].present?
-              old_xaccount.update_attribute(:value, params[:person][:xaccount])
-            else
-              old_xaccount.destroy
+        if params[:person] && params[:person][:identifiers]
+          # Make this in a transaction
+          ActiveRecord::Base.transaction do
+            # Remove all identifiers for this person
+            person.identifiers.each do |identifier|
+              identifier.destroy
             end
-          else
-            person.identifiers.create(source_id: xaccount_source.id, value: params[:person][:xaccount])
+            # Create new identifiers from params
+            params[:person][:identifiers].each do |identifier|
+              # Identifiers are delivered as a hash with code as key and value as value
+              # Code must me translated by the mapping in GUP_ADMIN_PERSON_IDENTIFIERS_MAPPING before use it i GUP
+              gup_admin_code = identifier[:code]
+              code = GUP_ADMIN_PERSON_IDENTIFIERS_MAPPING[gup_admin_code]
+              value = identifier[:value]
+              if code && value.present?
+                source = Source.find_by_name(code)
+                if source
+                  person.identifiers.create(source_id: source.id, value: value)
+                end
+              end
+            end
           end
-        end
+        # This block can be deleted when the person admin page in frontend is removed
+        else
+          if params[:person] && params[:person][:xaccount]
+            xaccount_source = Source.find_by_name("xkonto")
 
-        if params[:person] && params[:person][:orcid]
-          orcid_source = Source.find_by_name("orcid")
-
-          # Find any identifier of type "orcid"
-          old_orcid = person.identifiers.find { |i| i.source_id == orcid_source.id }
-          if old_orcid
-            if params[:person][:orcid].present?
-              old_orcid.update_attribute(:value, params[:person][:orcid])
+            # Find any identifier of type "xkonto"
+            old_xaccount = person.identifiers.find { |i| i.source_id == xaccount_source.id }
+            if old_xaccount
+              if params[:person][:xaccount].present?
+                old_xaccount.update_attribute(:value, params[:person][:xaccount])
+              else
+                old_xaccount.destroy
+              end
             else
-              old_orcid.destroy
+              person.identifiers.create(source_id: xaccount_source.id, value: params[:person][:xaccount])
             end
-          else
-            person.identifiers.create(source_id: orcid_source.id, value: params[:person][:orcid])
+          end
+
+          if params[:person] && params[:person][:orcid]
+            orcid_source = Source.find_by_name("orcid")
+
+            # Find any identifier of type "orcid"
+            old_orcid = person.identifiers.find { |i| i.source_id == orcid_source.id }
+            if old_orcid
+              if params[:person][:orcid].present?
+                old_orcid.update_attribute(:value, params[:person][:orcid])
+              else
+                old_orcid.destroy
+              end
+            else
+              person.identifiers.create(source_id: orcid_source.id, value: params[:person][:orcid])
+            end
           end
         end
 
