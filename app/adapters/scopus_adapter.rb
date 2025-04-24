@@ -55,13 +55,13 @@ class ScopusAdapter
   def self.authors(xml)
     authors = []
     sequences = []
-    xml.search('//entry/author').map do |author|
+    xml.search('//abstracts-retrieval-response/authors/author').map do |author|
       sequence = author.attr('seq')
       next if sequences.include? sequence # Omit author if it is a duplication
 
       first_name = author.search('given-name').text
       last_name = author.search('surname').text
-      full_author = author.search('authname').text
+      full_author = author.search('indexed-name').text
       authors << {
         first_name: first_name,
         last_name: last_name,
@@ -74,7 +74,7 @@ class ScopusAdapter
  
   # Try to match publication type from xml data into GUP type
   def self.publication_type_suggestion(xml)
-    original_pubtype = xml.search('//feed/entry/subtype').text
+    original_pubtype = xml.search('//abstracts-retrieval-response/coredata/subtype').text
     original_pubtype = original_pubtype.downcase.gsub(/[^a-z]/,'')
     return PUBLICATION_TYPES[original_pubtype]
   end
@@ -84,48 +84,39 @@ class ScopusAdapter
 
     xml = Nokogiri::XML(@xml).remove_namespaces!
     
-    if xml.search('//feed/entry/error').text.present?
-      error_msg = xml.search('//feed/entry/error').text
+    if xml.search('//service-error/status/statusText').text.present?
+      error_msg = xml.search('//service-error/status/statusText').text
       puts "Error in ScopusAdapter: #{error_msg}"
       errors.add(:generic, "Error in ScopusAdapter: #{error_msg}")
       return
     end  
 
     @pubyear = ""
-    if xml.search('//entry/coverDate').text.present?
-      @pubyear = xml.search('//entry/coverDate').text.byteslice(0..3)
+    if xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/publicationdate/year').text.present?
+      @pubyear = xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/publicationdate/year').text
     end
 
-    @abstract = xml.search('//entry/description').text
+    @abstract = xml.search('//abstracts-retrieval-response/item/bibrecord/head/abstracts/abstract/para').text
 
-    @keywords = "" 
-    if xml.search('//entry/authkeywords').text.present?
-      @keywords = xml.search('//entry/authkeywords').text.split(' | ').join(', ')
-    end
+    @keywords = xml.search('//abstracts-retrieval-response/authkeywords/author-keywordtest').map do |keyword|
+      keyword.text
+    end.join(", ")
 
-    # Take care of author ids TBD...
+    @title = xml.search('//abstracts-retrieval-response/coredata/title').text
+    @issn = fix_issn(xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/issn[@type="print"]').text) if xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/issn[@type="print"]').text.present?
+    @eissn = fix_issn(xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/issn[@type="electronic"]').text) if xml.search('//abstracts-retrieval-response/item/bibrecord/head/source/issn[@type="electronic"]').text.present?
+    @sourcetitle = xml.search('//abstracts-retrieval-response/coredata/publicationName').text
+    @sourcevolume = xml.search('//abstracts-retrieval-response/coredata/volume').text
+    @sourcepages =xml.search('//abstracts-retrieval-response/coredata/pageRange').text
 
-    #@author = xml.search('//entry/author/authname').map do |author|
-    #  [author.text]
-    #end.join("; ")
+    @extid = xml.search('//abstracts-retrieval-response/coredata/identifier').text
 
-
-    @title = xml.search('//entry/title').text
-    @issn = fix_issn(xml.search('//entry/issn').text) if xml.search('//entry/issn').text.present?
-    @eissn = fix_issn(xml.search('//entry/eIssn').text) if xml.search('//entry/eIssn').text.present?
-    @sourcetitle = xml.search('//entry/publicationName').text
-    @sourcevolume = xml.search('//entry/volume').text
-    @sourcepages =xml.search('//entry/pageRange').text
-
-    @extid = xml.search('//entry/identifier').text
-
-
-    @publication_links = [{url: DOI_URL_PREFIX + xml.search('//entry/doi').text, position: 1}]
+    @publication_links = [{url: DOI_URL_PREFIX + xml.search('//abstracts-retrieval-response/coredata/doi').text, position: 1}]
 
     # Parse publication_identifiers
     @publication_identifiers = []
     ## Parse DOI
-    doi_value = xml.search('//entry/doi').text
+    doi_value = xml.search('//abstracts-retrieval-response/coredata/doi').text
     if doi_value.present?
       @publication_identifiers << {
         identifier_value: doi_value,
@@ -134,24 +125,19 @@ class ScopusAdapter
     end
 
     ## Parse Scopus-ID
-    scopus_value = xml.search('//entry/identifier').text
+    scopus_value = xml.search('//abstracts-retrieval-response/coredata/identifier').text
     if scopus_value.present? && (scopus_value.include? ("SCOPUS_ID:"))
       scopus_value.slice! ("SCOPUS_ID:")
       @publication_identifiers << {
         identifier_value: scopus_value,
         identifier_code: 'scopus-id'
       }
-
     end
   end
 
   def self.find id
-
-    headers = {"X-ELS-APIKey" => APIKEY, "X-ELS-ResourceVersion" => "XOCS", "Accept" => "application/atom+xml"}
-    response = RestClient.get "https://api.elsevier.com/content/search/index:SCOPUS?count=1&start=0&view=COMPLETE&query=DOI(#{id})", headers
-
-    #puts response
-    #puts response.code
+    headers = {"X-ELS-APIKey" => APIKEY, "X-ELS-ResourceVersion" => "XOCS", "Accept" => "application/xml"}
+    response = RestClient.get "https://api.elsevier.com/content/abstract/doi/#{id}", headers
     item = self.new doi:id, xml: response
     item.datasource = 'scopus'
     item.sourceid = id
