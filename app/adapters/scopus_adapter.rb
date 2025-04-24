@@ -59,9 +59,9 @@ class ScopusAdapter
       sequence = author.attr('seq')
       next if sequences.include? sequence # Omit author if it is a duplication
 
-      first_name = author.search('given-name').text
-      last_name = author.search('surname').text
-      full_author = author.search('indexed-name').text
+      first_name = author.search('preferred-name/given-name').text
+      last_name = author.search('preferred-name/surname').text
+      full_author = author.search('preferred-name/indexed-name').text
       authors << {
         first_name: first_name,
         last_name: last_name,
