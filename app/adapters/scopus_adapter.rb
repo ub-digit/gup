@@ -98,7 +98,7 @@ class ScopusAdapter
 
     @abstract = xml.search('//abstracts-retrieval-response/item/bibrecord/head/abstracts/abstract/para').text
 
-    @keywords = xml.search('//abstracts-retrieval-response/authkeywords/author-keywordtest').map do |keyword|
+    @keywords = xml.search('//abstracts-retrieval-response/authkeywords/author-keyword').map do |keyword|
       keyword.text
     end.join(", ")
 
