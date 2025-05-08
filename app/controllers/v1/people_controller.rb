@@ -19,35 +19,66 @@ class V1::PeopleController < V1::V1Controller
 
   api :POST, '/people', 'Creates a person object including identifiers if they exist'
   def create
-    # Super ugly hack, since front-end cannot send query params on save/update
-    skip_update_search_engine = false
-    if params[:person][:skip_update_search_engine]
-      skip_update_search_engine = params[:person][:skip_update_search_engine]
-      params[:person].delete :skip_update_search_engine
+    # Creating a new person will always be done trough GUP Admin
+
+    # Get first name and last name and orcid from params
+    first_name = params[:person][:first_name]
+    last_name = params[:person][:last_name]
+
+    if first_name.blank? || last_name.blank?
+      error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "people.errors.create_error"}: #{params[:id]}", "First name and last name are required")
+      render_json
+      return
     end
 
-    person_params = permitted_params
-    parameters = ActionController::Parameters.new(person_params)
-    person = Person.new(parameters.permit(:first_name, :last_name, :year_of_birth, :skip_update_search_engine))
+    orcid = params[:person][:orcid]
 
-    if person.save
-      if params[:person][:xaccount].present?
-        Identifier.create(person_id: person.id, source_id: Source.find_by_name('xkonto').id, value: params[:person][:xaccount])
-      end
-      if params[:person][:orcid].present?
-        Identifier.create(person_id: person.id, source_id: Source.find_by_name('orcid').id, value: params[:person][:orcid])
-      end
-      url = url_for(controller: 'people', action: 'create', only_path: true)
-      headers['location'] = "#{url}/#{person.id}"
-      @response[:person] = person.as_json
-      presentation_string = person.presentation_string
-      @response[:person][:presentation_string] = presentation_string
-      if !skip_update_search_engine
-        PeopleSearchEngine.update_search_engine([].push(person))
-      end
-    else
-      error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "people.errors.create_error"}", person.errors.messages)
+    # The id will be created from the GUP Admin
+    request_person_hash = {names: [{first_name: first_name, last_name: last_name, gup_person_id: nil}]}
+    if orcid.present?
+      request_person_hash[:identifiers] = [{code: 'ORCID', value: orcid}]
     end
+
+    begin
+      result = GupAdminPerson.put_to_index(request_person_hash)
+      pp result
+      pp result.code
+      pp result.body
+
+      # Check result from GUP Admin, result should be 200 och 201 and body should be of type json
+      if result.code != 200 && result.code != 201
+        error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "people.errors.create_error"}: #{params[:id]}", "Error creating person in GUP Admin: #{result.body}")
+        render_json
+        return
+      end
+
+      # Get person data
+
+      body = JSON.parse(result.body)
+      # Get the primary name
+      primary_name = body['data']['names'].find { |name| name['primary'] }
+      # Check that primary_name is not nil TBD
+
+      # Create respone hash for presentation in the frontend
+      id = primary_name['gup_person_id']
+      first_name = primary_name['first_name']
+      last_name = primary_name['last_name']
+      year_of_birth = body['data']['year_of_birth']
+      created_at = body['data']['created_at']
+      updated_at = body['data']['updated_at']
+      identifiers = body['data']['identifiers'].map { |identifier| {source_name: GUP_ADMIN_PERSON_IDENTIFIERS_MAPPING[identifier['code']], value: identifier['value']} }
+      presentation_string = "#{first_name} #{last_name}"
+      if identifiers.any?
+        presentation_string += " (#{identifiers.map { |i| "#{i[:value]}" }.join(', ')})"
+      end
+    rescue => e
+      error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "people.errors.create_error"}: #{params[:id]}", "Error creating person in GUP Admin: #{e.message}")
+      render_json
+      return
+    end
+
+    response_person_hash = {id: id, year_of_birth: year_of_birth, first_name: first_name, last_name: last_name, created_at: created_at, updated_at: updated_at, identifiers: identifiers, alternative_names: [], presentation_string: presentation_string}
+    @response[:person] = response_person_hash
     render_json(201)
   end
 

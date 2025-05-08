@@ -12,11 +12,19 @@ class GupAdminPerson
     rows = ActiveRecord::Base.connection.exec_query(sql).rows
   end
 
-  def self.put_to_index person_id
+  def self.put_to_index person
+    pp person
     should_abort = !APP_CONFIG.key?('gup_admin_settings') || !APP_CONFIG['gup_admin_settings'].key?('person') || !APP_CONFIG['gup_admin_settings']['person']['enable']
     return if should_abort
-    document = GupAdminPerson.get_document person_id
-    RestClient.put "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}", JSON.parse('{"data":' + document + '}').to_json ,  content_type: :json
+    # If person is of type integer, get the document from the database json view
+    if person.is_a?(Integer)
+      document = GupAdminPerson.get_document person
+    else
+      # If person is a hash, use it as the document
+      document = person.to_json
+    end
+    respose = RestClient.put "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/persons/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}", JSON.parse('{"data":' + document + '}').to_json ,  content_type: :json
+    return respose
   end
 
   def self.delete_from_index person_id
