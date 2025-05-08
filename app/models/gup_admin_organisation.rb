@@ -19,7 +19,7 @@ class GupAdminOrganisation
       staffnotes = nil
       orgnr = GupAdminOrganisation.faculty_id_mapping[id][:orgnr]
       orgdbid = GupAdminOrganisation.faculty_id_mapping[id][:orgdbid]
-      data = {id: id, name_sv: name_sv, name_en: name_en, start_year: start_year, end_year: end_year, staffnotes: staffnotes, orgnr: orgnr, orgdbid: orgdbid}
+      data = {id: id, name_sv: name_sv, name_en: name_en, start_year: start_year, end_year: end_year, is_internal: is_internal, staffnotes: staffnotes, orgnr: orgnr, orgdbid: orgdbid}
       parent_id = nil
       is_faculty = true
       document = {id: id, parent_id: parent_id, is_faculty: is_faculty, data: data}
@@ -46,7 +46,7 @@ class GupAdminOrganisation
       staffnotes = department.staffnotes
       orgnr = department.orgnr
       orgdbid = department.orgdbid
-      data = {id: id, name_sv: name_sv, name_en: name_en, start_year: start_year, end_year: end_year, staffnotes: staffnotes, orgnr: orgnr, orgdbid: orgdbid}
+      data = {id: id, name_sv: name_sv, name_en: name_en, start_year: start_year, end_year: end_year, is_internal: is_internal, staffnotes: staffnotes, orgnr: orgnr, orgdbid: orgdbid}
       if department.parentid
         parent_id = department.parentid
       elsif department.faculty_id
