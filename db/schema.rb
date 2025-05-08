@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20240912070336) do
+ActiveRecord::Schema.define(version: 20250507150306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20240912070336) do
     t.text     "staffnotes"
     t.text     "orgnr"
     t.boolean  "is_internal",   default: true
-    t.text     "orgdbid"
+    t.string   "orgdbid"
   end
 
   add_index "departments", ["end_year"], name: "index_departments_on_end_year", using: :btree
@@ -482,6 +482,33 @@ ActiveRecord::Schema.define(version: 20240912070336) do
     t.text     "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tmp_affiliated_person_ids", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "tmp_delete_person_ids", id: false, force: :cascade do |t|
+    t.integer "id_from_people"
+  end
+
+  create_table "tmp_delete_person_ids_2", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "tmp_delete_persons", id: false, force: :cascade do |t|
+    t.integer "id_from_people"
+    t.integer "id_from_people2publications"
+    t.text    "xkonto"
+    t.text    "orcid"
+    t.text    "cid"
+  end
+
+  create_table "tmp_delete_persons_2", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.text    "xkonto"
+    t.text    "orcid"
+    t.text    "cid"
   end
 
   create_table "users", force: :cascade do |t|
