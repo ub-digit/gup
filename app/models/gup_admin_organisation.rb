@@ -83,6 +83,7 @@ class GupAdminOrganisation
       121 => {orgdbid: "OD-1-97", orgnr: "10"},
       122 => {orgdbid: "OD-1-229", orgnr: "05"},
       141 => {orgdbid: "OD-1-126", orgnr: "98"}, # ???
+      142 => {orgdbid: "OD-1-221", orgnr: "01"},
       665 => {orgdbid: nil, orgnr: nil} # ??? No faculty affiliation
     }
 
