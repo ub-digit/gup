@@ -173,6 +173,7 @@ en:
 
   departments:
     errors:
+      update_error: "Could not update department"
       invalid: "Faculty is invalid"
       end_year_invalid: "End year is invalid"
 

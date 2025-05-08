@@ -172,6 +172,7 @@ sv:
 
   departments:
     errors:
+      update_error: "Det gick inte att uppdatera institutionen"
       invalid: "Institutionen är inte giltig"
       end_year_invalid: "Slutår ej giltigt"
 

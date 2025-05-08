@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :data_sources
     resources :series
     resources :projects
+    get "departments/get_next_id" => "departments#get_next_id"
     resources :departments
     resources :categories
     resources :languages

@@ -8,6 +8,7 @@ class Department < ActiveRecord::Base
   validates_presence_of :name_sv
   validates_presence_of :name_en
   validates_presence_of :start_year
+  validates :start_year, numericality: {allow_nil: true, only_integer: true, greater_than_or_equal_to: 1900, less_than_or_equal_to: 9999}
   validates :end_year, numericality: {allow_nil: true, only_integer: true, greater_than_or_equal_to: 1900, less_than_or_equal_to: 9999}
 
   def as_json(opts={})

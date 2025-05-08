@@ -38,7 +38,21 @@ class V1::DepartmentsController < ApplicationController
 
   api :PUT, '/departments/:id', 'Update one department'
   def update
-    dep = Department.find_by_id(params[:id])
+    department_id = params[:id]
+    dep = Department.find_by_id(department_id)
+
+    # If department is not found, create a new department object with the given id, this is called from Gup Admin
+    # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint before calling this endpoint
+    if dep.nil?
+      # To aviod sequence out of sync, we need to make a  check that the id is below the current sequence value
+      max_id = ActiveRecord::Base.connection.execute("SELECT last_value FROM departments_id_seq").first['last_value']
+      if department_id.to_i > max_id.to_i
+        error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "department.errors.update_error"}: #{department_id}", "Department id is out of sync with sequence")
+        render_json
+        return
+      end
+      dep = Department.new({id: department_id})
+    end
     if dep
       if dep.update_attributes(permitted_params_for_update)
         @response[:department] = dep.as_json
@@ -64,9 +78,17 @@ class V1::DepartmentsController < ApplicationController
     render_json
   end
 
+  api :GET, '/departments/get_next_id', 'Returns a new department id using nextval from the sequence departments_id_seq'
+  def get_next_id
+    # Get the next available id by using the sequence
+    next_id = ActiveRecord::Base.connection.execute("SELECT nextval('departments_id_seq')").first['nextval']
+    @response[:id] = next_id
+    render_json
+  end
+
   private
   def permitted_params_for_update
-    params.require(:department).permit(:end_year)
+    params.require(:department).permit(:end_year, :start_year, :name_sv, :name_en, :orgnr, :orgdbid)
   end
 
   def permitted_params_for_create
