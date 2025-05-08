@@ -17,6 +17,11 @@ namespace :gup_admin do
     GupAdminPerson.index_all limit: limit.to_i, offset: offset.to_i
   end
 
+  desc "Put organisations to GUP admin backend"
+  task :index_all_organisations => :environment do
+    GupAdminOrganisation.index_all
+  end
+
   desc "Sync updated publications with GUP admin"
   task :sync_updated_publications => :environment do
     days = ENV['DAYS']
