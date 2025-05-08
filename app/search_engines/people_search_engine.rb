@@ -62,11 +62,6 @@ class PeopleSearchEngine < SearchEngine
     search_engine.add(data: document_list)
   ensure
     begin
-      person_list.each{|person|GupAdminPerson.put_to_index(person.id)}
-    rescue => e
-      log_exception(e, "GUPADMIN")
-    end
-    begin
       search_engine.commit
     rescue => e
       log_exception(e, "SOLR")
@@ -77,11 +72,6 @@ class PeopleSearchEngine < SearchEngine
     search_engine = PeopleSearchEngine.new
     search_engine.delete_from_index(ids: person_id)
   ensure
-    begin
-      GupAdminPerson.put_to_index(person_id)
-    rescue => e
-      log_exception(e, "GUPADMIN")
-    end
     begin
       search_engine.commit
     rescue => e
