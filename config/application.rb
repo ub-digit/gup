@@ -10,6 +10,8 @@ require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+require_relative '../lib/ecs_json_formatter'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -27,6 +29,14 @@ module Guppi
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.semantic_logger.application = "gup"
+    config.semantic_logger.environment = ENV["STACK_NAME"] || Rails.env
+    config.log_level = ENV["LOG_LEVEL"] || :info
+
+    config.rails_semantic_logger.add_file_appender = false
+    config.semantic_logger.add_appender(io: $stdout, formatter: ECSJsonFormatter.new)
+
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.autoload_paths << Rails.root.join('app/oai_documents')
