@@ -32,11 +32,19 @@ module Guppi
 
     config.semantic_logger.application = "gup"
     config.semantic_logger.environment = ENV["STACK_NAME"] || Rails.env
-    config.log_level = ENV["LOG_LEVEL"] || :info
+
+    formatter = :color
+    default_log_level = :debug
+
+    if Rails.env != 'development' && Rails.env != 'test'
+      formatter = ECSJsonFormatter.new
+      default_log_level = :info
+    end
+
+    config.log_level = ENV["LOG_LEVEL"] || default_log_level
+    config.semantic_logger.add_appender(io: $stdout, formatter: formatter)
 
     config.rails_semantic_logger.add_file_appender = false
-    config.semantic_logger.add_appender(io: $stdout, formatter: ECSJsonFormatter.new)
-
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.autoload_paths << Rails.root.join('app/oai_documents')
