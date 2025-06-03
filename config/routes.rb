@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get "affiliations" => "affiliations#affiliations_for_actor"
     get "journals" => "journals#search"
     get "public_publication_lists" => "published_publications#index_public"
+    put "organisations" => "organisations#update_batch"
   end
 
   get "oai" => "oai/oai#index"
