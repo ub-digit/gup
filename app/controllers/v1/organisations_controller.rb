@@ -25,19 +25,15 @@ class V1::OrganisationsController < V1::V1Controller
     #   "is_internal": true
     # }
 
-    # Get lists of exisiting ids for departments and faculties (assume there are no conflict between them)
-    organisation_ids = Faculty.all.pluck(:id) + Department.all.pluck(:id)
-
     # Create all organisations
     # If the hierarchy is empty, the organisation is a faculty
     # If the hierarchy is not empty, the organisation is a department
     # If it is a department, and if there is exactly one element in the hierarchy, this element is the faculty id, and the departmen has no parent
     # If it is a department, and if there are more than one element in the hierarchy, the first element is the faculty id, and last element is the parent id
-    # If the incoming id exists in organisation_ids, update the existing organisation
-    # If the incoming id does not exist in organisation_ids, create a new organisation
     # The faculty model has attributes id, name_sv and name_en only
     # The department modea has all attributes above
     organisations.each do |organisation|
+      organisation_id = organisation[:id].to_i
       # If the organisation is wrapped in an _source key, unwrap it
       if organisation[:_source]
         o = organisation
@@ -49,7 +45,20 @@ class V1::OrganisationsController < V1::V1Controller
         # Check if the organisation id exists in the organisation_ids list
         # If it does, update the existing organisation
         # If it does not, create a new organisation
-        faculty = Faculty.find_or_initialize_by(id: organisation[:id])
+        faculty = Faculty.find_by_id(organisation_id)
+
+        # If department is not found, create a new department object with the given id, this is called from Gup Admin
+        # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint before calling this endpoint
+        if faculty.nil?
+          # To aviod sequence out of sync, we need to make a check that the id is below the current sequence value
+          max_id = ActiveRecord::Base.connection.execute("SELECT last_value FROM departments_id_seq").first['last_value']
+          if organisation_id > max_id.to_i
+            error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "department.errors.update_error"}: #{organisation_id}", "Department id is out of sync with sequence")
+            render_json
+            return
+          end
+          faculty = Faculty.new(id: organisation_id)
+        end
 
         faculty.name_sv = organisation[:name_sv]
         faculty.name_en = organisation[:name_en]
@@ -57,7 +66,21 @@ class V1::OrganisationsController < V1::V1Controller
         pp faculty
       else
         # Department
-        department = Department.find_or_initialize_by(id: organisation[:id])
+        department = Department.find_by_id(organisation_id)
+
+        # If department is not found, create a new department object with the given id, this is called from Gup Admin
+        # NOTE: This assumes that the id is reserved in advance by using the get_next_id endpoint before calling this endpoint
+        if department.nil?
+          # To aviod sequence out of sync, we need to make a check that the id is below the current sequence value
+          max_id = ActiveRecord::Base.connection.execute("SELECT last_value FROM departments_id_seq").first['last_value']
+          if organisation_id > max_id.to_i
+            error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "department.errors.update_error"}: #{organisation_id}", "Department id is out of sync with sequence")
+            render_json
+            return
+          end
+          department = Department.new(id: organisation_id)
+        end
+
         department.name_sv = organisation[:name_sv]
         department.name_en = organisation[:name_en]
         department.orgnr = organisation[:orgnr]
