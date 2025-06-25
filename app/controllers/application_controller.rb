@@ -100,4 +100,8 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
+
+  def params_cache_key
+    params.map { |k, v| :"#{k}=#{v}" }.join
+  end
 end

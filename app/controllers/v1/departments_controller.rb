@@ -5,34 +5,37 @@ class V1::DepartmentsController < ApplicationController
   param :year, :number, :desc => 'Limits the search to only include departments which were active during given year.'
   param :search_term, String, :desc => 'Filter list based on provided search string'
   def index
-    department_list = Department.all
-    if params[:year]
-      department_list = department_list.where("start_year IS NULL OR start_year <= ?",params[:year].to_i).where("end_year IS NULL OR end_year >= ?",params[:year].to_i)
+    cache_key = "departments" + params_cache_key
+    departments = Rails.cache.fetch(cache_key) do
+      department_list = Department.all
+      if params[:year]
+        department_list = department_list.where("start_year IS NULL OR start_year <= ?",params[:year].to_i).where("end_year IS NULL OR end_year >= ?",params[:year].to_i)
+      end
+
+      if params[:search_term].present?
+        query = params[:search_term].downcase
+        department_list = department_list
+          .where("lower(name_sv) LIKE (?) OR lower(name_en) LIKE (?)",
+                 "%#{query}%",
+                 "%#{query}%")
+      end
+
+      brief = params[:brief]
+      if brief && brief == 'true'
+        options = {brief: true}
+      else
+        options = {}
+      end
+
+      departments = []
+      if I18n.locale == :en
+        department_list = department_list.order(name_en: :asc)
+      else
+        department_list = department_list.order(name_en: :asc)
+      end
+      department_list.as_json(options)
     end
-
-    if params[:search_term].present?
-      query = params[:search_term].downcase
-      department_list = department_list
-                       .where("lower(name_sv) LIKE (?) OR lower(name_en) LIKE (?)",
-                              "%#{query}%",
-                              "%#{query}%")
-    end
-
-
-
-    brief = params[:brief]
-    if brief && brief == 'true'
-      options = {brief: true}
-    else
-      options = {}
-    end
-
-    if I18n.locale == :en
-      @response[:departments] = department_list.order(name_en: :asc).as_json(options)
-    else
-      @response[:departments] = department_list.order(name_sv: :asc).as_json(options)
-    end
-
+    @response[:departments] = departments
     render_json
   end
 
@@ -41,6 +44,7 @@ class V1::DepartmentsController < ApplicationController
     dep = Department.find_by_id(params[:id])
     if dep
       if dep.update_attributes(permitted_params_for_update)
+        Rails.cache.delete_matched('departments*')
         @response[:department] = dep.as_json
       else
         error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "departments.errors.invalid"}: #{params[:id]}")
@@ -55,6 +59,7 @@ class V1::DepartmentsController < ApplicationController
   def create
     dep = Department.new(permitted_params_for_create)
     if dep.save
+      Rails.cache.delete_matched('departments*')
       @response[:department] = dep.as_json
       render_json(201)
       return

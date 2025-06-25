@@ -43,6 +43,7 @@ class V1::DraftsController < V1::V1Controller
         end
         create_publication_identifiers!(publication_version: pub.current_version)
         create_publication_links!(publication_version: pub.current_version)
+        Rails.cache.delete_matched('biblreview_publications*')
       rescue V1::ControllerError => error
         message = error.message.present? ? error.message : "#{I18n.t "publications.errors.create_error"}"
         error_msg(error.code, message, error.errors)
@@ -225,6 +226,7 @@ class V1::DraftsController < V1::V1Controller
             end
             create_publication_identifiers!(publication_version: publication_version_new)
             create_publication_links!(publication_version: publication_version_new)
+            Rails.cache.delete_matched('biblreview_publications*')
           rescue V1::ControllerError => error
             # @TODO: should not be ...errors.update_error?
             message = error.message.present? ? error.message : "#{I18n.t "publications.errors.create_error"}"
@@ -273,6 +275,7 @@ class V1::DraftsController < V1::V1Controller
     end
 
     if publication.update_attribute(:deleted_at, DateTime.now)
+      Rails.cache.delete_matched('biblreview_publications*')
       render_json
     else
       error_msg(ErrorCodes::VALIDATION_ERROR,"#{I18n.t "publications.errors.delete_error"}: #{params[:id]}")

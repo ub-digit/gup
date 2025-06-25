@@ -20,6 +20,7 @@ services:
       - secrets.env
     depends_on:
       - gup-db
+      - gup-redis
     environment:
       - RAILS_ENV=${GUP_ENVIRONMENT}
       - RAILS_PORT=${GUP_RAILS_PORT}
@@ -86,6 +87,13 @@ services:
       - gup-db
     ports:
       - ${GUP_SOLR_PORT}:8983
+  gup-redis:
+    restart: always
+    image: redis:8.2-m01-bookworm
+    volumes:
+      - ${GUP_REDIS_VOLUME_SOURCE}:/data
+    networks:
+      - gup
 networks:
   gup:
     name: gup
