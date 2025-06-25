@@ -64,6 +64,11 @@ services:
       - >
         ../solr/config/solrconfig.xml
         :/opt/solr/server/solr/mycores/gup-publications/conf/solrconfig.xml
+  gup-redis:
+    volumes:
+      - redisdata:/data
 volumes:
   dbdata:
     name: gup
+  redisdata:
+    name: gup-redis
