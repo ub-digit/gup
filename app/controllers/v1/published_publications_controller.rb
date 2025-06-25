@@ -93,54 +93,63 @@ class V1::PublishedPublicationsController < ApplicationController
 
   api :GET, '/published_publications', 'Returns a list of published publications based on filter parameters'
   def index
-    # Initialize filter parameters
-    actor = params[:actor]
-    registrator = params[:registrator]
+    cache_key = 'published_publications' + params_cache_key
 
-    # If no parameters are given, default to setting actor as current_user
-    if actor.nil? && registrator.nil?
-      actor = 'logged_in_user'
-    end
+    @response = Rails.cache.fetch(cache_key) do
+      # Initialize filter parameters
+      actor = params[:actor]
+      registrator = params[:registrator]
 
-    # Get publication selection
-    publications = get_publications
-
-    # Get sort order params
-    sort_order = get_sort_order
-
-    if actor == 'logged_in_user'
-      if @current_user.person_ids
-        publications = publications.where('current_version_id in (?)', People2publication.where('person_id IN (?)', @current_user.person_ids).map { |p| p.publication_version_id})
-      else
-        publications = Publication.none
+      # If no parameters are given, default to setting actor as current_user
+      if actor.nil? && registrator.nil?
+        actor = 'logged_in_user'
       end
-    end
 
-    if registrator == 'logged_in_user'
-      publications = publications.where('current_version_id in (?)', PublicationVersion.where('created_by = (?) or updated_by = (?)', @current_user.username, @current_user.username).map { |p| p.id})
-    end
+      # Get publication selection
+      publications = get_publications
 
-    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true})
+      # Get sort order params
+      sort_order = get_sort_order
+
+      if actor == 'logged_in_user'
+        if @current_user.person_ids
+          publications = publications.where('current_version_id in (?)', People2publication.where('person_id IN (?)', @current_user.person_ids).map { |p| p.publication_version_id})
+        else
+          publications = Publication.none
+        end
+      end
+
+      if registrator == 'logged_in_user'
+        publications = publications.where('current_version_id in (?)', PublicationVersion.where('created_by = (?) or updated_by = (?)', @current_user.username, @current_user.username).map { |p| p.id})
+      end
+      generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true}).as_json
+    end
     render_json(200)
   end
 
 
   api :GET, '/publication_lists', 'Returns a list of published publications based on filter parameters'
   def index_public
-    publications = get_publications
+    cache_key = 'public_published_publications' + params_cache_key
 
-    # Get sort order params
-    sort_order = get_sort_order
+    publications = Rails.cache.fetch(cache_key) do
+      publications = get_publications
 
-    if params[:output] && params[:output].eql?("ris")
-      ris_document = publications.map{|p|p.to_ris}.join("\r\n\r\n")
-      send_data ris_document, :filename => "result.ris", type: "plain/text", disposition: "attachment"
-      #render plain: ris_document
-      return
+      if params[:output] && params[:output].eql?("ris")
+        publications.map{|p|p.to_ris}.join("\r\n\r\n")
+      else
+        # Get sort order params
+        sort_order = get_sort_order
+        generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true}).as_json
+      end
     end
 
-    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true})
-    render_json(200)
+    if params[:output] && params[:output].eql?("ris")
+      send_data publications, :filename => "result.ris", type: "plain/text", disposition: "attachment"
+    else
+      @response = publications
+      render_json(200)
+    end
   end
 
   def get_publications

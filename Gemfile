@@ -52,3 +52,6 @@ gem 'oai', '~> 0.4.0'
 gem 'naturalsort', :require => 'natural_sort_kernel'
 gem 'strip_attributes'
 gem 'roo'
+
+gem 'redis', '< 5.0'
+gem 'redis-rails', '~> 4.0'
