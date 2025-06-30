@@ -44,7 +44,7 @@ services:
       - GUP_PUBLIC_BASE_URL=${GUP_PUBLIC_BASE_URL}
       - GUP_OAI_SCOPE=full
     networks:
-      - backend
+      - gup
     ports:
       - ${GUP_BACKEND_FULL_PORT}:${GUP_RAILS_PORT}
   gup-db:
