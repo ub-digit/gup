@@ -14,7 +14,6 @@ GUP_GUPEA_OAI_BASE_URL: https://gupea.ub.gu.se/dspace-oai/request
 GUP_GUPEA_OAI_METADATA_PREFIX: scigloo
 GUP_GUPEA_OAI_IDENTIFIER_PREFIX: oai:gupea.ub.gu.se
 
-GUP_ADMIN_ENABLE: "true"
 GUP_ADMIN_PERSON_ENABLE: "true"
 GUP_ADMIN_PUBLICATION_ENABLE: "true"
 
