@@ -20,7 +20,7 @@ services:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     restart: always
     depends_on:
-      - db
+      - gup-db
     env_file:
       - secrets.env
     environment:
