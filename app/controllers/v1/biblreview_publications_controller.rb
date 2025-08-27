@@ -5,24 +5,42 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
   api :GET, '/biblreview_publications', 'Returns a list of publications which are eligible for bibliographic review based on current filtering options'
   def index
 
+    publications_scope = Publication
+      .non_deleted
+      .published
+      .unbiblreviewed
+
     if @current_user.has_right?('biblreview')
-      postponed_publication_ids = PostponeDate
-      .where(deleted_at: nil)
-      .where("postponed_until > (?)", DateTime.now)
-      .select(:publication_id)
+      #postponed_publication_ids = PostponeDate
+      #.where(deleted_at: nil)
+      #.where("postponed_until > (?)", DateTime.now)
+      #.select(:publication_id)
       if params[:only_delayed] && params[:only_delayed] == 'true'
         # Show only delayed publications
-        publications = Publication
-        .non_deleted
-        .published
-        .unbiblreviewed
-        .where(id: postponed_publication_ids)
+        # This is equivalent but much faster
+        publications = publications_scope.where(
+          "EXISTS (
+            SELECT 1
+            FROM postpone_dates pd
+            WHERE pd.publication_id = publications.id
+              AND pd.deleted_at IS NULL
+              AND pd.postponed_until > ?
+          )", DateTime.now
+        )
+        #publications = publications_scope
+        #  .where(id: postponed_publication_ids)
       else
-        publications = Publication
-        .non_deleted
-        .published
-        .unbiblreviewed
-        .where.not(id: postponed_publication_ids)
+        #publications = publications_scope
+        #  .where.not(id: postponed_publication_ids)
+        publications = publications_scope.where(
+          "NOT EXISTS (
+            SELECT 1
+            FROM postpone_dates pd
+            WHERE pd.publication_id = publications.id
+              AND pd.deleted_at IS NULL
+              AND pd.postponed_until > ?
+          )", DateTime.now
+        )
       end
     else
       #return error TBD
@@ -47,18 +65,30 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
       end
     end
 
-    if params[:pubtype].present?
-      publications = publications.publication_type(params[:pubtype].to_i)
-    end
     if params[:faculty] && params[:faculty] != ''
       publications = publications.faculty_id(params[:faculty].to_i)
     end
+
+    keys = [:id, :name, :publications_count]
+    locale_suffix = I18n.locale.to_s
+    publication_types = publications
+      .joins("INNER JOIN publication_types ON publication_versions.publication_type_id = publication_types.id")
+      .group("publication_types.id, publication_types.label_#{locale_suffix}")
+      .pluck("publication_types.id, publication_types.label_#{locale_suffix}, COUNT(DISTINCT publications.id)")
+      .map { |row| keys.zip(row).to_h }
+
+    # Only apply pubtype for main query
+    if params[:pubtype].present?
+      publications = publications.publication_type(params[:pubtype].to_i)
+    end
+
+
     # ------------------------------------------------------------ #
     # FILTERS BLOCK END
     # ------------------------------------------------------------ #
+    @response[:publications] = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: "publications.updated_at desc", options: {include_authors: true, brief: true})
 
-    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: "publications.updated_at desc", options: {include_authors: true, brief: true})
-
+    @response[:publications][:publication_types] = publication_types
     render_json
   end
 
