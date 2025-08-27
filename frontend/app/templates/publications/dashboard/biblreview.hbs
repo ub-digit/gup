@@ -19,12 +19,19 @@
           {{/each}}
         {{/x-select}}
 
-        {{#x-select value=pubtype class="form-control"}}
-          {{#x-option}}{{t 'publications.dashboard.biblreview.selectPublicationTypePrompt'}}{{/x-option}}
-          {{#each pubtypes as |selectValue|}}
-            {{#x-option value=selectValue.id}}{{selectValue.name}}{{/x-option}}
-          {{/each}}
-        {{/x-select}}
+        {{#power-select
+	      options=publicationTypes
+              selected=selectedPublicationType
+              placeholder=(t 'publications.dashboard.biblreview.selectPublicationTypePrompt')
+              onchange=(action "publicationTypeChanged")
+              searchField="name" as |publicationType|
+        }}
+          {{#if publicationType.id}}
+            {{publicationType.name}} ({{publicationType.publications_count}})
+          {{else}}
+            {{t 'publications.dashboard.biblreview.selectPublicationTypePrompt'}}
+          {{/if}}
+        {{/power-select}}
       </div>
     </div>
   </div>
