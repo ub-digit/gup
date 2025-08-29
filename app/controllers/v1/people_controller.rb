@@ -100,8 +100,19 @@ class V1::PeopleController < V1::V1Controller
       person = Person.new({id: person_id})
     end
 
+    puts "*************************************************"
+    pp person
+    puts "*************************************************"
+    pp params[:person]
+    puts "*************************************************"
+
+
     # Super ugly hack, since front-end cannot send query params on save/update
     skip_update_search_engine = false
+
+    # Avoid unnecessary publication index updates
+    update_publication_index = update_publication_index?(person, params[:person])
+
     if params[:person][:skip_update_search_engine]
       skip_update_search_engine = params[:person][:skip_update_search_engine]
       params[:person].delete :skip_update_search_engine
@@ -170,7 +181,12 @@ class V1::PeopleController < V1::V1Controller
           # Reload object before update search engine
           person.reload
           PeopleSearchEngine.update_search_engine([].push(person))
-          PublicationSearchEngine.update_search_engine_for_publication_list(person.publications.published.non_deleted)
+          if update_publication_index
+            puts "Person attributes changed, update publication index "
+            PublicationSearchEngine.update_search_engine_for_publication_list(person.publications.published.non_deleted)
+          else
+            puts "Person attributes unchanged, skip publication index update"
+          end
         end
 
         @response[:person] = person
@@ -230,6 +246,38 @@ class V1::PeopleController < V1::V1Controller
     next_id = ActiveRecord::Base.connection.execute("SELECT nextval('people_id_seq')").first['nextval']
     @response[:id] = next_id
     render_json
+  end
+
+  def update_publication_index?(existing_person, incoming_person)
+    # Update search engine only if any of the following attributes differ
+    # - first_name
+    # - last_name
+    # - xkonto identifier
+    # - orcid identifier
+
+    incoming_xkonto = nil
+    incoming_orcid = nil
+    incoming_identifiers = incoming_person["identifiers"]
+    if incoming_identifiers.present?
+      incoming_xkonto = incoming_identifiers.find { |id| GUP_ADMIN_PERSON_IDENTIFIERS_MAPPING[id["code"]] == "xkonto" }&.dig("value")
+      incoming_orcid = incoming_identifiers.find { |id| GUP_ADMIN_PERSON_IDENTIFIERS_MAPPING[id["code"]] == "orcid" }&.dig("value")
+    end
+
+    return true if existing_person.first_name.blank? && incoming_person["first_name"].present?
+    return true if existing_person.first_name.present? && incoming_person["first_name"].blank?
+    return true if existing_person.first_name != incoming_person["first_name"]
+    return true if existing_person.last_name.blank? && incoming_person["last_name"].present?
+    return true if existing_person.last_name.present? && incoming_person["last_name"].blank?
+    return true if existing_person.last_name != incoming_person["last_name"]
+    return true if existing_person.get_identifier(source: 'xkonto').blank? && incoming_xkonto.present?
+    return true if existing_person.get_identifier(source: 'xkonto').present? && incoming_xkonto.blank?
+    return true if existing_person.get_identifier(source: 'xkonto') != incoming_xkonto
+    return true if existing_person.get_identifier(source: 'orcid').blank? && incoming_orcid.present?
+    return true if existing_person.get_identifier(source: 'orcid').present? && incoming_orcid.blank?
+    return true if existing_person.get_identifier(source: 'orcid') != incoming_orcid
+
+    # No changes that require an update to the search engine
+    return false
   end
 
   private
