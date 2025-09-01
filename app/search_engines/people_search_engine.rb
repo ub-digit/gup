@@ -29,6 +29,7 @@ class PeopleSearchEngine < SearchEngine
   end
 
   def self.update_search_engine person_list
+    return
     if Rails.env == "test"
       self.update_search_engine_do person_list
     else
@@ -41,6 +42,7 @@ class PeopleSearchEngine < SearchEngine
   end
 
   def self.delete_from_search_engine person_id
+    return
     if Rails.env == "test"
       self.delete_from_search_engine_do person_id
     else
