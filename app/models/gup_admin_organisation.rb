@@ -17,8 +17,8 @@ class GupAdminOrganisation
       end_year = nil
       is_internal = true
       staffnotes = nil
-      orgnr = GupAdminOrganisation.faculty_id_mapping[id][:orgnr]
-      orgdbid = GupAdminOrganisation.faculty_id_mapping[id][:orgdbid]
+      orgnr = GupAdminOrganisation.faculty_id_mapping[id].present? ? GupAdminOrganisation.faculty_id_mapping[id][:orgnr] : nil
+      orgdbid = GupAdminOrganisation.faculty_id_mapping[id].present? ? GupAdminOrganisation.faculty_id_mapping[id][:orgdbid] : nil
       data = {id: id, name_sv: name_sv, name_en: name_en, start_year: start_year, end_year: end_year, is_internal: is_internal, staffnotes: staffnotes, orgnr: orgnr, orgdbid: orgdbid}
       parent_id = nil
       is_faculty = true
