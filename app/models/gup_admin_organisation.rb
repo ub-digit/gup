@@ -2,7 +2,7 @@ class GupAdminOrganisation
   FACULTY_AFFILIATION_MISSING_ID = 665
   def self.put_to_index organisation
     puts "Index organisation #{organisation.inspect}"
-    response = RestClient.post "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/departments?api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}", organisation.to_json , content_type: :json
+    response = RestClient.post "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/departments?api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}&initial_load=true", organisation.to_json , content_type: :json
     return response
   end
 
