@@ -29,10 +29,6 @@ export default Ember.Route.extend({
     if(!params.page) {
       params.page = 1;
     }
-    let strSolrFormat = "";
-    if (params.person_id && params.person_id.length) {
-      strSolrFormat = params.person_id.replace(/;/g, " OR ");
-    }
 
     this.set("selectedFacultyID", null);
     if (params.faculty_id) {
@@ -70,7 +66,7 @@ export default Ember.Route.extend({
       projects: this.store.find('project'),
       publicationTypes: this.store.find('publication_type'),
       faculties: this.store.find('faculty'),
-      selectedAuthors:  this.store.find('person_record', {search_term: "id:("+strSolrFormat+")"})
+      selectedAuthors: this.store.find("person_gup_admin_record", { gup_person_ids: params.person_id })
     });
   },
   setupController: function(controller, model) {
@@ -81,15 +77,11 @@ export default Ember.Route.extend({
     controller.set('departments', model.departments);
     controller.set('faculties', model.faculties);
     controller.set('publicationTypes', model.publicationTypes);
-    if ((controller.get('selectedAuthors').length === 0) && (model.selectedAuthors.length !== 0)) {
-        controller.set('selectedAuthors', model.selectedAuthors);
-    }
+    controller.set('selectedAuthors', model.selectedAuthors);
 
     if (this.get('selectedFacultyID')) {
       controller.set('selectedFacultyID', parseInt(this.get('selectedFacultyID')));
     }
-
-
 
     if (controller.get('selectedSeries').length === 0) {
       let seriesArr = [];
