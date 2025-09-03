@@ -3,13 +3,13 @@ import ENV from 'frontend/config/environment';
 import { validYear } from 'frontend/lib/validations';
 
 export default Ember.Controller.extend({
-	i18n: Ember.inject.service(),
-  session: Ember.inject.service('session'),
-  	page: 1,
-  	queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year', 'only_artistic'],
-  	sortSelectValues: Ember.A([]),
-  	sort_by: 'pubyear',
-  	publication_id: null,
+    i18n: Ember.inject.service(),
+    session: Ember.inject.service('session'),
+    page: 1,
+    queryParams: ['page', 'sort_by', 'publication_id', 'person_id', 'department_id', 'faculty_id', 'serie_id', 'project_id', 'publication_type', 'ref_value', 'start_year', 'end_year', 'only_artistic'],
+    sortSelectValues: Ember.A([]),
+    sort_by: 'pubyear',
+    publication_id: null,
     person_id: "",
     department_id: null,
     faculty_id: null,
@@ -31,7 +31,6 @@ export default Ember.Controller.extend({
     isArtistic: false,
     base_start_year: 1942,
     base_end_year: null, // is set in setupController
-
 
     resetPaging: Ember.observer("selectedPublicationTypes", "selectedProjects", "selectedSeries", "selectedFacultyID", "selectedAuthors", "selectedDepartments", "isRef", "start_year", "end_year", "isArtistic", function() {
       this.set("page", 1);
@@ -99,7 +98,13 @@ export default Ember.Controller.extend({
     }),
 
     selectedAuthorsChanged: Ember.observer('selectedAuthors', function() {
-      this.formatForQueryStr('person_id', this.get('selectedAuthors'));
+      if (Ember.isArray(this.get('selectedAuthors'))) {
+        let ids = [];
+        this.get('selectedAuthors').forEach(function(author) {
+          ids = ids.concat(author.gup_person_ids);
+        });
+        this.set('person_id', ids.join(";"));
+      }
     }),
 
     isRefValueChanged: Ember.observer('ref_value', function() {
@@ -208,7 +213,7 @@ export default Ember.Controller.extend({
 
     actions: {
       searchAuthor(term) {
-        return this.store.find('person_record', {search_term: term});
+        return this.store.find('person_gup_admin_record', {search_term: term});
       },
       searchDepartment(term) {
         return this.store.find('department', {search_term: term});

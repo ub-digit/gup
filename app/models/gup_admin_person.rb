@@ -46,8 +46,18 @@ class GupAdminPerson
       # TBD More error handling
       return nil
     end
-    result = transform_search_result response.body
-    return result
+    return transform_search_result response.body
+  end
+
+  def self.search_gup_person_ids ids
+    return [] if ids.blank?
+    encoded_ids = URI.encode(ids) # encode the query
+    response = RestClient.get "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/persons?gup_person_ids=#{encoded_ids}&api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}"
+    if response.code != 200
+      # TBD More error handling
+      return nil
+    end
+    return transform_search_result response.body
   end
 
   def self.transform_search_result data
@@ -57,6 +67,9 @@ class GupAdminPerson
     authors['data'].each do |author|
       department_data = get_department_data(author['departments'])
       person_data = get_primary_person_data(author['names'])
+      person_data['gup_person_ids'] = author['names'].map do |name|
+        name['gup_person_id']
+      end.reject(&:blank?)
       has_active_publications = true # ?
       has_affiliations = true, # ?
       created_at = author['created_at']
