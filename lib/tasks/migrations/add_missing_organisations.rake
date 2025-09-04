@@ -129,6 +129,49 @@ namespace :gup_migrations do
     puts "Total organisations skipped: #{count_no_creation}"
   end
 
+  desc "Add missing parentids for organisations"
+  task :add_missing_parentids => :environment do
+    not_found = 0
+    found_parentid = 0
+    found_no_parentid = 0
+    found_no_parentid_parent_found = 0
+    found_no_parentid_parent_not_found = 0
+    CSV.foreach('org_parentid_mapping.csv', col_sep: ';') do |row|
+      orgnr = row[1]
+      orgnr_parent = row[2]
+      puts "Processing orgnr: #{orgnr}, orgnr_parent: #{orgnr_parent}"
+
+      department = Department.where(created_by: 'import').find_by(orgnr: orgnr)
+      if department
+        if department.parentid.present?
+          found_parentid += 1
+          puts "Department (#{department.id}) already has parentid: #{department.parentid}"
+        else
+          found_no_parentid += 1
+          puts "Department (#{department.id}) does not have parentid"
+          parent_department = Department.find_by(orgnr: orgnr_parent)
+          if parent_department
+            found_no_parentid_parent_found += 1
+            puts "Found parent department (#{parent_department.id}) for orgnr: #{orgnr_parent}"
+            department.parentid = parent_department.id
+            department.save
+          else
+            puts "No parent department found for orgnr: #{orgnr_parent}"
+            found_no_parentid_parent_not_found += 1
+          end
+        end
+      else
+        not_found += 1
+        puts "No department found for orgnr: #{orgnr}"
+      end
+    end
+    puts "Total departments not found: #{not_found}"
+    puts "Total departments found with parentid: #{found_parentid}"
+    puts "Total departments found without parentid: #{found_no_parentid}"
+    puts "Total departments without parentid but parent found: #{found_no_parentid_parent_found}"
+    puts "Total departments without parentid but parent not found: #{found_no_parentid_parent_not_found}"
+  end
+
   def get_faculty_id(orgnr)
     # if string length is 2, return 665
     return 665 if orgnr.length == 2
