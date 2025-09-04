@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :asset_data
     resources :publication_records
     resources :person_gup_admin_records
+    resources :person_records
     resources :endnote_files
     resources :artwork_types
 
