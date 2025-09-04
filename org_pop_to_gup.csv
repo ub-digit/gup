@@ -1,0 +1,270 @@
+﻿Organisationsid;Organisationsnummer;Organisationstyp;Giltighetstid;Kortnamn (sv);Kortnamn (en);Långnamn (sv);Långnamn (en);Webbadress
+OD-1-1;20000;Huvudorganisation;1998-01-01 - ;GU;GU;Göteborgs universitet;University of Gothenburg;www.gu.se
+OD-1-330;00;Rektor;1998-01-01 - ;Universitetsledningen;Vice Chancellor;Universitetsledningen;The Vice Chancellors Office;
+OD-1-221;01;Fakultet;1998-01-01 - ;Naturvetenskap och teknik;Science and Technology;Fakulteten för naturvetenskap och teknik;Faculty of Science and Technology;www.gu.se/naturvetenskap-teknik
+OD-1-222;013001;Institution;1998-01-01 - ;Inst för matematiska vetenskaper;Department of Mathematical Sciences;Institutionen för matematiska vetenskaper;Department of Mathematical Sciences;
+OD-197-1;013002;Avdelning;2019-04-01 - ;Verksamhetsstödet f mat. vetenskaper;Support func. Mathematical Sciences;Verksamhetsstödet för matematiska vetenskaper;Support functions at the Department of Mathematical Sciences;
+OD-1-923;013006;Avdelning;2016-07-01 - ;Avd för algebra och geometri;English Organisation Name Missing;Avdelningen för algebra och geometri;Algebra and Geometry;
+OD-1-925;013007;Avdelning;2016-07-01 - ;Avd f analys och sannolikhetsteori;English Organisation Name Missing;Avdelningen för Analys och sannolikhetsteori;Analysis and Probability Theory;
+OD-1-924;013008;Avdelning;2016-07-01 - ;Avd f tillämp matematik o statistik;English Organisation Name Missing;Avdelningen för tillämpad matematik och statistik;Applied Mathematics and Statistics;
+OD-1-224;013016;Institution;1998-01-01 - ;Inst f kulturvård;Department of Conservation;Institutionen för kulturvård;Department of Conservation;www.conservation.gu.se
+OD-1-225;013020;Institution;1998-01-01 - ;Inst f geovetenskaper;Department of Earth Sciences;Institutionen för geovetenskaper;Department of Earth Sciences;www.gvc.gu.se
+OD-1-665;013050;Institution;1998-01-01 - ;Inst f fysik;Department of Physics;Institutionen för fysik;Department of Physics;
+OD-1-534;013130;Institution;2012-01-01 - ;Ins f biologi o miljövetenskap;Dep of Biological & Environmental S;Institutionen för biologi och miljövetenskap;Department of Biological & Environmental Sciences;www.bioenv.gu.se
+OD-389-1;013131;Avdelning;2022-02-01 - ;Inst f biol o miljövet - Zoologen;Dept of BioEnv - Zoologen;Inst f biol o miljövet - Zoologen;Dept of BioEnv - Zoologen;
+OD-390-1;013132;Avdelning;2022-02-01 - ;Inst f biol o miljövet - Botan;Dept of BioEnv - Botan;Inst f biol o miljövet - Botan;Dept of BioEnv - Botan;
+OD-391-1;013133;Avdelning;2022-02-01 - ;Inst f biol o miljövet - Kristineberg;Dept of BioEnv - Kristineberg;Inst f biol o miljövet - Kristineberg;Dept of BioEnv - Kristineberg;
+OD-1-728;013140;Institution;2012-01-01 - ;Ins f kemi o molekylärbiologi;Dep of Chemistry & Molecular Biology;Institutionen för kemi och molekylärbiologi;Department of Chemistry & Molecular Biology;www.cmb.gu.se
+OD-148-1;013146;Avdelning;2018-07-01 - ;Svenskt NMR centrum;Swedish NMR Centre;Svenskt NMR-centrum vid GU;Swedish NMR Centre;www.nmr.gu.se
+OD-1-856;013150;Institution;2015-07-01 - ;Ins f marina vetenskaper;Department of Marine Sciences;Institutionen för marina vetenskaper;Department of Marine Sciences;
+OD-76-1;013157;Avdelning;2018-01-01 - ;Kristineberg Center;Kristineberg Center;Kristineberg Center för marin forskning och innovation;Kristineberg Center for Marine Research and Innovation;
+OD-656-1;013158;Avdelning;2024-11-01 - ;Skagerak;Skagerak;Skagerak Facility;Skagerak Facility;https://www.gu.se/skagerak
+OD-77-1;013159;Avdelning;2018-01-01 - ;Tjärnö;Tjärnö;Tjärnö marina laboratorium;Tjärnö Marine Laboratory;
+OD-662-4;013721;Institution;2025-01-01 - ;Inst f data- och informationsteknik;Dep of Computer Science and Engineering;Institutionen för data- och informationsteknik;Department of Computer Science and Engineering;www.chalmers.se/sv/institutioner/cse
+OD-662-5;013722;Avdelning;2025-01-01 - ;Datorsystem;Computer Systems;Datorsystem;Computer Systems;www.chalmers.se/sv/institutioner/cse
+OD-662-6;013723;Avdelning;2025-01-01 - ;Nätverk och system (NS);Network and Systems (NS);Nätverk och system (NS);Network and Systems (NS);www.chalmers.se/sv/institutioner/cse
+OD-662-7;013724;Avdelning;2025-01-01 - ;Embedded Systems and Graphics;Embedded Systems and Graphics;Embedded Electronics Systems and Computer Graphics (EEG);Embedded Electronics Systems and Computer Graphics (EEG);www.chalmers.se/sv/institutioner/cse
+OD-662-8;013726;Avdelning;2025-01-01 - ;Interaktionsdesign (IxD);Interaction Design (IxD);Interaktionsdesign (IxD);Interaction Design (IxD);www.chalmers.se/sv/institutioner/cse
+OD-662-9;013728;Avdelning;2025-01-01 - ;Formella metoder (FM);Formal Methods (FM);Formella metoder (FM);Formal Methods (FM);www.chalmers.se/sv/institutioner/cse
+OD-662-10;013729;Avdelning;2025-01-01 - ;Funktionell programmering (FP);Functional Programming (FP);Funktionell programmering (FP);Functional Programming (FP);www.chalmers.se/sv/institutioner/cse
+OD-662-11;013730;Avdelning;2025-01-01 - ;Informationssäkerhet (iSec);Information Security (iSec);Informationssäkerhet (iSec);Information Security (iSec);www.chalmers.se/sv/institutioner/cse
+OD-662-12;013731;Avdelning;2025-01-01 - ;Software Engineering 1 (SE1);Software Engineering 1 (SE1);Software Engineering 1 (SE1);Software Engineering 1 (SE1);www.chalmers.se/sv/institutioner/cse
+OD-662-13;013733;Avdelning;2025-01-01 - ;Software Engineering 2 (SE2);Software Engineering 2 (SE2);Software Engineering 2 (SE2);Software Engineering 2 (SE2);www.chalmers.se/sv/institutioner/cse
+OD-662-14;013734;Avdelning;2025-01-01 - ;Logik och typer (LT);Logic and Types (LT);Logik och typer (LT);Logic and Types (LT);www.chalmers.se/sv/institutioner/cse
+OD-662-15;013735;Avdelning;2025-01-01 - ;Data Science och AI (DSAI 1);Data Science och AI (DSAI 1);Data Science och AI (DSAI 1);Data Science och AI (DSAI 1);www.chalmers.se/sv/institutioner/cse
+OD-662-16;013736;Avdelning;2025-01-01 - ;Data Science och AI (DSAI 2);Data Science och AI (DSAI 2);Data Science och AI (DSAI 2);Data Science och AI (DSAI 2);www.chalmers.se/sv/institutioner/cse
+OD-662-17;013737;Avdelning;2025-01-01 - ;Data Science och AI (DSAI 3);Data Science och AI (DSAI 3);Data Science och AI (DSAI 3);Data Science och AI (DSAI 3);www.chalmers.se/sv/institutioner/cse
+OD-662-18;013738;Avdelning;2025-01-01 - ;Data Science och AI (DSAI 4);Data Science och AI (DSAI 4);Data Science och AI (DSAI 4);Data Science och AI (DSAI 4);www.chalmers.se/sv/institutioner/cse
+OD-662-1;013750;Institution;2025-01-01 - ;Institutionen för tillämpad IT;Department of Applied IT;Institutionen för tillämpad informationsteknologi;Department of Applied Information Technology;https://www.gu.se/tillampad-informationsteknologi
+OD-662-2;013752;Avdelning;2025-01-01 - ;Tillämpad IT, avd Informatik;Dept. of Applied IT, div Informatics;Institutionen för tillämpad IT, avd Informatik;Department of Applied IT, div Informatics;https://www.gu.se/tillampad-informationsteknologi/om-oss/avdelningar#informatik
+OD-662-3;013753;Avdelning;2025-01-01 - ;Tillämpad IT, avd KLIK;Dept. of Applied IT, div CLIC;Institutionen för tillämpad IT, avd KLIK;Department of Applied IT, div CLIC;https://www.gu.se/tillampad-informationsteknologi/om-oss/avdelningar#kognitionsvetenskap-informationsteknologi-och-larande-interaktionsdesign-kommunikation
+OD-1-301;013909;Enhet;1998-01-01 - ;Naturvetenskap och teknik, styrelse;Science and Technology, board;Fakultetsstyrelsen för naturvetenskap och teknik;Faculty Board of Science and Technology;www.science.gu.se
+OD-1-302;013950;Enhet;1998-01-01 - ;Fak.kansli naturvetenskap och teknik;Faculty Office Science Technology;Fakultetskansliet för naturvetenskap och teknik;Faculty Office of Science and Technology;www.science.gu.se
+OD-1-303;02;Fakultet;1998-01-01 - ;Samhällsvetenskapliga fakultetsnämnd;Faculty of Social Sciences;Samhällsvetenskapliga fakulteten;Faculty of Social Sciences;www.samfak.gu.se
+OD-1-304;022000;Enhet;1998-03-01 - ;Samhällsvetenskapliga fakultetsnämnd;Faculty of Social Sciences;Samhällsvetenskapliga fakultetsstyrelsen;Faculty Board of Social Sciences;www.samfak.gu.se
+OD-1-305;022001;Enhet;1998-01-01 - ;Fakultetskansli f samhällsvetenskap;Facult of Social Sciences;Samhällsvetenskapliga fakultetskansliet;Faculty Office of Social Sciences;www.samfak.gu.se
+OD-1-127;022080;Institution;2005-07-01 - ;Inst för globala studier;School of Global Studies;Institutionen för globala studier;School of Global Studies;www.globalstudies.gu.se
+OD-1-311;022420;Institution;1998-01-01 - ;Förvaltningshögskolan;School of Public Administration;Förvaltningshögskolan;School of Public Administration;www.spa.gu.se
+OD-1-312;022430;Institution;1998-01-01 - ;Inst f journalistik medier o komm;Journalism Media and Communication;Institutionen för journalistik, medier och kommunikation JMG;Journalism Media and Communication JMG;www.jmg.gu.se
+OD-1-742;022090;Avdelning;2011-01-01 - ;SOM-institutet;SOM Institute;SOM-institutet;SOM Institute;
+OD-1-313;022440;Institution;1998-01-01 - ;Psykologiska institutionen;Dept of Psychology;Psykologiska institutionen;Department of Psychology;www.psy.gu.se
+OD-1-314;022470;Institution;1998-01-01 - ;Inst f socialt arbete;Dept of Socialt Work;Institutionen för socialt arbete;Department of Social Work;https://www.gu.se/socialtarbete
+OD-1-315;022480;Institution;1998-01-01 - ;Inst f sociologi och arbetsvetenskap;Dept of Sociology;Institutionen för sociologi och arbetsvetenskap;Department of Sociology and Work Science;www.socav.gu.se
+OD-1-316;022490;Institution;1998-01-01 - ;Statsvetenskapliga institutionen;Dept of Political Science;Statsvetenskapliga institutionen;Department of Political Science;www.pol.gu.se
+OD-1-317;03;Fakultet;1998-01-01 - ;Sahlgrenska akademin;Sahlgrenska Academy;Sahlgrenska akademin;Sahlgrenska Academy at University of Gothenburg;www.sahlgrenska.gu.se
+OD-1-79;035000;Enhet;2006-01-01 - ;Sahlgrenska akademin, gemensamt;Sahlgrenska Academy;Sahlgrenska akademin, Gemensamt;Sahlgrenska Academy at University of Gothenburg;www.sahlgrenska.gu.se
+OD-1-129;035001;Enhet;2006-01-01 - ;Sahlgrenska akademins kansli;Sahlgrenska Academy Office;Sahlgrenska akademins kansli;Sahlgrenska Academy Office;www.sahlgrenska.gu.se
+OD-1-132;035100;Institution;2006-01-01 - ;Inst f odontologi;Institute of Odontology;Institutionen för odontologi;Institute of Odontology;www.odontology.gu.se
+OD-1-466;035110;Avdelning;2007-01-01 - ;Odontologi, sektion 1;Odontology Section 1;Sektion 1 - odontologi;Odontology Section 1;
+OD-1-467;035120;Avdelning;2007-01-01 - ;Odontologi, sektion 2;Odontology Section 2;Sektion 2 - odontologi;Odontology Section 2;
+OD-1-468;035130;Avdelning;2007-01-01 - ;Odontologi, sektion 3;Odontology Section 3;Sektion 3 - odontologi;Odontology Section 3;
+OD-1-133;035200;Institution;2006-01-01 - ;Inst f vårdvetenskap o hälsa;Inst of Health and Care Sciences;Institutionen för vårdvetenskap och hälsa;Institute of Health and Care Sciences;www.caresci.gu.se
+OD-203-1;035201;Avdelning;2019-05-01 - ;Vård vid långvariga tillstånd;Care in  Long-term Conditions;Vård vid långvariga tillstånd;Care in  Long-term Conditions;
+OD-203-2;035202;Avdelning;2019-05-01 - ;Livssammanhang;Life Context;Livssammanhang och hälsofrämjande vård;The Life Context and Health Promotion;
+OD-203-3;035203;Avdelning;2019-05-01 - ;Akuta och kritiska tillstånd;Acute and Critical Care;Diagnostik och vård vid akuta och kritiska tillstånd;Diagnostics, Acute and Critical Care;
+OD-203-4;035204;Avdelning;2019-05-01 - ;Lärande och ledarskap;Learning and Leadership;Lärande och ledarskap för hälsoprofessioner;Learning and Leadership for Health Care Professionals;
+OD-213-1;035205;Avdelning;2019-09-01 - ;Reproduktiv och perinatal hälsa;Reproductive and perinatal health;Reproduktiv och perinatal hälsa;Reproductive and perinatal health;
+OD-248-1;035206;Avdelning;2020-01-01 - ;KTC;KTC;KTC;KTC;
+OD-248-2;035208;Avdelning;2020-01-01 - ;Administrativa enheten;Administrative unit;Administrativa enheten;Administrative unit;
+OD-1-134;035300;Institution;2006-01-01 - ;Inst f biomedicin;Institute of Biomedicine;Institutionen för biomedicin;Institute of Biomedicine;www.biomedicine.gu.se
+OD-1-135;035310;Avdelning;2006-01-01 - ;Avd f infektionssjukdomar;Dep of Infectious Medicine;Avd för infektionssjukdomar;Department of Infectious Diseases;
+OD-1-136;035320;Avdelning;2006-01-01 - ;Avd f mikrobiologi och immunologi;Dep of Microbiology and Immunology;Avd för mikrobiologi och immunologi;Department of Microbiology and Immunology;
+OD-1-137;035330;Avdelning;2006-01-01 - ;Avd f patologi;Dep of Pathology;Avd för patologi och genetik;Department of Pathology and Genetics;
+OD-1-138;035340;Avdelning;2006-01-01 - ;Avd f klinisk kemi o transfusionsmed;Dep of Clin Chemistry A Transfusion;Avd för klin kemi och transfusionsmedicin;Department of Clinical Chemistry and Transfusion Medicine;
+OD-1-140;035360;Avdelning;2006-01-01 - ;Avd f med kemi och cellbiologi;Dep Med Biochemistry A Cellbiology;Avd för medicinsk kemi och cellbiologi;Department of Medical Biochemistry and Cell biology;
+OD-189-1;035381;Avdelning;2019-01-01 - ;Avd f Laboratoriemedicin;Avd f Laboratoriemedicin;Avdelningen för Laboratoriemedicin;Department of Laboratory Medicine;
+OD-1-142;035400;Institution;2006-01-01 - ;Inst f neurovetenskap o fysiologi;Department of Clinical Neuroscience;Institutionen för neurovetenskap och fysiologi;Institute of Neuroscience and Physiology;www.neurophys.gu.se
+OD-1-144;035410;Avdelning;2006-01-01 - ;Sektionen för fysiologi;Dep of Physiology;Sektionen för fysiologi;Department of Physiology;
+OD-1-145;035420;Avdelning;2006-01-01 - ;Sektionen för farmakologi;Dep of Pharmacology;Sektionen för farmakologi;Department of Pharmacology;www.neurophys.gu.se/sektioner
+OD-1-146;035430;Avdelning;2006-01-01 - ;Sektionen för klinisk neurovetenskap;Dep of Clinical Neuroscience;Sektionen för klinisk neurovetenskap;Department of Clinical Neuroscience;
+OD-1-147;035440;Avdelning;2006-01-01 - ;Sektionen för psykiatri och neurokemi;Department of Psychiatry and Neurochemistry;Sektionen för psykiatri och neurokemi;Department of Psychiatry and Neurochemistry;
+OD-1-668;035450;Avdelning;2006-01-01 - ;Sektionen för hälsa o rehabilitering;Dep of Health and Rehabilitation;Sektionen för hälsa och rehabilitering;Department of Health and Rehabilitation;
+OD-1-148;035500;Institution;2006-01-01 - ;Inst f medicin;Institute of Medicine;Institutionen för medicin;Institute of Medicine;www.medicine.gu.se
+OD-195-1;035501;Avdelning;2019-04-01 - ;Inst f medicin Administrativ enhet;Inst of medicine Administrative unit;Institutionen för medicin, Administrativ enhet;Institute of Medicine, Administrative unit;
+OD-1-149;035510;Avdelning;2006-01-01 - ;Avd f samhällsmedicin o folkhälsa;Public Health and Community Medicine;Avd för samhällsmedicin och folkhälsa;School of Public Health and Community Medicine;
+OD-1-151;035530;Avdelning;2006-01-01 - ;Avd f molekylär o klinisk medicin;Molecular and Clinical Medicine;Avd för molekylär och klinisk medicin;Department of Molecular and Clinical Medicine;
+OD-1-152;035540;Avdelning;2006-01-01 - ;Avdelningen för reumatologi och infl;Rheumatology A Inflammation Research;Avd för reumatologi och inflammationsforskning;Department of Rheumatology and Inflammation Research;
+OD-1-153;035550;Avdelning;2006-01-01 - ;Avd f invärtesmed o klin nutr;Internal Medicine Clinical Nutrition;Avd för invärtesmedicin och klinisk nutrition;Department of Internal Medicine and Clinical Nutrition;
+OD-1-154;035600;Institution;2006-01-01 - ;Institutionen f kliniska vetenskaper;Institute of Clinical Sciences;Institutionen för kliniska vetenskaper;Institute of Clinical Sciences;www.clinsci.gu.se
+OD-1-155;035611;Avdelning;2006-01-01 - ;Avd för obstetrik och gynekologi;Obstetrics and Gynecology;Avd för obstetrik och gynekologi;Department of Obstetrics and Gynecology;
+OD-1-156;035612;Avdelning;2006-01-01 - ;Avdelningen för pediatrik;Pediatrics;Avd för pediatrik;Department of Pediatrics;
+OD-1-157;035614;Avdelning;2006-01-01 - ;Avd f dermatologi och venereologi;Dermatology and Venereology;Avd för dermatologi och venereologi;Department of Dermatology and Venereology;
+OD-1-158;035615;Avdelning;2006-01-01 - ;Avdelningen för radiologi;Radiology;Avd för radiologi;Department of Radiology;
+OD-1-159;035616;Avdelning;2006-01-01 - ;Avdelningen för onkologi;Oncology;Avd för onkologi;Department of Oncology;
+OD-1-160;035617;Avdelning;2006-01-01 - ;Avd för medicinsk strålningsvetenskap;Medical Radiation Sciences;Avd för medicinsk strålningsvetenskap;Department of  Medical Radiation Sciences;
+OD-1-161;035618;Avdelning;2006-01-01 - ;Avd f öron- näs- och halssjukdomar;Otorhinolaryngology;Avd för öron-, näs- och halssjukdomar;Department of Otorhinolaryngology;
+OD-1-774;035619;Avdelning;2012-09-01 - ;Infocentrum för ovanliga diagnoser;Swedish Infocenter for Rare Diseases;Informationscentrum för ovanliga diagnoser;Swedish Infocenter for Rare Diseases;
+OD-1-162;035621;Avdelning;2006-01-01 - ;Avd f anestesiologi o intensivvård;Anesthesiology and Intensive Care;Avd för anestesiologi och intensivvård;Department of Anesthesiology and Intensive Care;
+OD-1-163;035622;Avdelning;2006-01-01 - ;Avdelningen f biomaterialvetenskap;Biomaterials;Avd för biomaterialvetenskap;Department of Biomaterials;
+OD-1-164;035623;Avdelning;2006-01-01 - ;Avdelningen för kirurgi;Surgery;Avd för kirurgi;Department of Surgery;
+OD-1-165;035624;Avdelning;2006-01-01 - ;Avdelningen för ortopedi;Orthopaedics;Avd för ortopedi;Department of Orthopaedics;
+OD-1-166;035625;Avdelning;2006-01-01 - ;Avdelningen för urologi;Urology;Avd för urologi;Department of Urology;
+OD-1-167;035626;Avdelning;2006-01-01 - ;Avdelningen för plastikkirurgi;Plastic Surgery;Avd för plastikkirurgi;Department of Plastic Surgery;
+OD-674-2;035628;Avdelning;2025-02-01 - ;Avd för transplantationskirurgi;Transplant Surgery;Avd för transplantationskirurgi;Department of Transplant Surgery;
+OD-674-3;035629;Avdelning;2025-02-01 - ;Avd för barnkirurgi;Pediatric Surgery;Avd för barnkirurgi;Department of Pediatric Surgery;
+OD-674-1;035631;Avdelning;2025-02-01 - ;Avd för handkirurgi;Hand Surgery;Avd för handkirurgi;Department of Hand Surgery;
+OD-52-1;035800;Enhet;2017-10-01 - ;Core Facilities;Core Facilities;Core Facilities vid Sahlgrenska Akademin;Core Facilities at Sahlgrenska Academy;www.sahlgrenska.gu.se/forskning
+OD-1-170;035801;Underenhet;2006-01-01 - ;EBM;EBM;Experimentell Biomedicin;Experimental Biomedicine;
+OD-1-172;035803;Underenhet;2006-01-01 - ;Sambio core facilities;Core Faciliteties;Sambio Core Facilities;Core facilities;www.sahlgrenska.gu.se/forskning
+OD-1-73;04;Fakultet;1998-01-01 - ;Utbildningsvetenskapliga fakulteten;Faculty of Education;Utbildningsvetenskapliga fakulteten;Faculty of Education;www.uf.gu.se
+OD-1-81;042720;Enhet;1998-01-01 - ;Utbildningsvetensk fakultetskansliet;Faculty of Education, Faculty Office;Utbildningsvetenskapliga fakultetskansliet;Faculty of Education, Faculty Office;www.uf.gu.se
+OD-1-705;042725;Enhet;2008-01-01 - ;PIL-enheten;Pedagogical Development;PIL Pedagogisk utveckling och interaktivt lärande;PIL Pedagogical Development & Interactive Learning;www.pil.gu.se
+OD-1-919;042726;Enhet;2014-01-01 - ;Enheten för akademiskt språk;Unit for Academic Language;Enheten för akademiskt språk;Unit for Academic Language;www.ask.gu.se
+OD-1-537;042910;Institution;2010-07-01 - ;IPS, pedagogik och specialped;Education and Special Education;Institutionen för pedagogik och specialpedagogik;Department of Education and Special Education;
+OD-1-531;042920;Institution;2010-07-01 - ;IPKL, pedagogik, komm. och lärande;Education, Communication, Learning;Institutionen för pedagogik, kommunikation och lärande;Department of Education, Communication and Learning;
+OD-1-532;042930;Institution;2010-07-01 - ;IDPP, didaktik och ped profession;Pedagogical, Curriecular, Prof Stud;Institutionen för didaktik och pedagogisk profession;Department of Pedagogical, Curricular and Professional Studies;www.idpp.gu.se
+OD-276-1;042931;Avdelning;2020-09-01 - ;IDPP Ledning;Management;IDPP Ledning;Management;www.idpp.gu.se
+OD-276-2;042932;Avdelning;2020-09-01 - ;IDPP Administration;Administration;IDPP Administration;Administration;www.idpp.gu.se
+OD-276-3;042933;Avdelning;2020-09-01 - ;Ad/Ped arb;Ad/Ped arb;Avdelningen allmän didaktik och pedagogiskt arbete;Unit for General Didactics and Pedagogic Work;www.idpp.gu.se
+OD-276-4;042934;Avdelning;2020-09-01 - ;NaTe;NaTe;Avdelningen ämnesdidaktik med inriktning naturvetenskap och teknik;Unit for Subject Matter Education with specialization in Science and Technology Education;www.idpp.gu.se
+OD-276-5;042935;Avdelning;2020-09-01 - ;Matematik;Matematik;Avdelningen ämnesdidaktik med inriktning matematik;Unit for Subject Matter Education with specialization in Mathematic Education;www.idpp.gu.se
+OD-276-6;042936;Avdelning;2020-09-01 - ;SO;SO;Avdelningen ämnesdidaktik med inriktning mot samhällsorienterande ämnen;Unit for Subject Matter Education with specialization in Social Studies Education;www.idpp.gu.se
+OD-276-7;042937;Avdelning;2020-09-01 - ;Svenska;Svenska;Avdelningen ämnesdidaktik med inriktning svenska;Unit for Subject Matter Education with specialization in Swedish Education;www.idpp.gu.se
+OD-1-533;042940;Institution;2010-07-01 - ;IKI, kost- och idrottsvetenskap;Food and Nutrition and Sport;Institutionen för kost- och idrottsvetenskap;Department of Food and Nutrition and Sport Science;www.iki.gu.se
+OD-1-229;05;Fakultet;1998-01-01 - ;Humanistiska fakultetsnämnden;Faculty of Humanities;Humanistiska fakulteten;Faculty of Humanities;www.hum.gu.se
+OD-1-706;051100;Institution;2009-01-01 - ;Inst för historiska studier;Department of Historical Studies;Institutionen för historiska studier;Department of Historical Studies;www.historiskastudier.gu.se
+OD-1-696;051120;Institution;2009-01-01 - ;Inst för kulturvetenskaper;Dept. of Cultural Sciences;Institutionen för kulturvetenskaper;Department. of Cultural Sciences;www.kultur.gu.se
+OD-272-1;051121;Avdelning;2020-07-01 - ;Avdelningen för estetik;Aesthetics Unit;Avdelningen för estetik;Aesthetics Unit;www.kultur.gu.se
+OD-272-2;051122;Avdelning;2020-07-01 - ;Avdelningen för genus och kultur;Gender and Culture studies unit;Avdelningen för genus och kultur;Gender and Culture studies unit;www.kultur.gu.se
+OD-272-4;051124;Avdelning;2020-07-01 - ;Kulturvetenskaper Administration;Cultural Sciences Administration;Kulturvetenskaper Administration;Cultural Sciences Administration;www.kultur.gu.se
+OD-1-707;051140;Institution;2009-01-01 - ;Inst f filosofi, lingv o vetenskapst;Philosophy,linquistics,theory of Sc;Institutionen för filosofi, lingvistik och vetenskapsteori;Department of Philosophy, Linguistics, Theory of Science;www.flov.gu.se
+OD-70-1;051141;Avdelning;2018-01-01 - ;Verksamhetsstöd;Administrative unit;Avdelningen för verksamhetsstöd;Administrative unit;www.flov.gu.se
+OD-71-1;051142;Avdelning;2018-01-01 - ;Avdelningen för lingvistik och vetenskapsteori;Linguistics and Theory of Science unit;Avdelningen för lingvistik och vetenskapsteori;Linguistics and Theory of Science unit;www.flov.gu.se
+OD-72-1;051143;Avdelning;2018-01-01 - ;Avdelningen för filosofi och logik;Philosophy and Logic unit;Avdelningen för filosofi och logik;Philosophy and Logic unit;www.flov.gu.se
+OD-1-708;051150;Institution;2009-01-01 - ;Inst f litt, idehistoria o religion;Literatur,history of Ideas, Religion;Institutionen för litteratur, idéhistoria och religion;Department of Literature, History of Ideas, and Religion;www.lir.gu.se
+OD-1-709;051160;Institution;2009-01-01 - ;Inst f språk o litteraturer;Dep of Languages and Literatures;Institutionen för språk och litteraturer;Department of Languages and Literatures;www.gu.se/sprak
+OD-1-710;051170;Institution;2009-01-01 - ;Inst f svenska, flerspråk o språktek;Dep of Swedish, multiling, lang tech;Institutionen för svenska, flerspråkighet och språkteknologi;Department of Swedish, multilingualism, language technology;www.svenska.gu.se
+OD-1-50;051930;Enhet;1998-01-01 - ;Humanistiska fakultetsnämndens kansl;Humanities Faculty Office;Humanistiska fakultetskansliet;Humanities Faculty Office;www.hum.gu.se
+OD-1-51;07;Universitetsbiblioteket;1998-01-01 - ;Göteborgs universitetsbibliotek;Gothenburg University Library;Göteborgs universitetsbibliotek;Gothenburg University Library;www.ub.gu.se
+OD-1-52;078000;Enhet;1998-01-01 - ;Överbibliotekarien;Library Director;Överbibliotekarien;Library Director;
+OD-1-53;078001;Enhet;1999-12-01 - ;Bibliotekskansliet;Library Office;Bibliotekskansliet;Library Office;
+OD-1-55;078003;Enhet;2002-05-01 - ;Digitala tjänster;Digital Services;Digitala tjänster;Digital Services;
+OD-1-882;078004;Underenhet;2015-01-01 - ;Team Digitisering;Digitisation Team;Team Digitisering;Digitisation Team;
+OD-1-783;078005;Underenhet;2015-01-01 - ;Team e-resurser och söksystem;Team e-resources and search systems;Team e-resurser och söksystem, Digitala Tjänster;Team e-resources and library search systems, Digital Services;
+OD-1-784;078006;Underenhet;2015-01-01 - ;Team IT-utveckling;IT Development and Operations Team;Team IT-utveckling, Digitala tjänster;IT-Development and Operations team, Digital Services;
+OD-1-785;078007;Underenhet;2015-01-01 - ;Team Publicering och bibliometri;Publishing and Bibliometric Services;Team Publicering och bibliometri, Digitala tjänster;Publishing and Bibliometric Services team, Digital Services;
+OD-1-834;078008;Underenhet;2016-01-01 - ;Team webb och kommunikation;Team web and communication;Team webb och kommunikation, Digitala Tjänster;Team web and communication, Digital Services;
+OD-1-786;078100;Enhet;2015-01-01 - ;Humanistiska biblioteken;Humanities Libraries;Humanistiska biblioteken;Humanities Libraries;
+OD-1-787;078101;Underenhet;2015-01-01 - ;Team Användarservice;Team User Services;Team Användarservice, Humanistiska biblioteken;Team User Services, Humanities Libraries;
+OD-1-788;078102;Underenhet;2015-01-01 - ;Team undervisning;Education Team;Team Undervisning, Humanistiska biblioteken;Education Team, Humanities Libraries;
+OD-1-789;078103;Underenhet;2015-01-01 - ;Team förvärv;Acquisitions Team;Team Förvärv, Humanistiska biblioteken;Acquisitions Team, Humanities Libraries;
+OD-1-790;078104;Underenhet;2015-01-01 - ;Team Katalog;Cataloguing Team;Team Katalog, Humanistiska biblioteken;Cataloguing Team, Humanities Libraries;
+OD-1-791;078105;Underenhet;2015-01-01 - ;KvinnSam;KvinnSam;KvinnSam, Humanistiska biblioteken;KvinnSam, Humanities Libraries;
+OD-1-857;078112;Underenhet;2015-09-21 - ;Lokal- och transportservice;English Organisation Name Missing;Lokal- och transportservice, Humanistiska biblioteken;Facility and Transportation Services, Humanities Libraries;
+OD-85-1;078113;Underenhet;2018-02-01 - ;Specialsamlingar och arkiv;Special collections and archives;Specialsamlingar och arkiv, Humanistiska biblioteket;Special collections and archives, Humanities Libraries;
+OD-1-798;078200;Enhet;2015-01-01 - ;Biomedicinska biblioteken;Biomedical Libraries;Biomedicinska biblioteken;Biomedical Libraries;
+OD-1-799;078201;Underenhet;2015-01-01 - ;Team Användarservice;Team User Services;Team Användarservice, Biomedicinska biblioteken;Team User Services, Biomedical Libraries;
+OD-1-800;078202;Underenhet;2015-01-01 - ;Team undervisning;Education Team;Team Undervisning, Biomedicinska biblioteken;Education Team, Biomedical Libraries;
+OD-1-801;078203;Underenhet;2015-01-01 - ;Team Media;Media Team;Team Media, Biomedicinska biblioteken;Media Team, Biomedical Libraries;
+OD-443-1;078204;Underenhet;2022-09-01 - ;Team Forskarstöd;Team Researcher Support;Team Forskarstöd, Biomedicinska biblioteken;Team Researcher Support, Biomedical Libraries;
+OD-1-802;078300;Enhet;2015-01-01 - ;Samhällsvetenskapliga biblioteken;Social Sciences Libraries;Samhällsvetenskapliga biblioteken;Social Sciences Libraries;
+OD-1-803;078301;Underenhet;2015-01-01 - ;Team Användarservice;Team User Services;Team Användarservice, Samhällsvetenskapliga biblioteken;Team User Services, Social Sciences Libraries;
+OD-1-804;078302;Underenhet;2015-01-01 - ;Team undervisning;Education Team;Team Undervisning, Samhällsvetenskapliga biblioteken;Education Team, Social Sciences Libraries;
+OD-1-805;078303;Underenhet;2015-01-01 - ;Team Media;Media Team;Team Media, Samhällsvetenskapliga biblioteken;Media Team, Social Sciences Libraries;
+OD-1-806;078304;Underenhet;2015-01-01 - ;Studentmedarbetare;Student Employees;Studentmedarbetare;Student Employees;
+OD-1-64;08;Fakultet;1998-01-01 - ;Konstnärliga fakulteten;The Artistic Faculty;Konstnärliga fakulteten;The Artistic Faculty;www.konst.gu.se
+OD-1-276;086000;Enhet;1998-08-01 - ;Konstnärliga fakultetsstyrelsen;The Artistic Faculty Board;Konstnärliga fakultetsstyrelsen;The Artistic Faculty Board;www.konst.gu.se
+OD-1-123;086120;Institution;2005-01-01 - ;Högskolan för scen och musik;Academy of Music and Drama;Högskolan för scen och musik;Academy of Music and Drama;www.hsm.gu.se
+OD-509-1;086121;Avdelning;2023-09-01 - ;Musik;Music;Enheten för musik;Music;https://www.gu.se/scen-musik
+OD-510-1;086122;Avdelning;2023-09-01 - ;Klassisk musik och kyrkomusik;Classical Music and Church Music;Enheten för klassisk musik och kyrkomusik;Classical Music and Church Music;https://www.gu.se/scen-musik
+OD-511-1;086123;Avdelning;2023-09-01 - ;Scenkonst;Performing Arts;Enheten för scenkonst;Performing Arts;https://www.gu.se/scen-musik
+OD-512-1;086124;Avdelning;2023-09-01 - ;Pedagogik;Pedagogy;Enheten för pedagogik: musik, dans och teater;Pedagogy: Music, Dance and Drama;https://www.gu.se/scen-musik
+OD-513-1;086125;Avdelning;2023-09-01 - ;Tekniskt stöd Högskolan för scen och musik;Technical support;Tekniskt stöd Högskolan för scen och musik;Technical support;https://www.gu.se/scen-musik
+OD-514-1;086126;Avdelning;2023-09-01 - ;Administrativt stöd Högskolan för scen och musik;Administrative support;Administrativt stöd Högskolan för scen och musik;Administrative support;https://www.gu.se/scen-musik
+OD-675-1;086127;Avdelning;2025-03-01 - ;Forskarutbildning;Doctoral studies;Forskarutbildning;Doctoral studies;https://www.gu.se/scen-musik
+OD-239-1;086700;Institution;2020-01-01 - ;HDK-Valand;HDK-Valand;HDK-Valand - Högskolan för konst och design;HDK-Valand - Academy of Art and Design;www.hdk-valand.gu.se
+OD-239-2;086701;Avdelning;2020-01-01 - ;Design;The Design Unit;Enheten för Design;The Design Unit;www.hdk-valand.gu.se
+OD-239-3;086702;Avdelning;2020-01-01 - ;Design och konsthantverk Steneby;The Design and Crafts Steneby Unit;Enheten för design och konsthantverk Steneby;The Design and Crafts Steneby Unit;www.hdk-valand.gu.se
+OD-239-4;086703;Avdelning;2020-01-01 - ;Konsthantverk och fri konst;The Crafts and Fine Art Unit;Enheten för konsthantverk och fri konst;The Crafts and Fine Art Unit;www.hdk-valand.gu.se
+OD-239-5;086704;Avdelning;2020-01-01 - ;Film, foto, litterär gestaltning;The Film, Photo, Literary Comp Unit;Enheten för film, fotografi och litterär gestaltning;The Film, Photography and Literary Composition Unit;www.hdk-valand.gu.se
+OD-239-6;086705;Avdelning;2020-01-01 - ;Pedagogik: Bild och slöjd;The Pedagogy Unit: Visual Art&Sloyd;Enheten för pedagogik: Bild och slöjd;The Pedagogy Unit: Visual Art and Sloyd;www.hdk-valand.gu.se
+OD-239-7;086706;Avdelning;2020-01-01 - ;Tekniskt stöd;Technical support;Tekniskt stöd;Technical support;www.hdk-valand.gu.se
+OD-239-8;086707;Avdelning;2020-01-01 - ;Administrativt stöd;Administrative support;Administrativt stöd;Administrative support;www.hdk-valand.gu.se
+OD-1-70;086900;Enhet;1998-02-01 - ;Konstnärliga fakultetsnämndens kansl;The Artistic Faculty Office;Konstnärliga fakultetskansliet;The Artistic Faculty Office;www.konst.gu.se
+OD-1-71;09;Fakultet;1998-01-01 - ;Handelshögskolans fakultetsnämnd;School Business, Economics and Law;Handelshögskolan;School of Business, Economics and Law;www.handels.gu.se
+OD-1-117;092200;Enhet;2004-03-01 - ;Handelshögskolans fakultets nämnd;School Business, Economics and Law;Handelshögskolans fakultetsstyrelse;School of business, economics and law;www.handels.gu.se
+OD-1-86;092209;Enhet;1998-06-01 - ;GS;Graduate School;Graduate School, GS;Graduate school;www.handels.gu.se
+OD-1-812;092211;Institution;2013-01-01 - ;Inst för ekonomi och samhälle;School of Businees Economics and Law;Institutionen för ekonomi och samhälle;Department of Economy and Society;
+OD-1-813;092212;Avdelning;2013-01-01 - ;Avdelningen för ekonomisk historia;Economic History;Avdelningen för ekonomisk historia;Economic History;
+OD-1-775;092213;Avdelning;2013-01-01 - ;Avd f innovation o entreprenörskap;Innovation and Entrepreneurship;Avdelningen för innovation och entreprenörskap;Unit for Innovation and Entrepreneurship;
+OD-1-814;092214;Avdelning;2013-01-01 - ;Avdelningen för kulturgeografi;Human Geogaphy;Avdelningen för kulturgeografi;Human Geography;
+OD-1-88;092220;Institution;1998-01-01 - ;Företagsekonomiska institutionen;Dept of Busines Adm;Företagsekonomiska institutionen;Department of Business Administration;www.fek.handels.gu.se
+OD-1-91;092250;Institution;1998-01-01 - ;Inst f nationalekonomi med statistik;Department of Economics;Institutionen för nationalekonomi med statistik;Department of Economics;www.economics.handels.gu.se
+OD-1-92;092260;Institution;1998-01-01 - ;Juridiska institutionen;Dept of Law;Juridiska institutionen;Department of Law;www.law.gu.se
+OD-179-1;092287;Enhet;2019-01-01 - ;Environment for Development;Environment for Development;Environment for Development;Environment for Development;
+OD-1-95;092290;Enhet;1998-01-01 - ;Handelshögsk. fakultetsnämnds kansli;Schol Business Economics and Law;Handelshögskolans fakultetskansli;School of Business, Economics and Law;
+OD-1-97;10;Fakultet;1998-01-01 - ;IT-fakulteten;IT Faculty;IT-fakulteten;IT Faculty;www.itufak.gu.se
+OD-1-96;107800;Enhet;2004-01-01 - ;IT-fakultetsnämnden;IT Faculty;IT-fakultetsnämnden;IT Faculty;www.itufak.gu.se
+OD-1-98;107801;Enhet;2002-09-01 - ;IT-fakultetens kansli;IT Faculty;IT-fakultetens kansli;IT Faculty;
+OD-1-103;11;Nationell enhet;1999-01-01 - ;Nationellt centrum f matematikutbild;NCM;Nationellt Centrum för Matematikutbildning, NCM;NCM;www.ncm.gu.se
+OD-1-104;119025;Enhet;1999-01-01 - ;NCM;NCM;Nationellt Centrum för Matematikutbildning, NCM;NCM;
+OD-1-747;14;Nationell enhet;2010-01-01 - ;Havsmiljöinstitutet;Swe Inst for the Marine Environment;Havsmiljöinstitutet;Swedish Institute for the Marine Environment;www.havsmiljoinstitutet.se
+OD-1-739;149029;Enhet;2010-01-01 - ;Havsmiljöinstitutet;Swe Inst for the Marine Environment;Havsmiljöinstitutet;Swedish Institute for the Marine Environment;
+OD-1-740;15;Nationell enhet;2010-01-01 - ;Nationella sekretariat f genusforskn;Swedish Secretariat for Gender;Nationella sekretariatet för genusforskning;Swedish Secretariat for Gender Research;
+OD-1-525;159028;Enhet;2010-01-01 - ;Nationella sekretariat f genusforsk;Swedish Secretariat for Gender;Nationella sekretariatet för genusforskning;Swedish Secretariat for Gender Research;
+OD-1-719;16;Nationell enhet;2011-01-01 - ;Svensk nationell datatjänst snd;SND;Svensk Nationell Datatjänst, SND;Swedish National Data Service, SND;www.snd.gu.se
+OD-1-752;169030;Enhet;2011-01-01 - ;Svensk nationell datatjänst snd;SND;Svensk Nationell Datatjänst, SND;SND;
+OD-1-842;17;Nationell enhet;2013-01-01 - ;Nordicom;Nordicom;Nordicom;Nordicom;www.nordicom.gu.se
+OD-1-870;179031;Enhet;2013-01-01 - ;Nordicom;Nordicom;Nordicom;Nordicom;
+OD-1-914;18;Nationell enhet;2013-01-01 - ;Wexsus;Wexsus;Wexsus, Västsveriges nexus för hållbar utveckling;Wexsus, West Sweden nexus for sustainable development;www.wexsus.se
+OD-1-915;189006;Enhet;2013-01-01 - ;Wexsus, adm;Wexsus, adm;Wexsus, Västsveriges nexus för hållbar utveckling, adm;Wexsus, West Sweden nexus for sustainable development, adm;
+OD-1-755;19;Nationell enhet;2015-06-01 - ;Segerstedtinstitutet;English Organisation Name Missing;Segerstedtinstitutet;Segerstedtinstitutet;
+OD-1-758;199033;Enhet;2015-06-01 - ;Segerstedtinstitutet;English Organisation Name Missing;Segerstedtinstitutet;Segerstedtinstitutet;
+OD-1-735;30;HR-system - organisation;2011-06-04 - ;Studentkårer;Student Union;Studentkårer;Student Union;www.gus.gu.se
+OD-1-727;300004;HR-system enhet;2011-06-04 - ;Studentkår spionen;Student Union Spionen;Studentkår Spionen;Student Union Spionen;
+OD-1-677;81;HR-system - organisation;2004-01-01 - ;Alla arvodister;;Alla arvodister;;
+OD-1-871;90;Gemensamma förvaltningen;2013-01-01 - ;Gemensamma förvaltningen;University Administration;Gemensamma förvaltningen;University Administration;
+OD-1-824;909151;Enhet;2013-01-01 - ;Ekonomienhet;Finance;Ekonomienheten;Finance;
+OD-1-880;909432;Underenhet;2013-01-01 - ;Redovisningssektion;Accounting;Redovisningssektionen;Accounting;
+OD-1-904;909433;Underenhet;2013-01-01 - ;Upphandlingssektion;Procurement;Upphandlingssektionen;Procurement;
+OD-1-777;909434;Underenhet;2013-01-01 - ;Planerings- och uppföljningssektion;Planning and Follow-up;Planerings- och uppföljningssektionen;Planning and Follow-up;
+OD-260-1;909435;Underenhet;2020-04-01 - ;Enhetsgemensamt;Enhetsgemensamt;Sektionen för enhetsgemensamma frågor;Sektionen för enhetsgemensamma frågor;
+OD-566-1;909437;Underenhet;2024-01-01 - ;Sektionen för GF ekonomi;University Administrations Finance;Sektionen för GF ekonomi;University Administrations Finance;
+OD-1-905;909152;Enhet;2013-01-01 - ;Personalenhet;Human Resources;Personalenheten;Human Resources;
+OD-1-821;909155;Underenhet;2013-01-01 - ;Sek f arbetsgivarfrågor;Employer Issues;Sektionen för arbetsgivarfrågor;Employer Issues;
+OD-1-845;909157;Underenhet;2013-01-01 - ;Sek f arbetsmiljö o likabehandling;Work Environment and Equal Teatment;Sektionen för likabehandling, kompetensutveckling och arbetsmiljöarbete;Work Environment and Equal Treatment;
+OD-1-846;909158;Underenhet;2013-01-01 - ;Sek f systemstöd;System Support;Sektionen för personalekonomi och systemstöd;Section of Staff Economics and System Support;
+OD-1-909;909170;Enhet;2013-01-01 - ;Serviceenheten;Facility Services;Serviceenheten;Facility Services;
+OD-415-1;909171;Underenhet;2022-05-01 - ;Servicecenter;Servicecenter;Servicecenter;Servicecenter;
+OD-1-850;909172;Underenhet;2013-01-01 - ;Sek f medieteknik;Media Technology;Sektionen för medieteknik;Media Technology;
+OD-1-779;909173;Underenhet;2013-01-01 - ;Sek f mötesservice;Conference Centre;Sektionen för Mötesservice;Conference Centre;www.gu.se/motesservice
+OD-1-849;909175;Underenhet;2013-01-01 - ;Welcome Services;Welcome Services;Welcome Services;Welcome Services;www.gu.se/welcome
+OD-1-848;909443;Underenhet;2013-01-01 - ;Campusservice Medicinareberget;Campus Service;Campusservice Medicinareberget;Campus Service Medicinareberget;www.medarbetarportalen.gu.se
+OD-1-827;909444;Underenhet;2013-01-01 - ;Campusservice Haga;Campus Service;Campusservice Haga;Campus Service Haga;www.medarbetarportalen.gu.se
+OD-1-778;909445;Underenhet;2013-01-01 - ;Campusservice Lorensberg;Campus Service;Campusservice Lorensberg;Campus Service Lorensberg;www.medarbetarportalen.gu.se
+OD-1-911;909446;Underenhet;2013-01-01 - ;Campusservice Rosenlund;Campus Service;Campusservice Rosenlund;Campus Service Rosenlund;www.medarbetarportalen.gu.se
+OD-1-886;909449;Underenhet;2016-02-01 - ;Utvecklingsstab;English Organisation Name Missing;Utvecklingsstab;Utvecklingsstab;
+OD-128-1;909453;Underenhet;2018-05-01 - ;Sektionen för säkerhet;Department of security;Sektionen för säkerhet;Department of security;
+OD-1-822;909180;Enhet;2013-01-01 - ;Kommunikationsenheten;Communication Unit;Kommunikationsenheten;Communication Unit;
+OD-66-1;909185;Underenhet;2017-07-01 - ;Sekt f red inne, evenemang, studkomm;Sect of content, event, stud comm;Sektionen för redaktionellt innehåll, evenemang och studentkommunikation;Section of Content, Events and Student Communication;
+OD-67-1;909186;Underenhet;2017-07-01 - ;Sekt f dialog, design o dig medier;Sect of Dialogue, Design, Dig Media;Sektionen för dialog, design och digitala medier;Section of Dialogue, Design and Digital Media;
+OD-432-1;909190;Enhet;2022-09-01 - ;GU fastighet och hållbar utveckling;Property and sustainable development;GU fastighet och hållbar utveckling;Property and sustainable development;
+OD-432-2;909191;Underenhet;2022-09-01 - ;GU fastighet stab;Property office;GU fastighet stab;Property office;
+OD-432-4;909192;Underenhet;2022-09-01 - ;Sektionen för lokalsamordning;Coordination;Sektionen för lokalsamordning;Coordination;
+OD-432-3;909193;Underenhet;2022-09-01 - ;Sektionen för lokalplanering;Planning;Sektionen för lokalplanering;Planning;
+OD-470-1;909194;Underenhet;2023-01-01 - ;Sektionen för hållbarhet;Sustainability;Sektionen för hållbarhet;Sustainability;
+OD-1-881;909255;Enhet;2013-01-01 - ;IT-enhet;IT;IT-enheten;IT;
+OD-1-841;909251;Underenhet;2013-01-01 - ;IT-stöd till forskning och utbildning;IT for Research and Education;IT-stöd till forskning och utbildning;IT for Research and Education;
+OD-1-854;909256;Underenhet;2013-01-01 - ;IT-infrastruktur;IT Operations;IT-infrastruktur;IT Operations;
+OD-1-830;909257;Underenhet;2013-01-01 - ;IT-support;Service Desk and Operation Bridge;IT-support;Service Desk and Operation Bridge;
+OD-1-836;909258;Underenhet;2016-04-01 - ;IT-säkerhet, förvaltning och avtal;IT-säkerhet, förvaltning och avtal;IT-säkerhet, förvaltning och avtal;IT-säkerhet, förvaltning och avtal;
+OD-196-1;909259;Underenhet;2019-04-01 - ;IT-Utveckling;IT-System Development;IT-Utveckling;IT-System Development;
+OD-493-1;909261;Underenhet;2023-03-01 - ;Digital arbetsplats;Digital workplace;Sektionen för Digital arbetsplats;The Section for Digital workplace;
+OD-519-1;909262;Underenhet;2023-07-01 - ;Stöd till digitalisering;Digitalisation support;Sektionen för stöd till digitalisering;The section for support for digitalisation;
+OD-1-843;909270;Enhet;2013-01-01 - ;Utbildningsenheten;Educational Affairs;Utbildningsenheten;Educational Affairs;
+OD-1-844;909271;Underenhet;2013-01-01 - ;Sektionen för examen;Section of Degrees;Sektionen för examen;Section of Degrees;https://studentportalen.gu.se/kontaktexamen   https://studentportalen.gu.se/contactdegrees
+OD-1-902;909272;Underenhet;2013-01-01 - ;Sek f antagning;Admission;Sektionen för antagning;Admission;
+OD-572-1;909273;Underenhet;2024-03-01 - ;Sektionen för tentamen;Section for Examination Services;Sektionen för tentamen;Section for Examination Services;
+OD-1-878;909274;Underenhet;2013-01-01 - ;Sek f studieadministrativa system;Student Records;Sektionen för studieadministrativa system;Student Records;
+OD-1-823;909276;Underenhet;2013-01-01 - ;Sek f student- och utbildningsstöd;Student and Educational Support;Sektionen för student- och utbildningsstöd;Student and Educational Support;
+OD-1-876;909410;Enhet;2013-01-01 - ;Enh. för juridik och info.förv.;Legal and info. management unit;Enheten för juridik och informationsförvaltning;Legal and information management unit;
+OD-212-1;909411;Underenhet;2019-08-31 - ;Sektionen för förvaltningsjuridik;Section of Administrative Law;Sektionen för förvaltningsjuridik;Section of Administrative Law;
+OD-1-883;909436;Underenhet;2014-11-01 - ;Sektionen för arkiv och registratur;Records Management Section;Sektionen för arkiv och registratur;Records Management section;
+OD-367-1;909412;Enhet;2021-10-01 - ;Gemensamma förvaltningens kansli;Central University Admin Office;Gemensamma förvaltningens kansli;Central University Administration Office;
+OD-376-1;909413;Enhet;2021-12-01 - ;Universitetsledningens stab;Vice Chancellors Office;Universitetsledningens stab;Vice Chancellors Office;
+OD-1-903;909421;Enhet;2013-01-01 - ;International centre;International Centre;International Centre;International Centre;
+OD-1-916;909422;Enhet;2013-04-01 - ;Forsknings- o innovationskontoret;Research & Innovation Services;Forsknings- och innovationskontoret;Research & Innovation Services;
+OD-1-126;98;HR-system - organisation;2004-01-01 - ;Övrigt;;Övrigt;;
+OD-1-125;99;HR-system - organisation;2004-01-01 - ;Chefskrets;;Chefskrets;;
+OD-1-2;8888;HR-system - organisation;1998-01-01 - ;Okänd institution;Unknown department;Okänd institution;Unknown department;
+OD-1-910;909160;Övrig enhet;2013-01-01 - ;Internrevision;Internal Audit;Internrevisionen;Internal Audit;
