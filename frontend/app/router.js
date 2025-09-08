@@ -30,17 +30,17 @@ Router.map(function() {
     });
   });
   this.route('admin', function() {
-    this.route('departments', function(){
-      this.route('index', {path: '/'});
-      this.route('new');
-    });
-    this.route('people', function() {
-      this.route('person', function() {
-        this.route('edit', {path: 'edit/:id'}, function() {
-          this.route('list', {path: '/'});
-        });
-      });
-    });
+    // this.route('departments', function(){
+    //   this.route('index', {path: '/'});
+    //   this.route('new');
+    // });
+    // this.route('people', function() {
+    //   this.route('person', function() {
+    //     this.route('edit', {path: 'edit/:id'}, function() {
+    //       this.route('list', {path: '/'});
+    //     });
+    //   });
+    // });
 
     this.route('messages');
   });
