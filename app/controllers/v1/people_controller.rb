@@ -106,17 +106,8 @@ class V1::PeopleController < V1::V1Controller
     pp params[:person]
     puts "*************************************************"
 
-
-    # Super ugly hack, since front-end cannot send query params on save/update
-    skip_update_search_engine = false
-
     # Avoid unnecessary publication index updates
     update_publication_index = update_publication_index?(person, params[:person])
-
-    if params[:person][:skip_update_search_engine]
-      skip_update_search_engine = params[:person][:skip_update_search_engine]
-      params[:person].delete :skip_update_search_engine
-    end
 
     if person.update_attributes(permitted_params)
       if person.present?
@@ -177,16 +168,13 @@ class V1::PeopleController < V1::V1Controller
           end
         end
 
-        if !skip_update_search_engine
-          # Reload object before update search engine
-          person.reload
-          PeopleSearchEngine.update_search_engine([].push(person))
-          if update_publication_index
-            puts "Person attributes changed, update publication index "
-            PublicationSearchEngine.update_search_engine_for_publication_list(person.publications.published.non_deleted)
-          else
-            puts "Person attributes unchanged, skip publication index update"
-          end
+        # Reload object before update search engine
+        person.reload
+        if update_publication_index
+          puts "Person attributes changed, update publication index "
+          PublicationSearchEngine.update_search_engine_for_publication_list(person.publications.published.non_deleted)
+        else
+          puts "Person attributes unchanged, skip publication index update"
         end
 
         @response[:person] = person
