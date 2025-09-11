@@ -8,7 +8,8 @@ BACKEND_HOSTNAME: '{{ backend_hostname }}'
 FRONTEND_HOSTNAME: '{{ frontend_hostname }}'
 GUP_ENVIRONMENT: production
 
-GUP_AUTH_OVERRIDE: "false"
+DEV_ALLOW_ALL_ACCOUNTS: "false"
+DEV_OVERRIDE_ADMIN: ""
 
 GUP_GUPEA_OAI_BASE_URL: https://gupea.ub.gu.se/dspace-oai/request
 GUP_GUPEA_OAI_METADATA_PREFIX: scigloo

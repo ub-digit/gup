@@ -26,7 +26,6 @@ services:
     environment:
       - RAILS_ENV=${GUP_ENVIRONMENT}
       - RAILS_PORT=${GUP_RAILS_PORT}
-      - GUP_AUTH_OVERRIDE=${GUP_AUTH_OVERRIDE}
       - GUP_DB_HOST=${GUP_DB_HOST}
       - GUP_DB_PORT=${GUP_DB_PORT}
       - GUP_DB=${GUP_DB}
