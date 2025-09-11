@@ -1,5 +1,5 @@
 ---
-git_revision: add-new-category-002
+git_revision: ansible-depoloy-test-v1
 docker_git_revision: ansible-deploy-dev
 docker_command: ./docker-compose-release.sh
 apache_static_image: docker.ub.gu.se/gup-static:release-2021.05.001
