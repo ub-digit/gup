@@ -18,8 +18,6 @@ services:
     image: docker.ub.gu.se/rails:ruby-2.5.8
     environment:
       - GUP_HOSTNAME=localhost:${GUP_BACKEND_PORT}
-      - DEV_ALLOW_ALL_ACCOUNTS=${DEV_ALLOW_ALL_ACCOUNTS}
-      - DEV_OVERRIDE_ADMIN=${DEV_OVERRIDE_ADMIN}
       - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_BACKEND_PORT}
     volumes:
       - ../:/usr/src/app
