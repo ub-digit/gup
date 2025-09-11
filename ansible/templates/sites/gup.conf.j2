@@ -7,7 +7,7 @@
     ServerName {{ frontend_hostname }}
     FallbackResource /index.html
 
-    #Alias /sitemaps.xml {{ [backend_sitemaps_data_dir, 'sitemaps.xml' | path_join }}
+    #Alias /sitemaps.xml {{ [backend_sitemaps_data_dir, 'sitemaps.xml'] | path_join }}
     #Alias /sitemaps {{ [backend_sitemaps_data_dir, 'sitemaps'] | path_join }}
 
     <Directory {{ backend_sitemaps_data_dir }}>
@@ -62,5 +62,5 @@
     SSLEngine on
     SSLCertificateFile /etc/ssl/apache2/certs/ub-gu-se.pem
     SSLCertificateKeyFile /etc/ssl/apache2/private/ub-gu-se.key
-    SSLCertificateChainFile /etc/ssl/apache2/certs/interim_geant.pem
+    SSLCertificateChainFile /etc/ssl/apache2/certs/interm_geant.pem
 </VirtualHost>
