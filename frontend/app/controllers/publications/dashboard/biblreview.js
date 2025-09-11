@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   i18n: Ember.inject.service(),
   publicationsController: Ember.inject.controller('publications'),
   pubyear: 0,
+  selectedPublicationType: null,
   pubtype: null,
   faculty: null,
   page: 1,
@@ -26,9 +27,11 @@ export default Ember.Controller.extend({
       return { id: '' + item.id, name: item.name };
     });
   }),
-  pubtypes: Ember.computed('publicationsController.publicationTypes', function() {
-    return this.get('publicationsController.publicationTypes').map(function(item){
-      return { id: '' + item.id, name: item.name };
-    });
-  })
+  actions: {
+    publicationTypeChanged: function(publicationType) {
+      this.set('selectedPublicationType', publicationType);
+      this.set('pubtype', publicationType.id);
+    }
+  }
+
 });

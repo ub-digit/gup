@@ -8,7 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get("i18n").t('publications.dashboard.biblreview.title_page');
   },
   queryParams:{
-      pubyear:{refreshModel: true},
+    pubyear:{refreshModel: true},
     page:{refreshModel: true},
     pubtype:{refreshModel: true},
     faculty:{refreshModel: true},
@@ -28,7 +28,28 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   setupController: function(controller, models) {
     this._super(...arguments);
-    controller.set('model', models.publicationList);
+
+    // Super ugly hack
+    let model = models.publicationList.publications;
+    model.meta = models.publicationList.meta;
+    // Little bit unsure about this one, safe and correct? Probably very minor risk for errors anyway
+    model.error = models.publicationList.error;
+    controller.set('model', model);
+    let publicationTypes = models.publicationList.publication_types;
+    publicationTypes.unshift({
+      'id': null
+    });
+    controller.set('publicationTypes', models.publicationList.publication_types);
+
+    if (controller.get('pubtype')) {
+       let id = controller.get('pubtype');
+       controller.set('selectedPublicationType', null);
+       controller.get('publicationTypes').forEach(function (publicationType) {
+         if (publicationType.id == id) {
+           controller.set('selectedPublicationType', publicationType);
+         }
+       });
+    }
   },
   actions: {
     editItem: function(item, params) {
