@@ -22,6 +22,7 @@ class Department < ActiveRecord::Base
       return res
     end
 
+
     res.merge!({
       parent: parent.as_json({skip_children:true}),
       grandparent: grandparent.as_json({skip_children:true}),
@@ -30,6 +31,7 @@ class Department < ActiveRecord::Base
       updated_at: updated_at,
       name_sv: name_sv,
       name_en: name_en,
+      presentation_name: presentation_name,
       start_year: start_year,
       end_year: end_year,
       faculty_id: faculty_id,
@@ -47,6 +49,15 @@ class Department < ActiveRecord::Base
       res[:children] = children.as_json({skip_children:true})
     end
     return res
+  end
+
+  def presentation_name
+    # Include end year in presentation name if it is set
+    if end_year.present?
+      return "#{name} (-#{end_year})"
+    else
+      return name
+    end
   end
 
   def is_external?
