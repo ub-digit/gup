@@ -74,6 +74,7 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
     publication_types = publications
       .joins("INNER JOIN publication_types ON publication_versions.publication_type_id = publication_types.id")
       .group("publication_types.id, publication_types.label_#{locale_suffix}")
+      .order("publication_types.label_#{locale_suffix} ASC")
       .pluck("publication_types.id, publication_types.label_#{locale_suffix}, COUNT(DISTINCT publications.id)")
       .map { |row| keys.zip(row).to_h }
 
