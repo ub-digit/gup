@@ -396,8 +396,7 @@ class V1::PublishedPublicationsController < ApplicationController
 
           # Update search index for this publication
           PublicationSearchEngine.update_search_engine(publication)
-          # Also update people search index for and all publication authors, for this publication version and old publication version
-          PeopleSearchEngine.update_search_engine((publication.current_version.authors + publication_version_old.authors).uniq)
+
           if publication_version_new.datasource
             ImportManager.feedback_to_adapter(
               datasource: publication_version_new.datasource,

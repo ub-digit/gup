@@ -6,8 +6,6 @@ export default Ember.Object.extend({
   session: Ember.inject.service("session"),
   endpoints: {
     report: { path: "reports" },
-    person: { path: "people", plural: "people" },
-    person_record: { path: "person_records" },
     person_gup_admin_record: { path: "person_gup_admin_records" },
     department: { path: "departments" },
     publication: { path: "publications" },

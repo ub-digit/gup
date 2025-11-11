@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     resources :publication_types
     resources :postpone_dates
     resources :faculties
-    get "people/get_next_id" => "people#get_next_id"
     resources :people
     resources :sources
     resources :data_sources

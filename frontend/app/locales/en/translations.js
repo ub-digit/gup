@@ -523,7 +523,6 @@ export default {
   },
   admin: {
     admin_departments: 'Manage department records',
-    admin_people: 'Manage name records',
     admin_messages: 'Manage messages',
     departments: {
       title: "Manage department records",
@@ -565,56 +564,6 @@ export default {
       index: {
         invalidYear: "Invalid year",
         saveError: "Could not be saved"
-      },
-    },
-    people: {
-      title: "Manage author records",
-      id: 'ID',
-      first_name: 'First name',
-      last_name: 'Family name',
-      xaccount: 'X-account',
-      orcid: 'ORCID',
-      birthyear: 'Year of birth',
-      btnEdit: 'Edit',
-      btnSave: 'Save',
-      btnDelete: 'Delete',
-      query_person: 'Search for author',
-      query_person_none: 'No records found',
-      index: {
-        confirmDeletePerson: 'Are you sure you want to delete the record?'
-      },
-      person: {
-        personChangeWarningAfterEdit: 'The search results may have changed due to editing.',
-        edit: {
-          list: {
-            affiliations_heading: 'Affiliations',
-            publications_heading: 'Publications',
-            lang_name_en: 'Engelska:',
-            lang_name_sv: 'Svenska:'
-          },
-          form: {
-            labels: {
-              id: 'Id:',
-              firstname: 'Firstname:',
-              lastname: 'Lastname:',
-              birthyear: 'Year of birth:',
-              xaccount: 'x-account',
-              orcid: 'Orcid'
-            },
-            placeholders: {
-              id: 'Id:',
-              firstname: 'Firstname:',
-              lastname: 'Lastname:',
-              birthyear: 'Year of birth:',
-              xaccount: 'x-account',
-              orcid: 'Orcid'
-            },
-            actions: {
-              btnSave: 'Save',
-              btnCancel: 'Cancel'
-            },
-          },
-        },
       },
     },
     messages: {

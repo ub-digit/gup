@@ -31,18 +31,6 @@ services:
   gup-solr:
     volumes:
       - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
-
-      # gup-people
-      - >
-        ../solr/config/cores/gup-people/conf/dataimportconfig.xml
-        :/opt/solr/server/solr/mycores/gup-people/conf/dataimportconfig.xml
-      - >
-        ../solr/config/cores/gup-people/conf/schema.xml
-        :/opt/solr/server/solr/mycores/gup-people/conf/schema.xml
-      - >
-        ../solr/config/solrconfig.xml
-        :/opt/solr/server/solr/mycores/gup-people/conf/solrconfig.xml
-
       # gup-journals
       - >
         ../solr/config/cores/gup-journals/conf/dataimportconfig.xml

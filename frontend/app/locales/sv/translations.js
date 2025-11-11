@@ -523,7 +523,6 @@ export default {
   },
   admin: {
     admin_departments: 'Administrera institutioner',
-    admin_people: 'Administrera personer',
     admin_messages: 'Administrera meddelanden',
     departments: {
       title: "Administrera institutioner",
@@ -565,56 +564,6 @@ export default {
       index: {
         invalidYear: "Ogiltigt årtal",
         saveError: "Kunde inte spara"
-      },
-    },
-    people: {
-      title: "Administrera personer",
-      id: 'Id',
-      first_name: 'Förnamn',
-      last_name: 'Efternamn',
-      xaccount: 'Xkonto',
-      orcid: 'ORCID',
-      birthyear: 'Födelseår',
-      btnEdit: 'Redigera',
-      btnSave: 'Spara',
-      btnDelete: 'Radera',
-      query_person: 'Sök person',
-      query_person_none: 'Inga personer hittades',
-      index: {
-        confirmDeletePerson: 'Är du säker på att du vill ta bort personen?'
-      },
-      person: {
-        personChangeWarningAfterEdit: 'Innehållet i sökresultatet kan ha förändrats p g a redigeringen.',
-        edit: {
-          list: {
-            affiliations_heading: 'Affilieringar',
-            publications_heading: 'Publikationer',
-            lang_name_en: 'Engelska:',
-            lang_name_sv: 'Svenska:'
-          },
-          form: {
-            labels: {
-              id: 'Id:',
-              firstname: 'Förnamn:',
-              lastname: 'Efternamn:',
-              birthyear: 'Födelseår:',
-              xaccount: 'x-konto',
-              orcid: 'Orcid'
-            },
-            placeholders: {
-              id: 'Id:',
-              firstname: 'Förnamn:',
-              lastname: 'Efternamn:',
-              birthyear: 'Födelseår:',
-              xaccount: 'x-konto',
-              orcid: 'Orcid'
-            },
-            actions: {
-              btnSave: 'Spara',
-              btnCancel: 'Avbryt'
-            },
-          },
-        },
       },
     },
     messages: {
