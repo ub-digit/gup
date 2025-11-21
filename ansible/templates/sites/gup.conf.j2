@@ -33,7 +33,7 @@
     RewriteRule "^/rss/2.0$" "/rss" [R=301,L]
     RewriteRule "^/oai-pmh/general/(.*)$" "/oai/$1" [R=301,L]
     RewriteRule "^/rss/2.0/(.*)$" "/rss/$1" [R=301,L]
-    
+
     ProxyPreserveHost Off
 
     ProxyPass /rss http://127.0.0.1:{{ backend_host_port }}/rss
@@ -62,5 +62,5 @@
     SSLEngine on
     SSLCertificateFile /etc/ssl/apache2/certs/ub-gu-se.pem
     SSLCertificateKeyFile /etc/ssl/apache2/private/ub-gu-se.key
-    SSLCertificateChainFile /etc/ssl/apache2/certs/interm_geant.pem
+    SSLCertificateChainFile /etc/ssl/apache2/certs/ub-gu-se-chain.pem
 </VirtualHost>
