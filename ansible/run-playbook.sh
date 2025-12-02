@@ -25,4 +25,4 @@ shift;
 shift;
 
 set -x
-ansible-playbook --vault-password-file .vault_password -i inventory/$target.yml  $playbook.yml $@
+ansible-playbook --vault-password-file ~/.config/ub-ansible-deploy/.vault_password -i inventory/$target.yml  $playbook.yml $@
