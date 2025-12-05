@@ -29,17 +29,16 @@ GUP_PUBLIC_BASE_URL: "https://{{ frontend_hostname }}"
 BACKEND_OAI_HOSTNAME: "{{ frontend_hostname }}"
 BACKEND_OAI_FULL_HOSTNAME: "{{ frontend_hostname }}"
 
-GUP_BACKEND_UPLOADS_VOLUME_SOURCE: "{{ backend_uploads_data_dir }}"
-GUP_BACKEND_SITEMAPS_DIR: "{{ backend_sitemaps_data_dir }}"
-GUP_DB_VOLUME_SOURCE: "{{ backend_db_data_dir }}"
-#GUP_SOLR_GURESEARCH_VOLUME_SOURCE: "{{ solr_guresearch_data_dir }}" #Is this used?
-GUP_SOLR_JOURNALS_VOLUME_SOURCE: "{{ solr_journals_data_dir }}"
-GUP_SOLR_PEOPLE_VOLUME_SOURCE: "{{ solr_people_data_dir }}"
-GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE: "{{ solr_publications_data_dir }}"
+GUP_BACKEND_UPLOADS_VOLUME_SOURCE: "{{ data_dirs.backend_uploads.path }}"
+GUP_BACKEND_SITEMAPS_DIR: "{{ data_dirs.backend_sitemaps.path }}"
+GUP_DB_VOLUME_SOURCE: "{{ data_dirs.backend_db.path }}"
+GUP_SOLR_JOURNALS_VOLUME_SOURCE: "{{ data_dirs.solr_journals.path }}"
+GUP_SOLR_PEOPLE_VOLUME_SOURCE: "{{ data_dirs.solr_people.path }}"
+GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE: "{{ data_dirs.solr_publications.path }}"
 
 GUP_STATIC_RUNNING_IMAGE: "{{ apache_static_image }}"
 GUP_STATIC_ACCESS_PORT: "127.0.0.1:{{ apache_static_host_port }}"
-GUP_STATIC_APACHE_SITE: "{{ apache_static_sites_dir }}"
+GUP_STATIC_APACHE_SITE: "{{ data_dirs.apache_static_sites.path }}"
 
 GUP_OAUTH2_PROVIDER: gu
 GUP_OAUTH2_AUTHORIZE_ENDPOINT: https://idp.auth.gu.se/adfs/oauth2/authorize/
