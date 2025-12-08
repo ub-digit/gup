@@ -13,4 +13,8 @@ FROM docker.ub.gu.se/rails:ruby-2.5.8
 
 COPY --from=release /root/release /usr/src/app
 
+# Fix for non existing CA certificates
+COPY harica/ /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 RUN bundle install
