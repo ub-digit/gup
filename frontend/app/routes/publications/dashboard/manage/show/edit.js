@@ -39,7 +39,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this._super(...arguments);
     //TODO: Remove this when binding issue fixed
     if (Ember.isBlank(models.publication.publication_links)) {
-      models.publication.publication_links = [{ url: "", position: 0 }];
+      models.publication.publication_links.pushObject(Ember.Object.create({ url: "", oa: false, id: Ember.guidFor({}) }));
       //models.publication.publication_links.pushObject({url: '', position: 0});
     }
 
@@ -208,6 +208,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
         "controller.publication.publication_links",
         this.get("controller.publication.publication_links").filter((link) => {
           return Ember.isPresent(link.get("url"));
+        })
+      );
+
+      // Set positions according to current order
+      this.set("controller.publication.publication_links",
+        this.get("controller.publication.publication_links").map((link, index) => {
+            link.set("position", index);
+            return link;
         })
       );
 
