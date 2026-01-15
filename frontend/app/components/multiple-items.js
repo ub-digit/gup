@@ -6,12 +6,6 @@ export default Ember.Component.extend({
   addItemText: null,
   deleteItemText: null,
   items: null,
-  sortedItems: Ember.computed('items.@each.position', function() {
-    return this.get('items').sortBy('position');
-  }),
-
- 
-
   totalNumberOfItems: Ember.computed('items.[]', function() {
     //TODO: double check, array length javscript weirdness etc
     return this.get('items').length;
@@ -43,32 +37,26 @@ export default Ember.Component.extend({
     //didAddItem etc??
     addItem: function() {
       let newItem = this.get('createNewItem')();
-      let lastItem = this.get('items').get('lastObject');
-      newItem.set('position', lastItem !== undefined ? lastItem.get('position') + 1 : 0);
+    //  let lastItem = this.get('items').get('lastObject');
+  //    newItem.set('position', lastItem !== undefined ? lastItem.get('position') + 1 : 0);
       this.get('items').pushObject(newItem);
     },
     removeItem: function(item) {
       this.get('items').removeObject(item);
     },
     didMoveItemUp: function(item) {
-      let sortedItems = this.get('sortedItems');
-      if (sortedItems.get('firstObject') !== item) {
-        let idx = sortedItems.indexOf(item);
-        let position = item.get('position');
-        let itemAbove = sortedItems.objectAt(idx - 1);
-        item.set('position', itemAbove.position);
-        itemAbove.set('position', position);
-      }
+      let index = this.get("items").indexOf(item);
+      if (index > 0) {
+        this.get("items").removeAt(index);
+        this.get("items").insertAt(index - 1, item);
+      } 
     },
     didMoveItemDown: function(item) {
-      let sortedItems = this.get('sortedItems');
-      if (sortedItems.get('lastObject') !== item) {
-        let idx = sortedItems.indexOf(item);
-        let position = item.get('position');
-        let itemBelow = sortedItems.objectAt(idx + 1);
-        item.set('position', itemBelow.position);
-        itemBelow.set('position', position);
-      }
+      let index = this.get("items").indexOf(item);
+      if (index < this.get("items").length - 1) {
+        this.get("items").removeAt(index);
+        this.get("items").insertAt(index + 1, item);
+      } 
     }
   }
 });

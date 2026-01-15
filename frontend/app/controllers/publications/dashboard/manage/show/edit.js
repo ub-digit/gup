@@ -19,7 +19,9 @@ export default Ember.Controller.extend({
 
   createNewPublicationLink: function() {
     return Ember.Object.create({
+      id: Ember.guidFor({}),
       url: '',
+      oa: false
     });
   },
 

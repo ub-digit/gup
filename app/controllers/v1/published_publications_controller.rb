@@ -139,7 +139,7 @@ class V1::PublishedPublicationsController < ApplicationController
       return
     end
 
-    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true})
+    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true})
     render_json(200)
   end
 
@@ -236,8 +236,8 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def merge_publication_links(publication)
-    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, position: p.position}}
-    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], position: p[:position]}}
+    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, oa: p.oa, position: p.position}}
+    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], oa: p[:oa], position: p[:position]}}
     existing.each do |existing_link|
       if !incoming.any?{|incoming_link|incoming_link[:url].eql?(existing_link[:url])}
         incoming << existing_link
@@ -478,7 +478,7 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :oa, :position, :publication_version_id)
   end
 
   def permitted_params(params)

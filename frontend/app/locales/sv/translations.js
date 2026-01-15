@@ -487,8 +487,11 @@ export default {
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
         generalErrorHeader: 'Formuläret innehåller felaktigheter. Var vänlig rätta till dessa och försök igen.',
+        publicationLinksOpenAccessLabel: 'OA',
+        publicationLinksOpenAccessLabelHelptext: 'Markera om länken leder till en open access-version av publikationen.',
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',
+          publicationLinksOpenAccess: 'Markera om länken leder till en open access-version av publikationen.',
           authors: {
             helptext: {
               general: 'Ange samtliga författare i ordningsföljd enligt originalpublikationen. För GU-författare skriv fullständigt namn samt <strong>den affiliering som angivits i publikationen</strong>. För övriga författare är efternamn samt förnamnets initial tillräckligt. Sök bland författarna som redan finns inlagda innan du väljer att lägga till en ny.',

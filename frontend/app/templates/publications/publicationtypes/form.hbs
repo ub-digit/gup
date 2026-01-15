@@ -210,22 +210,35 @@
     <section id="publication-links">
       <label class="control-label">{{t 'publications.publicationtypes.form.publicationLinksLabel'}}</label>
       <span class="help-block">{{t 'publications.publicationtypes.form.help.publicationLinks'}}</span>
+      {{#if getPublicationTypeObject.has_open_access}}
+      <span class="help-block">{{t 'publications.publicationtypes.form.help.publicationLinksOpenAccess'}}</span>
+      {{/if}}
       {{#multiple-items
         items=publication.publication_links
         createNewItem=createNewPublicationLink
         addItemText=(t 'publications.publicationtypes.form.publicationLinksAddItem')
         as |publication_link multipleItem|}}
         <div class="row">
-          <div class="col-xs-10">
+          <div class="col-xs-9">
             <div class="form-group">
               {{input
                 type="text"
                 class="form-control"
-                id=(concat "publication-url-" multipleItem.index)
+                id=(concat "publication-url-" publication_link.id)
                 focus-out=(action "sanitizePublicationLink" publication_link)
                 value=publication_link.url
               }}
             </div>
+          </div>
+          <div class="col-xs-1">
+            <!-- hide if no open access -->
+            {{#if getPublicationTypeObject.has_open_access}}
+              <div class="form-group">
+                {{input id=(concat "publication-url-oa-" publication_link.id) type="checkbox"  checked=publication_link.oa}}
+                <label title="{{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabelHelptext'}}" for={{concat "publication-url-oa-" publication_link.id}} class="control-label">{{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabel'}}
+                </label>
+              </div>
+            {{/if}}
           </div>
           <div class="col-xs-1">
             {{multipleItem.removeButton}}

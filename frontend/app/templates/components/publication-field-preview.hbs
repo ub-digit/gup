@@ -19,7 +19,7 @@
     {{else if isTypeLinks}}
       <ul class="list-unstyled">
       {{#each fieldValue as |link|}}
-        <li><a href="{{link.url}}" target="_blank">{{link.url}}</a></li>
+        <li><a href="{{link.url}}" target="_blank">{{link.url}}</a> {{#if link.oa }} <span><img style="height:14px;" src="/img/Open_Access_logo_PLoS_white.svg" title="Open Access" alt="Open Access">  </span> {{/if}}</li>
       {{/each}}
       </ul>
 
