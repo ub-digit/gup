@@ -1,0 +1,13 @@
+---
+- name: Deploy
+  hosts: all
+  tasks:
+  - name: Ensure apache static configuration
+    become: true
+    ansible.builtin.template:
+      src: 'apache-static.conf.j2'
+      dest: "{{ [apache_static_sites_dir, 'default.conf'] | path_join }}"
+
+  - name: Deploy app
+    include_role:
+      name: ub-ansible-deploy
