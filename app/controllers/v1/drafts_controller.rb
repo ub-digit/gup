@@ -358,7 +358,7 @@ class V1::DraftsController < V1::V1Controller
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :oa, :position, :publication_version_id)
   end
 
   # Creates connections between people, departments and publications for a publication and a people array
