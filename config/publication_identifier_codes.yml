@@ -25,4 +25,7 @@ publication_identifier_codes:
     code: libris-id
     rule: "16559180"
     label: Libris-ID
-
+  -
+    code: chalmers-id
+    rule: "543210"
+    label: Chalmers-ID
