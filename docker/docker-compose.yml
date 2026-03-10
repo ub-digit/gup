@@ -69,6 +69,11 @@ services:
       - ./postgres-initdb.d:/docker-entrypoint-initdb.d
     networks:
       - gup
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${GUP_DB_USER} -d ${GUP_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   gup-solr:
     restart: always
     image: docker.ub.gu.se/gup-solr:${GIT_REVISION}
