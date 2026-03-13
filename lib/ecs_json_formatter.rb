@@ -1,7 +1,6 @@
 require 'semantic_logger/formatters/base'
 require 'socket'
 require 'json'
-require_relative '../lib/ecs_json_formatter'
 
 class EcsJsonFormatter < SemanticLogger::Formatters::Base
   def call(log, logger)
