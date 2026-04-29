@@ -244,7 +244,11 @@ class OaiDocuments
             xml.tag!("url", publication.current_version.url, 'displayLabel' => 'FULLTEXT')
           end
         end
-
+        #### Access Condition ####
+        # If any of the publication links is open access, mark the publication as open access
+        if publication.current_version.publication_links.where(oa: true).any?
+          xml.tag!("accessCondition", "gratis", 'authority' => 'kb.se', 'valueURI' => 'https://id.kb.se/policy/oa/gratis')
+        end
 
         #### Physical description ####
         # TODO: Asset model should be extended to make possible to describe each file better, to decide if it's fulltext or not
