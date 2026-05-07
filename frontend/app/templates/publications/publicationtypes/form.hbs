@@ -219,7 +219,7 @@
         addItemText=(t 'publications.publicationtypes.form.publicationLinksAddItem')
         as |publication_link multipleItem|}}
         <div class="row">
-          <div class="col-xs-7">
+          <div class="col-xs-6">
             <div class="form-group">
               {{input
                 type="text"
@@ -230,13 +230,13 @@
               }}
             </div>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-4">
             <!-- hide if no open access -->
             <!-- ==================== OPEN ACCESS RADIOS ==================== -->
           {{#if getPublicationTypeObject.has_open_access}}
             <div class="form-group">
               <label class="control-label" style="padding-right: 10px;">
-              {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.label'}}:
+              {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.label'}}
               </label>
               <div class="radio" style="display: inline-block; margin-right: 15px; margin-top: 0px;">
               <label>
@@ -249,7 +249,7 @@
               </label>
               </div>
 
-              <div class="radio" style="display: inline-block; margin-top: 0px;">
+              <div class="radio" style="display: inline-block; margin-right: 15px; margin-top: 0px;">
               <label>
                 <input 
                 type="radio" 
@@ -257,6 +257,16 @@
                 checked={{eq publication_link.oa false}}
                 {{action "setOpenAccess" publication_link false publication on="change"}}>
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.no'}}
+              </label>
+              </div>
+              <div class="radio" style="display: inline-block; margin-top: 0px;">
+              <label>
+                <input 
+                type="radio" 
+                name={{concat "oa-radio-" publication_link.id}}
+                checked={{eq publication_link.oa null}}
+                {{action "setOpenAccess" publication_link null publication on="change"}}>
+                {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.unknown'}}
               </label>
               </div>
               {{#if publication_link.oaHelptext}}

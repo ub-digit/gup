@@ -490,7 +490,8 @@ export default {
         publicationLinksOpenAccessLabels: {
           label: 'OA',
           yes: 'Ja',
-          no: 'Nej'
+          no: 'Nej',
+          unknown: 'Vet ej'
         },
         publicationLinksOpenAccessLabelHelptext: 'Markera om länken leder till en open access-version av publikationen.',
         help: {
