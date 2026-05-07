@@ -425,6 +425,7 @@ class V1::PublishedPublicationsController < ApplicationController
       # TODO! This needs error handling, or saving a publication will cause GUP to crash.
       Thread.new {
         ActiveRecord::Base.connection_pool.with_connection do
+          Unpaywall.check_oa_status(publication)
           GupAdminPublication.put_to_index(publication.id)
         end
       }

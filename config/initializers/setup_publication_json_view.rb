@@ -11,6 +11,18 @@ def setup_publication_json_views
           ON pv.id = pi.publication_version_id
        GROUP BY pub.id
       ;
+
+      DROP VIEW IF EXISTS v_publications_v_publication_links CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_publication_links AS
+      SELECT pub.id AS publication_id,
+             json_agg(json_build_object('publication_version_id', pl.id, 'url', pl.url, 'oa', pl.oa, 'checked_at', pl.checked_at, 'position', pl.position)) AS links
+        FROM publications pub
+        JOIN publication_versions pv
+          ON pub.current_version_id = pv.id
+        JOIN publication_links pl
+          ON pv.id = pl.publication_version_id
+       GROUP BY pub.id
+      ;
       
       DROP VIEW IF EXISTS v_publications_v_people_identifiers CASCADE;
       CREATE OR REPLACE VIEW v_publications_v_people_identifiers AS
@@ -183,6 +195,7 @@ def setup_publication_json_views
                'version_updated_at', pv.updated_at,
                'version_updated_by', pv.updated_by,
                'publication_identifiers', COALESCE(pi.identifiers, '[]'),
+               'publication_links', COALESCE(pl.links, '[]'),
                'authors', a.authors,
                'categories', COALESCE(pc.categories, '[]'),
                'series', COALESCE(s.series, '[]'),
@@ -200,6 +213,8 @@ def setup_publication_json_views
           ON pub.id = a.publication_id
         LEFT JOIN v_publications_v_publication_identifiers pi
           ON pub.id = pi.publication_id
+        LEFT JOIN v_publications_v_publication_links pl
+          ON pub.id = pl.publication_id
         LEFT JOIN v_publications_v_publication_categories pc
           ON pub.id = pc.publication_id
         LEFT JOIN v_publications_v_series s
