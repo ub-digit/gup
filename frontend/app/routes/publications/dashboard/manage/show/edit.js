@@ -39,7 +39,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScroll, {
     this._super(...arguments);
     //TODO: Remove this when binding issue fixed
     if (Ember.isBlank(models.publication.publication_links)) {
-      models.publication.publication_links.pushObject(Ember.Object.create({ url: "", oa: false, id: Ember.guidFor({}) }));
+      models.publication.publication_links.pushObject(Ember.Object.create({ url: "", oa: null, id: Ember.guidFor({}) }));
       //models.publication.publication_links.pushObject({url: '', position: 0});
     }
 

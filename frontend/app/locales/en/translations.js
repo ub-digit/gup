@@ -487,7 +487,11 @@ export default {
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
         generalErrorHeader: 'The form contain errors. Please correct these and try again.',
-        publicationLinksOpenAccessLabel: 'OA',
+        publicationLinksOpenAccessLabels: {
+          label: 'OA',
+          yes: 'Yes',
+          no: 'No'
+        },
         publicationLinksOpenAccessLabelHelptext: 'Mark if the link leads to an open access version of the publication.',
         help: {
           publicationLinks: 'Links should begin with http:// or https://',

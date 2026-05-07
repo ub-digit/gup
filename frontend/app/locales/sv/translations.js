@@ -487,7 +487,11 @@ export default {
         publicationLinksLabel: 'Externa länkar',
         publicationLinksAddItem: 'Lägg till länk',
         generalErrorHeader: 'Formuläret innehåller felaktigheter. Var vänlig rätta till dessa och försök igen.',
-        publicationLinksOpenAccessLabel: 'OA',
+        publicationLinksOpenAccessLabels: {
+          label: 'OA',
+          yes: 'Ja',
+          no: 'Nej'
+        },
         publicationLinksOpenAccessLabelHelptext: 'Markera om länken leder till en open access-version av publikationen.',
         help: {
           publicationLinks: 'Länkar bör inledas med http:// eller https://',
