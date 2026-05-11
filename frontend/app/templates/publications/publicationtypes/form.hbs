@@ -233,6 +233,7 @@
           <div class="col-xs-4">
             <!-- hide if no open access -->
             <!-- ==================== OPEN ACCESS RADIOS ==================== -->
+            <span style="font-size: 30px">{{getPublicationTypeObject.has_open_access}}</span>
           {{#if getPublicationTypeObject.has_open_access}}
             <div class="form-group">
               <label class="control-label" style="padding-right: 10px;">
@@ -243,7 +244,7 @@
                 <input 
                 type="radio" 
                 name={{concat "oa-radio-" publication_link.id}}
-                checked={{eq publication_link.oa true}}
+                checked={{eq publication_link.is_oa true}}
                 {{action "setOpenAccess" publication_link true publication on="change"}}>
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.yes'}}
               </label>
@@ -254,7 +255,7 @@
                 <input 
                 type="radio" 
                 name={{concat "oa-radio-" publication_link.id}}
-                checked={{eq publication_link.oa false}}
+                checked={{eq publication_link.is_oa false}}
                 {{action "setOpenAccess" publication_link false publication on="change"}}>
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.no'}}
               </label>
@@ -264,12 +265,12 @@
                 <input 
                 type="radio" 
                 name={{concat "oa-radio-" publication_link.id}}
-                checked={{eq publication_link.oa null}}
+                checked={{eq publication_link.is_oa null}}
                 {{action "setOpenAccess" publication_link null publication on="change"}}>
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.unknown'}}
               </label>
               </div>
-              {{#if publication_link.oaHelptext}}
+              {{#if publication_link.is_oaHelptext}}
               <p class="help-block">
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabelHelptext'}}
               </p>

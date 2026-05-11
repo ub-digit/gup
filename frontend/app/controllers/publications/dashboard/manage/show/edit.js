@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
     return Ember.Object.create({
       id: Ember.guidFor({}),
       url: '',
-      oa: null
+      is_oa: null
     });
   },
 
@@ -330,17 +330,7 @@ export default Ember.Controller.extend({
         console.error("publicationLink is null");
         return;
       }
-       publicationLink.set('oa', value);
-      // const newValue = value === true || value === "true";
-
-      // console.log("setOpenAccess → link id:", publicationLink.id, "value:", newValue);
-
-      // // Set the value
-      // Ember.set(publicationLink, 'oa', newValue);
-
-      // // Force Ember to detect the change on the parent
-      // // const publication = this.get('publication');
-
+       publicationLink.set('is_oa', value);
       if (publication && publication.publication_links) {
         // This is the most reliable way in old Ember when dealing with arrays of plain objects
         publication.set('publication_links', publication.get('publication_links').slice());
