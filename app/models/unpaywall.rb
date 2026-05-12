@@ -73,7 +73,7 @@ class Unpaywall < ActiveRecord::Base
 
         case oa_status
         when true
-          link.update_columns(oa: true, checked_at: now)
+          link.update_columns(is_oa: true, checked_at: now)
         when false
           link.update_columns(is_oa: false, checked_at: now)
         when "unknown"
