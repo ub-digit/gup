@@ -246,7 +246,7 @@ class OaiDocuments
         end
         #### Access Condition ####
         # If any of the publication links is open access, mark the publication as open access
-        if publication.current_version.publication_links.where(oa: true).any?
+        if publication.current_version.publication_links.where(is_oa: true).any?
           xml.tag!("accessCondition", "gratis", 'authority' => 'kb.se', 'valueURI' => 'https://id.kb.se/policy/oa/gratis')
         end
 

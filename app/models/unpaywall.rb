@@ -62,14 +62,11 @@ class Unpaywall < ActiveRecord::Base
   def self.check_oa_status(publication)
 
     links = publication.current_version.publication_links
-    puts "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤"
-    puts publication.id
-    puts "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤"
 
     email = ENV["UNPAYWALL_EMAIL"] || "gup@ub.gu.se"
     links.each do |link|
         puts "Checking OA-status for =#{link.url}"
-        next if link.oa == true
+        next if link.is_oa == true
         oa_status = Unpaywall.oa_status_for_url(link.url, email: email)
         next if oa_status == "error"
         now = Time.current
@@ -78,7 +75,7 @@ class Unpaywall < ActiveRecord::Base
         when true
           link.update_columns(oa: true, checked_at: now)
         when false
-          link.update_columns(oa: false, checked_at: now)
+          link.update_columns(is_oa: false, checked_at: now)
         when "unknown"
           link.update_columns(checked_at: now)
         end

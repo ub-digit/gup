@@ -2,13 +2,13 @@ namespace :oa do
   desc "Check a batch of publication_links for OA status via Unpaywall"
   task check_next_publication_link: :environment do
     email = ENV["UNPAYWALL_EMAIL"] || ENV["EMAIL"] || "gup@ub.gu.se"
-    batch_size = (ENV["BATCH"] || "100").to_i
-    batch_size = 10 if batch_size <= 0
+    batch_size = (ENV["BATCH"] || "1000").to_i
+    batch_size = 1000 if batch_size <= 0
 
-    recent_threshold = Time.current - 1.day
+    recent_threshold = Time.current - 1.month
 
     candidates = PublicationLink
-      .where("oa <> true OR oa IS NULL")
+      .where("is_oa <> true OR is_oa IS NULL")
       .where("publication_version_id IN (SELECT current_version_id FROM publications)")
       .where("url ~* ?", '10\.\d+/')
       .where("checked_at IS NULL OR checked_at < ?", recent_threshold)
@@ -20,12 +20,12 @@ namespace :oa do
     puts "----------"
     puts "Checking OA status at #{Time.current.iso8601}"
     puts candidates.to_sql
-    puts "batch_size=#{batch_size}"
+    puts "batch_size=#{batch_size} (maximum)"
 
     candidates.each do |publication_link|
       break if processed >= batch_size
 
-      next if publication_link.oa == true
+      next if publication_link.is_oa == true
       next if publication_link.checked_at.present? &&
               publication_link.checked_at >= recent_threshold
 
@@ -48,14 +48,14 @@ namespace :oa do
       case oa_status
       when true
         publication_link.update!(
-          oa: true,
+          is_oa: true,
           checked_at: now
         )
         puts "publication_link #{publication_link.id} set to OA"
 
       when false
         publication_link.update!(
-          oa: false,
+          is_oa: false,
           checked_at: now
         )
         puts "publication_link #{publication_link.id} set to not OA"

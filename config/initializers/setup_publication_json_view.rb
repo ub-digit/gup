@@ -15,7 +15,7 @@ def setup_publication_json_views
       DROP VIEW IF EXISTS v_publications_v_publication_links CASCADE;
       CREATE OR REPLACE VIEW v_publications_v_publication_links AS
       SELECT pub.id AS publication_id,
-             json_agg(json_build_object('publication_version_id', pl.id, 'url', pl.url, 'is_oa', pl.oa, 'checked_at', pl.checked_at, 'position', pl.position)) AS links
+             json_agg(json_build_object('publication_version_id', pl.id, 'url', pl.url, 'is_oa', pl.is_oa, 'checked_at', pl.checked_at, 'position', pl.position)) AS links
         FROM publications pub
         JOIN publication_versions pv
           ON pub.current_version_id = pv.id

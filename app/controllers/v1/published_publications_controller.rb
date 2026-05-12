@@ -236,8 +236,8 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def merge_publication_links(publication)
-    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, oa: p.oa, position: p.position}}
-    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], oa: p[:oa], position: p[:position]}}
+    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, is_oa: p.is_oa, position: p.position}}
+    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], is_oa: p[:is_oa], position: p[:position]}}
     existing.each do |existing_link|
       if !incoming.any?{|incoming_link|incoming_link[:url].eql?(existing_link[:url])}
         incoming << existing_link
@@ -479,7 +479,7 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :oa, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :is_oa, :position, :publication_version_id)
   end
 
   def permitted_params(params)
