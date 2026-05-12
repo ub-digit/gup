@@ -63,7 +63,7 @@ class Unpaywall < ActiveRecord::Base
 
     links = publication.current_version.publication_links
 
-    email = ENV["UNPAYWALL_EMAIL"] || "gup@ub.gu.se"
+    email = ENV["UNPAYWALL_EMAIL"]
     links.each do |link|
         puts "Checking OA-status for =#{link.url}"
         next if link.is_oa == true
