@@ -79,7 +79,6 @@ class V1::DraftsController < V1::V1Controller
           ))
         end
         create_publication_identifiers!(publication_version: pub.current_version)
-        prepare_doi_link
         create_publication_links!(publication_version: pub.current_version)
 
         create_authors_admin!(publication_version: pub.current_version)
@@ -93,20 +92,6 @@ class V1::DraftsController < V1::V1Controller
       render_json(201)
     end
   end
-
-  def prepare_doi_link
-    params[:publication][:publication_links] = [] if !params[:publication][:publication_links]
-
-    if params[:publication][:publication_identifiers]
-      params[:publication][:publication_identifiers].each do |publication_identifier|
-        if publication_identifier[:identifier_code].eql?('doi')
-          doi_url_prefix = 'https://doi.org/'
-          params[:publication][:publication_links] << {url: doi_url_prefix + publication_identifier[:identifier_value]}
-        end
-      end
-    end
-  end
-
 
   def create_authors_admin!(publication_version:)
     if params[:publication][:authors]
@@ -358,7 +343,7 @@ class V1::DraftsController < V1::V1Controller
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :is_oa, :checked_at, :position, :publication_version_id)
   end
 
   # Creates connections between people, departments and publications for a publication and a people array

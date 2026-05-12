@@ -4,7 +4,7 @@ class PublicationVersion < ActiveRecord::Base
   belongs_to :publication
   belongs_to :publication_type
   has_many :publication_identifiers, autosave: true
-  has_many :publication_links
+  has_many :publication_links, -> { order(position: :asc) }
   has_many :people2publications, -> { order(position: :asc) }
   has_many :authors, :through => :people2publications, :source => :person
   has_many :departments, :through => :people2publications

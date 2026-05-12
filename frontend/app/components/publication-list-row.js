@@ -11,6 +11,23 @@ export default Ember.Component.extend({
     return false;
   }),
 
+  hasOpenAccess: Ember.computed('item.open_access', function() {
+    //TBD: re-enable when open access is properly implemented
+    let oaLink = this.get('item.publication_links') ? this.get('item.publication_links').findBy('is_oa', true) : null;
+
+    if (oaLink && oaLink.is_oa === true) {
+      return true;
+    }
+
+    if (!oaLink) {
+
+      null;
+    }
+    
+    return false;
+
+  }),
+
   titleString: Ember.computed('item.title', function() {
     return this.get('item.title') || this.get('i18n').t('components.publicationListRow.noTitle');
   }),

@@ -19,7 +19,9 @@ export default Ember.Controller.extend({
 
   createNewPublicationLink: function() {
     return Ember.Object.create({
+      id: Ember.guidFor({}),
       url: '',
+      is_oa: null
     });
   },
 
@@ -321,6 +323,22 @@ export default Ember.Controller.extend({
       // TODO: Not needed right now, refactor confirmation-modal not to set this internally since bad ember practice
       // and uncomment this line?
       //this.set('isShowingInvalidSelectedDepartmentsConfirmation', false);
+    },
+    setOpenAccess(publicationLink, value, publication) {
+     
+      if (!publicationLink) {
+        console.error("publicationLink is null");
+        return;
+      }
+       publicationLink.set('is_oa', value);
+      if (publication && publication.publication_links) {
+        // This is the most reliable way in old Ember when dealing with arrays of plain objects
+        publication.set('publication_links', publication.get('publication_links').slice());
+        
+        console.log("✅ publication_links array refreshed");
+      } else {
+        console.warn("Could not find publication object");
+      }
     }
   }
 });
