@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     //TBD: re-enable when open access is properly implemented
     let oaLink = this.get('item.publication_links') ? this.get('item.publication_links').findBy('is_oa', true) : null;
 
-    if (oaLink && oaLink.oa === true) {
+    if (oaLink && oaLink.is_oa === true) {
       return true;
     }
 

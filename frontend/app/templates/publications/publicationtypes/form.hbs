@@ -233,7 +233,6 @@
           <div class="col-xs-4">
             <!-- hide if no open access -->
             <!-- ==================== OPEN ACCESS RADIOS ==================== -->
-            <span style="font-size: 30px">{{getPublicationTypeObject.has_open_access}}</span>
           {{#if getPublicationTypeObject.has_open_access}}
             <div class="form-group">
               <label class="control-label" style="padding-right: 10px;">
@@ -270,7 +269,7 @@
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabels.unknown'}}
               </label>
               </div>
-              {{#if publication_link.is_oaHelptext}}
+              {{#if publication_link.oaHelptext}}
               <p class="help-block">
                 {{t 'publications.publicationtypes.form.publicationLinksOpenAccessLabelHelptext'}}
               </p>
