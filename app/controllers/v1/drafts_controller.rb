@@ -324,9 +324,6 @@ class V1::DraftsController < V1::V1Controller
       params[:publication][:publication_links].each do |publication_link|
       #@TODO: if not params[:publication][:publication_links].kind_of?(Array) #respond_to?('each') #trow exception
         publication_link[:publication_version_id] = publication_version.id
-        # attribute is_oa has to be renamed to oa, attribute checked_at has to be renamed to checked_at
-        publication_link[:oa] = publication_link.delete(:is_oa) if publication_link.key?(:is_oa)
-        publication_link[:checked_at] = publication_link.delete(:checked_at) if publication_link.key?(:checked_at)
         p publication_link
         #TODO: publication_version.create_publication_link
         pl = PublicationLink.create(
@@ -346,7 +343,7 @@ class V1::DraftsController < V1::V1Controller
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :oa, :checked_at, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :is_oa, :checked_at, :position, :publication_version_id)
   end
 
   # Creates connections between people, departments and publications for a publication and a people array
