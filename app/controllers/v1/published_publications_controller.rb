@@ -460,13 +460,17 @@ class V1::PublishedPublicationsController < ApplicationController
   def create_publication_links(publication_version:)
     params[:publication][:publication_links] = [] if params[:publication][:publication_links].nil?
 
+    # Get highest posistion of the incoming links
+    highest_position = params[:publication][:publication_links].map{|l| l[:position].to_i}.max || 0
+
     # Create a DOI link if publication identifier with code 'doi' exists and no link contains the DOI value as a substring
     if params[:publication][:publication_identifiers]
       params[:publication][:publication_identifiers].each do |publication_identifier|
         if publication_identifier[:identifier_code].eql?('doi')
           unless params[:publication][:publication_links].any? { |link| link[:url].include?(publication_identifier[:identifier_value]) }
             doi_url_prefix = 'https://doi.org/'
-            params[:publication][:publication_links] << {url: doi_url_prefix + publication_identifier[:identifier_value]}
+            highest_position += 1
+            params[:publication][:publication_links] << {url: doi_url_prefix + publication_identifier[:identifier_value], position: highest_position}
           end
         end
       end
