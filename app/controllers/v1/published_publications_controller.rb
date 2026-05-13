@@ -139,7 +139,7 @@ class V1::PublishedPublicationsController < ApplicationController
       return
     end
 
-    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true, brief: true})
+    @response = generic_pagination(resource: publications, resource_name: 'publications', page: params[:page], additional_order: sort_order, options: {include_authors: true})
     render_json(200)
   end
 
@@ -236,8 +236,8 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def merge_publication_links(publication)
-    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, position: p.position}}
-    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], position: p[:position]}}
+    existing = publication.current_version.publication_links.order(id: :desc).map{|p|{url: p.url, is_oa: p.is_oa, position: p.position}}
+    incoming = params[:publication][:publication_links].map{|p|{url: p[:url], is_oa: p[:is_oa], position: p[:position]}}
     existing.each do |existing_link|
       if !incoming.any?{|incoming_link|incoming_link[:url].eql?(existing_link[:url])}
         incoming << existing_link
@@ -425,6 +425,7 @@ class V1::PublishedPublicationsController < ApplicationController
       # TODO! This needs error handling, or saving a publication will cause GUP to crash.
       Thread.new {
         ActiveRecord::Base.connection_pool.with_connection do
+          Unpaywall.check_oa_status(publication)
           GupAdminPublication.put_to_index(publication.id)
         end
       }
@@ -457,28 +458,40 @@ class V1::PublishedPublicationsController < ApplicationController
   end
 
   def create_publication_links(publication_version:)
-    if params[:publication][:publication_links].present?
-      params[:publication][:publication_links].each do |publication_link|
-      #@TODO: if not params[:publication][:publication_links].kind_of?(Array) #respond_to?('each') #trow exception
-        publication_link[:publication_version_id] = publication_version.id
-        #TODO: publication_version.create_publication_link
-        pl = PublicationLink.create(
-          publication_link_permitted_params(
-            ActionController::Parameters.new(publication_link: publication_link)
-          )
-        )
-        if pl.errors.any?
-          #TODO: Right now not correct field key in errors message (should be "publication_links")?
-          error_msg(ErrorCodes::VALIDATION_ERROR, I18n.t("publication_links.errors.create_error"), pl.errors)
-          render_json
-          raise ActiveRecord::Rollback
+    params[:publication][:publication_links] = [] if params[:publication][:publication_links].nil?
+
+    # Create a DOI link if publication identifier with code 'doi' exists and no link contains the DOI value as a substring
+    if params[:publication][:publication_identifiers]
+      params[:publication][:publication_identifiers].each do |publication_identifier|
+        if publication_identifier[:identifier_code].eql?('doi')
+          unless params[:publication][:publication_links].any? { |link| link[:url].include?(publication_identifier[:identifier_value]) }
+            doi_url_prefix = 'https://doi.org/'
+            params[:publication][:publication_links] << {url: doi_url_prefix + publication_identifier[:identifier_value]}
+          end
         end
+      end
+    end
+
+    params[:publication][:publication_links].each do |publication_link|
+    #@TODO: if not params[:publication][:publication_links].kind_of?(Array) #respond_to?('each') #trow exception
+      publication_link[:publication_version_id] = publication_version.id
+      #TODO: publication_version.create_publication_link
+      pl = PublicationLink.create(
+        publication_link_permitted_params(
+          ActionController::Parameters.new(publication_link: publication_link)
+        )
+      )
+      if pl.errors.any?
+        #TODO: Right now not correct field key in errors message (should be "publication_links")?
+        error_msg(ErrorCodes::VALIDATION_ERROR, I18n.t("publication_links.errors.create_error"), pl.errors)
+        render_json
+        raise ActiveRecord::Rollback
       end
     end
   end
 
   def publication_link_permitted_params(params)
-    params.require(:publication_link).permit(:url, :position, :publication_version_id)
+    params.require(:publication_link).permit(:url, :is_oa, :position, :publication_version_id)
   end
 
   def permitted_params(params)

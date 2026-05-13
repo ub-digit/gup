@@ -487,8 +487,16 @@ export default {
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
         generalErrorHeader: 'The form contain errors. Please correct these and try again.',
+        publicationLinksOpenAccessLabels: {
+          label: 'OA',
+          yes: 'Yes',
+          no: 'No',
+          unknown: 'Unknown',
+        },
+        publicationLinksOpenAccessLabelHelptext: 'Mark if the link leads to an open access version of the publication.',
         help: {
           publicationLinks: 'Links should begin with http:// or https://',
+          publicationLinksOpenAccess: 'Mark if the link leads to an open access version of the publication.',
           authors: {
             helptext: {
               general: 'Please register all authors in the same order as mentioned in the original publication. If the author is affiliated to GU, register family name and first name and <strong>the affiliation as it’s indicated in the publication</strong>. For other authors, register family name and first name’s initial. Please search for already registered authors before creating a new one.',
