@@ -15,8 +15,6 @@ class PubmedAdapter
   include ActiveModel::Validations
 
   DOI_URL_PREFIX = 'http://dx.doi.org/'
-  PUBMED_URL_PREFIX = 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Citation&list_uids='
-
 
   def json_data options = {}
     {
@@ -121,14 +119,11 @@ class PubmedAdapter
 
     @pmid = xml.search('//MedlineCitation/PMID').text
 
-    links = []
     if !xml.search('//PubmedData/ArticleIdList/ArticleId[@IdType="doi"]').empty?
-      links << DOI_URL_PREFIX + xml.search('//PubmedData/ArticleIdList/ArticleId[@IdType="doi"]').text
+      @publication_links = [{ url: DOI_URL_PREFIX + xml.search('//PubmedData/ArticleIdList/ArticleId[@IdType="doi"]').text, position: 0 }]
+    else
+      @publication_links = []
     end
-    if !xml.search('//PubmedData/ArticleIdList/ArticleId[@IdType="pubmed"]').empty?
-      links << PUBMED_URL_PREFIX + xml.search('//PubmedData/ArticleIdList/ArticleId[@IdType="pubmed"]').text
-    end
-    @publication_links = links.map.with_index { |url, i| { url: url, position: i } }
 
     # Parse publication_identifiers
     @publication_identifiers = []
