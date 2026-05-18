@@ -427,6 +427,10 @@ class V1::PublishedPublicationsController < ApplicationController
         ActiveRecord::Base.connection_pool.with_connection do
           Unpaywall.check_oa_status(publication)
           GupAdminPublication.put_to_index(publication.id)
+          # Send all persons to gup admin
+          publication.current_version.authors.each do |author|
+            GupAdminPerson.put_to_index(author.id)
+          end
         end
       }
     else
