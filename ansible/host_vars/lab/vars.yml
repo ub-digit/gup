@@ -1,6 +1,6 @@
 ---
-git_revision: add-new-category-002
-docker_git_revision: ansible-deploy
+git_revision: add-redis-cache-v1
+docker_git_revision: ansible-deploy-dev
 docker_command: ./docker-compose-release.sh
 apache_static_image: docker.ub.gu.se/gup-static:release-2021.05.001
 apache_static_host_port: 30196
