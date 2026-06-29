@@ -47,3 +47,8 @@ data_dirs:
     push: false
     pull: false
     local: false
+  redis:
+    path: /data/gup/redis-data
+    push: false
+    pull: false
+    local: false
