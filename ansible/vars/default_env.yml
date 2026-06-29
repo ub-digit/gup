@@ -35,6 +35,7 @@ GUP_DB_VOLUME_SOURCE: "{{ data_dirs.backend_db.path }}"
 GUP_SOLR_JOURNALS_VOLUME_SOURCE: "{{ data_dirs.solr_journals.path }}"
 GUP_SOLR_PEOPLE_VOLUME_SOURCE: "{{ data_dirs.solr_people.path }}"
 GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE: "{{ data_dirs.solr_publications.path }}"
+GUP_REDIS_VOLUME_SOURCE: "{{ data_dirs.redis.path }}"
 
 GUP_STATIC_RUNNING_IMAGE: "{{ apache_static_image }}"
 GUP_STATIC_ACCESS_PORT: "127.0.0.1:{{ apache_static_host_port }}"

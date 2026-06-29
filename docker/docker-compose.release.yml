@@ -64,3 +64,6 @@ services:
     volumes:
       - "${GUP_STATIC_APACHE_SITE}:/etc/apache2/sites-enabled"
       - "${GUP_BACKEND_SITEMAPS_DIR}:/var/www/sitemaps"
+  gup-redis:
+    volumes:
+      - ${GUP_REDIS_VOLUME_SOURCE}:/data

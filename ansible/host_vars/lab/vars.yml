@@ -1,6 +1,6 @@
 ---
 git_revision: add-redis-cache-v1
-docker_git_revision: ansible-deploy-dev
+docker_git_revision: add-redis-cache-ansible-deploy
 docker_command: ./docker-compose-release.sh
 apache_static_image: docker.ub.gu.se/gup-static:release-2021.05.001
 apache_static_host_port: 30196
