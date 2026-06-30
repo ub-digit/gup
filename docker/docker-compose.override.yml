@@ -14,6 +14,12 @@ services:
       - 7357:7357
     volumes:
       - ../frontend:/home/node/app
+  gup-varnish:
+    image: varnish:9
+    environment:
+      - VARNISH_SIZE=200MB
+    volumes:
+      - ./build/varnish/default.vcl:/etc/varnish/default.vcl
   gup-backend:
     image: docker.ub.gu.se/rails:ruby-2.5.8
     environment:
