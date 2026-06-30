@@ -1,0 +1,5 @@
+.password
+.vault_password
+todo
+data/*
+!data/.gitkeep
