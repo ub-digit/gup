@@ -18,35 +18,32 @@ services:
       - ${GUP_BACKEND_SITEMAPS_DIR}:/apps/gup/sitemaps
   gup-backend_full:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
+    restart: always
     depends_on:
-      - db
+      - gup-db
+    env_file:
+      - secrets.env
     environment:
       - RAILS_ENV=${GUP_ENVIRONMENT}
       - RAILS_PORT=${GUP_RAILS_PORT}
-      - GUP_AUTH_OVERRIDE=${GUP_AUTH_OVERRIDE}
-      - GUP_SECRET_KEY_BASE=${GUP_SECRET_KEY_BASE}
       - GUP_DB_HOST=${GUP_DB_HOST}
       - GUP_DB_PORT=${GUP_DB_PORT}
       - GUP_DB=${GUP_DB}
       - GUP_DB_USER=${GUP_DB_USER}
       - GUP_DB_PASSWORD=${GUP_DB_PASSWORD}
-      - GUP_SOLR_HOST=solr
+      - GUP_SOLR_HOST=gup-solr
       - GUP_SOLR_PORT=8983
-      - GUP_TEST_USER_API_KEY=${GUP_TEST_USER_API_KEY}
-      - GUP_SCOPUS_API_KEY=${GUP_SCOPUS_API_KEY}
-      - GUP_MAIL_SMTP_HOST=${GUP_MAIL_SMTP_HOST}
       - GUP_MAIL_FROM=${GUP_MAIL_FROM}
       - GUP_MAIL_TO=${GUP_MAIL_TO}
       - GUP_REPOSITORY_NAME=${GUP_REPOSITORY_NAME}
       - GUP_OAI_REPOSITORY_NAME=${GUP_OAI_REPOSITORY_NAME}
       - GUP_OAI_RECORD_PREFIX=${GUP_OAI_RECORD_PREFIX}
       - GUP_MQ_BASE_URL=${GUP_MQ_BASE_URL}
-      - GUP_MQ_API_KEY=${GUP_MQ_API_KEY}
       - GUP_HOSTNAME=${BACKEND_OAI_FULL_HOSTNAME}
       - GUP_PUBLIC_BASE_URL=${GUP_PUBLIC_BASE_URL}
       - GUP_OAI_SCOPE=full
     networks:
-      - backend
+      - gup
     ports:
       - ${GUP_BACKEND_FULL_PORT}:${GUP_RAILS_PORT}
   gup-db:
@@ -55,6 +52,7 @@ services:
       - ${GUP_DB_VOLUME_SOURCE}:/var/lib/postgresql/data
   gup-solr:
     volumes:
+#     - ${GUP_SOLR_GURESEARCH_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-guresearch/data
       - ${GUP_SOLR_JOURNALS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-journals/data
       - ${GUP_SOLR_PEOPLE_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-people/data
       - ${GUP_SOLR_PUBLICATIONS_VOLUME_SOURCE}:/opt/solr/server/solr/mycores/gup-publications/data

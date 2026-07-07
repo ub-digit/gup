@@ -18,8 +18,7 @@ services:
     image: docker.ub.gu.se/rails:ruby-2.5.8
     environment:
       - GUP_HOSTNAME=localhost:${GUP_BACKEND_PORT}
-      - DEV_ALLOW_ALL_ACCOUNTS=${DEV_ALLOW_ALL_ACCOUNTS}
-      - DEV_OVERRIDE_ADMIN=${DEV_OVERRIDE_ADMIN}
+      - GUP_PUBLIC_BASE_URL=http://localhost:${GUP_BACKEND_PORT}
     volumes:
       - ../:/usr/src/app
     command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
@@ -31,6 +30,17 @@ services:
   gup-solr:
     volumes:
       - ../solr/config/core.properties.envsubst:/opt/solr/gup-config/core.properties.envsubst
+
+     # gup-guresearch, used??
+      - >
+        ../solr/config/cores/gup-guresearch/conf/dataimportconfig.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/dataimportconfig.xml
+      - >
+        ../solr/config/cores/gup-guresearch/conf/schema.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/schema.xml
+      - >
+        ../solr/config/solrconfig.xml
+        :/opt/solr/server/solr/mycores/gup-guresearch/conf/solrconfig.xml
 
       # gup-people
       - >

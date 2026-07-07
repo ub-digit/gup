@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+    ServerName {{ backend_hostname }}
+    Redirect permanent / https://{{ backend_hostname }}
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName {{ backend_hostname }}
+    FallbackResource /index.html
+
+    ProxyPreserveHost Off
+
+    ### Tillfällig lösning, ska fixas i appen
+    ProxyPass        /license_Dnr-A_85_592_10.pdf http://localhost:{{ frontend_host_port }}/license_Dnr-A_85_592_10.pdf
+    ProxyPassReverse /license_Dnr-A_85_592_10.pdf http://localhost:{{ frontend_host_port }}/license_Dnr-A_85_592_10.pdf
+
+    ProxyPass        / http://localhost:{{ backend_host_port }}/
+    ProxyPassReverse / http://localhost:{{ backend_host_port }}/
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/apache2/certs/ub-gu-se.pem
+    SSLCertificateKeyFile /etc/ssl/apache2/private/ub-gu-se.key
+    SSLCertificateChainFile /etc/ssl/apache2/certs/ub-gu-se-chain.pem
+</VirtualHost>
