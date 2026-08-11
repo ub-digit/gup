@@ -4,20 +4,14 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
 
   api :GET, '/biblreview_publications', 'Returns a list of publications which are eligible for bibliographic review based on current filtering options'
   def index
-
     publications_scope = Publication
       .non_deleted
       .published
       .unbiblreviewed
 
     if @current_user.has_right?('biblreview')
-      #postponed_publication_ids = PostponeDate
-      #.where(deleted_at: nil)
-      #.where("postponed_until > (?)", DateTime.now)
-      #.select(:publication_id)
       if params[:only_delayed] && params[:only_delayed] == 'true'
         # Show only delayed publications
-        # This is equivalent but much faster
         publications = publications_scope.where(
           "EXISTS (
             SELECT 1
@@ -27,11 +21,7 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
               AND pd.postponed_until > ?
           )", DateTime.now
         )
-        #publications = publications_scope
-        #  .where(id: postponed_publication_ids)
       else
-        #publications = publications_scope
-        #  .where.not(id: postponed_publication_ids)
         publications = publications_scope.where(
           "NOT EXISTS (
             SELECT 1
@@ -43,7 +33,6 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
         )
       end
     else
-      #return error TBD
       publications = Publication.none
     end
 
