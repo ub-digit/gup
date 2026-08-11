@@ -41,9 +41,6 @@ export default Ember.Component.extend({
           year_of_birth: item.newAuthorForm.get("year_of_birth"),
           xaccount: item.newAuthorForm.get("xaccount"),
           orcid: item.newAuthorForm.get("orcid"),
-          skip_update_search_engine: item.newAuthorForm.get(
-            "skip_update_search_engine"
-          ),
         })
         .then((model) => {
           if (model.error) {
@@ -71,8 +68,6 @@ export default Ember.Component.extend({
             item.get("importedAuthorLastName")
           );
         }
-        // TODO: Why do we do this?
-        item.newAuthorForm.set("skip_update_search_engine", true);
         return this.get("createAuthor")(item);
       }
       return Ember.RSVP.Promise.resolve();
