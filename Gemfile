@@ -12,6 +12,7 @@ gem 'puma', '~> 4.3'
 
 # https://github.com/rails/sprockets-rails/issues/444
 gem "sprockets", "< 4"
+gem 'rails_semantic_logger'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
