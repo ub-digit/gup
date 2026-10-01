@@ -182,10 +182,6 @@ export default Ember.Controller.extend({
 
   refValueSelectionVisible: Ember.computed.equal('publicationTypeObject.ref_options', 'BOTH'),
 
-  refInfoTextVisible: Ember.computed('selectedPublicationType', function() {
-      return this.get('selectedPublicationType') === 'artistic-work_original-creative-work';
-  }),
-
   getAuthorsHelptext: Ember.computed('selectedPublicationType', function() {
       if (this.get('selectedPublicationType') === 'artistic-work_original-creative-work') {
         return "publications.publicationtypes.form.help.authors.helptext.artistic";
