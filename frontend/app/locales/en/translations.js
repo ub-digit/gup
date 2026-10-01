@@ -482,7 +482,6 @@ export default {
       form: {
         publicationType: 'Publication type',
         refereeLable: 'Peer reviewed',
-        refArtExtraInfo: 'Peer-reviewed artistic work includes public artistic projects, performances or productions carried out with direct international, state-run, regional or municipal support, or support from a third party. Direct support refers to either financial support, clear selection process, official invitation, public production, or commissioned work.',
         changePublicationTypeLink: 'Change',
         publicationLinksLabel: 'External links',
         publicationLinksAddItem: 'Add link',
