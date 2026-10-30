@@ -2,7 +2,9 @@ class V1::PublicationTypesController < ApplicationController
   
   api :GET, '/publication_types', 'Returns a list of all configurated publication types'
   def index
-    publication_types = PublicationType.all
+    publication_types = Rails.cache.fetch('publication_types', expires_in: 14.days) do
+      PublicationType.all.as_json
+    end
     @response[:publication_types] = publication_types
     render_json
   end

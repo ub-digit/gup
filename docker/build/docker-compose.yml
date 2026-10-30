@@ -7,6 +7,10 @@ services:
       args:
         - GIT_REPO_URL=${GIT_REPO_URL}
         - GIT_REVISION=${GIT_REVISION}
+  varnish:
+    image: docker.ub.gu.se/gup-varnish:${GIT_REVISION}
+    build:
+      context: ./varnish # TODO: Copy default.vcl from repo as for solr and postgres
   backend:
     image: docker.ub.gu.se/gup-backend:${GIT_REVISION}
     build:
