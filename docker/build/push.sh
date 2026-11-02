@@ -7,6 +7,7 @@ if [ -n "$1" ]; then
 fi
 
 docker push docker.ub.gu.se/gup-frontend:${GIT_REVISION} && \
+docker push docker.ub.gu.se/gup-varnish:${GIT_REVISION} && \
 docker push docker.ub.gu.se/gup-backend:${GIT_REVISION} && \
 docker push docker.ub.gu.se/gup-solr:${GIT_REVISION} && \
 docker push docker.ub.gu.se/gup-postgres:${GIT_REVISION}

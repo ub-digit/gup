@@ -1,0 +1,9 @@
+---
+- name: Pull database
+  hosts: all
+  roles:
+  - role: ub-ansible-deploy-export-db
+    vars:
+      db_service: gup-db
+      database_variant: postgres
+      db_dump_filename: database.sql

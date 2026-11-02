@@ -1,0 +1,54 @@
+---
+docker_git_repo_url: https://github.com/ub-digit/gup.git
+docker_directory: './docker' # Default is './docker'
+app_name: gup
+data_dir: /data/gup
+
+data_dirs:
+  backend_uploads:
+    path: /data/gup/uploads
+    push: true
+    pull: true
+  backend_sitemaps:
+    path: /data/gup/sitemaps
+    push: false
+    pull: false
+    local: false
+  backend_db:
+    path: /data/gup/db-postgres-data
+    owner: 999
+    group: 999
+    push: false
+    pull: false
+  solr:
+    path: /data/gup/solr
+    push: false
+    pull: false
+  solr_journals:
+    path: /data/gup/solr/gup-journals
+    owner: 8983
+    group: 8983
+    push: true
+    pull: true
+  solr_people:
+    path: /data/gup/solr/gup-people
+    owner: 8983
+    group: 8983
+    push: true
+    pull: true
+  solr_publications:
+    path: /data/gup/solr/gup-publications
+    owner: 8983
+    group: 8983
+    push: true
+    pull: true
+  apache_static_sites:
+    path: /data/gup/apache-static-sites
+    push: false
+    pull: false
+    local: false
+  redis:
+    path: /data/gup/redis-data
+    push: false
+    pull: false
+    local: false
