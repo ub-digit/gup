@@ -84,6 +84,8 @@ class V1::PublicationsController < ApplicationController
       return
     end
     if publication.update_attribute(:deleted_at, DateTime.now)
+      Rails.cache.delete_matched('published_publications*')
+      Rails.cache.delete_matched('public_published_publications*')
       render_json
     else
       error_msg(ErrorCodes::VALIDATION_ERROR,"#{I18n.t "publications.errors.delete_error"}: #{params[:id]}")
@@ -107,6 +109,9 @@ class V1::PublicationsController < ApplicationController
         pi = PublicationIdentifier.new(publication_identifier_permitted_params(ActionController::Parameters.new(publication_identifier: publication_identifier)))
         if !pi.save
           pis_errors << [pi.errors]
+        else
+          Rails.cache.delete_matched('published_publications*')
+          Rails.cache.delete_matched('public_published_publications*')
         end
       end
       if !pis_errors.empty?

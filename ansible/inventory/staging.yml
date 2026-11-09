@@ -1,0 +1,6 @@
+---
+all:
+  hosts:
+    lab:
+      ansible_host: gup-staging.ub.gu.se
+      ansible_user: apps
