@@ -80,50 +80,24 @@ namespace :gup_admin do
 #    puts "Projects indexed."
 #  end
 
-  
-desc "Reindex all projects in GUP admin"
-task :reindex_projects => :environment do
-  settings = APP_CONFIG.fetch('gup_admin_settings')
-  base_url = settings.fetch('index_manager_base_url')
-  api_key = settings.fetch('index_manager_api_key')
+	desc "Reindex all projects in GUP admin"
+	task :reindex_projects => :environment do
+	  puts "Reindexing projects..."
 
-  puts "Resetting projects index..."
+	  GupAdminProject.index_all
 
-  response = RestClient.post(
-    "#{base_url}/api/indexes/projects/reset?api_key=#{api_key}",
-    {}
-  )
+	  puts "Projects reindexed."
+	end
 
-  raise "Failed to reset projects index" unless
-    JSON.parse(response.body)['status'] == 'ok'
+	desc "Reindex all series in GUP admin"
+	task :reindex_series => :environment do
+	  puts "Reindexing series..."
 
-  puts "Importing projects..."
-  GupAdminProject.index_all
+	  GupAdminSeries.index_all
 
-  puts "Projects reindexed."
-end
+	  puts "Series reindexed."
+	end
 
-desc "Reindex all series in GUP admin"
-task :reindex_series => :environment do
-  settings = APP_CONFIG.fetch('gup_admin_settings')
-  base_url = settings.fetch('index_manager_base_url')
-  api_key = settings.fetch('index_manager_api_key')
-
-  puts "Resetting series index..."
-
-  response = RestClient.post(
-    "#{base_url}/api/indexes/series/reset?api_key=#{api_key}",
-    {}
-  )
-
-  raise "Failed to reset series index" unless
-    JSON.parse(response.body)['status'] == 'ok'
-
-  puts "Importing series..."
-  GupAdminSeries.index_all
-
-  puts "Series reindexed."
-end
 
   desc "Match publications with scopus documents"
   task :match_publications => :environment do

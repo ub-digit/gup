@@ -37,18 +37,18 @@ class GupAdminSeries
         RestClient.delete "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/series/gup_#{series_id}?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}"
     end
 
-    
+
 #    def self.index_all opts = {}
 #      documents = GupAdminSeries.get_documents opts
-#    
+#
 #      documents.each_with_index do |document, index|
 #        puts "Index: #{index}, Series id: #{document[0]}"
-#    
+#
 #        series_list = JSON.parse(document[1])
-#    
+#
 #        series_list.each do |series|
 #          series["id"] = series.delete("series_id")
-#        
+#
 #          RestClient.put(
 #            "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/series/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}",
 #            { data: series }.to_json,
@@ -59,36 +59,48 @@ class GupAdminSeries
 #    end
 
 
-    def self.index_all(opts = {})
-      documents = get_documents(opts)
-    
-      documents.each_with_index do |document, index|
-        serie_id, json = document
-    
-        series_list = JSON.parse(json)
-        series_list = [series_list] unless series_list.is_a?(Array)
-    
-        series_list.each do |series|
-          series["id"] = series.delete("serie_id")
-        
-          raise "Missing series id" if series["id"].nil?
-        
-          puts "Index: #{index}, Series id: #{series['id']}"
-        
-          response = RestClient.put(
-            "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/series/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}",
-            { data: series }.to_json,
-            content_type: :json
-          )
-        
-          result = JSON.parse(response.body)
-        
-          if result["error"] || result["status"] != "ok"
-            raise "Failed to index series #{series['id']}: #{result.inspect}"
-          end
-        end
-      end
-    end
+	def self.index_all(opts = {})
+	  raise "Full reindex does not support limit or offset" if opts[:limit] || opts[:offset]
+
+	  settings = APP_CONFIG.fetch('gup_admin_settings')
+	  base_url = settings.fetch('index_manager_base_url').sub(/\/+\z/, '')
+	  api_key = settings.fetch('index_manager_api_key')
+
+	  documents = get_documents({})
+
+	  series = documents.flat_map do |document|
+	    parsed = JSON.parse(document[1])
+	    parsed = [parsed] unless parsed.is_a?(Array)
+
+	    parsed.map do |serie|
+	      serie["id"] = serie.delete("serie_id")
+	      serie
+	    end
+	  end
+
+	  raise "No series found - aborting reindex" if series.empty?
+	  raise "Series without id - aborting reindex" if series.any? { |s| s["id"].nil? }
+
+	  ids = series.map { |s| s["id"].to_s }
+	  raise "Duplicate series IDs - aborting reindex" if ids.uniq.length != ids.length
+
+	  puts "Sending #{series.length} series to GUP Admin..."
+
+	  response = RestClient.put(
+	    "#{base_url}/api/series",
+	    { api_key: api_key, data: series }.to_json,
+	    content_type: :json,
+	    accept: :json
+	  )
+
+	  result = JSON.parse(response.body)
+
+	  unless result["message"] == "Series indexed successfully"
+	    raise "Series indexing failed: #{result.inspect}"
+	  end
+
+	  puts "Successfully indexed #{series.length} series."
+	end
 
    def self.sync_updated opts
         days = opts[:days]

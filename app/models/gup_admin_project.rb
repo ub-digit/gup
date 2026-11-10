@@ -30,25 +30,48 @@ class GupAdminProject
     end
 
 
-    def self.index_all opts = {}
-      documents = GupAdminProject.get_documents opts
-    
-      documents.each_with_index do |document, index|
-        puts "Index: #{index}, Project id: #{document[0]}"
-    
-        projects = JSON.parse(document[1])
-    
-        projects.each do |project|
-          project["id"] = project.delete("project_id")
-        
-          RestClient.put(
-            "#{APP_CONFIG['gup_admin_settings']['index_manager_base_url']}/projects/?api_key=#{APP_CONFIG['gup_admin_settings']['index_manager_api_key']}",
-            { data: project }.to_json,
-            content_type: :json
-          )
-        end
-      end
-    end
+	def self.index_all(opts = {})
+	  raise "Full reindex does not support limit or offset" if opts[:limit] || opts[:offset]
+
+	  settings = APP_CONFIG.fetch('gup_admin_settings')
+	  base_url = settings.fetch('index_manager_base_url').sub(/\/+\z/, '')
+	  api_key = settings.fetch('index_manager_api_key')
+
+	  documents = get_documents({})
+
+	  projects = documents.flat_map do |document|
+	    parsed = JSON.parse(document[1])
+	    parsed = [parsed] unless parsed.is_a?(Array)
+
+	    parsed.map do |project|
+	      project["id"] = project.delete("project_id")
+	      project
+	    end
+	  end
+
+	  raise "No projects found - aborting reindex" if projects.empty?
+	  raise "Project without id - aborting reindex" if projects.any? { |p| p["id"].nil? }
+
+	  ids = projects.map { |p| p["id"].to_s }
+	  raise "Duplicate project IDs - aborting reindex" if ids.uniq.length != ids.length
+
+	  puts "Sending #{projects.length} projects to GUP Admin..."
+
+	  response = RestClient.put(
+	    "#{base_url}/api/projects",
+	    { api_key: api_key, data: projects }.to_json,
+	    content_type: :json,
+	    accept: :json
+	  )
+
+	  result = JSON.parse(response.body)
+
+	  unless result["message"] == "Projects indexed successfully"
+	    raise "Project indexing failed: #{result.inspect}"
+	  end
+
+	  puts "Successfully indexed #{projects.length} projects."
+	end
 
     def self.sync_updated opts
         days = opts[:days]
