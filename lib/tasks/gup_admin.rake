@@ -36,6 +36,69 @@ namespace :gup_admin do
     GupAdminPublication.sync_deleted days: days.to_i
   end
 
+  desc "Sync updated projects with GUP admin"
+  task :sync_updated_projects => :environment do
+    days = ENV['DAYS']
+    exit if days.blank?
+    GupAdminProject.sync_updated days: days.to_i
+  end
+
+  desc "Sync deleted projects with GUP admin"
+  task :sync_deleted_projects => :environment do
+    days = ENV['DAYS']
+    exit if days.blank?
+    GupAdminProject.sync_deleted days: days.to_i
+  end
+
+  desc "Put all projects to GUP admin index manager"
+  task :index_all_projects => :environment do
+    GupAdminProject.index_all
+  end
+
+  desc "Put all series to GUP admin index manager"
+    task :index_all_series => :environment do
+    GupAdminSeries.index_all
+  end
+
+  desc "Index all projects and series in GUP admin"
+  task :index_all_projects_and_series => :environment do
+    puts "Indexing projects..."
+    GupAdminProject.index_all
+
+    puts "Indexing series..."
+    GupAdminSeries.index_all
+
+    puts "Finished indexing projects and series."
+  end
+
+#  desc "Reindex all projects in GUP admin"
+#  task :reindex_projects => :environment do
+#    puts "Reindexing projects..."
+#
+#    GupAdminProject.index_all
+#
+#    puts "Projects indexed."
+#  end
+
+	desc "Reindex all projects in GUP admin"
+	task :reindex_projects => :environment do
+	  puts "Reindexing projects..."
+
+	  GupAdminProject.index_all
+
+	  puts "Projects reindexed."
+	end
+
+	desc "Reindex all series in GUP admin"
+	task :reindex_series => :environment do
+	  puts "Reindexing series..."
+
+	  GupAdminSeries.index_all
+
+	  puts "Series reindexed."
+	end
+
+
   desc "Match publications with scopus documents"
   task :match_publications => :environment do
     in_file = ENV['IN']
