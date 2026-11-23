@@ -40,7 +40,7 @@ class GupAdminPerson
   end
 
   def self.search query
-    encoded_query = URI.encode(query) # encode the query
+    encoded_query = ERB::Util.url_encode(query) # encode the query
     response = RestClient.get "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/persons?query=#{encoded_query}&api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}"
     if response.code != 200
       # TBD More error handling
@@ -51,7 +51,7 @@ class GupAdminPerson
 
   def self.search_gup_person_ids ids
     return [] if ids.blank?
-    encoded_ids = URI.encode(ids) # encode the query
+    encoded_ids = ERB::Util.url_encode(ids) # encode the query
     response = RestClient.get "#{APP_CONFIG['gup_admin_settings']['backend_base_url']}/api/persons?gup_person_ids=#{encoded_ids}&api_key=#{APP_CONFIG['gup_admin_settings']['backend_api_key']}"
     if response.code != 200
       # TBD More error handling
