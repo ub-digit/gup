@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :fetch_user
+  before_action :fetch_user
   require 'pp'
   
   def index
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       render json: {user: @user}
     else
       render json: {error: @user.errors }, status: 422

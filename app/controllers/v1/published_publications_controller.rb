@@ -1,6 +1,6 @@
 class V1::PublishedPublicationsController < ApplicationController
-  before_filter :validate_access, except: [:index_public]
-  before_filter :apply_access, only: [:index_public]
+  before_action :validate_access, except: [:index_public]
+  before_action :apply_access, only: [:index_public]
   include PaginationHelper
 
   api :GET, '/published_publications_xls', 'Returns an xls file with published publications based on filter parameters'
@@ -185,7 +185,7 @@ class V1::PublishedPublicationsController < ApplicationController
     publication = Publication.find_by_id(id)
     if publication
       if publication.is_published?
-        params[:publication] = publication.attributes_indifferent.merge(params[:publication])
+        params[:publication] = publication.attributes_indifferent.merge(params[:publication].to_unsafe_h)
         publish_publication(publication: publication)
       else
         error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{id} has not been published yet")
@@ -412,7 +412,7 @@ class V1::PublishedPublicationsController < ApplicationController
               render_json
               raise ActiveRecord::Rollback
             end
-            publication_to_be_deleted.update_attributes({deleted_at: DateTime.now, replaced_by_publication_id: publication.id})
+            publication_to_be_deleted.update({deleted_at: DateTime.now, replaced_by_publication_id: publication.id})
           end
 
           render_json(200)

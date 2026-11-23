@@ -30,7 +30,6 @@ module Guppi
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.autoload_paths << Rails.root.join('app/oai_documents')
-    config.active_record.raise_in_transactional_callbacks = true
     config.middleware.use Rack::Cors do
       allow do
         origins '*'

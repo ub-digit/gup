@@ -1,8 +1,8 @@
 require 'pp'
 
 class V1::PublicationsController < ApplicationController
-  before_filter :validate_access, except: [:show]
-  before_filter :apply_access, only: [:show]
+  before_action :validate_access, except: [:show]
+  before_action :apply_access, only: [:show]
 
   api :GET, '/publications/:id', 'Returns a single publication based on pubid.'
   description "Returns a single complete publication object based on pubid. The most recent version of the publication is the one returned."

@@ -15,7 +15,7 @@ services:
     volumes:
       - ../frontend:/home/node/app
   gup-backend:
-    image: docker.ub.gu.se/rails:ruby-2.5.8
+    image: local-ruby-3.3.14
     environment:
       - GUP_HOSTNAME=localhost:${GUP_BACKEND_PORT}
       - DEV_ALLOW_ALL_ACCOUNTS=${DEV_ALLOW_ALL_ACCOUNTS}

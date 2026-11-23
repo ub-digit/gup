@@ -1,5 +1,5 @@
 class V1::FacultiesController < V1::V1Controller
-  before_filter :validate_access, except: [:index]
+  before_action :validate_access, except: [:index]
 
   api :GET, '/faculties', 'Returns a list of all configurated faculties'
   def index

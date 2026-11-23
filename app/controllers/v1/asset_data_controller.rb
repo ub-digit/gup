@@ -1,6 +1,6 @@
 class V1::AssetDataController < V1::V1Controller
-  before_filter :validate_access, except: [:show]
-  before_filter :apply_access, only: [:show]
+  before_action :validate_access, except: [:show]
+  before_action :apply_access, only: [:show]
 
   ACCEPTED_FILE_TYPES = [".pdf", ".jpeg", ".jpg", ".doc", ".docx", ".xls", ".xlsx"]
 
@@ -76,7 +76,7 @@ class V1::AssetDataController < V1::V1Controller
 
     asset_data = AssetData.find_by_id(params[:id])
     if asset_data
-      if asset_data.update_attributes(params.require(:asset_data).permit(:accepted, :visible_after))
+      if asset_data.update(params.require(:asset_data).permit(:accepted, :visible_after))
         @response[:asset_data] = asset_data.as_json(except: [:tmp_token])
         render_json
         return
@@ -94,7 +94,7 @@ class V1::AssetDataController < V1::V1Controller
     asset_data = AssetData.find_by_id(params[:id])
     if asset_data
       if asset_data.is_deletable_by_user?(xaccount: @current_user.username)
-        if asset_data.update_attributes({deleted_at: DateTime.now, deleted_by: @current_user.username})
+        if asset_data.update({deleted_at: DateTime.now, deleted_by: @current_user.username})
           dir_path = get_file_path(asset_data.checksum)
           extension = Pathname.new(asset_data.name).extname
           file_path = "#{dir_path}/#{asset_data.checksum}#{extension}"
