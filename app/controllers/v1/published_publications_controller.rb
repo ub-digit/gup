@@ -160,7 +160,7 @@ class V1::PublishedPublicationsController < ApplicationController
       if publication
         if publication.is_draft? || publication.is_predraft?
           publication.published_at = DateTime.now
-          params[:publication] = publication.attributes_indifferent.merge(params[:publication])
+          params[:publication] = publication.attributes_indifferent.merge(params[:publication].to_unsafe_h)
           publish_publication(publication: publication)
         else
           error_msg(ErrorCodes::OBJECT_ERROR, "Publication with id #{draft_id} is not a draft")
@@ -205,7 +205,7 @@ class V1::PublishedPublicationsController < ApplicationController
     publication = Publication.find_by_id(id)
     if publication
       if publication.is_published? && !publication.is_deleted?
-        params[:publication] = publication.attributes_indifferent.merge(params[:publication])
+        params[:publication] = publication.attributes_indifferent.merge(params[:publication].to_unsafe_h)
         params[:publication][:publication_links] = merge_publication_links(publication)
         params[:publication][:publication_identifiers] = merge_publication_identifiers(publication)
         params[:publication][:authors] = people_for_publication(publication_version_id: publication.current_version_id)

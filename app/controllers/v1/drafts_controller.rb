@@ -136,7 +136,7 @@ class V1::DraftsController < V1::V1Controller
     publication = Publication.find_by_id(id)
     if publication
       publication_version_old = publication.current_version
-      params[:publication] = publication.attributes_indifferent.merge(params[:publication])
+      params[:publication] = publication.attributes_indifferent.merge(params[:publication].to_unsafe_h)
       params[:publication][:created_by] = publication_version_old.created_by
       params[:publication][:updated_by] = @current_user.username
       params[:publication][:process_state] = "DRAFT"
