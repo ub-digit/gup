@@ -127,6 +127,20 @@ def setup_publication_json_views
         GROUP BY pub.id
       ;
 
+      DROP VIEW IF EXISTS v_publications_v_projects CASCADE;
+      CREATE OR REPLACE VIEW v_publications_v_projects AS
+      SELECT pub.id AS publication_id,
+              json_agg(json_build_object('project_id', pr.id, 'title', pr.title, 'abbrev', pr.abbrev, 'project_number', pr.project_number, 'description', pr.description, 'keywords', pr.keywords, 'url', pr.url, 'start_year', pr.start_year, 'end_year', pr.end_year, 'listplace', pr2p.project_listplace)) AS projects
+        FROM publications pub
+        JOIN publication_versions pv
+          ON pub.current_version_id = pv.id
+        JOIN projects2publications pr2p
+          ON pr2p.publication_version_id = pv.id
+        JOIN projects pr
+          ON pr.id = pr2p.project_id
+        GROUP BY pub.id
+      ;
+
       DROP VIEW IF EXISTS v_publications_v_files CASCADE;
       CREATE OR REPLACE VIEW v_publications_v_files AS
       SELECT pub.id AS publication_id,
@@ -199,6 +213,7 @@ def setup_publication_json_views
                'authors', a.authors,
                'categories', COALESCE(pc.categories, '[]'),
                'series', COALESCE(s.series, '[]'),
+               'projects', COALESCE(pr.projects, '[]'),
                'files', COALESCE(f.files, '[]'),
                'source', 'gup',
                'attended', true,
@@ -219,6 +234,8 @@ def setup_publication_json_views
           ON pub.id = pc.publication_id
         LEFT JOIN v_publications_v_series s
           ON pub.id = s.publication_id
+        LEFT JOIN v_publications_v_projects pr
+          ON pub.id = pr.publication_id
         LEFT JOIN v_publications_v_files f
           ON pub.id = f.publication_id
         LEFT JOIN v_publications_v_affiliated_publications ap
