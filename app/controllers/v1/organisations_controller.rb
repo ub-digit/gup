@@ -1,5 +1,5 @@
 class V1::OrganisationsController < V1::V1Controller
-  before_filter :validate_access
+  before_action :validate_access
   api :POST, '/organisations', 'Takes a list of organisations and saves them to the database'
   def update_batch
     organisations = params[:organisations]

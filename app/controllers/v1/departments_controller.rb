@@ -1,5 +1,5 @@
 class V1::DepartmentsController < ApplicationController
-  before_filter :validate_access, except: [:index]
+  before_action :validate_access, except: [:index]
 
   api :GET, '/departments', 'Returns a list of all departments based on given parameters'
   param :year, :number, :desc => 'Limits the search to only include departments which were active during given year.'
@@ -54,7 +54,7 @@ class V1::DepartmentsController < ApplicationController
       dep = Department.new({id: department_id})
     end
     if dep
-      if dep.update_attributes(permitted_params_for_update)
+      if dep.update(permitted_params_for_update)
         @response[:department] = dep.as_json
       else
         error_msg(ErrorCodes::VALIDATION_ERROR, "#{I18n.t "departments.errors.invalid"}: #{params[:id]}")

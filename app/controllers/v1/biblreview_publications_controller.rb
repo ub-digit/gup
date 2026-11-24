@@ -71,11 +71,20 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
 
     keys = [:id, :name, :publications_count]
     locale_suffix = I18n.locale.to_s
+
+
     publication_types = publications
       .joins("INNER JOIN publication_types ON publication_versions.publication_type_id = publication_types.id")
-      .group("publication_types.id, publication_types.label_#{locale_suffix}")
-      .order("publication_types.label_#{locale_suffix} ASC")
-      .pluck("publication_types.id, publication_types.label_#{locale_suffix}, COUNT(DISTINCT publications.id)")
+      .group(
+        "publication_types.id",
+        "publication_types.label_#{locale_suffix}"
+      )
+      .order(Arel.sql("publication_types.label_#{locale_suffix} ASC"))
+      .pluck(
+        "publication_types.id",
+        "publication_types.label_#{locale_suffix}",
+        Arel.sql("COUNT(DISTINCT publications.id)")
+      )
       .map { |row| keys.zip(row).to_h }
 
     # Only apply pubtype for main query
@@ -116,7 +125,7 @@ class V1::BiblreviewPublicationsController < V1::V1Controller
       return
     end
 
-    if publication.current_version.update_attributes(biblreviewed_at: DateTime.now, biblreviewed_by: @current_user.username) && publication.delete_postpone_dates(postponed_by: @current_user.username)
+    if publication.current_version.update(biblreviewed_at: DateTime.now, biblreviewed_by: @current_user.username) && publication.delete_postpone_dates(postponed_by: @current_user.username)
       @response[:publication] = publication.as_json
       render_json
     else

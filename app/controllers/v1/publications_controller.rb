@@ -1,8 +1,8 @@
 require 'pp'
 
 class V1::PublicationsController < ApplicationController
-  before_filter :validate_access, except: [:show]
-  before_filter :apply_access, only: [:show]
+  before_action :validate_access, except: [:show]
+  before_action :apply_access, only: [:show]
 
   api :GET, '/publications/:id', 'Returns a single publication based on pubid.'
   description "Returns a single complete publication object based on pubid. The most recent version of the publication is the one returned."
@@ -127,7 +127,7 @@ class V1::PublicationsController < ApplicationController
       person = Person.unscoped.where(id: p2p.person_id).first.as_json
 
       # Hack for GUP Admin, exclude Import affiliated Departments
-      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).where("departments.name_en != ?", "Import").order("departments2people2publications.position asc")
+      departments = Department.includes(:departments2people2publications).where("departments2people2publications.people2publication_id = ?", p2p.id).where("departments.name_en != ?", "Import").order(Arel.sql("departments2people2publications.position ASC"))
       person['departments'] = departments.as_json(skip_children: true)
 
       presentation_string = Person.where(id: p2p.person_id).first.presentation_string(departments.map{|d| I18n.locale == :en ? d.name_en : d.name_sv}.uniq[0..1])

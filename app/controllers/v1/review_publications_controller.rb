@@ -61,7 +61,7 @@ class V1::ReviewPublicationsController < V1::V1Controller
       return
     end
 
-    people2publication.update_attributes(reviewed_at: DateTime.now, reviewed_publication_version_id: publication_version_id)
+    people2publication.update(reviewed_at: DateTime.now, reviewed_publication_version_id: publication_version_id)
 
     if people2publication.save!
       @response[:publication] = {}

@@ -118,7 +118,7 @@ class V1::PeopleController < V1::V1Controller
       params[:person].delete :skip_update_search_engine
     end
 
-    if person.update_attributes(permitted_params)
+    if person.update(permitted_params)
       if person.present?
         if params[:person] && params[:person][:identifiers]
           # Make this in a transaction
@@ -207,7 +207,7 @@ class V1::PeopleController < V1::V1Controller
 
     if person.present?
       if !person.has_active_publications?
-        person.update_attributes(deleted_at: DateTime.now)
+        person.update(deleted_at: DateTime.now)
         @response[:person] = person.as_json
         PeopleSearchEngine.delete_from_search_engine(person.id)
       else

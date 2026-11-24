@@ -18,9 +18,6 @@ class Person < ActiveRecord::Base
 
   strip_attributes only: [:first_name, :last_name]
 
-  #after_save :update_search_engine, on: :create
-  #after_save :update_search_engine, on: :update
-
   def as_json(opts={})
     data = {
       id: id,

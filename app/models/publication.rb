@@ -91,7 +91,7 @@ class Publication < ActiveRecord::Base
 
   nilify_blanks :types => [:text]
 
-  after_save :update_search_engine, on: :update
+  after_save :update_search_engine, if: :persisted?
 
   def is_predraft?
     process_state == "PREDRAFT"
@@ -298,8 +298,8 @@ class Publication < ActiveRecord::Base
   def save_version(version:, process_state: "UNKNOWN")
     version.created_at = Time.now
     if version.save
-      update_attributes(current_version_id: version.id)
-      update_attributes(process_state: process_state)
+      update(current_version_id: version.id)
+      update(process_state: process_state)
       return true
     else
       version.errors.messages.each do |key, value|
@@ -327,7 +327,7 @@ class Publication < ActiveRecord::Base
   def delete_postpone_dates(postponed_by:)
     postpone_dates.each do |postpone_object|
       if !postpone_object.deleted_at
-        if !postpone_object.update_attributes(deleted_at: DateTime.now, deleted_by: postponed_by)
+        if !postpone_object.update(deleted_at: DateTime.now, deleted_by: postponed_by)
           return false
         end
       end
